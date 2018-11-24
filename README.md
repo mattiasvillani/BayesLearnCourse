@@ -1,22 +1,10 @@
 <!-- font: frutiger -->
 
-![alt text](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeon.jpg "ML for industry")
+### Bayesian Learning (aka Bayesian Statistics I)
+
+![alt text](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeon.jpg "Bayesian Learning")
 
 <div style="background-color:#eaeff7; padding:20px 47px;">
-
-### Course information
-**The typical participant** has a degree in engineering, finance or other quantitative fields. We recommend that participants have taken at least one course in each of the following subjects:
-
-* linear algebra
-* calculus
-* statistics
-* programming
-
-**Software** (recommended): Scikit-learn for Python, TensorFlow.
-
-**Examination**: based on reports from the computer labs.
-
-**Grades**: Pass or Fail.
 
 </div>
 
@@ -24,18 +12,9 @@
 
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
-### Course organization and suggested study plan
+### Aims
 
-The course will organized in three half days and three full days. \
-The lectures are by design rather condensed. \
-It is therefore **highly recommended** that the course participants:
-
-1. Read the suggested course material **before** each lecture. 
-2. Use the lecture as a repetition, as an alternative viewpoint, as an opportunity to ask questions, and to deepen your understanding.
-3. Attend the lab session to apply the learned methods in practice, to further your understanding and to solidify your knowledge.
-
-Note: the scheduled three hours for each lab will not to be sufficient for completing the lab. 
-
+The course aims to give a solid introduction to the Bayesian approach to statistical inference, with a view towards applications in data mining and machine learning. After an introduction to the subjective probability concept that underlies Bayesian inference, the course moves on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Linear regression and spline regression are also analyzed using a Bayesian approach. The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC). Bayesian prediction and marginalization of nuisance parameters is explained, and introductions to Bayesian model selection and Bayesian decision theory are also given.
 </div>
 
 \
@@ -43,128 +22,80 @@ Note: the scheduled three hours for each lab will not to be sufficient for compl
 <div style="background-color:#eaeff7; padding:20px 30px;">
 
 ### Teachers
-##### Lecturer
-Mattias Villani \
-Division of Statistics and Machine Learning, Linköping University \
-Department of Statistics, Stockholm University
 
-##### Lab assistant
-XXX YYY \
+##### Lecturer
+[Mattias Villani](https://mattiasvillani.com) \
+Professor \
+Department of Statistics, Stockholm University \
 Division of Statistics and Machine Learning, Linköping University 
 
+##### Lab assistants
+[Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
+PhD Candidate \
+Department of Statistics, Stockholm University \
+
+[Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608) \
+PhD Candidate \
+Department of Statistics, Stockholm University 
+
 </div>
 
+\
+<div style="background-color:#eaeff7; padding:20px 47px;">
+
+#### Part 1 - The Basics
+##### Lecture 1 - Basics concepts. Likelihood. The Bernoulli model.
+
+Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
+Code: \
+Other material: \
+Software: [Google's TensorFlow](https://www.tensorflow.org/)
+
+##### Lecture 2 - Gaussian model. Conjugate priors. The Poisson model. Prior elicitation. Noninformative priors.
+
+Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
+Code: \
+Other material: \
+Software: [Google's TensorFlow](https://www.tensorflow.org/)
+
+##### Lecture 3 - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.
+
+Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
+Code: \
+Other material: \
+Software: [Google's TensorFlow](https://www.tensorflow.org/) 
+
+##### Computer Lab 1 - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.
+Reading: Lab \
+Submission tool:
+
+</div>
 \
 
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
-#### Day 1
-##### 09-10 Lecture 1 - Course intro. Intro to ML. Motivating applications.
+#### Part 2 - Bayesian Regression and Classification
+##### Lecture 4 - Prediction. Making Decisions.
 
 Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
 Code: \
 Other material: \
 Software: [Google's TensorFlow](https://www.tensorflow.org/)
 
-##### 10-11 Lecture 2 - Probability and statistics refresher.
+##### Lecture 5 - Linear Regression. Nonlinear regression. Regularization priors.
 
 Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
 Code: \
 Other material: \
 Software: [Google's TensorFlow](https://www.tensorflow.org/)
 
-##### 11-12 Lecture 3 - Regression.
-
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
-Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/)
-
-</div>
-\
-
-<div style="background-color:#eaeff7; padding:20px 47px;">
-
-#### Day 2
-##### 09-10 Lecture 4 - Regression trees.
-
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
-Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/)
-
-##### 10-11 Lecture 5 - Random forest.
-
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
-Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/)
-
-##### 11-12 Lecture 6 - Model evaluation.
+##### Lecture 6 - Classification. Posterior approximation. Logistic regression. Naive Bayes.
 
 Reading: [Slides](https://github.com/mattiasvillani/ML4Industry/raw/master/Slides/LectureIntro.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
 Code: \
-Other material: \
+Other material: 
 
-
-##### 13-16 Computer Lab 1 - Regression.
-
-Reading: Lab \
-Submission tool:
-</div>
-
-\
-<div style="background-color:#eaeff7; padding:20px 47px;">
-
-#### Day 3
-##### 09-10 Lecture 7 - Maximum likelihood. Gradient-based optimization.
-
-Reading: \
-Code: \
-Other material: \
-Software: 
-
-##### 10-11 Lecture 8 - Bayesian learning
-
-Reading: \
-Code: \
-Other material: \
-Software: 
-
-##### 11-12 Lecture 9 - Overfitting and regularization
-
-Reading: \
-Code: \
-Other material: \
-Software: 
-</div>
-
-\
-<div style="background-color:#eaeff7; padding:20px 47px;">
-
-#### Day 4
-##### 09-10 Lecture 10 - Classification. Naive Bayes.
-
-Reading: \
-Code: \
-Other material: \
-Software: 
-
-##### 10-11 Lecture 11 - Logistic regression.
-
-Reading: \
-Code: \
-Other material: \
-Software: 
-
-##### 11-12 Lecture 12 - Unsupervised learning. Clustering. Mixture models.
-
-Reading: \
-Code: \
-Other material: \
-Software: 
-
-##### 13-16 Computer Lab 2 - Clustering. Classification.
+##### Computer Lab 2 - Polynomial regression and classification with logistic regression.
 
 Reading: Lab \
 Submission tool:
@@ -173,59 +104,64 @@ Submission tool:
 \
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
-#### Day 5
-##### 09-10 Lecture 13 - Deep Neural networks.
+#### Part 3 - More Advanced Models, MCMC and Variational Bayes
+##### Lecture 7 - Bayesian computations. Monte Carlo simulation. Gibbs sampling. Data augmentation.
 
 Reading: \
 Code: \
 Other material: \
 Software: 
 
-##### 10-11 Lecture 14 - Learning Deep neural networks.
+##### Lecture 8 - MCMC and Metropolis-Hastings
 
 Reading: \
 Code: \
 Other material: \
 Software: 
 
-##### 11-12 Lecture 15 - Convolutional Neural networks.
+##### Lecture 9 - HMC, Variational Bayes and Stan.
 
 Reading: \
 Code: \
 Other material: \
-Software: 
+Software:
+
+##### Computer Lab 3 - Gibbs sampling for the normal model, mixture of normals and probit regression.
+
+Reading: Lab \
+Submission tool:
+
 </div>
 
 \
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
-#### Day 6
-##### 09-10 Lecture 16 - Decision making under uncertainty.
+#### Part 4 - Model Inference and Variable Selection
+##### Lecture 10 - Bayesian model comparison.
 
 Reading: \
 Code: \
 Other material: \
 Software: 
 
-##### 10-11 Lecture 17 - Reinforcement learning.
+##### Lecture 11 - Computing the marginal likelihood, Bayesian variable selection, model averaging.
 
 Reading: \
 Code: \
 Other material: \
 Software: 
 
-##### 11-12 Lecture 18 -  Reinforcement learning.
+##### Lecture 12 - Model evaluation and course summary.
 
 Reading: \
 Code: \
 Other material: \
 Software: 
 
-##### 13-16 Computer Lab 3 - Deep learning. Reinforcement learning.
+##### Computer Lab 4 - Metropolis-Hastings for Poisson regression.
 
 Reading: Lab \
 Submission tool:
-
 </div>
 
 \
