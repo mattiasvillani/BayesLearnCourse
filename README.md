@@ -1,6 +1,6 @@
 <!-- font: frutiger -->
 
-![alt text](https://github.com/mattiasvillani/ML4industry/raw/master/Slides/images/MachineLearning.jpg "ML for industry")
+![alt text](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeon.jpg "ML for industry")
 
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
