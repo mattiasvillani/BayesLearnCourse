@@ -1,0 +1,894 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 2.5cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\size footnotesize
+Matias Quiroz and Mattias Villani
+\begin_inset space \hspace{}
+\length 7.5cm
+\end_inset
+
+2016-04-05
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Division of Statistics and Machine Learning
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Dept.
+ of Computer and Information Science
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Linköpings universitet
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+matias.quiroz@liu.se
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Bayesian Learning, 6 hp
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Computer lab 1
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You can use any programming language for the labs, but my hints, help and
+ solutions will be in R.
+ 
+\begin_inset Newline newline
+\end_inset
+
+You are supposed to work and submit your labs in pairs, but do make sure
+ that both of you are contributing.
+ Submit your solutions by Lisam no later than 
+\series bold
+April
+\series default
+ 19 at 
+\series bold
+midnight
+\series default
+.
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Bernoulli ...
+ again.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Let 
+\begin_inset Formula $y_{1},...,y_{n}|\theta\sim\mathrm{Bern}(\theta)$
+\end_inset
+
+, and assume that you have obtained a sample with 
+\begin_inset Formula $s=14$
+\end_inset
+
+ successes in 
+\begin_inset Formula $n=20$
+\end_inset
+
+ trials.
+ Assume a 
+\begin_inset Formula $\mathrm{Beta}(\alpha_{0},\beta_{0})$
+\end_inset
+
+ prior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and let 
+\begin_inset Formula $\alpha_{0}=\beta_{0}=2$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Draw random numbers from the posterior 
+\begin_inset Formula $\theta\vert y\sim\mathrm{Beta}(\alpha_{0}+s,\beta_{0}+f)$
+\end_inset
+
+, 
+\begin_inset Formula $y=(y_{1},\dots,y_{n}),$
+\end_inset
+
+ and verify that the posterior mean and standard deviation converges to
+ the true values as the number of random draws grows large.
+\end_layout
+
+\begin_layout Enumerate
+Use simulation to compute the posterior probability 
+\begin_inset Formula $\mathrm{Pr}(\theta<0.4\vert y)$
+\end_inset
+
+ and compare with the exact value [Hint: 
+\family typewriter
+pbeta()
+\family default
+].
+\end_layout
+
+\begin_layout Enumerate
+Compute the posterior distribution of the log-odds 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}$
+\end_inset
+
+ by simulation.
+ [Hint: 
+\family typewriter
+hist()
+\family default
+ and 
+\family typewriter
+density()
+\family default
+ might come in handy]
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\emph on
+Log-normal distribution and the Gini coefficient.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Assume that you have asked 10 randomly selected persons about their monthly
+ income (in thousands Swedish Krona) and obtained the following ten observations
+: 14, 25, 45, 25, 30, 33, 19, 50, 34 and 67.
+ A common model for non-negative continuous variables is the log-normal
+ distribution.
+ The log-normal distribution 
+\begin_inset Formula $\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ has density function
+\begin_inset Formula 
+\[
+p(y\vert\mu,\sigma^{2})=\frac{1}{y\cdot\sqrt{2\pi\sigma^{2}}}\exp\left[-\frac{1}{2\sigma^{2}}\left(\log y-\mu\right)^{2}\right],
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $y>0$
+\end_inset
+
+, 
+\begin_inset Formula $\mu>0$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}>0$
+\end_inset
+
+.
+ The log-normal distribution is related to the normal distribution as follows:
+ if 
+\begin_inset Formula $y\sim\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ then 
+\begin_inset Formula $\log y\sim\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $y_{1},...,y_{n}\vert\mu,\sigma^{2}\overset{iid}{\sim}\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+, where 
+\begin_inset Formula $\mu=3.5$
+\end_inset
+
+ is assumed to be known but 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is unknown with non-informative prior 
+\begin_inset Formula $p(\sigma^{2})\propto1/\sigma^{2}$
+\end_inset
+
+.
+ Show analytically that the posterior for 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is the 
+\begin_inset Formula $Inv-\chi^{2}(n,\tau^{2})$
+\end_inset
+
+ distribution, where 
+\begin_inset Formula 
+\[
+\tau^{2}=\frac{\sum_{i=1}^{n}(\log y_{i}-\mu)^{2}}{n}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Simulate 
+\begin_inset Formula $10,000$
+\end_inset
+
+ draws from the posterior of 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ (assuming 
+\begin_inset Formula $\mu=3.5$
+\end_inset
+
+) and compare with the results in a).
+\end_layout
+
+\begin_layout Enumerate
+The most common measure of income inequality is the Gini coefficient, 
+\begin_inset Formula $G$
+\end_inset
+
+, where 
+\begin_inset Formula $0\leq G\leq1$
+\end_inset
+
+.
+ 
+\begin_inset Formula $G=0$
+\end_inset
+
+ means a completely equal income distribution, whereas 
+\begin_inset Formula $G=1$
+\end_inset
+
+ means complete income inequality.
+ See Wikipedia for more information.
+ It can be shown that 
+\begin_inset Formula $G=2\Phi\left(\sigma/\sqrt{2}\right)-1$
+\end_inset
+
+ when incomes follow a 
+\begin_inset Formula $\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ distribution.
+ 
+\begin_inset Formula $\Phi(z)$
+\end_inset
+
+ is the cumulative distribution function (CDF) for the standard normal distribut
+ion with mean zero and unit variance.
+ Use the posterior draws in b) to compute the posterior distribution of
+ the Gini coefficient 
+\begin_inset Formula $G$
+\end_inset
+
+ for the current data set.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Bayesian inference for the concentration parameter in the von Mises distribution.
+ This exercise is concerned with directional data.
+ The data points are observed wind directions at a given location on ten
+ different days.
+ The data are recorded in degrees: 
+\begin_inset Formula $(40,303,326,285,296,314,20,308,299,296)$
+\end_inset
+
+, where North is located at zero degrees (see Figure 1 on the next page,
+ where the angles are measured clockwise).
+ To fit with Wikipedias description of probability distributions for circular
+ data we convert the data into radians 
+\begin_inset Formula $-\pi\leq y\leq\pi$
+\end_inset
+
+ .
+ The 
+\begin_inset Formula $10$
+\end_inset
+
+ observations in radians are 
+\begin_inset Formula $(-2.44,2.14,2.54,1.83,2.02,2.33,-2.79,2.23,2.07,2.02)$
+\end_inset
+
+.
+ Assume that these data points are independent observations following the
+ von Mises distribution
+\begin_inset Formula 
+\[
+p(y\vert\mu,\kappa)=\frac{\exp\left[\kappa\cdot\cos(y-\mu)\right]}{2\pi I_{0}(\kappa)},\;-\pi\leq y\leq\pi,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $I_{0}(\kappa)$
+\end_inset
+
+ is the modified Bessel function of the first kind of order zero [see 
+\family typewriter
+?besselI
+\family default
+ in R].
+ The parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ (
+\begin_inset Formula $-\pi\leq\mu\leq\pi$
+\end_inset
+
+) is the mean direction and 
+\begin_inset Formula $\kappa>0$
+\end_inset
+
+ is called the concentration parameter.
+ Large 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ gives a small variance around 
+\begin_inset Formula $\mu$
+\end_inset
+
+, and vice versa.
+ Assume that 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is known to be 
+\begin_inset Formula $2.39$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\kappa\sim\mathrm{Exponential}(\lambda=1)$
+\end_inset
+
+ a priori, where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the rate parameter of the exponential distribution (so that the mean
+ is 
+\begin_inset Formula $1/\lambda$
+\end_inset
+
+).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Plot the posterior distribution of 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ for the wind direction data over a fine grid of 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ values.
+\end_layout
+
+\begin_layout Enumerate
+Find the posterior mode of 
+\begin_inset Formula $\kappa$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The populations, 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ , and the number of cases, 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ , of a disease in a year in each of six districts 
+\begin_inset Formula $(m=6)$
+\end_inset
+
+ are given in the table below.
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features rotate="0" tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Population 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Cases 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+120342 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+235967
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+243745
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+197452
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+276935
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+157222
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Suppose that the number 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ in a district with population 
+\begin_inset Formula $n_{i}$
+\end_inset
+
+ is a Poisson random variable with mean 
+\begin_inset Formula $n_{i}\lambda/100000$
+\end_inset
+
+.
+ The number of cases in each district is independent of the numbers in other
+ districts, given the value of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+ Our prior distribution for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is a Gamma distribution 
+\begin_inset Formula $\lambda\sim\mathrm{Gamma}(a_{0},b_{0}),$
+\end_inset
+
+ where 
+\begin_inset Formula $a_{0}$
+\end_inset
+
+ is its shape parameter and 
+\begin_inset Formula $b_{0}$
+\end_inset
+
+ is the rate parameter, 
+\begin_inset Formula $a_{0}>0,$
+\end_inset
+
+ 
+\begin_inset Formula $b_{0}>0$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Show mathematically that the posterior distribution of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is also a gamma distribution 
+\begin_inset Formula $\lambda\sim\mathrm{Gamma}(a_{m},b_{m}),$
+\end_inset
+
+ where 
+\begin_inset Formula $a_{m}=a_{0}+\sum_{i=1}^{m}y_{i},$
+\end_inset
+
+ and 
+\begin_inset Formula $b_{m}=b_{0}+\sum_{i=1}^{m}n_{i}/100000.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Suppose that we have prior information that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ can be expected to be 4 and that we are 50% certain that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ lies in the interval 3 to 5.
+ Use trial and error to find parameter values for the prior that (approximately)
+ satisfies this.
+ [Hint: Search for a 
+\family typewriter
+
+\begin_inset Formula $\beta$
+\end_inset
+
+
+\family default
+, such that 
+\family typewriter
+
+\begin_inset Formula $\lambda\sim\mathrm{Gamma}(4\beta,\beta)$
+\end_inset
+
+
+\family default
+ and 
+\family typewriter
+
+\begin_inset Formula $Pr(3\leqslant\lambda\leqslant5)\approx0.5.$
+\end_inset
+
+ pgamma()
+\family default
+]
+\end_layout
+
+\begin_layout Enumerate
+Use the data to update the prior information.
+ Plot a graph showing the prior and posterior probability density functions
+ of 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ on the same axes.
+ What is the posterior probability that 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is between 3 and 5?
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename DirectionalData.png
+	scale 60
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The wind direction data.
+ Angles are measured clock-wise starting from North.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+May Bayes be with you!
+\end_layout
+
+\end_body
+\end_document

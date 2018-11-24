@@ -1,0 +1,1384 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\setcounter{MaxMatrixCols}{10}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
+\definecolor{gray97}{cmyk}{0,0,0,0.03}
+\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
+\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+
+\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
+\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
+\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
+\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
+\usecolortheme[named=RawSienna]{structure}
+%\usecolortheme[RGB={205,0,0}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+\usetheme{default}
+\setbeamertemplate{blocks}[shadow=true]
+%\setbeamerfont{structure}{shape=\itshape}
+\usefonttheme{structuresmallcapsserif}
+\setbeamertemplate{background canvas}{
+ % \ifnum \thepage>0 \relax % we are on the first page
+%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
+ % \else
+ 	% No background for page 2 and onwards
+ % \fi
+}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Bayesian Learning
+\end_layout
+
+\end_inset
+
+Bayesian Learning - Lecture 2
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Mattias Villani
+\end_layout
+
+\end_inset
+
+Mattias Villani
+\end_layout
+
+\begin_layout Institute
+
+\series bold
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Statistics, LiU
+\end_layout
+
+\end_inset
+
+Division of Statistics and Machine Learning
+\begin_inset Newline newline
+\end_inset
+
+Department of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University 
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Lecture overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+Poisson model
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Conjugate priors
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior elicitation
+\series default
+\color inherit
+ - how to come up with a prior.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Non-informative priors
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Poisson model
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+y_{1},...,y_{n}\vert\theta\overset{iid}{\sim}Pois(\theta)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Poisson distribution
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(y)=\text{\frac{\theta^{y}e^{-\theta}}{y!}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Likelihood
+\series default
+\color inherit
+ from iid Poisson sample
+\shape italic
+ 
+\shape default
+
+\begin_inset Formula $y=(y_{1},...,y_{n})$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(y|\theta)=\left[\prod\nolimits _{i=1}^{n}p(y_{i}|\theta)\right]\propto\theta^{(\sum\nolimits _{i=1}^{n}y_{i})}\exp(-\theta n),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\shape italic
+\emph on
+\color blue
+Prior
+\series default
+\color inherit
+:
+\shape default
+\emph default
+
+\begin_inset Formula 
+\[
+p(\theta)\propto\theta^{\alpha-1}\exp(-\theta\beta)\propto Gamma(\alpha,\beta)
+\]
+
+\end_inset
+
+which contains the info: 
+\begin_inset Formula $\alpha-1$
+\end_inset
+
+ counts in 
+\begin_inset Formula $\beta$
+\end_inset
+
+ observations.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Poisson model, cont.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{eqnarray*}
+p(\theta|y_{1},...,y_{n}) & \propto & \left[\prod\nolimits _{i=1}^{n}p(y_{i}|\theta)\right]p(\theta)\\
+ & \propto & \theta^{\sum\nolimits _{i=1}^{n}y_{i}}\exp(-\theta n)\theta^{\alpha-1}\exp(-\theta\beta)\\
+ & = & \theta^{\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1}\exp[-\theta(\beta+n)],
+\end{eqnarray*}
+
+\end_inset
+
+which is proportional to the 
+\begin_inset Formula $Gamma(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)$
+\end_inset
+
+ distribution.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior-to-Posterior
+\series default
+\color inherit
+ 
+\series bold
+\color blue
+mapping
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\begin{gather*}
+\text{Model: \ }y_{1},...,y_{n}|\theta\overset{iid}{\sim}Pois(\theta)\\
+\text{Prior: \ }\theta\sim Gamma(\alpha,\beta)\\
+\text{Posterior: }\theta|y_{1},...,y_{n}\sim Gamma(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)\text{.}
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Poisson example - Bomb hits in London
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+n=576\text{, }\sum\nolimits _{i=1}^{n}y_{i}=229\cdot0+211\cdot1+93*2+35*3+7*4+1\cdot5=537.
+\]
+
+\end_inset
+
+Average number of hits per region=
+\begin_inset Formula $\bar{y}=537/576\approx0.9323.$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(\theta|y)\propto\theta^{\alpha+537-1}\exp[-\theta(\beta+576)]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+E(\theta|y)=\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}\approx\bar{y}\approx0.9323,
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\[
+SD(\theta|y)=\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{(\beta+n)^{2}}\right)^{1/2}=\frac{(\alpha+\sum\nolimits _{i=1}^{n}y_{i})^{1/2}}{(\beta+n)}\approx\frac{(537)^{1/2}}{576}\approx0.0402.
+\]
+
+\end_inset
+
+ if 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+ are small compared to 
+\begin_inset Formula $\sum\nolimits _{i=1}^{n}y_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Poisson bomb hits in London
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename BombHitsPoisson.eps
+	scale 40
+	rotateAngle 270
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Poisson example - posterior intervals
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian 95% credible interval
+\series default
+\color inherit
+: the probability that the unknown parameter 
+\begin_inset Formula $\theta$
+\end_inset
+
+ lies in the interval is 0.95.
+ What a relief! 
+\end_layout
+
+\begin_layout Itemize
+Approximate 
+\begin_inset Formula $95\%$
+\end_inset
+
+ 
+\series bold
+\color blue
+credible interval
+\series default
+\color inherit
+ for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ (for small 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+): 
+\begin_inset Formula 
+\[
+E(\theta|y)\pm1.96\cdot SD(\theta|y)=[0.8535;1.0111]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+An exact 95% equal-tail interval is 
+\begin_inset Formula $[0.8550$
+\end_inset
+
+; 
+\begin_inset Formula $1.0125]$
+\end_inset
+
+ (assuming 
+\begin_inset Formula $\alpha=\beta=0$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Highest Posterior Density
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+HPD
+\series default
+\color inherit
+) interval contains the 
+\begin_inset Formula $\theta$
+\end_inset
+
+ values with highest pdf.
+\end_layout
+
+\begin_layout Itemize
+An exact Highest Posterior Density (HPD) interval is 
+\begin_inset Formula $[0.8525$
+\end_inset
+
+; 
+\begin_inset Formula $1.0144]$
+\end_inset
+
+.
+ Obtained numerically, assuming 
+\begin_inset Formula $\alpha=\beta=0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Illustration of different interval types
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename IntervalTypes.png
+	lyxscale 40
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\size larger
+Conjugate priors
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Normal likelihood: Normal prior
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+Normal posterior.
+ (posterior belongs to the same distribution family as prior)
+\end_layout
+
+\begin_layout Itemize
+Bernoulli likelihood: Beta prior
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+Beta posterior.
+\end_layout
+
+\begin_layout Itemize
+Poisson likelihood: Gamma prior
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+Gamma posterior.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Conjugate priors
+\series default
+\color inherit
+: A prior is conjugate to a model (likelihood) if the prior and posterior
+ belong to the same distributional family.
+\end_layout
+
+\begin_layout Itemize
+Formal definition: Let 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ 
+\begin_inset Formula $=\{p(y|\theta),\theta\in\Theta\}$
+\end_inset
+
+ be a class of sampling distributions.
+ A family of distributions 
+\begin_inset Formula $\mathcal{P}$
+\end_inset
+
+ is conjugate for 
+\begin_inset Formula $\mathcal{F}$
+\end_inset
+
+ if 
+\begin_inset Formula 
+\[
+p(\theta)\in\mathcal{P\Rightarrow}\text{ }p(\theta|x)\in\mathcal{P}
+\]
+
+\end_inset
+
+holds for all 
+\begin_inset Formula $p(y|\theta)\in\mathcal{F}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Prior elicitation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The prior should be determined (elicited) by an 
+\series bold
+expert
+\series default
+.
+ Typically, expert
+\begin_inset Formula $\neq$
+\end_inset
+
+statistician.
+\end_layout
+
+\begin_layout Itemize
+Elicit the prior on a 
+\series bold
+quantity that she knows well
+\series default
+ (maybe log odds 
+\begin_inset Formula $\ln\frac{\theta}{1-\theta}$
+\end_inset
+
+ when the model is 
+\begin_inset Formula $Bern(\theta)$
+\end_inset
+
+).
+ The statistician can always compute the implied prior on other quantities
+ after the elicitation.
+\end_layout
+
+\begin_layout Itemize
+Elicit the prior by asking the expert probabilistic questions: 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $E(\theta)=?$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $SD(\theta)=?$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Pr(\theta<c)=?$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $Pr(y>c)=?$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+Show the expert some consequences
+\series default
+ of her elicitated prior.
+ If she does not agree with these consequences, iterate the above steps
+ until she is happy.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Beware of psychological effects
+\series default
+, such as anchoring.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Prior elicitation - AR(p) example
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+Autoregressive process
+\series default
+ or order 
+\begin_inset Formula $p$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t} & = & \phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t},\text{ \ensuremath{\varepsilon_{t}\overset{iid}{\sim}N(0,\sigma^{2})}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Informative prior on the unconditional mean: 
+\begin_inset Formula $\mu\sim N(\mu_{0},\tau_{0}^{2})$
+\end_inset
+
+.
+ 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Usually, 
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau_{0}^{2}$
+\end_inset
+
+ can be specified accurately.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Noninformative
+\begin_inset Quotes erd
+\end_inset
+
+ prior on 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+: 
+\begin_inset Formula $p(\sigma^{2})\propto1/\sigma^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Assume for simplicity that all 
+\begin_inset Formula $\phi_{i},\text{}i=1,...,p$
+\end_inset
+
+ are independent a priori, and 
+\begin_inset Formula $\phi_{i}\sim N(\mu_{i},\psi_{i})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Prior on 
+\begin_inset Formula $\phi=(\phi_{1},...,\phi_{p})$
+\end_inset
+
+ centered on persistent AR(1) process: 
+\begin_inset Formula $\mu_{1}=0.8,\text{}\mu_{2}=...=\mu_{p}=0$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Prior variance of the 
+\begin_inset Formula $\phi_{i}$
+\end_inset
+
+ decay towards zeros: 
+\begin_inset Formula $Var(\phi_{i})=\frac{c}{i^{\lambda}}$
+\end_inset
+
+, so that 
+\begin_inset Quotes eld
+\end_inset
+
+longer
+\begin_inset Quotes erd
+\end_inset
+
+ lags are more likely to be zero a priori.
+ 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is a parameter that can be used to determine the rate of decay.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Different types of prior information
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Real 
+\series bold
+\color blue
+expert information
+\series default
+\color inherit
+.
+ Combo of previous studies and experience.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Vague prior information, or even 
+\series bold
+\color blue
+noninformative priors
+\series default
+\color inherit
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Reporting priors
+\series default
+\color inherit
+.
+ Easy to understand the information they contain.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Smoothness priors
+\series default
+\color inherit
+.
+ Regularization.
+ Shrinkage.
+ Big thing in modern statistics/machine learning.
+\begin_inset Formula 
+\[
+\text{ }
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\size larger
+'Non-informative' priors
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Subjective consensus
+\series default
+\color inherit
+: when extreme priors give essentially the same posterior.
+\begin_inset Formula 
+\[
+p(\theta|\mathbf{x})\rightarrow N\left(\hat{\theta},J_{\hat{\theta},\mathbf{x}}^{-1}\right)\text{ for all }p(\theta)\text{ as }n\rightarrow\infty,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $J_{\theta,\mathbf{x}}$
+\end_inset
+
+ is the 
+\series bold
+\color blue
+observed information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+J_{\theta,\mathbf{x}}=-\frac{\partial^{2}\ln L(\theta;\mathbf{x})}{\partial\theta^{2}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A common non-informative prior is 
+\series bold
+\color blue
+Jeffreys' prior 
+\series default
+\color inherit
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(\theta)=\left|I_{\theta}\right|^{1/2},
+\]
+
+\end_inset
+
+where 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $I_{\theta}$
+\end_inset
+
+ is the 
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color blue
+Fisher information
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+I_{\theta}=E_{\mathbf{x}|\theta}\left(J_{\theta,\mathbf{x}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Jeffreys' prior for Bernoulli trial data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula $\ $
+\end_inset
+
+
+\begin_inset Formula 
+\[
+x_{1},...,x_{n}|\theta\overset{iid}{\sim}Bern(\theta).
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\ln p(\mathbf{x}|\theta)=s\ln\theta+f\ln(1-\theta)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d\ln p(\mathbf{x}|\theta)}{d\theta}=\frac{s}{\theta}-\frac{f}{(1-\theta)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d^{2}\ln p(\mathbf{x}|\theta)}{d\theta^{2}}=-\frac{s}{\theta^{2}}-\frac{f}{(1-\theta)^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I(\theta)=\frac{E_{\mathbf{x}|\theta}(s)}{\theta^{2}}+\frac{E_{\mathbf{x}|\theta}(f)}{(1-\theta)^{2}}=\frac{n\theta}{\theta^{2}}+\frac{n(1-\theta)}{(1-\theta)^{2}}=\frac{n}{\theta(1-\theta)}
+\]
+
+\end_inset
+
+Thus, the Jeffreys' prior is
+\begin_inset Formula 
+\[
+p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1/2}(1-\theta)^{-1/2}\propto Beta(\theta|1/2,1/2).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,671 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 2.5cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\size footnotesize
+Mattias Villani and Per Sidén
+\begin_inset space \hspace{}
+\length 7.5cm
+\end_inset
+
+2018-03-19
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Division of Statistics and Machine Learning
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Dept.
+ of Computer and Information Science
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Linköpings universitet
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Bayesian Learning, 6 hp
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Computer lab 1
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+You are strongly recommended to use R for solving the labs since the computer
+ exam will be in R.
+ 
+\end_layout
+
+\begin_layout Itemize
+You are supposed to work and submit your labs in pairs, but do make sure
+ that both of you are contributing.
+ 
+\end_layout
+
+\begin_layout Itemize
+It is OK to discuss the lab with other student pairs in general terms, but
+ 
+\family typewriter
+\series bold
+\color blue
+it is not allowed to share exact solutions
+\family default
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Itemize
+Submit your solutions via LISAM no later than 
+\series bold
+April
+\series default
+ 13 at 
+\series bold
+midnight
+\series default
+.
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Bernoulli ...
+ again.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Let 
+\begin_inset Formula $y_{1},...,y_{n}|\theta\sim\mathrm{Bern}(\theta)$
+\end_inset
+
+, and assume that you have obtained a sample with 
+\begin_inset Formula $s=14$
+\end_inset
+
+ successes in 
+\begin_inset Formula $n=20$
+\end_inset
+
+ trials.
+ Assume a 
+\begin_inset Formula $\mathrm{Beta}(\alpha_{0},\beta_{0})$
+\end_inset
+
+ prior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and let 
+\begin_inset Formula $\alpha_{0}=\beta_{0}=2$
+\end_inset
+
+.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Draw random numbers from the posterior 
+\begin_inset Formula $\theta\vert y\sim\mathrm{Beta}(\alpha_{0}+s,\beta_{0}+f)$
+\end_inset
+
+, 
+\begin_inset Formula $y=(y_{1},\dots,y_{n}),$
+\end_inset
+
+ and verify graphically that the posterior mean and standard deviation converges
+ to the true values as the number of random draws grows large.
+\end_layout
+
+\begin_layout Enumerate
+Use simulation (
+\family typewriter
+nDraws = 10000
+\family default
+) to compute the posterior probability 
+\begin_inset Formula $\mathrm{Pr}(\theta<0.4\vert y)$
+\end_inset
+
+ and compare with the exact value [Hint: 
+\family typewriter
+pbeta()
+\family default
+].
+\end_layout
+
+\begin_layout Enumerate
+Compute the posterior distribution of the log-odds 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}$
+\end_inset
+
+ by simulation (
+\family typewriter
+nDraws = 10000
+\family default
+).
+ [Hint: 
+\family typewriter
+hist()
+\family default
+ and 
+\family typewriter
+density()
+\family default
+ might come in handy]
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\emph on
+Log-normal distribution and the Gini coefficient.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Assume that you have asked 10 randomly selected persons about their monthly
+ income (in thousands Swedish Krona) and obtained the following ten observations
+: 14, 25, 45, 25, 30, 33, 19, 50, 34 and 67.
+ A common model for non-negative continuous variables is the log-normal
+ distribution.
+ The log-normal distribution 
+\begin_inset Formula $\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ has density function
+\begin_inset Formula 
+\[
+p(y\vert\mu,\sigma^{2})=\frac{1}{y\cdot\sqrt{2\pi\sigma^{2}}}\exp\left[-\frac{1}{2\sigma^{2}}\left(\log y-\mu\right)^{2}\right],
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $y>0$
+\end_inset
+
+, 
+\begin_inset Formula $\mu>0$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}>0$
+\end_inset
+
+.
+ The log-normal distribution is related to the normal distribution as follows:
+ if 
+\begin_inset Formula $y\sim\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ then 
+\begin_inset Formula $\log y\sim\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $y_{1},...,y_{n}\vert\mu,\sigma^{2}\overset{iid}{\sim}\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+, where 
+\begin_inset Formula $\mu=3.5$
+\end_inset
+
+ is assumed to be known but 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is unknown with non-informative prior 
+\begin_inset Formula $p(\sigma^{2})\propto1/\sigma^{2}$
+\end_inset
+
+.
+ The posterior for 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is the 
+\begin_inset Formula $Inv-\chi^{2}(n,\tau^{2})$
+\end_inset
+
+ distribution, where
+\begin_inset Formula 
+\[
+\tau^{2}=\frac{\sum_{i=1}^{n}(\log y_{i}-\mu)^{2}}{n}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Simulate 
+\begin_inset Formula $10,000$
+\end_inset
+
+ draws from the posterior of 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ (assuming 
+\begin_inset Formula $\mu=3.5$
+\end_inset
+
+) and compare with the theoretical 
+\begin_inset Formula $Inv-\chi^{2}(n,\tau^{2})$
+\end_inset
+
+ posterior distribution.
+\end_layout
+
+\begin_layout Enumerate
+The most common measure of income inequality is the Gini coefficient, 
+\begin_inset Formula $G$
+\end_inset
+
+, where 
+\begin_inset Formula $0\leq G\leq1$
+\end_inset
+
+.
+ 
+\begin_inset Formula $G=0$
+\end_inset
+
+ means a completely equal income distribution, whereas 
+\begin_inset Formula $G=1$
+\end_inset
+
+ means complete income inequality.
+ See Wikipedia for more information.
+ It can be shown that 
+\begin_inset Formula $G=2\Phi\left(\sigma/\sqrt{2}\right)-1$
+\end_inset
+
+ when incomes follow a 
+\begin_inset Formula $\log\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ distribution.
+ 
+\begin_inset Formula $\Phi(z)$
+\end_inset
+
+ is the cumulative distribution function (CDF) for the standard normal distribut
+ion with mean zero and unit variance.
+ Use the posterior draws in a) to compute the posterior distribution of
+ the Gini coefficient 
+\begin_inset Formula $G$
+\end_inset
+
+ for the current data set.
+\end_layout
+
+\begin_layout Enumerate
+Use the posterior draws from b) to compute a 95% equal tail credible interval
+ for 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ An 95% equal tail interval 
+\begin_inset Formula $(a,b)$
+\end_inset
+
+ cuts off 
+\begin_inset Formula $2.5\%$
+\end_inset
+
+ percent of the posterior probability mass to the left of 
+\begin_inset Formula $a$
+\end_inset
+
+, and 
+\begin_inset Formula $97.5\%$
+\end_inset
+
+ to the right of 
+\begin_inset Formula $b$
+\end_inset
+
+.
+ Also, do a kernel density estimate of the posterior of 
+\begin_inset Formula $G$
+\end_inset
+
+ using the 
+\family typewriter
+density
+\family default
+ function in R with default settings, and use that kernel density estimate
+ to compute a 95% Highest Posterior Density interval for 
+\begin_inset Formula $G$
+\end_inset
+
+.
+ Compare the two intervals.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Bayesian inference for the concentration parameter in the von Mises distribution.
+ This exercise is concerned with directional data.
+ The point is to show you that the posterior distribution for somewhat weird
+ models can be obtained by plotting it over a grid of values.
+ The data points are observed wind directions at a given location on ten
+ different days.
+ The data are recorded in degrees: 
+\begin_inset Formula 
+\[
+(40,303,326,285,296,314,20,308,299,296),
+\]
+
+\end_inset
+
+where North is located at zero degrees (see Figure 1 on the next page, where
+ the angles are measured clockwise).
+ To fit with Wikipedias description of probability distributions for circular
+ data we convert the data into radians 
+\begin_inset Formula $-\pi\leq y\leq\pi$
+\end_inset
+
+ .
+ The 
+\begin_inset Formula $10$
+\end_inset
+
+ observations in radians are 
+\begin_inset Formula 
+\[
+(-2.44,2.14,2.54,1.83,2.02,2.33,-2.79,2.23,2.07,2.02).
+\]
+
+\end_inset
+
+Assume that these data points are independent observations following the
+ von Mises distribution
+\begin_inset Formula 
+\[
+p(y\vert\mu,\kappa)=\frac{\exp\left[\kappa\cdot\cos(y-\mu)\right]}{2\pi I_{0}(\kappa)},\;-\pi\leq y\leq\pi,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $I_{0}(\kappa)$
+\end_inset
+
+ is the modified Bessel function of the first kind of order zero [see 
+\family typewriter
+?besselI
+\family default
+ in R].
+ The parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ (
+\begin_inset Formula $-\pi\leq\mu\leq\pi$
+\end_inset
+
+) is the mean direction and 
+\begin_inset Formula $\kappa>0$
+\end_inset
+
+ is called the concentration parameter.
+ Large 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ gives a small variance around 
+\begin_inset Formula $\mu$
+\end_inset
+
+, and vice versa.
+ Assume that 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is known to be 
+\begin_inset Formula $2.39$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\kappa\sim\mathrm{Exponential}(\lambda=1)$
+\end_inset
+
+ a priori, where 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is the rate parameter of the exponential distribution (so that the mean
+ is 
+\begin_inset Formula $1/\lambda$
+\end_inset
+
+).
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Plot the posterior distribution of 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ for the wind direction data over a fine grid of 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ values.
+\end_layout
+
+\begin_layout Enumerate
+Find the (approximate) posterior mode of 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ from the information in a).
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename DirectionalData.png
+	scale 60
+	rotateOrigin center
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The wind direction data.
+ Angles are measured clock-wise starting from North.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 2cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+May Bayes be with you!
+\end_layout
+
+\end_body
+\end_document

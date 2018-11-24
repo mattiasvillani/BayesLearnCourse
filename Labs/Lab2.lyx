@@ -1,0 +1,1133 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 2.5cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\size footnotesize
+Mattias Villani and Per Sidén
+\begin_inset space \hspace{}
+\length 8.5cm
+\end_inset
+
+2018-03-29
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Division of Statistics and Machine Learning
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Dept.
+ of Computer and Information Science
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Linköping University
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+mattias.villani@liu.se
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Bayesian Learning, 6 hp
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Computer lab 2
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+You are strongly recommended to use R for solving the labs since the computer
+ exam will be in R.
+ 
+\end_layout
+
+\begin_layout Itemize
+You are supposed to work and submit your labs in pairs, but do make sure
+ that both of you are contributing.
+ 
+\end_layout
+
+\begin_layout Itemize
+It is OK to discuss the lab with other student pairs in general terms, but
+ 
+\family typewriter
+\series bold
+\color blue
+it is not allowed to share exact solutions
+\family default
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Itemize
+Submit your solutions via LISAM no later than 
+\series bold
+April 27
+\series default
+ at 
+\series bold
+midnight
+\series default
+.
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Linear and polynomial regression
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+The dataset 
+\begin_inset Formula $\texttt{TempLinkoping.txt}$
+\end_inset
+
+ contains daily temperatures (in Celcius degrees) at Malmslätt, Linköping
+ (close to our campus) over the course of the year 2016 (366 days since
+ 2016 was a leap year).
+ The response variable is 
+\begin_inset Formula $temp$
+\end_inset
+
+ and the covariate is
+\begin_inset Formula 
+\[
+time=\frac{\text{the number of days since beginning of year}}{366}.
+\]
+
+\end_inset
+
+The task is to perform a Bayesian analysis of a quadratic regression 
+\begin_inset Formula 
+\[
+temp=\beta_{0}+\beta_{1}\cdot time+\beta_{2}\cdot time^{2}+\varepsilon\mbox{,\text{ }}\varepsilon\overset{iid}{\sim}N(0,\sigma^{2}).
+\]
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\shape italic
+Determining the prior distribution of the model parameters.
+
+\shape default
+ Use the conjugate prior for the linear regression model.
+ Your task is to set the prior hyperparameters 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\Omega_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\nu_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{0}^{2}$
+\end_inset
+
+ to sensible values.
+ I don't expect any deep expert knowledge, just think about the problem
+ and use what knowledge you have.
+ You may simplify by assuming that 
+\begin_inset Formula $\Omega_{0}$
+\end_inset
+
+ is a diagonal matrix.
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+[Hint: it may be useful as a preliminary exploratory step to use the 
+\family typewriter
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+lm()
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ command.
+ The command 
+\family typewriter
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+lm(temp ~ time + I(time^2))
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ fits a quadratic model using ordinary least squares]
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Check if your prior from a) is sensible
+\shape default
+.
+ One way to check if a suggested prior is reasonable is to simulate draws
+ from the joint prior of all parameters and for every draw compute the regressio
+n curve.
+ This gives a collection of regression curves, one for each draw from the
+ prior.
+ Do the curves look reasonable? If not, change the prior hyperparameters
+ until the collection of prior regression curves do agree with your prior
+ beliefs about the regression curve.
+\begin_inset Newline newline
+\end_inset
+
+[Hint: the R package 
+\begin_inset Formula $\texttt{mvtnorm}$
+\end_inset
+
+ will be handy.
+ And use your 
+\begin_inset Formula $Inv$
+\end_inset
+
+-
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ simulator from Lab 1.]
+\end_layout
+
+\begin_layout Enumerate
+Write a program that 
+\shape italic
+simulates from the joint posterior distribution
+\shape default
+ of 
+\begin_inset Formula $\beta_{0}$
+\end_inset
+
+, 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+,
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+ Produce a scatter plot of the temperature data and overlay a curve for
+ the posterior mean of the regression function 
+\begin_inset Formula $f(time)=\beta_{0}+\beta_{1}\cdot time+\beta_{2}\cdot time^{2}$
+\end_inset
+
+, computed for every value of 
+\begin_inset Formula $time$
+\end_inset
+
+.
+ Also overlay a curve for the lower 5% and upper 95% posterior credible
+ interval for 
+\begin_inset Formula $f(time)$
+\end_inset
+
+.
+ That is, compute the 90% equal tail posterior probability intervals for
+ every value of 
+\begin_inset Formula $time$
+\end_inset
+
+ and then connect the lower and upper limits of the interval by curves.
+ Does the interval contain most of the data points? Should it?
+\end_layout
+
+\begin_layout Enumerate
+It is of interest to locate the 
+\begin_inset Formula $time$
+\end_inset
+
+ with the highest expected temperature (that is, the 
+\begin_inset Formula $time$
+\end_inset
+
+ where 
+\begin_inset Formula $f(time)$
+\end_inset
+
+ is maximal).
+ Let's call this value 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+.
+ Use the simulations in c) to simulate from the 
+\shape italic
+posterior distribution of the time with highest temperature
+\shape default
+, 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+.
+ [Hint: the regression curve is a quadratic.
+ You can find a simple formula for 
+\begin_inset Formula $\tilde{x}$
+\end_inset
+
+ given 
+\begin_inset Formula $\beta_{0},\beta_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{2}$
+\end_inset
+
+.]
+\end_layout
+
+\begin_layout Enumerate
+Say now that you want to 
+\shape italic
+estimate a polynomial model of order 
+\begin_inset Formula $7$
+\end_inset
+
+
+\shape default
+, but you suspect that higher order terms may not be needed, and you worry
+ about over-fitting.
+ Suggest a suitable prior that mitigates this potential problem.
+ You do not need to compute the posterior, just write down your prior.
+ [Hint: the task is to specify 
+\begin_inset Formula $\mu_{0}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Omega_{0}$
+\end_inset
+
+ in a smart way.]
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Posterior approximation for classification with logistic regression
+\series default
+
+\begin_inset Newline newline
+\end_inset
+
+The dataset 
+\family typewriter
+WomenWork.dat
+\family default
+ contains 
+\begin_inset Formula $n=200$
+\end_inset
+
+ observations (i.e.
+ women) on the following nine variables:
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Tabular
+<lyxtabular version="3" rows="10" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Variable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Data type
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Meaning
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Role
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Work 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Binary
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Whether or not the woman works
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Response
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Constant 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Constant to the intercept
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HusbandInc
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Numeric
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Husband's income
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+EducYears
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Counts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Years of education
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ExpYears
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Counts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Years of experience
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ExpYears2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Numeric
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+(Years of experience/10)
+\begin_inset Formula $^{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Age 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Counts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Age
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NSmallChild
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Counts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of child 
+\begin_inset Formula $\leq6$
+\end_inset
+
+ years in household
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+NBigChild
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Counts
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Number of child 
+\begin_inset Formula $>6$
+\end_inset
+
+ years in household
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Feature
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Consider the logistic regression
+\begin_inset Formula 
+\[
+\mathrm{Pr}(y=1\vert\mathbf{x})=\frac{\exp\left(\mathbf{x}^{T}\beta\right)}{1+\exp\left(\mathbf{x}^{T}\beta\right)},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $y$
+\end_inset
+
+ is the binary variable with 
+\begin_inset Formula $y=1$
+\end_inset
+
+ if the woman works and 
+\begin_inset Formula $y=0$
+\end_inset
+
+ if she does not.
+ 
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+ is a 
+\begin_inset Formula $8$
+\end_inset
+
+-dimensional vector containing the eight features (including a one for the
+ constant term that models the intercept).
+ Fit the logistic regression using maximum likelihood estimation by the
+ command: 
+\family typewriter
+glmModel <- glm(Work ~ 0 + ., data = WomenWork, family = binomial)
+\family default
+.
+ Note how I added a zero in the model formula so that R doesn't add an extra
+ intercept (we already have an intercept term from the 
+\family typewriter
+Constant
+\family default
+ feature).
+ Note also that a dot (.) in the model formula means to add all other variables
+ in the dataset as features.
+ 
+\family typewriter
+family = binomial 
+\family default
+tells R that we want to fit a logistic regression (the glm function can
+ fit many other models and data types, for example a regression where the
+ response variable are counts following a Poisson distribution).
+\end_layout
+
+\begin_layout Enumerate
+Now the fun begins.
+ Our goal is to approximate the posterior distribution of the 8-dim parameter
+ vector 
+\begin_inset Formula $\beta$
+\end_inset
+
+ with a multivariate normal distribution
+\begin_inset Formula 
+\[
+\beta\vert\mathbf{y},\mathbf{X}\sim N\left(\tilde{\beta},J_{\mathbf{y}}^{-1}(\tilde{\beta})\right),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\tilde{\beta}$
+\end_inset
+
+ is the posterior mode and 
+\begin_inset Formula $J(\tilde{\beta})=-\frac{\partial^{2}\ln p(\beta\vert\mathbf{y})}{\partial\beta\partial\beta^{T}}\vert_{\beta=\tilde{\beta}}$
+\end_inset
+
+ is the observed Hessian evaluated at the posterior mode.
+ Note that 
+\begin_inset Formula $\frac{\partial^{2}\ln p(\beta\vert\mathbf{y})}{\partial\beta\partial\beta^{T}}$
+\end_inset
+
+ is an 
+\begin_inset Formula $8\times8$
+\end_inset
+
+ matrix with second derivatives on the diagonal and cross-derivatives 
+\begin_inset Formula $\frac{\partial^{2}\ln p(\beta\vert\mathbf{y})}{\partial\beta_{i}\partial\beta_{j}}$
+\end_inset
+
+ on the off-diagonal.
+ It is actually not hard to compute this derivative by hand, but don't worry,
+ we will let the computer do it numerically for you.
+ Now, both 
+\begin_inset Formula $\tilde{\beta}$
+\end_inset
+
+ and 
+\begin_inset Formula $J(\tilde{\beta})$
+\end_inset
+
+ are computed by the 
+\family typewriter
+optim
+\family default
+ function in R.
+ See my code 
+\begin_inset Flex URL
+status open
+
+\begin_layout Plain Layout
+
+https://github.com/STIMALiU/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip
+\end_layout
+
+\end_inset
+
+ where I have coded everything up for the spam prediction example (it also
+ does probit regression, but that is not needed here).
+ I want you to implement you own version of this.
+ You can use my code as a template, but I want you to write your own file
+ so that you understand every line of your code.
+ Don't just copy my code.
+ Use the prior 
+\begin_inset Formula $\beta\sim\mathcal{N}(0,\tau^{2}I)$
+\end_inset
+
+, with 
+\begin_inset Formula $\tau=10$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+Your report should include your code as well as numerical values for 
+\begin_inset Formula $\tilde{\beta}$
+\end_inset
+
+ and 
+\begin_inset Formula $J_{\mathbf{y}}^{-1}(\tilde{\beta})$
+\end_inset
+
+ for the 
+\family typewriter
+WomenWork
+\family default
+ data.
+ Compute an approximate 95% credible interval for the variable NSmallChild.
+ Would you say that this feature is an important determinant of the probability
+ that a women works?
+\end_layout
+
+\begin_layout Enumerate
+Write a function that simulates from the predictive distribution of the
+ response variable in a logistic regression.
+ Use your normal approximation from 2(b).
+ Use that function to simulate and plot the predictive distribution for
+ the 
+\family typewriter
+Work
+\family default
+ variable for a 40 year old woman, with two children (3 and 9 years old),
+ 8 years of education, 10 years of experience.
+ and a husband with an income of 10.
+\begin_inset Newline newline
+\end_inset
+
+[Hint: the R package 
+\begin_inset Formula $\texttt{mvtnorm}$
+\end_inset
+
+ will again be handy.
+ And remember my discussion on how Bayesian prediction can be done by simulation.
+]
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\shape smallcaps
+Have fun!
+\end_layout
+
+\end_body
+\end_document

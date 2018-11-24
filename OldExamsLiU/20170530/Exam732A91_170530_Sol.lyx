@@ -1,0 +1,2477 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+LINKÖPING UNIVERSITY
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2017-05-30
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dept.
+ of Computer and Information Science
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 4.7cm
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bayesian Learning, 6 hp
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Division of Statistics and Machine Learning
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+732A91/TDDE07 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mattias Villani
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.3cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="34" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size large
+Computer Exam - Bayesian Learning (732A91/TDDE07), 6 hp
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0cm"
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Time:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8-12 AM
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Allowable material:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- The allowed material in the folder given_files in the exam system.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Calculator with erased memory.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Teacher:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mattias Villani.
+ Phone: 
+\begin_inset Formula $070-0895205$
+\end_inset
+
+ and through the Communication client.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exam scores:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Maximum number of credits on the exam: 40.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Maximum number of credits on each exam question: 10.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Grades (732A91):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+A: 36 points 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B: 32 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+C: 24 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+D: 20 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+E: 16 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+F: <16 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Grades (TDDE07):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5: 34 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4: 26 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3: 18 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U: <18 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\color red
+INSTRUCTIONS
+\series default
+\color inherit
+:
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+When asked to give a solution on 
+\series bold
+\color blue
+Paper
+\series default
+\color black
+, give that answer on physical papers supplied with the exam.
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+Each submitted sheet of paper should be marked with your 
+\emph on
+Client ID
+\emph default
+ from the 
+\emph on
+Communication Clien
+\emph default
+t
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The client ID is the code in the
+\color black
+ 
+\family typewriter
+\color red
+red
+\family default
+\color black
+ dashed rectangle in figure below.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+All other answers should be submitted in a single PDF file using the 
+\emph on
+Communication Client
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+Submission starts by clicking the button in the 
+\family typewriter
+\color lime
+green
+\family default
+\color black
+ solid rectangle in figure below.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The submitted PDF file should be named 
+\emph on
+BayesExam.pdf
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Questions can be asked through the Communication client (
+\family typewriter
+\color blue
+blue
+\family default
+\color black
+ dotted rectangle in figure below).
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full credit requires clear and well motivated answers.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0cm"
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /Users/matvi05/Dropbox/Teaching/BayesLearning/Hidden/Exam/CommunicationClient.png
+	lyxscale 40
+	scale 35
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape smallcaps
+Bayesian inference for the rice distribution
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+A commonly occuring distribution for positive data is the 
+\emph on
+Rice distribution
+\emph default
+, which we denote by 
+\begin_inset Formula $\mathrm{Rice}(\theta,\psi)$
+\end_inset
+
+.
+ The PDF for a Rice distribution is of the form
+\begin_inset Formula 
+\[
+p(x\vert\theta,\psi)=\frac{x}{\psi}\exp\left(\frac{-\left(x^{2}+\theta^{2}\right)}{2\psi}\right)\cdot I_{0}\left(\frac{x\theta}{\psi}\right)\:\text{ for }x>0.
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\theta\geq0$
+\end_inset
+
+ is the location parameter and 
+\begin_inset Formula $\psi>0$
+\end_inset
+
+ is related to the variance.
+ 
+\begin_inset Formula $I_{0}(\cdot)$
+\end_inset
+
+ is the modified Bessel function of the first kind and order zero, which
+ is implemented in R as 
+\family typewriter
+BesselI
+\family default
+.
+ We will assume for simplicity that 
+\begin_inset Formula $\psi=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\emph on
+Credits: 4p.
+
+\emph default
+ Write a function in R that computes the log posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ based on iid observations 
+\begin_inset Formula $\mathbf{x}=(x_{1},...,x_{n})$
+\end_inset
+
+ from 
+\begin_inset Formula $\mathrm{Rice}(\theta,\psi=1)$
+\end_inset
+
+.
+ Use that function to plot the posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ for the 
+\begin_inset Formula $n=10$
+\end_inset
+
+ observations in the data vector 
+\family typewriter
+riceData
+\family default
+ in the supplied file 
+\family typewriter
+ExamData.R
+\family default
+.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 3p.
+
+\emph default
+ Use numerical optimization to obtain a normal approximation of the posterior
+ distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ based on the data in 
+\family typewriter
+riceData
+\family default
+.
+ Use the 
+\family typewriter
+lines
+\family default
+ command in R to plot this approximate posterior in the same graph as the
+ posterior obtained in 1a.
+ [Hints: use the argument 
+\family typewriter
+lower
+\family default
+ in 
+\family typewriter
+optim
+\family default
+, and 
+\family typewriter
+method=c("L-BFGS-B")
+\family default
+].
+ Is the approximation accurate?
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 3p.
+
+\emph default
+ Explain on 
+\series bold
+\color blue
+Paper
+\series default
+\color inherit
+ how the predictive distribution for a new observation 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+ is computed by integration.
+ You don't need to actually compute the integral, just give a general formula
+ for the predictive distribution.
+ Now, compute the predictive distribution for a new observation 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+ by simulation.
+ You can use the normal approximation of the posterior from 1b).
+ A simulator (
+\family typewriter
+rRice
+\family default
+) for the Rice distribution is provided in the file 
+\family typewriter
+ExamData.R
+\family default
+.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: The predictive distribution is obtained by averaging the data distribution
+ with respect to the posterior distribution.
+ Since the data are iid 
+\begin_inset Formula 
+\begin{align*}
+p(x_{n+1}\vert x_{1},...,x_{n}) & =\int p(x_{n+1}\vert\theta,\psi=1)p(\theta\vert x_{1},...,x_{n})d\theta,
+\end{align*}
+
+\end_inset
+
+which can be simulated by iterating many time between: 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+simulating 
+\begin_inset Formula $\theta^{(i)}$
+\end_inset
+
+ from the normal approximate posterior 
+\begin_inset Formula $p(\theta\vert x_{1},...,x_{n})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+simulating a data observation from the Rice distribution 
+\begin_inset Formula $p(x_{n+1}\vert\theta^{(i)},\psi=1)$
+\end_inset
+
+.
+ Note that we have 
+\begin_inset Formula $\theta=\theta^{(i)}$
+\end_inset
+
+ here.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Modeling count data
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The data set 
+\family typewriter
+bids
+\family default
+ which is loaded by the code in 
+\family typewriter
+ExamData.R
+\family default
+ contains data on the number of bids in 1000 eBay auctions for collectors
+ coins.
+ Let 
+\begin_inset Formula $x_{1},...,x_{n}$
+\end_inset
+
+, for 
+\begin_inset Formula $n=1000$
+\end_inset
+
+, denote the data points.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Assume the Poisson model 
+\begin_inset Formula $x_{1},...,x_{n}\vert\theta\overset{iid}{\sim}\mathrm{Pois}(\theta)$
+\end_inset
+
+ for the data, and use the prior 
+\begin_inset Formula $\theta\sim\mathrm{Gamma}(1,1)$
+\end_inset
+
+.
+ Compute the posterior distribution for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and plot it.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Use graphical methods to investigate if the Poisson model fits the data
+ well.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Use the supplied function 
+\family typewriter
+GibbsMixPois.R
+\family default
+ in the file 
+\family typewriter
+ExamData.R
+\family default
+ to do Gibbs sampling for a mixture of Poissons model
+\begin_inset Formula 
+\[
+p(x)=\sum_{k=1}^{K}w_{k}\cdot\mathrm{Pois}(x\vert\theta_{k}),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $w_{1},...,w_{K}$
+\end_inset
+
+ are the weights (probabilities) of the mixture components (sometimes also
+ called denoted 
+\begin_inset Formula $\pi_{1},...,\pi_{K}$
+\end_inset
+
+).
+ 
+\begin_inset Formula $\mathrm{Pois}(x\vert\theta_{i})$
+\end_inset
+
+ is here used as a shorthand for the probability function (density for a
+ discrete variables) of a Poisson distribution with mean 
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+ in the 
+\begin_inset Formula $k$
+\end_inset
+
+th mixture component.
+ Use the same 
+\begin_inset Formula $\theta\sim\mathrm{Gamma}(1,1)$
+\end_inset
+
+ prior for all the 
+\begin_inset Formula $K$
+\end_inset
+
+ components, and a uniform prior on the weights 
+\begin_inset Formula $w_{1},...,w_{K}$
+\end_inset
+
+.
+ Estimate the mixture of Poissons both with 
+\begin_inset Formula $K=2$
+\end_inset
+
+ and 
+\begin_inset Formula $K=3$
+\end_inset
+
+.
+ Use 
+\family typewriter
+nIter=500
+\family default
+ draws, and no burn-in.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Use graphical methods to investigate if the mixture of Poissons with 
+\begin_inset Formula $K=2$
+\end_inset
+
+ fits the data well.
+ Note that 
+\family typewriter
+GibbsMixPois.R
+\family default
+ returns the posterior mean of the mixture density (
+\family typewriter
+GibbsResults$mixDensMean
+\family default
+).
+ Is 
+\begin_inset Formula $K=2$
+\end_inset
+
+ enough, or would you recommend 
+\begin_inset Formula $K=3$
+\end_inset
+
+?
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ The number of mixture components, 
+\begin_inset Formula $K$
+\end_inset
+
+, is usually unknown.
+ Discuss on 
+\series bold
+\color blue
+Paper
+\series default
+\color inherit
+ how a Bayesian could do inference for 
+\begin_inset Formula $K$
+\end_inset
+
+.
+ You do not need to compute anything here, just discuss the principles.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: 
+\series bold
+Bayesian model comparison
+\series default
+ can be used to compute the posterior distribution over 
+\begin_inset Formula $K$
+\end_inset
+
+ (which are different models) 
+\begin_inset Formula 
+\[
+\mathrm{Pr}(K=k|\mathbf{x})\propto p(\mathbf{x}|K=k)\cdot\mathrm{Pr}(K=k),
+\]
+
+\end_inset
+
+ where 
+\begin_inset Formula 
+\[
+p(\mathbf{x}|K=k)=\int p(\mathbf{x}|\theta_{k},K=k)p(\theta_{k}\vert K=k)d\theta
+\]
+
+\end_inset
+
+is the 
+\series bold
+marginal likelihood
+\series default
+ for the model with 
+\begin_inset Formula $k$
+\end_inset
+
+ mixture components and 
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+ contains all the parameters in this model.
+ 
+\begin_inset Formula $p(\mathbf{x}|\theta_{k},K=k)$
+\end_inset
+
+ is the usual likelihood for mixture model with 
+\begin_inset Formula $k$
+\end_inset
+
+ components, and 
+\begin_inset Formula $p(\theta_{k}\vert K=k)$
+\end_inset
+
+ is just a prior on the parameters in the model with 
+\begin_inset Formula $k$
+\end_inset
+
+ components.
+ Exactly how to compute these integrals is complicated, but can be done
+ with more sophisticated MCMC.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Regression
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+BayesLinReg.R
+\family default
+ samples from the joint posterior of 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ in the Gaussian linear regression with conjugate prior
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{\beta}\vert\sigma^{2} & \sim N\left(\boldsymbol{\mu}_{0},\sigma^{2}\Omega_{0}^{-1}\right)\\
+\sigma^{2} & \sim\mathrm{Inv-}\chi^{2}(\nu_{0},\sigma_{0}^{2}).
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The file 
+\family typewriter
+cars
+\family default
+ which is loaded by the code in 
+\family typewriter
+ExamData.R
+\family default
+ contains data on 
+\begin_inset Formula $32$
+\end_inset
+
+ cars.
+ For each car we have observations on how many miles that car can travel
+ on a gallon of gasoline (mpg), the weight of the car (weight) and two dummy
+ variables that indicates if the car's engine has four cylinders (sixcyl=0
+ and eightcyl=0) six cylinders (sixcyl=1 and eightcyl=0) or eigth cylinders
+ (sixcyl=0 and eightcyl=1).
+ The dataframe also contains a column intercept with ones to get an intercept
+ in the model.
+ Now, use 
+\family typewriter
+BayesLinReg.R
+\family default
+ to sample from the joint posterior distribution in the Gaussian linear
+ regression
+\begin_inset Formula 
+\[
+\mathrm{mpg}=\beta_{0}+\beta_{1}\cdot\mathrm{weight}+\beta_{2}\cdot\mathrm{sixcyl}+\beta_{3}\cdot\mathrm{eightcyl}+\varepsilon,\quad\varepsilon\sim N(0,\sigma^{2}).
+\]
+
+\end_inset
+
+Analyze the dataset by simulating 1000 draws from the joint posterior.
+ Use the prior with 
+\begin_inset Formula $\boldsymbol{\mu}_{0}=(0,0,0,0)$
+\end_inset
+
+, 
+\begin_inset Formula $\Omega_{0}=0.01\cdot I_{4}$
+\end_inset
+
+, 
+\begin_inset Formula $\nu_{0}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{0}^{2}=36$
+\end_inset
+
+ (which is the data variance).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Plot the marginal distributions of each parameter.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Compute point estimates for each parameter assuming the linear loss function
+ 
+\begin_inset Formula $L(\beta_{k},a)=\left|\beta_{k}-a\right|$
+\end_inset
+
+ , where 
+\begin_inset Formula $\beta_{k}$
+\end_inset
+
+ is the 
+\begin_inset Formula $k$
+\end_inset
+
+th regression coefficient.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Construct 95% equal tail probability intervals for each parameter and interpret
+ them.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Investigate if the effect on mpg is different in cars with six cylinders
+ compared to cars with 8 cylinders.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 2p.
+
+\emph default
+ Compute by simulation the predictive distribution for a new 4 cylinder
+ car with weight = 3.5.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Geometric data and decisions
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\vert\theta\overset{iid}{\sim}\mathrm{Geometric}(\theta)$
+\end_inset
+
+.
+ The Geometric distribution has probability function
+\begin_inset Formula 
+\[
+p(x\vert\theta)=(1-\theta)^{x}\theta,\text{ for }x=0,1,2,...,
+\]
+
+\end_inset
+
+and zero otherwise.
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\emph on
+Credits: 3p.
+
+\emph default
+ Derive the posterior distribution 
+\begin_inset Formula $p(\theta\vert x_{1},...,x_{n})$
+\end_inset
+
+ on 
+\series bold
+\color blue
+Paper
+\series default
+\color inherit
+ using the conjugate 
+\begin_inset Formula $\mathrm{Beta}(\alpha,\beta)$
+\end_inset
+
+ prior.
+ 
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\begin{align*}
+p(\theta\vert x_{1},...,x_{n}) & \propto p(x_{1},...,x_{n}\vert\theta)p(\theta)\\
+ & \propto(1-\theta)^{\text{∑}_{i=1}^{n}x_{i}}\theta^{n}\cdot\theta^{\alpha-1}(1-\theta)^{\beta-1}\\
+ & =\theta^{n+\alpha-1}(1-\theta)^{\text{∑}_{i=1}^{n}x_{i}+\beta-1}
+\end{align*}
+
+\end_inset
+
+which is proportional to the 
+\begin_inset Formula $\mathrm{Beta}(n+\alpha,\text{∑}_{i=1}^{n}x_{i}+\beta)$
+\end_inset
+
+ density.
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 3p.
+
+\emph default
+ Show on 
+\series bold
+\color blue
+Paper
+\series default
+\color inherit
+ that the predictive distribution for a new observation 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+ is of the form
+\begin_inset Formula 
+\[
+p(x_{n+1}\vert x_{1},...,x_{n})\propto\frac{\Gamma(x_{n+1}+\text{\ensuremath{\sum}}_{i=1}^{n}x_{i}+\beta)}{\Gamma(x_{n+1}+\text{\ensuremath{\sum}}_{i=1}^{n}x_{i}+n+\alpha+\beta+1)}.
+\]
+
+\end_inset
+
+ 
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\begin{align*}
+p(x_{n+1}\vert x_{1},...,x_{n}) & =\int_{0}^{1}p(x_{n+1}\vert\theta)p(\theta\vert x_{1},...,x_{n})d\theta\\
+ & \propto\int_{0}^{1}(1-\theta)^{x_{n+1}}\theta\theta^{n+\alpha-1}(1-\theta)^{\text{∑}_{i=1}^{n}x_{i}+\beta-1}d\theta\\
+ & =\int_{0}^{1}(1-\theta)^{x_{n+1}+\text{∑}_{i=1}^{n}x_{i}+\beta-1}\theta^{n+\alpha}d\theta.
+\end{align*}
+
+\end_inset
+
+This integral can be computed by realizing that the integrand is proportional
+ to a 
+\begin_inset Formula $\mathrm{Beta}(n+\alpha+1,x_{n+1}+\text{∑}_{i=1}^{n}x_{i}+\beta)$
+\end_inset
+
+ density, or by using the definition of the 
+\begin_inset Formula $\mathrm{Beta}$
+\end_inset
+
+ function from the collection of statistical and mathematical results.
+ Either way, we obtain
+\begin_inset Formula 
+\[
+p(x_{n+1}\vert x_{1},...,x_{n})\propto\frac{\Gamma(x_{n+1}+\text{∑}_{i=1}^{n}x_{i}+\beta)\Gamma(n+\alpha+1)}{\Gamma(x_{n+1}+\text{∑}_{i=1}^{n}x_{i}+n+\alpha+\beta+1)}\propto\frac{\Gamma(x_{n+1}+\text{∑}_{i=1}^{n}x_{i}+\beta)}{\Gamma(x_{n+1}+\text{∑}_{i=1}^{n}x_{i}+n+\alpha+\beta+1)}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Credits: 4p.
+
+\emph default
+ Your favorite sports team has had following result in its first 
+\begin_inset Formula $n=10$
+\end_inset
+
+ games of the season (
+\begin_inset Formula $W$
+\end_inset
+
+=won, 
+\begin_inset Formula $L$
+\end_inset
+
+=lost): 
+\begin_inset Formula $W,L,L,W,W,L,L,L,W,W$
+\end_inset
+
+.
+ Assume that the games are independent and that the team has the same chance
+ of winning in every game.
+ Your local bookie has introduced a new game where you win 
+\begin_inset Formula $2^{k}-1$
+\end_inset
+
+ dollars if your team loses the 
+\begin_inset Formula $k$
+\end_inset
+
+ subsequent games and then wins the 
+\begin_inset Formula $(k+1)$
+\end_inset
+
+th game.
+ The game costs 
+\begin_inset Formula $\$2$
+\end_inset
+
+ dollars to play.
+ Should you play it? Use a uniform prior wherever needed.
+ [Hint: one way to solve this problem uses the results from 4b) above.] 
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: (also in the code in 
+\family typewriter
+Exam732A91_170530_Sol.R
+\family default
+.).
+ This is a decision problem with two actions (
+\begin_inset Formula $a$
+\end_inset
+
+): Play and NoPlay.
+ The NoPlay action gives utility (money) regardless of the future games
+ for your team.
+ The Play action gives utility 
+\begin_inset Formula $(2^{k}-1)-2$
+\end_inset
+
+ which depends on the unknown quantity 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ The Bayesian solution to a decision problem is to choose the action that
+ maximizes the posterior expected utility.
+ To compute this expectation we need the posterior (predictive) distribution
+ for 
+\begin_inset Formula $k$
+\end_inset
+
+ given the observed team performance in the last 10 games.
+ Now, the geometric distribution is the distribution for the number of failed
+ Bernoulli trials before the first success appears, so that is a good model
+ here.
+ We need to turn the sequence 
+\begin_inset Formula $W,L,L,W,W,L,L,L,W,W$
+\end_inset
+
+ into Geometric data by counting the number of lost games before each win.
+ This gives the data: 
+\begin_inset Formula $x_{1}=0,x_{2}=2,x_{3}=0,x_{4}=3,x_{5}=0$
+\end_inset
+
+.
+ The uniform prior is the 
+\begin_inset Formula $\mathrm{Beta}(\alpha=1,\beta=1)$
+\end_inset
+
+ and 
+\begin_inset Formula $\text{∑}_{i=1}^{n}x_{i}=5$
+\end_inset
+
+ and 
+\begin_inset Formula $n=5$
+\end_inset
+
+, so the predictive distribution for 
+\begin_inset Formula $k=x_{8}$
+\end_inset
+
+ is
+\begin_inset Formula 
+\[
+p(x_{6}\vert x_{1},...,x_{5})\propto\frac{\Gamma(x_{6}+6)}{\Gamma(x_{6}+13)}
+\]
+
+\end_inset
+
+which is depicted in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:PredictiveDistProblem4c"
+
+\end_inset
+
+.
+ Note that we need to normalize this expression by dividing by the sum of
+ all terms.
+ Now, let 
+\begin_inset Formula $U(x_{6},a=Play)$
+\end_inset
+
+ denote the utility of choosing to play when the number of consequtive losses
+ turn out to be 
+\begin_inset Formula $x_{6}$
+\end_inset
+
+.
+ The posterior expected utlity is then 
+\begin_inset Formula 
+\[
+EU_{Play}=\sum_{k=1}^{\infty}U(x_{6}=k,Play)p(x_{6}=k\vert x_{1},...,x_{5})\approx\sum_{k=1}^{k_{max}}\left((2^{k}-1)-2\right)p(x_{6}=k\vert x_{1},...,x_{5}),
+\]
+
+\end_inset
+
+for some upper truncation point on the number of terms in the sum.
+ Looking at the predictive distribution for 
+\begin_inset Formula $x_{6}$
+\end_inset
+
+, it seems that 
+\begin_inset Formula $k_{max}=10$
+\end_inset
+
+ would be enough number of terms (since 
+\begin_inset Formula $p(x_{6}>10\vert x_{1},...,x_{5})$
+\end_inset
+
+ is tiny).
+ With 
+\begin_inset Formula $k_{max}=10$
+\end_inset
+
+ we get 
+\begin_inset Formula $EU_{play}=7.416$
+\end_inset
+
+ (see my solution code) which is larger than the expected utility for the
+ NoPlay action (which is zero).
+ So you should play the game.
+ Note however that using 
+\begin_inset Formula $k_{max}=20$
+\end_inset
+
+ gives 
+\begin_inset Formula $EU_{play}=355.241$
+\end_inset
+
+.
+ In fact, we can make 
+\begin_inset Formula $EU_{play}$
+\end_inset
+
+ as large as we want by increasing 
+\begin_inset Formula $k_{max}$
+\end_inset
+
+.
+ It turns out that 
+\begin_inset Formula $EU_{Play}$
+\end_inset
+
+ is actually infinite! I didn't think about this when constructing the problem
+ (it should have been obvious to me, as I will explain now), and you will
+ get full points for any value of 
+\begin_inset Formula $k_{max}$
+\end_inset
+
+ that is not too small (
+\begin_inset Formula $p(x_{6}>k_{max}\vert x_{1},...,x_{5})$
+\end_inset
+
+ should be very small).
+ 
+\begin_inset Newline newline
+\end_inset
+
+The reason why 
+\begin_inset Formula $EU_{play}=\infty$
+\end_inset
+
+ is related to the 
+\emph on
+St Petersburg paradox
+\emph default
+ 
+\begin_inset Newline newline
+\end_inset
+
+(https://en.wikipedia.org/wiki/St._Petersburg_paradox).
+ We can show this by doing additional work on the predictive distribution
+ by making repeated use of Formula 1.18 for Gamma function in the 'Useful
+ statistical and mathematical results' papers distributed at the exam.
+ We can then rewrite the predictive distribution as 
+\begin_inset Formula 
+\[
+p(x_{6}=k\vert x_{1},...,x_{5})\propto\frac{\Gamma(k+6)}{\Gamma(k+13)}=\frac{1}{(k+6)(k+7)(k+8)(k+9)(k+10)(k+11)(k+12)}.
+\]
+
+\end_inset
+
+For large 
+\begin_inset Formula $k$
+\end_inset
+
+ the predictive distribution behaves as (only the largest power will matter
+ for large 
+\begin_inset Formula $k$
+\end_inset
+
+):
+\begin_inset Formula 
+\[
+p(x_{6}=k\vert x_{1},...,x_{5})\propto\frac{1}{k^{7}}.
+\]
+
+\end_inset
+
+This decays rapidly with 
+\begin_inset Formula $k$
+\end_inset
+
+, and was the reason why I thought that 
+\begin_inset Formula $k_{max}=10$
+\end_inset
+
+ or 
+\begin_inset Formula $k_{max}=20$
+\end_inset
+
+ would be enough for 
+\begin_inset Formula $EU_{Play}$
+\end_inset
+
+.
+ But I should have realized [It was late at night, ok? :)] that the utility
+ 
+\begin_inset Formula $(2^{k}-1)-2$
+\end_inset
+
+ grows exponentially fast, and so will dominate.
+ That is, the terms in 
+\begin_inset Formula $EU_{Play}$
+\end_inset
+
+ for large 
+\begin_inset Formula $k$
+\end_inset
+
+ will behave as 
+\begin_inset Formula $\frac{(2^{k}-1)-2}{k^{7}}\approx\frac{2^{k}}{k^{7}}$
+\end_inset
+
+, and we have the well known result (at least if you know about it!)
+\begin_inset Formula 
+\[
+\lim_{k\rightarrow\infty}\frac{2^{k}}{k^{a}}=\infty
+\]
+
+\end_inset
+
+for any 
+\begin_inset Formula $a$
+\end_inset
+
+.
+ This result says that 'Exponentials grow faster than any polynomial'.
+ Since all terms in 
+\begin_inset Formula $EU_{Play}$
+\end_inset
+
+ are positive, and the large ones grow to infinity as 
+\begin_inset Formula $k$
+\end_inset
+
+ grows, the whole sum naturally grows to infinity.
+ Again, you don't have to do all this to get full points for this problem
+ as it was not my intention to make this extra complication.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename PredictiveDistributionProblem4c.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Predictive distribution in Problem 4c.
+\end_layout
+
+\end_inset
+
+
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:PredictiveDistProblem4c"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+Good luck!
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+Mattias
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

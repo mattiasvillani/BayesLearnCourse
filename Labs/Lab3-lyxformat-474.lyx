@@ -1,0 +1,436 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2cm
+\rightmargin 2.5cm
+\bottommargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+
+\size footnotesize
+Matias Quiroz and Mattias Villani
+\begin_inset space \hspace{}
+\length 8cm
+\end_inset
+
+2016-05-03
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Division of Statistics and Machine Learning
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Dept.
+ of Computer and Information Science
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+Linköpings universitet
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+matias.quiroz@liu.se
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Bayesian Learning, 6 hp
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\series bold
+\size large
+Computer lab 3
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You can use any programming language for the labs, but the hints, help and
+ solutions will be in R.
+ 
+\begin_inset Newline newline
+\end_inset
+
+You are supposed to work and submit your labs in pairs, but do make sure
+ that both of you are contributing.
+
+\family typewriter
+ 
+\family default
+Submit your solutions by Lisam no later than 
+\series bold
+May 
+\series default
+13 at 
+\series bold
+midnight
+\series default
+.
+
+\family typewriter
+ 
+\family default
+You should submit the report (pdf only) and an executable file containing
+ your code.
+\family typewriter
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\size footnotesize
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\emph on
+Normal model, mixture of normal model with semi-conjugate prior.
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+The data 
+\family typewriter
+rainfall.dat
+\family default
+ consist of daily records, from the beginning of 1948 to the end of 1983,
+ of precipitation (rain or snow in units of 
+\begin_inset Formula $\frac{1}{100}$
+\end_inset
+
+ inch, and records of zero precipitation are excluded) at Snoqualmie Falls,
+ Washington.
+ Analyze the data using the following two models.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\emph on
+Normal model.
+
+\emph default
+ 
+\begin_inset Newline newline
+\end_inset
+
+Assume the daily precipitation 
+\begin_inset Formula $\left\{ y_{1},...,y_{n}\right\} $
+\end_inset
+
+ are independent normally distributed, 
+\begin_inset Formula $y_{1},...,y_{n}|\mu,\sigma^{2}\sim\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ where both 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ are unknown.
+ Let 
+\begin_inset Formula $\mu\sim\mathcal{N}(\mu_{0},\tau_{0}^{2})$
+\end_inset
+
+ independently of 
+\begin_inset Formula $\sigma^{2}\sim Inv\text{-}\chi^{2}(\nu_{0},\sigma_{0}^{2})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Implement (code!) a Gibbs sampler that simulates from the joint posterior
+ 
+\begin_inset Formula $p(\mu,\sigma^{2}|y_{1},...,y_{n})$
+\end_inset
+
+.
+ [Hint: the full conditional posteriors are given on the slides from Lecture
+ 8].
+\end_layout
+
+\begin_layout Enumerate
+Analyze the daily precipitation using your Gibbs sampler in (a)-i.
+ Investigate the convergence of the Gibbs sampler by suitable graphical
+ methods.
+ Is the Gibbs sampler efficient?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\emph on
+Mixture normal model.
+
+\emph default
+ 
+\begin_inset Newline newline
+\end_inset
+
+Alternatively, let's us now assume that the daily precipitation 
+\begin_inset Formula $\left\{ y_{1},...,y_{n}\right\} $
+\end_inset
+
+ follow an i.i.d two-component mixture of normals model:
+\begin_inset Formula 
+\[
+p(y_{i}|\mu,\sigma^{2},\pi)=\pi\mathcal{N}(y_{i}|\mu_{1},\sigma_{1}^{2})+(1-\pi)\mathcal{N}(y_{i}|\mu_{2},\sigma_{2}^{2}),
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\[
+\mu=(\mu_{1},\mu_{2})\quad\text{and}\quad\sigma^{2}=(\sigma_{1}^{2},\sigma_{2}^{2}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use the Gibbs sampling data augmentation algorithm in Mattias' code (or
+ code your own!) in 
+\family typewriter
+NormalMixtureGibbs.R
+\family default
+ (available under Lecture 7 on the course page) to analyze the daily precipitati
+on data.
+ Set the prior hyperparameters suitably.
+\end_layout
+
+\begin_layout Enumerate
+Investigate the convergence of the Gibbs sampler by suitable graphical methods.
+ Is this Gibbs sampler efficient?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\emph on
+Graphical comparison.
+
+\emph default
+ 
+\begin_inset Newline newline
+\end_inset
+
+Plot the following densities in one figure: 1) a histogram or kernel density
+ estimate of the data.
+ 2) Normal density 
+\begin_inset Formula $\mathcal{N}(\mu,\sigma^{2})$
+\end_inset
+
+ in (a); 3) Mixture of normals density 
+\begin_inset Formula $p(y_{i}|\mu,\sigma^{2},\pi)$
+\end_inset
+
+ in (b).
+ Use the posterior mean value for all the parameters.
+ Which model is better in terms of fitting?
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\emph on
+Binary regression models
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Use the code 
+\family typewriter
+OptimizeSpamR.zip
+\family default
+ from the course web page (under Lecture 6) to analyze the spam data set
+ using a probit regression.
+ As an alternative to exact simulation using the Gibbs sampler (see below)
+ or Metropolis-Hastings, we can approximate the posterior of the regression
+ coefficients 
+\begin_inset Formula $\beta$
+\end_inset
+
+ by 
+\begin_inset Formula $\mathcal{N}(\tilde{\beta},J^{-1})$
+\end_inset
+
+, where 
+\begin_inset Formula $J$
+\end_inset
+
+ is the observed information matrix evaluated at the posterior mode 
+\begin_inset Formula $\tilde{\beta}$
+\end_inset
+
+.
+ All of this is given by the code.
+ Use the prior 
+\begin_inset Formula $\beta\sim\mathcal{N}(0,\tau^{2}I)$
+\end_inset
+
+, with 
+\begin_inset Formula $\tau=10$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Implement (code!) a data augmentation Gibbs sampler for the probit regression
+ model.
+ [Hint: 
+\family typewriter
+rtnorm
+\family default
+ function in 
+\family typewriter
+the msm
+\family default
+-package + Lecture 8.]
+\end_layout
+
+\begin_layout Enumerate
+Analyze the spam data using your code from b), again using the prior 
+\begin_inset Formula $\beta\sim\mathcal{N}(0,\tau^{2}I)$
+\end_inset
+
+, with 
+\begin_inset Formula $\tau=10$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Compare the results in a) and c).
+\size footnotesize
+
+\begin_inset VSpace 0.5cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+
+\shape smallcaps
+May Bayes be with you!
+\end_layout
+
+\end_body
+\end_document

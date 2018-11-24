@@ -1,0 +1,11 @@
+model{
+  for (i in 1:n){
+    y[i] <- dnorm(theta[i], psi)
+    theta[i] <- dnorm(mu0, phi)
+  }
+  psi <- pow(sigma,-2)     # psi = 1/sigma^2
+  phi <- pow(tau0,-2)
+  mu0 <- dnorm (0.0, 1.0E-6)
+  sigma <- dunif(0, 1000)
+  tau0 <- dunif(0, 1000)
+}

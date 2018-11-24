@@ -1,0 +1,1488 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+\setcounter{MaxMatrixCols}{10}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{hyperref}
+\usepackage{multimedia}
+\usepackage{xcolor}
+\usepackage{colortbl}
+\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
+\definecolor{gray97}{cmyk}{0,0,0,0.03}
+\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
+\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+
+\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
+\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
+\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
+\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
+\usecolortheme[named=RawSienna]{structure}
+%\usecolortheme[RGB={205,0,0}]{structure}
+\setbeamertemplate{navigation symbols}{}
+\useoutertheme{infolines}
+\usetheme{default}
+\setbeamertemplate{blocks}[shadow=true]
+%\setbeamerfont{structure}{shape=\itshape}
+\usefonttheme{structuresmallcapsserif}
+\setbeamertemplate{background canvas}{
+ % \ifnum \thepage>0 \relax % we are on the first page
+%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
+ % \else
+ 	% No background for page 2 and onwards
+ % \fi
+}
+%\usepackage{handoutWithNotes}
+%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Bayesian Learning
+\end_layout
+
+\end_inset
+
+Bayesian Learning - Lecture 3
+\end_layout
+
+\begin_layout Author
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Mattias Villani
+\end_layout
+
+\end_inset
+
+Mattias Villani
+\end_layout
+
+\begin_layout Institute
+
+\series bold
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+Statistics, LiU
+\end_layout
+
+\end_inset
+
+Division of Statistics and Machine Learning
+\begin_inset Newline newline
+\end_inset
+
+Department of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University 
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Lecture overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Multiparameter
+\series default
+\color inherit
+ models
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginalization
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Normal model with unknown variance
+\end_layout
+
+\begin_layout Itemize
+Bayesian analysis of 
+\series bold
+\color blue
+multinomial data
+\end_layout
+
+\begin_layout Itemize
+Bayesian analysis of 
+\series bold
+\color blue
+multivariate normal data
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Marginalization
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Models with multiple parameters 
+\begin_inset Formula $\theta_{1},\theta_{2},...$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Examples: 
+\begin_inset Formula $x_{i}\overset{iid}{\sim}N(\theta,\sigma^{2})$
+\end_inset
+
+; multiple regression ...
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Joint posterior distribution
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\theta_{1},\theta_{2},...,\theta_{p}|y)\propto p(y|\theta_{1},\theta_{2},...,\theta_{p})p(\theta_{1},\theta_{2},...,\theta_{p}).
+\]
+
+\end_inset
+
+...
+ or in vector form:
+\begin_inset Formula 
+\[
+p(\theta|y)\propto p(y|\theta)p(\theta).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Complicated to graph the joint posterior.
+\end_layout
+
+\begin_layout Itemize
+Some of the parameters may not be of direct interest (
+\series bold
+\color blue
+nuisance
+\series default
+\color inherit
+).
+\end_layout
+
+\begin_layout Itemize
+Integrate out (
+\series bold
+\color blue
+marginalize
+\series default
+\color inherit
+) all nuisance parameters.
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Formula $\theta=(\theta_{1},\theta_{2})^{\prime}$
+\end_inset
+
+, 
+\begin_inset Formula $\theta_{2}$
+\end_inset
+
+ is a nuisance.
+ 
+\series bold
+\color blue
+Marginal posterior
+\series default
+\color inherit
+ of 
+\begin_inset Formula $\theta_{1}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{eqnarray*}
+p(\theta_{1}|y) & = & \int p(\theta_{1},\theta_{2}|y)d\theta_{2}=\int p(\theta_{1}|\theta_{2},y)p(\theta_{2}|y)d\theta_{2}.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Normal model with unknown variance - Uniform prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+x_{1},...,x_{n}\overset{iid}{\sim}N(\theta,\sigma^{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\theta,\sigma^{2})\propto(\sigma^{2})^{-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{gather*}
+\theta|\sigma^{2},\mathbf{x}\sim N\left(\bar{x},\frac{\sigma^{2}}{n}\right)\\
+\sigma^{2}|\mathbf{x}\sim\mathrm{Inv}-\chi^{2}(n-1,s^{2}),
+\end{gather*}
+
+\end_inset
+
+where
+\begin_inset Formula 
+\[
+s^{2}=\frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}}{n-1}
+\]
+
+\end_inset
+
+is the usual sample variance.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Normal model with unknown variance - Uniform prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Simulating
+\series default
+\color inherit
+ the posterior of the normal model with non-informative prior:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+1.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Draw 
+\begin_inset Formula $X\sim\chi^{2}(n-1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+2.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Compute 
+\begin_inset Formula $\sigma^{2}=\frac{(n-1)s^{2}}{X}$
+\end_inset
+
+ (this a draw from 
+\begin_inset Formula $\mathrm{Inv}$
+\end_inset
+
+-
+\begin_inset Formula $\chi^{2}(n-1,s^{2})$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+3.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Draw a 
+\begin_inset Formula $\theta$
+\end_inset
+
+ from 
+\begin_inset Formula $N\left(\bar{x},\frac{\sigma^{2}}{n}\right)$
+\end_inset
+
+ conditional on the previous draw 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+4.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Repeat step 1-3 many times.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The sampling is implemented in the R program 
+\family typewriter
+NormalNonInfoPrior.R
+\end_layout
+
+\begin_layout Itemize
+We may derive the marginal posterior analytically as
+\begin_inset Formula 
+\[
+\theta|\mathbf{x}\sim t_{n-1}\left(\bar{x},\frac{s^{2}}{n}\right).
+\]
+
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Multinomial model with Dirichlet prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\shape italic
+Data
+\shape default
+: 
+\begin_inset Formula $y=(y_{1},...y_{K})$
+\end_inset
+
+, where 
+\begin_inset Formula $y_{k}$
+\end_inset
+
+ counts the number of observations in the 
+\begin_inset Formula $k$
+\end_inset
+
+th category.
+ 
+\begin_inset Formula $\sum_{k=1}^{K}y_{k}=n$
+\end_inset
+
+.
+ Example: brand choices.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Multinomial model
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\[
+p(y|\theta)\propto\prod_{k=1}^{K}\theta_{k}^{y_{k}},\text{ where }\sum_{k=1}^{K}\theta_{k}=1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\shape italic
+\emph on
+\color blue
+Conjugate
+\series default
+ 
+\series bold
+prior
+\series default
+\shape default
+\color inherit
+:
+\emph default
+ 
+\begin_inset Formula $\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(\theta)\propto\prod_{k=1}^{K}\theta_{k}^{\alpha_{k}-1}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Moments of 
+\begin_inset Formula $\theta=(\theta_{1},...,\theta_{K})'\sim Dirichlet(\alpha_{1},...,\alpha_{K})$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+\mathrm{E}(\theta_{k}) & =\frac{\alpha_{k}}{\sum_{j=1}^{K}\alpha_{j}}\\
+\mathrm{V}(\theta_{k}) & =\frac{\mathrm{E}(\theta_{k})\left[1-\mathrm{E}(\theta_{k})\right]}{1+\sum_{j=1}^{K}\alpha_{j}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Note that 
+\begin_inset Formula $\sum_{k=1}^{K}\alpha_{k}$
+\end_inset
+
+ is a precision parameter.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Dirichlet distribution
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename DirichletPlot.png
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Multinomial model with Dirichlet prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+'Non-informative': 
+\begin_inset Formula $\alpha_{1}=...=\alpha_{K}=1$
+\end_inset
+
+ (uniform and proper).
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Simulating
+\series default
+\color inherit
+ from the Dirichlet distribution:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Generate 
+\begin_inset Formula $x_{1}\sim Gamma(\alpha_{1},1),...,x_{K}\sim Gamma(\alpha_{K},1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Compute 
+\begin_inset Formula $y_{k}=x_{k}/(\sum_{j=1}^{K}x_{j})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y=(y_{1},...,y_{K})$
+\end_inset
+
+ is a draw from the 
+\begin_inset Formula $\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
+\end_inset
+
+ distribution.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\shape italic
+\emph on
+\color blue
+Prior-to-Posterior updating
+\series default
+\shape default
+\color inherit
+:
+\emph default
+
+\begin_inset Formula 
+\begin{gather*}
+Model\text{: \ \ \ \ }y=(y_{1},...y_{K})\sim\mathrm{Multin}(n;\theta_{1},...,\theta_{K})\\
+Prior:\text{ \ \ }\theta=(\theta_{1},...,\theta_{K})\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})\\
+Posterior:\text{ \ \ }\theta|y\sim\mathrm{Dirichlet}(\alpha_{1}+y_{1},...,\alpha_{K}+y_{K}).
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Example: market shares
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+A recent survey among consumer smartphones owners in the U.S.
+ showed that among the 513 respondents:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+180 owned an iPhone
+\end_layout
+
+\begin_layout Itemize
+230 owned an Android phone
+\end_layout
+
+\begin_layout Itemize
+62 owned a Blackberry phone
+\end_layout
+
+\begin_layout Itemize
+41 owned some other mobile phone.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Previous survey: iPhone 30%, Android 30%, Blackberry 20% and Other 20%.
+\end_layout
+
+\begin_layout Itemize
+Pr(Android has largest share | Data)
+\end_layout
+
+\begin_layout Itemize
+Prior: 
+\begin_inset Formula $\alpha_{1}=15,\alpha_{2}=15,\alpha_{3}=10\text{ and }\alpha_{4}=10$
+\end_inset
+
+ (prior info is equivalent to a survey with only 
+\begin_inset Formula $50$
+\end_inset
+
+ respondents)
+\end_layout
+
+\begin_layout Itemize
+Posterior: 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $(\theta_{1},\theta_{2},\theta_{3},\theta_{4})|\mathbf{y}\sim\mathrm{Dirichlet(195,245,72,51)}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{R code for market share example}
+\end_layout
+
+\begin_layout Plain Layout
+
+<<MultinomialPrior2Post1, eval=TRUE, size='tiny'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Setting up data and prior
+\end_layout
+
+\begin_layout Plain Layout
+
+y <- c(180,230,62,41) # The cell phone survey data (K=4)
+\end_layout
+
+\begin_layout Plain Layout
+
+alpha <- c(15,15,10,10) # Dirichlet prior hyperparameters 
+\end_layout
+
+\begin_layout Plain Layout
+
+nIter <- 1000 # Number of posterior draws
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Defining a function that simulates from a Dirichlet distribution 
+\end_layout
+
+\begin_layout Plain Layout
+
+SimDirichlet <- function(nIter, param){ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+  nCat <- length(param) 	
+\end_layout
+
+\begin_layout Plain Layout
+
+  thetaDraws <- as.data.frame(matrix(NA, nIter, nCat)) # Storage.
+ 	
+\end_layout
+
+\begin_layout Plain Layout
+
+  for (j in 1:nCat){ 		
+\end_layout
+
+\begin_layout Plain Layout
+
+    thetaDraws[,j] <- rgamma(nIter,param[j],1) 	
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 	
+\end_layout
+
+\begin_layout Plain Layout
+
+  for (i in 1:nIter){ 		
+\end_layout
+
+\begin_layout Plain Layout
+
+    thetaDraws[i,] = thetaDraws[i,]/sum(thetaDraws[i,])	
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 	
+\end_layout
+
+\begin_layout Plain Layout
+
+  return(thetaDraws) 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Posterior sampling from Dirichlet posterior
+\end_layout
+
+\begin_layout Plain Layout
+
+thetaDraws <- SimDirichlet(nIter,y + alpha)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{R code for market share example, cont}
+\end_layout
+
+\begin_layout Plain Layout
+
+<<MultinomialPrior2Post2, eval=TRUE, size='tiny'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+# Posterior mean and standard deviation of Androids share (in %)
+\end_layout
+
+\begin_layout Plain Layout
+
+message(mean(100*thetaDraws[,2])) 
+\end_layout
+
+\begin_layout Plain Layout
+
+message(sd(100*thetaDraws[,2]))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Computing the posterior probability that Android is the largest
+\end_layout
+
+\begin_layout Plain Layout
+
+PrAndroidLargest <- sum(thetaDraws[,2]>apply(thetaDraws[,c(1,3,4)],1,max))/nIter
+\end_layout
+
+\begin_layout Plain Layout
+
+message(paste('Pr(Android has the largest market share) = ', PrAndroidLargest))
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{R code for market share example, cont}
+\end_layout
+
+\begin_layout Plain Layout
+
+<<MultinomialPrior2Post3, echo = FALSE, eval=TRUE, out.height='0.5
+\backslash
+
+\backslash
+linewidth'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Plots histograms of the posterior draws 
+\end_layout
+
+\begin_layout Plain Layout
+
+par(mfrow = c(1,2)) # Splits the graphical window in four parts
+\end_layout
+
+\begin_layout Plain Layout
+
+hist(100*thetaDraws[,1], breaks = 25, main ='iPhone market share (%)') 
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+hist(100*thetaDraws[,2], breaks = 25, main ='Android market share (%)')
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Multivariate normal - known 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+y_{1},...,y_{n}\overset{iid}{\sim}N_{p}(\mu,\Sigma)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+ is a known covariance matrix.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Density
+\series default
+
+\begin_inset Formula 
+\[
+p(y|\mu,\Sigma)=\left|2\pi\Sigma\right|^{-1/2}\exp\left(-\frac{1}{2}(y-\mu)'\Sigma^{-1}(y-\mu)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Likelihood
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+p(y_{1},...,y_{n}|\mu,\Sigma) & \propto\left|\Sigma\right|^{-n/2}\exp\left(-\frac{1}{2}\sum_{i=1}^{n}(y_{i}-\mu)'\Sigma^{-1}(y_{i}-\mu)\right)\\
+ & =\left|\Sigma\right|^{-n/2}\exp\left(-\frac{1}{2}tr\Sigma^{-1}S_{\mu}\right)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $S_{\mu}=\sum_{i=1}^{n}(y_{i}-\mu)(y_{i}-\mu)'.$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Multivariate normal - known 
+\begin_inset Formula $\Sigma$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mu\sim N_{p}(\mu_{0},\Lambda_{0})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mu|y\sim N(\mu_{n},\Lambda_{n})
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\begin{align*}
+\mu_{n} & =(\Lambda_{0}^{-1}+n\Sigma^{-1})^{-1}(\Lambda_{0}^{-1}\mu_{0}+n\Sigma^{-1}\bar{y})\\
+\Lambda_{n}^{-1} & =\Lambda_{0}^{-1}+n\Sigma^{-1}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Note how the posterior mean is (matrix) weighted average of prior and data
+ information.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Noninformative prior
+\series default
+: let the precision go to zero: 
+\begin_inset Formula $\Lambda_{0}^{-1}\rightarrow0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
