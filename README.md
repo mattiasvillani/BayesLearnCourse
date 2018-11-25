@@ -21,6 +21,35 @@ The course aims to give a solid introduction to the Bayesian approach to statist
 
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
+### Course literature
+
+The course will use the following book as the main course literature:
+
+* Gelman, A., Carlin, J.B., Stern H.S., Dunson, D.B., Vehtari, A., Rubin, D.B. (2014)
+Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
+* My slides on this page
+* Additional course material linked from this page, such as articles and tutorial.
+
+</div>
+
+\
+
+<div style="background-color:#eaeff7; padding:20px 47px;">
+
+### Computer labs
+
+* The computer labs is a central part of this course and you should expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
+* The labs should be done in pairs of students. 
+* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the Mondo system.
+* There is only two hours of supervised time allocated to each lab. This will not be enough time to complete each lab. The idea is that you should start working on the lab before the computer session, so that you are in a position to ask questions at the session.
+
+</div>
+
+\
+
+
+<div style="background-color:#eaeff7; padding:20px 47px;">
+
 ### Teachers
 
 ##### Lecturer
