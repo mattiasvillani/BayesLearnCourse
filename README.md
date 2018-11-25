@@ -14,12 +14,12 @@
 
 ### Aims
 
-The course aims to give a solid introduction to the Bayesian approach to statistical inference, with a view towards applications in data mining and machine learning. After an introduction to the subjective probability concept that underlies Bayesian inference, the course moves on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Linear regression and spline regression are also analyzed using a Bayesian approach. The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC). Bayesian prediction and marginalization of nuisance parameters is explained, and introductions to Bayesian model selection and Bayesian decision theory are also given.
+The course aims to give a solid introduction to the Bayesian approach to statistical inference, with a view towards applications in data mining and machine learning. After an introduction to the subjective probability concept that underlies Bayesian inference, the course moves on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Linear regression and nonlinear regression are also analyzed using a Bayesian approach. The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC) or approximate methods like Variational Inference. Bayesian prediction and marginalization of nuisance parameters is explained, and introductions to Bayesian model selection and Bayesian decision theory are also given.
 </div>
 
 \
 
-<div style="background-color:#eaeff7; padding:20px 30px;">
+<div style="background-color:#eaeff7; padding:20px 47px;">
 
 ### Teachers
 
@@ -164,4 +164,16 @@ Reading: Lab \
 Submission tool:
 </div>
 
+\
+<div style="background-color:#eaeff7; padding:20px 47px;">
+
+#### Examination
+
+The course examination consists of:
+
+* Written lab reports (deadlines will be given in Mondo)
+* Take home exam:
+    - 1st attempt: handed out on January 14. To be returned on January 18.
+    - 2nd attempt: handed out on TBD. To be returned on TBD.
+</div>
 \
