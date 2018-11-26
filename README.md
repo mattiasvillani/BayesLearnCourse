@@ -4,10 +4,6 @@
 
 ![alt text](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeon.jpg "Bayesian Learning")
 
-<div style="background-color:#eaeff7; padding:20px 47px;">
-
-</div>
-
 \
 
 <div style="background-color:#eaeff7; padding:20px 47px;">
@@ -25,7 +21,7 @@ The course aims to give a solid introduction to the Bayesian approach to statist
 
 The course will use the following book as the main course literature:
 
-* Gelman, A., Carlin, J.B., Stern H.S., Dunson, D.B., Vehtari, A., Rubin, D.B. (2014)
+* Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014)
 Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
 * My slides on this page
 * Additional course material linked from this page, such as articles and tutorial.
@@ -73,29 +69,19 @@ Department of Statistics, Stockholm University
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
 #### Part 1 - The Basics
-##### Lecture 1 - Basics concepts. Likelihood. The Bernoulli model.
+**Lecture 1** - Basics concepts. Likelihood. The Bernoulli model.\
+Reading: BDA Ch. 1, 2.1-2.5 |  [Slides](SLIDES) \
+Code: Beta density | Bernoulli model | One-parameter Gaussian model
 
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
-Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/)
+**Lecture 2** - Gaussian model. Conjugate priors. The Poisson model. Prior elicitation. Noninformative priors.\
+Reading: BDA Ch. 2.6-2.9 | [Slides](SLIDES) 
 
-##### Lecture 2 - Gaussian model. Conjugate priors. The Poisson model. Prior elicitation. Noninformative priors.
+**Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
+Reading: BDA Ch. 3 | [Slides](SLIDES) \
+Code: Two-parameter Gaussian model | Prediction with two-parameter Gaussian model | Multinomial model
 
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
-Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/)
-
-##### Lecture 3 - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.
-
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
-Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/) 
-
-##### Computer Lab 1 - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.
-Reading: Lab \
+**Computer Lab 1** - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.\
+Lab: Lab1 \
 Submission tool:
 
 </div>
@@ -104,29 +90,23 @@ Submission tool:
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
 #### Part 2 - Bayesian Regression and Classification
-##### Lecture 4 - Prediction. Making Decisions.
+**Lecture 4** - Prediction. Making Decisions. \
 
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
+Reading: BDA Ch. 9.1-9.2. | [Slides](SLIDES) \
 Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/)
 
-##### Lecture 5 - Linear Regression. Nonlinear regression. Regularization priors.
-
-Reading: [Slides](https://github.com/mattiasvillani/ESOBE2017/raw/master/Slides/GPregression.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
+**Lecture 5** - Linear Regression. Nonlinear regression. Regularization priors.\
+Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](SLIDES)  \
 Code: \
-Other material: \
-Software: [Google's TensorFlow](https://www.tensorflow.org/)
 
-##### Lecture 6 - Classification. Posterior approximation. Logistic regression. Naive Bayes.
-
-Reading: [Slides](https://github.com/mattiasvillani/ML4Industry/raw/master/Slides/LectureIntro.pdf) | Chapters 2.1-2.5 in [GPML](http://www.gaussianprocess.org/gpml/chapters/RW.pdf). \
+**Lecture 6** - Classification. Posterior approximation. Logistic regression. Naive Bayes.\\
+Reading: BDA Ch. 16.1-16.3 | [Slides](SLIDES) \
 Code: \
 Other material: 
 
 ##### Computer Lab 2 - Polynomial regression and classification with logistic regression.
 
-Reading: Lab \
+Lab: Lab2 \
 Submission tool:
 </div>
 
@@ -134,30 +114,21 @@ Submission tool:
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
 #### Part 3 - More Advanced Models, MCMC and Variational Bayes
-##### Lecture 7 - Bayesian computations. Monte Carlo simulation. Gibbs sampling. Data augmentation.
-
-Reading: \
+**Lecture 7** - Bayesian computations. Monte Carlo simulation. Gibbs sampling. Data augmentation. \
+Reading: BDA Ch. 10-11 | [Slides](SLIDES) \
 Code: \
-Other material: \
-Software: 
 
-##### Lecture 8 - MCMC and Metropolis-Hastings
-
-Reading: \
+**Lecture 8** - MCMC and Metropolis-Hastings \
+Reading: BDA Ch. 11 | [Slides](SLIDES) \
 Code: \
-Other material: \
-Software: 
 
-##### Lecture 9 - HMC, Variational Bayes and Stan.
-
-Reading: \
+**Lecture 9** - HMC, Variational Bayes and Stan. \
+Reading: BDA Ch. 12.4 and Ch. 13.7 | [RStan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html) | [Slides](SLIDES) \
 Code: \
-Other material: \
-Software:
 
 ##### Computer Lab 3 - Gibbs sampling for the normal model, mixture of normals and probit regression.
 
-Reading: Lab \
+Lab: Lab3 \
 Submission tool:
 
 </div>
@@ -166,30 +137,23 @@ Submission tool:
 <div style="background-color:#eaeff7; padding:20px 47px;">
 
 #### Part 4 - Model Inference and Variable Selection
-##### Lecture 10 - Bayesian model comparison.
+**Lecture 10 - Bayesian model comparison.**
 
-Reading: \
+Reading: BDA | [Slides](SLIDES) \
 Code: \
-Other material: \
-Software: 
 
-##### Lecture 11 - Computing the marginal likelihood, Bayesian variable selection, model averaging.
+**Lecture 11** - Computing the marginal likelihood, Bayesian variable selection, model averaging.\
 
-Reading: \
+Reading: BDA | [Slides](SLIDES) \
 Code: \
-Other material: \
-Software: 
 
-##### Lecture 12 - Model evaluation and course summary.
-
-Reading: \
+**Lecture 12** - Model evaluation and course summary.\
+Reading: BDA | [Slides](SLIDES) \
 Code: \
-Other material: \
-Software: 
 
 ##### Computer Lab 4 - Metropolis-Hastings for Poisson regression.
 
-Reading: Lab \
+Lab: Lab4 \
 Submission tool:
 </div>
 
