@@ -1,0 +1,729 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+
+
+
+
+
+\usepackage{graphicx}
+\usepackage{color}
+
+
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+
+
+
+
+
+\usepackage{color}
+\usepackage{babel}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref section
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mattias Villani 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bayesian Statistics I 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dept of Statistics, Stockholm University 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bayesian Learning 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dept of Computer and Information Science, Linköping University 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.3cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size large
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+Mathematical Exercises 1 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Try to solve the problems before class.
+ Don't worry if you fail, the important thing is trying.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+You should not hand in any solutions.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+This part of the course is not obligatory and is not graded.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.3cm
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\shape smallcaps
+What matters is the likelihood
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Assume that you want to investigate the proportion (
+\begin_inset Formula $\theta$
+\end_inset
+
+) of defective items manufactured at a production line.
+ Your colleague takes a random sample of 
+\begin_inset Formula $30$
+\end_inset
+
+ items and tells you for each item whether or not it was defective.
+ So she records the data as 
+\begin_inset Formula $x_{1}=0,x_{2}=1,...,x_{n}=0$
+\end_inset
+
+, where 
+\begin_inset Formula $x_{i}=1$
+\end_inset
+
+ if the item is defective and 
+\begin_inset Formula $x_{i}=0$
+\end_inset
+
+ otherwise.
+ There were three defective items in the sample.
+ Assume a uniform prior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Compute the posterior of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Assume your colleague only told you that there were three defective items
+ in the sample of 30 items, but she did not tell you which specific items
+ that were defective.
+ Assume a uniform prior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Compute the posterior of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Your colleague now tells you that she did not decide on the sample size
+ before the sampling was performed.
+ Her sampling plan was to keep on sampling items until she had found three
+ defective ones.
+ It just happened that the 
+\begin_inset Formula $30$
+\end_inset
+
+th item was the third one to be defective.
+ Redo the posterior calculation, under the new sampling scheme.
+ Compare the results with Problem 1(a).
+ [Hint: negative binomial distribution] 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Normal with a normal is normal
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}\mathrm{N}(\theta,\sigma^{2})$
+\end_inset
+
+ and assume that 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is known.
+ Assume a uniform prior: 
+\begin_inset Formula 
+\[
+p(\theta)\propto c.
+\]
+
+\end_inset
+
+Derive the posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Assume now a normal prior 
+\begin_inset Formula 
+\[
+\theta\sim N(\mu_{0},\tau_{0}^{2}).
+\]
+
+\end_inset
+
+Derive the posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+It ends with an abnormal twist
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{10}\overset{iid}{\sim}N(\theta,1)$
+\end_inset
+
+.
+ Let the sample mean be 
+\begin_inset Formula $\bar{x}=1.873$
+\end_inset
+
+.
+ Assume that 
+\begin_inset Formula $\theta\sim N(0,5)$
+\end_inset
+
+ apriori.
+ Compute the posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Assume now that you have a second sample 
+\begin_inset Formula $y_{1},...,y_{10}\overset{iid}{\sim}N(\theta,2)$
+\end_inset
+
+, where 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is the same quantity as in 3a.
+ The sample mean in this second sample is 
+\begin_inset Formula $\bar{y}=0.582$
+\end_inset
+
+.
+ Compute the posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ using both samples (the 
+\begin_inset Formula $x$
+\end_inset
+
+'s and the 
+\begin_inset Formula $y$
+\end_inset
+
+'s) under the assumption that the two samples are indepedent.
+ 
+\end_layout
+
+\begin_layout Enumerate
+You have now managed to obtain a third sample 
+\begin_inset Formula $z_{1},...,z_{10}\overset{iid}{\sim}N(\theta,3)$
+\end_inset
+
+, with mean 
+\begin_inset Formula $\bar{z}=1.221$
+\end_inset
+
+.
+ Unfortunately, the measuring device for this latter sample was defective:
+ any measurement above 
+\begin_inset Formula $3$
+\end_inset
+
+ was recorded as 
+\begin_inset Formula $3$
+\end_inset
+
+.
+ There were two such measurements.
+ Compute the posterior distribution based on all three samples (
+\begin_inset Formula $x,y$
+\end_inset
+
+ and 
+\begin_inset Formula $z$
+\end_inset
+
+).
+ [Hint: in this case the posterior distribution is not a known distribution
+ (it is not normal for example).
+ It is enough to give an expression for the (unnormalized) posterior.
+ You can also plot this over a grid on your computer, if you like.]
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Solving this problem should not take exponentially long time
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}\mathrm{Expon}(\theta)$
+\end_inset
+
+.
+ We use the parametrization of the exponential distribution where if 
+\begin_inset Formula $X\sim\mathrm{Expon}(\theta)$
+\end_inset
+
+ then 
+\begin_inset Formula $E(X)=1/\theta$
+\end_inset
+
+.
+ Show that the conjugate prior for the exponential model is 
+\begin_inset Formula $\theta\sim\mathrm{Gamma}(\alpha,\beta)$
+\end_inset
+
+.
+ Derive the posterior distribution for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ .
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+ Have fun!
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+ - Mattias 
+\end_layout
+
+\end_body
+\end_document
