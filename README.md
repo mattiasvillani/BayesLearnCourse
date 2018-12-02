@@ -1,21 +1,16 @@
 <!-- font: frutiger -->
 
-### Bayesian Statistics I (aka Bayesian Learning)
+### Bayesian Statistics I
 
 ![](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeon.jpg "Bayesian Learning")
 
-\
-
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 ### Aims
 
 The course aims to give a solid introduction to the Bayesian approach to statistical inference, with a view towards applications in data mining and machine learning. After an introduction to the subjective probability concept that underlies Bayesian inference, the course moves on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Linear regression and nonlinear regression are also analyzed using a Bayesian approach. The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC) or approximate methods like Variational Inference. Bayesian prediction and marginalization of nuisance parameters is explained, and introductions to Bayesian model selection and Bayesian decision theory are also given.
-</div>
 
-\
-
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 ### Course literature and Schedule
 
@@ -28,11 +23,7 @@ Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/ri157XQQ684Z50Qv17043gZ6y1Y7006Q5Y65Y3.html).
 
-</div>
-
-\
-
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 ### Computer labs
 
@@ -42,12 +33,7 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 * Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the Mondo system.
 * There is only two hours of supervised time allocated to each lab. This will not be enough time to complete each lab. The idea is that you should start working on the lab before the computer session, so that you are in a position to ask questions at the session.
 
-</div>
-
-\
-
-
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 ### Teachers
 
@@ -66,10 +52,7 @@ Department of Statistics, Stockholm University \\
 PhD Candidate \
 Department of Statistics, Stockholm University 
 
-</div>
-
-\
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 #### Part 1 - The Basics
 **Lecture 1** - Basics concepts. Likelihood. The Bernoulli model.\
@@ -92,10 +75,7 @@ Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/
 Assistant: [Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608) \
 Submission tool: Mondo.
 
-</div>
-\
-
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 #### Part 2 - Bayesian Regression and Classification
 **Lecture 4** - Prediction. Making Decisions.\
@@ -118,10 +98,8 @@ Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
 Lab: Lab2 \
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
 Submission tool: Mondo.
-</div>
 
-\
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 #### Part 3 - More Advanced Models, MCMC and Variational Bayes
 **Lecture 7** - Bayesian computations. Monte Carlo simulation. Gibbs sampling. Data augmentation. \
@@ -141,10 +119,7 @@ Lab: Lab3 \
 Assistant: [Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608) \
 Submission tool:  Mondo.
 
-</div>
-
-\
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 #### Part 4 - Model Inference and Variable Selection
 **Lecture 10 - Bayesian model comparison.**\
@@ -164,10 +139,8 @@ Code:
 Lab: Lab4 \
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
 Submission tool:  Mondo.
-</div>
 
-\
-<div style="background-color:#eaeff7; padding:20px 47px;">
+---
 
 #### Examination
 
@@ -177,5 +150,6 @@ The course examination consists of:
 * Take home exam:
     - 1st attempt: handed out on January 14. To be returned on January 18.
     - 2nd attempt: handed out on TBD. To be returned on TBD.
-</div>
-\
+    
+    
+---
