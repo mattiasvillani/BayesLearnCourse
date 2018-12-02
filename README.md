@@ -19,7 +19,7 @@ The course will use the following book as the main course literature:
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
 * My slides on this page
-* Additional course material linked from this page, such as articles and tutorial.\\
+* Additional course material linked from this page, such as articles and tutorial.\
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/ri157XQQ684Z50Qv17043gZ6y1Y7006Q5Y65Y3.html).
 
@@ -46,7 +46,7 @@ Division of Statistics and Machine Learning, Linköping University
 <img src="Oscar.png" width="100">\
 [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Assistant \
 PhD Candidate \
-Department of Statistics, Stockholm University \
+Department of Statistics, Stockholm University
 
 <img src="Parfait.png" width="100">\
 [Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608), Assistant \
