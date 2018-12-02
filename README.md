@@ -84,11 +84,11 @@ Reading: BDA Ch. 3 | [Slides](SLIDES) \
 Code: Two-parameter Gaussian model | Prediction with two-parameter Gaussian model | Multinomial model
 
 **Exercise session 1** \
-Exercises: TBA \
+Exercises: [Exercise 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise1.pdf) \
 Assistant: [Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608) 
 
 **Computer Lab 1** - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.\
-Lab: Lab1 \
+Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab1.pdf) \
 Assistant: [Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608) \
 Submission tool: Mondo.
 
