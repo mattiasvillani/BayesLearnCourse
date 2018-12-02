@@ -1,0 +1,15 @@
+/Admin
+/Hidden
+*.~lyx
+*.lyx~
+*.lyx#
+.DS_Store
+*.aux
+*.log
+*.out
+*.snm
+*.gz
+*.toc
+*.log
+*.nav
+.gitignore~

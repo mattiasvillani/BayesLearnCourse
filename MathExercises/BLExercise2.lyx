@@ -1,0 +1,907 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+
+
+
+
+
+
+\usepackage{graphicx}
+\usepackage{color}
+
+
+
+\definecolor{fgcolor}{rgb}{0.345, 0.345, 0.345}
+
+
+
+
+
+\usepackage{color}
+\usepackage{babel}
+\end_preamble
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding default
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref true
+\pdf_bookmarks false
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref section
+\pdf_pdfusetitle false
+\papersize default
+\use_geometry true
+\use_package amsmath 2
+\use_package amssymb 0
+\use_package cancel 0
+\use_package esint 1
+\use_package mathdots 0
+\use_package mathtools 0
+\use_package mhchem 0
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mattias Villani 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bayesian Statistics I 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dept of Statistics, Stockholm University 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bayesian Learning 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dept of Computer and Information Science, Linköping University 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.3cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size large
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+Mathematical Exercises 2 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Try to solve the problems before class.
+ Don't worry if you fail, the important thing is trying.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+You should not hand in any solutions.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+This part of the course is not obligatory and is not graded.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.3cm
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Enumerate
+
+\shape smallcaps
+Tau-chi.
+
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}N(\theta,\sigma^{2})$
+\end_inset
+
+.
+ Assume that 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is known, but 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ unknown.
+ Derive the posterior distribution for 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+ Use the conjugate prior.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Assume that 
+\begin_inset Formula $\theta=1$
+\end_inset
+
+ and that you have observed the data 
+\begin_inset Formula $x_{1}=0.6,x_{2}=3.2,x_{3}=1.2$
+\end_inset
+
+.
+ Compute the posterior of 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ based on these three data points.
+ Use a prior with very little information (it is up to you how to define
+ little information).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Feel the Bern.
+
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}Bern(\theta)$
+\end_inset
+
+, with a 
+\begin_inset Formula $Beta(\alpha,\beta)$
+\end_inset
+
+ prior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Derive the predictive distribution for 
+\begin_inset Formula $x_{n+1}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+You need to decide if you bring your umbrella during your daily walk.
+ It has rained on two days during the last ten days, and you assess those
+ ten days to be representative also for the weather today, the 11th day.
+ Your utility for the action-state combinations are given in the table below.
+ Assume a 
+\begin_inset Formula $Beta(1,1)$
+\end_inset
+
+ prior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Compute the Bayesian decision.
+\end_layout
+
+\begin_layout Enumerate
+How sensitive is your decision in (b) to the changes in the prior hyperparameter
+s, 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset CommandInset label
+LatexCommand label
+name "table:utility"
+
+\end_inset
+
+ 
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="5">
+<features tabularvalignment="middle">
+<column alignment="none" valignment="top" special=" ">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="none" valignment="top" special=" ">
+<row>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rainy 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sunny 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bring umbrella 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leave umbrella 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-50 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Campaign or no campaign - that is the question.
+
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ be the number of sales of a product on month 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}N(\theta,\sigma^{2})$
+\end_inset
+
+ be the (approximate) distribution for the sales, and let 
+\begin_inset Formula $\theta\sim N(200,50^{2})$
+\end_inset
+
+ a priori.
+ Assume that 
+\begin_inset Formula $\sigma^{2}=25^{2}$
+\end_inset
+
+ and that we have observed 
+\begin_inset Formula $n=5$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{x}=320.4$
+\end_inset
+
+.
+ Compute the predictive distribution for 
+\begin_inset Formula $x_{6}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The company has the choice of performing a marketing campaign for their
+ product.
+ The marketing campaign costs $300 and is believed to increase sales by
+ 
+\begin_inset Formula $20\%$
+\end_inset
+
+ compared to when no campaign is performed.
+ The company sells the product for 
+\begin_inset Formula $p=10$
+\end_inset
+
+ dollar and the cost of producing the product is 
+\begin_inset Formula $q=5$
+\end_inset
+
+ dollar.
+ There are no fixed production costs.
+ Assume that the company's utility is described by 
+\begin_inset Formula $U(y)=1-\exp(-y/1000)$
+\end_inset
+
+, where 
+\begin_inset Formula $y$
+\end_inset
+
+ is the total profit from sales in the next month.
+ Should the company perform the marketing campaign? [Hint: the expected
+ value of the exponential function of a normal random variable 
+\begin_inset Formula $S\sim N(\mu,\sigma^{2})$
+\end_inset
+
+ is 
+\begin_inset Formula $E(\exp(S))=\exp(\mu+\sigma^{2}/2)$
+\end_inset
+
+.] 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+%
+\backslash
+item OLD The company has the choice of performing a marketing campaign for
+ their product.
+ The marketing %campaign costs 
+\backslash
+$400 and is believed to increase sales by $100$ items.
+ The company sells the product for %$p=10$ dollar and the cost of producing
+ the product is $q=5$ dollar.
+ There are no fixed production costs.
+ %Should the company perform the marketing campaign?
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Predictive distribution for a Poisson model
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Do Exercise 13(a) in Chapter 2 of the course book.
+ That is, assume that the number of fatal accidents on scheduled airline
+ flights each year are independent with a Poisson
+\begin_inset Formula $(\theta)$
+\end_inset
+
+ distribution.
+ Set a prior distribution for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and determine the posterior distribution based on the data from 1976 through
+ 1985, given below.
+ Under this model, give a 95% predictive interval for the number of fatal
+ accidents in 1986.
+ You can use the normal approximation to the gamma and Poisson or compute
+ using simulation.
+\begin_inset Formula 
+\[
+24,\,25,\,31,\,31,\,22,\,21,\,26,\,20,\,16,\,22
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+ Have fun!
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+ - Mattias 
+\end_layout
+
+\end_body
+\end_document
