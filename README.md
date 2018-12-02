@@ -37,18 +37,19 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 
 ### Teachers
 
-##### Lecturer
-[Mattias Villani](https://mattiasvillani.com) \
+<img src="VillaniFotoMindre.jpg" width="100">\
+[Mattias Villani](https://mattiasvillani.com), Lecturer \
 Professor \
 Department of Statistics, Stockholm University \
 Division of Statistics and Machine Learning, Linköping University 
 
-##### Lab assistants
-[Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
+<img src="Oscar.png" width="100">\
+[Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Assistant \
 PhD Candidate \
-Department of Statistics, Stockholm University \\
+Department of Statistics, Stockholm University \
 
-[Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608) \
+<img src="Parfait.png" width="100">\
+[Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608), Assistant \
 PhD Candidate \
 Department of Statistics, Stockholm University 
 
