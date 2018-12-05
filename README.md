@@ -60,8 +60,8 @@ Department of Statistics, Stockholm University
 Reading: BDA Ch. 1, 2.1-2.5 |  [Slides](/Slides/BayesLearnL1.pdf) \
 Code: Beta density | Bernoulli model | One-parameter Gaussian model
 
-**Lecture 2** - Gaussian model. Conjugate priors. The Poisson model. Prior elicitation. Noninformative priors.\
-Reading: BDA Ch. 2.6-2.9 | [Slides](SLIDES) 
+**Lecture 2** - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation.\
+Reading: BDA Ch. 2.6-2.9 | [Slides](/Slides/BayesLearnL2.pdf) 
 
 **Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
 Reading: BDA Ch. 3 | [Slides](SLIDES) \
