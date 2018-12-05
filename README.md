@@ -57,7 +57,7 @@ Department of Statistics, Stockholm University
 
 #### Part 1 - The Basics
 **Lecture 1** - Basics concepts. Likelihood. The Bernoulli model.\
-Reading: BDA Ch. 1, 2.1-2.5 |  [Slides](SLIDES) \
+Reading: BDA Ch. 1, 2.1-2.5 |  [Slides](/Slides/BayesLearnL1.pdf) \
 Code: Beta density | Bernoulli model | One-parameter Gaussian model
 
 **Lecture 2** - Gaussian model. Conjugate priors. The Poisson model. Prior elicitation. Noninformative priors.\
