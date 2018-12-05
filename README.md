@@ -57,11 +57,11 @@ Department of Statistics, Stockholm University
 
 #### Part 1 - The Basics
 **Lecture 1** - Basics concepts. Likelihood. The Bernoulli model.\
-Reading: BDA Ch. 1, 2.1-2.5 |  [Slides](/Slides/BayesLearnL1.pdf) \
+Reading: BDA Ch. 1, 2.1-2.5 |  [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL1.pdf) \
 Code: Beta density | Bernoulli model | One-parameter Gaussian model
 
 **Lecture 2** - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation.\
-Reading: BDA Ch. 2.6-2.9 | [Slides](/Slides/BayesLearnL2.pdf) 
+Reading: BDA Ch. 2.6-2.9 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL2.pdf) 
 
 **Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
 Reading: BDA Ch. 3 | [Slides](SLIDES) \
