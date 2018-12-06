@@ -155,3 +155,12 @@ The course examination consists of:
     
     
 ---
+
+#### R
+
+* The main page with links to downloads for the [programming language R](https://www.r-project.org/)
+* [RStudio](https://www.rstudio.com/) - a very nice developing environment for R.
+* Short introduction to R | A little [longer introduction](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/).
+    
+    
+---
