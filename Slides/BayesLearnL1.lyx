@@ -12,7 +12,7 @@
 \usetheme{focus}
 
 \title{Machine Learning for Industry}
-\subtitle{Lecture 1: Bayesics. Bernoulli}
+\subtitle{Lecture 1: Likelihood. Bayesics. Bernoulli}
 \author[Mattias Villani]{Mattias Villani}
 %\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
 \institute{Linköping University 
@@ -735,7 +735,7 @@ The data
 \begin_inset Formula $\mathbf{x}=(x_{1},...,x_{n}$
 \end_inset
 
-), are random.
+) are random.
 \end_layout
 
 \begin_layout Itemize
@@ -896,12 +896,16 @@ Uncertainty and subjective probability
 \begin_inset Formula $(\theta<0.6\vert\text{data})$
 \end_inset
 
- only make sense if 
+ only makes sense if 
 \begin_inset Formula $\theta$
 \end_inset
 
  is random.
  
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -914,6 +918,10 @@ But
  
 \shape default
 a fixed natural constant?
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -929,6 +937,10 @@ Bayesian: doesn't matter if
 \color inherit
 .
  
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -943,6 +955,10 @@ You
 \end_inset
 
  or not?
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -960,6 +976,10 @@ uncertainty
 \end_inset
 
 .
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -970,11 +990,15 @@ Subjective probability
 \series default
 \color inherit
 .
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 The statement 
-\begin_inset Formula $p(10\text{th}\,\text{decimal of }\pi=9)=0.1$
+\begin_inset Formula $\mathrm{Pr}(10\text{th}\,\text{decimal of }\pi=9)=0.1$
 \end_inset
 
  makes sense.
@@ -990,8 +1014,24 @@ The statement
 \begin_inset Graphics
 	filename Images/deFinettiBook.jpeg
 	lyxscale 20
-	scale 40
+	scale 25
 
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
 \end_inset
 
 
@@ -1026,14 +1066,47 @@ The statement
 \begin_inset Graphics
 	filename Images/deFinetti.jpg
 	lyxscale 20
+	scale 90
 
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
+\end_inset
+
+
+\begin_inset space \enskip{}
 \end_inset
 
 
 \begin_inset Graphics
 	filename Images/pi_circle.jpg
 	lyxscale 20
-	scale 20
+	scale 12
 
 \end_inset
 
@@ -1323,7 +1396,14 @@ A probability distribution for
 \begin_inset Newline newline
 \end_inset
 
-Decision making
+Predictions
+\series default
+\color inherit
+.
+
+\series bold
+\color orange
+ Decision making
 \series default
 \color inherit
 .
@@ -1437,7 +1517,7 @@ test is positive
 :
 \begin_inset Formula 
 \begin{align*}
-p(A|B) & =\frac{p(B|A)p(A)}{p(B)}=\frac{p(B|A)p(A)}{p(B|A)p(A)+p(B|A^{c})p(A^{c})}\approx0.001797.
+p(A|B) & =\frac{p(B|A)p(A)}{p(B)}=\frac{p(B|A)p(A)}{p(B|A)p(A)+p(B|A^{c})p(A^{c})}\approx0.0018.
 \end{align*}
 
 \end_inset
@@ -1630,14 +1710,20 @@ The integral
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color orange
 \begin_inset Formula $p(Data)$
 \end_inset
 
- is just a constant so that 
+ is just a constant
+\series default
+\color inherit
+ so that 
 \begin_inset Formula $p(\theta|Data)$
 \end_inset
 
- integrate to one.
+ integrates to one.
 \end_layout
 
 \begin_layout Itemize
@@ -1660,7 +1746,7 @@ p(x)=(2\pi\sigma^{2})^{-1/2}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
 We may write 
 \begin_inset Formula 
 \[
-p(x)\propto\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
+p(x){\normalcolor |\propto}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
 \]
 
 \end_inset
@@ -1720,7 +1806,7 @@ or
 \align center
 \begin_inset Graphics
 	filename /Users/matvi05/Dropbox/Seminars/Umea2013/BayesTattoo.png
-	scale 40
+	scale 37
 
 \end_inset
 
@@ -1909,7 +1995,7 @@ Model
 \series default
 \color inherit
 : 
-\begin_inset Formula $x_{i}|\theta\overset{iid}{\sim}Bernoulli(\theta)$
+\begin_inset Formula $x_{i}|\theta\overset{iid}{\sim}\mathrm{Bern}(\theta)$
 \end_inset
 
  
@@ -2141,7 +2227,7 @@ with order
 \series default
 \color inherit
 : 
-\begin_inset Formula $x_{1}=1,x_{2}=0,...,x_{4}=1,x_{n}=1$
+\begin_inset Formula $x_{1}=1,x_{2}=0,...,x_{4}=1,...,x_{n}=1$
 \end_inset
 
 
@@ -2227,7 +2313,7 @@ posterior distribution is the same
 \begin_layout Itemize
 Bayesian inference respects the 
 \series bold
-\color orange
+\color blue
 likelihood principle
 \series default
 \color inherit

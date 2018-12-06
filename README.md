@@ -19,7 +19,7 @@ The course will use the following book as the main course literature:
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
 * My slides on this page
-* Additional course material linked from this page, such as articles and tutorial.\
+* Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/ri157XQQ684Z50Qv17043gZ6y1Y7006Q5Y65Y3.html).
 
@@ -58,10 +58,11 @@ Department of Statistics, Stockholm University
 #### Part 1 - The Basics
 **Lecture 1** - Basics concepts. Likelihood. The Bernoulli model.\
 Reading: BDA Ch. 1, 2.1-2.4 |  [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL1.pdf) \
-Code: Beta density | Bernoulli model | One-parameter Gaussian model
+Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/ManipBeta.R) | [Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipBern.R)
 
 **Lecture 2** - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation.\
-Reading: BDA Ch. 2.-2.9 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL2.pdf) 
+Reading: BDA Ch. 2.-2.9 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL2.pdf) \
+Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)
 
 **Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
 Reading: BDA Ch. 3 | [Slides](SLIDES) \
