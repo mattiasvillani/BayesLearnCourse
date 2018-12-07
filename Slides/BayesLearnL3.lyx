@@ -187,6 +187,10 @@ Multiparameter
 \series default
 \color inherit
  models
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -194,6 +198,13 @@ Multiparameter
 \series bold
 \color orange
 Marginalization
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -201,6 +212,13 @@ Marginalization
 \series bold
 \color orange
 Normal model with unknown variance
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -208,6 +226,13 @@ Bayesian analysis of
 \series bold
 \color orange
 multinomial data
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -244,12 +269,22 @@ Marginalization
 
 \begin_deeper
 \begin_layout Itemize
-Models with multiple parameters 
+Models with 
+\series bold
+\color blue
+multiple parameters
+\series default
+\color inherit
+ 
 \begin_inset Formula $\theta_{1},\theta_{2},...$
 \end_inset
 
 .
  
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -258,6 +293,10 @@ Examples:
 \end_inset
 
 ; multiple regression ...
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -275,8 +314,7 @@ p(\theta_{1},\theta_{2},...,\theta_{p}|y)\propto p(y|\theta_{1},\theta_{2},...,\
 
 \end_inset
 
-...
- or in vector form:
+
 \begin_inset Formula 
 \[
 p(\theta|y)\propto p(y|\theta)p(\theta).
@@ -288,27 +326,23 @@ p(\theta|y)\propto p(y|\theta)p(\theta).
 \end_layout
 
 \begin_layout Itemize
-Complicated to graph the joint posterior.
-\end_layout
 
-\begin_layout Itemize
-Some parameters may not be of direct interest (
+\series bold
+\color orange
+Marginalize
+\series default
+\color inherit
+ out parameter of no direct interest (
 \series bold
 \color blue
 nuisance
 \series default
 \color inherit
 ).
-\end_layout
+\begin_inset VSpace medskip
+\end_inset
 
-\begin_layout Itemize
-Integrate out (
-\series bold
-\color orange
-marginalize
-\series default
-\color inherit
-) all nuisance parameters.
+
 \end_layout
 
 \begin_layout Itemize
@@ -316,15 +350,11 @@ Example:
 \begin_inset Formula $\theta=(\theta_{1},\theta_{2})^{\prime}$
 \end_inset
 
-, 
-\begin_inset Formula $\theta_{2}$
-\end_inset
+.
 
- is a nuisance.
- 
 \series bold
 \color orange
-Marginal posterior
+ Marginal posterior
 \series default
 \color inherit
  of 
@@ -355,7 +385,7 @@ p(\theta_{1}|y) & = & \int p(\theta_{1},\theta_{2}|y)d\theta_{2}=\int p(\theta_{
 status open
 
 \begin_layout Plain Layout
-Normal model with unknown variance - Uniform prior
+Normal model with unknown variance
 \end_layout
 
 \end_inset
@@ -444,7 +474,7 @@ is the usual sample variance.
 status open
 
 \begin_layout Plain Layout
-Normal model with unknown variance - Uniform prior
+Normal model with unknown variance
 \end_layout
 
 \end_inset
@@ -464,7 +494,7 @@ Normal model with unknown variance - Uniform prior
 Simulating
 \series default
 \color inherit
- the posterior of the normal model with non-informative prior:
+ from the posterior :
 \begin_inset Separator latexpar
 \end_inset
 
@@ -496,6 +526,10 @@ status collapsed
 
  Draw 
 \begin_inset Formula $X\sim\chi^{2}(n-1)$
+\end_inset
+
+
+\begin_inset VSpace smallskip
 \end_inset
 
 
@@ -536,6 +570,10 @@ status collapsed
 \end_inset
 
 )
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -573,6 +611,10 @@ status collapsed
 \end_inset
 
 
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -599,6 +641,10 @@ status collapsed
 
  Repeat step 1-3 many times.
  
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -606,10 +652,22 @@ status collapsed
 The sampling is implemented in the R program 
 \family typewriter
 NormalNonInfoPrior.R
+\family default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-We may derive the marginal posterior analytically as
+We may derive the 
+\series bold
+\color blue
+marginal posterior
+\series default
+\color inherit
+ analytically as
 \begin_inset Formula 
 \[
 \theta|\mathbf{x}\sim t_{n-1}\left(\bar{x},\frac{s^{2}}{n}\right).
@@ -698,20 +756,11 @@ p(y|\theta)\propto\prod_{k=1}^{K}\theta_{k}^{y_{k}},\text{ where }\sum_{k=1}^{K}
 \begin_layout Itemize
 
 \series bold
-\shape italic
-\emph on
 \color orange
-Conjugate
+Dirichlet prior
 \series default
- 
-\series bold
-prior
-\series default
-\shape default
 \color inherit
-:
-\emph default
- 
+: 
 \begin_inset Formula $\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
 \end_inset
 
