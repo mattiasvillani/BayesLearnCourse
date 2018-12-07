@@ -65,7 +65,7 @@ Reading: BDA Ch. 2.-2.9 | [Slides](https://github.com/mattiasvillani/BayesLearnC
 Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)
 
 **Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
-Reading: BDA Ch. 3 | [Slides](SLIDES) \
+Reading: BDA Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL3.pdf) \
 Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R) | [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R) | [Multinomial model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/DirichletSampling.R)
 
 **Exercise session 1** \

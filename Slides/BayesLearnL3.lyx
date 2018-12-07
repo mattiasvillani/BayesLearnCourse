@@ -6,40 +6,24 @@
 \origin unavailable
 \textclass beamer
 \begin_preamble
-\setcounter{MaxMatrixCols}{10}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{mathpazo}
-\usepackage{hyperref}
-\usepackage{multimedia}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
-\definecolor{gray97}{cmyk}{0,0,0,0.03}
-\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
-\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+% Full instructions available at:
+% https://github.com/elauksap/focus-beamertheme
 
-\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
-\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
-\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
-\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
-\usecolortheme[named=RawSienna]{structure}
-%\usecolortheme[RGB={205,0,0}]{structure}
-\setbeamertemplate{navigation symbols}{}
-\useoutertheme{infolines}
-\usetheme{default}
-\setbeamertemplate{blocks}[shadow=true]
-%\setbeamerfont{structure}{shape=\itshape}
-\usefonttheme{structuresmallcapsserif}
-\setbeamertemplate{background canvas}{
- % \ifnum \thepage>0 \relax % we are on the first page
-%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
- % \else
- 	% No background for page 2 and onwards
- % \fi
-}
-%\usepackage{handoutWithNotes}
-%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
+\usetheme{focus}
+
+\title{Machine Learning for Industry}
+\subtitle{Lecture 3: Multi-parameter. Marginalization.}
+\author[Mattias Villani]{Mattias Villani}
+%\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
+\institute{Linköping University 
+\\ Stockholm University  
+\vspace{0.1cm} \\ }
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+%\definecolor{blue}{RGB}{102, 159, 204}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -121,7 +105,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Learning - Lecture 3
+Bayesian Statistics - Lecture 3
 \end_layout
 
 \begin_layout Author
@@ -146,12 +130,20 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+SU and LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics and Machine Learning
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Newline newline
+\end_inset
+
+and
 \begin_inset Newline newline
 \end_inset
 
@@ -159,7 +151,7 @@ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Linköping University
 \end_layout
 
 \begin_layout Date
@@ -190,7 +182,7 @@ Lecture overview
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Multiparameter
 \series default
 \color inherit
@@ -200,28 +192,28 @@ Multiparameter
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Marginalization
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Normal model with unknown variance
 \end_layout
 
 \begin_layout Itemize
 Bayesian analysis of 
 \series bold
-\color blue
+\color orange
 multinomial data
 \end_layout
 
 \begin_layout Itemize
 Bayesian analysis of 
 \series bold
-\color blue
+\color orange
 multivariate normal data
 \end_layout
 
@@ -271,7 +263,7 @@ Examples:
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Joint posterior distribution
 \series default
 \color inherit
@@ -300,7 +292,7 @@ Complicated to graph the joint posterior.
 \end_layout
 
 \begin_layout Itemize
-Some of the parameters may not be of direct interest (
+Some parameters may not be of direct interest (
 \series bold
 \color blue
 nuisance
@@ -312,7 +304,7 @@ nuisance
 \begin_layout Itemize
 Integrate out (
 \series bold
-\color blue
+\color orange
 marginalize
 \series default
 \color inherit
@@ -331,7 +323,7 @@ Example:
  is a nuisance.
  
 \series bold
-\color blue
+\color orange
 Marginal posterior
 \series default
 \color inherit
@@ -656,34 +648,39 @@ Multinomial model with Dirichlet prior
 \begin_deeper
 \begin_layout Itemize
 
-\shape italic
-Data
-\shape default
+\series bold
+\color orange
+Categorical counts
+\series default
+\color inherit
 : 
 \begin_inset Formula $y=(y_{1},...y_{K})$
 \end_inset
 
 , where 
-\begin_inset Formula $y_{k}$
-\end_inset
-
- counts the number of observations in the 
-\begin_inset Formula $k$
-\end_inset
-
-th category.
- 
 \begin_inset Formula $\sum_{k=1}^{K}y_{k}=n$
 \end_inset
 
 .
- Example: brand choices.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $y_{k}$
+\end_inset
+
+= no of observations in 
+\begin_inset Formula $k$
+\end_inset
+
+th category.
+ Brand choices.
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Multinomial model
 \series default
 \color inherit
@@ -703,7 +700,7 @@ p(y|\theta)\propto\prod_{k=1}^{K}\theta_{k}^{y_{k}},\text{ where }\sum_{k=1}^{K}
 \series bold
 \shape italic
 \emph on
-\color blue
+\color orange
 Conjugate
 \series default
  
@@ -746,14 +743,6 @@ Moments of
 
 \end_layout
 
-\begin_layout Itemize
-Note that 
-\begin_inset Formula $\sum_{k=1}^{K}\alpha_{k}$
-\end_inset
-
- is a precision parameter.
-\end_layout
-
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -783,9 +772,9 @@ Dirichlet distribution
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename DirichletPlot.png
+	filename Images/DirichletPlot.png
 	lyxscale 30
-	scale 30
+	scale 35
 
 \end_inset
 
@@ -851,6 +840,10 @@ Generate
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -859,17 +852,22 @@ Compute
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
+Then 
 \begin_inset Formula $y=(y_{1},...,y_{K})$
 \end_inset
 
- is a draw from the 
-\begin_inset Formula $\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
+
+\begin_inset Formula $\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
 \end_inset
 
- distribution.
+.
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -960,6 +958,9 @@ Previous survey: iPhone 30%, Android 30%, Blackberry 20% and Other 20%.
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color blue
 Pr(Android has largest share | Data)
 \end_layout
 
@@ -1326,7 +1327,7 @@ Multivariate normal - known
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Model
 \series default
 \color inherit
@@ -1346,11 +1347,7 @@ where
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
 Density
-\series default
-
 \begin_inset Formula 
 \[
 p(y|\mu,\Sigma)=\left|2\pi\Sigma\right|^{-1/2}\exp\left(-\frac{1}{2}(y-\mu)'\Sigma^{-1}(y-\mu)\right)
@@ -1364,7 +1361,7 @@ p(y|\mu,\Sigma)=\left|2\pi\Sigma\right|^{-1/2}\exp\left(-\frac{1}{2}(y-\mu)'\Sig
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Likelihood
 \series default
 \color inherit
@@ -1417,7 +1414,7 @@ Multivariate normal - known
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Prior
 \series default
 \color inherit
@@ -1435,7 +1432,7 @@ Prior
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Posterior
 \series default
 \color inherit
@@ -1460,15 +1457,20 @@ where
 \end_layout
 
 \begin_layout Itemize
-Note how the posterior mean is (matrix) weighted average of prior and data
- information.
+Posterior mean is a weighted average of prior and data information.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
+\color blue
 Noninformative prior
 \series default
+\color inherit
 : let the precision go to zero: 
 \begin_inset Formula $\Lambda_{0}^{-1}\rightarrow0$
 \end_inset
