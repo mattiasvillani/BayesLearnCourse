@@ -66,7 +66,7 @@ Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLear
 
 **Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
 Reading: BDA Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL3.pdf) \
-Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R) | [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R) | [Multinomial model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/DirichletSampling.R)
+Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R) | [Multinomial model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/DirichletSampling.R)
 
 **Exercise session 1** \
 Exercises: [Exercise 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise1.pdf) \
@@ -82,7 +82,7 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 #### Part 2 - Bayesian Regression and Classification
 **Lecture 4** - Prediction. Making Decisions.\
 Reading: BDA Ch. 9.1-9.2. | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL4.pdf) \
-Code: 
+Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
 **Lecture 5** - Linear Regression. Nonlinear regression. Regularization priors.\
 Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](SLIDES)  \
