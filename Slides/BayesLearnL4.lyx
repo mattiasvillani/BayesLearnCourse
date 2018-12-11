@@ -1,41 +1,31 @@
-#LyX 2.1 created this file. For more info see http://www.lyx.org/
-\lyxformat 474
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
 \begin_document
 \begin_header
+\save_transient_properties true
+\origin unavailable
 \textclass beamer
 \begin_preamble
-\setcounter{MaxMatrixCols}{10}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{mathpazo}
-\usepackage{hyperref}
-\usepackage{multimedia}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
-\definecolor{gray97}{cmyk}{0,0,0,0.03}
-\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
-\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+\usetheme{focus}
 
-\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
-\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
-\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
-\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
-\usecolortheme[named=RawSienna]{structure}
-%\usecolortheme[RGB={205,0,0}]{structure}
-\setbeamertemplate{navigation symbols}{}
-\useoutertheme{infolines}
-\usetheme{default}
-\setbeamertemplate{blocks}[shadow=true]
-%\setbeamerfont{structure}{shape=\itshape}
-\usefonttheme{structuresmallcapsserif}
-\setbeamertemplate{background canvas}{
- % \ifnum \thepage>0 \relax % we are on the first page
-%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
- % \else
- 	% No background for page 2 and onwards
- % \fi
-}
+\usepackage[ruled]{algorithm2e}
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+
+\title{Machine Learning for Industry}
+\subtitle{Lecture 4: Predictions. Decisions.}
+\author[Mattias Villani]{Mattias Villani}
+%\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
+\institute{Linköping University 
+\\ Stockholm University  
+\vspace{0.1cm} \\ }
+
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+%\definecolor{blue}{RGB}{102, 159, 204}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -44,16 +34,16 @@
 \language_package default
 \inputencoding auto
 \fontencoding global
-\font_roman palatino
-\font_sans default
-\font_typewriter default
-\font_math auto
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
-\font_sf_scale 100
-\font_tt_scale 100
+\font_sf_scale 100 100
+\font_tt_scale 100 100
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -114,7 +104,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Learning - Lecture 4
+Bayesian Statistics - Lecture 4
 \end_layout
 
 \begin_layout Author
@@ -139,12 +129,20 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+SU and LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics and Machine Learning
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Newline newline
+\end_inset
+
+and
 \begin_inset Newline newline
 \end_inset
 
@@ -152,7 +150,7 @@ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Linköping University
 \end_layout
 
 \begin_layout Date
@@ -173,40 +171,74 @@ Lecture overview
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Prediction
+\series default
+\color inherit
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Normal model
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 More complex examples
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Decision theory
+\series default
+\color inherit
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 The elements of a decision problem
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 The Bayesian way
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -215,7 +247,10 @@ Point estimation as a decision problem
 
 \end_deeper
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -230,28 +265,30 @@ Prediction/Forecasting
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 
-\series bold
-\color blue
-Posterior predictive distribution
-\series default
+\color orange
+Posterior predictive density
 \color inherit
  for future 
 \begin_inset Formula $\tilde{y}$
 \end_inset
 
- given observed data 
-\begin_inset Formula $y$
+ given observed 
+\begin_inset Formula $\mathbf{y}$
 \end_inset
 
 
 \begin_inset Formula 
 \[
-p(\tilde{y}|y)=\int_{\theta}p(\tilde{y}|\theta,y)p(\theta|y)d\theta
+p(\tilde{y}|\mathbf{y})=\int_{\theta}p(\tilde{y}|\theta,\mathbf{y})p(\theta|\mathbf{y})d\theta
 \]
 
 \end_inset
@@ -265,13 +302,13 @@ p(\tilde{y}|y)=\int_{\theta}p(\tilde{y}|\theta,y)p(\theta|y)d\theta
 
 \begin_layout Itemize
 If 
-\begin_inset Formula $p(\tilde{y}|\theta,y)=p(\tilde{y}|\theta)$
+\begin_inset Formula $p(\tilde{y}|\theta,\mathbf{y})=p(\tilde{y}|\theta)$
 \end_inset
 
  [not true for time series], then 
 \begin_inset Formula 
 \[
-p(\tilde{y}|y)=\int_{\theta}p(\tilde{y}|\theta)p(\theta|y)d\theta
+p(\tilde{y}|\mathbf{y})=\int_{\theta}p(\tilde{y}|\theta)p(\theta|\mathbf{y})d\theta
 \]
 
 \end_inset
@@ -284,14 +321,12 @@ p(\tilde{y}|y)=\int_{\theta}p(\tilde{y}|\theta)p(\theta|y)d\theta
 \end_layout
 
 \begin_layout Itemize
-The 
-\series bold
-\color blue
-parameter uncertainty
-\series default
+
+\color orange
+Parameter uncertainty
 \color inherit
- is represented in 
-\begin_inset Formula $p(\tilde{y}|y)$
+ in 
+\begin_inset Formula $p(\tilde{y}|\mathbf{y})$
 \end_inset
 
  by 
@@ -301,14 +336,17 @@ averaging over
 \series default
 \color inherit
  
-\begin_inset Formula $p(\theta|y)$
+\begin_inset Formula $p(\theta|\mathbf{y})$
 \end_inset
 
 .
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -323,6 +361,10 @@ Prediction - Normal data, known variance
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -333,18 +375,11 @@ Under the uniform prior
 
 , then
 \begin_inset Formula 
-\[
-p(\tilde{y}|y)=\int_{\theta}p(\tilde{y}|\theta)p(\theta|y)d\theta
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula 
-\begin{eqnarray*}
-\theta|y & \sim & N(\bar{y},\sigma^{2}/n)\\
-\tilde{y}|\theta & \sim & N(\theta,\sigma^{2})
-\end{eqnarray*}
+\begin{align*}
+p(\tilde{y}|\mathbf{y}) & =\int_{\theta}p(\tilde{y}|\theta)p(\theta|\mathbf{y})d\theta\\
+\theta|\mathbf{y} & \sim N(\bar{y},\sigma^{2}/n)\\
+\tilde{y}|\theta & \sim N(\theta,\sigma^{2})
+\end{align*}
 
 \end_inset
 
@@ -355,8 +390,18 @@ where
 
 \end_layout
 
+\begin_layout Standard
+Simulation algorithm:
+\end_layout
+
 \begin_layout Enumerate
-Generate a posterior draw of 
+Generate a 
+\series bold
+\color orange
+posterior draw
+\series default
+\color inherit
+ of 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -372,7 +417,13 @@ Generate a posterior draw of
 \end_layout
 
 \begin_layout Enumerate
-Generate a draw of 
+Generate a 
+\series bold
+\color orange
+predictive draw
+\series default
+\color inherit
+ of 
 \begin_inset Formula $\tilde{y}$
 \end_inset
 
@@ -381,18 +432,18 @@ Generate a draw of
 \end_inset
 
 ) from 
-\begin_inset Formula $N(\theta^{(1)},\sigma^{2})$
+\begin_inset Formula $N(\textcolor{orange}{\theta^{(1)}},\sigma^{2})$
 \end_inset
 
- (note the mean)
+
 \end_layout
 
 \begin_layout Enumerate
-Repeat steps 1 and 2 a large number of times (
+Repeat Steps 1 and 2 
 \begin_inset Formula $N$
 \end_inset
 
-) with the result:
+ times to output:
 \end_layout
 
 \begin_deeper
@@ -415,7 +466,10 @@ Sequence of predictive draws:
 
 \end_deeper
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -424,9 +478,13 @@ Sequence of predictive draws:
 status open
 
 \begin_layout Plain Layout
-Predictive distribution - Normal model and uniform prior
+Predictive distribution - Normal model
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -494,11 +552,15 @@ Predictive distribution - Normal model and uniform prior
 \end_layout
 
 \begin_layout Itemize
-The sum of two normal random variables is normal so 
+The 
+\color orange
+sum of two normal random variables is normal
+\color inherit
+ so 
 \begin_inset Formula 
 \begin{eqnarray*}
-E(\tilde{y}|y) & = & \bar{y}\\
-V(\tilde{y}|y) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+\frac{1}{n}\right)
+E(\tilde{y}|\mathbf{y}) & = & \bar{y}\\
+V(\tilde{y}|\mathbf{y}) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+\frac{1}{n}\right)
 \end{eqnarray*}
 
 \end_inset
@@ -506,7 +568,7 @@ V(\tilde{y}|y) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+\frac{1}{
 
 \begin_inset Formula 
 \[
-\tilde{y}\vert y\sim N\left[\bar{y},\sigma^{2}\left(1+\frac{1}{n}\right)\right]
+\tilde{y}\vert\mathbf{y}\sim N\left[\bar{y},\sigma^{2}\left(1+\frac{1}{n}\right)\right]
 \]
 
 \end_inset
@@ -515,7 +577,10 @@ V(\tilde{y}|y) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+\frac{1}{
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -524,9 +589,13 @@ V(\tilde{y}|y) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+\frac{1}{
 status open
 
 \begin_layout Plain Layout
-Predictive distribution - Normal model and normal prior
+Predictive distribution - Normal model and prior
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -534,12 +603,12 @@ Predictive distribution - Normal model and normal prior
 
 \begin_deeper
 \begin_layout Itemize
-It easy to see that the predictive distribution is normal.
+Easy to see that the predictive distribution is normal.
  
 \end_layout
 
 \begin_layout Itemize
-The mean can be obtained from
+The mean
 \begin_inset Formula 
 \[
 E_{\tilde{y}|\theta}(\tilde{y})=\theta
@@ -558,7 +627,7 @@ and then remove the conditioning on
 
 \begin_inset Formula 
 \[
-E(\tilde{y}|y)=E_{\theta|y}(\theta)=\mu_{n}\text{ (Posterior mean of }\theta\text{).}
+E(\tilde{y}|\mathbf{y})=E_{\theta|\mathbf{y}}(\theta)=\mu_{n}\text{ (Posterior mean of }\theta\text{).}
 \]
 
 \end_inset
@@ -571,11 +640,11 @@ The predictive variance of
 \begin_inset Formula $\tilde{y}$
 \end_inset
 
- (conditional variance formula): 
+ (total variance formula): 
 \begin_inset Formula 
 \begin{eqnarray*}
-V(\tilde{y}|y) & = & E_{\theta|y}[V_{\tilde{y}|\theta}(\tilde{y})]+V_{\theta|y}[E_{\tilde{y}|\theta}(\tilde{y})]\\
- & = & E_{\theta|y}(\sigma^{2})+V_{\theta|y}(\theta)\\
+V(\tilde{y}|\mathbf{y}) & = & E_{\theta|\mathbf{y}}[V_{\tilde{y}|\theta}(\tilde{y})]+V_{\theta|\mathbf{y}}[E_{\tilde{y}|\theta}(\tilde{y})]\\
+ & = & E_{\theta|\mathbf{y}}(\sigma^{2})+V_{\theta|\mathbf{y}}(\theta)\\
  & = & \sigma^{2}+\tau_{n}^{2}\text{ \ }\\
  & = & \text{(Population variance + Posterior variance of }\theta\text{).}
 \end{eqnarray*}
@@ -593,7 +662,7 @@ summary
 : 
 \begin_inset Formula 
 \[
-\tilde{y}|y\sim N(\mu_{n},\sigma^{2}+\tau_{n}^{2}).
+\tilde{y}|\mathbf{y}\sim N(\mu_{n},\sigma^{2}+\tau_{n}^{2}).
 \]
 
 \end_inset
@@ -602,7 +671,10 @@ summary
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -611,9 +683,13 @@ summary
 status open
 
 \begin_layout Plain Layout
-Bayesian prediction in more complex models
+Bayesian prediction for time series
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -623,98 +699,108 @@ Bayesian prediction in more complex models
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Autoregressive process
 \series default
 \color inherit
 
 \begin_inset Formula 
 \begin{eqnarray*}
-y_{t} & = & \phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t},\text{ \ensuremath{\varepsilon_{t}\overset{iid}{\sim}N(0,\sigma^{2})}}
+y_{t} & = & \mu+\phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t},\text{ \ensuremath{\varepsilon_{t}\overset{iid}{\sim}N(0,\sigma^{2})}}
 \end{eqnarray*}
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Simulate a draw from 
-\begin_inset Formula $p(\phi_{1},\phi_{2},...,\phi_{p},\mu,\sigma|y)$
+\begin_inset VSpace smallskip
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\color blue
+Simulation algorithm
+\series default
+\color inherit
+.
+ Repeat 
+\begin_inset Formula $N$
+\end_inset
+
+ times:
+\end_layout
+
+\begin_layout Enumerate
+Generate a 
+\series bold
+\color orange
+posterior draw
+\series default
+\color inherit
+ of 
+\begin_inset Formula $\theta^{(1)}=(\phi_{1}^{(1)},...,\phi_{p}^{(1)},\mu^{(1)},\sigma^{(1)})$
+\end_inset
+
+ from 
+\begin_inset Formula $p(\phi_{1},...,\phi_{p},\mu,\sigma|\mathbf{y}_{1:T})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Generate a 
+\series bold
+\color orange
+predictive draw
+\series default
+\color inherit
+ of future time series by:
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-Conditional on that draw 
-\begin_inset Formula $\theta^{(1)}=(\phi_{1}^{(1)},\phi_{2}^{(1)},...,\phi_{p}^{(1)},\mu^{(1)},\sigma^{(1)})$
-\end_inset
-
-, simulate 
-\end_layout
-
-\begin_layout Itemize
+\begin_layout Enumerate
 \begin_inset Formula $\tilde{y}_{T+1}\sim$
 \end_inset
 
 
-\begin_inset Formula $p(y_{T+1}|y_{T},y_{T-1},...,y_{T-p},\theta^{(1)})$
+\begin_inset Formula $p(y_{T+1}|y_{T},y_{T-1},...,y_{T-p},\textcolor{blue}{\theta^{(1)}})$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Formula $\tilde{y}_{T+2}\sim p(y_{T+2}|\tilde{y}_{T+1},y_{T},...,y_{T-p},\theta^{(1)})$
+\begin_layout Enumerate
+\begin_inset Formula $\tilde{y}_{T+2}\sim p(y_{T+2}|\textcolor{orange}{\tilde{y}_{T+1}},y_{T},...,y_{T-p},\textcolor{blue}{\theta^{(1)}})$
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-and so on.
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Repeat for new 
-\begin_inset Formula $\theta$
+\begin_layout Enumerate
+\begin_inset Formula $\tilde{y}_{T+3}\sim p(y_{T+3}|\textcolor{orange}{\tilde{y}_{T+2}},\textcolor{orange}{\tilde{y}_{T+1}},y_{T},...,y_{T-p},\textcolor{blue}{\theta^{(1)}})$
 \end_inset
 
- draws.
-\end_layout
-
-\begin_layout Pause
 
 \end_layout
 
-\begin_layout Itemize
-
-\series bold
-\color blue
-Regression trees
-\series default
-\color inherit
-.
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Uncertainty on which variables to split on, and the split point.
- 
-\end_layout
-
-\begin_layout Itemize
-For given draw of splitting variables and split points, simulate a response.
- Repeat for many different draws.
+\begin_layout Enumerate
+...
 \end_layout
 
 \end_deeper
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -726,6 +812,10 @@ status open
 Predicting auction prices on eBay
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -755,6 +845,10 @@ Data
 
  auctions on eBay.
  
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -789,13 +883,13 @@ Covariates
 
 \begin_layout Itemize
 Buyers are 
-\color blue
+\color orange
 strategic
 \color inherit
 .
  Their bids does not fully reflect their valuation.
  
-\color blue
+\color orange
 Game theory
 \color inherit
 .
@@ -807,7 +901,10 @@ Very
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -822,63 +919,94 @@ Simulating auction prices on eBay, cont.
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-A draw from the 
-\color blue
+Simulate from 
+\series bold
+\color orange
 posterior predictive distibution
+\series default
 \color inherit
- of an auction's price:
+ of the 
+\series bold
+\color orange
+price
+\series default
+\color inherit
+ in a new auction:
 \end_layout
 
 \begin_layout Enumerate
 Simulate a draw 
-\begin_inset Formula $\theta^{(1)}$
+\begin_inset Formula $\theta^{(i)}$
 \end_inset
 
- from the posterior of the model parameters 
-\begin_inset Formula $\theta$
+ from the posterior 
+\begin_inset Formula $p(\theta\vert\text{historical bids} )$
 \end_inset
 
- (using MCMC)
+
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
 Simulate the number of bidders conditional on 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\theta^{(i)}$
 \end_inset
 
- (Poisson process)
+ (Poisson)
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
-Simulate the bidders' valuations.
+Simulate the bidders' valuations, 
+\begin_inset Formula $\mathbf{v}^{(i)}$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
-Simulate a complete auction bid sequence, 
-\begin_inset Formula $\mathbf{b}^{(1)},$
+Simulate all bids, 
+\begin_inset Formula $\mathbf{b}^{(i)},$
 \end_inset
 
- conditional on the valuations and 
-\begin_inset Formula $\theta=\theta^{(1)}$
+ conditional on the valuations
+\begin_inset VSpace medskip
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Enumerate
-For the bid sequence 
-\begin_inset Formula $\mathbf{b}^{(1)},$
+For 
+\begin_inset Formula $\mathbf{b}^{(i)},$
 \end_inset
 
- return the next to largest bid (eBay's proxy bidding system).
+ return the next to largest bid (proxy bidding).
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -893,13 +1021,17 @@ Predicting auction prices on eBay, cont.
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename PredAuctionPrice.eps
+	filename Images/PredAuctionPrice.eps
 	scale 40
 	rotateAngle 270
 
@@ -909,7 +1041,10 @@ Predicting auction prices on eBay, cont.
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -924,6 +1059,10 @@ Decision Theory
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -934,7 +1073,7 @@ Let
 
  be an 
 \series bold
-\color blue
+\color orange
 unknown quantity
 \series default
 \color inherit
@@ -969,13 +1108,13 @@ Choosing action
 \begin_inset Formula $a$
 \end_inset
 
- when state of nature turns out to be 
+ when state of nature is 
 \begin_inset Formula $\theta$
 \end_inset
 
  gives 
 \series bold
-\color blue
+\color orange
 utility
 \series default
 \color inherit
@@ -992,10 +1131,8 @@ U(a,\theta)
 
 \begin_layout Itemize
 Alternatively 
-\series bold
-\color blue
+\color orange
 loss
-\series default
 \color inherit
  
 \begin_inset Formula $L(a,\theta)=-U(a,\theta)$
@@ -1017,7 +1154,7 @@ Loss table:
  
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="3">
-<features rotate="0" tabularvalignment="middle">
+<features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1148,7 +1285,7 @@ Example:
  
 \begin_inset Tabular
 <lyxtabular version="3" rows="3" columns="3">
-<features rotate="0" tabularvalignment="middle">
+<features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -1247,7 +1384,10 @@ No umbrella
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -1262,13 +1402,17 @@ Decision Theory, cont.
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Example 
 \series bold
-\color blue
+\color orange
 loss functions
 \series default
 \color inherit
@@ -1281,6 +1425,10 @@ loss functions
 \end_inset
 
  are continuous: 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1330,6 +1478,10 @@ c_{2}\cdot\left|a-\theta\right| & \textrm{if \ensuremath{a>\theta}}
 \end_deeper
 \begin_layout Itemize
 Example: 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1338,6 +1490,10 @@ Example:
 \end_inset
 
  is the number of items demanded of a product
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1345,6 +1501,10 @@ Example:
 \end_inset
 
  is the number of items in stock
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1364,7 +1524,10 @@ p\cdot a-c_{2}(\theta-a)^{2} & \textrm{if \ensuremath{a\leq\theta}\text{ [too li
 
 \end_deeper
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -1379,11 +1542,19 @@ Optimal decision
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Ad hoc decision rules:
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1393,7 +1564,7 @@ Ad hoc decision rules:
 Minimax
 \emph default
 .
- Choose the decision that minimizes the maximum loss.
+ Minimizes the maximum loss.
  
 \end_layout
 
@@ -1408,13 +1579,15 @@ Minimax-regret
 
 \end_deeper
 \begin_layout Itemize
-Bayesian 
+
 \series bold
-theory
+\color orange
+Bayesian theory
 \series default
-: Just maximize the 
+\color inherit
+: maximize the 
 \series bold
-\color blue
+\color orange
 posterior expected utility
 \series default
 \color inherit
@@ -1472,7 +1645,7 @@ Using simulated draws
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Separation principle
 \series default
 \color inherit
@@ -1508,7 +1681,10 @@ choose
 \end_layout
 
 \end_deeper
-\begin_layout Separator
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -1523,13 +1699,17 @@ Choosing a point estimate is a decision
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Choosing a 
 \series bold
-\color blue
+\color orange
 point estimator
 \series default
 \color inherit
@@ -1557,37 +1737,80 @@ Which to choose: posterior median, mean or mode?
 
 \begin_layout Itemize
 It depends on your loss function:
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 
 \series bold
-Linear loss 
+\color orange
+Linear loss
+\color inherit
+ 
 \series default
 
 \begin_inset Formula $\rightarrow$
 \end_inset
 
- Posterior median is optimal
+ Posterior median
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Quadratic loss 
+\color orange
+Quadratic loss
+\color inherit
+ 
 \series default
 
 \begin_inset Formula $\rightarrow$
 \end_inset
 
- Posterior mean is optimal
+ Posterior mean
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Lin-Lin loss 
+\color orange
+Zero-one loss
+\series default
+\color inherit
+ 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ Posterior mode
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color orange
+Lin-Lin loss
+\color inherit
+ 
 \series default
 
 \begin_inset Formula $\rightarrow$
@@ -1597,29 +1820,10 @@ Lin-Lin loss
 \begin_inset Formula $c_{2}/(c_{1}+c_{2})$
 \end_inset
 
- quantile of the posterior is optimal
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-Zero-one loss
-\series default
- 
-\begin_inset Formula $\rightarrow$
-\end_inset
-
- Posterior mode is optimal
+ quantile of the posterior
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
 \end_deeper
 \end_body
 \end_document

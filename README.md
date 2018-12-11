@@ -81,7 +81,7 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 
 #### Part 2 - Bayesian Regression and Classification
 **Lecture 4** - Prediction. Making Decisions.\
-Reading: BDA Ch. 9.1-9.2. | [Slides](SLIDES) \
+Reading: BDA Ch. 9.1-9.2. | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL4.pdf) \
 Code: 
 
 **Lecture 5** - Linear Regression. Nonlinear regression. Regularization priors.\
