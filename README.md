@@ -89,7 +89,7 @@ Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](SLIDES)  \
 
 **Lecture 6** - Classification. Posterior approximation. Logistic regression. Naive Bayes.\
 Reading: BDA Ch. 16.1-16.3 | [Slides](SLIDES) \
-Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/OptimizeSpamR.R)
+Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip)
 
 **Exercise session 2** \
 Exercises: TBA \
