@@ -86,11 +86,10 @@ Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasv
 
 **Lecture 5** - Linear Regression. Nonlinear regression. Regularization priors.\
 Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](SLIDES)  \
-Code: 
 
 **Lecture 6** - Classification. Posterior approximation. Logistic regression. Naive Bayes.\
 Reading: BDA Ch. 16.1-16.3 | [Slides](SLIDES) \
-Code:
+Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/OptimizeSpamR.R)
 
 **Exercise session 2** \
 Exercises: TBA \
