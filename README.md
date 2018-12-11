@@ -85,7 +85,7 @@ Reading: BDA Ch. 9.1-9.2. | [Slides](https://github.com/mattiasvillani/BayesLear
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
 **Lecture 5** - Linear Regression. Nonlinear regression. Regularization priors.\
-Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](SLIDES)  \
+Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL5.pdf)  
 
 **Lecture 6** - Classification. Posterior approximation. Logistic regression. Naive Bayes.\
 Reading: BDA Ch. 16.1-16.3 | [Slides](SLIDES) \

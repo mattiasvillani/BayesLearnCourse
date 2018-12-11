@@ -6,38 +6,23 @@
 \origin unavailable
 \textclass beamer
 \begin_preamble
-\setcounter{MaxMatrixCols}{10}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{mathpazo}
-\usepackage{hyperref}
-\usepackage{multimedia}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
-\definecolor{gray97}{cmyk}{0,0,0,0.03}
-\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
-\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+\usetheme{focus}
 
-\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
-\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
-\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
-\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
-\usecolortheme[named=RawSienna]{structure}
-%\usecolortheme[RGB={205,0,0}]{structure}
-\setbeamertemplate{navigation symbols}{}
-\useoutertheme{infolines}
-\usetheme{default}
-\setbeamertemplate{blocks}[shadow=true]
-%\setbeamerfont{structure}{shape=\itshape}
-\usefonttheme{structuresmallcapsserif}
-\setbeamertemplate{background canvas}{
- % \ifnum \thepage>0 \relax % we are on the first page
-%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
- % \else
- 	% No background for page 2 and onwards
- % \fi
-}
+
+\title{Machine Learning for Industry}
+\subtitle{Lecture 5: Regression. Regularization priors.}
+\author[Mattias Villani]{Mattias Villani}
+%\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
+\institute{Linköping University 
+\\ Stockholm University  
+\vspace{0.1cm} \\ }
+
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+%\definecolor{blue}{RGB}{102, 159, 204}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
 \end_preamble
 \options xcolor=svgnames, handout
 \use_default_options false
@@ -116,7 +101,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Learning - Lecture 5 
+Bayesian Statistics - Lecture 5
 \end_layout
 
 \begin_layout Author
@@ -141,12 +126,20 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+SU and LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics and Machine Learning
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Newline newline
+\end_inset
+
+and
 \begin_inset Newline newline
 \end_inset
 
@@ -154,7 +147,7 @@ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Linköping University
 \end_layout
 
 \begin_layout Date
@@ -183,18 +176,51 @@ Lecture overview
 
 \begin_deeper
 \begin_layout Itemize
-Normal model with conjugate prior
+
+\series bold
+\color orange
+Normal model
+\series default
+\color inherit
+ with conjugate prior
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-The linear regression model
+The 
+\series bold
+\color orange
+linear regression
+\series default
+\color inherit
+ model
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color orange
 Non-linear regression
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color orange
 Regularization priors
 \end_layout
 
@@ -225,7 +251,13 @@ Normal model - normal prior
 
 \begin_deeper
 \begin_layout Itemize
+
+\series bold
+\color orange
 Model
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 y_{1},...,y_{n}|\theta,\sigma^{2}\overset{iid}{\sim}N(\theta,\sigma^{2})
@@ -234,10 +266,20 @@ y_{1},...,y_{n}|\theta,\sigma^{2}\overset{iid}{\sim}N(\theta,\sigma^{2})
 \end_inset
 
 
+\begin_inset VSpace vfill
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color orange
 Conjugate prior
+\series default
+\color inherit
+
 \begin_inset Formula 
 \begin{gather*}
 \theta|\sigma^{2}\sim N\left(\mu_{0},\frac{\sigma^{2}}{\kappa_{0}}\right)\\
@@ -276,7 +318,13 @@ Normal model with normal prior
 
 \begin_deeper
 \begin_layout Itemize
-Posterior 
+
+\series bold
+\color orange
+Posterior
+\series default
+\color inherit
+ 
 \begin_inset Formula 
 \begin{gather*}
 \theta|y,\sigma^{2}\sim N\left(\mu_{n},\frac{\sigma^{2}}{\kappa_{n}}\right)\\
@@ -304,7 +352,13 @@ where
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color orange
 Marginal posterior
+\series default
+\color inherit
+
 \begin_inset Formula 
 \begin{gather*}
 \theta\sim t_{\nu_{n}}\left(\mu_{n},\sigma_{n}^{2}/\kappa_{n}\right)
@@ -342,7 +396,13 @@ The Linear Regression Model
 
 \begin_deeper
 \begin_layout Itemize
-The ordinary linear regression model:
+The ordinary 
+\series bold
+\color orange
+linear regression
+\series default
+\color inherit
+ model:
 \begin_inset Formula 
 \begin{eqnarray*}
 y_{i} & = & \beta_{1}x_{i1}+\beta_{2}x_{i2}+...+\beta_{k}x_{ik}+\varepsilon_{i}\\
@@ -360,10 +420,20 @@ Parameters
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Assumptions:
+
+\series bold
+\color orange
+Assumptions
+\series default
+\color inherit
+:
 \begin_inset Separator latexpar
 \end_inset
 
@@ -436,7 +506,13 @@ Linear regression in matrix form
 
 \begin_deeper
 \begin_layout Itemize
-The linear regression model in matrix form
+The linear regression model in 
+\series bold
+\color orange
+matrix form
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 \underset{(n\times1)}{\mathbf{y}}=\underset{(n\times k)(k\times1)}{\mathbf{X}\beta}+\underset{(n\times1)}{\varepsilon}
@@ -494,7 +570,13 @@ Usually
 \end_layout
 
 \begin_layout Itemize
-Likelihood for the full sample
+
+\series bold
+\color orange
+Likelihood
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 \mathbf{y}|\beta,\sigma^{2},\mathbf{X}\sim N(\mathbf{X}\beta,\sigma^{2}I_{n})
@@ -532,7 +614,13 @@ Linear regression - uniform prior
 
 \begin_deeper
 \begin_layout Itemize
-Standard non-informative prior: uniform on (
+Standard 
+\series bold
+\color orange
+non-informative prior
+\series default
+\color inherit
+: uniform on (
 \begin_inset Formula $\beta,\log\sigma^{2}$
 \end_inset
 
@@ -548,7 +636,13 @@ p(\beta,\sigma^{2})\propto\sigma^{-2}
 \end_layout
 
 \begin_layout Itemize
-Joint posterior of 
+
+\series bold
+\color orange
+Joint posterior
+\series default
+\color inherit
+ of 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -577,7 +671,13 @@ where
 \end_layout
 
 \begin_layout Itemize
-Simulate from the joint posterior by iteratively simulating from
+
+\series bold
+\color orange
+Simulate
+\series default
+\color inherit
+ from the joint posterior by simulating from
 \begin_inset Separator latexpar
 \end_inset
 
@@ -601,7 +701,13 @@ Simulate from the joint posterior by iteratively simulating from
 
 \end_deeper
 \begin_layout Itemize
-Marginal posterior of 
+
+\series bold
+\color orange
+Marginal posterior 
+\series default
+\color inherit
+of 
 \begin_inset Formula $\beta:$
 \end_inset
 
@@ -643,7 +749,13 @@ Linear regression - conjugate prior
 
 \begin_deeper
 \begin_layout Itemize
-Joint prior for 
+
+\series bold
+\color orange
+Joint prior 
+\series default
+\color inherit
+for 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -668,6 +780,9 @@ Joint prior for
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color orange
 Posterior
 \end_layout
 
@@ -723,7 +838,7 @@ Polynomial regression
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Polynomial regression
 \series default
 \color inherit
@@ -757,7 +872,7 @@ where
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename quadraticBasis.eps
+	filename Images/quadraticBasis.eps
 	scale 35
 
 \end_inset
@@ -798,17 +913,17 @@ Polynomials are too global.
 
 \begin_layout Itemize
 
+\color orange
+Truncated power splines
+\color inherit
+ given 
+\color orange
+knot locations
 \series bold
 \shape italic
 \emph on
-\color blue
-Truncated power splines 
 \color black
-given 
-\color blue
-knot
-\color black
- locations 
+ 
 \begin_inset Formula $k_{1},...,k_{m}$
 \end_inset
 
@@ -836,7 +951,7 @@ b_{ij}=\left\{ \begin{array}{c}
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename brokenStickBasis.eps
+	filename Images/brokenStickBasis.eps
 	scale 40
 
 \end_inset
@@ -871,12 +986,19 @@ Splines, cont.
 
 \begin_deeper
 \begin_layout Itemize
-Note: given the knots, the non-parametric spline regression model is a linear
- regression of 
-\begin_inset Formula $y$
-\end_inset
 
- on the 
+\series bold
+\color orange
+Spline regression is
+\series default
+\color inherit
+ 
+\series bold
+\color orange
+linear
+\series default
+\color inherit
+ in the 
 \begin_inset Formula $m$
 \end_inset
 
@@ -896,7 +1018,13 @@ where
 \begin_inset Formula $X_{b}$
 \end_inset
 
- is the basis regression matrix 
+ is the 
+\series bold
+\color orange
+basis matrix
+\series default
+\color inherit
+ 
 \begin_inset Formula 
 \[
 \mathbf{X}_{b}=(b_{1},...,b_{m}).
@@ -905,12 +1033,14 @@ where
 \end_inset
 
 
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-It is also common to include an intercept and the linear part of the model
- separately.
- In this case we have
+Adding intercept and linear term
 \begin_inset Formula 
 \[
 \mathbf{X}_{b}=(1,x,b_{1},...,b_{m}).
@@ -950,16 +1080,29 @@ Smoothness prior for splines
 \begin_layout Itemize
 Problem: too many knots leads to 
 \series bold
+\color orange
 over-fitting
 \series default
+\color inherit
 .
  
 \end_layout
 
 \begin_layout Itemize
-Solution: 
+
 \series bold
-smoothness/shrinkage/regularization prior
+\color orange
+Smoothness
+\color inherit
+/
+\color orange
+shrinkage
+\color inherit
+/
+\color orange
+regularization
+\color inherit
+ prior
 \series default
 
 \begin_inset Formula 
@@ -978,7 +1121,7 @@ Larger
 \end_inset
 
  gives smoother fit.
- Note: here we have 
+ Note: 
 \begin_inset Formula $\mbox{\Omega}_{0}=\lambda I$
 \end_inset
 
@@ -986,7 +1129,13 @@ Larger
 \end_layout
 
 \begin_layout Itemize
-Equivalent to a penalized likelihood: 
+Equivalent to 
+\series bold
+\color orange
+penalized likelihood
+\series default
+\color inherit
+: 
 \begin_inset Formula 
 \[
 -2\cdot\log p(\beta\vert\sigma^{2},\mathbf{y},\mathbf{X})\propto RSS(\beta)+\lambda\beta'\beta
@@ -1000,8 +1149,10 @@ Equivalent to a penalized likelihood:
 \begin_layout Itemize
 Posterior mean gives 
 \series bold
+\color orange
 ridge regression
 \series default
+\color inherit
  estimator
 \begin_inset Formula 
 \[
@@ -1016,8 +1167,10 @@ ridge regression
 \begin_layout Itemize
 
 \series bold
+\color orange
 Shrinkage
 \series default
+\color inherit
  toward zero 
 \begin_inset Formula 
 \[
@@ -1074,7 +1227,7 @@ Bayesian spline with smoothness prior
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename LidarPoly1Knots24.eps
+	filename Images/LidarPoly1Knots24.eps
 	scale 55
 
 \end_inset
@@ -1109,14 +1262,17 @@ Smoothness prior for splines, cont.
 
 \begin_deeper
 \begin_layout Itemize
-The famous 
+
 \series bold
-\color blue
+\color orange
 Lasso
 \series default
 \color inherit
- variable selection method is equivalent to using the posterior mode estimate
- under the prior:
+ is equivalent to posterior mode under Laplace prior
+\end_layout
+
+\begin_layout Standard
+\align center
 \begin_inset Formula 
 \[
 \beta_{i}|\sigma^{2}\overset{iid}{\sim}\mathrm{Laplace}\left(0,\frac{\sigma^{2}}{\lambda}\right)
@@ -1124,11 +1280,11 @@ Lasso
 
 \end_inset
 
-with density
-\begin_inset Formula 
-\[
-p(\beta_{i})=\frac{\lambda}{2\sigma^{2}}\exp\left(-\frac{\lambda\left|\beta_{i}\right|}{\sigma^{2}}\right)
-\]
+
+\begin_inset Graphics
+	filename Images/Laplace.png
+	lyxscale 20
+	scale 3
 
 \end_inset
 
@@ -1136,10 +1292,18 @@ p(\beta_{i})=\frac{\lambda}{2\sigma^{2}}\exp\left(-\frac{\lambda\left|\beta_{i}\
 \end_layout
 
 \begin_layout Itemize
-The Bayesian shrinkage prior is 
+The 
 \series bold
+\color orange
+Bayesian shrinkage
+\series default
+\color inherit
+ prior is 
+\series bold
+\color orange
 interpretable
 \series default
+\color inherit
 .
  
 \series bold
@@ -1153,15 +1317,21 @@ Laplace distribution have heavy tails.
 \end_layout
 
 \begin_layout Itemize
-Laplace: many 
+
+\series bold
+\color orange
+Laplace prior
+\series default
+\color inherit
+: many 
 \begin_inset Formula $\beta_{i}$
 \end_inset
 
- are close to zero, but some 
+ close to zero, but some 
 \begin_inset Formula $\beta_{i}$
 \end_inset
 
- may be very large.
+ very large.
 \end_layout
 
 \begin_layout Itemize
@@ -1170,15 +1340,17 @@ Normal distribution have light tails.
 \end_layout
 
 \begin_layout Itemize
-Normal prior: most 
+
+\series bold
+\color orange
+Normal prior
+\series default
+\color inherit
+: all 
 \begin_inset Formula $\beta_{i}$
 \end_inset
 
- are fairly equal in size, and no single 
-\begin_inset Formula $\beta_{i}$
-\end_inset
-
- can be very much larger than the other ones.
+'s are similar in magnitude.
 \end_layout
 
 \end_deeper
@@ -1208,23 +1380,7 @@ Estimating the shrinkage
 
 \begin_deeper
 \begin_layout Itemize
-How do we determine the degree of smoothness, 
-\begin_inset Formula $\lambda$
-\end_inset
-
-? Cross-validation is one possible approach.
-\end_layout
-
-\begin_layout Itemize
-Bayesian: 
-\begin_inset Formula $\lambda$
-\end_inset
-
- is unknown
-\begin_inset Formula $\;\Rightarrow\;$
-\end_inset
-
-use a prior for 
+Cross-validation is often used to determine the degree of smoothness, 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -1232,7 +1388,34 @@ use a prior for
 \end_layout
 
 \begin_layout Itemize
-One possibility: 
+Bayesian: 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is 
+\series bold
+\color orange
+unknown
+\series default
+\color inherit
+
+\begin_inset Formula $\;\Rightarrow\;$
+\end_inset
+
+
+\series bold
+\color orange
+use a prior
+\series default
+\color inherit
+ for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
 \begin_inset Formula $\lambda\sim\mathsf{Gamma}\left(\frac{\eta_{0}}{2},\frac{\eta_{0}}{2\lambda_{0}}\right)$
 \end_inset
 
@@ -1245,14 +1428,6 @@ One possibility:
 \begin_inset Formula $\lambda_{0}$
 \end_inset
 
-.
-\end_layout
-
-\begin_layout Itemize
-Alternative approach: specify the prior on the 
-\emph on
-degrees of freedom
-\emph default
 .
 \end_layout
 
@@ -1272,7 +1447,7 @@ so
 \begin_inset Formula $\Omega_{0}=\lambda I_{m}$
 \end_inset
 
- in the previous notation.
+.
 \end_layout
 
 \end_deeper
@@ -1302,7 +1477,13 @@ Regression with estimated shrinkage
 
 \begin_deeper
 \begin_layout Itemize
-The joint posterior of 
+The 
+\series bold
+\color orange
+joint posterior
+\series default
+\color inherit
+ of 
 \begin_inset Formula $\beta$
 \end_inset
 
@@ -1379,21 +1560,17 @@ More complexity
 \begin_layout Itemize
 The 
 \series bold
-\color blue
+\color orange
 location of the knots
 \series default
 \color inherit
- can be treated as unknown, and estimated from the data.
- Joint posterior
+ can be unknown.
+ Joint posterior:
 \begin_inset Formula 
 \[
 p(\beta,\sigma^{2},\lambda,k_{1},...,k_{m}|\mathbf{y},\mathbf{X})
 \]
 
-\end_inset
-
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -1412,8 +1589,12 @@ The marginal posterior for
 \end_layout
 
 \begin_layout Itemize
-MCMC can be used to simulate from the joint posterior.
- Li and Villani (2013, SJS).
+Simulate from joint posterior by MCMC.
+ Li and Villani (2013).
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1433,6 +1614,10 @@ Heteroscedastic errors
 \series default
 \color inherit
  (also modelled with a spline)
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1443,6 +1628,10 @@ Non-normal errors
 \series default
 \color inherit
  (student-t or mixture distributions)
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1452,14 +1641,10 @@ Non-normal errors
 Autocorrelated/dependent errors
 \series default
 \color inherit
- (AR process for the error term)
+ (AR process for the errors)
 \end_layout
 
 \end_deeper
-\begin_layout Itemize
-MCMC can again be used to simulate from the joint posterior.
-\end_layout
-
 \end_deeper
 \end_body
 \end_document
