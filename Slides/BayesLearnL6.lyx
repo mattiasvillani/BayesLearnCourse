@@ -6,38 +6,23 @@
 \origin unavailable
 \textclass beamer
 \begin_preamble
-\setcounter{MaxMatrixCols}{10}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{mathpazo}
-\usepackage{hyperref}
-\usepackage{multimedia}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
-\definecolor{gray97}{cmyk}{0,0,0,0.03}
-\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
-\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+\usetheme{focus}
 
-\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
-\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
-\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
-\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
-\usecolortheme[named=RawSienna]{structure}
-%\usecolortheme[RGB={205,0,0}]{structure}
-\setbeamertemplate{navigation symbols}{}
-\useoutertheme{infolines}
-\usetheme{default}
-\setbeamertemplate{blocks}[shadow=true]
-%\setbeamerfont{structure}{shape=\itshape}
-\usefonttheme{structuresmallcapsserif}
-\setbeamertemplate{background canvas}{
- % \ifnum \thepage>0 \relax % we are on the first page
-%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
- % \else
- 	% No background for page 2 and onwards
- % \fi
-}
+
+\title{Machine Learning for Industry}
+\subtitle{Lecture 6: Classification. Posterior approx.}
+\author[Mattias Villani]{Mattias Villani}
+%\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
+\institute{Linköping University 
+\\ Stockholm University  
+\vspace{0.1cm} \\ }
+
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+%\definecolor{blue}{RGB}{102, 159, 204}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -119,7 +104,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Learning - Lecture 6
+Bayesian Statistics - Lecture 6
 \end_layout
 
 \begin_layout Author
@@ -144,12 +129,20 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+SU and LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Newline newline
+\end_inset
+
+and
 \begin_inset Newline newline
 \end_inset
 
@@ -157,7 +150,7 @@ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Linköping University
 \end_layout
 
 \begin_layout Date
@@ -188,31 +181,46 @@ Lecture overview
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Classification
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Naive Bayes
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Normal approximation
 \series default
 \color inherit
  of posterior
+\series bold
+\color orange
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Logistic regression
 \series default
 \color inherit
@@ -248,12 +256,14 @@ Bayesian classification
 \begin_layout Itemize
 
 \series bold
+\color orange
+Classification
 \color blue
-Classification: output is a discrete label
+: output is a discrete label
 \series default
 \color inherit
 .
- Examples: 
+ 
 \begin_inset Separator latexpar
 \end_inset
 
@@ -262,7 +272,7 @@ Classification: output is a discrete label
 
 \begin_deeper
 \begin_layout Itemize
-binary (0-1).
+Binary (0-1).
  Spam/Ham.
 \end_layout
 
@@ -273,19 +283,17 @@ Multi-class.
 \end_inset
 
 ).
- 
-\begin_inset Formula $\{iPhone,Android,Windows,Other\}$
-\end_inset
-
-.
+ Brand choice,
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
 
 \series bold
+\color orange
+Bayesian
 \color blue
-Bayesian classification
+ classification
 \series default
 \color inherit
 
@@ -306,7 +314,7 @@ where
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Discriminative models
 \series default
 \color inherit
@@ -318,14 +326,16 @@ Discriminative models
  
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 Examples: logistic regression, support vector machines.
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Generative models
 \series default
 \color inherit
@@ -337,7 +347,7 @@ p(c|\mathbf{x})\propto p(\mathbf{x}|c)p(c)
 
 \end_inset
 
-and model class-conditional distribution 
+with class-conditional distribution 
 \begin_inset Formula $p(\mathbf{x}\vert c)$
 \end_inset
 
@@ -348,10 +358,12 @@ and model class-conditional distribution
 .
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 Examples: discriminant analysis, naive Bayes.
 \end_layout
 
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -395,6 +407,10 @@ p(c|\mathbf{x})\propto p(\mathbf{x}|c)p(c)
 \end_inset
 
  can be estimated by Multinomial-Dirichlet analysis.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -405,7 +421,11 @@ p(c|\mathbf{x})\propto p(\mathbf{x}|c)p(c)
 \begin_inset Formula $N(\theta_{c},\Sigma_{c})$
 \end_inset
 
- or mixture of normals (see last module).
+
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -413,6 +433,10 @@ p(c|\mathbf{x})\propto p(\mathbf{x}|c)p(c)
 \end_inset
 
  can be very high-dimensional and hard to estimate.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -433,35 +457,42 @@ Even with binary features, the outcome space of
 \end_inset
 
  can be huge.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Naive Bayes
+\family default
 \series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
 \color inherit
-: 
-\series bold
-features are assumed independent
-\series default
 
-\begin_inset Formula 
-\[
-p(\mathbf{x}|c)=\prod_{j=1}^{n}p(x_{j}|c)
-\]
-
+\begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-Naive Bayes solution
+
+\series bold
+\color orange
+Naive Bayes
+\series default
+\color inherit
+: features are assumed
+\series bold
+ 
+\color blue
+independent
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
-p(c|\mathbf{x})\propto\left[\prod_{j=1}^{n}p(x_{j}|c)\right]p(c)
+p(\mathbf{x}|c)=\prod_{j=1}^{n}p(x_{j}|c)
 \]
 
 \end_inset
@@ -514,15 +545,7 @@ binary
 \end_layout
 
 \begin_layout Itemize
-Example: Spam (
-\begin_inset Formula $y=1$
-\end_inset
-
-) or Ham (
-\begin_inset Formula $y=0$
-\end_inset
-
-).
+Example: Spam/Ham.
  Covariates: 
 \begin_inset Formula $\$$
 \end_inset
@@ -533,7 +556,7 @@ Example: Spam (
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Logistic regression
 \series default
 \color inherit
@@ -549,7 +572,13 @@ Logistic regression
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color blue
 Likelihood
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 p(y|X,\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\prime}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\prime}\beta)}.
@@ -572,7 +601,7 @@ Prior
 \begin_layout Itemize
 Alternative: 
 \series bold
-\color blue
+\color orange
 Probit regression
 \series default
 \color inherit
@@ -638,9 +667,11 @@ Large sample approximate posterior
 \begin_layout Itemize
 
 \series bold
+\color orange
 Taylor expansion of log-posterior
 \series default
- around the posterior mode 
+\color inherit
+ around mode 
 \begin_inset Formula $\theta=\tilde{\theta}$
 \end_inset
 
@@ -675,7 +706,7 @@ So, in
 large samples
 \series default
 \color inherit
- (where we can ignore higher order terms):
+ (higher order terms negligible):
 \begin_inset Formula 
 \[
 p(\theta|y)\approx p(\tilde{\theta}|y)\exp\left(-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right)
@@ -689,19 +720,22 @@ where
 
  is the 
 \series bold
+\color orange
 observed information
 \series default
+\color inherit
 .
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
-Approximate posterior
-\series default
+\color orange
+Approximate normal posterior
 \color inherit
-
+ 
+\series default
+in large samples.
 \begin_inset Formula 
 \[
 \theta|y\stackrel{approx}{\sim}N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]
@@ -739,7 +773,13 @@ Example: gamma posterior
 
 \begin_deeper
 \begin_layout Itemize
-Poisson model: 
+
+\series bold
+\color orange
+Poisson model
+\series default
+\color inherit
+: 
 \begin_inset Formula $\theta\vert y_{1},...,y_{n}\sim Gamma(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)$
 \end_inset
 
@@ -791,7 +831,13 @@ Second derivative at mode
 \end_layout
 
 \begin_layout Itemize
-So, the normal approximation is
+
+\series bold
+\color orange
+Normal approximation
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 N\left[\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1}{\beta+n},\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1}{(\beta+n)^{2}}\right]
@@ -831,7 +877,7 @@ Example: gamma posterior
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename NormalApprox2Gamma.eps
+	filename Images/NormalApprox2Gamma.eps
 	scale 55
 
 \end_inset
@@ -964,10 +1010,8 @@ Output
 \end_deeper
 \begin_layout Itemize
 
-\series bold
-\color blue
+\color orange
 Re-parametrization
-\series default
 \color inherit
  may improve normal approximation.
  [Don't forget the 
@@ -1014,10 +1058,8 @@ If
 \end_deeper
 \begin_layout Itemize
 
-\series bold
-\color blue
+\color orange
 Heavy tailed approximation
-\series default
 \color inherit
 : 
 \begin_inset Formula $\theta|y\stackrel{approx}{\sim}t_{v}\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
@@ -1043,7 +1085,7 @@ Heavy tailed approximation
 status open
 
 \begin_layout Plain Layout
-Example: gamma posterior - reparam.
+Reparametrization - Gamma posterior
 \end_layout
 
 \end_inset
@@ -1057,7 +1099,7 @@ Example: gamma posterior - reparam.
 
 \begin_deeper
 \begin_layout Itemize
-Poisson model revisited.
+Poisson model.
  Reparameterize to 
 \begin_inset Formula $\phi=\log(\theta)$
 \end_inset
@@ -1066,7 +1108,7 @@ Poisson model revisited.
 \end_layout
 
 \begin_layout Itemize
-Use change-of-variables formula from a basic probability course
+Change-of-variables formula from a basic probability course
 \begin_inset Formula 
 \[
 \log p(\phi|y_{1},...,y_{n})\propto(\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1)\phi-\exp(\phi)(\beta+n)+\phi
@@ -1134,7 +1176,7 @@ which means that
 status open
 
 \begin_layout Plain Layout
-Example: gamma posterior - reparameterized
+Reparametrization - Gamma posterior
 \end_layout
 
 \end_inset
@@ -1150,7 +1192,7 @@ Example: gamma posterior - reparameterized
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename NormalApprox2GammaTrans.eps
+	filename Images/NormalApprox2GammaTrans.eps
 	scale 55
 
 \end_inset
@@ -1235,7 +1277,13 @@ simulating
 \series bold
 Example
 \series default
-: Posterior of Gini coefficient.
+: Posterior of 
+\series bold
+\color orange
+Gini coefficient
+\series default
+\color inherit
+.
 \begin_inset Separator latexpar
 \end_inset
 
