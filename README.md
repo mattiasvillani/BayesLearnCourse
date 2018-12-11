@@ -92,7 +92,7 @@ Reading: BDA Ch. 16.1-16.3 | [Slides](https://github.com/mattiasvillani/BayesLea
 Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip)
 
 **Exercise session 2** \
-Exercises: TBA \
+Exercises: [Exercise 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise2.pdf) \
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
 
 **Computer Lab 2** - Polynomial regression and classification with logistic regression.\
