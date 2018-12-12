@@ -128,7 +128,6 @@ Reading: BDA | [Slides](SLIDES) \
 Code: 
 
 **Lecture 11** - Computing the marginal likelihood, Bayesian variable selection, model averaging.\
-
 Reading: BDA | [Slides](SLIDES) \
 Code: 
 
