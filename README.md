@@ -96,7 +96,7 @@ Exercises: [Exercise 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/m
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
 
 **Computer Lab 2** - Polynomial regression and classification with logistic regression.\
-Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
+Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
 Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
 
