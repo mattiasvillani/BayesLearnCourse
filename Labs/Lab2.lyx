@@ -76,105 +76,369 @@
 \begin_body
 
 \begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
 
-\size footnotesize
-Mattias Villani and Per Sidén
+\begin_layout Plain Layout
+Mattias Villani 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 \begin_inset space \hspace{}
-\length 8.5cm
+\length 3cm
 \end_inset
 
-2018-03-29
+
 \end_layout
 
-\begin_layout Standard
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
 
-\size footnotesize
-Division of Statistics and Machine Learning
+\begin_layout Plain Layout
+Bayesian Statistics I 
 \end_layout
 
-\begin_layout Standard
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
 
-\size footnotesize
-Dept.
- of Computer and Information Science
+\begin_layout Plain Layout
+Department of Statistics
 \end_layout
 
-\begin_layout Standard
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
 
-\size footnotesize
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bayesian Learning 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stockholm University 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dept of Computer and Information Science 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 Linköping University
 \end_layout
 
-\begin_layout Standard
+\end_inset
+</cell>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
 
-\size footnotesize
-mattias.villani@liu.se
-\begin_inset VSpace 1cm
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="none" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-\align center
-
-\series bold
-\size large
-Bayesian Learning, 6 hp
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\series bold
-\size large
-Computer lab 2
-\end_layout
-
-\begin_layout Standard
-
-\size footnotesize
-\begin_inset VSpace 0.5cm
+\begin_inset VSpace 0.3cm
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-You are strongly recommended to use R for solving the labs since the computer
- exam will be in R.
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size large
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+{}
+\end_layout
+
+\end_inset
+
+Computer Lab 2
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+You are recommended to use R for solving the labs.
  
 \end_layout
 
-\begin_layout Itemize
-You are supposed to work and submit your labs in pairs, but do make sure
- that both of you are contributing.
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+You work and submit your labs in pairs, but both of you should contribute
+ equally.
  
 \end_layout
 
-\begin_layout Itemize
-It is OK to discuss the lab with other student pairs in general terms, but
- 
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \family typewriter
 \series bold
 \color blue
-it is not allowed to share exact solutions
+It is not allowed to share exact solutions
 \family default
 \series default
 \color inherit
-.
+ with other student pairs.
 \end_layout
 
-\begin_layout Itemize
-Submit your solutions via LISAM no later than 
-\series bold
-April 27
-\series default
- at 
-\series bold
-midnight
-\series default
-.
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Submit your solutions via Mondo.
+ See date and time for deadline in Mondo.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -200,8 +464,7 @@ The dataset
 \end_inset
 
  contains daily temperatures (in Celcius degrees) at Malmslätt, Linköping
- (close to our campus) over the course of the year 2016 (366 days since
- 2016 was a leap year).
+ over the course of the year 2016 (366 days since 2016 was a leap year).
  The response variable is 
 \begin_inset Formula $temp$
 \end_inset
@@ -1057,7 +1320,8 @@ status open
 
 \begin_layout Plain Layout
 
-https://github.com/STIMALiU/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip
+https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSp
+am.zip
 \end_layout
 
 \end_inset
