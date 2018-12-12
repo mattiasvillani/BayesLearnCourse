@@ -115,7 +115,7 @@ Code:
 Reading: BDA Ch. 12.4 and Ch. 13.7 | [RStan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html) | [Slides](SLIDES) \
 Code:
 
-**Computer Lab 3** - Gibbs sampling for the normal model, mixture of normals and probit regression. \
+**Computer Lab 3** - Gibbs sampling for the normal model, mixture of normals. HMC for nonlinear time series. \
 Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
 Assistant: [Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608) \
 Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
