@@ -529,13 +529,11 @@ Determining the prior distribution of the model parameters.
 \end_inset
 
  to sensible values.
- I don't expect any deep expert knowledge, just think about the problem
- and use what knowledge you have.
- You may simplify by assuming that 
-\begin_inset Formula $\Omega_{0}$
+ Start with 
+\begin_inset Formula $\mu_{0}=(-10,100,-100)^{T}$
 \end_inset
 
- is a diagonal matrix.
+
 \family default
 \series default
 \shape default
@@ -547,88 +545,27 @@ Determining the prior distribution of the model parameters.
 \uwave default
 \noun default
 \color inherit
-
-\begin_inset Newline newline
+, 
+\begin_inset Formula $\Omega_{0}=0.01\cdot I_{3}$
 \end_inset
 
+, 
+\begin_inset Formula $\nu_{0}=4$
+\end_inset
 
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-[Hint: it may be useful as a preliminary exploratory step to use the 
-\family typewriter
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-lm()
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
- command.
- The command 
-\family typewriter
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-lm(temp ~ time + I(time^2))
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
- fits a quadratic model using ordinary least squares]
-\end_layout
+ and 
+\begin_inset Formula $\sigma_{0}^{2}=1$
+\end_inset
 
-\begin_layout Enumerate
-
-\shape italic
-Check if your prior from a) is sensible
-\shape default
 .
- One way to check if a suggested prior is reasonable is to simulate draws
+ Check if this prior agrees with your prior opinions by simulating draws
  from the joint prior of all parameters and for every draw compute the regressio
 n curve.
  This gives a collection of regression curves, one for each draw from the
  prior.
- Do the curves look reasonable? If not, change the prior hyperparameters
- until the collection of prior regression curves do agree with your prior
- beliefs about the regression curve.
+ Do the collection of curves look reasonable? If not, change the prior hyperpara
+meters until the collection of prior regression curves do agree with your
+ prior beliefs about the regression curve.
 \begin_inset Newline newline
 \end_inset
 
@@ -670,8 +607,10 @@ simulates from the joint posterior distribution
 \end_inset
 
 .
- Produce a scatter plot of the temperature data and overlay a curve for
- the posterior mean of the regression function 
+ Plot the marginal posteriors for each parameter as a histogram.
+ Also produce another figure with a scatter plot of the temperature data
+ and overlay a curve for the posterior median of the regression function
+ 
 \begin_inset Formula $f(time)=\beta_{0}+\beta_{1}\cdot time+\beta_{2}\cdot time^{2}$
 \end_inset
 
@@ -680,19 +619,19 @@ simulates from the joint posterior distribution
 \end_inset
 
 .
- Also overlay a curve for the lower 5% and upper 95% posterior credible
+ Also overlay curves for the lower 2.5% and upper 97.5% posterior credible
  interval for 
 \begin_inset Formula $f(time)$
 \end_inset
 
 .
- That is, compute the 90% equal tail posterior probability intervals for
+ That is, compute the 95% equal tail posterior probability intervals for
  every value of 
 \begin_inset Formula $time$
 \end_inset
 
  and then connect the lower and upper limits of the interval by curves.
- Does the interval contain most of the data points? Should it?
+ Does the interval bands contain most of the data points? Should they?
 \end_layout
 
 \begin_layout Enumerate
@@ -714,11 +653,11 @@ It is of interest to locate the
 \end_inset
 
 .
- Use the simulations in c) to simulate from the 
+ Use the simulations in b) to simulate from the 
 \shape italic
-posterior distribution of the time with highest temperature
+posterior distribution of
 \shape default
-, 
+ 
 \begin_inset Formula $\tilde{x}$
 \end_inset
 
@@ -1257,9 +1196,7 @@ Constant
 \family typewriter
 family = binomial 
 \family default
-tells R that we want to fit a logistic regression (the glm function can
- fit many other models and data types, for example a regression where the
- response variable are counts following a Poisson distribution).
+tells R that we want to fit a logistic regression.
 \end_layout
 
 \begin_layout Enumerate
