@@ -327,8 +327,8 @@ Posterior
  
 \begin_inset Formula 
 \begin{gather*}
-\theta|y,\sigma^{2}\sim N\left(\mu_{n},\frac{\sigma^{2}}{\kappa_{n}}\right)\\
-\sigma^{2}|y\sim Inv\text{-}\chi^{2}(\nu_{n},\sigma_{n}^{2}).
+\theta|\mathbf{y},\sigma^{2}\sim N\left(\mu_{n},\frac{\sigma^{2}}{\kappa_{n}}\right)\\
+\sigma^{2}|\mathbf{y}\sim Inv\text{-}\chi^{2}(\nu_{n},\sigma_{n}^{2}).
 \end{gather*}
 
 \end_inset
@@ -361,7 +361,7 @@ Marginal posterior
 
 \begin_inset Formula 
 \begin{gather*}
-\theta\sim t_{\nu_{n}}\left(\mu_{n},\sigma_{n}^{2}/\kappa_{n}\right)
+\theta\vert\mathbf{y}\sim t_{\nu_{n}}\left(\mu_{n},\sigma_{n}^{2}/\kappa_{n}\right)
 \end{gather*}
 
 \end_inset
