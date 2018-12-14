@@ -136,7 +136,7 @@ Reading: BDA | [Slides](SLIDES) \
 Code: 
 
 **Computer Lab 4** - Metropolis-Hastings for Poisson regression.\
-Lab: Lab4 | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis \
+Lab: Lab4 | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis \
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
 Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
 
