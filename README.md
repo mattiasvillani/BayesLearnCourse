@@ -43,7 +43,7 @@ Professor \
 Department of Statistics, Stockholm University \
 Division of Statistics and Machine Learning, Linköping University 
 
-<img src="Misc/Oscar.jpeg" width="100">\
+<img src="Misc/Oscar.jpg" width="100">\
 [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Assistant \
 PhD Candidate \
 Department of Statistics, Stockholm University
