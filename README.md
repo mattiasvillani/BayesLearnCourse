@@ -105,15 +105,15 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 #### Part 3 - More Advanced Models, MCMC and Variational Bayes
 **Lecture 7** - Bayesian computations. Monte Carlo simulation. Gibbs sampling. Data augmentation. \
 Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL7.pdf) \
-Code:
+Code: [Gibbs sampling for a bivariate normal](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/GibbsBivariateNormal.R) | [Gibbs sampling for a mixture of normals](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalMixtureGibbs.R)
 
 **Lecture 8** - MCMC and Metropolis-Hastings \
-Reading: BDA Ch. 11 | [Slides](SLIDES) \
-Code:
+Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL8.pdf) \
+Code: [Simulating Markov Chains](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/SimulateDiscreteMarkovChain.R)
 
 **Lecture 9** - HMC, Variational Bayes and Stan. \
 Reading: BDA Ch. 12.4 and Ch. 13.7 | [RStan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html) | [Slides](SLIDES) \
-Code:
+Code: [RStan - Three Plants](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/ThreePlants.R) | [RStan - Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/BernBetaRStan.R) | [RStan - Logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/LogisticRegRStan.R) | [RStan - Logistic regression with random effects](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/LogisticRegRandEffectsRStan.R) | [RStan - Poisson model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/RoachesPoissonRStan.R)
 
 **Computer Lab 3** - Gibbs sampling for the normal model, mixture of normals. HMC for nonlinear time series. \
 Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
@@ -125,7 +125,7 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 #### Part 4 - Model Inference and Variable Selection
 **Lecture 10 - Bayesian model comparison.**\
 Reading: BDA | [Slides](SLIDES) \
-Code: 
+Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R) 
 
 **Lecture 11** - Computing the marginal likelihood, Bayesian variable selection, model averaging.\
 Reading: BDA | [Slides](SLIDES) \

@@ -6,41 +6,23 @@
 \origin unavailable
 \textclass beamer
 \begin_preamble
-\setcounter{MaxMatrixCols}{10}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{mathpazo}
-\usepackage{hyperref}
-\usepackage{multimedia}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
-\definecolor{gray97}{cmyk}{0,0,0,0.03}
-\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
-\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+\usetheme{focus}
 
-\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
-\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
-\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
-\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
-\usecolortheme[named=RawSienna]{structure}
-%\usecolortheme[RGB={205,0,0}]{structure}
-\setbeamertemplate{navigation symbols}{}
-\useoutertheme{infolines}
-\usetheme{default}
-\setbeamertemplate{blocks}[shadow=true]
-%\setbeamerfont{structure}{shape=\itshape}
-\usefonttheme{structuresmallcapsserif}
-\setbeamertemplate{background canvas}{
- % \ifnum \thepage>0 \relax % we are on the first page
-%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
- % \else
- 	% No background for page 2 and onwards
- % \fi
-}
 
-%\usepackage{handoutWithNotes}
-%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
+\title{Machine Learning for Industry}
+\subtitle{Lecture 8: MCMC.}
+\author[Mattias Villani]{Mattias Villani}
+%\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
+\institute{Linköping University 
+\\ Stockholm University  
+\vspace{0.1cm} \\ }
+
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+%\definecolor{blue}{RGB}{102, 159, 204}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -119,7 +101,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Learning - Lecture 8
+Bayesian Statistics - Lecture 8
 \end_layout
 
 \begin_layout Author
@@ -144,12 +126,20 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+SU and LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics and Machine Learning
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Newline newline
+\end_inset
+
+and
 \begin_inset Newline newline
 \end_inset
 
@@ -157,7 +147,7 @@ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Linköping University
 \end_layout
 
 \begin_layout Date
@@ -186,7 +176,17 @@ Lecture overview
 
 \begin_deeper
 \begin_layout Itemize
-Markov Chain Monte Carlo - the general idea
+
+\series bold
+\color orange
+Markov Chain Monte Carlo
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -194,7 +194,17 @@ Markov Chain Monte Carlo - the general idea
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color orange
 Metropolis-Hastings
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -202,7 +212,10 @@ Metropolis-Hastings
 \end_layout
 
 \begin_layout Itemize
-MCMC in practice
+
+\series bold
+\color orange
+MCMC - efficiency, burn-in and convergence
 \end_layout
 
 \end_deeper
@@ -238,8 +251,10 @@ Let
 
  be a finite set of 
 \series bold
+\color orange
 states
 \series default
+\color inherit
 .
  
 \begin_inset Separator latexpar
@@ -258,8 +273,12 @@ Weather:
 \end_layout
 
 \begin_layout Itemize
-Journal rankings: 
-\begin_inset Formula $\mathcal{S}=\{A+,A,B,C,D,E\}$
+School grades: 
+\begin_inset Formula $\mathcal{S}=\{A,B,C,D,E,F\}$
+\end_inset
+
+
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -269,7 +288,7 @@ Journal rankings:
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Markov chain
 \series default
 \color inherit
@@ -292,11 +311,15 @@ p_{ij}=\mathrm{Pr}(X_{t+1}=s_{j}\vert X_{t}=s_{i})
 \end_inset
 
 
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Example realization journal ranking: 
-\begin_inset Formula $X_{1}=C,X_{2}=C,X_{3}=B,X_{4}=A+,X_{5}=B$
+School grades: 
+\begin_inset Formula $X_{1}=C,X_{2}=C,X_{3}=B,X_{4}=A,X_{5}=B$
 \end_inset
 
 .
@@ -305,7 +328,7 @@ Example realization journal ranking:
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Transition matrix
 \series default
 \color inherit
@@ -329,9 +352,9 @@ p_{21} & p_{22}
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename 3state_markov.jpg
+	filename Images/3state_markov.jpg
 	lyxscale 20
-	scale 10
+	scale 9
 
 \end_inset
 
@@ -369,7 +392,7 @@ Stationary distribution
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 \begin_inset Formula $h$
 \end_inset
 
@@ -379,7 +402,7 @@ Stationary distribution
 
 \begin_inset Formula 
 \[
-P_{ij}^{(h)}=\mathrm{Pr}(X_{t+h}=s_{j}\vert X_{t}=s_{i})
+P_{ij}^{{\color{orange}(h)}}=\mathrm{Pr}(X_{t+{\color{orange}h}}=s_{j}\vert X_{t}=s_{i})
 \]
 
 \end_inset
@@ -390,13 +413,14 @@ P_{ij}^{(h)}=\mathrm{Pr}(X_{t+h}=s_{j}\vert X_{t}=s_{i})
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 \begin_inset Formula $h$
 \end_inset
 
 -step transition matrix
-\series default
 \color inherit
+ by matrix power
+\series default
 
 \begin_inset Formula 
 \[
@@ -409,19 +433,17 @@ P^{(h)}=P^{h}
 \end_layout
 
 \begin_layout Itemize
-The chain has a 
+
 \series bold
-unique equilibrium
+Unique
 \series default
  
 \series bold
-\color blue
-stationary
+\color orange
+equilbrium
 \series default
-\color inherit
  
 \series bold
-\color blue
 distribution
 \color inherit
  
@@ -430,7 +452,7 @@ distribution
 \begin_inset Formula $\pi=(\pi_{1},...,\pi_{k})$
 \end_inset
 
- if it is
+ if chain is
 \begin_inset Separator latexpar
 \end_inset
 
@@ -441,30 +463,43 @@ distribution
 \begin_layout Itemize
 
 \series bold
+\color blue
 irreducible
 \series default
+\color inherit
  (possible to get from any state from any state)
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
+\color blue
 aperiodic
 \series default
+\color inherit
  (does not get stuck in predictable cycles)
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
+\color blue
 positive recurrent
 \series default
- (expected time of returning to any state is finite)
+\color inherit
+ (expected time of returning is finite)
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Limiting (long-run) distribution
+Limiting
+\series bold
+ 
+\color orange
+long-run distribution
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 P^{t}\rightarrow\left(\begin{array}{c}
@@ -514,7 +549,7 @@ Stationary distribution, cont.
 
 \begin_deeper
 \begin_layout Itemize
-Limiting (long-run) distribution
+Limiting long-run distribution
 \begin_inset Formula 
 \[
 P^{t}\rightarrow\left(\begin{array}{c}
@@ -538,7 +573,7 @@ P^{t}\rightarrow\left(\begin{array}{c}
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Stationary distribution
 \series default
 \color inherit
@@ -609,15 +644,19 @@ The basic MCMC idea
 
 \begin_deeper
 \begin_layout Itemize
-Aim: to simulate from a discrete distribution 
+Simulate from discrete distribution 
 \begin_inset Formula $p(x)$
 \end_inset
 
  when 
-\begin_inset Formula $x\in\{s_{1},s_{2},...,s_{k}\}$
+\begin_inset Formula $x\in\{s_{1},..,s_{k}\}$
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -644,6 +683,10 @@ stationary distribution
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -653,7 +696,7 @@ How to set up the transition matrix
 
 ? 
 \series bold
-\color blue
+\color orange
 Metropolis-Hastings
 \series default
 \color inherit
@@ -663,8 +706,8 @@ Metropolis-Hastings
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename MarkovChainSimulation.eps
-	scale 70
+	filename Images/MarkovChainSimulation.eps
+	scale 65
 
 \end_inset
 
@@ -700,7 +743,7 @@ Rejection sampling
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename RejectionSampling.eps
+	filename Images/RejectionSampling.eps
 	scale 50
 
 \end_inset
@@ -754,7 +797,13 @@ backgroundcolor "none"
 status open
 
 \begin_layout Itemize
-Initialize 
+
+\series bold
+\color orange
+Initialize
+\series default
+\color inherit
+ 
 \begin_inset Formula $\theta^{(0)}$
 \end_inset
 
@@ -775,23 +824,17 @@ Initialize
 
 \begin_deeper
 \begin_layout Enumerate
-Sample 
+
+\series bold
+\color orange
+Sample proposal
+\series default
+\color inherit
+: 
 \begin_inset Formula $\theta_{p}\vert\theta^{(i-1)}\sim N\left(\theta^{(i-1)},c\cdot\Sigma\right)$
 \end_inset
 
- (the 
-\series bold
-\color blue
-proposal
-\series default
-\color inherit
- 
-\series bold
-\color blue
-distribution
-\series default
-\color inherit
-)
+
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -801,7 +844,7 @@ distribution
 \begin_layout Enumerate
 Compute the 
 \series bold
-\color blue
+\color orange
 acceptance probability
 \series default
 \color inherit
@@ -811,10 +854,6 @@ acceptance probability
 \alpha=\min\left(1,\frac{p(\theta_{p}\vert\mathbf{y})}{p(\theta^{(i-1)}\vert\mathbf{y})}\right)
 \]
 
-\end_inset
-
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -878,22 +917,17 @@ Assumption: we can compute
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Proportionality constant in 
-\begin_inset Formula $p(\theta_{p}\vert\mathbf{y})$
-\end_inset
-
- does not matter.
- It will cancel in 
-\begin_inset Formula $\alpha$
-\end_inset
-
-
+Proportionality constants in posterior cancel out in 
 \begin_inset Formula 
 \[
-\alpha=\min\left(1,\frac{c\cdot p(\theta_{p}\vert\mathbf{y})}{c\cdot p(\theta^{(i-1)}\vert\mathbf{y})}\right)=\min\left(1,\frac{p(\theta_{p}\vert\mathbf{y})}{p(\theta^{(i-1)}\vert\mathbf{y})}\right)
+\alpha=\min\left(1,\frac{p(\theta_{p}\vert\mathbf{y})}{p(\theta^{(i-1)}\vert\mathbf{y})}\right).
 \]
 
 \end_inset
@@ -902,42 +936,38 @@ Proportionality constant in
 \end_layout
 
 \begin_layout Itemize
-So we many use tattoo-version: 
-\begin_inset Formula $p(\theta\vert\mathbf{y})\propto p(\mathbf{y}\vert\theta)p(\theta)$
+In particular:
+\begin_inset Formula 
+\[
+\frac{p(\theta_{p}\vert\mathbf{y})}{p(\theta^{(i-1)}\vert\mathbf{y})}=\frac{p(\mathbf{y}\vert\theta_{p})p(\theta_{p})/p(y)}{p(\mathbf{y}\vert\theta^{(i-1)})p(\theta^{(i-1)})/p(y)}=\frac{p(\mathbf{y}\vert\theta_{p})p(\theta_{p})}{p(\mathbf{y}\vert\theta^{(i-1)})p(\theta^{(i-1)})}
+\]
+
 \end_inset
 
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color orange
+Proportional form
+\series default
+\color inherit
+ 
+\series bold
+\color orange
+is enough
+\series default
+\color inherit
 
 \begin_inset Formula 
 \[
 \alpha=\min\left(1,\frac{p\left(\mathbf{y}\vert\theta_{p}\right)p\left(\theta_{p}\right)}{p\left(\mathbf{y}\vert\theta^{(i-1)}\right)p\left(\theta^{(i-1)}\right)}\right)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-We can generalize the proposal 
-\begin_inset Formula $\theta_{p}\vert\theta^{(i-1)}\sim N\left(\theta^{(i-1)},c\cdot\Sigma\right)$
-\end_inset
-
- to
-\begin_inset Formula 
-\[
-\theta_{p}\vert\theta^{(i-1)}\sim q\left(\cdot\vert\theta^{(i-1)}\right)
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $q\left(\cdot\vert\theta^{(i-1)}\right)$
-\end_inset
-
- is symmetric is its arguments
-\begin_inset Formula 
-\[
-q\left(y\vert x\right)=q\left(x\vert y\right)
 \]
 
 \end_inset
@@ -992,7 +1022,7 @@ Common choices of
 \begin_inset Formula $\Sigma=I$
 \end_inset
 
- (may propose 'off the cigar')
+ (proposes 'off the cigar')
 \end_layout
 
 \begin_layout Itemize
@@ -1003,31 +1033,47 @@ Common choices of
 \end_layout
 
 \begin_layout Itemize
-Adaptive.
+
+\series bold
+\color blue
+Adaptive
+\series default
+\color inherit
+.
  Start with 
 \begin_inset Formula $\Sigma=I$
 \end_inset
 
- and then recompute 
+.
+ Update 
 \begin_inset Formula $\Sigma$
 \end_inset
 
- from an initial simulation run.
+ from initial run.
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
+Set 
 \begin_inset Formula $c$
 \end_inset
 
- is set so that average acceptance probability is roughly 25-30%.
+ so average acceptance probability is 25-30%.
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-A 
+
 \series bold
-\color blue
-good proposal
+\color orange
+Good proposal
 \series default
 \color inherit
 :
@@ -1041,13 +1087,17 @@ good proposal
 \begin_layout Itemize
 
 \series bold
+\color blue
 Easy to sample
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-Easy to compute 
+\color blue
+Easy to compute
+\color inherit
+ 
 \begin_inset Formula $\alpha$
 \end_inset
 
@@ -1057,8 +1107,10 @@ Easy to compute
 \begin_layout Itemize
 Proposals should take reasonably 
 \series bold
+\color blue
 large steps
 \series default
+\color inherit
  in 
 \begin_inset Formula $\theta$
 \end_inset
@@ -1069,8 +1121,10 @@ large steps
 \begin_layout Itemize
 Proposals should 
 \series bold
+\color blue
 not be reject too often
 \series default
+\color inherit
 .
  
 \end_layout
@@ -1147,23 +1201,17 @@ Initialize
 
 \begin_deeper
 \begin_layout Enumerate
-Sample 
+
+\series bold
+\color orange
+Sample proposal
+\series default
+\color inherit
+: 
 \begin_inset Formula $\theta_{p}\sim q\left(\cdot\vert\theta^{(i-1)}\right)$
 \end_inset
 
- (the 
-\series bold
-\color blue
-proposal
-\series default
-\color inherit
- 
-\series bold
-\color blue
-distribution
-\series default
-\color inherit
-)
+
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1173,7 +1221,7 @@ distribution
 \begin_layout Enumerate
 Compute the 
 \series bold
-\color blue
+\color orange
 acceptance probability
 \series default
 \color inherit
@@ -1183,10 +1231,6 @@ acceptance probability
 \alpha=\min\left(1,\frac{p(\mathbf{y}\vert\theta_{p})p(\theta_{p})}{p(\mathbf{y}\vert\theta^{(i-1)})p(\theta^{(i-1)})}\frac{q\left(\theta^{(i-1)}\vert\theta_{p}\right)}{q\left(\theta_{p}\vert\theta^{(i-1)}\right)}\right)
 \]
 
-\end_inset
-
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -1243,7 +1287,7 @@ The independence sampler
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Independence sampler
 \series default
 \color inherit
@@ -1260,7 +1304,19 @@ Independence sampler
 \end_layout
 
 \begin_layout Itemize
-Proposal is independent of previous draw.
+
+\series bold
+\color orange
+Proposal
+\series default
+\color inherit
+ is 
+\series bold
+\color blue
+independent of previous draw
+\series default
+\color inherit
+.
 \begin_inset VSpace medskip
 \end_inset
 
@@ -1294,16 +1350,20 @@ where
 \begin_layout Itemize
 Can be very 
 \series bold
+\color orange
 efficient
 \series default
+\color inherit
 , but has a tendency to 
 \series bold
+\color orange
 get
 \series default
  
 \series bold
 stuck
 \series default
+\color inherit
 .
 \begin_inset VSpace medskip
 \end_inset
@@ -1318,8 +1378,10 @@ Make sure that
 
  has 
 \series bold
+\color orange
 heavier tails
 \series default
+\color inherit
  than 
 \begin_inset Formula $p(\theta\vert\mathbf{y})$
 \end_inset
@@ -1356,7 +1418,7 @@ Metropolis-Hastings within Gibbs
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Gibbs sampling
 \series default
 \color inherit
@@ -1404,9 +1466,17 @@ Sample
 \begin_layout Itemize
 When a 
 \series bold
+\color blue
 full conditional is not easily sampled
 \series default
- we can simulate from it using MH.
+\color inherit
+ we can simulate from it using 
+\series bold
+\color orange
+MH
+\series default
+\color inherit
+.
 \begin_inset VSpace medskip
 \end_inset
 
@@ -1435,7 +1505,13 @@ th iteration, propose
 \end_layout
 
 \begin_layout Itemize
-Gibbs sampling is a special case of MH when 
+
+\series bold
+\color blue
+Gibbs sampling is a special case of MH
+\series default
+\color inherit
+ when 
 \begin_inset Formula $q(\theta_{2}\vert\theta_{1},\theta_{3},\theta_{2}^{(i-1)},\mathbf{y})=p(\theta_{2}\vert\theta_{1},\theta_{3},\mathbf{y})$
 \end_inset
 
@@ -1466,28 +1542,17 @@ The efficiency of MCMC
 \end_inset
 
 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $\theta^{(1)},\theta^{(2)},...,\theta^{(N)}$
-\end_inset
 
- are 
 \series bold
 \color blue
-dependent
+How efficient
 \series default
 \color inherit
- (autocorrelated).
-\end_layout
-
-\begin_layout Itemize
-How efficient is my MCMC compared to iid sampling?
+ is MCMC compared to iid sampling?
 \end_layout
 
 \begin_layout Itemize
@@ -1495,7 +1560,13 @@ If
 \begin_inset Formula $\theta^{(1)},\theta^{(2)},...,\theta^{(N)}$
 \end_inset
 
- are iid with variance 
+ are 
+\series bold
+\color blue
+iid
+\series default
+\color inherit
+ with variance 
 \begin_inset Formula $\sigma^{2}$
 \end_inset
 
@@ -1511,11 +1582,17 @@ If
 \end_layout
 
 \begin_layout Itemize
-If 
+Autocorrelated 
 \begin_inset Formula $\theta^{(1)},\theta^{(2)},...,\theta^{(N)}$
 \end_inset
 
- are generated by MCMC
+ generated by 
+\series bold
+\color blue
+MCMC
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 \mathrm{Var}(\bar{\theta})=\frac{\sigma^{2}}{N}\left(1+2\sum_{k=1}^{\infty}\rho_{k}\right)
@@ -1537,7 +1614,7 @@ where
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Inefficiency factor
 \series default
 \color inherit
@@ -1555,7 +1632,7 @@ Inefficiency factor
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Effective sample size
 \series default
 \color inherit
@@ -1605,6 +1682,10 @@ burn-in
 \series default
 \color inherit
 ?
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1613,26 +1694,34 @@ burn-in
 How long to sample
 \series default
  after burn-in?
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-To 
+
 \series bold
 \color blue
-thin
+Thinning
 \series default
 \color inherit
- of not to thin? Only keeping every 
+? Keeping every 
 \begin_inset Formula $h$
 \end_inset
 
  draw reduces autocorrelation.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Convergence
 \series default
  
@@ -1653,7 +1742,7 @@ Raw plots of simulated sequences (trajectories)
 \end_layout
 
 \begin_layout Itemize
-CUSUM plots + Local means
+CUSUM plots
 \end_layout
 
 \begin_layout Itemize
@@ -1665,6 +1754,34 @@ Potential scale reduction factor,
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/meanMCMC.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/stdMCMC.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/tailsProbMCMC.png
+	lyxscale 20
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
