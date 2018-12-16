@@ -104,7 +104,7 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 
 #### Part 3 - More Advanced Models, MCMC and Variational Bayes
 **Lecture 7** - Bayesian computations. Monte Carlo simulation. Gibbs sampling. Data augmentation. \
-Reading: BDA Ch. 10-11 | [Slides](SLIDES) \
+Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL7.pdf) \
 Code:
 
 **Lecture 8** - MCMC and Metropolis-Hastings \
