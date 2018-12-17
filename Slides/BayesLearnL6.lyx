@@ -283,7 +283,7 @@ Multi-class.
 \end_inset
 
 ).
- Brand choice,
+ Brand choice.
 \end_layout
 
 \end_deeper
@@ -581,7 +581,7 @@ Likelihood
 
 \begin_inset Formula 
 \[
-p(y|X,\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\prime}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\prime}\beta)}.
+p(\mathbf{y}|\mathbf{X},\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\prime}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\prime}\beta)}.
 \]
 
 \end_inset
@@ -595,7 +595,7 @@ Prior
 \end_inset
 
 .
- Posterior is non-standard (see demo in R later).
+ Posterior is non-standard (demo later).
 \end_layout
 
 \begin_layout Itemize
@@ -678,8 +678,8 @@ Taylor expansion of log-posterior
 :
 \begin_inset Formula 
 \begin{align*}
-\ln p(\theta|y) & =\ln p(\tilde{\theta}|y)+\frac{\partial\ln p(\theta|y)}{\partial\theta}|_{\theta=\tilde{\theta}}(\theta-\tilde{\theta})\\
- & +\frac{1}{2!}\frac{\partial^{2}\ln p(\theta|y)}{\partial\theta^{2}}|_{\theta=\tilde{\theta}}(\theta-\tilde{\theta})^{2}+...
+\ln p(\theta|\mathbf{y}) & =\ln p(\tilde{\theta}|\mathbf{y})+\frac{\partial\ln p(\theta|\mathbf{y})}{\partial\theta}|_{\theta=\tilde{\theta}}(\theta-\tilde{\theta})\\
+ & +\frac{1}{2!}\frac{\partial^{2}\ln p(\theta|\mathbf{y})}{\partial\theta^{2}}|_{\theta=\tilde{\theta}}(\theta-\tilde{\theta})^{2}+...
 \end{align*}
 
 \end_inset
@@ -691,7 +691,7 @@ Taylor expansion of log-posterior
 From the definition of the posterior mode:
 \begin_inset Formula 
 \[
-\frac{\partial\ln p(\theta|y)}{\partial\theta}|_{\theta=\tilde{\theta}}=0
+\frac{\partial\ln p(\theta|\mathbf{y})}{\partial\theta}|_{\theta=\tilde{\theta}}=0
 \]
 
 \end_inset
@@ -709,13 +709,13 @@ large samples
  (higher order terms negligible):
 \begin_inset Formula 
 \[
-p(\theta|y)\approx p(\tilde{\theta}|y)\exp\left(-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right)
+p(\theta|\mathbf{y})\approx p(\tilde{\theta}|\mathbf{y})\exp\left(-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right)
 \]
 
 \end_inset
 
 where 
-\begin_inset Formula $J_{\mathbf{y}}(\tilde{\theta})=-\frac{\partial^{2}\ln p(\theta|y)}{\partial\theta^{2}}|_{\theta=\tilde{\theta}}$
+\begin_inset Formula $J_{\mathbf{y}}(\tilde{\theta})=-\frac{\partial^{2}\ln p(\theta|\mathbf{y})}{\partial\theta^{2}}|_{\theta=\tilde{\theta}}$
 \end_inset
 
  is the 
@@ -738,7 +738,7 @@ Approximate normal posterior
 in large samples.
 \begin_inset Formula 
 \[
-\theta|y\stackrel{approx}{\sim}N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]
+\theta|\mathbf{y}\stackrel{approx}{\sim}N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]
 \]
 
 \end_inset
@@ -798,7 +798,7 @@ Poisson model
 First derivative of log density
 \begin_inset Formula 
 \[
-\frac{\partial\ln p(\theta|y)}{\partial\theta}=\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\theta}-(\beta+n)
+\frac{\partial\ln p(\theta|\mathbf{y})}{\partial\theta}=\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\theta}-(\beta+n)
 \]
 
 \end_inset
@@ -822,7 +822,7 @@ Second derivative at mode
  
 \begin_inset Formula 
 \[
-\frac{\partial^{2}\ln p(\theta|y)}{\partial\theta^{2}}|_{\theta=\tilde{\theta}}=-\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\left(\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\beta+n}\right)^{2}}=-\frac{(\beta+n)^{2}}{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}
+\frac{\partial^{2}\ln p(\theta|\mathbf{y})}{\partial\theta^{2}}|_{\theta=\tilde{\theta}}=-\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\left(\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\beta+n}\right)^{2}}=-\frac{(\beta+n)^{2}}{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}
 \]
 
 \end_inset
@@ -912,7 +912,7 @@ Normal approximation of posterior
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $\theta|y\stackrel{approx}{\sim}N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
+\begin_inset Formula $\theta|\mathbf{y}\stackrel{approx}{\sim}N\left[\tilde{\theta},J_{y}^{-1}(\tilde{\theta})\right]$
 \end_inset
 
  works also when 
@@ -974,11 +974,16 @@ optim.r
 Input
 \series default
 \color inherit
-: an expression proportional to 
-\begin_inset Formula $\log p(\theta|y)$
+: expression proportional to 
+\begin_inset Formula $\log p(\theta|\mathbf{y})$
 \end_inset
 
- and initial values.
+.
+ Initial values.
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -989,7 +994,7 @@ Output
 \series default
 \color inherit
 : 
-\begin_inset Formula $\log p(\tilde{\theta}|y)$
+\begin_inset Formula $\log p(\tilde{\theta}|\mathbf{y})$
 \end_inset
 
 , 
@@ -1010,14 +1015,18 @@ Output
 \end_deeper
 \begin_layout Itemize
 
+\series bold
 \color orange
 Re-parametrization
+\series default
 \color inherit
  may improve normal approximation.
  [Don't forget the 
 \series bold
+\color blue
 Jacobian
 \series default
+\color inherit
 !]
 \begin_inset Separator latexpar
 \end_inset
@@ -1058,11 +1067,13 @@ If
 \end_deeper
 \begin_layout Itemize
 
+\series bold
 \color orange
 Heavy tailed approximation
+\series default
 \color inherit
 : 
-\begin_inset Formula $\theta|y\stackrel{approx}{\sim}t_{v}\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
+\begin_inset Formula $\theta|\mathbf{y}\stackrel{approx}{\sim}t_{v}\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
 \end_inset
 
  for suitable degrees of freedom 
@@ -1155,7 +1166,7 @@ which means that
  is log-normal: 
 \begin_inset Formula 
 \[
-\theta\vert y\sim LN\left[\log\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}\right),\frac{1}{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}\right]
+\theta\vert\mathbf{y}\sim LN\left[\log\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}\right),\frac{1}{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}\right]
 \]
 
 \end_inset
@@ -1273,17 +1284,13 @@ simulating
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-Example
-\series default
-: Posterior of 
+Posterior of 
 \series bold
 \color orange
 Gini coefficient
 \series default
 \color inherit
-.
+
 \begin_inset Separator latexpar
 \end_inset
 
@@ -1319,7 +1326,7 @@ Joint posterior
 \end_inset
 
  may be approximately normal: 
-\begin_inset Formula $\theta|y\stackrel{approx}{\sim}N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
+\begin_inset Formula $\theta|\mathbf{y}\stackrel{approx}{\sim}N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
 \end_inset
 
 .
