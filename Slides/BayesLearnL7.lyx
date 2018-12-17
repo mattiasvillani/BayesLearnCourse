@@ -777,7 +777,7 @@ Draw
 \end_inset
 
  from 
-\begin_inset Formula $p(\theta_{1}|\theta_{2}^{(0)},\theta_{3}^{(0)},...,\theta_{k}^{(0)})$
+\begin_inset Formula $p(\theta_{1}|\theta_{2}^{(j-1)},\theta_{3}^{(j-1)},...,\theta_{k}^{(j-1)})$
 \end_inset
 
 
@@ -789,7 +789,7 @@ Draw
 \end_inset
 
  from 
-\begin_inset Formula $p(\theta_{2}|{\normalcolor \theta_{1}^{{\color{orange}(j)}}},\theta_{3}^{(0)},...,\theta_{k}^{(0)})$
+\begin_inset Formula $p(\theta_{2}|{\normalcolor \theta_{1}^{{\color{orange}(j)}}},\theta_{3}^{(j-1)},...,\theta_{k}^{(j-1)})$
 \end_inset
 
 
@@ -1352,7 +1352,7 @@ semi-conjugate prior
 
 \begin_inset Formula 
 \begin{align*}
-\mu & \sim N(\mu_{0},\tau_{0}^{2})\\
+\mu & \sim N(\mu_{0},{\color{orange}\tau_{o}^{2}})\\
 \sigma^{2} & \sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})
 \end{align*}
 
@@ -1501,7 +1501,28 @@ posterior
 \color orange
 Gibbs sampling
 \series default
+\size tiny
 \color inherit
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\size tiny
+Villani (2009).
+ Steady State Priors for Vector Autoregressions.
+ 
+\emph on
+Journal of Applied Econometrics
+\emph default
+.
+\end_layout
+
+\end_inset
+
+
+\size default
 :
 \begin_inset Separator latexpar
 \end_inset
@@ -2378,6 +2399,26 @@ not observed
 \color inherit
 .
  Gibbs sampling to the rescue!
+\size tiny
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+
+\size tiny
+Albert and Chib (1993).
+ Bayesian Analysis of Binary and Polychotomous Response Data.
+ 
+\emph on
+JASA
+\emph default
+.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
