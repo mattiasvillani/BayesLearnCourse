@@ -1,6 +1,9 @@
 # Script to illustrate that direct iid sampling is much more efficient than Gibbs sampling
 # Bivariate normal target
-# Author: Mattias Villani. IDA, Linköping University. http://mattiasvillani.com
+# Author: Mattias Villani, Stockholm and Linköping University. http://mattiasvillani.com
+
+# Loading pretty plot settings
+source('~/Dropbox/CodeSnippets/PlotSettingsR.R')
 
 # Setup 
 mu1 <- 1
@@ -8,7 +11,7 @@ mu2 <- -1
 rho <- 0.9
 mu <- c(mu1,mu2)
 Sigma = matrix(c(1,rho,rho,1),2,2)
-nDraws <- 1000 # Number of draws
+nDraws <- 500 # Number of draws
 
 library(MASS) # To access the mvrnorm() function
 
@@ -31,21 +34,66 @@ for (i in 1:nDraws){
   
 }
 
-# Plotting the results to compare the two sampling methods
-par(mfrow=c(2,4))
-plot(directDraws[,1], type="l", main='Direct draws', xlab='Iteration number', ylab=expression(theta[1]))
-hist(directDraws[,1], freq = FALSE, main='Direct draws', ylim = c(0,0.5), xlab=expression(theta[1]))
-lines(seq(-2,4,by=0.01),dnorm(seq(-2,4,by=0.01), mean = 1), col = "red", lwd = 3)
-plot(cumsum(directDraws[,1])/seq(1,nDraws),type="l", main='Direct draws', xlab='Iteration number', ylab='cumulative mean of theta')
-lines(seq(1,nDraws),1*matrix(1,1,nDraws),col="red",lwd=3)
-acf(directDraws[,1], main='Direct draws', lag.max = 20)
 
-plot(gibbsDraws[,1], type="l", main='Gibbs draws', xlab='Iteration number', ylab=expression(theta[1]))
-hist(gibbsDraws[,1], freq = FALSE, main='Gibbs draws', ylim = c(0,0.5), xlab=expression(theta[1]))
-lines(seq(-2,4,by=0.01),dnorm(seq(-2,4,by=0.01), mean = 1), col = "red", lwd = 3)
-plot(cumsum(gibbsDraws[,1])/seq(1,nDraws),type="l", main='Gibbs draws', xlab='Iteration number', ylab='cumulative mean of theta')
-lines(seq(1,nDraws),1*matrix(1,1,nDraws),col="red",lwd=3)
-acf(gibbsDraws[,1], main='Gibbs draws', lag.max = 20)
+# Plotting the results to compare the two sampling methods
+png('BiNormDirect.png')
+par(cex.lab=cexLabDef, cex.axis = cexAxisDef)
+par(mfrow=c(2,4))
+
+# DIRECT SAMPLING
+minY = round(min(directDraws[,1]))
+maxY = round(max(directDraws[,1]))
+plot(1:nDraws, directDraws[,1], type = "l", col = plotColors[2], ylab=TeX('$\\theta$'), 
+     lwd = lwdExtraThin, axes=FALSE, xlab = 'MCMC iteration', xlim = c(0,nDraws), ylim = c(minY, maxY), 
+     main = 'Raw - Direct')
+axis(side = 1, at = seq(0, nDraws, by = 250))
+axis(side = 2, at = seq(minY, maxY, by = 0.5))
+
+hist(directDraws[,1], freq = FALSE, main='Direct draws', ylim = c(0,0.5), xlab=TeX('$\\theta$'))
+lines(seq(-2,4,by=0.01),dnorm(seq(-2,4,by=0.01), mean = 1), col = plotColors[4], 
+      lwd = lwdThinner)
+
+cusumData =  cumsum(directDraws[,1])/seq(1,nDraws)
+minY = floor(min(cusumData))
+maxY = ceiling(max(cusumData))
+plot(1:nDraws, cusumData, type = "l", col = plotColors[6], ylab='Cumulative estimate', 
+     lwd = lwdExtraThin, axes=FALSE, xlab = 'MCMC iteration', xlim = c(0,nDraws), 
+     ylim = c(minY,maxY), main = 'Cusum - Direct')
+lines(seq(1,nDraws),1*matrix(1,1,nDraws),col= plotColors[3], lwd=lwdExtraThin)
+axis(side = 1, at = seq(0, nDraws, by = 250))
+axis(side = 2, at = seq(minY, maxY, by = 0.5))
+
+a = acf(directDraws[,1], main='Direct draws', lag.max = 20, plot = F)
+barplot(height = a$acf[-1], names.arg=seq(1,20), col = plotColors[3])
+
+# GIBBS
+
+minY = round(min(gibbsDraws[,1]))
+maxY = round(max(gibbsDraws[,1]))
+plot(1:nDraws, gibbsDraws[,1], type = "l", col = plotColors[2], ylab=TeX('$\\theta$'), 
+     lwd = lwdExtraThin, axes=FALSE, xlab = 'MCMC iteration', xlim = c(0,nDraws), ylim = c(minY, maxY), 
+     main = 'Raw - Gibbs')
+axis(side = 1, at = seq(0, nDraws, by = 250))
+axis(side = 2, at = seq(minY, maxY, by = 0.5))
+
+hist(gibbsDraws[,1], freq = FALSE, main='Gibbs draws', ylim = c(0,0.5), xlab=TeX('$\\theta$'))
+lines(seq(-2,4,by=0.01),dnorm(seq(-2,4,by=0.01), mean = 1), col = plotColors[4], 
+      lwd = lwdThinner)
+
+cusumData =  cumsum(gibbsDraws[,1])/seq(1,nDraws)
+minY = floor(min(cusumData))
+maxY = ceiling(max(cusumData))
+plot(1:nDraws, cusumData, type = "l", col = plotColors[6], ylab='Cumulative estimate', 
+     lwd = lwdExtraThin, axes=FALSE, xlab = 'MCMC iteration', xlim = c(0,nDraws), 
+     ylim = c(minY,maxY), main = 'Cusum - Gibbs')
+lines(seq(1,nDraws),1*matrix(1,1,nDraws),col = plotColors[3], lwd=lwdExtraThin)
+axis(side = 1, at = seq(0, nDraws, by = 250))
+axis(side = 2, at = seq(minY, maxY, by = 0.5))
+
+a = acf(directDraws[,1], main='Direct draws', lag.max = 20, plot = F)
+barplot(height = a$acf[-1], names.arg=seq(1,20), col = plotColors[3])
+
+dev.off()
 
 # Plotting the cumulative path of estimates of Pr(theta1>0, theta2>0)
 par(mfrow=c(2,1))

@@ -1248,7 +1248,7 @@ Direct sampling vs Gibbs sampling
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/DirectvsGibbs.png
+	filename Images/BiNormDirect.png
 	scale 40
 
 \end_inset
@@ -2402,7 +2402,7 @@ not observed
 \size tiny
 
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
