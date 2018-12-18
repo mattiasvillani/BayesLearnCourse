@@ -105,7 +105,8 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 #### Part 3 - More Advanced Models, MCMC and Variational Bayes
 **Lecture 7** - Monte Carlo simulation. Gibbs sampling. Data augmentation. \
 Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL7.pdf) \
-Code: [Gibbs sampling for a bivariate normal](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/GibbsBivariateNormal.R) | [Gibbs sampling for a mixture of normals](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalMixtureGibbs.R)
+Code: [Gibbs sampling for a bivariate normal](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/GibbsBivariateNormal.R) | [Gibbs sampling for a mixture of normals](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalMixtureGibbs.R) \
+Extra material: [Illustration](https://www.youtube.com/watch?v=iLKR9tCiwvA) of Gibbs sampling when parameters are strongly correlated.
 
 **Lecture 8** - MCMC and Metropolis-Hastings \
 Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL8.pdf) \
