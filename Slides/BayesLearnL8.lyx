@@ -467,7 +467,7 @@ distribution
 irreducible
 \series default
 \color inherit
- (possible to get from any state from any state)
+ (possible to get to any state from any state)
 \end_layout
 
 \begin_layout Itemize
@@ -1674,9 +1674,9 @@ Burn-in and convergence
 
 \begin_deeper
 \begin_layout Itemize
-
+How long
 \series bold
-How long 
+ 
 \color blue
 burn-in
 \series default
@@ -1691,8 +1691,10 @@ burn-in
 \begin_layout Itemize
 
 \series bold
+\color orange
 How long to sample
 \series default
+\color inherit
  after burn-in?
 \begin_inset VSpace medskip
 \end_inset
@@ -1776,6 +1778,44 @@ Potential scale reduction factor,
 	filename Images/tailsProbMCMC.png
 	lyxscale 20
 	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+Burn-in and convergence
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/seqDensMCMC.png
+	lyxscale 50
+	scale 45
 
 \end_inset
 
