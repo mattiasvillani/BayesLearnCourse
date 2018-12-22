@@ -90,7 +90,7 @@ lines(seq(1,nDraws),1*matrix(1,1,nDraws),col = plotColors[3], lwd=lwdExtraThin)
 axis(side = 1, at = seq(0, nDraws, by = 250))
 axis(side = 2, at = seq(minY, maxY, by = 0.5))
 
-a = acf(directDraws[,1], main='Direct draws', lag.max = 20, plot = F)
+a = acf(gibbsDraws[,1], main='Gibbs draws', lag.max = 20, plot = F)
 barplot(height = a$acf[-1], names.arg=seq(1,20), col = plotColors[3])
 
 dev.off()

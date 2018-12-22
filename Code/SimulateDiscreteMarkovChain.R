@@ -3,7 +3,7 @@ nIter <- 10000 # Number of simulated steps of the Markov chain
 P = matrix(c(0.8,0.1,0.1,0.2,0.6,0.2,0.3,0.3,0.4),3,3, byrow=TRUE) # Define a transition matrix
 #####   END USER INPUT    #####
 
-# install.packages("expm") # To get the matrix power
+#install.packages("expm") # To get the matrix power
 library(expm)
 
 lineColors = c("red","blue","green","black","yellow")
