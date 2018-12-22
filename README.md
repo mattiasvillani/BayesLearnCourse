@@ -149,7 +149,7 @@ The course examination consists of:
 
 * Written lab reports (deadlines will be given in Mondo)
 * Take home exam:
-    - 1st attempt: handed out on January 14. To be returned on January 20.
+    - 1st attempt: handed out on January 14. To be returned on January 18, at 6 PM.
     - 2nd attempt: handed out on TBD. To be returned on TBD.
     
     
