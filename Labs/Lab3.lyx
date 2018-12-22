@@ -610,478 +610,343 @@ Plot the following densities in one figure: 1) a histogram or kernel density
 \end_deeper
 \begin_layout Enumerate
 
-\emph on
-Time series models in Stan
+\shape italic
+Metropolis Random Walk for Poisson regression
+\shape default
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Consider the following Poisson regression model
+\begin_inset Formula 
+\begin{align*}
+y_{i} & \vert\beta\sim\mathrm{Poisson}\left[\exp\left(\mathbf{x}_{i}^{T}\beta\right)\right],\;i=1,...,n,
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ is the count for the 
+\begin_inset Formula $i$
+\end_inset
+
+th observation in the sample and 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ is the 
+\begin_inset Formula $p$
+\end_inset
+
+-dimensional vector with covariate observations for the 
+\begin_inset Formula $i$
+\end_inset
+
+th observation.
+ Use the data set 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+ 
+\backslash
+texttt{eBayNumberOfBidderData.dat}
+\end_layout
+
+\end_inset
+
+.
+ This dataset contains observations from 1000 eBay auctions of coins.
+ The response variable is 
+\series bold
+nBids
+\series default
+ and records the number of bids in each auction.
+ The remaining variables are features/covariates (
+\begin_inset Formula $\mathbf{x}$
+\end_inset
+
+): 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+
+\series bold
+Const
+\series default
+ (for the intercept)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+PowerSeller
+\series default
+ (is the seller selling large volumes on eBay?)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+VerifyID
+\series default
+ (is the seller verified by eBay?)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Sealed
+\series default
+ (was the coin sold sealed in never opened envelope?)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MinBlem
+\series default
+ (did the coin have a minor defect?)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MajBlem
+\series default
+ (a major defect?)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+LargNeg
+\series default
+ (did the seller get a lot of negative feedback from customers?)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+LogBook
+\series default
+ (logarithm of the coins book value according to expert sellers.
+ Standardized)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+MinBidShare
+\series default
+ (a variable that measures ratio of the minimum selling price (starting
+ price) to the book value.
+ Standardized).
+ 
+\end_layout
+
 \begin_layout Enumerate
-Write a function in R that simulates data from the AR(1)-process
+Obtain the maximum likelihood estimator of 
+\begin_inset Formula $\beta$
+\end_inset
+
+ in the Poisson regression model for the eBay data [Hint: 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+texttt{glm.R}
+\end_layout
+
+\end_inset
+
+, don't forget that 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+texttt{glm()}
+\end_layout
+
+\end_inset
+
+ adds its own intercept so don't input the covariate Const].
+ Which covariates are significant?
+\end_layout
+
+\begin_layout Enumerate
+Let's now do a Bayesian analysis of the Poisson regression.
+ Let the prior be 
+\begin_inset Formula $\beta\sim\mathcal{N}\left[\mathbf{0},100\cdot(\mathbf{X}^{T}\mathbf{X}){}^{-1}\right]$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathbf{X}$
+\end_inset
+
+ is the 
+\begin_inset Formula $n\times p$
+\end_inset
+
+ covariate matrix.
+ This is a commonly used prior which is called Zellner's 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+g
+\end_layout
+
+\end_inset
+
+-prior.
+ Assume first that the posterior density is approximately multivariate normal:
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta|y & \sim & \mathcal{N}\left(\tilde{\beta},J_{\mathbf{y}}^{-1}(\tilde{\beta})\right),
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\tilde{\beta}$
+\end_inset
+
+ is the posterior mode and 
+\begin_inset Formula $J_{\mathbf{y}}(\tilde{\beta})$
+\end_inset
+
+ is the negative Hessian at the posterior mode.
+ 
+\begin_inset Formula $\tilde{\beta}$
+\end_inset
+
+ and 
+\begin_inset Formula $J_{\mathbf{y}}(\tilde{\beta})$
+\end_inset
+
+ can be obtained by numerical optimization (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+texttt{optim.R}
+\end_layout
+
+\end_inset
+
+) exactly like you already did for the logistic regression in Lab 2 (but
+ with the log posterior function replaced by the corresponding one for the
+ Poisson model, which you have to code up.).
+\end_layout
+
+\begin_layout Enumerate
+Now, let's simulate from the actual posterior of 
+\begin_inset Formula $\beta$
+\end_inset
+
+ using the Metropolis algorithm and compare with the approximate results
+ in b).
+ Program a general function that uses the Metropolis algorithm to generate
+ random draws from an 
+\shape italic
+arbitrary
+\shape default
+ posterior density.
+ In order to show that it is a general function for any model, I will denote
+ the vector of model parameters by 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Let the proposal density be the multivariate normal density mentioned in
+ Lecture 8 (random walk Metropolis):
 \begin_inset Formula 
 \[
-x_{t}=\mu+\phi\left(x_{t-1}-\mu\right)+\varepsilon_{t},\,\,\,\varepsilon_{t}\stackrel{iid}{\sim}N\left(0,\sigma^{2}\right),
-\]
-
-\end_inset
-
-for given values of 
-\begin_inset Formula $\mu$
-\end_inset
-
-, 
-\begin_inset Formula $\phi$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
-.
- Start the process at 
-\begin_inset Formula $x_{1}=\mu$
-\end_inset
-
- and then simulate values for 
-\begin_inset Formula $x_{t}$
-\end_inset
-
- for 
-\begin_inset Formula $t=2,3\ldots,T$
-\end_inset
-
- and return the vector 
-\begin_inset Formula $x_{1:T}$
-\end_inset
-
- containing all time points.
- Use 
-\begin_inset Formula $\mu=10,\sigma^{2}=2$
-\end_inset
-
- and 
-\begin_inset Formula $T=200$
-\end_inset
-
- and look at some different realizations (simulations) of 
-\begin_inset Formula $x_{1:T}$
-\end_inset
-
- for values of 
-\begin_inset Formula $\phi$
-\end_inset
-
- between 
-\begin_inset Formula $-1$
-\end_inset
-
- and 
-\begin_inset Formula $1$
-\end_inset
-
- (this is the interval of 
-\begin_inset Formula $\phi$
-\end_inset
-
- where the AR(1)-process is stable).
- Include a plot of at least one realization in the report.
- What effect does the value of 
-\begin_inset Formula $\phi$
-\end_inset
-
- have on 
-\begin_inset Formula $x_{1:T}$
-\end_inset
-
-?
-\end_layout
-
-\begin_layout Enumerate
-Use your function from a) to simulate two AR(1)-processes, 
-\begin_inset Formula $x_{1:T}$
-\end_inset
-
- with 
-\begin_inset Formula $\phi=0.3$
-\end_inset
-
- and 
-\begin_inset Formula $y_{1:T}$
-\end_inset
-
- with 
-\begin_inset Formula $\phi=0.95$
-\end_inset
-
-.
- Now, treat the values of 
-\begin_inset Formula $\mu$
-\end_inset
-
-, 
-\begin_inset Formula $\phi$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
- as unknown and estimate them using MCMC.
- Implement Stan-code that samples from the posterior of the three parameters,
- using suitable non-informative priors of your choice.
- [Hint: Look at the time-series models examples in Chapter 10 of the Stan
- reference manual, and note the different parameterization used here.]
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Report the posterior mean, 95% credible intervals and the number of effective
- posterior samples for the three inferred parameters for each of the simulated
- AR(1)-process.
- Are you able to estimate the true values?
-\end_layout
-
-\begin_layout Enumerate
-For each of the two data sets, evaluate the convergence of the samplers
- and plot the joint posterior of 
-\begin_inset Formula $\mu$
-\end_inset
-
- and 
-\begin_inset Formula $\phi$
-\end_inset
-
-.
- Comments?
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-The data 
-\family typewriter
-campy.dat
-\family default
- contain the number of cases of campylobacter infections in the north of
- the province Quebec (Canada) in four week intervals from January 1990 to
- the end of October 2000.
- It has 13 observations per year and 140 observations in total.
- Assume that the number of infections 
-\begin_inset Formula $c_{t}$
-\end_inset
-
- at each time point follows an independent Poisson distribution when conditioned
- on a latent AR(1)-process 
-\begin_inset Formula $x_{t}$
-\end_inset
-
-, that is
-\begin_inset Formula 
-\[
-c_{t}|x_{t}\sim Poisson\left(\exp\left(x_{t}\right)\right),
+\theta_{p}\vert\theta^{(i-1)}\sim N\left(\theta^{(i-1)},c\cdot\Sigma\right),
 \]
 
 \end_inset
 
 where 
-\begin_inset Formula $x_{t}$
+\begin_inset Formula $\Sigma=J_{\mathbf{y}}^{-1}(\tilde{\beta})$
 \end_inset
 
- is an AR(1)-process as in a).
- Implement and estimate the model in Stan, using suitable priors of your
- choice.
- Produce a plot that contains both the data and the posterior mean and 95%
- credible intervals for the latent intensity 
-\begin_inset Formula $\theta_{t}=\exp\left(x_{t}\right)$
+ obtained in b).
+ The value 
+\begin_inset Formula $c$
 \end_inset
 
- over time.
- [Hint: Should 
-\begin_inset Formula $x_{t}$
-\end_inset
+ is a tuning parameter and should be an input to your Metropolis function.
+ The user of your Metropolis function should be able to supply her own posterior
+ density function, not necessarily for the Poisson regression, and still
+ be able to use your Metropolis function.
+ This is not so straightforward, unless you have come across 
+\emph on
+function objects
+\emph default
+ in 
+\begin_inset ERT
+status open
 
- be seen as data or parameters?]
+\begin_layout Plain Layout
+
+
+\backslash
+texttt{R}
 \end_layout
 
-\begin_layout Enumerate
-Now, assume that we have a prior belief that the true underlying intensity
- 
-\begin_inset Formula $\theta_{t}$
 \end_inset
 
- varies more smoothly than the data suggests.
- Change the prior for 
-\begin_inset Formula $\sigma^{2}$
+ and the triple dot (
+\family typewriter
+\size footnotesize
+...
+\family default
+\size default
+) wildcard argument.
+ I have posted a note (HowToCodeRWM.pdf) on the course web page that describes
+ how to do this in R.
+\begin_inset Newline newline
 \end_inset
 
- so that it becomes informative about that the AR(1)-process increments
- 
-\begin_inset Formula $\varepsilon_{t}$
+Now, use your new Metropolis function to sample from the posterior of 
+\begin_inset Formula $\beta$
 \end_inset
 
- should be small.
- Re-estimate the model using Stan with the new prior and produce the same
- plot as in c).
- Has the posterior for 
-\begin_inset Formula $\theta_{t}$
-\end_inset
-
- changed?
+ in the Poisson regression for the eBay dataset.
+ Assess MCMC convergence by graphical methods.
 \end_layout
 
 \end_deeper
 \begin_layout Standard
 
 \size footnotesize
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-OLD VERSION OF THE LAB (2018-04-16):
-\end_layout
-
-\begin_layout Enumerate
-
-\emph on
-Normal model, mixture of normal model with semi-conjugate prior.
-\emph default
-
-\begin_inset Newline newline
-\end_inset
-
-The data 
-\family typewriter
-rainfall.dat
-\family default
- consist of daily records, from the beginning of 1948 to the end of 1983,
- of precipitation (rain or snow in units of 
-\begin_inset Formula $\frac{1}{100}$
-\end_inset
-
- inch, and records of zero precipitation are excluded) at Snoqualmie Falls,
- Washington.
- Analyze the data using the following two models.
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-
-\emph on
-Normal model.
-
-\emph default
- 
-\begin_inset Newline newline
-\end_inset
-
-Assume the daily precipitation 
-\begin_inset Formula $\left\{ y_{1},...,y_{n}\right\} $
-\end_inset
-
- are independent normally distributed, 
-\begin_inset Formula $y_{1},...,y_{n}|\mu,\sigma^{2}\sim\mathcal{N}(\mu,\sigma^{2})$
-\end_inset
-
- where both 
-\begin_inset Formula $\mu$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
- are unknown.
- Let 
-\begin_inset Formula $\mu\sim\mathcal{N}(\mu_{0},\tau_{0}^{2})$
-\end_inset
-
- independently of 
-\begin_inset Formula $\sigma^{2}\sim Inv\text{-}\chi^{2}(\nu_{0},\sigma_{0}^{2})$
-\end_inset
-
-.
- 
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Implement (code!) a Gibbs sampler that simulates from the joint posterior
- 
-\begin_inset Formula $p(\mu,\sigma^{2}|y_{1},...,y_{n})$
-\end_inset
-
-.
- The full conditional posteriors are given on the slides from Lecture 7.
-\end_layout
-
-\begin_layout Enumerate
-Analyze the daily precipitation using your Gibbs sampler in (a)-i.
- Investigate the convergence of the Gibbs sampler by suitable graphical
- methods.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\emph on
-Mixture normal model.
-
-\emph default
- 
-\begin_inset Newline newline
-\end_inset
-
-Let us now instead assume that the daily precipitation 
-\begin_inset Formula $\left\{ y_{1},...,y_{n}\right\} $
-\end_inset
-
- follow an iid two-component 
-\series bold
-mixture of normals
-\series default
- model:
-\begin_inset Formula 
-\[
-p(y_{i}|\mu,\sigma^{2},\pi)=\pi\mathcal{N}(y_{i}|\mu_{1},\sigma_{1}^{2})+(1-\pi)\mathcal{N}(y_{i}|\mu_{2},\sigma_{2}^{2}),
-\]
-
-\end_inset
-
-where
-\begin_inset Formula 
-\[
-\mu=(\mu_{1},\mu_{2})\quad\text{and}\quad\sigma^{2}=(\sigma_{1}^{2},\sigma_{2}^{2}).
-\]
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Use the Gibbs sampling data augmentation algorithm in my code (or code your
- own!) in 
-\family typewriter
-NormalMixtureGibbs.R
-\family default
- (available under Lecture 7 on the course page) to analyze the daily precipitati
-on data.
- Set the prior hyperparameters suitably.
-\end_layout
-
-\begin_layout Enumerate
-Investigate the convergence of the Gibbs sampler by suitable graphical methods.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\emph on
-Graphical comparison.
-
-\emph default
- 
-\begin_inset Newline newline
-\end_inset
-
-Plot the following densities in one figure: 1) a histogram or kernel density
- estimate of the data.
- 2) Normal density 
-\begin_inset Formula $\mathcal{N}(\mu,\sigma^{2})$
-\end_inset
-
- in (a); 3) Mixture of normals density 
-\begin_inset Formula $p(y_{i}|\mu,\sigma^{2},\pi)$
-\end_inset
-
- in (b).
- Use the posterior mean value for all the parameters.
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\emph on
-Probit regression
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Implement (code!) a data augmentation Gibbs sampler for the probit regression
- model
-\begin_inset Formula 
-\[
-\text{\mathrm{Pr}}(y=1\vert\mathbf{x})=\Phi(\mathbf{x}^{T}\beta).
-\]
-
-\end_inset
-
- [Hint: 
-\family typewriter
-rtnorm
-\family default
- function in 
-\family typewriter
-the msm
-\family default
--package + Lecture 8.]
-\end_layout
-
-\begin_layout Enumerate
-Compute the posterior of 
-\begin_inset Formula $\beta$
-\end_inset
-
- in the probit regression for the 
-\family typewriter
-WomenWork
-\family default
- dataset from Lab 2 using the prior 
-\begin_inset Formula $\beta\sim\mathcal{N}(0,\tau^{2}I)$
-\end_inset
-
-, with 
-\begin_inset Formula $\tau=10$
-\end_inset
-
-.
- 
-\end_layout
-
-\begin_layout Enumerate
-Do a normal approximation 
-\begin_inset Formula $\beta\vert\mathbf{y},\mathbf{X}\sim N\left(\tilde{\beta},J_{\mathbf{y}}^{-1}(\tilde{\beta})\right)$
-\end_inset
-
- of the posterior for 
-\begin_inset Formula $\beta$
-\end_inset
-
- in the probit regression.
- Compare with the results from 2(b).
- Is the normal approximation accurate? [Hint: you can use your code from
- Lab 2 for the logistic regression.
- Just change the likelihood to a probit likelihood.]
-\size footnotesize
-
 \begin_inset VSpace 0.5cm
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \end_inset
 
 
