@@ -1,46 +1,28 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
 \origin unavailable
 \textclass beamer
 \begin_preamble
-\setcounter{MaxMatrixCols}{10}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{mathpazo}
-\usepackage{hyperref}
-\usepackage{multimedia}
-\usepackage{xcolor}
-\usepackage{colortbl}
-\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
-\definecolor{gray97}{cmyk}{0,0,0,0.03}
-\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
-\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
+\usetheme{focus}
 
-\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
-\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
-\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
-\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
-\usecolortheme[named=RawSienna]{structure}
-%\usecolortheme[RGB={205,0,0}]{structure}
-\setbeamertemplate{navigation symbols}{}
-\useoutertheme{infolines}
-\usetheme{default}
-\setbeamertemplate{blocks}[shadow=true]
-%\setbeamerfont{structure}{shape=\itshape}
-\usefonttheme{structuresmallcapsserif}
-\setbeamertemplate{background canvas}{
- % \ifnum \thepage>0 \relax % we are on the first page
-%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
- % \else
- 	% No background for page 2 and onwards
- % \fi
-}
 
-%\usepackage{handoutWithNotes}
-%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
+\title{Machine Learning for Industry}
+\subtitle{Lecture 9: HMC, Stan, Variational.}
+\author[Mattias Villani]{Mattias Villani}
+%\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
+\institute{Linköping University 
+\\ Stockholm University  
+\vspace{0.1cm} \\ }
+
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+%\definecolor{blue}{RGB}{102, 159, 204}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -62,6 +44,8 @@ knitr
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -91,6 +75,7 @@ knitr
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -99,7 +84,10 @@ knitr
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -122,7 +110,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Learning - Lecture 9
+Bayesian Statistics - Lecture 9
 \end_layout
 
 \begin_layout Author
@@ -130,12 +118,12 @@ Bayesian Learning - Lecture 9
 status open
 
 \begin_layout Plain Layout
-Mattias Villani and Per Sidén
+Mattias Villani
 \end_layout
 
 \end_inset
 
-Mattias Villani and Per Sidén
+Mattias Villani
 \end_layout
 
 \begin_layout Institute
@@ -147,12 +135,20 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-STIMA, LiU
+SU and LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics and Machine Learning
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Newline newline
+\end_inset
+
+and
 \begin_inset Newline newline
 \end_inset
 
@@ -160,7 +156,7 @@ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Linköping University
 \end_layout
 
 \begin_layout Date
@@ -191,8 +187,10 @@ Lecture overview
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Hamiltonian Monte Carlo
+\color blue
+
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -202,8 +200,10 @@ Hamiltonian Monte Carlo
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Stan
+\color blue
+
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -213,7 +213,7 @@ Stan
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Variational Bayes
 \end_layout
 
@@ -244,11 +244,7 @@ Hamiltonian Monte Carlo
 
 \begin_deeper
 \begin_layout Itemize
-
-\series bold
-Motivation:
-\series default
- Assume that 
+Assume 
 \begin_inset Formula $\theta=(\theta_{1},...,\theta_{p})$
 \end_inset
 
@@ -258,7 +254,7 @@ Motivation:
 \end_inset
 
  is large, then most of the mass of 
-\begin_inset Formula $p\left(\theta|y\right)$
+\begin_inset Formula $p\left(\theta|\mathbf{y}\right)$
 \end_inset
 
  is usually located on some subregion in 
@@ -267,32 +263,27 @@ Motivation:
 
  with complicated geometry.
  
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Finding a good proposal distribution 
+MH: hard to find good proposal distribution 
 \begin_inset Formula $q\left(\cdot|\theta^{(i-1)}\right)$
 \end_inset
 
- for the MH algorithm might be hard 
-\begin_inset Newline newline
+.
+\begin_inset VSpace medskip
 \end_inset
 
 
-\begin_inset Formula $\Rightarrow$
-\end_inset
-
- Use very small step sizes or few accepted proposed samples.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-pause
 \end_layout
 
+\begin_layout Itemize
+MH: have to use very small step sizes otherwise too many rejections.
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -301,31 +292,44 @@ pause
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Hamiltonian Monte Carlo
 \series default
 \color inherit
  (
 \series bold
-\color blue
+\color orange
 HMC
 \series default
 \color inherit
-) borrows ideas from physics to allow more rapid movements in the posterior
- distribution.
+): 
+\series bold
+distant proposals
+\series default
+ with 
+\series bold
+high acceptance
+\series default
+ probabilities.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 HMC adds an auxiliary 
 \series bold
+\color orange
 momentum
 \series default
+\color inherit
  parameter 
 \begin_inset Formula $\phi=\left(\phi_{1},\ldots,\phi_{p}\right)$
 \end_inset
 
  and samples from 
-\begin_inset Formula $p\left(\theta,\phi|y\right)=p\left(\theta|y\right)p\left(\phi\right)$
+\begin_inset Formula $p\left(\theta,\phi|\mathbf{y}\right)=p\left(\theta|\mathbf{y}\right)p\left(\phi\right)$
 \end_inset
 
 .
@@ -358,7 +362,7 @@ Hamiltonian Monte Carlo
 
 \begin_deeper
 \begin_layout Itemize
-Background from physics: 
+Physics: 
 \series bold
 Hamiltonian
 \series default
@@ -370,15 +374,29 @@ Hamiltonian
 \begin_inset Formula $U$
 \end_inset
 
- is the potential energy and 
+ is the 
+\series bold
+potential energy
+\series default
+ and 
 \begin_inset Formula $K$
 \end_inset
 
- is the kinetic energy.
+ is the 
+\series bold
+kinetic energy
+\series default
+.
 \end_layout
 
 \begin_layout Itemize
-Dynamics:
+
+\series bold
+\color orange
+Hamiltonian Dynamics
+\series default
+\color inherit
+
 \begin_inset Formula 
 \begin{align*}
 \frac{d\theta_{i}}{dt} & =\frac{\partial H}{\partial\phi_{i}}=\frac{\partial K}{\partial\phi_{i}},\\
@@ -391,21 +409,35 @@ Dynamics:
 \end_layout
 
 \begin_layout Itemize
-Use 
-\begin_inset Formula $U\left(\theta\right)=-\log\left[p\left(\theta\right)p\left(y|\theta\right)\right]$
+Think: Hockey puck sliding over a friction-less surface: 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "illustration"
+target "http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html"
+literal "false"
+
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Itemize
 Use 
-\begin_inset Formula $\phi\sim N\left(0,M\right)$
+\begin_inset Formula $U\left(\theta\right)=-\log\left[p\left(\theta\right)p\left(\mathbf{y}|\theta\right)\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Use 
+\begin_inset Formula $\phi\sim N\left(0,\mathbf{M}\right)$
 \end_inset
 
  and 
-\begin_inset Formula $K\left(\phi\right)=-\log\left[p\left(\phi\right)\right]=\frac{1}{2}\phi^{T}M^{-1}\phi+\text{const}$
+\begin_inset Formula $K\left(\phi\right)=-\log\left[p\left(\phi\right)\right]=\frac{1}{2}\phi^{T}\mathbf{M}^{-1}\phi+\text{const}$
 \end_inset
 
 , where 
@@ -413,6 +445,15 @@ Use
 \end_inset
 
  is the mass matrix (often diagonal).
+\end_layout
+
+\begin_layout Itemize
+If we could propose 
+\begin_inset Formula $\theta$
+\end_inset
+
+ in continuous time (spoiler: we can't), the acceptance probability would
+ be one.
 \end_layout
 
 \end_deeper
@@ -442,25 +483,33 @@ Hamiltonian Monte Carlo
 
 \begin_deeper
 \begin_layout Itemize
-This gives the system:
+
+\series bold
+\color orange
+Hamiltonian Dynamics
+\series default
+\color inherit
+
 \begin_inset Formula 
 \begin{align*}
-\frac{d\theta_{i}}{dt} & =\left[M^{-1}\phi\right]_{i},\\
-\frac{d\phi_{i}}{dt} & =\frac{\partial\log p\left(\theta|y\right)}{\partial\theta_{i}}
+\frac{d\theta_{i}}{dt} & =\left[\mathbf{M}^{-1}\phi\right]_{i},\\
+\frac{d\phi_{i}}{dt} & =\frac{\partial\log p\left(\theta|\mathbf{y}\right)}{\partial\theta_{i}}
 \end{align*}
 
 \end_inset
 
 which can be simulated using the 
 \series bold
+\color orange
 leapfrog algorithm
 \series default
+\color inherit
 
 \begin_inset Formula 
 \begin{align*}
-\phi_{i}\left(t+\frac{\varepsilon}{2}\right) & =\phi_{i}\left(t\right)-\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|y\right)}{\partial\theta_{i}},\\
-\theta\left(t+\varepsilon\right) & =\theta\left(t\right)+\varepsilon M^{-1}\phi(t),\\
-\phi_{i}\left(t+\varepsilon\right) & =\phi_{i}\left(t+\frac{\varepsilon}{2}\right)-\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|y\right)}{\partial\theta_{i}},
+\phi_{i}\left(t+\frac{\varepsilon}{2}\right) & =\phi_{i}\left(t\right)-\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},\\
+\theta\left(t+\varepsilon\right) & =\theta\left(t\right)+\varepsilon\mathbf{M}^{-1}\phi(t),\\
+\phi_{i}\left(t+\varepsilon\right) & =\phi_{i}\left(t+\frac{\varepsilon}{2}\right)-\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},
 \end{align*}
 
 \end_inset
@@ -470,6 +519,18 @@ where
 \end_inset
 
  is the step size.
+\end_layout
+
+\begin_layout Itemize
+Discretization 
+\begin_inset Formula $\,\Rightarrow\,$
+\end_inset
+
+ acceptance probability drops with 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+.
 \end_layout
 
 \end_deeper
@@ -539,8 +600,18 @@ Initialize
 
 \begin_deeper
 \begin_layout Enumerate
-Sample the starting momentum 
-\begin_inset Formula $\phi_{s}\sim N\left(0,M\right)$
+Sample the starting 
+\series bold
+\color orange
+momentum
+\series default
+\color inherit
+ 
+\begin_inset Formula $\phi_{s}\sim N\left(0,\mathbf{M}\right)$
+\end_inset
+
+
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -551,7 +622,13 @@ Simulate new values for
 \begin_inset Formula $\left(\theta_{p},\phi_{p}\right)$
 \end_inset
 
- by iterating the leapfrog algorithm 
+ by iterating the 
+\series bold
+\color orange
+leapfrog algorithm
+\series default
+\color inherit
+ 
 \begin_inset Formula $L$
 \end_inset
 
@@ -569,20 +646,16 @@ Simulate new values for
 \begin_layout Enumerate
 Compute the 
 \series bold
-\color blue
+\color orange
 acceptance probability
 \series default
 \color inherit
 
 \begin_inset Formula 
 \[
-\alpha=\min\left(1,\frac{p(y\vert\theta_{p})p(\theta_{p})}{p(y\vert\theta^{(i-1)})p(\theta^{(i-1)})}\frac{p\left(\phi_{p}\right)}{p\left(\phi_{s}\right)}\right)
+\alpha=\min\left(1,\frac{p(\mathbf{y}\vert\theta_{p})p(\theta_{p})}{p(\mathbf{y}\vert\theta^{(i-1)})p(\theta^{(i-1)})}\frac{p\left(\phi_{p}\right)}{p\left(\phi_{s}\right)}\right)
 \]
 
-\end_inset
-
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -615,33 +688,47 @@ With probability
 \end_layout
 
 \begin_layout Itemize
-Imagine a hockey pluck sliding over a friction-less surface: 
-\color blue
 
-\begin_inset CommandInset href
-LatexCommand href
-name "illustration"
-target "http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-The stepsize 
+\series bold
+\color orange
+Tuning parameters
+\series default
+\color inherit
+: 1.
+ 
+\series bold
+stepsize
+\series default
+ 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
-, number of leapfrog iterations 
+, 2.
+ 
+\series bold
+number of leapfrog
+\series default
+ iterations 
 \begin_inset Formula $L$
 \end_inset
 
- and mass matrix 
+ and 3.
+ 
+\series bold
+mass matrix
+\series default
+ 
 \begin_inset Formula $M$
 \end_inset
 
- are tuning parameters that can be tuned during the burn-in phase.
+.
+ 
+\series bold
+\color orange
+No U-turn
+\series default
+\color inherit
+.
 \end_layout
 
 \end_deeper
@@ -725,7 +812,7 @@ rstan
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename stan_logo.png
+	filename Images/stan_logo.png
 	scale 35
 
 \end_inset
@@ -745,7 +832,7 @@ rstan
 
 
 \begin_inset Graphics
-	filename stan_ulam.jpeg
+	filename Images/stan_ulam.jpeg
 	scale 35
 
 \end_inset
@@ -833,7 +920,7 @@ Three plants were observed for four months, measuring the number of flowers
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename ThreePlants.eps
+	filename Images/ThreePlants.eps
 	scale 35
 
 \end_inset
@@ -1597,6 +1684,7 @@ Stan - useful links
 LatexCommand href
 name "Getting started with RStan"
 target "https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started"
+literal "false"
 
 \end_inset
 
@@ -1616,6 +1704,7 @@ target "https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started"
 LatexCommand href
 name "RStan vignette"
 target "https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html"
+literal "false"
 
 \end_inset
 
@@ -1635,6 +1724,7 @@ target "https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html"
 LatexCommand href
 name "Stan Modeling Language User's Guide and Reference Manual"
 target "http://mc-stan.org/users/documentation/"
+literal "false"
 
 \end_inset
 
@@ -1654,6 +1744,7 @@ target "http://mc-stan.org/users/documentation/"
 LatexCommand href
 name "Stan Case Studies"
 target "http://mc-stan.org/users/documentation/case-studies"
+literal "false"
 
 \end_inset
 
@@ -1715,12 +1806,14 @@ We have already seen:
 
 \series bold
 \color blue
-Mean field Variational Bayes
+Mean field 
+\color orange
+Variational Bayes
 \series default
 \color inherit
  (
 \series bold
-\color blue
+\color orange
 VB
 \series default
 \color inherit
@@ -1845,8 +1938,10 @@ No specific functional forms are assumed
 \begin_layout Itemize
 
 \series bold
+\color orange
 Optimal densities
 \series default
+\color inherit
  can be shown to satisfy:
 \begin_inset Formula 
 \[
@@ -1956,12 +2051,15 @@ Note: we make no assumptions about parametric form of the
 \begin_inset Formula $q_{i}(\theta)$
 \end_inset
 
-, but the optimal 
+.
+\end_layout
+
+\begin_layout Itemize
+But the optimal 
 \begin_inset Formula $q_{i}(\theta)$
 \end_inset
 
  often turn out to be parametric (normal, gamma etc).
- 
 \end_layout
 
 \begin_layout Itemize
@@ -1998,8 +2096,10 @@ Mean field approximation - Normal model
 \begin_layout Itemize
 
 \series bold
+\color orange
 Model
 \series default
+\color inherit
 : 
 \begin_inset Formula $X_{i}|\theta,\sigma^{2}\overset{iid}{\sim}N(\theta,\sigma^{2})$
 \end_inset
@@ -2010,8 +2110,10 @@ Model
 \begin_layout Itemize
 
 \series bold
+\color orange
 Prior
 \series default
+\color inherit
 : 
 \begin_inset Formula $\theta\sim N(\mu_{0},\tau_{0}^{2})$
 \end_inset
@@ -2031,8 +2133,10 @@ independent
 \begin_layout Itemize
 
 \series bold
+\color orange
 Mean-field approximation
 \series default
+\color inherit
 : 
 \begin_inset Formula $q(\theta,\sigma^{2})=q_{\theta}(\theta)\cdot q_{\sigma^{2}}(\sigma^{2})$
 \end_inset
@@ -2225,7 +2329,7 @@ After updating
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename unigaussVbDemo1.pdf
+	filename Images/unigaussVbDemo1.pdf
 	scale 25
 
 \end_inset
@@ -2240,7 +2344,7 @@ After updating
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename unigaussVbDemo2.pdf
+	filename Images/unigaussVbDemo2.pdf
 	scale 25
 
 \end_inset
@@ -2281,7 +2385,7 @@ At convergence
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename unigaussVbDemo3.pdf
+	filename Images/unigaussVbDemo3.pdf
 	scale 25
 
 \end_inset
@@ -2296,7 +2400,7 @@ At convergence
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename unigaussVbDemo4.pdf
+	filename Images/unigaussVbDemo4.pdf
 	scale 25
 
 \end_inset
@@ -2505,7 +2609,7 @@ Probit example (n=200 observations)
 
 \series bold
 \begin_inset Graphics
-	filename Probit_MCMCvsVB.eps
+	filename Images/Probit_MCMCvsVB.eps
 	scale 55
 
 \end_inset
@@ -2544,7 +2648,7 @@ Probit example
 
 \series bold
 \begin_inset Graphics
-	filename Probit_LowerBound.eps
+	filename Images/Probit_LowerBound.eps
 	scale 45
 
 \end_inset
