@@ -441,7 +441,7 @@ Use
 \end_inset
 
 , where 
-\begin_inset Formula $M$
+\begin_inset Formula $\mathbf{M}$
 \end_inset
 
  is the mass matrix (often diagonal).
@@ -1764,7 +1764,7 @@ literal "false"
 status open
 
 \begin_layout Plain Layout
-Variational Bayes
+Variational Inference
 \end_layout
 
 \end_inset
@@ -1792,14 +1792,28 @@ Let
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-We have already seen: 
+Before: 
+\series bold
+\color blue
+Normal approximation
+\series default
+\color inherit
+ from optimation: 
 \begin_inset Formula $q(\theta)=N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1826,31 +1840,10 @@ q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Parametric
-\series default
-\color inherit
- 
-\series bold
-\color blue
-VB
-\series default
-\color inherit
-, where 
-\begin_inset Formula $q_{\lambda}(\theta)$
+\begin_inset VSpace bigskip
 \end_inset
 
- is a parametric family with parameters 
-\begin_inset Formula $\lambda$
-\end_inset
 
-.
- 
 \end_layout
 
 \begin_layout Itemize
@@ -1912,7 +1905,13 @@ Mean field approximation
 
 \begin_deeper
 \begin_layout Itemize
-Factorization
+
+\series bold
+\color orange
+Mean field VB
+\series default
+\color inherit
+ is based on factorized approximation:
 \begin_inset Formula 
 \[
 q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})
@@ -1926,13 +1925,22 @@ q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})
 \begin_layout Itemize
 
 \series bold
-No specific functional forms are assumed
+\color blue
+No specific functional forms
 \series default
+ 
+\color black
+are assumed
+\color inherit
  for the 
 \begin_inset Formula $q_{i}(\theta)$
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1959,6 +1967,10 @@ where
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2047,7 +2059,7 @@ Repeat until convergence:
 
 \end_deeper
 \begin_layout Itemize
-Note: we make no assumptions about parametric form of the 
+Note: no assumptions about parametric form of the 
 \begin_inset Formula $q_{i}(\theta)$
 \end_inset
 
@@ -2055,16 +2067,19 @@ Note: we make no assumptions about parametric form of the
 \end_layout
 
 \begin_layout Itemize
-But the optimal 
+Optimal 
 \begin_inset Formula $q_{i}(\theta)$
 \end_inset
 
- often turn out to be parametric (normal, gamma etc).
+ often 
+\series bold
+turn out
+\series default
+ to be parametric (normal etc).
 \end_layout
 
 \begin_layout Itemize
-The updates above then boil down to just updating of hyperparameters in
- the optimal densities.
+Just update hyperparameters in the optimal densities.
 \end_layout
 
 \end_deeper
@@ -2105,6 +2120,10 @@ Model
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2128,6 +2147,10 @@ independent
 
 .
  
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2142,6 +2165,10 @@ Mean-field approximation
 \end_inset
 
 .
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2186,12 +2213,14 @@ Normal model - VB algorithm
 \begin_layout Itemize
 
 \series bold
+\color orange
 Variational density for 
 \begin_inset Formula $\sigma^{2}$
 \end_inset
 
 
 \series default
+\color inherit
 
 \begin_inset Formula 
 \[
@@ -2214,12 +2243,14 @@ where
 \begin_layout Itemize
 
 \series bold
+\color orange
 Variational density for 
 \begin_inset Formula $\theta$
 \end_inset
 
 
 \series default
+\color inherit
 
 \begin_inset Formula 
 \[
@@ -2447,8 +2478,10 @@ Probit regression
 \begin_layout Itemize
 
 \series bold
+\color orange
 Model
 \series default
+\color inherit
 : 
 \begin_inset Formula 
 \[
@@ -2463,8 +2496,10 @@ Model
 \begin_layout Itemize
 
 \series bold
+\color orange
 Prior
 \series default
+\color inherit
 : 
 \begin_inset Formula $\beta\sim N(0,\Sigma_{\beta})$
 \end_inset
@@ -2480,8 +2515,10 @@ Prior
 \begin_layout Itemize
 
 \series bold
+\color blue
 Latent variable formulation
 \series default
+\color inherit
  with 
 \begin_inset Formula $u=(u_{1},...,u_{n})'$
 \end_inset
@@ -2511,8 +2548,10 @@ y_{i} & =\begin{cases}
 \begin_layout Itemize
 Factorized 
 \series bold
+\color orange
 variational approximation
 \series default
+\color inherit
 
 \begin_inset Formula 
 \[
@@ -2551,7 +2590,13 @@ VB for probit regression
 
 \begin_deeper
 \begin_layout Itemize
+
+\series bold
+\color orange
 VB posterior
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
 \beta\sim N\left(\tilde{\mu}_{\beta},\left(\mathbf{X}^{T}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\right)
