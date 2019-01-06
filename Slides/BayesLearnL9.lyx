@@ -2234,7 +2234,7 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $\tilde{\sigma}_{n}=\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}(x_{i}-\tilde{\mu}_{n})^{2}+n\cdot\tilde{\tau}_{n}^{2}}{\nu_{0}+n}$
+\begin_inset Formula $\tilde{\sigma}_{n}=\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}(x_{i}-\textcolor{orange}{\tilde{\mu}_{n}})^{2}+n\cdot\textcolor{orange}{\tilde{\tau}_{n}^{2}}}{\nu_{0}+n}$
 \end_inset
 
 
@@ -2262,7 +2262,7 @@ Variational density for
 where
 \begin_inset Formula 
 \[
-\tilde{\tau}_{n}^{2}=\frac{1}{\frac{n}{\tilde{\sigma}_{n}^{2}}+\frac{1}{\tau_{0}^{2}}}
+\tilde{\tau}_{n}^{2}=\frac{1}{\frac{n}{\textcolor{orange}{\tilde{\sigma}_{n}^{2}}}+\frac{1}{\tau_{0}^{2}}}
 \]
 
 \end_inset
@@ -2278,7 +2278,7 @@ where
 where 
 \begin_inset Formula 
 \[
-\tilde{w}=\frac{\frac{n}{\tilde{\sigma}_{n}^{2}}}{\frac{n}{\tilde{\sigma}_{n}^{2}}+\frac{1}{\tau_{0}^{2}}}
+\tilde{w}=\frac{\frac{n}{\textcolor{orange}{\tilde{\sigma}_{n}^{2}}}}{\frac{n}{\textcolor{orange}{\tilde{\sigma}_{n}^{2}}}+\frac{1}{\tau_{0}^{2}}}
 \]
 
 \end_inset
@@ -2361,6 +2361,7 @@ After updating
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Images/unigaussVbDemo1.pdf
+	lyxscale 20
 	scale 25
 
 \end_inset
@@ -2376,6 +2377,7 @@ After updating
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Images/unigaussVbDemo2.pdf
+	lyxscale 20
 	scale 25
 
 \end_inset
@@ -2417,6 +2419,7 @@ At convergence
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Images/unigaussVbDemo3.pdf
+	lyxscale 20
 	scale 25
 
 \end_inset
@@ -2432,6 +2435,7 @@ At convergence
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Images/unigaussVbDemo4.pdf
+	lyxscale 20
 	scale 25
 
 \end_inset
@@ -2607,7 +2611,7 @@ VB posterior
 where 
 \begin_inset Formula 
 \[
-\tilde{\mu}_{\beta}=\left(\mathbf{X}^{T}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\mathbf{X}^{T}\tilde{\mu}_{\mathbf{u}}
+\tilde{\mu}_{\beta}=\left(\mathbf{X}^{T}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\mathbf{X}^{T}\textcolor{orange}{\tilde{\mu}_{\mathbf{u}}}
 \]
 
 \end_inset
@@ -2615,7 +2619,7 @@ where
 and 
 \begin_inset Formula 
 \[
-\tilde{\mu}_{\mathbf{u}}=\mathbf{X}\tilde{\mu}_{\beta}+\frac{\phi\left(\mathbf{X}\tilde{\mu}_{\beta}\right)}{\Phi\left(\mathbf{X}\tilde{\mu}_{\beta}\right)^{\mathbf{y}}\left[\Phi\left(\mathbf{X}\tilde{\mu}_{\beta}\right)-\mathbf{1}_{n}\right]^{\mathbf{1}_{n}-\mathbf{y}}}.
+\tilde{\mu}_{\mathbf{u}}=\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}+\frac{\phi\left(\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}\right)}{\Phi\left(\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}\right)^{\mathbf{y}}\left[\Phi\left(\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}\right)-\mathbf{1}_{n}\right]^{\mathbf{1}_{n}-\mathbf{y}}}.
 \]
 
 \end_inset
