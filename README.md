@@ -125,7 +125,7 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 
 #### Part 4 - Model Inference and Variable Selection
 **Lecture 10 - Bayesian model comparison.**\
-Reading: BDA | [Slides](SLIDES) \
+Reading: BDA | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL10.pdf) \
 Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R) 
 
 **Lecture 11** - Computing the marginal likelihood, Bayesian variable selection, model averaging.\
