@@ -2662,15 +2662,8 @@ Fold 5
 status open
 
 \begin_layout Plain Layout
-\begin_inset CommandInset href
-LatexCommand href
-name "And hey! ... let's be careful out there"
-target "https://www.youtube.com/watch?v=_pIkkzDagsY"
-literal "false"
-
-\end_inset
-
-.
+And hey! ...
+ let's be careful out there
 \end_layout
 
 \end_inset
