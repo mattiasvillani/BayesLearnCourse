@@ -10,7 +10,7 @@
 \usepackage{colortbl}
 
 \title{Machine Learning for Industry}
-\subtitle{Lecture 12: Model evaluation and course summary.}
+\subtitle{Lecture 12: Model evaluation. Course summary}
 \author[Mattias Villani]{Mattias Villani}
 %\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
 \institute{Linköping University 
