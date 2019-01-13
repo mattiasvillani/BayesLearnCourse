@@ -125,16 +125,14 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 
 #### Part 4 - Model Inference and Variable Selection
 **Lecture 10 - Bayesian model comparison.**\
-Reading: BDA | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL10.pdf) \
+Reading: BDA Ch. 7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL10.pdf) \
 Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R) 
 
 **Lecture 11** - Computing the marginal likelihood, Bayesian variable selection, model averaging.\
-Reading: BDA | [Slides](SLIDES) \
-Code: 
+Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/GeorgeMcCulloch97.pdf) on Bayesian variable selection | [Slides](SLIDES) \
 
 **Lecture 12** - Model evaluation and course summary.\
-Reading: BDA | [Slides](SLIDES) \
-Code: 
+Reading: BDA 6.1-6.4 | [Slides](SLIDES) \
 
 **Computer Lab 4** - HMC for time series in RStan.\
 Lab: [Lab 4](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab4.pdf) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
