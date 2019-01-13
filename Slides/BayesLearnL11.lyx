@@ -1,43 +1,28 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
 \origin unavailable
 \textclass beamer
 \begin_preamble
-\setcounter{MaxMatrixCols}{10}
-\usepackage{graphicx}
-\usepackage{amsmath}
-\usepackage{mathpazo}
-\usepackage{hyperref}
-\usepackage{multimedia}
-\usepackage{xcolor}
+\usetheme{focus}
 \usepackage{colortbl}
-\definecolor{RawSienna}{cmyk}{0,0.87,0.82,0.31}
-\definecolor{gray97}{cmyk}{0,0,0,0.03}
-\definecolor{robinsegg}{cmyk}{0.18,0.04,0,0.07}
-\definecolor{cola}{cmyk}{0,0.315,0.35,0.155}
 
-\newenvironment{stepenumerate}{\begin{enumerate}[<+->]}{\end{enumerate}}
-\newenvironment{stepitemize}{\begin{itemize}[<+->]}{\end{itemize} }
-\newenvironment{stepenumeratewithalert}{\begin{enumerate}[<+-| alert@+>]}{\end{enumerate}}
-\newenvironment{stepitemizewithalert}{\begin{itemize}[<+-| alert@+>]}{\end{itemize} }
-\usecolortheme[named=RawSienna]{structure}
-%\usecolortheme[RGB={205,0,0}]{structure}
-\setbeamertemplate{navigation symbols}{}
-\useoutertheme{infolines}
-\usetheme{default}
-\setbeamertemplate{blocks}[shadow=true]
-%\setbeamerfont{structure}{shape=\itshape}
-\usefonttheme{structuresmallcapsserif}
-\setbeamertemplate{background canvas}{
- % \ifnum \thepage>0 \relax % we are on the first page
-%\includegraphics[width=\paperwidth,height=\paperheight]{/home/mv/Dropbox/Foton/IconsWallpaper/greyribbonLighter.jpg}
- % \else
- 	% No background for page 2 and onwards
- % \fi
-}
+\title{Machine Learning for Industry}
+\subtitle{Lecture 11: Computations. Variable selection.}
+\author[Mattias Villani]{Mattias Villani}
+%\titlegraphic{\includegraphics[scale=0.1]{Images/BayesTheoremNeon}}
+\institute{Linköping University 
+\\ Stockholm University  
+\vspace{0.1cm} \\ }
+
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+%\definecolor{blue}{RGB}{102, 159, 204}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -59,6 +44,8 @@ knitr
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -88,6 +75,7 @@ knitr
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -96,7 +84,10 @@ knitr
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -119,7 +110,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Learning - Lecture 11
+Bayesian Statistics - Lecture 11
 \end_layout
 
 \begin_layout Author
@@ -144,12 +135,20 @@ status open
 \begin_layout Plain Layout
 
 \series bold
-Statistics, LiU
+SU and LiU
 \end_layout
 
 \end_inset
 
-Division of Statistics
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Newline newline
+\end_inset
+
+and
 \begin_inset Newline newline
 \end_inset
 
@@ -157,7 +156,7 @@ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Linköping University
 \end_layout
 
 \begin_layout Date
@@ -190,6 +189,10 @@ Overview
 \series bold
 \color blue
 Computing the marginal likelihood
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -197,6 +200,10 @@ Computing the marginal likelihood
 \series bold
 \color blue
 Bayesian variable selection
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -233,16 +240,32 @@ Marginal likelihood in conjugate models
 
 \begin_deeper
 \begin_layout Itemize
-Computing the marginal likelihood requires integration w.r.t.
- 
-\begin_inset Formula $\theta$
+
+\series bold
+\color orange
+Marginal likelihood
+\series default
+\color inherit
+: 
+\begin_inset Formula $\int p(\mathbf{y}\vert\theta)p(\theta)d\theta$
 \end_inset
 
 .
+ 
+\color blue
+Integration
+\color inherit
+!
 \end_layout
 
 \begin_layout Itemize
-Short cut for conjugate models by rearragement of Bayes' theorem:
+Short cut for 
+\series bold
+\color orange
+conjugate models
+\series default
+\color inherit
+:
 \begin_inset Formula 
 \[
 p(y)=\frac{p(y|\theta)p(\theta)}{p(\theta|y)}
@@ -318,11 +341,18 @@ p(\mathbf{y})=\int p(\mathbf{y}|\theta)p(\theta)d\theta=E_{p(\theta)}[p(\mathbf{
 \end_layout
 
 \begin_layout Itemize
-Draw from the prior 
+
+\series bold
+\color orange
+Monte Carlo estimate
+\series default
+\color inherit
+.
+ Draw from the prior 
 \begin_inset Formula $\theta^{(1)},...,\theta^{(N)}$
 \end_inset
 
- and use the Monte Carlo estimate
+ and
 \begin_inset Formula 
 \[
 \hat{p}(\mathbf{y})=\frac{1}{N}\sum_{i=1}^{N}p(\mathbf{y}|\theta^{(i)}).
@@ -330,13 +360,13 @@ Draw from the prior
 
 \end_inset
 
-Unstable if the posterior is somewhat different from the prior.
+Unstable when posterior is different from prior.
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color red
+\color orange
 Importance sampling
 \series default
 \color inherit
@@ -357,13 +387,13 @@ Importance sampling
 
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color red
+\color orange
 Modified Harmonic mean
 \series default
 \color inherit
@@ -418,19 +448,15 @@ Computing the marginal likelihood, cont.
 
 \begin_deeper
 \begin_layout Itemize
-Rearrangement of Bayes' theorem: 
+To use 
 \begin_inset Formula $p(\mathbf{y})=p(\mathbf{y}|\theta)p(\theta)/p(\theta|\mathbf{y})$
 \end_inset
 
-.
-\end_layout
+ we need 
+\begin_inset Formula $p(\theta|\mathbf{y})$
+\end_inset
 
-\begin_layout Itemize
-We must know the posterior, 
-\series bold
-including
-\series default
- the normalization constant.
+.
 \begin_inset VSpace medskip
 \end_inset
 
@@ -452,8 +478,10 @@ But we only need to know
 \begin_layout Itemize
 
 \series bold
+\color orange
 Kernel density estimator
 \series default
+\color inherit
  to approximate 
 \begin_inset Formula $p(\theta_{0}|\mathbf{y})$
 \end_inset
@@ -468,7 +496,14 @@ Kernel density estimator
 \end_layout
 
 \begin_layout Itemize
-Chib (1995, JASA) provide better solutions for 
+
+\series bold
+\color orange
+Chib's method
+\series default
+\color inherit
+ (1995, JASA).
+ Great, but only applied to 
 \series bold
 Gibbs sampling
 \series default
@@ -476,7 +511,13 @@ Gibbs sampling
 \end_layout
 
 \begin_layout Itemize
-Chib-Jeliazkov (2001, JASA) generalizes to 
+
+\series bold
+\color orange
+Chib-Jeliazkov
+\series default
+\color inherit
+ (2001, JASA) generalizes to 
 \series bold
 MH algorithm
 \series default
@@ -490,7 +531,7 @@ MH algorithm
 \begin_layout Itemize
 
 \series bold
-\color red
+\color orange
 Reversible Jump MCMC
 \series default
 \color inherit
@@ -531,7 +572,7 @@ Usually hard to find efficient proposals.
 \begin_layout Itemize
 
 \series bold
-\color red
+\color orange
 Bayesian nonparametrics
 \series default
 \color inherit
@@ -585,16 +626,12 @@ p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\hat{\theta})\exp\left[-\fr
 \end_inset
 
 
-\begin_inset VSpace smallskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color red
+\color orange
 The Laplace approximation
 \series default
 \color inherit
@@ -610,7 +647,7 @@ where
 \begin_inset Formula $p$
 \end_inset
 
- is the number of unrestricted parameters in the model.
+ is the number of unrestricted parameters.
  
 \end_layout
 
@@ -643,7 +680,7 @@ BIC
 \begin_layout Itemize
 
 \series bold
-\color red
+\color orange
 The Laplace approximation
 \series default
 \color inherit
@@ -663,7 +700,6 @@ The Laplace approximation
 \end_layout
 
 \begin_layout Itemize
-Note that 
 \begin_inset Formula $\hat{\theta}$
 \end_inset
 
@@ -685,15 +721,11 @@ numerical optimization
 \begin_layout Itemize
 The 
 \series bold
-\color red
+\color orange
 BIC approximation
 \series default
 \color inherit
- is a large sample (large 
-\begin_inset Formula $n$
-\end_inset
-
-) approximation obtained when 
+ assumes that 
 \begin_inset Formula $J_{\hat{\theta},\mathbf{y}}$
 \end_inset
 
@@ -759,7 +791,7 @@ Which variables have
 \series bold
 non-zero
 \series default
- coefficient? Example of hypotheses: 
+ coefficient?
 \begin_inset Formula 
 \begin{eqnarray*}
 H_{0} & : & \beta_{0}=\beta_{1}=...=\beta_{p}=0\\
@@ -775,7 +807,7 @@ H_{2} & : & \beta_{1}=\beta_{2}=0
 \begin_layout Itemize
 Introduce 
 \series bold
-\color blue
+\color orange
 variable selection indicators
 \series default
 \color inherit
@@ -784,6 +816,10 @@ variable selection indicators
 \end_inset
 
  
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -846,7 +882,7 @@ p(\mathcal{I}|\mathbf{y},\mathbf{X})\propto p(\mathbf{y}|\mathbf{X},\mathbf{\mat
 \end_inset
 
 
-\begin_inset VSpace bigskip
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -858,12 +894,15 @@ The prior
 \end_inset
 
  is typically taken to be 
-\begin_inset Formula $I_{1},...,I_{p}|\theta\overset{iid}{\sim}Bernoulli(\theta)$
+\begin_inset Formula 
+\[
+I_{1},...,I_{p}|\theta\overset{iid}{\sim}Bernoulli(\theta)
+\]
+
 \end_inset
 
-.
- 
-\begin_inset VSpace bigskip
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -875,7 +914,7 @@ The prior
 
  is the 
 \series bold
-\color blue
+\color orange
 prior inclusion probability
 \series default
 \color inherit
@@ -889,7 +928,7 @@ prior inclusion probability
 \begin_layout Itemize
 Challenge: Computing the 
 \series bold
-\color blue
+\color orange
 marginal likelihood
 \family roman
 \series medium
@@ -992,11 +1031,11 @@ Prior:
 \begin_layout Itemize
 
 \series bold
-\color blue
-Marginal likelihood
+\color orange
+Marginal likelihood 
 \series default
 \color inherit
- 
+
 \begin_inset Formula 
 \[
 p(\mathbf{y}|\mathbf{X},\mathbf{\mathcal{I}})\propto\left|\mathbf{X}_{\mathcal{I}}'\mathbf{X}_{\mathcal{I}}+\Omega_{\mathcal{I},0}^{-1}\right|^{-1/2}\left|\Omega_{\mathcal{I},0}\right|^{1/2}\left(\nu_{0}\sigma_{0}^{2}+RSS_{\mathcal{I}}\right)^{-(\nu_{0}+n-1)/2}
@@ -1069,19 +1108,27 @@ But there are
 \begin_inset Formula $2^{p}$
 \end_inset
 
- model combinations to go through! Ouch!
+ model combinations to go through! 
+\emph on
+Ouch
+\emph default
+!
 \end_layout
 
 \begin_layout Itemize
 ...
- but most will have essentially zero posterior probability.
- Phew!
+ but most have essentially zero posterior probability.
+ 
+\emph on
+Phew
+\emph default
+!
 \end_layout
 
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 Simulate
 \series default
 \color inherit
@@ -1114,6 +1161,7 @@ Simulate from
 \end_inset
 
  using 
+\family default
 \series bold
 \shape default
 \size default
@@ -1123,8 +1171,9 @@ Simulate from
 \uuline default
 \uwave default
 \noun default
-\color blue
+\color orange
 Gibbs sampling
+\family roman
 \series medium
 \shape up
 \size normal
@@ -1304,7 +1353,7 @@ status collapsed
 \uwave off
 \noun off
 \color none
-[Note: 
+[
 \begin_inset Formula $\nu_{n},\sigma_{n}^{2}$
 \end_inset
 
@@ -1680,7 +1729,7 @@ p(\mathcal{I}|\mathbf{y},\mathbf{X})=\int p(\beta,\sigma^{2},\mathcal{I}|\mathbf
 \begin_layout Itemize
 
 \series bold
-\color blue
+\color orange
 MH
 \series default
 \color inherit
@@ -1882,8 +1931,10 @@ where
 
 \begin_layout Itemize
 Predictive distribution includes 
-\color red
+\series bold
+\color orange
 three sources of uncertainty
+\series default
 \color inherit
 :
 \begin_inset Separator latexpar
@@ -1896,7 +1947,7 @@ three sources of uncertainty
 \begin_layout Itemize
 
 \series bold
-\color red
+\color blue
 Future errors
 \series default
 \color inherit
@@ -1911,7 +1962,7 @@ Future errors
 \begin_layout Itemize
 
 \series bold
-\color red
+\color blue
 Parameter uncertainty
 \series default
 \color inherit
@@ -1922,7 +1973,7 @@ Parameter uncertainty
 \begin_layout Itemize
 
 \series bold
-\color red
+\color blue
 Model uncertainty
 \series default
 \color inherit

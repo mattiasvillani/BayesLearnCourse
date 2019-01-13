@@ -129,10 +129,10 @@ Reading: BDA Ch. 7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse
 Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R) 
 
 **Lecture 11** - Computing the marginal likelihood, Bayesian variable selection, model averaging.\
-Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/GeorgeMcCulloch97.pdf) on Bayesian variable selection | [Slides](SLIDES) 
+Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/GeorgeMcCulloch97.pdf) on Bayesian variable selection | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL11.pdf) 
 
 **Lecture 12** - Model evaluation and course summary.\
-Reading: BDA 6.1-6.4 | [Slides](SLIDES) 
+Reading: BDA 6.1-6.4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BayesLearnL12.pdf) 
 
 **Computer Lab 4** - HMC for time series in RStan.\
 Lab: [Lab 4](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab4.pdf) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
