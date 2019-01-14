@@ -268,7 +268,7 @@ conjugate models
 :
 \begin_inset Formula 
 \[
-p(y)=\frac{p(y|\theta)p(\theta)}{p(\theta|y)}
+p(\mathbf{y})=\frac{p(\mathbf{y}|\theta)p(\theta)}{p(\theta|\mathbf{y})}
 \]
 
 \end_inset
@@ -281,8 +281,8 @@ Bernoulli model example
 \begin_inset Formula 
 \begin{align*}
 p(\theta) & =\frac{1}{B(\alpha,\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}\\
-p(y|\theta) & =\theta^{s}(1-\theta)^{f}\\
-p(\theta|y) & =\frac{1}{B(\alpha+s,\beta+f)}\theta^{\alpha+s-1}(1-\theta)^{\beta+f-1}
+p(\mathbf{y}|\theta) & =\theta^{s}(1-\theta)^{f}\\
+p(\theta|\mathbf{y}) & =\frac{1}{B(\alpha+s,\beta+f)}\theta^{\alpha+s-1}(1-\theta)^{\beta+f-1}
 \end{align*}
 
 \end_inset
@@ -294,7 +294,7 @@ p(\theta|y) & =\frac{1}{B(\alpha+s,\beta+f)}\theta^{\alpha+s-1}(1-\theta)^{\beta
 Marginal likelihood
 \begin_inset Formula 
 \[
-p(y)=\frac{\theta^{s}(1-\theta)^{f}\frac{1}{B(\alpha,\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}}{\frac{1}{B(\alpha+s,\beta+f)}\theta^{\alpha+s-1}(1-\theta)^{\beta+f-1}}=\frac{B(\alpha+s,\beta+f)}{B(\alpha,\beta)}
+p(\mathbf{y})=\frac{\theta^{s}(1-\theta)^{f}\frac{1}{B(\alpha,\beta)}\theta^{\alpha-1}(1-\theta)^{\beta-1}}{\frac{1}{B(\alpha+s,\beta+f)}\theta^{\alpha+s-1}(1-\theta)^{\beta+f-1}}=\frac{B(\alpha+s,\beta+f)}{B(\alpha,\beta)}
 \]
 
 \end_inset
@@ -360,7 +360,13 @@ Monte Carlo estimate
 
 \end_inset
 
-Unstable when posterior is different from prior.
+
+\series bold
+\color blue
+Unstable
+\series default
+\color inherit
+ when posterior is different from prior.
 \end_layout
 
 \begin_layout Itemize
@@ -505,8 +511,10 @@ Chib's method
  (1995, JASA).
  Great, but only applied to 
 \series bold
+\color blue
 Gibbs sampling
 \series default
+\color inherit
 .
 \end_layout
 
@@ -519,8 +527,10 @@ Chib-Jeliazkov
 \color inherit
  (2001, JASA) generalizes to 
 \series bold
+\color blue
 MH algorithm
 \series default
+\color inherit
  (good for IndepMH, terrible for RWM).
 \begin_inset VSpace medskip
 \end_inset
@@ -561,7 +571,7 @@ Proportion of iterations spent in model
 
 \begin_layout Itemize
 Usually hard to find efficient proposals.
- Sloooow convergence.
+ Slow convergence.
 \begin_inset VSpace medskip
 \end_inset
 
@@ -620,7 +630,7 @@ so
 \begin{align*}
 p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\hat{\theta})\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]p(\hat{\theta})\\
  & =p(\mathbf{y}|\hat{\theta})p(\hat{\theta})(2\pi)^{p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{1/2}\\
- & =\times\underset{\text{multivariate normal density}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]}}
+ & \times\underset{\text{multivariate normal density - integrates to one}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]}}
 \end{align*}
 
 \end_inset

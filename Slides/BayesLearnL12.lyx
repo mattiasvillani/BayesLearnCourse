@@ -282,7 +282,7 @@ All models are false, but some are useful
 status open
 
 \begin_layout Plain Layout
-What is your model for really?
+What is your model for, really?
 \end_layout
 
 \end_inset
@@ -416,12 +416,12 @@ Posterior predictive analysis
 \begin_deeper
 \begin_layout Itemize
 If 
-\begin_inset Formula $p(y|\theta)$
+\begin_inset Formula $p(\mathbf{y}|\theta)$
 \end_inset
 
  is a 'good' model, then the data actually observed should not differ 'too
  much' from simulated data from 
-\begin_inset Formula $p(y|\theta)$
+\begin_inset Formula $p(\mathbf{y}|\theta)$
 \end_inset
 
 .
@@ -444,7 +444,7 @@ posterior predictive distribution
 :
 \begin_inset Formula 
 \[
-p(y^{rep}|y)=\int p(y^{rep}|\theta)p(\theta|y)d\theta.
+p(\mathbf{y}^{rep}|\mathbf{y})=\int p(\mathbf{y}^{rep}|\theta)p(\theta|\mathbf{y})d\theta.
 \]
 
 \end_inset
@@ -458,11 +458,11 @@ p(y^{rep}|y)=\int p(y^{rep}|\theta)p(\theta|y)d\theta.
 
 \begin_layout Itemize
 Difficult to compare 
-\begin_inset Formula $y$
+\begin_inset Formula $\mathbf{y}$
 \end_inset
 
  and 
-\begin_inset Formula $y^{rep}$
+\begin_inset Formula $\mathbf{y}^{rep}$
 \end_inset
 
  because of dimensionality.
@@ -481,11 +481,11 @@ low-dimensional statistic
 \series default
 \color inherit
  
-\begin_inset Formula $T(y,\theta)$
+\begin_inset Formula $T(\mathbf{y},\theta)$
 \end_inset
 
  to 
-\begin_inset Formula $T(y^{rep},\theta)$
+\begin_inset Formula $T(\mathbf{y}^{rep},\theta)$
 \end_inset
 
 .
@@ -537,17 +537,10 @@ Algorithm
 \series default
 \color inherit
  for simulating from the posterior predictive density 
-\begin_inset Formula $p[T(y^{rep})|y]$
+\begin_inset Formula $p[T(\mathbf{y}^{rep})|\mathbf{y}]$
 \end_inset
 
 :
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -577,7 +570,7 @@ status collapsed
 \end_inset
 
  from the posterior 
-\begin_inset Formula $p(\theta|y)$
+\begin_inset Formula $p(\theta|\mathbf{y})$
 \end_inset
 
 .
@@ -606,11 +599,11 @@ status collapsed
 \end_inset
 
  Simulate a data-replicate 
-\begin_inset Formula $y^{(1)}$
+\begin_inset Formula $\mathbf{y}^{(1)}$
 \end_inset
 
  from 
-\begin_inset Formula $p(y^{rep}|\theta^{(1)})$
+\begin_inset Formula $p(\mathbf{y}^{rep}|\theta^{(1)})$
 \end_inset
 
 .
@@ -639,7 +632,7 @@ status collapsed
 \end_inset
 
  Compute 
-\begin_inset Formula $T(y^{(1)})$
+\begin_inset Formula $T(\mathbf{y}^{(1)})$
 \end_inset
 
 .
@@ -668,7 +661,7 @@ status collapsed
 \end_inset
 
  Repeat steps 1-3 a large number of times to obtain a sample from 
-\begin_inset Formula $T(y^{rep})$
+\begin_inset Formula $p[T(\mathbf{y}^{rep})|\mathbf{y}]$
 \end_inset
 
 .
@@ -688,11 +681,11 @@ status collapsed
 
 \begin_layout Itemize
 We may now compare the observed statistic 
-\begin_inset Formula $T(y)$
+\begin_inset Formula $T(\mathbf{y})$
 \end_inset
 
  with the distribution of 
-\begin_inset Formula $T(y^{rep})$
+\begin_inset Formula $T(\mathbf{y}^{rep})$
 \end_inset
 
 .
@@ -707,10 +700,10 @@ Posterior predictive p-value
 \series default
 \color inherit
 : 
-\begin_inset Formula $\Pr[T(y^{rep})\geq T(y)]$
+\begin_inset Formula $\Pr[T(\mathbf{y}^{rep})\geq T(\mathbf{y})]$
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Itemize
@@ -756,7 +749,7 @@ Ex.
 
 .
  
-\begin_inset Formula $T(y)=\max_{i}\left|y_{i}\right|$
+\begin_inset Formula $T(\mathbf{y})=\max_{i}\left|y_{i}\right|$
 \end_inset
 
 .
@@ -801,7 +794,7 @@ Ex.
  3.
  ARIMA-process.
  
-\begin_inset Formula $T(y)$
+\begin_inset Formula $T(\mathbf{y})$
 \end_inset
 
  may be the autocorrelation function.
@@ -816,7 +809,7 @@ Ex.
  4.
  Poisson regression.
  
-\begin_inset Formula $T(y)$
+\begin_inset Formula $T(\mathbf{y})$
 \end_inset
 
  frequency distribution of the response counts.
