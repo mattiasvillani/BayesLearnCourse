@@ -1,6 +1,6 @@
 <!-- font: frutiger -->
 
-### Bayesian Statistics I
+### Bayesian Learning
 
 ![](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeon.jpg "Bayesian Learning")
 
@@ -21,7 +21,7 @@ Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
 * My slides on this page
 * Additional course material linked from this page, such as articles and tutorial.
 
-The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/ri157XQQ684Z50Qv17043gZ6y1Y7006Q5Y65Y3.html).
+The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/liu/web/schema/ri1X50gQ4560YvQQ66Z9170Y0Zy4007511Y53Q779.html).
 
 ---
 
@@ -30,7 +30,7 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 * The computer labs is a central part of this course and you should expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
 * You are strongly encouraged to do the labs in R, but any programming language is ok to use.
 * The labs should be done in pairs of students. 
-* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the [Mondo system](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the [Mondo system](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329)(Stockholm) or LISAM (Linköping).
 * There is only two hours of supervised time allocated to each lab. This will not be enough time to complete each lab. The idea is that you should start working on the lab before the computer session, so that you are in a position to ask questions at the session.
 
 ---
@@ -145,16 +145,8 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 
 The course examination consists of:
 
-* Written lab reports (deadlines will be given in Mondo)
-* Take home exam:
-    - 1st attempt\
-    Handed out on January 14, at 1 PM. \
-    To be returned on January 18, at 6 PM. \
-    Exam and submission in [Mondo](https://mondo.su.se/portal/tool/779aa322-20fd-442a-af82-2336d56fcd62/view-assignment/103889?fromView=list).
-    - 2nd attempt\
-    Handed out on TBA. \
-    To be returned on TBA. \
-    Exam and submission in [Mondo]().
+* Written lab reports (deadlines given in Mondo/LISAM)
+* Computer exam 
     
     
 ---
