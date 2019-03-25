@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -41,6 +41,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -70,6 +72,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -78,7 +81,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -101,7 +107,7 @@ Bayesian Learning
 
 \end_inset
 
-Bayesian Statistics - Lecture 1
+Bayesian Learning - Lecture 1
 \end_layout
 
 \begin_layout Author
@@ -189,7 +195,8 @@ webpage
 \begin_inset CommandInset href
 LatexCommand href
 name "here"
-target "https://www.statistics.su.se/english/education/courses-programmes/master-s-level/course-structure-and-contents-bayesian-statistics-i-7-5-credits-1.396065"
+target "https://www.ida.liu.se/~732A91/info/"
+literal "false"
 
 \end_inset
 
@@ -197,7 +204,28 @@ target "https://www.statistics.su.se/english/education/courses-programmes/master
 \series default
 \color inherit
 .
- 
+ courseinfo.en.shtml
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+
+\series bold
+\color red
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://www.statistics.su.se/english/education/courses-programmes/master-s-level/course-structure-and-contents-bayesian-statistics-i-7-5-credits-1.396065"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -215,6 +243,7 @@ syllabus
 LatexCommand href
 name "here"
 target "https://sisu.it.su.se/pdf_creator/cached/18232/36694/en"
+literal "false"
 
 \end_inset
 
@@ -222,6 +251,27 @@ target "https://sisu.it.su.se/pdf_creator/cached/18232/36694/en"
 \series default
 \color inherit
 .
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+
+\series bold
+\color red
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://sisu.it.su.se/pdf_creator/cached/18232/36694/en"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -246,6 +296,22 @@ Lectures
 LatexCommand href
 name "Mattias Villani"
 target "https://www.su.se/english/profiles/villani-1.394193"
+literal "false"
+
+\end_inset
+
+
+\series default
+\color inherit
+ and 
+\series bold
+\color red
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Per Sidén"
+target "https://liu.se/en/employee/persi28"
+literal "false"
 
 \end_inset
 
@@ -266,8 +332,33 @@ Mathematical exercises
 
 \begin_inset CommandInset href
 LatexCommand href
+name "Per Sidén"
+target "https://liu.se/en/employee/persi28"
+literal "false"
+
+\end_inset
+
+
+\series default
+\color inherit
+)
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
+
+\series bold
+Mathematical exercises
+\series default
+ (
+\series bold
+\color red
+
+\begin_inset CommandInset href
+LatexCommand href
 name "Munezero Parfait"
 target "https://www.su.se/english/profiles/pmune-1.218608"
+literal "false"
 
 \end_inset
 
@@ -282,6 +373,7 @@ target "https://www.su.se/english/profiles/pmune-1.218608"
 LatexCommand href
 name "Oscar Oelrich"
 target "https://www.su.se/english/profiles/ooelr-1.342298"
+literal "false"
 
 \end_inset
 
@@ -290,6 +382,50 @@ target "https://www.su.se/english/profiles/ooelr-1.342298"
 \color inherit
 )
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Computer labs
+\series default
+ (
+\series bold
+\color red
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Mattias Villani"
+target "https://www.su.se/english/profiles/villani-1.394193"
+literal "false"
+
+\end_inset
+
+
+\series default
+\color inherit
+ and 
+\series bold
+\color red
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Per Sidén"
+target "https://liu.se/en/employee/persi28"
+literal "false"
+
+\end_inset
+
+
+\series default
+\color inherit
+)
+\begin_inset Note Note
+status open
 
 \begin_layout Itemize
 
@@ -304,6 +440,7 @@ Computer labs
 LatexCommand href
 name "Munezero Parfait"
 target "https://www.su.se/english/profiles/pmune-1.218608"
+literal "false"
 
 \end_inset
 
@@ -318,6 +455,7 @@ target "https://www.su.se/english/profiles/pmune-1.218608"
 LatexCommand href
 name "Oscar Oelrich"
 target "https://www.su.se/english/profiles/ooelr-1.342298"
+literal "false"
 
 \end_inset
 
@@ -325,6 +463,11 @@ target "https://www.su.se/english/profiles/ooelr-1.342298"
 \series default
 \color inherit
 )
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -422,7 +565,17 @@ Lab reports
 \end_layout
 
 \begin_layout Itemize
+Computer exam 
+\begin_inset Note Note
+status open
+
+\begin_layout Itemize
 Home exam
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper

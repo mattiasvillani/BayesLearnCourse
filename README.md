@@ -147,8 +147,14 @@ The course examination consists of:
 
 * Written lab reports (deadlines will be given in Mondo)
 * Take home exam:
-    - 1st attempt: handed out on January 14. To be returned on January 18, at 6 PM. The exam will be available in Mondo [here](https://mondo.su.se/portal/tool/779aa322-20fd-442a-af82-2336d56fcd62/view-assignment/103889?fromView=list), where you also submit your solutions.
-    - 2nd attempt: handed out on TBD. To be returned on TBD.
+    - 1st attempt\
+    Handed out on January 14, at 1 PM. \
+    To be returned on January 18, at 6 PM. \
+    Exam and submission in [Mondo](https://mondo.su.se/portal/tool/779aa322-20fd-442a-af82-2336d56fcd62/view-assignment/103889?fromView=list).
+    - 2nd attempt\
+    Handed out on TBA. \
+    To be returned on TBA. \
+    Exam and submission in [Mondo]().
     
     
 ---
