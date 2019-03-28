@@ -18,7 +18,7 @@ priorDens = dgamma(thetaGrid, alpha_, beta_)
 postDens = dgamma(thetaGrid, alpha_ + sum(x), beta_ + n)
 
 # Plotting 
-maxY = max(normLikelihood,priorDens,postDens)
+maxY = max(normLikelihood,priorDens,postDens) # To set the plotting window
 plot(thetaGrid, normLikelihood, type = "l", lwd = 3, ylim = c(0,maxY),
      xlab = expression(theta), ylab = "Density", col = "blue", 
      main = "Posterior for mean number of bugs")
