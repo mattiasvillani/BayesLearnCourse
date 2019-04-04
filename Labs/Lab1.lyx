@@ -718,7 +718,7 @@ Use the posterior draws from b) to compute a 95% equal tail credible interval
 \end_inset
 
 , and 
-\begin_inset Formula $97.5\%$
+\begin_inset Formula $2.5\%$
 \end_inset
 
  to the right of 
