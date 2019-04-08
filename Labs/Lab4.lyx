@@ -578,8 +578,8 @@ Use your function from a) to simulate two AR(1)-processes,
  as unknown and estimate them using MCMC.
  Implement Stan-code that samples from the posterior of the three parameters,
  using suitable non-informative priors of your choice.
- [Hint: Look at the time-series models examples in Chapter 10 of the Stan
- reference manual, and note the different parameterization used here.]
+ [Hint: Look at the time-series models examples in the Stan reference manual,
+ and note the different parameterization used here.]
 \end_layout
 
 \begin_deeper

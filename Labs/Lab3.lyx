@@ -598,18 +598,27 @@ Graphical comparison.
 \begin_inset Newline newline
 \end_inset
 
-Plot the following densities in one figure: 1) a histogram or kernel density
- estimate of the data.
- 2) Normal density 
-\begin_inset Formula $\mathcal{N}(\mu,\sigma^{2})$
+Let 
+\begin_inset Formula $\hat{\mu}$
 \end_inset
 
- in (a); 3) Mixture of normals density 
-\begin_inset Formula $p(y_{i}|\mu,\sigma^{2},\pi)$
+ denote the posterior mean of the parameter 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and correspondingly for the other parameters.
+ Plot the following densities in one figure: 1) a histogram or kernel density
+ estimate of the data.
+ 2) Normal density 
+\begin_inset Formula $\mathcal{N}(\hat{\mu},\hat{\sigma}^{2})$
+\end_inset
+
+ in (a).
+ 3) Mixture of normals density 
+\begin_inset Formula $p(y_{i}|\hat{\mu},\hat{\sigma}^{2},\hat{\pi})$
 \end_inset
 
  in (b).
- Use the posterior mean value for all the parameters.
 \end_layout
 
 \end_deeper
