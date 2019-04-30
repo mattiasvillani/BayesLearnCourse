@@ -515,7 +515,7 @@ n curve.
  This gives a collection of regression curves, one for each draw from the
  prior.
  Do the collection of curves look reasonable? If not, change the prior hyperpara
-meters until the collection of prior regression curves do agree with your
+meters until the collection of prior regression curves agrees with your
  prior beliefs about the regression curve.
 \begin_inset Newline newline
 \end_inset
