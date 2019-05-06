@@ -1,5 +1,5 @@
 # Using the coda library to compute the effective sample size
-# Author: Per Sidén
+# Author: Per Siden
 
 library(coda)
 

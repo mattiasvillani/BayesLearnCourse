@@ -507,9 +507,9 @@ leapfrog algorithm
 
 \begin_inset Formula 
 \begin{align*}
-\phi_{i}\left(t+\frac{\varepsilon}{2}\right) & =\phi_{i}\left(t\right)-\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},\\
+\phi_{i}\left(t+\frac{\varepsilon}{2}\right) & =\phi_{i}\left(t\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},\\
 \theta\left(t+\varepsilon\right) & =\theta\left(t\right)+\varepsilon\mathbf{M}^{-1}\phi(t),\\
-\phi_{i}\left(t+\varepsilon\right) & =\phi_{i}\left(t+\frac{\varepsilon}{2}\right)-\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},
+\phi_{i}\left(t+\varepsilon\right) & =\phi_{i}\left(t+\frac{\varepsilon}{2}\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},
 \end{align*}
 
 \end_inset
@@ -1805,7 +1805,7 @@ Before:
 Normal approximation
 \series default
 \color inherit
- from optimation: 
+ from optimization: 
 \begin_inset Formula $q(\theta)=N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
 \end_inset
 
@@ -1831,12 +1831,30 @@ Variational Bayes
 VB
 \series default
 \color inherit
-)
-\begin_inset Formula 
-\[
-q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})
-\]
+): 
+\begin_inset Formula $q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})$
+\end_inset
 
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Parametric VB
+\series default
+\color inherit
+: Parametric family 
+\begin_inset Formula $q_{\lambda}\left(\theta\right)$
+\end_inset
+
+ with parameters 
+\begin_inset Formula $\lambda$
 \end_inset
 
 
@@ -1855,9 +1873,8 @@ Find the
 \series bold
 minimizes the 
 \color blue
-Kullback-Leibler distanc
+Kullback-Leibler distance
 \series default
-e
 \color inherit
  between the true posterior 
 \begin_inset Formula $p$
