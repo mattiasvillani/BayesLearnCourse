@@ -257,9 +257,8 @@ Linköping University
 \noindent
 \align left
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="8" columns="1">
 <features tabularvalignment="middle">
-<column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
 <row>
 <cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
@@ -284,15 +283,6 @@ Computer Lab 2
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
@@ -311,15 +301,6 @@ height "1pt"
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
@@ -332,15 +313,6 @@ You are recommended to use R for solving the labs.
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
@@ -348,17 +320,18 @@ You are recommended to use R for solving the labs.
 
 \begin_layout Plain Layout
 You work and submit your labs in pairs, but both of you should contribute
- equally.
- 
+ equally
 \end_layout
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-
+and understand all parts of your solutions.
 \end_layout
 
 \end_inset
@@ -382,15 +355,6 @@ It is not allowed to share exact solutions
 
 \end_inset
 </cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -398,15 +362,6 @@ It is not allowed to share exact solutions
 
 \begin_layout Plain Layout
 Submit your solutions via LISAM (Linköping) or Mondo (Stockholm).
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
 \end_layout
 
 \end_inset
@@ -424,15 +379,6 @@ height "1pt"
 
 \end_inset
 
-
-\end_layout
-
-\end_inset
-</cell>
-<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -569,7 +515,7 @@ n curve.
  This gives a collection of regression curves, one for each draw from the
  prior.
  Do the collection of curves look reasonable? If not, change the prior hyperpara
-meters until the collection of prior regression curves do agree with your
+meters until the collection of prior regression curves agrees with your
  prior beliefs about the regression curve.
 \begin_inset Newline newline
 \end_inset

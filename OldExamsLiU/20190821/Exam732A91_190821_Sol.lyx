@@ -1,0 +1,2009 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<column alignment="right" valignment="top">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+LINKÖPING UNIVERSITY
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2019-08-21
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dept.
+ of Computer and Information Science
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 4.7cm
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bayesian Learning, 6 hp
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Division of Statistics and Machine Learning
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+732A91/TDDE07 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Per Sidén
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 0.3cm
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Tabular
+<lyxtabular version="3" rows="35" columns="2">
+<features tabularvalignment="middle">
+<column alignment="left" valignment="top">
+<column alignment="left" valignment="top">
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\size large
+Computer Exam - Bayesian Learning (732A91/TDDE07), 6 hp
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0cm"
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Time:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14-18
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Allowable material:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- The allowed material in the folder given_files in the exam system.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+- Calculator with erased memory.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Teacher:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Per Sidén.
+ Phone: 
+\begin_inset Formula $070-4977175$
+\end_inset
+
+ and through the Communication client.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Exam scores:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Maximum number of credits on the exam: 40.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+Maximum number of credits on each exam question: 10.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Grades (732A91):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+A: 36 points 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+B: 32 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+C: 24 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+D: 20 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+E: 16 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+F: <16 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Grades (TDDE07):
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5: 34 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4: 26 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3: 18 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+U: <18 points
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+\color red
+INSTRUCTIONS
+\series default
+\color inherit
+:
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+When asked to give a solution on 
+\series bold
+\color blue
+Paper
+\series default
+\color black
+, give that answer on physical papers supplied with the exam.
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+Each submitted sheet of paper should be marked with your 
+\emph on
+Client ID
+\emph default
+ from the 
+\emph on
+Communication Clien
+\emph default
+t.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The client ID is the code in the
+\color black
+ 
+\family typewriter
+\color red
+red
+\family default
+\color black
+ dashed rectangle in figure below.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+All other answers should be submitted in a single PDF file using the 
+\emph on
+Communication Client.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Include important code needed to grade the exam (inline or at the end of
+ the PDF).
+ 
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\color black
+Submission starts by clicking the button in the 
+\family typewriter
+\color lime
+green
+\family default
+\color black
+ solid rectangle in figure below.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The submitted PDF file should be named 
+\emph on
+BayesExam.pdf
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Questions can be asked through the Communication client (
+\family typewriter
+\color blue
+blue
+\family default
+\color black
+ dotted rectangle in figure below).
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Full score requires clear and well motivated answers.
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell multicolumn="1" alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset CommandInset line
+LatexCommand rule
+offset "0cm"
+width "97.5col%"
+height "1pt"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename ../CommunicationClient.png
+	lyxscale 40
+	scale 33
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape smallcaps
+Regression
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The Boston housing data contains characteristics of 506 houses in the Boston
+ suburbs and their selling price.
+ The dataset is loaded by the 
+\family typewriter
+ExamData.R
+\family default
+ file.
+ The original data is in 
+\family typewriter
+Boston
+\family default
+ and 
+\family typewriter
+?Boston
+\family default
+ will present the help file with information on all variables.
+ We are here interested in modeling the response variable 
+\family typewriter
+medv
+\family default
+ (value of the house in 1000$) as a function of all the other variables
+ in the dataset.
+ The 
+\family typewriter
+ExamData.R
+\family default
+ also prepares the data so that the vector 
+\family typewriter
+y
+\family default
+ contains the response variable and the matrix 
+\family typewriter
+X
+\family default
+ contains the covariates (with the first column being ones to model the
+ intercept term).
+ The vector 
+\family typewriter
+\color black
+covNames
+\family default
+\color inherit
+ contains the names of all the covariates.
+ Use the conjugate prior
+\begin_inset Formula 
+\begin{align*}
+\beta\vert\sigma^{2} & \sim N(0,10^{2}\sigma^{2}I)\\
+\sigma^{2} & \sim Inv-\chi^{2}(1,5^{2}).
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Credits: 4p.
+ Use the function 
+\family typewriter
+BayesLinReg
+\family default
+ supplied in 
+\family typewriter
+ExamData.R
+\family default
+\color black
+ to simulate 
+\begin_inset Formula $5000$
+\end_inset
+
+ draws from the posterior distribution of all regression coefficients and
+ the error variance.
+ Summarize the posterior of the regression coefficients by the point estimate
+ under the quadratic loss function, and by 95% equal-tail credible intervals.
+ Interpret the credible interval for the regression coefficient on nitrogen
+ oxides concentration (
+\family typewriter
+nox
+\family default
+).
+
+\series bold
+\color blue
+ 
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: The quadratic loss function corresponds to using the posterior mean as
+ point estimate.
+ See 
+\family typewriter
+\color black
+Exam732A91_190821_Sol.Rmd
+\family default
+\color inherit
+.
+\end_layout
+
+\begin_layout Enumerate
+Credits: 3p.
+ Based on your samples, do a kernel density estimate of the posterior of
+ 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ using the density function in R with default settings and plot it.
+ Use that kernel density estimate to compute the posterior mode and a 90%
+ Highest Posterior Density interval for 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See 
+\family typewriter
+\color black
+Exam732A91_190821_Sol.Rmd.
+\end_layout
+
+\begin_layout Enumerate
+Credits: 3p.
+ A construction company is planning to build a new house with covariates
+ as given in the vector 
+\family typewriter
+XNewHouse
+\family default
+.
+ The construction cost is 20000$ and the company is planning to sell the
+ house when it is finished.
+ Do a Bayesian analysis (using simulation methods) to determine how probable
+ it is that the company will make money (that the house will sell for more
+ than 20000$) on the project.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See 
+\family typewriter
+\color black
+Exam732A91_190821_Sol.Rmd.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Earthquakes
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Let the time 
+\begin_inset Formula $x$
+\end_inset
+
+ (in years) between successive occurrences of earthquakes in a certain region
+ follow a geometric distribution
+\begin_inset Formula 
+\[
+p\left(x|\theta\right)=\left(1-\theta\right)^{x}\theta,\,\,\,\,\,\,\,\,\,x=0,1,2,3,\ldots,\,\,\,\,\,\,\,\,\,0<\theta<1,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $x=0$
+\end_inset
+
+ corresponds to the next earthquake occurring within the same year as the
+ previous one.
+ The times between the last five earthquakes were 
+\begin_inset Formula $35,14,4,10$
+\end_inset
+
+ and 
+\begin_inset Formula $2$
+\end_inset
+
+ years.
+ Consider the data as independent and assign a Beta(
+\begin_inset Formula $\alpha,\beta$
+\end_inset
+
+)-prior to 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Credits: 5p.
+ Derive the posterior mode for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ on 
+\series bold
+\color blue
+Paper
+\series default
+\color inherit
+.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: The likelihood and prior are
+\begin_inset Formula 
+\begin{align*}
+p(x_{1},\ldots,x_{5}|\theta) & =\prod_{i=1}^{5}\left(1-\theta\right)^{x_{i}}\theta\\
+p\left(\theta\right) & \propto\theta^{\alpha-1}\left(1-\theta\right)^{\beta-1}.
+\end{align*}
+
+\end_inset
+
+So the log posterior is
+\begin_inset Formula 
+\begin{align*}
+lnp\left(\theta|x_{1},\ldots,x_{5}\right) & =lnp(x_{1},\ldots,x_{5}|\theta)+lnp\left(\theta\right)+\text{const}\\
+ & =5ln\theta+ln\left(1-\theta\right)\sum_{i=1}^{5}x_{i}+\left(\alpha-1\right)ln\theta+\left(\beta-1\right)ln\left(1-\theta\right)+\text{const}\\
+ & =\left(5+\alpha-1\right)ln\theta+\left(\sum_{i=1}^{5}x_{i}+\beta-1\right)ln\left(1-\theta\right)+\text{const}.
+\end{align*}
+
+\end_inset
+
+To find the mode, take derivative and set to 0:
+\begin_inset Formula 
+\begin{align*}
+\frac{dlnp\left(\theta|x_{1},\ldots,x_{5}\right)}{d\theta} & =\frac{5+\alpha-1}{\theta}-\frac{\sum_{i=1}^{5}x_{i}+\beta-1}{1-\theta}=0\\
+\Leftrightarrow\frac{1-\theta}{\theta} & =\frac{\sum_{i=1}^{5}x_{i}+\beta-1}{5+\alpha-1}\\
+\Leftrightarrow & \frac{1}{\theta}=\frac{\sum_{i=1}^{5}x_{i}+\beta-1+5+\alpha-1}{5+\alpha-1}\\
+\Rightarrow & \hat{\theta}=\frac{\alpha+4}{\alpha+\beta+3+\sum_{i=1}^{5}x_{i}}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Credits: 5p.
+ The last earthquake occurred this year.
+ Using Bayesian methods, compute the maximal number of years until the next
+ earthquake has occurred with 95% probability.
+ Use prior parameters 
+\begin_inset Formula $\alpha=1$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta=1$
+\end_inset
+
+.
+ [Hints: The posterior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is Beta-distributed.
+ See 
+\family typewriter
+?Geometric
+\family default
+ in R].
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+\color blue
+Solution
+\series default
+\color inherit
+: This will be solved through simulation of the posterior predictive distributio
+n
+\begin_inset Formula 
+\[
+p\left(\tilde{x}|x_{1},\ldots,x_{5}\right)=\int p\left(\tilde{x}|\theta\right)p\left(\theta|x_{1},\ldots,x_{5}\right)d\theta
+\]
+
+\end_inset
+
+by first simulating from the posterior and then from the likelihood.
+ The posterior parameters can be identified in the log posterior expression
+ in the solution of (a) so that 
+\begin_inset Formula $\theta|x_{1},\ldots,x_{5}\sim Beta\left(5+\alpha,\sum_{i=1}^{5}x_{i}+\beta\right)$
+\end_inset
+
+.
+ See 
+\family typewriter
+\color black
+Exam732A91_190821_Sol.Rmd.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Data from different distributions
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Assume that 
+\begin_inset Formula $x_{1},\ldots,x_{m}$
+\end_inset
+
+ are independent observations from a model where each observation is distributed
+ according to the probability density function (pdf) 
+\begin_inset Formula $p\left(x_{i}|\theta\right)$
+\end_inset
+
+.
+ Further assume that we have access to a second independent sample 
+\begin_inset Formula $y_{1},\ldots,y_{n}$
+\end_inset
+
+ of independent observations from a different model, distributed according
+ to the pdf 
+\begin_inset Formula $p\left(y_{i}|\theta\right)$
+\end_inset
+
+ and that we use the prior distribution 
+\begin_inset Formula $p\left(\theta\right)$
+\end_inset
+
+.
+ Note that both distributions depend on the same parameter 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Credits: 2p.
+ Show on 
+\series bold
+\color blue
+Paper
+\series default
+\color inherit
+ that using the posterior based on the first sample 
+\begin_inset Formula $x_{1},\ldots,x_{m}$
+\end_inset
+
+ as a prior when analyzing the second sample 
+\begin_inset Formula $y_{1},\ldots,y_{n}$
+\end_inset
+
+ gives the same posterior as when analyzing both samples simultaneously.
+ That is, show that 
+\begin_inset Formula 
+\[
+p\left(y_{1},\ldots,y_{n}|\theta\right)p\left(\theta|x_{1},\ldots,x_{m}\right)\propto p\left(x_{1},\ldots,x_{m},y_{1},\ldots,y_{n}|\theta\right)p\left(\theta\right).
+\]
+
+\end_inset
+
+
+\series bold
+\color blue
+Solution
+\series default
+\color inherit
+: This can be done by considering the right-hand side and using that the
+ joint pdf of independent observations factorizes and applying Bayes' rule
+ for 
+\begin_inset Formula $x_{1},\ldots,x_{m}$
+\end_inset
+
+.
+ We have
+\begin_inset Formula 
+\begin{align*}
+p\left(x_{1},\ldots,x_{m},y_{1},\ldots,y_{n}|\theta\right)p\left(\theta\right) & =p\left(x_{1},\ldots,x_{m}|\theta\right)p\left(y_{1},\ldots,y_{n}|\theta\right)p\left(\theta\right)\\
+ & \propto p\left(y_{1},\ldots,y_{n}|\theta\right)p\left(\theta|x_{1},\ldots,x_{m}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Credits: 4p.
+ Assume now that 
+\begin_inset Formula $x_{1},\ldots x_{m}$
+\end_inset
+
+ are exponentially distributed and that 
+\begin_inset Formula $\theta$
+\end_inset
+
+ has a Gamma
+\begin_inset Formula $(3,2)$
+\end_inset
+
+ prior, that is, 
+\begin_inset Formula $p\left(x_{i}|\theta\right)=\theta\exp\left(-\theta x_{i}\right)$
+\end_inset
+
+, for 
+\begin_inset Formula $x_{i}>0$
+\end_inset
+
+ and 
+\begin_inset Formula $p\left(\theta\right)=4\theta^{2}\exp\left(-2\theta\right)$
+\end_inset
+
+, for 
+\begin_inset Formula $\theta>0$
+\end_inset
+
+.
+ Derive the posterior 
+\begin_inset Formula $p\left(\theta|x_{1},\ldots,x_{m}\right)$
+\end_inset
+
+ on 
+\series bold
+\color blue
+Paper
+\series default
+\color inherit
+.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: The posterior can be derived as
+\begin_inset Formula 
+\begin{align*}
+p\left(\theta|x_{1},\ldots,x_{m}\right) & \propto p\left(x_{1},\ldots,x_{m}|\theta\right)p\left(\theta\right)\\
+ & \propto\prod_{i=1}^{m}\theta\exp\left(-\theta x_{i}\right)\cdot4\theta^{2}\exp\left(-2\theta\right)\\
+ & \propto\theta^{m}\exp\left(-\theta\sum_{i=1}^{m}x_{i}\right)\theta^{2}\exp\left(-2\theta\right)\\
+ & \propto\theta^{m+3-1}\exp\left(-\theta\left[2+\sum_{i=1}^{m}x_{i}\right]\right).
+\end{align*}
+
+\end_inset
+
+So 
+\begin_inset Formula $\theta|x_{1},\ldots,x_{m}\sim Gamma\left(m+3,2+\sum_{i=1}^{m}x_{i}\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Credits: 4p.
+ In addition to the assumptions in (b), assume that 
+\begin_inset Formula $y_{1},\ldots,y_{n}$
+\end_inset
+
+ follows a t-distribution with 5 degrees of freedom and 
+\begin_inset Formula $\sigma=1$
+\end_inset
+
+, centered around 
+\begin_inset Formula $\log\left(\theta\right)$
+\end_inset
+
+, that is 
+\begin_inset Formula 
+\[
+p\left(y_{i}|\theta\right)=\frac{\Gamma\left(3\right)}{\Gamma\left(5/2\right)\sqrt{5\pi}}\left(1+\frac{1}{5}\left(y_{i}-\log\left(\theta\right)\right)^{2}\right)^{-3}.
+\]
+
+\end_inset
+
+Write a function in R that computes the log unnormalized posterior distribution
+ of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ based on all observations 
+\begin_inset Formula $x_{1},...,x_{m},y_{1},\ldots,y_{n}$
+\end_inset
+
+.
+ Use that function to plot the normalized posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ on the interval 
+\begin_inset Formula $(0,2)$
+\end_inset
+
+ for the observations in the data vectors 
+\family typewriter
+xData
+\family default
+ and 
+\family typewriter
+yData
+\family default
+ in the supplied file 
+\family typewriter
+ExamData.R
+\family default
+, containing the values of 
+\begin_inset Formula $x_{1},...,x_{m}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{1},\ldots,y_{n}$
+\end_inset
+
+.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: One way to solve this is to use that
+\begin_inset Formula 
+\[
+p\left(\theta|x_{1},\ldots,x_{m},y_{1},\ldots,y_{n}\right)\propto p\left(x_{1},\ldots,x_{m}|\theta\right)p\left(y_{1},\ldots,y_{n}|\theta\right)p\left(\theta\right).
+\]
+
+\end_inset
+
+See 
+\family typewriter
+\color black
+Exam732A91_190821_Sol.Rmd.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Metropolis-Hastings for aircraft incidents
+\shape default
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+The file 
+\family typewriter
+incidents
+\family default
+, which can be loaded by the code in 
+\family typewriter
+ExamData.R
+\family default
+, contains data on the number of aircraft incidents each year from 1970
+ until 2018.
+ Denote the observations with 
+\begin_inset Formula $x_{1},...,x_{n}$
+\end_inset
+
+ and assume that they are independent and identically distributed even though
+ this ignores the temporal dependence present in the data.
+ Further assume that they follow a negative binomial distribution with the
+ alternative parameterization
+\begin_inset Formula 
+\[
+p\left(x|\mu,\phi\right)=\left(\begin{array}{c}
+x+\phi-1\\
+x
+\end{array}\right)\left(\frac{\mu}{\mu+\phi}\right)^{x}\left(\frac{\phi}{\mu+\phi}\right)^{\phi},\,\,\,\,\,\,x=0,1,2,\ldots\,\,\,\,\,\,\mu>0,\,\,\,\,\,\,\phi>0,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mu$
+\end_inset
+
+ is the mean of the distribution and 
+\begin_inset Formula $\phi$
+\end_inset
+
+ is a parameter that controls the overdispersion.
+ Assume the following prior for 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p\left(\mu,\phi\right)\propto\frac{1}{\phi^{2}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Credits: 5p.
+ Simulate from the posterior using the Metropolis algorithm.
+ Denote 
+\begin_inset Formula $\theta=\left(\mu,\phi\right)^{T}$
+\end_inset
+
+ and use as proposal density the multivariate normal density (random walk
+ Metropolis):
+\begin_inset Formula 
+\[
+\theta_{p}\vert\theta^{\left(i-1\right)}\sim N\left(\theta^{\left(i-1\right)},c\cdot\Sigma\right),
+\]
+
+\end_inset
+
+where and 
+\begin_inset Formula $\theta^{\left(i-1\right)}$
+\end_inset
+
+ is the previous draw, 
+\begin_inset Formula $c=0.1$
+\end_inset
+
+ and 
+\begin_inset Formula $\Sigma=\mathrm{diag}(100,5)$
+\end_inset
+
+ is a diagonal matrix which is close to the covariance matrix of a normal
+ approximation of the posterior of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ at the mode.
+ Use 50 iterations burn-in and thereafter draw 1000 samples from the posterior.
+ Use 
+\begin_inset Formula $\theta^{\left(0\right)}=\left(200,20\right)^{T}$
+\end_inset
+
+ as initial values.
+ Produce traceplots of the posterior samples over the iterations.
+ Based on these plots, would you say that this MCMC sampler is efficient?
+ Motivate your answer.
+ If your answer is no, make a suggestion about how to improve the efficiency
+ of the Metropolis algorithm.
+
+\series bold
+\color blue
+ 
+\series default
+\color inherit
+[Hint: The proposal distribution can be truncated to avoid proposals of
+ 
+\begin_inset Formula $\mu\leq0$
+\end_inset
+
+ or 
+\begin_inset Formula $\phi\leq0$
+\end_inset
+
+ which can lead to numerical errors, use e.g.
+ 
+\family typewriter
+theta[theta<=0]=1e-6
+\family default
+.] 
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_190821_Sol.Rmd
+\family default
+.
+\end_layout
+
+\begin_layout Enumerate
+Credits: 5p.
+ Now, instead simulate from the posterior using the Metropolis-Hastings
+ algorithm.
+ Use a non-symmetric proposal density which is independent between 
+\begin_inset Formula $\mu$
+\end_inset
+
+ and 
+\begin_inset Formula $\phi$
+\end_inset
+
+ (
+\begin_inset Formula $\theta_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta_{2}$
+\end_inset
+
+):
+\begin_inset Formula 
+\[
+\theta_{j,p}|\theta_{j}^{\left(i-1\right)}\sim Gamma\left(c\cdot\theta_{j}^{\left(i-1\right)},c\right),
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $j=1$
+\end_inset
+
+ and 
+\begin_inset Formula $j=2$
+\end_inset
+
+ and 
+\begin_inset Formula $c=0.8$
+\end_inset
+
+.
+ Again, use 50 iterations burn-in and thereafter draw 1000 samples from
+ the posterior and 
+\begin_inset Formula $\theta^{\left(0\right)}=\left(200,10\right)^{T}$
+\end_inset
+
+ as initial values.
+ Produce new traceplots of the posterior samples over the iterations.
+ Based on these plots, would you say that this MCMC sampler is efficient?
+ Motivate your answer.
+ If your answer is no, make a suggestion about how to improve the efficiency
+ of the Metropolis-Hastings algorithm.
+\series bold
+\color blue
+
+\begin_inset Newline newline
+\end_inset
+
+Solution
+\series default
+\color inherit
+: See the code in 
+\family typewriter
+Exam732A91_190821_Sol.Rmd
+\family default
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+Good luck!
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\shape smallcaps
+Mattias and Per
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
