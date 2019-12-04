@@ -46,7 +46,9 @@ Division of Statistics and Machine Learning, Linköping University
 <img src="Misc/Oscar.jpg" width="100">\
 [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Assistant \
 PhD Candidate \
-Department of Statistics, Stockholm University---
+Department of Statistics, Stockholm University
+
+---
 
 #### Part 1 - The Basics
 **Lecture 1** - Basics concepts. Likelihood. The Bernoulli model.\
