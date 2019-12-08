@@ -57,15 +57,17 @@ Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/mast
 
 **Lecture 2** - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation.\
 Reading: BDA Ch. 2.-2.9 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
-Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)
+Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)\
+Python Notebook: Poisson eBay data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/Notebooks/eBayPoisson.ipynb) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/Notebooks/eBayPoisson.html)
 
 **Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
 Reading: BDA Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
-Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R) | [Multinomial model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/DirichletSampling.R)
+Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R)\
+R Notebook: Multinomial survey data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/Notebooks/DirichletSurveyData.Rmd) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/Notebooks/DirichletSurveyData.nb.html)
 
 **Exercise session 1** \
 Exercises: [Exercise 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise1.pdf) \
-Assistant: [Munezero Parfait](https://www.su.se/english/profiles/pmune-1.218608)
+Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
 
 **Computer Lab 1** - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.\
 Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab1.pdf) \
