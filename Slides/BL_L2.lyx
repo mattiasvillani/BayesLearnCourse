@@ -262,6 +262,20 @@ Conjugate priors
 \series bold
 \color blue
 Prior elicitation
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Jeffreys' prior
 \end_layout
 
 \end_deeper
@@ -2277,6 +2291,365 @@ Longer
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Jeffreys' prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Observed information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+J_{\theta,\mathbf{x}}=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\theta)}{\partial\theta^{2}}\vert_{\theta=\hat{\theta}}
+\]
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Fisher information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+I_{\theta}=E_{\mathbf{x}|\theta}\left(J_{\theta,\mathbf{x}}\right)
+\]
+
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A common non-informative prior is 
+\series bold
+\color blue
+Jeffreys' prior 
+\series default
+\color inherit
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(\theta)=\left|I_{\theta}\right|^{1/2}.
+\]
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color orange
+Invariant
+\series default
+\color inherit
+ to 1:1 transformations of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Often non-conjugate.
+\end_layout
+
+\begin_layout Itemize
+Often problematic in multiparameter settings.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Jeffreys' prior for Bernoulli sampling
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Formula 
+\[
+x_{1},...,x_{n}|\theta\overset{iid}{\sim}Bern(\theta).
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\ln p(\mathbf{x}|\theta)=s\ln\theta+f\ln(1-\theta)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d\ln p(\mathbf{x}|\theta)}{d\theta}=\frac{s}{\theta}-\frac{f}{(1-\theta)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d^{2}\ln p(\mathbf{x}|\theta)}{d\theta^{2}}=-\frac{s}{\theta^{2}}-\frac{f}{(1-\theta)^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I(\theta)=\frac{E_{\mathbf{x}|\theta}(s)}{\theta^{2}}+\frac{E_{\mathbf{x}|\theta}(f)}{(1-\theta)^{2}}=\frac{n\theta}{\theta^{2}}+\frac{n(1-\theta)}{(1-\theta)^{2}}=\frac{n}{\theta(1-\theta)}
+\]
+
+\end_inset
+
+Thus, the Jeffreys' prior is
+\begin_inset Formula 
+\[
+p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1/2}(1-\theta)^{-1/2}\propto Beta(1/2,1/2).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Jeffreys' prior for negative binomial sampling
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Jeffreys' prior:
+\begin_inset Formula 
+\[
+n|\theta\overset{iid}{\sim}NegBin(s,\theta).
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\ln p(\mathbf{x}|\theta)=\ln\binom{n-1}{s-1}+s\ln\theta+f\ln(1-\theta)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d^{2}\ln p(\mathbf{x}|\theta)}{d\theta^{2}}=-\frac{s}{\theta^{2}}-\frac{f}{(1-\theta)^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I(\theta)=\frac{s}{\theta^{2}}+\frac{E_{n|\theta}(n-s)}{(1-\theta)^{2}}=\frac{s}{\theta^{2}}+\frac{s/\theta-s}{(1-\theta)^{2}}=\frac{s}{\theta^{2}(1-\theta)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Thus, the Jeffreys' prior is
+\begin_inset Formula 
+\[
+p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1}(1-\theta)^{-1/2}\propto Beta(\theta|0,1/2).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Jeffreys' prior is 
+\series bold
+\color orange
+improper
+\series default
+\color inherit
+, but the posterior is proper: 
+\begin_inset Formula $\theta\vert n\sim\mathrm{Beta}(s,f+1/2)$
+\end_inset
+
+ which is proper since 
+\begin_inset Formula $s\geq1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Jeffreys' prior 
+\series bold
+\color orange
+violates the likelihood principle
+\series default
+\color inherit
+ because 
+\begin_inset Formula $I(\theta)$
+\end_inset
+
+ is sampling-based.
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Separator parbreak
 \end_inset
