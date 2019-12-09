@@ -740,6 +740,157 @@ status open
 
 \series bold
 \color orange
+Normal model - normal prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+y_{1},...,y_{n}|\theta,\sigma^{2}\overset{iid}{\sim}N(\theta,\sigma^{2})
+\]
+
+\end_inset
+
+
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Conjugate prior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{gather*}
+\theta|\sigma^{2}\sim N\left(\mu_{0},\frac{\sigma^{2}}{\kappa_{0}}\right)\\
+\sigma^{2}\sim Inv\text{-}\chi^{2}(\nu_{0},\sigma_{0}^{2})
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal model with normal prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior
+\series default
+\color inherit
+ 
+\begin_inset Formula 
+\begin{gather*}
+\theta|\mathbf{y},\sigma^{2}\sim N\left(\mu_{n},\frac{\sigma^{2}}{\kappa_{n}}\right)\\
+\sigma^{2}|\mathbf{y}\sim Inv\text{-}\chi^{2}(\nu_{n},\sigma_{n}^{2}).
+\end{gather*}
+
+\end_inset
+
+where
+\begin_inset Formula 
+\begin{eqnarray*}
+\mu_{n} & = & \frac{\kappa_{0}}{\kappa_{0}+n}\mu_{0}+\frac{n}{\kappa_{0}+n}\bar{y}\\
+\kappa_{n} & = & \kappa_{0}+n\\
+\nu_{n} & = & \nu_{0}+n\\
+\nu_{n}\sigma_{n}^{2} & = & \nu_{0}\sigma_{0}^{2}+(n-1)s^{2}+\frac{\kappa_{0}n}{\kappa_{0}+n}(\bar{y}-\mu_{0})^{2}.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal posterior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{gather*}
+\theta\vert\mathbf{y}\sim t_{\nu_{n}}\left(\mu_{n},\sigma_{n}^{2}/\kappa_{n}\right)
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Multinomial model with Dirichlet prior
 \end_layout
 
