@@ -1,0 +1,1461 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+  \setbeamertemplate{headline}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% include necessary packages here
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{\includegraphics[width=2cm]{LogoBlueJustRing.jpg}
+}
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage[ruled]{algorithm2e}
+\usepackage{wasysym}
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+\end_preamble
+\options xcolor=svgnames, handout
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 0
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 0
+\use_package mhchem 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\size largest
+\color orange
+Bayesian Statistics I
+\size default
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+Multiparameter models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Lecture 5 - Regression and Regularization
+\end_layout
+
+\begin_layout Author
+Mattias Villani
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Bayesian Statistics I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+  Department of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Linköping and Stockholm University
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Lecture overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Normal model
+\series default
+\color inherit
+ with conjugate prior
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+linear regression
+\series default
+\color inherit
+ model
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Non-linear regression
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Regularization priors
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Linear regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The linear regression model in 
+\series bold
+\color blue
+matrix form
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\underset{(n\times1)}{\mathbf{y}}=\underset{(n\times k)(k\times1)}{\mathbf{X}\beta}+\underset{(n\times1)}{\varepsilon}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbf{y} & = & \left(\begin{array}{c}
+y_{1}\\
+\vdots\\
+y_{n}
+\end{array}\right),\text{ }\beta=\left(\begin{array}{c}
+\beta_{1}\\
+\vdots\\
+\beta_{k}
+\end{array}\right),\text{ }\varepsilon=\left(\begin{array}{c}
+\varepsilon_{1}\\
+\vdots\\
+\varepsilon_{n}
+\end{array}\right)\\
+\mathbf{X} & = & \left(\begin{array}{c}
+\mathbf{x}_{1}^{\prime}\\
+\vdots\\
+\mathbf{x}_{n}^{\prime}
+\end{array}\right)=\left(\begin{array}{ccc}
+x_{11} & \cdots & x_{1k}\\
+\vdots & \ddots & \vdots\\
+x_{n1} & \cdots & x_{nk}
+\end{array}\right)
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Usually 
+\begin_inset Formula $x_{i1}=1$
+\end_inset
+
+, for all 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+ is the intercept.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Likelihood
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mathbf{y}|\beta,\sigma^{2},\mathbf{X}\sim N(\mathbf{X}\beta,\sigma^{2}I_{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Linear regression - uniform prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Standard 
+\series bold
+\color blue
+non-informative prior
+\series default
+\color inherit
+: uniform on (
+\begin_inset Formula $\beta,\log\sigma^{2}$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+p(\beta,\sigma^{2})\propto\sigma^{-2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Joint posterior
+\series default
+\color inherit
+ of 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta|\sigma^{2},\mathbf{y} & \sim & N\left[\hat{\beta},\sigma^{2}(\mathbf{X}^{\prime}\mathbf{X})^{-1}\right]\\
+\sigma^{2}|\mathbf{y} & \sim & Inv\text{-}\chi^{2}(n-k,s^{2})
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\hat{\beta}=(\mathbf{X}^{\prime}\mathbf{X})^{-1}\mathbf{X}^{\prime}\mathbf{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $s^{2}=\frac{1}{n-k}(\mathbf{y}-\mathbf{X}\hat{\beta})^{\prime}(\mathbf{y}-\mathbf{X}\hat{\beta}).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Simulate
+\series default
+\color inherit
+ from the joint posterior by simulating from
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $p(\sigma^{2}|\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(\beta|\sigma^{2},\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal posterior
+\color orange
+ 
+\series default
+\color inherit
+of 
+\begin_inset Formula $\beta:$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\beta|\mathbf{y}\sim t_{n-k}\left[\hat{\beta},s^{2}(X^{\prime}X)^{-1}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Linear regression - conjugate prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Joint prior
+\color orange
+ 
+\series default
+\color inherit
+for 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\begin{align*}
+\beta|\sigma^{2} & \sim N\left(\mu_{0},\sigma^{2}\Omega_{0}^{-1}\right)\\
+\sigma^{2} & \sim Inv-\chi^{2}\left(\nu_{0},\sigma_{0}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\beta|\sigma^{2},\mathbf{y} & \sim N\left[\mu_{n},\sigma^{2}\Omega_{n}^{-1}\right]\\
+\sigma^{2}\vert\mathbf{y} & \sim Inv-\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)
+\end{align*}
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{align*}
+\mu_{n} & =\left(\mathbf{X}'\mathbf{X}+\Omega_{0}\right)^{-1}\left(\mathbf{X}'\mathbf{X}\hat{\beta}+\Omega_{0}\mu_{0}\right)\\
+\Omega_{n} & =\mathbf{X}'\mathbf{X}+\Omega_{0}\\
+\nu_{n} & =\nu_{0}+n\\
+\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\left(\mathbf{y}'\mathbf{y}+\mu_{0}'\Omega_{0}\mu_{0}-\mu_{n}'\Omega_{n}\mu_{n}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Polynomial regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Polynomial regression
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+f(x_{i})=\beta_{0}+\beta_{1}x_{i}+\beta_{2}x_{i}^{2}+...+\beta_{k}x_{i}^{k}.
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbf{y}=\mathbf{X}_{P}\beta+\varepsilon,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\mathbf{X}_{P}=(1,x,x^{2},...,x^{k}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/quadraticBasis.eps
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Spline regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Polynomials are too global.
+ Need more local basis functions.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Truncated power splines
+\series default
+\color inherit
+ given 
+\series bold
+\color blue
+knot locations
+\shape italic
+\emph on
+\color black
+ 
+\begin_inset Formula $k_{1},...,k_{m}$
+\end_inset
+
+
+\color blue
+ 
+\series default
+\shape default
+\emph default
+\color inherit
+
+\begin_inset Formula 
+\[
+b_{ij}=\left\{ \begin{array}{c}
+(x_{i}-k_{j})^{p}\text{ \ \ if }x_{i}>k_{j}\\
+0\text{ otherwise}
+\end{array}\right.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/brokenStickBasis.eps
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Splines
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Spline regression is linear
+\series default
+\color inherit
+ in the 
+\begin_inset Formula $m$
+\end_inset
+
+ 'dummy variables' 
+\begin_inset Formula $b_{j}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbf{y}=\mathbf{X}_{b}\beta+\varepsilon,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $X_{b}$
+\end_inset
+
+ is the 
+\series bold
+\color blue
+basis matrix
+\series default
+\color inherit
+ 
+\begin_inset Formula 
+\[
+\mathbf{X}_{b}=(b_{1},...,b_{m}).
+\]
+
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Adding intercept and linear term
+\begin_inset Formula 
+\[
+\mathbf{X}_{b}=(1,x,b_{1},...,b_{m}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Smoothness prior for splines
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Problem: too many knots leads to 
+\series bold
+\color blue
+over-fitting
+\series default
+\color inherit
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Smoothness
+\color inherit
+/
+\color blue
+shrinkage
+\color inherit
+/
+\color blue
+regularization
+\color inherit
+ prior
+\series default
+
+\begin_inset Formula 
+\[
+\beta_{i}|\sigma^{2}\overset{iid}{\sim}N\left(0,\frac{\sigma^{2}}{\lambda}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Larger 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ gives smoother fit.
+ Note: 
+\begin_inset Formula $\mbox{\Omega}_{0}=\lambda I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Equivalent to 
+\series bold
+\color blue
+penalized likelihood
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+-2\cdot\log p(\beta\vert\sigma^{2},\mathbf{y},\mathbf{X})\propto RSS(\beta)+\lambda\beta'\beta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Posterior mean gives 
+\series bold
+\color blue
+ridge regression
+\series default
+\color inherit
+ estimator
+\begin_inset Formula 
+\[
+\tilde{\beta}=\left(\mathbf{X}'\mathbf{X}+\lambda I\right)^{-1}\mathbf{X}'\mathbf{y}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Shrinkage
+\series default
+\color inherit
+ toward zero 
+\begin_inset Formula 
+\[
+\text{As }\lambda\rightarrow\infty,\text{ }\tilde{\beta}\rightarrow0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+When 
+\begin_inset Formula $\mathbf{X}'\mathbf{X}=I$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\tilde{\beta}=\frac{1}{1+\lambda}\hat{\beta}_{OLS}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian spline with smoothness prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/LidarPoly1Knots24.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Smoothness prior for splines
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Lasso
+\series default
+\color inherit
+ is equivalent to posterior mode under Laplace prior
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\[
+\beta_{i}|\sigma^{2}\overset{iid}{\sim}\mathrm{Laplace}\left(0,\frac{\sigma^{2}}{\lambda}\right)
+\]
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Laplace.png
+	lyxscale 20
+	scale 3
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+Bayesian shrinkage
+\series default
+\color inherit
+ prior is 
+\series bold
+\color blue
+interpretable
+\series default
+\color inherit
+.
+ 
+\series bold
+Not ad hoc
+\series default
+.
+\end_layout
+
+\begin_layout Itemize
+Laplace distribution have heavy tails.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Laplace prior
+\series default
+\color inherit
+: many 
+\begin_inset Formula $\beta_{i}$
+\end_inset
+
+ close to zero, but some 
+\begin_inset Formula $\beta_{i}$
+\end_inset
+
+ very large.
+\end_layout
+
+\begin_layout Itemize
+Normal distribution have light tails.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Normal prior
+\series default
+\color inherit
+: all 
+\begin_inset Formula $\beta_{i}$
+\end_inset
+
+'s are similar in magnitude.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Estimating the shrinkage
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Cross-validation is often used to determine the degree of smoothness, 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Bayesian: 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is 
+\series bold
+\color blue
+unknown
+\series default
+\color inherit
+
+\begin_inset Formula $\;\Rightarrow\;$
+\end_inset
+
+
+\series bold
+\color blue
+use a prior
+\series default
+\color inherit
+ for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\lambda\sim Inv-\chi^{2}(\eta_{0},\lambda_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Hierarchical setup:
+\begin_inset Formula 
+\begin{align*}
+\mathbf{y}|\beta,\mathbf{X} & \sim N(\mathbf{X}\beta,\sigma^{2}I_{n})\\
+\beta|\sigma^{2},\lambda & \sim N\left(0,\sigma^{2}\lambda^{-1}I_{m}\right)\\
+\sigma^{2} & \sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})\\
+\lambda & \sim Inv-\chi^{2}(\eta_{0},\lambda_{0})
+\end{align*}
+
+\end_inset
+
+so 
+\begin_inset Formula $\Omega_{0}=\lambda I_{m}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Regression with estimated shrinkage
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+joint posterior
+\series default
+\color inherit
+ of 
+\begin_inset Formula $\beta$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is
+\begin_inset Formula 
+\begin{align*}
+\beta|\sigma^{2},\lambda,\mathbf{y} & \sim N\left(\mu_{n},\Omega_{n}^{-1}\right)\\
+\sigma^{2}|\lambda,\mathbf{y} & \sim Inv-\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)\\
+p(\lambda|\mathbf{y}) & \propto\sqrt{\frac{\left|\Omega_{0}\right|}{\left|\mathbf{X}^{T}\mathbf{X}+\Omega_{0}\right|}}\left(\frac{\nu_{n}\sigma_{n}^{2}}{2}\right)^{-\nu_{n}/2}\cdot p(\lambda)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\Omega_{0}=\lambda I_{m}$
+\end_inset
+
+, and 
+\begin_inset Formula $p(\lambda)$
+\end_inset
+
+ is the prior for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, and 
+\begin_inset Formula 
+\begin{align*}
+\mu_{n} & =\left(\mathbf{X}^{T}\mathbf{X}+\Omega_{0}\right)^{-1}\mathbf{X}^{T}\mathbf{y}\\
+\Omega_{n} & =\mathbf{X}^{T}\mathbf{X}+\Omega_{0}\\
+\nu_{n} & =\nu_{0}+n\\
+\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\mathbf{y}^{T}\mathbf{y}-\mu_{n}^{T}\Omega_{n}\mu_{n}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+More complexity
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The
+\series bold
+\color blue
+ location of the knots
+\series default
+\color inherit
+ can be unknown.
+ Joint posterior:
+\begin_inset Formula 
+\[
+p(\beta,\sigma^{2},\lambda,k_{1},...,k_{m}|\mathbf{y},\mathbf{X})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The marginal posterior for 
+\begin_inset Formula $\lambda,k_{1},...,k_{m}$
+\end_inset
+
+ is a nightmare.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Simulate from joint posterior by MCMC.
+ Li and Villani (2013).
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The basic spline model can be extended with:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Heteroscedastic errors
+\series default
+\color inherit
+ (also modelled with a spline)
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Non-normal errors
+\series default
+\color inherit
+ (student-t or mixture distributions)
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Autocorrelated/dependent errors
+\series default
+\color inherit
+ (AR process for the errors)
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_body
+\end_document
