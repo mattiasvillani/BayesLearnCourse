@@ -369,7 +369,7 @@ for some function
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\mathbb{V}(\bar{g}(\theta))=\frac{c}{\sqrt{N}}$
+\begin_inset Formula $\mathbb{V}(\bar{g}(\theta))=\frac{c}{N}$
 \end_inset
 
  for some constant 
