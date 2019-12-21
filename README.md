@@ -30,7 +30,7 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 * The computer labs is a central part of this course and you should expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
 * You are strongly encouraged to do the labs in R, but any programming language is ok to use.
 * The labs should be done in pairs of students.
-* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the [Mondo system](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329)(Stockholm) or LISAM (Linköping).
+* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the [ system](https://Athena.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329)(Stockholm) or LISAM (Linköping).
 * There is only two hours of supervised time allocated to each lab. This will not be enough time to complete each lab. The idea is that you should start working on the lab before the computer session, so that you are in a position to ask questions at the session.
 
 ---
@@ -72,7 +72,7 @@ Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
 **Computer Lab 1** - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.\
 Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab1.pdf) \
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+Submission tool: [Athena](https://athena.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=230334).
 
 ---
 
@@ -95,7 +95,7 @@ Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
 **Computer Lab 2** - Polynomial regression and classification with logistic regression.\
 Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+Submission tool: [Athena](https://athena.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=230335).
 
 ---
 
@@ -114,9 +114,9 @@ Reading: BDA Ch. 12.4 and Ch. 13.7 | [RStan vignette](https://cran.r-project.org
 Code: [RStan - Three Plants](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/ThreePlants.R) | [RStan - Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/BernBetaRStan.R) | [RStan - Logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/LogisticRegRStan.R) | [RStan - Logistic regression with random effects](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/LogisticRegRandEffectsRStan.R) | [RStan - Poisson model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/RoachesPoissonRStan.R)
 
 **Computer Lab 3** - Gibbs sampling for the normal model, mixture of normals. Metropolis-Hastings for Poisson regression. Stan.\
-Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3_SU.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis \
+Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3_SU.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat) | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis \
 Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+Submission tool: [Athena](https://athena.itslearning.com/LearningToolElement/ViewLearningToolElement.aspx?LearningToolElementId=230339).
 
 ---
 
@@ -131,10 +131,11 @@ Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/G
 **Lecture 12** - Model evaluation and course summary.\
 Reading: BDA 6.1-6.4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L12.pdf)
 
-<>**Computer Lab 4** - HMC for time series in RStan.\
-<>Lab: [Lab 4](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab4.pdf) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
-<>Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-<>Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+<!--**Computer Lab 4** - HMC for time series in RStan.\
+Lab: [Lab 4](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab4.pdf) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
+Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
+Submission tool: [Athena](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+-->
 
 ---
 
@@ -142,7 +143,7 @@ Reading: BDA 6.1-6.4 | [Slides](https://github.com/mattiasvillani/BayesLearnCour
 
 The course examination consists of:
 
-* Written lab reports (deadlines given in Mondo/LISAM)
+* Written lab reports (deadlines given in Athena/LISAM)
 * Computer exam
 
 
