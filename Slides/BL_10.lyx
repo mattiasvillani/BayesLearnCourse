@@ -1,0 +1,2895 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+  \setbeamertemplate{headline}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% include necessary packages here
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+\usepackage{colortbl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{\includegraphics[width=2cm]{LogoBlueJustRing.jpg}
+}
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage[ruled]{algorithm2e}
+\usepackage{wasysym}
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+\end_preamble
+\options xcolor=svgnames, handout
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\size largest
+\color orange
+Bayesian Statistics I
+\size default
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+Bayesian Model Comparison
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Lecture 8 - Bayesian Model Comparison
+\end_layout
+
+\begin_layout Author
+Mattias Villani
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Bayesian Statistics I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+  Department of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Linköping and Stockholm University
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian model comparison
+\size small
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\size small
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Log Predictive Score
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Using likelihood for model comparison
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Consider two models for the data 
+\begin_inset Formula $\mathbf{y}=(y_{1},...,y_{n})$
+\end_inset
+
+: 
+\begin_inset Formula $M_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $M_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $p_{i}(\mathbf{y}|\theta_{i})$
+\end_inset
+
+ denote the data density under model 
+\begin_inset Formula $M_{i}$
+\end_inset
+
+.
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If know 
+\begin_inset Formula $\theta_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta_{2}$
+\end_inset
+
+, the 
+\series bold
+\color blue
+likelihood ratio
+\series default
+\color inherit
+ is useful 
+\begin_inset Formula 
+\[
+\frac{p_{1}(\mathbf{y}|\theta_{1})}{p_{2}(\mathbf{y}|\theta_{2})}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The
+\series bold
+ 
+\color blue
+likelihood ratio
+\series default
+\color inherit
+ with 
+\series bold
+\color blue
+ML estimates
+\series default
+\color inherit
+ plugged in:
+\begin_inset Formula 
+\[
+\frac{p_{1}(\mathbf{y}|\hat{\theta}_{1})}{p_{2}(\mathbf{y}|\hat{\theta}_{2})}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Bigger models always win in estimated likelihood ratio.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hypothesis tests
+\series default
+\color inherit
+ are problematic for non-nested models.
+ End results are not very useful for analysis.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian model comparison
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Just use your priors 
+\begin_inset Formula $p_{1}(\theta_{1})$
+\end_inset
+
+ och 
+\begin_inset Formula $p_{2}(\theta_{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+marginal likelihood
+\color red
+ 
+\series default
+\color inherit
+for model 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+ with parameters 
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p_{k}(y)=\int p_{k}(y|\theta_{k})p_{k}(\theta_{k})d\theta_{k}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+ is 'removed' by the prior.
+ 
+\series bold
+Not a silver bullet
+\series default
+.
+ 
+\series bold
+\color blue
+Priors matter!
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+Bayes factor
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+B_{12}(y)=\frac{p_{1}(y)}{p_{2}(y)}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior model probabilities
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\underset{\text{posterior model prob.}}{\underbrace{\mathrm{Pr}(M_{k}\vert\mathbf{y})}}\propto\underset{\text{marginal likelihood}}{\underbrace{p(\mathbf{y}\vert M_{k})}}\cdot\underset{\text{prior model prob.}}{\underbrace{\mathrm{Pr}(M_{k})}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian hypothesis testing - Bernoulli
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hypothesis testing
+\series default
+\color inherit
+ is just a special case of model selection: 
+\begin_inset Formula 
+\begin{align*}
+M_{0}: & x_{1},...,x_{n}\overset{iid}{\sim}Bernoulli(\theta_{0})\\
+M_{1}: & x_{1},...,x_{n}\overset{iid}{\sim}Bernoulli(\theta),\text{}\theta\sim Beta(\alpha,\beta)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(x_{1},...,x_{n}|M_{0})=\theta_{0}^{s}(1-\theta_{0})^{f},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+p(x_{1},...,x_{n}|M_{1}) & = & \int_{0}^{1}\theta^{s}(1-\theta)^{f}B(\alpha,\beta)^{-1}\theta^{\alpha-1}(1-\theta)^{\beta-1}d\theta\\
+ & = & B(\alpha+s,\beta+f)/B(\alpha,\beta),
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $B(\cdot,\cdot)$
+\end_inset
+
+ is the Beta function.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior model probabilities
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+Pr(M_{k}|x_{1},...,x_{n})\propto p(x_{1},...,x_{n}|M_{k})Pr(M_{k}),\text{ for }k=0,1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+Bayes factor 
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+BF(M_{0};M_{1})=\frac{p(x_{1},...,x_{n}\mathbf{|}H_{0})}{p(x_{1},...,x_{n}\mathbf{|}H_{1})}=\frac{\theta_{0}^{s}(1-\theta_{0})^{f}B(\alpha,\beta)}{B(\alpha+s,\beta+f)}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Priors matter
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/threePointPrior.eps
+	scale 30
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/MargLike.eps
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Example: Geometric vs Poisson
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Model 1 - 
+\series bold
+\color blue
+Geometric
+\series default
+\color inherit
+ with Beta prior:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y_{1},...,y_{n}\vert\theta_{1}\sim Geo(\theta_{1})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{1}\sim Beta(\alpha_{1},\beta_{1})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Model 2 - 
+\series bold
+\color blue
+Poisson
+\series default
+\color inherit
+ with Gamma prior:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y_{1},...,y_{n}\vert\theta_{2}\sim Poisson(\theta_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{2}\sim Gamma(\alpha_{2},\beta_{2})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\series default
+\color inherit
+ for 
+\begin_inset Formula $M_{1}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+p_{1}(y_{1},...,y_{n}) & =\int p_{1}(y_{1},...,y_{n}\vert\theta_{1})p(\theta_{1})d\theta_{1}\\
+ & =\frac{\Gamma\left(\alpha_{1}+\beta_{1}\right)}{\Gamma\left(\alpha_{1}\right)\Gamma\left(\beta_{1}\right)}\frac{\Gamma\left(n+\alpha_{1}\right)\Gamma\left(n\bar{y}+\beta_{1}\right)}{\Gamma\left(n+n\bar{y}+\alpha_{1}+\beta_{1}\right)}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\series default
+\color inherit
+ for 
+\begin_inset Formula $M_{2}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p_{2}(y_{1},...,y_{n})=\frac{\Gamma(n\bar{y}+\alpha_{2})\beta_{2}^{\alpha_{2}}}{\Gamma(\alpha_{2})(n+\beta_{2})^{n\bar{y}+\alpha_{2}}}\frac{1}{\prod_{i=1}^{n}y_{i}!}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric and Poisson
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GeoPoissonModels.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Priors match prior predictive means: 
+\begin_inset Formula 
+\[
+E(y_{i}\vert M_{1})=E(y_{i}\vert M_{2})\quad\Longleftrightarrow\quad\alpha_{1}\alpha_{2}=\beta_{1}\beta_{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Data
+\series default
+: 
+\begin_inset Formula $y_{1}=0,\:y_{2}=0$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{1}=1,\beta_{1}=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{1}=10,\beta_{1}=20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{1}=100,\beta_{1}=200$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{2}=2,\beta_{2}=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{2}=20,\beta_{2}=10$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{2}=200,\beta_{2}=100$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $BF_{12}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $1.5$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $4.54$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $5.87$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{Pr}(M_{1}\vert\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color red
+\begin_inset Formula $0.6$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color red
+\begin_inset Formula $0.82$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color red
+\begin_inset Formula $0.85$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{Pr}(M_{2}\vert\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.4$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.18$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.15$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+Data
+\series default
+: 
+\begin_inset Formula $y_{1}=3,\:y_{2}=3$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{1}=1,\beta_{1}=2$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{1}=10,\beta_{1}=20$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{1}=100,\beta_{1}=200$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{2}=2,\beta_{2}=1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{2}=20,\beta_{2}=10$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $\alpha_{2}=200,\beta_{2}=100$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $BF_{12}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.26$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.29$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.30$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{Pr}(M_{1}\vert\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color red
+\begin_inset Formula $0.21$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color red
+\begin_inset Formula $0.22$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color red
+\begin_inset Formula $0.23$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{Pr}(M_{2}\vert\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.79$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.78$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.77$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson for Pois(1) data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/ConvergenceModelProbPoisData.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson for Pois(1) data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/ConvergenceModelProbPoisDataLonger.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Model choice in multivariate time series
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Multivariate time series
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mathbf{x}_{t}=\alpha\beta'\mathbf{z}_{t}+\Phi_{1}\mathbf{x}_{t-1}+...\Phi_{k}\mathbf{x}_{t-k}+\Psi_{1}+\Psi_{2}t+\Psi_{3}t^{2}+\varepsilon_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Need to choose:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Lag length
+\series default
+\color inherit
+, (
+\begin_inset Formula $k=1,2..,4$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Trend model
+\series default
+\color inherit
+ (
+\begin_inset Formula $s=1,2,...,5$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Long-run (cointegration) relations
+\series default
+\color inherit
+ (
+\begin_inset Formula $r=0,1,2,3,4$
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/MonetaryDataModelPost.pdf
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Graphical models for multivariate time series
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Graphical models
+\series default
+\color inherit
+ for multivariate time series.
+\end_layout
+
+\begin_layout Itemize
+Zero-restrictions on the effect from time series 
+\begin_inset Formula $i$
+\end_inset
+
+ on time series 
+\begin_inset Formula $j$
+\end_inset
+
+, for all lags.
+ (
+\series bold
+Granger Causality
+\series default
+).
+\end_layout
+
+\begin_layout Itemize
+Zero-restrictions on the elements of the inverse covariance matrix of the
+ errors.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/CausalVARMonetary.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Properties of Bayesian model comparison
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Coherence of pair-wise comparisons
+\begin_inset Formula 
+\[
+B_{12}=B_{13}\cdot B_{32}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Consistency
+\series default
+\color inherit
+ when true model is in 
+\begin_inset Formula $\mathcal{M}=\{M_{1},...,M_{K}\}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathrm{Pr}\left(M=M_{TRUE}\vert\mathbf{y}\right)\rightarrow1\quad\text{as}\quad n\rightarrow\infty
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+KL-consistency
+\begin_inset Quotes erd
+\end_inset
+
+ when 
+\begin_inset Formula $M_{TRUE}\notin\mathcal{M}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathrm{Pr}\left(M=M^{*}\vert\mathbf{y}\right)\rightarrow1\quad\text{as}\quad n\rightarrow\infty,
+\]
+
+\end_inset
+
+
+\begin_inset Formula $M^{*}$
+\end_inset
+
+ minimizes 
+\series bold
+\color blue
+KL divergence
+\series default
+\color inherit
+ between 
+\begin_inset Formula $p_{M}(\mathbf{y})$
+\end_inset
+
+ and 
+\begin_inset Formula $p_{TRUE}(\mathbf{y})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Smaller models always win when priors are very vague.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Improper priors
+\series default
+\color inherit
+ cannot be used for model comparison.
+\begin_inset Graphics
+	filename Images/WarningSign.jpg
+	lyxscale 10
+	scale 5
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Marginal likelihood measures out-of-sample predictive performance
+\series default
+\color inherit
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+marginal likelihood
+\series default
+\color inherit
+ can be 
+\series bold
+\color blue
+decomposed
+\series default
+\color inherit
+ as
+\begin_inset Formula 
+\[
+p(y_{1},...,y_{n})=p(y_{1})p(y_{2}|y_{1})\cdots p(y_{n}|y_{1},y_{2},...,y_{n-1})
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Assume that 
+\begin_inset Formula $y_{i}$
+\end_inset
+
+ is independent of 
+\begin_inset Formula $y_{1},...,y_{i-1}$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $\theta$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+p(y_{i}|y_{1},...,y_{i-1})=\int p(y_{i}|\theta)p(\theta|y_{1},...,y_{i-1})d\theta
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prediction of 
+\begin_inset Formula $y_{1}$
+\end_inset
+
+ 
+\series default
+\color inherit
+is based on the prior of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Sensitive to prior.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prediction of 
+\begin_inset Formula $y_{n}$
+\end_inset
+
+ 
+\series default
+\color inherit
+uses almost all the data to infer 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Not sensitive to prior when 
+\begin_inset Formula $n$
+\end_inset
+
+ is not small.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal example 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+: 
+\begin_inset Formula $y_{1},...,y_{n}\vert\theta\sim N(\theta,\sigma^{2})$
+\end_inset
+
+ with 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ known.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim N(0,\kappa^{2}\sigma^{2})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Intermediate posterior
+\series default
+\color inherit
+ at time 
+\begin_inset Formula $i-1$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\theta|y_{1},...,y_{i-1}\sim N\left[w_{i}(\kappa)\cdot\bar{y}_{i-1},\frac{\sigma^{2}}{i-1+\kappa^{-2}}\right]
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $w_{i}(\kappa)=\frac{i-1}{i-1+\kappa^{-2}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Intermediate predictive density
+\series default
+\color inherit
+ at time 
+\begin_inset Formula $i-1$
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{align*}
+y_{i}|y_{1},...,y_{i-1} & \sim N\left[w_{i}(\kappa)\cdot\bar{y}_{i-1},\sigma^{2}\left(1+\frac{1}{i-1+\kappa^{-2}}\right)\right]
+\end{align*}
+
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+For 
+\begin_inset Formula $i=1$
+\end_inset
+
+, 
+\begin_inset Formula $y_{1}\sim N\left[0,\sigma^{2}\left(1+\frac{1}{\kappa^{-2}}\right)\right]$
+\end_inset
+
+ can be very sensitive to 
+\begin_inset Formula $\kappa$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+For large 
+\begin_inset Formula $i$
+\end_inset
+
+: 
+\begin_inset Formula $y_{i}|y_{1},...,y_{i-1}\overset{approx}{\sim}N\left(\bar{y}_{i-1},\sigma^{2}\right)$
+\end_inset
+
+, not sensitive to 
+\begin_inset Formula $\kappa$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+First observation is sensitive to 
+\begin_inset Formula $\kappa$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/SeqMargLikeNormal.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+First observation is sensitive to 
+\begin_inset Formula $\kappa$
+\end_inset
+
+ - zoomed
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/SeqMargLikeNormalZoom.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Log Predictive Score - LPS
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Reduce sensitivity to the prior: sacrifice 
+\begin_inset Formula $n^{*}$
+\end_inset
+
+ observations to train the prior into a posterior.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Predictive (Density) Score
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+PS
+\series default
+\color inherit
+).
+ Decompose 
+\begin_inset Formula $p(y_{1},...,y_{n})$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+\underset{\textcolor{blue}{training}}{\underbrace{p(y_{1})p(y_{2}|y_{1})\cdots p(y_{n^{*}}|y_{1:(n^{*}-1)})}}\,\,\,\underset{\textcolor{blue}{test}}{\underbrace{p(y_{n^{*}+1}\vert y_{1:n^{*}})\cdots p(y_{n}|y_{1:(n-1)})}}
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Usually report on log scale: 
+\series bold
+\color blue
+Log Predictive Score
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+LPS
+\series default
+\color inherit
+).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Time-series: obvious which data are used for training.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cross-sectional data: training-test split by 
+\series bold
+\color blue
+cross-validation
+\series default
+\color inherit
+:
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\size footnotesize
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="5">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{orange}
+\end_layout
+
+\end_inset
+
+Fold 5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{orange}
+\end_layout
+
+\end_inset
+
+Fold 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{orange}
+\end_layout
+
+\end_inset
+
+Fold 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{orange}
+\end_layout
+
+\end_inset
+
+Fold 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+cellcolor{orange}
+\end_layout
+
+\end_inset
+
+Fold 1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size scriptsize
+Fold 5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+And hey! ...
+ let's be careful out there
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Be especially 
+\series bold
+\color blue
+careful
+\series default
+\color inherit
+ with Bayesian model comparison when
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+compared models 
+\series default
+\color inherit
+are 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+very different in structure
+\end_layout
+
+\begin_layout Itemize
+severly misspecified
+\end_layout
+
+\begin_layout Itemize
+very complicated (black boxes).
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+priors
+\series default
+\color inherit
+ for the parameters in the models are 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+not carefully elicited
+\end_layout
+
+\begin_layout Itemize
+only weakly informative
+\end_layout
+
+\begin_layout Itemize
+not matched across models.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+data
+\series default
+\color inherit
+ 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+has outliers (in all models)
+\end_layout
+
+\begin_layout Itemize
+has a multivariate response.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

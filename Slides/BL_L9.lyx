@@ -1,0 +1,2858 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+  \setbeamertemplate{headline}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% include necessary packages here
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{\includegraphics[width=2cm]{LogoBlueJustRing.jpg}
+}
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{red}{RGB}{255, 128, 0}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage[ruled]{algorithm2e}
+\usepackage{wasysym}
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\begin_modules
+knitr
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding utf8
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\size largest
+\color orange
+Bayesian Statistics I
+\size default
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+HMC and Variational Inference
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Lecture 8 - HMC, Stan and Variational Inference
+\end_layout
+
+\begin_layout Author
+Mattias Villani
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Bayesian Statistics I
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+  Department of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Linköping and Stockholm University
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Lecture overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hamiltonian Monte Carlo
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Stan
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Variational Inference
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Hamiltonian Monte Carlo
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+When 
+\begin_inset Formula $\theta=(\theta_{1},\ldots,\theta_{p})$
+\end_inset
+
+ is 
+\series bold
+\color blue
+high-dimensional
+\series default
+\color inherit
+, 
+\begin_inset Formula $p\left(\theta|\mathbf{y}\right)$
+\end_inset
+
+ usually located in some subregion of 
+\begin_inset Formula $\mathbb{R}^{p}$
+\end_inset
+
+ with complicated geometry.
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+MH: hard to find good proposal distribution 
+\begin_inset Formula $q\left(\cdot|\theta^{(i-1)}\right)$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+MH: use very small step sizes otherwise too many rejections.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hamiltonian Monte Carlo
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+HMC
+\series default
+\color inherit
+): 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+distant proposals 
+\series bold
+\color blue
+and
+\series default
+\color inherit
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+high acceptance probabilities.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+HMC: add extra 
+\series bold
+\color blue
+momentum
+\series default
+\color inherit
+ parameters 
+\begin_inset Formula $\phi=\left(\phi_{1},\ldots,\phi_{p}\right)$
+\end_inset
+
+ and sample from 
+\begin_inset Formula 
+\[
+p\left(\theta,\phi|\mathbf{y}\right)=p\left(\theta|\mathbf{y}\right)p\left(\phi\right)
+\]
+
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Hamiltonian Monte Carlo
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Physics: 
+\series bold
+\color blue
+Hamiltonian
+\series default
+\color inherit
+ system 
+\begin_inset Formula $H\left(\theta,\phi\right)=U\left(\theta\right)+K\left(\phi\right)$
+\end_inset
+
+, where 
+\begin_inset Formula $U$
+\end_inset
+
+ is the 
+\series bold
+\color blue
+potential energy
+\series default
+\color inherit
+ and 
+\begin_inset Formula $K$
+\end_inset
+
+ is the 
+\series bold
+\color blue
+kinetic energy
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hamiltonian Dynamics
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+\frac{d\theta_{i}}{dt} & =\frac{\partial H}{\partial\phi_{i}}=\frac{\partial K}{\partial\phi_{i}},\\
+\frac{d\phi_{i}}{dt} & =-\frac{\partial H}{\partial\theta_{i}}=-\frac{\partial U}{\partial\theta_{i}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Hockey puck sliding over a friction-less surface: 
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "illustration"
+target "http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Use 
+\begin_inset Formula $U\left(\theta\right)=-\log\left[p\left(\theta\right)p\left(\mathbf{y}|\theta\right)\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Use 
+\begin_inset Formula $\phi\sim N\left(0,\mathbf{M}\right)$
+\end_inset
+
+ where 
+\begin_inset Formula $\mathbf{M}$
+\end_inset
+
+ is the mass matrix and
+\begin_inset Formula 
+\[
+K\left(\phi\right)=-\log\left[p\left(\phi\right)\right]=\frac{1}{2}\phi^{T}\mathbf{M}^{-1}\phi+\text{const}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If we could propose 
+\begin_inset Formula $\theta$
+\end_inset
+
+ in continuous time (spoiler: we can't), the acceptance probability would
+ be one.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Hamiltonian Monte Carlo
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hamiltonian Dynamics
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+\frac{d\theta_{i}}{dt} & =\left[\mathbf{M}^{-1}\phi\right]_{i},\\
+\frac{d\phi_{i}}{dt} & =\frac{\partial\log p\left(\theta|\mathbf{y}\right)}{\partial\theta_{i}}
+\end{align*}
+
+\end_inset
+
+which can be simulated using the 
+\series bold
+\color blue
+leapfrog algorithm
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+\phi_{i}\left(t+\frac{\varepsilon}{2}\right) & =\phi_{i}\left(t\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},\\
+\theta\left(t+\varepsilon\right) & =\theta\left(t\right)+\varepsilon\mathbf{M}^{-1}\phi(t),\\
+\phi_{i}\left(t+\varepsilon\right) & =\phi_{i}\left(t+\frac{\varepsilon}{2}\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ is the step size.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Discretization
+\series default
+\color inherit
+ 
+\begin_inset Formula $\,\Rightarrow\,$
+\end_inset
+
+ acceptance probability drops with 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+The Hamiltonian Monte Carlo algorithm
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "95col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Itemize
+Initialize 
+\begin_inset Formula $\theta^{(0)}$
+\end_inset
+
+ and iterate for 
+\begin_inset Formula $i=1,2,...$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Sample the starting 
+\series bold
+\color blue
+momentum
+\series default
+\color inherit
+ 
+\begin_inset Formula $\phi_{s}\sim N\left(0,\mathbf{M}\right)$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Simulate new values for 
+\begin_inset Formula $\left(\theta_{p},\phi_{p}\right)$
+\end_inset
+
+ by iterating the
+\series bold
+\color blue
+ leapfrog algorithm
+\series default
+\color inherit
+ 
+\begin_inset Formula $L$
+\end_inset
+
+ times, starting in 
+\begin_inset Formula $\left(\theta^{(i-1)},\phi_{s}\right)$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Compute the 
+\series bold
+\color blue
+acceptance probability
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\alpha=\min\left(1,\frac{p(\mathbf{y}\vert\theta_{p})p(\theta_{p})}{p(\mathbf{y}\vert\theta^{(i-1)})p(\theta^{(i-1)})}\frac{p\left(\phi_{p}\right)}{p\left(\phi_{s}\right)}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+With probability 
+\begin_inset Formula $\mbox{\alpha}$
+\end_inset
+
+ set 
+\begin_inset Formula $\theta^{(i)}=\theta_{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta^{(i)}=\theta^{(i-1)}$
+\end_inset
+
+ otherwise.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Tuning parameters
+\series default
+\color inherit
+: 1.
+ 
+\series bold
+stepsize
+\series default
+ 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+, 2.
+ 
+\series bold
+number of leapfrog
+\series default
+ iterations 
+\begin_inset Formula $L$
+\end_inset
+
+ and 3.
+ 
+\series bold
+mass matrix
+\series default
+ 
+\begin_inset Formula $M$
+\end_inset
+
+.
+ 
+\series bold
+\color blue
+No U-turn
+\series default
+\color inherit
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Stan
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Stan
+\color inherit
+ 
+\series default
+is a probabilistic programming language based on HMC.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Allows for Bayesian inference in many models with automatic implementation
+ of the MCMC sampler.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Named after Stanislaw Ulam (1909-1984), co-inventor of the Monte Carlo algorithm.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Written in C++ but can be run from R using the package 
+\family typewriter
+rstan
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 2cm
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/stan_logo.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/stan_ulam.jpeg
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stan logo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+Stanislaw Ulam
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Stan - toy example: three plants
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Three plants were observed for four months, measuring the number of flowers
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 2cm
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="1">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/ThreePlants.eps
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{Stan Model 1: iid normal}
+\end_layout
+
+\begin_layout Plain Layout
+
+$$y_{i}
+\backslash
+stackrel{iid}{
+\backslash
+sim}N
+\backslash
+left(
+\backslash
+mu,
+\backslash
+sigma^{2}
+\backslash
+right)$$
+\end_layout
+
+\begin_layout Plain Layout
+
+<<StanModel1, eval=FALSE, size='tiny'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+library(rstan)
+\end_layout
+
+\begin_layout Plain Layout
+
+y = c(4,5,6,4,0,2,5,3,8,6,10,8) 
+\end_layout
+
+\begin_layout Plain Layout
+
+N = length(y)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+StanModel = '
+\end_layout
+
+\begin_layout Plain Layout
+
+data { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> N; // Number of observations 
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> y[N]; // Number of flowers 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+parameters { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real mu; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real<lower=0> sigma2; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+model { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  mu ~ normal(0,100); // Normal with mean 0, st.dev.
+ 100 
+\end_layout
+
+\begin_layout Plain Layout
+
+  sigma2 ~ scaled_inv_chi_square(1,2); // Scaled-inv-chi2 with nu 1, sigma
+ 2 
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(i in 1:N)   
+\end_layout
+
+\begin_layout Plain Layout
+
+    y[i] ~ normal(mu,sqrt(sigma2)); 
+\end_layout
+
+\begin_layout Plain Layout
+
+}'
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{Stan Model 2: multilevel normal}
+\end_layout
+
+\begin_layout Plain Layout
+
+$$y_{i,p}
+\backslash
+sim N
+\backslash
+left(
+\backslash
+mu_{p},
+\backslash
+sigma_{p}^{2}
+\backslash
+right),
+\backslash
+,
+\backslash
+,
+\backslash
+,
+\backslash
+,
+\backslash
+,
+\backslash
+mu_{p}
+\backslash
+sim N
+\backslash
+left(
+\backslash
+mu,
+\backslash
+sigma^{2}
+\backslash
+right)$$
+\end_layout
+
+\begin_layout Plain Layout
+
+<<StanModel2, eval=FALSE, size='tiny'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+StanModel = '
+\end_layout
+
+\begin_layout Plain Layout
+
+data {   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> N; // Number of observations   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> y[N]; // Number of flowers   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> P; // Number of plants 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+transformed data {   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> M; // Number of months   
+\end_layout
+
+\begin_layout Plain Layout
+
+  M = N / P; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+parameters { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real mu; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real<lower=0> sigma2; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real mup[P]; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real sigmap2[P]; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+model { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  mu ~ normal(0,100); // Normal with mean 0, st.dev.
+ 100 
+\end_layout
+
+\begin_layout Plain Layout
+
+  sigma2 ~ scaled_inv_chi_square(1,2); // Scaled-inv-chi2 with nu 1, sigma
+ 2
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(p in 1:P){   
+\end_layout
+
+\begin_layout Plain Layout
+
+    mup[p] ~ normal(mu,sqrt(sigma2));   
+\end_layout
+
+\begin_layout Plain Layout
+
+    for(m in 1:M)     
+\end_layout
+
+\begin_layout Plain Layout
+
+      y[M*(p-1)+m] ~ normal(mup[p],sqrt(sigmap2[p]));  
+\end_layout
+
+\begin_layout Plain Layout
+
+  } 
+\end_layout
+
+\begin_layout Plain Layout
+
+}'
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{Stan Model 3: multilevel Poisson}
+\end_layout
+
+\begin_layout Plain Layout
+
+$$y_{i,p}
+\backslash
+sim Poisson
+\backslash
+left(
+\backslash
+mu_{p}
+\backslash
+right),
+\backslash
+,
+\backslash
+,
+\backslash
+,
+\backslash
+,
+\backslash
+,
+\backslash
+mu_{p}
+\backslash
+sim logN
+\backslash
+left(
+\backslash
+mu,
+\backslash
+sigma^{2}
+\backslash
+right)$$
+\end_layout
+
+\begin_layout Plain Layout
+
+<<StanModel3, eval=FALSE, size='tiny'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+StanModel = '
+\end_layout
+
+\begin_layout Plain Layout
+
+data {   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> N; // Number of observations   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> y[N]; // Number of flowers   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> P; // Number of plants 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+transformed data {   
+\end_layout
+
+\begin_layout Plain Layout
+
+  int<lower=0> M; // Number of months   
+\end_layout
+
+\begin_layout Plain Layout
+
+  M = N / P; 
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+parameters { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real mu; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real<lower=0> sigma2; 
+\end_layout
+
+\begin_layout Plain Layout
+
+  real mup[P];
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+model { 
+\end_layout
+
+\begin_layout Plain Layout
+
+  mu ~ normal(0,100); // Normal with mean 0, st.dev.
+ 100 
+\end_layout
+
+\begin_layout Plain Layout
+
+  sigma2 ~ scaled_inv_chi_square(1,2); // Scaled-inv-chi2 with nu 1, sigma
+ 2
+\end_layout
+
+\begin_layout Plain Layout
+
+  for(p in 1:P){     
+\end_layout
+
+\begin_layout Plain Layout
+
+    mup[p] ~ lognormal(mu,sqrt(sigma2)); // Log-normal     
+\end_layout
+
+\begin_layout Plain Layout
+
+    for(m in 1:M)       
+\end_layout
+
+\begin_layout Plain Layout
+
+      y[M*(p-1)+m] ~ poisson(mup[p]); // Poisson   
+\end_layout
+
+\begin_layout Plain Layout
+
+  }
+\end_layout
+
+\begin_layout Plain Layout
+
+}'
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{Stan: fit model and analyze output}
+\end_layout
+
+\begin_layout Plain Layout
+
+<<StanModel4, eval=FALSE, size='tiny'>>=
+\end_layout
+
+\begin_layout Plain Layout
+
+data = list(N=N, y=y, P=P) 
+\end_layout
+
+\begin_layout Plain Layout
+
+burnin = 1000 
+\end_layout
+
+\begin_layout Plain Layout
+
+niter = 2000 
+\end_layout
+
+\begin_layout Plain Layout
+
+fit = stan(model_code=StanModel,data=data,            
+\end_layout
+
+\begin_layout Plain Layout
+
+           warmup=burnin,iter=niter,chains=4)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Print the fitted model
+\end_layout
+
+\begin_layout Plain Layout
+
+print(fit,digits_summary=3)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Extract posterior samples 
+\end_layout
+
+\begin_layout Plain Layout
+
+postDraws <- extract(fit) 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Do traceplots of the first chain 
+\end_layout
+
+\begin_layout Plain Layout
+
+par(mfrow = c(1,1)) 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(postDraws$mu[1:(niter-burnin)],type="l",ylab="mu",main="Traceplot")
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Do automatic traceplots of all chains 
+\end_layout
+
+\begin_layout Plain Layout
+
+traceplot(fit)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Bivariate posterior plots 
+\end_layout
+
+\begin_layout Plain Layout
+
+pairs(fit)
+\end_layout
+
+\begin_layout Plain Layout
+
+@
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Stan - useful links
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\color blue
+\begin_inset CommandInset href
+LatexCommand href
+name "Getting started with RStan"
+target "https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started"
+literal "false"
+
+\end_inset
+
+
+\color inherit
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+\begin_inset CommandInset href
+LatexCommand href
+name "RStan vignette"
+target "https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html"
+literal "false"
+
+\end_inset
+
+
+\color inherit
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+\begin_inset CommandInset href
+LatexCommand href
+name "Stan Modeling Language User's Guide and Reference Manual"
+target "http://mc-stan.org/users/documentation/"
+literal "false"
+
+\end_inset
+
+
+\color inherit
+
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\color blue
+\begin_inset CommandInset href
+LatexCommand href
+name "Stan Case Studies"
+target "http://mc-stan.org/users/documentation/case-studies"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Variational Inference
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\theta=(\theta_{1},...,\theta_{p})$
+\end_inset
+
+.
+ Approximate the posterior 
+\begin_inset Formula $p(\theta|y)$
+\end_inset
+
+ with a (simpler) distribution 
+\begin_inset Formula $q(\theta)$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Before: 
+\series bold
+\color blue
+Normal approximation
+\series default
+\color inherit
+ from optimization: 
+\begin_inset Formula $q(\theta)=N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Mean field 
+\color orange
+Variational Inference
+\series default
+\color inherit
+ (
+\series bold
+\color orange
+VI
+\series default
+\color inherit
+): 
+\begin_inset Formula $q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Parametric VI
+\series default
+\color inherit
+: Parametric family 
+\begin_inset Formula $q_{\lambda}\left(\theta\right)$
+\end_inset
+
+ with parameters 
+\begin_inset Formula $\lambda$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Find the 
+\begin_inset Formula $q(\theta)$
+\end_inset
+
+ that 
+\series bold
+minimizes the 
+\color blue
+Kullback-Leibler distance
+\series default
+\color inherit
+ between the true posterior 
+\begin_inset Formula $p$
+\end_inset
+
+ and the approximation 
+\begin_inset Formula $q$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+KL(q,p)=\int q(\theta)\ln\frac{q(\theta)}{p(\theta|y)}d\theta=E_{q}\left[\ln\frac{q(\theta)}{p(\theta|y)}\right].
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Mean field approximation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Mean field VI
+\series default
+\color inherit
+ is based on factorized approximation:
+\begin_inset Formula 
+\[
+q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+No specific functional forms
+\series default
+ 
+\color black
+are assumed
+\color inherit
+ for the 
+\begin_inset Formula $q_{i}(\theta)$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Optimal densities
+\series default
+\color inherit
+ can be shown to satisfy:
+\begin_inset Formula 
+\[
+q_{i}(\theta)\propto\exp\left(E_{-\theta_{i}}\ln p(\mathbf{y},\theta)\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $E_{-\theta_{i}}(\cdot)$
+\end_inset
+
+ is the expectation with respect to 
+\begin_inset Formula $\prod_{i\neq j}q_{j}(\theta_{j})$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Structured mean field approximation
+\series default
+\color inherit
+.
+ Group subset of parameters in tractable blocks.
+ Similar to Gibbs sampling.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Mean field approximation - algorithm
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Initialize: 
+\begin_inset Formula $q_{2}^{*}(\theta_{2}),...,q_{M}^{*}(\theta_{p})$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Repeat until convergence:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $q_{1}^{*}(\theta_{1})\leftarrow\frac{\exp\left[E_{-\theta_{1}}\ln p(\mathbf{y},\theta)\right]}{\int\exp\left[E_{-\theta_{1}}\ln p(\mathbf{y},\theta)\right]d\theta_{1}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q_{p}^{*}(\theta_{p})\leftarrow\frac{\exp\left[E_{-\theta_{p}}\ln p(\mathbf{y},\theta)\right]}{\int\exp\left[E_{-\theta_{p}}\ln p(\mathbf{y},\theta)\right]d\theta_{p}}$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Note: no assumptions about parametric form of the 
+\begin_inset Formula $q_{i}(\theta)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Optimal 
+\begin_inset Formula $q_{i}(\theta)$
+\end_inset
+
+ often 
+\series bold
+turn out
+\series default
+ to be parametric (normal etc).
+\end_layout
+
+\begin_layout Itemize
+Just update hyperparameters in the optimal densities.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Mean field approximation - Normal model
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+: 
+\begin_inset Formula $X_{i}|\theta,\sigma^{2}\overset{iid}{\sim}N(\theta,\sigma^{2})$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim N(\mu_{0},\tau_{0}^{2})$
+\end_inset
+
+ 
+\series bold
+independent
+\series default
+ of 
+\begin_inset Formula $\sigma^{2}\sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})$
+\end_inset
+
+.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Mean-field approximation
+\series default
+\color inherit
+: 
+\begin_inset Formula $q(\theta,\sigma^{2})=q_{\theta}(\theta)\cdot q_{\sigma^{2}}(\sigma^{2})$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Optimal densities
+\begin_inset Formula 
+\begin{align*}
+q_{\theta}^{*}(\theta) & \propto\exp\left[E_{q(\sigma^{2})}\ln p(\theta,\sigma^{2},\mathbf{x})\right]\\
+q_{\sigma^{2}}^{*}(\sigma^{2}) & \propto\exp\left[E_{q(\theta)}\ln p(\theta,\sigma^{2},\mathbf{x})\right]
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal model - VB algorithm 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Variational density for 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\sigma^{2}\sim Inv-\chi^{2}\left(\tilde{\nu}_{n},\tilde{\sigma}_{n}^{2}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\tilde{\nu}_{n}=\nu_{0}+n$
+\end_inset
+
+ and 
+\begin_inset Formula $\tilde{\sigma}_{n}=\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}(x_{i}-\textcolor{orange}{\tilde{\mu}_{n}})^{2}+n\cdot\textcolor{orange}{\tilde{\tau}_{n}^{2}}}{\nu_{0}+n}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Variational density for 
+\begin_inset Formula $\theta$
+\end_inset
+
+
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\theta\sim N\left(\tilde{\mu}_{n},\tilde{\tau}_{n}^{2}\right)
+\]
+
+\end_inset
+
+where
+\begin_inset Formula 
+\[
+\tilde{\tau}_{n}^{2}=\frac{1}{\frac{n}{\textcolor{orange}{\tilde{\sigma}_{n}^{2}}}+\frac{1}{\tau_{0}^{2}}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\tilde{\mu}_{n}=\tilde{w}\bar{x}+(1-\tilde{w})\mu_{0},
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\tilde{w}=\frac{\frac{n}{\textcolor{orange}{\tilde{\sigma}_{n}^{2}}}}{\frac{n}{\textcolor{orange}{\tilde{\sigma}_{n}^{2}}}+\frac{1}{\tau_{0}^{2}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal example from Murphy (
+\begin_inset Formula $\lambda=1/\sigma^{2}$
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Initial values
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+After updating 
+\begin_inset Formula $q_{\mu}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/unigaussVbDemo1.pdf
+	lyxscale 20
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/unigaussVbDemo2.pdf
+	lyxscale 20
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+After updating 
+\begin_inset Formula $q_{\sigma^{2}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+At convergence
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/unigaussVbDemo3.pdf
+	lyxscale 20
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/unigaussVbDemo4.pdf
+	lyxscale 20
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Probit regression 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\mathrm{Pr}\left(y_{i}=1|\mathbf{x}_{i}\right)=\Phi(\mathbf{x}_{i}^{T}\beta)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset Formula $\beta\sim N(0,\Sigma_{\beta})$
+\end_inset
+
+.
+ For example: 
+\begin_inset Formula $\Sigma_{\beta}=\tau^{2}I$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Latent variable formulation
+\series default
+\color inherit
+ with 
+\begin_inset Formula $u=(u_{1},...,u_{n})'$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbf{u}|\beta\sim N(\mathbf{X}\beta,1)
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{align*}
+y_{i} & =\begin{cases}
+0 & \text{if }u_{i}\leq0\\
+1 & \text{if }u_{i}>0
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Factorized 
+\series bold
+\color blue
+variational approximation
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+q(\mathbf{u},\beta)=q_{\mathbf{u}}(\mathbf{u})q_{\beta}(\beta)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+VI for probit regression 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+VI posterior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\beta\sim N\left(\tilde{\mu}_{\beta},\left(\mathbf{X}^{T}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\tilde{\mu}_{\beta}=\left(\mathbf{X}^{T}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\mathbf{X}^{T}\textcolor{orange}{\tilde{\mu}_{\mathbf{u}}}
+\]
+
+\end_inset
+
+and 
+\begin_inset Formula 
+\[
+\tilde{\mu}_{\mathbf{u}}=\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}+\frac{\phi\left(\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}\right)}{\Phi\left(\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}\right)^{\mathbf{y}}\left[\Phi\left(\mathbf{X}\textcolor{orange}{\tilde{\mu}_{\beta}}\right)-\mathbf{1}_{n}\right]^{\mathbf{1}_{n}-\mathbf{y}}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Probit example (n=200 observations) 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+
+\series bold
+\begin_inset Graphics
+	filename Images/Probit_MCMCvsVB.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Probit example
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+
+\series bold
+\begin_inset Graphics
+	filename Images/Probit_LowerBound.eps
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
