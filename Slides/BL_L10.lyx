@@ -1740,6 +1740,10 @@ Graphical models
 \series default
 \color inherit
  for multivariate time series.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1754,14 +1758,20 @@ Zero-restrictions on the effect from time series
 , for all lags.
  (
 \series bold
+\color blue
 Granger Causality
 \series default
+\color inherit
 ).
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-Zero-restrictions on the elements of the inverse covariance matrix of the
- errors.
+Zero-restrictions on inverse covariance matrix of the errors.
+ Contemporaneous conditional independence.
 \end_layout
 
 \begin_layout Standard
