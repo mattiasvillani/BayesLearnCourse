@@ -2070,17 +2070,17 @@ Optimal densities
  can be shown to satisfy:
 \begin_inset Formula 
 \[
-q_{i}(\theta)\propto\exp\left(E_{-\theta_{i}}\ln p(\mathbf{y},\theta)\right)
+q_{j}(\theta)\propto\exp\left(E_{-\theta_{j}}\ln p(\mathbf{y},\theta)\right)
 \]
 
 \end_inset
 
 where 
-\begin_inset Formula $E_{-\theta_{i}}(\cdot)$
+\begin_inset Formula $E_{-\theta_{j}}(\cdot)$
 \end_inset
 
  is the expectation with respect to 
-\begin_inset Formula $\prod_{i\neq j}q_{j}(\theta_{j})$
+\begin_inset Formula $\prod_{k\neq j}q_{k}(\theta_{k})$
 \end_inset
 
 .
