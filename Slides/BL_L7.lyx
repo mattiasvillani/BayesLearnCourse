@@ -398,7 +398,7 @@ g(\theta)=I\left(\theta\leq c\right)
 
 \end_inset
 
-and 
+and
 \begin_inset Formula 
 \[
 \frac{1}{N}\sum_{t=1}^{N}g(\theta^{(t)})=\frac{\#\text{ }\theta\text{-draws smaller than }c}{N}.
@@ -2942,6 +2942,7 @@ Using Bayes' theorem twice:
 \begin_inset Formula 
 \begin{align*}
 p\left(\lambda|\beta,\sigma^{2},\mathbf{y}\right) & \propto p\left(\mathbf{y}|\beta,\sigma^{2},\lambda\right)p\left(\lambda|\beta,\sigma^{2}\right)\\
+ & \propto p\left(\beta|\sigma^{2},\lambda\right)p\left(\lambda\vert\sigma^{2}\right)\\
  & \propto p\left(\beta|\sigma^{2},\lambda\right)p\left(\lambda\right)
 \end{align*}
 

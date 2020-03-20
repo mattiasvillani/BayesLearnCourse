@@ -25,7 +25,7 @@
 
 \date{} % Date, can be changed to a custom date
 
-\titlegraphic{\includegraphics[width=2cm]{LogoBlueJustRing.jpg}
+\titlegraphic{\includegraphics[width=2cm]{LiU_secondary_1_black.png}
 }
 
 \definecolor{blue}{RGB}{38, 122, 181}
@@ -118,7 +118,7 @@
 
 \size largest
 \color orange
-Bayesian Statistics I
+Bayesian Learning
 \size default
 
 \begin_inset Argument 1
@@ -150,7 +150,7 @@ status open
 
 \series bold
 \color gray
-Bayesian Statistics I
+Bayesian Learning
 \end_layout
 
 \end_inset
@@ -159,13 +159,13 @@ Bayesian Statistics I
 \end_layout
 
 \begin_layout Institute
-Department of Statistics
+Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Stockholm University 
+Linköping University 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -176,11 +176,11 @@ and
 
 \end_inset
 
-  Department of Computer and Information Science
+ Department of Statistics
 \begin_inset Newline newline
 \end_inset
 
-Linköping University
+Stockholm University
 \begin_inset Argument 1
 status open
 
@@ -218,7 +218,7 @@ Course
 \begin_inset CommandInset href
 LatexCommand href
 name "webpage"
-target "ddd"
+target "https://www.ida.liu.se/~732A91/info/courseinfo.en.shtml"
 literal "false"
 
 \end_inset
@@ -234,7 +234,7 @@ literal "false"
 \begin_inset CommandInset href
 LatexCommand href
 name "syllabus"
-target "fff"
+target "https://liu.se/studieinfo/en/kurs/732a91/vt-2020"
 literal "false"
 
 \end_inset
@@ -268,6 +268,15 @@ literal "false"
 
 \end_inset
 
+ and 
+\begin_inset CommandInset href
+LatexCommand href
+name "Per Sidén"
+target "https://liu.se/en/employee/persi28"
+literal "false"
+
+\end_inset
+
 )
 \end_layout
 
@@ -275,8 +284,8 @@ literal "false"
 Mathematical exercises (
 \begin_inset CommandInset href
 LatexCommand href
-name "Oscar Oelrich"
-target "https://www.su.se/english/profiles/ooelr-1.342298"
+name "Per Sidén"
+target "https://liu.se/en/employee/persi28"
 literal "false"
 
 \end_inset
@@ -288,13 +297,13 @@ literal "false"
 Computer labs (
 \begin_inset CommandInset href
 LatexCommand href
-name "Oscar Oelrich"
-target "https://www.su.se/english/profiles/ooelr-1.342298"
+name "Per Sidén"
+target "https://liu.se/en/employee/persi28"
 literal "false"
 
 \end_inset
 
-)
+ and lab assistants)
 \begin_inset VSpace medskip
 \end_inset
 
@@ -403,7 +412,7 @@ Lab reports
 \end_layout
 
 \begin_layout Itemize
-Home exam
+Computer exam
 \end_layout
 
 \end_deeper
