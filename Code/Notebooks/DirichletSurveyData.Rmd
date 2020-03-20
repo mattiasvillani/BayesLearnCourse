@@ -62,8 +62,8 @@ Ok, let's use this piece of code on the survey data to obtain a sample from the 
 # Data and prior
 set.seed(123) # Set the seed for reproducibility
 y <- c(180,230,62,41) # The cell phone survey data (K=4)
-alpha <- c(15,15,10,10) # Dirichlet prior hyperparameters 
-nIter <- 10000 # Number of posterior draws
+alpha <- c(15,15,10,10)*10 # Dirichlet prior hyperparameters 
+nIter <- 1000 # Number of posterior draws
 thetaDraws <- SimDirichlet(nIter,y + alpha)
 names(thetaDraws) <- c('theta1','theta2','theta3','theta4')
 head(thetaDraws)
