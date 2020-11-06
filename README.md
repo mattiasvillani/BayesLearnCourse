@@ -21,7 +21,7 @@ Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
 * Some chapters from a book that I writing for this course.
 * Additional course material linked from this page, such as articles and tutorial.
 
-The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/ri161XQQ580Z50Qv17043gZ6y1Y7406Q5Y65Y3.html).
+The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39757&type=courseevent&h=t).
 
 ---
 
