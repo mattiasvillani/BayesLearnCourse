@@ -2,13 +2,13 @@
 
 ### Bayesian Learning
 
-![](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeon.jpg "Bayesian Learning")
+![](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeonBlack.jpg "Bayesian Learning")
 
 ---
 
 ### Aims
 
-The course aims to give a solid introduction to the Bayesian approach to statistical inference, with special emphasis on models in modern statistics and machine learning. After an introduction to the subjective probability concept that underlies Bayesian inference, the course moves on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Linear regression and nonlinear regression are also analyzed using a Bayesian approach. The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC) or approximate methods like Variational Inference. Bayesian prediction and marginalization of nuisance parameters is explained, and introductions to Bayesian model selection and Bayesian decision theory are also given.
+The course aims to give a solid introduction to the Bayesian approach to statistical inference, with special emphasis on models in modern computational statistics and machine learning. After an introduction to the subjective probability concept that underlies Bayesian inference, the course moves on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Bayesian prediction and decision making under uncertainty is carefully explained. The really interesting stuff starts to happen when we study regression and classification using a Bayesian approach. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance. The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) or approximate optimization methods like Variational Inference. You will also get a taste for Stan, a probabilistic programming language for Bayesian learning. The course also gives an introductions to Bayesian model selection, the concept of marginal likelihood and how MCMC can be used for automatic variable selection.
 
 ---
 
@@ -18,7 +18,7 @@ The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
-* My slides on this page
+* Some chapters from a book that I writing for this course.
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/ri161XQQ580Z50Qv17043gZ6y1Y7406Q5Y65Y3.html).
