@@ -6,9 +6,16 @@
 
 ---
 
-### Aims
+### Contents
 
-The course aims to give a solid introduction to the Bayesian approach to statistical inference, with special emphasis on models in modern computational statistics and machine learning. After an introduction to the subjective probability concept that underlies Bayesian inference, the course moves on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Bayesian prediction and decision making under uncertainty is carefully explained. The really interesting stuff starts to happen when we study regression and classification using a Bayesian approach. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance. The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) or approximate optimization methods like Variational Inference. You will also get a taste for Stan, a probabilistic programming language for Bayesian learning. The course also gives an introductions to Bayesian model selection, the concept of marginal likelihood and how MCMC can be used for automatic variable selection.
+The course gives a solid introduction to the Bayesian statistical inference, with special emphasis on models and methods in computational statistics and machine learning. 
+* The course gets off to a shocking start by introducing a completely different concept of probability than you are probably used to: subjective probability, which is the basis for Bayesian learning. 
+* We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. 
+* Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making. 
+* The really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance. 
+* The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) or approximate optimization methods like Variational Inference (VI). 
+* You will also get a taste for probabilistic programming languages for Bayesian learning, in particular the popular Stan language in R. 
+* Finally, we'll round off with an introduction to Bayesian model selection and Bayesian variable selection.
 
 ---
 
@@ -18,7 +25,7 @@ The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
-* Some chapters from a book that I writing for this course.
+* Some chapters from a book that I am writing for a courses of this kind.
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39757&type=courseevent&h=t).
@@ -27,11 +34,14 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 
 ### Computer labs
 
-* The three computer labs are central to the course and you should expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
+* The three computer labs are central to the course. Expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
 * You are strongly encouraged to do the labs in R, but any programming language is ok to use.
-* The labs should be done in pairs of students.
-* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the [Mondo system](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329)(Stockholm) or LISAM (Linköping).
-* There is only two hours of supervised time allocated to each lab. This will not be enough time to complete each lab. The idea is that you should start working on the lab before the computer session, so that you are in a position to ask questions at the session.
+* The labs should be done in **pairs** of students.
+* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through [Athena]().
+* There is only two hours of supervised time allocated to each lab. The idea is that you:
+  *  should start working on the lab before the computer session
+  *  so that you are in a position to ask questions at the session
+  *  and then finish up the report after the lab session.
 
 ---
 
