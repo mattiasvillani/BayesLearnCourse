@@ -9,11 +9,11 @@
 ### Contents
 
 The course gives a solid introduction to the Bayesian statistical inference, with special emphasis on models and methods in computational statistics and machine learning. 
-* The course gets off to a shocking start by introducing a completely different concept of probability than you are probably used to: subjective probability, which is the basis for Bayesian learning. 
+* We will get off to a shocking start by introducing a very different probability concept than the one you are probably (:wink:) used to: subjective probability. 
 * We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. 
 * Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making. 
 * The really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance. 
-* The course subsequently shows how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) or approximate optimization methods like Variational Inference (VI). 
+* A new world will open up when we learn how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) and approximate optimization methods like Variational Inference (VI).
 * You will also get a taste for probabilistic programming languages for Bayesian learning, in particular the popular Stan language in R. 
 * Finally, we'll round off with an introduction to Bayesian model selection and Bayesian variable selection.
 
