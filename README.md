@@ -27,7 +27,7 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 
 ### Computer labs
 
-* The computer labs is a central part of this course and you should expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
+* The three computer labs are central to the course and you should expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
 * You are strongly encouraged to do the labs in R, but any programming language is ok to use.
 * The labs should be done in pairs of students.
 * Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through the [Mondo system](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329)(Stockholm) or LISAM (Linköping).
@@ -39,102 +39,95 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 
 <img src="Misc/VillaniFotoMindre.jpg" width="100">\
 [Mattias Villani](https://mattiasvillani.com), Lecturer \
-Professor \
+Professor, Natural Born Bayesian :stuck_out_tongue_winking_eye: \
 Department of Statistics, Stockholm University \
 Division of Statistics and Machine Learning, Linköping University
 
 <img src="Misc/Oscar.jpg" width="100">\
-[Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Assistant \
-PhD Candidate \
+[Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Math exercises and Computer labs \
+PhD Candidate, specializing in Bayesian Statistics \
 Department of Statistics, Stockholm University
 
 ---
+## Lectures
+### Lecturer: [Mattias Villani](https://mattiasvillani.com)
 
-#### Part 1 - The Basics
-**Lecture 1** - Basics concepts. Likelihood. The Bernoulli model.\
+
+
+**Lecture 1 - Basics concepts. Likelihood. The Bernoulli model**\
 Reading: BDA Ch. 1, 2.1-2.4 |  [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
 Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/ManipBeta.R) | [Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipBern.R)
 
-**Lecture 2** - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation.\
+**Lecture 2 - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation**\
 Reading: BDA Ch. 2.-2.9 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
 Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)\
 Python Notebook: Poisson eBay data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.ipynb) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.html)
 
-**Lecture 3** - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model.\
+**Lecture 3 - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model**\
 Reading: BDA Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
 Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R)\
 R Notebook: Multinomial survey data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.Rmd) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.nb.html)
 
-**Exercise session 1** \
-Exercises: [Exercise 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise1.pdf) \
-Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
-
-**Computer Lab 1** - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.\
-Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab1.pdf) \
-Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
-
----
-
-#### Part 2 - Bayesian Regression and Classification
-**Lecture 4** - Prediction. Making Decisions.\
+**Lecture 4 - Prediction. Making Decisions**\
 Reading: BDA Ch. 9.1-9.2. | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) \
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
-**Lecture 5** - Linear Regression. Nonlinear regression. Regularization priors.\
+**Lecture 5 - Linear Regression. Nonlinear regression. Regularization priors**\
 Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
 
-**Lecture 6** - Classification. Posterior approximation. Logistic regression.\
+**Lecture 6 - Classification. Posterior approximation. Logistic regression** \
 Reading: BDA Ch. 16.1-16.3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) \
 Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip)
 
-**Exercise session 2** \
-Exercises: [Exercise 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise2.pdf) \
-Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
-
-**Computer Lab 2** - Polynomial regression and classification with logistic regression.\
-Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
-Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
-
----
-
-#### Part 3 - More Advanced Models, MCMC and Variational Bayes
-**Lecture 7** - Monte Carlo simulation. Gibbs sampling. Data augmentation. \
+**Lecture 7 - Monte Carlo simulation. Gibbs sampling. Data augmentation** \
 Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L7.pdf) \
 Code: [Gibbs sampling for a bivariate normal](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/GibbsBivariateNormal.R) | [Gibbs sampling for a mixture of normals](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalMixtureGibbs.R) \
 Extra material: [Illustration](https://www.youtube.com/watch?v=iLKR9tCiwvA) of Gibbs sampling when parameters are strongly correlated.
 
-**Lecture 8** - MCMC and Metropolis-Hastings \
+**Lecture 8 - MCMC and Metropolis-Hastings** \
 Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L8.pdf) \
 Code: [Simulating Markov Chains](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/SimulateDiscreteMarkovChain.R)
 
-**Lecture 9** - HMC, Variational Bayes and Stan. \
-Reading: BDA Ch. 12.4 and Ch. 13.7 | [RStan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html) | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf) \
+**Lecture 9 - HMC and Variational Inference** \
+Reading: BDA Ch. 12.4 and Ch. 13.7 | 
+
+**Lecture 10 - Probabilistic Programming for Bayesian Learning**\
+Reading: BDA Ch. X | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L10.pdf) \
+Code: [RStan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html) | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf) \
 Code: [RStan - Three Plants](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/ThreePlants.R) | [RStan - Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/BernBetaRStan.R) | [RStan - Logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/LogisticRegRStan.R) | [RStan - Logistic regression with random effects](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/LogisticRegRandEffectsRStan.R) | [RStan - Poisson model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/RStanCode/Code/RoachesPoissonRStan.R)
 
-**Computer Lab 3** - Gibbs sampling for the normal model, mixture of normals. Metropolis-Hastings for Poisson regression. \
-Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis \
-Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
-
----
-
-#### Part 4 - Model Inference and Variable Selection
-**Lecture 10 - Bayesian model comparison.**\
+**Lecture 11 - Bayesian model comparison**\
 Reading: BDA Ch. 7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L10.pdf) \
 Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R)
 
-**Lecture 11** - Computing the marginal likelihood, Bayesian variable selection, model averaging.\
-Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/GeorgeMcCulloch97.pdf) on Bayesian variable selection | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L11.pdf)
+**Lecture 12 - Bayesian variable selection and model averaging**\
+Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/GeorgeMcCulloch97.pdf) on Bayesian variable selection | [Slides]()
 
-**Lecture 12** - Model evaluation and course summary.\
-Reading: BDA 6.1-6.4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L12.pdf)
+---
 
-**Computer Lab 4** - HMC for time series in RStan.\
-Lab: [Lab 4](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab4.pdf) | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
-Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298) \
-Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+## Mathematical exercises
+### Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
+
+**Exercise session 1:** [Problem set](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise1.pdf)
+
+**Exercise session 2:** [Problem set](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise2.pdf)
+
+**Exercise session 3:** [Problem set](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise3.pdf)
+
+---
+## Computer labs
+### Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
+**Computer Lab 1** - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.\
+Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab1.pdf) \
+Submission: [Athena]().
+
+**Computer Lab 2** - Polynomial regression and classification with logistic regression.\
+Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
+Submission: [Athena]().
+
+**Computer Lab 3** - Gibbs sampling, Metropolis-Hastings and Stan. \
+Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
+Submission: [Athena](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
 
 ---
 
@@ -142,8 +135,8 @@ Submission tool: [Mondo](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c
 
 The course examination consists of:
 
-* Written lab reports (deadlines given in Mondo/LISAM)
-* Computer exam
+* Written lab reports (deadlines given in Athena)
+* Take home exam (first exam on Jan 14-15)
 
 
 ---
@@ -151,7 +144,7 @@ The course examination consists of:
 #### R
 
 * The main page with links to downloads for the [programming language R](https://www.r-project.org/)
-* [RStudio](https://www.rstudio.com/) - a very nice developing environment for R.
+* [RStudio](https://rstudio.com/products/rstudio/) - a very nice developing environment for R.
 * Short introduction to R | A little [longer introduction](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/).
 
 
