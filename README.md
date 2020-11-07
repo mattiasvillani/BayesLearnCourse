@@ -64,7 +64,7 @@ Department of Statistics, Stockholm University
 
 
 
-**Lecture 1 - Basics concepts. Likelihood. The Bernoulli model**\
+**Lecture 1 - Subjective probability. Likelihood. Bayesian updating. The Bernoulli model**\
 Reading: BDA Ch. 1, 2.1-2.4 |  [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
 Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/ManipBeta.R) | [Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipBern.R)
 
