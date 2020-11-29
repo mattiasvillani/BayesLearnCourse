@@ -25,7 +25,7 @@ The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and PDF.
-* Some chapters from a book that I am writing for a courses of this kind. [Here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/BayesBook/BayesBook.pdf) is a rough version of the first chapters.
+* Some chapters from a book that I am writing. [Here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/BayesBook/BayesBook.pdf) is a rough version of the first chapters. This book is at this stage more of a complement to the book 'Bayesian Data Analysis', but you may find it helpful. Warning: there will be typos at this stage.
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39757&type=courseevent&h=t).
