@@ -8,7 +8,7 @@
 
 ### Contents
 
-The course gives a solid introduction to the Bayesian statistical inference, with special emphasis on models and methods in computational statistics and machine learning. 
+The course gives a solid introduction to Bayesian statistical inference, with special emphasis on models and methods in computational statistics and machine learning. 
 * We will get off to a shocking start by introducing a very different probability concept than the one you are probably (:wink:) used to: subjective probability. 
 * We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. 
 * Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making. 
@@ -25,7 +25,7 @@ The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
-* Some chapters from a book that I am writing for a courses of this kind.
+* Some chapters from a book that I am writing for a courses of this kind. [Here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/BayesBook/BayesBook.pdf) is a rough version of the first chapters.
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39757&type=courseevent&h=t).
@@ -43,6 +43,19 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
   *  so that you are in a position to ask questions at the session
   *  and then finish up the report after the lab session.
 
+* The datasets used in the labs are included in the **BayesLearnSU** R package which is available on github. To install it, you first need to install the devtools package.
+```
+install.packages("devtools") # only one time.
+library(devtools)  
+install_github("ooelrich/BayesLearnSU")
+
+# For general information about the package
+help(, BayesLearnSU)
+
+# For more information about specific data sets
+help(tempLinkoping)
+help(womenWork)
+```
 ---
 
 ### Teachers
@@ -136,7 +149,7 @@ Submission: [Athena]().
 
 **Computer Lab 3** - Gibbs sampling, Metropolis-Hastings and Stan. \
 Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
-Submission: [Athena](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e25ba04ea80/page/2b6b510b-6580-40bc-b0d8-3fe4da0e2329).
+Submission: [Athena]().
 
 ---
 
@@ -145,7 +158,7 @@ Submission: [Athena](https://mondo.su.se/portal/site/39bc4842-de2a-463b-838c-4e2
 The course examination consists of:
 
 * Written lab reports (deadlines given in Athena)
-* Take home exam (first exam on Jan 14-15)
+* Take home exam (first exam on Jan 14)
 
 
 ---

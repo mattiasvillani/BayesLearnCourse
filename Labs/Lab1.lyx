@@ -28,7 +28,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
-\paperfontsize 12
+\paperfontsize 11
 \spacing single
 \use_hyperref false
 \papersize a4paper
@@ -57,9 +57,9 @@
 \shortcut idx
 \color #008000
 \end_index
-\leftmargin 2.5cm
+\leftmargin 2cm
 \topmargin 2cm
-\rightmargin 2.5cm
+\rightmargin 2cm
 \bottommargin 2cm
 \secnumdepth 3
 \tocdepth 3
@@ -85,7 +85,7 @@
 \noindent
 \align left
 \begin_inset Tabular
-<lyxtabular version="3" rows="5" columns="3">
+<lyxtabular version="3" rows="3" columns="3">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
@@ -105,7 +105,7 @@ Mattias Villani
 
 \begin_layout Plain Layout
 \begin_inset space \hspace{}
-\length 3cm
+\length 8.1cm
 \end_inset
 
 
@@ -146,7 +146,7 @@ Department of Statistics
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bayesian Learning 
+
 \end_layout
 
 \end_inset
@@ -172,64 +172,6 @@ Stockholm University
 \end_inset
 </cell>
 <cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Dept of Computer and Information Science 
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="none" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Linköping University
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="left" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="none" valignment="top" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -361,7 +303,7 @@ It is not allowed to share exact solutions
 \begin_inset Text
 
 \begin_layout Plain Layout
-Submit your solutions via LISAM (Linköping) or Mondo (Stockholm).
+Submit your solutions via Athena.
 \end_layout
 
 \end_inset
@@ -860,21 +802,6 @@ The wind direction data.
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-
-\size footnotesize
-\begin_inset VSpace 2cm
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\shape smallcaps
-May Bayes be with you!
 \end_layout
 
 \end_body
