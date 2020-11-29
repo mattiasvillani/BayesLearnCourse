@@ -24,7 +24,7 @@ The course gives a solid introduction to Bayesian statistical inference, with sp
 The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
-Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
+Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and PDF.
 * Some chapters from a book that I am writing for a courses of this kind. [Here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/BayesBook/BayesBook.pdf) is a rough version of the first chapters.
 * Additional course material linked from this page, such as articles and tutorial.
 
