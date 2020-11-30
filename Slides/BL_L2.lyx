@@ -19,22 +19,38 @@
 % include necessary packages here
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
+\usepackage{colortbl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 \date{} % Date, can be changed to a custom date
 
-\titlegraphic{\includegraphics[width=2cm]{LogoBlueJustRing.jpg}
+\titlegraphic{
+
+\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
+\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
+\hrulefill \break
+\tiny
+\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
 }
+
 
 \definecolor{blue}{RGB}{38, 122, 181}
 \definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
 \definecolor{red}{RGB}{255, 128, 0}
+\definecolor{verylightgray}{RGB}{246, 246, 246}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
 \setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
 
 \usepackage[ruled]{algorithm2e}
 \usepackage{wasysym}
@@ -143,15 +159,19 @@ Lecture 2 - Normal and Poisson data.
 \end_layout
 
 \begin_layout Author
+
+\series bold
 Mattias Villani
+\series default
+ 
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 \series bold
 \color gray
-Bayesian Statistics I
+Mattias Villani
 \end_layout
 
 \end_inset
@@ -166,7 +186,7 @@ Department of Statistics
 
 Stockholm University 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -177,11 +197,11 @@ and
 
 \end_inset
 
-  Department of Computer and Information Science
+ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University
+Linköping University 
 \begin_inset Argument 1
 status open
 
@@ -189,6 +209,10 @@ status open
 Linköping and Stockholm University
 \end_layout
 
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -696,7 +720,7 @@ Download speed n=1
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/InternetSpeedData1.png
+	filename /home/mv/Dropbox/BayesBook/Figs/WiFi_n1.png
 	lyxscale 30
 	scale 35
 
@@ -737,48 +761,7 @@ Download speed n=2
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/InternetSpeedData2.png
-	lyxscale 30
-	scale 35
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Download speed n=3
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/InternetSpeedData3.png
+	filename /home/mv/Dropbox/BayesBook/Figs/WiFi_n2.png
 	lyxscale 30
 	scale 35
 
@@ -819,7 +802,7 @@ Download speed n=5
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/InternetSpeedData5.png
+	filename /home/mv/Dropbox/BayesBook/Figs/WiFi_n5.png
 	lyxscale 30
 	scale 35
 
@@ -844,210 +827,7 @@ status open
 
 \series bold
 \color orange
-Canadian wages data
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Data on wages for 
-\begin_inset Formula $205$
-\end_inset
-
- Canadian workers.
- 
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/CanadianaWagesDataHist.eps
-	scale 45
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Canadian wages
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Model
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-X_{1},...,X_{n}|\theta\sim N(\theta,\sigma^{2}),\text{ }\sigma^{2}=0.4
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Prior
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-\theta\sim N(\mu_{0},\tau_{0}^{2}),\text{ }\mu_{0}=12\text{ and }\tau_{0}=10
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Posterior
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-\theta|x_{1},...,x_{n}\sim N\left(\mu_{n},\tau_{n}^{2}\right),
-\]
-
-\end_inset
-
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-where 
-\begin_inset Formula $\mu_{n}=w\bar{x}+(1-w)\mu_{0}$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-For the Canadian wage data:
-\begin_inset Formula 
-\[
-w=\frac{\sigma^{-2}n}{\sigma^{-2}n+\tau_{0}^{-2}}=\frac{2.5\cdot205}{2.5\cdot205+1/100}=0.999.
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\mu_{n}=w\bar{x}+(1-w)\mu_{0}=0.999\cdot13.489+(1-0.999)\cdot12\approx13.489
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-\begin_inset Formula 
-\[
-\tau_{n}^{2}=\left(2.5\cdot205+1/100\right)^{-1}=0.00195
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Canadian wages data - model fit
+Bayesian updating
 \end_layout
 
 \end_inset
@@ -1063,8 +843,9 @@ Canadian wages data - model fit
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/CanadianaWagesDataHistWithFit.eps
-	scale 45
+	filename /home/mv/Dropbox/BayesBook/Figs/wifiUpdating.png
+	lyxscale 30
+	scale 35
 
 \end_inset
 
@@ -1204,7 +985,411 @@ status open
 
 \series bold
 \color orange
-Poisson model, cont.
+Poisson distribution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smaller      
+\end_layout
+
+\begin_layout Plain Layout
+
+$X 
+\backslash
+sim 
+\backslash
+mathrm{Pois}(
+\backslash
+theta)$ for $X
+\backslash
+in{0,1,2,
+\backslash
+ldots}$     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}       
+\end_layout
+
+\begin_layout Plain Layout
+
+	p(x) & = 
+\backslash
+frac{
+\backslash
+theta^xe^{-
+\backslash
+theta}}{x!} & 
+\backslash
+
+\backslash
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{E}(X) & = 
+\backslash
+theta & 
+\backslash
+
+\backslash
+       
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{V}(X) & = 
+\backslash
+theta & 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1cm}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "25col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PoisDist.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gamma distribution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray]   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smaller       
+\end_layout
+
+\begin_layout Plain Layout
+
+$X 
+\backslash
+sim 
+\backslash
+mathrm{Gamma}(
+\backslash
+alpha,
+\backslash
+beta)$ for $X>0$.
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}      
+\end_layout
+
+\begin_layout Plain Layout
+
+	p(x) & = 
+\backslash
+frac{
+\backslash
+beta^
+\backslash
+alpha}{
+\backslash
+Gamma(
+\backslash
+alpha)}x^{
+\backslash
+alpha-1}e^{-
+\backslash
+beta x} & 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+mathbb{E}(X) & = 
+\backslash
+frac{
+\backslash
+alpha}{
+\backslash
+beta} & 
+\backslash
+
+\backslash
+       
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{V}(X) & = 
+\backslash
+frac{
+\backslash
+alpha}{
+\backslash
+beta^2} & 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1cm}  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "25col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GammaDist.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Poisson posterior
 \end_layout
 
 \end_inset
@@ -1234,11 +1419,11 @@ p(\theta|y_{1},...,y_{n}) & \propto & \left[\prod\nolimits _{i=1}^{n}p(y_{i}|\th
 
 \end_inset
 
-which is proportional to the 
-\begin_inset Formula $Gamma(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)$
+which is proportional to 
+\begin_inset Formula $\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)$
 \end_inset
 
- distribution.
+.
 \end_layout
 
 \begin_layout Itemize
@@ -1252,8 +1437,8 @@ Prior-to-Posterior mapping
 \begin_inset Formula 
 \begin{gather*}
 \text{Model: \ }y_{1},...,y_{n}|\theta\overset{iid}{\sim}Pois(\theta)\\
-\text{Prior: \ }\theta\sim Gamma(\alpha,\beta)\\
-\text{Posterior: }\theta|y_{1},...,y_{n}\sim Gamma(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)\text{.}
+\text{Prior: \ }\theta\sim\mathrm{Gamma}(\alpha,\beta)\\
+\text{Posterior: }\theta|y_{1},...,y_{n}\sim\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)\text{.}
 \end{gather*}
 
 \end_inset
@@ -1423,8 +1608,8 @@ eBay data - Posterior of
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/PoissonAnalysisAll.pdf
-	scale 30
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPost.png
+	scale 33
 
 \end_inset
 
@@ -1447,137 +1632,11 @@ status open
 
 \series bold
 \color orange
-Posterior intervals
-\end_layout
-
+eBay data - model fit at 
+\begin_inset Formula $\theta=\mathbb{E}(\theta\vert\mathbf{x})$
 \end_inset
 
 
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Bayesian 95% 
-\color orange
-credible interval
-\series default
-\color inherit
-: the probability that the unknown parameter 
-\begin_inset Formula $\theta$
-\end_inset
-
- lies in the interval is 0.95.
- 
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Approximate 
-\begin_inset Formula $95\%$
-\end_inset
-
- 
-\series bold
-\color blue
-credible interval
-\series default
-\color inherit
- for 
-\begin_inset Formula $\theta$
-\end_inset
-
-
-\begin_inset Formula 
-\[
-E(\theta|y)\pm1.96\cdot SD(\theta|y)=[3.517;3.753]
-\]
-
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-An exact 95% 
-\series bold
-\color blue
-equal-tail interval
-\series default
-\color inherit
- is 
-\begin_inset Formula $[3.518$
-\end_inset
-
-; 
-\begin_inset Formula $3.754]$
-\end_inset
-
-
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Highest Posterior Density
-\series default
-\color inherit
- (
-\series bold
-\color blue
-HPD
-\series default
-\color inherit
-) interval contains the 
-\begin_inset Formula $\theta$
-\end_inset
-
- values with highest pdf.
-\begin_inset Formula 
-\[
-[3.518;3.752]
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Illustration of different interval types
 \end_layout
 
 \end_inset
@@ -1593,49 +1652,10 @@ Illustration of different interval types
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/IntervalTypes.png
-	lyxscale 40
-	scale 25
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-eBay dat - Fit
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/FitPoissonDataAll.pdf
-	scale 60
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.png
+	scale 50
+	BoundingBox 0bp 0cm 300bp 300bp
+	clip
 
 \end_inset
 
@@ -1763,7 +1783,7 @@ status open
 
 \series bold
 \color orange
-eBay - low seller's reservation price
+eBay data split on reservation price
 \end_layout
 
 \end_inset
@@ -1779,8 +1799,8 @@ eBay - low seller's reservation price
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/PoissonAnalysisLow.pdf
-	scale 25
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPosteriorSplit.png
+	scale 33
 
 \end_inset
 
@@ -1803,7 +1823,11 @@ status open
 
 \series bold
 \color orange
-eBay - high seller's reservation price
+eBay data - model fit at 
+\begin_inset Formula $\mathbb{E}(\theta\vert\mathbf{x})$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1819,55 +1843,10 @@ eBay - high seller's reservation price
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/PoissonAnalysisHigh.pdf
-	scale 25
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-eBay - fit low/high reservation prices
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/FitPoissonDataLow.pdf
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.png
 	scale 35
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename Images/FitPoissonDataHigh.pdf
-	scale 35
+	BoundingBox 300bp 0bp 900bp 300bp
+	clip
 
 \end_inset
 
@@ -1883,7 +1862,7 @@ Better fits, but still not good enough.
 \end_layout
 
 \begin_layout Itemize
-Lab: Fit 
+Lab 3: Fit 
 \series bold
 \color blue
 Poisson regression
@@ -1901,6 +1880,198 @@ Poisson regression
 \end_layout
 
 \begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Posterior intervals
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian 95% 
+\color orange
+credible interval
+\series default
+\color inherit
+: the probability that the unknown parameter 
+\begin_inset Formula $\theta$
+\end_inset
+
+ lies in the interval is 0.95.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+95% 
+\series bold
+\color blue
+equal-tail interval
+\series default
+\color inherit
+: from 
+\begin_inset Formula $2.5\%$
+\end_inset
+
+ to 
+\begin_inset Formula $97.5\%$
+\end_inset
+
+ percentile.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Approximate 
+\begin_inset Formula $95\%$
+\end_inset
+
+ 
+\series bold
+\color blue
+credible interval
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+E(\theta|y)\pm1.96\cdot SD(\theta|y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Highest Posterior Density
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+HPD
+\series default
+\color inherit
+) interval contains the 
+\begin_inset Formula $\theta$
+\end_inset
+
+ values with highest pdf.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Illustration of different interval types
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/intervals.png
+	lyxscale 40
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Credible intervals - eBay auction data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/ebayInterval.png
+	lyxscale 40
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
 
 \end_layout
 
@@ -1927,39 +2098,35 @@ Conjugate priors
 \begin_deeper
 \begin_layout Itemize
 
-\color blue
+\color black
 Normal likelihood: Normal prior
-\begin_inset Formula $\rightarrow$
+\begin_inset Formula $\:\rightarrow\:$
 \end_inset
 
-Normal posterior
-\color inherit
-.
+Normal posterior.
 \end_layout
 
 \begin_layout Itemize
 
-\color blue
+\color black
 Bernoulli likelihood: Beta prior
-\begin_inset Formula $\rightarrow$
+\begin_inset Formula $\:\rightarrow\:$
 \end_inset
 
-Beta posterior
-\color inherit
-.
+Beta posterior.
 \end_layout
 
 \begin_layout Itemize
 
-\color blue
+\color black
 Poisson likelihood: Gamma prior
-\begin_inset Formula $\rightarrow$
+\begin_inset Formula $\:\rightarrow\:$
 \end_inset
 
-Gamma posterior
-\color inherit
-.
+Gamma posterior.
  
+\color inherit
+
 \begin_inset VSpace medskip
 \end_inset
 
@@ -1969,55 +2136,170 @@ Gamma posterior
 \begin_layout Itemize
 
 \series bold
-\color orange
+\color blue
 Conjugate priors
 \series default
 \color inherit
 : A prior is conjugate to a model if the prior and posterior belong to the
- same distributional family.
+ 
+\series bold
+\color blue
+same distributional family
+\series default
+\color inherit
+.
 \begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-Formal definition: Let 
-\begin_inset Formula $\mathcal{F}$
-\end_inset
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "85col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
 
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray]   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smaller       
+\end_layout
+
+\begin_layout Plain Layout
+
+a family of prior distributions $
+\backslash
+mathcal{P}$ is {
+\backslash
+color{blue}
+\backslash
+textbf{conjugate}} for 
+\backslash
+
+\backslash
  
-\begin_inset Formula $=\{p(y|\theta),\theta\in\Theta\}$
+\end_layout
+
+\begin_layout Plain Layout
+
+a family of likelihoods $
+\backslash
+mathcal{L}=
+\backslash
+{p(
+\backslash
+mathbf{x}|
+\backslash
+theta),
+\backslash
+theta
+\backslash
+in
+\backslash
+Theta
+\backslash
+}$ if
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation*}      
+\end_layout
+
+\begin_layout Plain Layout
+
+	  p(
+\backslash
+theta)
+\backslash
+in
+\backslash
+mathcal{P
+\backslash
+Rightarrow}
+\backslash
+text{ }p(
+\backslash
+theta|
+\backslash
+mathbf{x})
+\backslash
+in
+\backslash
+mathcal{P}
+\backslash
+hspace{0.5cm}
+\backslash
+text{ for all }p(
+\backslash
+mathbf{x}|
+\backslash
+theta)
+\backslash
+in
+\backslash
+mathcal{L}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation*}    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-0.5cm}  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
 \end_inset
 
- be a class of sampling distributions.
- A family of distributions 
-\begin_inset Formula $\mathcal{P}$
-\end_inset
 
- is 
-\series bold
-\color orange
-conjugate
-\series default
-\color inherit
- for 
-\begin_inset Formula $\mathcal{F}$
-\end_inset
-
- if 
-\begin_inset Formula 
-\[
-p(\theta)\in\mathcal{P\Rightarrow}\text{ }p(\theta|x)\in\mathcal{P}
-\]
+\end_layout
 
 \end_inset
 
-holds for all 
-\begin_inset Formula $p(y|\theta)\in\mathcal{F}$
-\end_inset
 
-.
 \end_layout
 
 \end_deeper

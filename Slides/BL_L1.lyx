@@ -19,22 +19,38 @@
 % include necessary packages here
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
+\usepackage{colortbl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 \date{} % Date, can be changed to a custom date
 
-\titlegraphic{\includegraphics[width=2cm]{LiU_secondary_1_black.png}
+\titlegraphic{
+
+\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
+\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
+\hrulefill \break
+\tiny
+\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
 }
+
 
 \definecolor{blue}{RGB}{38, 122, 181}
 \definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
 \definecolor{red}{RGB}{255, 128, 0}
+\definecolor{verylightgray}{RGB}{246, 246, 246}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
 \setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
 
 \usepackage[ruled]{algorithm2e}
 \usepackage{wasysym}
@@ -142,15 +158,19 @@ Lecture 1 - The Bayesics and Bernoulli data
 \end_layout
 
 \begin_layout Author
+
+\series bold
 Mattias Villani
+\series default
+ 
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 \series bold
 \color gray
-Bayesian Learning
+Mattias Villani
 \end_layout
 
 \end_inset
@@ -159,11 +179,11 @@ Bayesian Learning
 \end_layout
 
 \begin_layout Institute
-Department of Computer and Information Science
+Department of Statistics
 \begin_inset Newline newline
 \end_inset
 
-Linköping University 
+Stockholm University 
 \begin_inset ERT
 status open
 
@@ -176,11 +196,11 @@ and
 
 \end_inset
 
- Department of Statistics
+ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Stockholm University
+Linköping University 
 \begin_inset Argument 1
 status open
 
@@ -188,6 +208,10 @@ status open
 Linköping and Stockholm University
 \end_layout
 
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -212,35 +236,35 @@ Course overview
 \begin_deeper
 \begin_layout Itemize
 Course 
-\series bold
+\bar under
 \color blue
 
 \begin_inset CommandInset href
 LatexCommand href
 name "webpage"
-target "https://www.ida.liu.se/~732A91/info/courseinfo.en.shtml"
+target "https://github.com/mattiasvillani/BayesLearnCourse"
 literal "false"
 
 \end_inset
 
 
-\series default
+\bar default
 \color inherit
 .
  Course 
-\series bold
+\bar under
 \color blue
 
 \begin_inset CommandInset href
 LatexCommand href
 name "syllabus"
-target "https://liu.se/studieinfo/en/kurs/732a91/vt-2020"
+target "https://sisu.it.su.se/pdf_creator/cached/18232/36694/en"
 literal "false"
 
 \end_inset
 
 
-\series default
+\bar default
 \color inherit
 .
 \begin_inset VSpace medskip
@@ -260,6 +284,9 @@ Modes of teaching:
 \begin_deeper
 \begin_layout Itemize
 Lectures (
+\bar under
+\color blue
+
 \begin_inset CommandInset href
 LatexCommand href
 name "Mattias Villani"
@@ -268,42 +295,33 @@ literal "false"
 
 \end_inset
 
- and 
-\begin_inset CommandInset href
-LatexCommand href
-name "Per Sidén"
-target "https://liu.se/en/employee/persi28"
-literal "false"
 
-\end_inset
-
+\bar default
+\color inherit
 )
 \end_layout
 
 \begin_layout Itemize
 Mathematical exercises (
+\bar under
+\color blue
+
 \begin_inset CommandInset href
 LatexCommand href
-name "Per Sidén"
-target "https://liu.se/en/employee/persi28"
+name "Oscar Oelrich"
+target "https://www.su.se/english/profiles/ooelr-1.342298"
 literal "false"
 
 \end_inset
 
+
+\bar default
+\color inherit
 )
 \end_layout
 
 \begin_layout Itemize
-Computer labs (
-\begin_inset CommandInset href
-LatexCommand href
-name "Per Sidén"
-target "https://liu.se/en/employee/persi28"
-literal "false"
-
-\end_inset
-
- and lab assistants)
+Computer labs (Oscar Oelrich)
 \begin_inset VSpace medskip
 \end_inset
 
@@ -375,7 +393,7 @@ Model
  
 \series bold
 \color blue
-Inference and evaluation 
+Inference 
 \series default
 \color black
 and
@@ -412,7 +430,7 @@ Lab reports
 \end_layout
 
 \begin_layout Itemize
-Computer exam
+Home exam
 \end_layout
 
 \end_deeper
@@ -536,10 +554,6 @@ X_{1},...,X_{n}|\theta\overset{{\normalcolor {\normalcolor \textcolor{red}{iid}}
 \end_inset
 
 
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -609,27 +623,68 @@ as a function of
 
 \color inherit
 .
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\size tiny
+
+\begin_inset space \hspace{}
+\length 0.5cm
+\end_inset
+
+
+\begin_inset Formula $n=10,s=4$
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 1.9cm
+\end_inset
+
+
+\begin_inset Formula $n=100,s=4$
+\end_inset
+
+0
+\begin_inset space \hspace{}
+\length 1.9cm
+\end_inset
+
+
+\begin_inset Formula $n=10,s=9$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/BernLike_n10s4.eps
-	scale 20
+	filename /home/mv/Dropbox/BayesBook/Figs/BernLiken10s4.png
+	scale 15
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename Images/BernLike_n100s40.eps
-	scale 20
+	filename /home/mv/Dropbox/BayesBook/Figs/BernLiken100s40.png
+	scale 15
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename Images/BernLike_n10s9.eps
-	scale 20
+	filename /home/mv/Dropbox/BayesBook/Figs/BernLiken10s9.png
+	scale 15
 
 \end_inset
 
@@ -798,21 +853,8 @@ Probabilities from the likelihood?
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/BernLikeIntegrateTail.eps
-	scale 35
-
-\end_inset
-
-
-\begin_inset space \hspace{}
-\length 1.5cm
-\end_inset
-
-
-\begin_inset Graphics
-	filename Images/AngryBaby.jpg
-	lyxscale 20
-	scale 20
+	filename /home/mv/Dropbox/BayesBook/Figs/BigNoNoStamp.png
+	scale 55
 
 \end_inset
 
@@ -1464,6 +1506,8 @@ Probability of being sick
 test is positive
 \color inherit
 :
+\size small
+
 \begin_inset Formula 
 \begin{align*}
 p(A|B) & =\frac{p(B|A)p(A)}{p(B)}=\frac{p(B|A)p(A)}{p(B|A)p(A)+p(B|A^{c})p(A^{c})}\approx0.0018.
@@ -1545,9 +1589,9 @@ You can't enjoy the Bayesian omelette
 \emph on
 \color blue
 \begin_inset Graphics
-	filename Images/omelettes.jpg
+	filename /home/mv/Dropbox/BayesBook/Figs/eggs.jpg
 	lyxscale 10
-	scale 20
+	scale 3
 
 \end_inset
 
@@ -1664,14 +1708,14 @@ Integral
 \begin_inset Formula $p(Data)$
 \end_inset
 
- is just a constant
+ is only a constant
 \series default
 \color inherit
  so that 
-\begin_inset Formula $p(\theta|Data)$
+\begin_inset Formula $\int p(\theta|Data)=1$
 \end_inset
 
- integrates to one.
+.
 \end_layout
 
 \begin_layout Itemize
@@ -1691,7 +1735,7 @@ p(x)=(2\pi\sigma^{2})^{-1/2}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
 \end_layout
 
 \begin_layout Itemize
-We may write 
+We may write
 \begin_inset Formula 
 \[
 p(x){\normalcolor |\propto}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
@@ -1886,7 +1930,7 @@ status open
 
 \series bold
 \color orange
-Bernoulli example: spam emails
+Beta distribution
 \end_layout
 
 \end_inset
@@ -1895,91 +1939,230 @@ Bernoulli example: spam emails
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-George has gone through his collection of 
-\begin_inset Formula $4601$
-\end_inset
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
 
- e-mails.
-\begin_inset VSpace bigskip
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray] 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smaller      
+\end_layout
+
+\begin_layout Plain Layout
+
+$X 
+\backslash
+sim 
+\backslash
+mathrm{Beta}(
+\backslash
+alpha,
+\backslash
+beta)$ for $X
+\backslash
+in [0,1]$.
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}       
+\end_layout
+
+\begin_layout Plain Layout
+
+	p(x) & = 
+\backslash
+frac{x^{
+\backslash
+alpha-1}(1-x)^{
+\backslash
+beta-1}}{
+\backslash
+mathrm{B}(
+\backslash
+alpha,
+\backslash
+beta)} & 
+\backslash
+
+\backslash
+       
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{E}(X) & = 
+\backslash
+frac{
+\backslash
+alpha}{
+\backslash
+alpha+
+\backslash
+beta} & 
+\backslash
+
+\backslash
+       
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{V}(X) & = 
+\backslash
+frac{
+\backslash
+alpha
+\backslash
+beta}{(
+\backslash
+alpha+
+\backslash
+beta)^2(
+\backslash
+alpha+
+\backslash
+beta+1)} & 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}     
+\end_layout
+
+\begin_layout Plain Layout
+
+$
+\backslash
+mathrm{B}(
+\backslash
+alpha,
+\backslash
+beta)=
+\backslash
+frac{
+\backslash
+Gamma(
+\backslash
+alpha)
+\backslash
+Gamma(
+\backslash
+beta)}{
+\backslash
+Gamma(
+\backslash
+alpha+
+\backslash
+beta)}$
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+$
+\backslash
+Gamma(
+\backslash
+alpha)$ is the Gamma function.
+\backslash
+
+\backslash
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-He classified 
-\begin_inset Formula $1813$
-\end_inset
-
- of them to be spam.
-\begin_inset VSpace bigskip
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Let 
-\begin_inset Formula $x_{i}=1$
-\end_inset
-
- if i:th email is spam.
- 
-\begin_inset VSpace bigskip
+\begin_inset space \quad{}
 \end_inset
 
 
-\end_layout
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "25col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
 
-\begin_layout Itemize
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/BetaDist.png
+	scale 25
 
-\series bold
-\color orange
-Model
-\series default
-\color inherit
-: 
-\begin_inset Formula $x_{i}|\theta\overset{iid}{\sim}\mathrm{Bern}(\theta)$
-\end_inset
-
- 
-\begin_inset VSpace bigskip
 \end_inset
 
 
 \end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color orange
-Prior
-\series default
-\color inherit
-: 
-\begin_inset Formula $\theta\sim\mathrm{Beta}(\alpha,\beta)$
-\end_inset
-
-.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color orange
-Posterior
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-\theta|x\sim\mathrm{Beta}(\alpha+1813,\beta+2788)
-\]
 
 \end_inset
 
@@ -2014,8 +2197,8 @@ Spam data (n=10) - Prior is influential
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/SpamDataSmall.eps
-	scale 50
+	filename /home/mv/Dropbox/BayesBook/Figs/SpamBern_n10.png
+	scale 35
 
 \end_inset
 
@@ -2050,8 +2233,8 @@ Spam data (n=100) - Prior is less influential
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/SpamDataMedium.eps
-	scale 50
+	filename /home/mv/Dropbox/BayesBook/Figs/SpamBern_n100.png
+	scale 35
 
 \end_inset
 
@@ -2086,44 +2269,8 @@ Spam data (n=4601) - Prior does not matter
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/SpamDataFull.eps
-	scale 50
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Spam data - posterior convergence
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/spamConvergencePosterior.eps
-	scale 50
+	filename /home/mv/Dropbox/BayesBook/Figs/SpamBernAll.png
+	scale 35
 
 \end_inset
 

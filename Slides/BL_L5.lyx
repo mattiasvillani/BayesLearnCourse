@@ -19,22 +19,38 @@
 % include necessary packages here
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
+\usepackage{colortbl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 
 \date{} % Date, can be changed to a custom date
 
-\titlegraphic{\includegraphics[width=2cm]{LogoBlueJustRing.jpg}
+\titlegraphic{
+
+\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
+\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
+\hrulefill \break
+\tiny
+\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
 }
+
 
 \definecolor{blue}{RGB}{38, 122, 181}
 \definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
 \definecolor{red}{RGB}{255, 128, 0}
+\definecolor{verylightgray}{RGB}{246, 246, 246}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
 \setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
 
 \usepackage[ruled]{algorithm2e}
 \usepackage{wasysym}
@@ -142,15 +158,19 @@ Lecture 5 - Regression and Regularization
 \end_layout
 
 \begin_layout Author
+
+\series bold
 Mattias Villani
+\series default
+ 
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
 \series bold
 \color gray
-Bayesian Statistics I
+Mattias Villani
 \end_layout
 
 \end_inset
@@ -165,7 +185,7 @@ Department of Statistics
 
 Stockholm University 
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -176,11 +196,11 @@ and
 
 \end_inset
 
-  Department of Computer and Information Science
+ Department of Computer and Information Science
 \begin_inset Newline newline
 \end_inset
 
-Linköping University
+Linköping University 
 \begin_inset Argument 1
 status open
 
@@ -188,6 +208,10 @@ status open
 Linköping and Stockholm University
 \end_layout
 
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 

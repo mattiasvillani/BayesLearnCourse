@@ -1,8 +1,10 @@
 /Hidden
 /Admin
+/OLD
 
 # LyX
-.lyx~
+*.lyx~
+*.lyx#
 
 # History files
 .Rhistory
