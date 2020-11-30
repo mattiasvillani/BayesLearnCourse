@@ -45,16 +45,20 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 
 * The datasets used in the labs are included in the **BayesLearnSU** R package which is available on github. To install it, you first need to install the devtools package.
 ```
-install.packages("devtools") # only one time.
+# To install and load the package with the data
+install.packages("devtools") # only one time
 library(devtools)  
-install_github("ooelrich/BayesLearnSU")
+install_github("ooelrich/BayesLearnSU") # only one time
+library(BayesLearnSU)
 
 # For general information about the package
-help(, BayesLearnSU)
+help("BayesLearnSU")
 
-# For more information about specific data sets
-help(tempLinkoping)
-help(womenWork)
+# For a list of all available data sets
+help(, "BayesLearnSU")
+
+# For information about specific data sets
+help(name_of_dataset)
 ```
 ---
 
