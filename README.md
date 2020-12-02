@@ -24,8 +24,8 @@ The course gives a solid introduction to Bayesian statistical inference, with sp
 The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
-Bayesian Data Analysis. Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and PDF.
-* Some chapters from a book that I am writing. [Here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/BayesBook/BayesBook.pdf) is a rough version of the first chapters. This book is at this stage more of a complement to the book 'Bayesian Data Analysis', but you may find it helpful. Warning: there will be typos at this stage.
+Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and PDF.
+* Villani, M. (2020). Bayesian Learning (BL). First chapters of a book that I am writing is [here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/BayesBook/BayesBook.pdf). This is a very rough version with lots of typos, but may be useful as a complement to Gelman et al.
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39757&type=courseevent&h=t).
@@ -82,25 +82,25 @@ Department of Statistics, Stockholm University
 
 
 **Lecture 1 - Subjective probability. Likelihood. Bayesian updating. The Bernoulli model**\
-Reading: BDA Ch. 1, 2.1-2.4 |  [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
+Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
 Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/ManipBeta.R) | [Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipBern.R)
 
 **Lecture 2 - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation**\
-Reading: BDA Ch. 2.-2.9 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
+Reading: BDA Ch. 2.-2.9 | BL Ch. 2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
 Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)\
 Python Notebook: Poisson eBay data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.ipynb) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.html)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model**\
-Reading: BDA Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
+Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
 Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R)\
 R Notebook: Multinomial survey data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.Rmd) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.nb.html)
 
 **Lecture 4 - Monte Carlo simulation. Prediction. Making Decisions**\
-Reading: BDA Ch. 9.1-9.2. | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) \
+Reading: BDA Ch. 9.1-9.2. | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) \
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
 **Lecture 5 - Regression. Regularization priors**\
-Reading: BDA Ch. 14 and Ch. 20.1-20.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
+Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
 
 **Lecture 6 - Classification. Posterior approximation.** \
 Reading: BDA Ch. 16.1-16.3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) \
