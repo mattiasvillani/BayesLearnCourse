@@ -154,8 +154,9 @@ Normal and Poisson data
 \begin_layout Subtitle
 
 \color orange
-Lecture 2 - Normal and Poisson data.
+Lecture 2 - Poisson data.
  Prior elicitation.
+ Invariant priors.
 \end_layout
 
 \begin_layout Author
@@ -212,10 +213,6 @@ Linköping and Stockholm University
 \end_inset
 
 
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Frame
@@ -232,27 +229,9 @@ Lecture overview
 \end_inset
 
 
-\begin_inset Separator latexpar
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-The 
-\series bold
-\color blue
-Normal model
-\series default
-\color inherit
- with known variance
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
 \begin_layout Itemize
 The 
 \series bold
@@ -300,556 +279,6 @@ Prior elicitation
 \series bold
 \color blue
 Jeffreys' prior
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Normal data, known variance - uniform prior
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Model
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-x_{1},...,x_{n}|\theta,\sigma^{2}\overset{iid}{\sim}N(\theta,\sigma^{2}).
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Prior
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-p(\theta)\propto c\text{ (a constant)}
-\]
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Likelihood
-\series default
-\color inherit
- 
-\begin_inset Formula 
-\begin{eqnarray*}
-p(x_{1},...,x_{n}|\theta,\sigma^{2}) & = & \Pi_{i=1}^{n}(2\pi\sigma^{2})^{-1/2}\exp\left[-\frac{1}{2\sigma^{2}}(x_{i}-\theta)^{2}\right]\\
- & \propto & \exp\left[-\frac{1}{2(\sigma^{2}/n)}(\theta-\bar{x})^{2}\right].
-\end{eqnarray*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Posterior
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-\theta|x_{1},...,x_{n}\sim N(\bar{x},\sigma^{2}/n)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Normal data, known variance - normal prior
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Prior
-\series default
-\color inherit
- 
-\begin_inset Formula 
-\[
-\theta\sim N(\mu_{0},\tau_{0}^{2})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Posterior
-\series default
-\color inherit
-
-\begin_inset Formula 
-\begin{eqnarray*}
-p(\theta|x_{1},...,x_{n}) & \propto & p(x_{1},...,x_{n}|\theta,\sigma^{2})p(\theta)\\
- & \propto & N(\theta|\mu_{n},\tau_{n}^{2}),
-\end{eqnarray*}
-
-\end_inset
-
-where
-\begin_inset Formula 
-\[
-\frac{1}{\tau_{n}^{2}}=\frac{n}{\sigma^{2}}+\frac{1}{\tau_{0}^{2}},
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\mu_{n}=w\bar{x}+(1-w)\mu_{0},
-\]
-
-\end_inset
-
-and
-\begin_inset Formula 
-\[
-w=\frac{\frac{n}{\sigma^{2}}}{\frac{n}{\sigma^{2}}+\frac{1}{\tau_{0}^{2}}}.
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Normal data, known variance - normal prior
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Formula $\theta\sim N(\mu_{0},\tau_{0}^{2})\overset{x_{1},...,x_{n}}{\Longrightarrow}\theta|x\sim N(\mu_{n},\tau_{n}^{2}).$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-
-\color blue
-Posterior precision = Data precision + Prior precision
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-Posterior mean =
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula $\frac{{\normalcolor \text{Data precision}}}{{\normalcolor \text{Posterior precision}}}$
-\end_inset
-
-
-\color blue
-(Data mean)
-\color inherit
- 
-\color blue
-+ 
-\color inherit
-
-\begin_inset Formula ${\normalcolor \frac{\text{Prior precision}}{\text{Posterior precision}}}$
-\end_inset
-
-
-\color blue
-(Prior mean) 
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Download speed
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Data
-\series default
-\color inherit
-: 
-\begin_inset Formula $\mbox{x}=(22.42,34.01,35.04,38.74,25.15)$
-\end_inset
-
- Mbit/sec.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Model
-\series default
-\color inherit
-: 
-\begin_inset Formula $X_{1},...,X_{5}\sim N(\theta,\sigma^{2})$
-\end_inset
-
-.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Assume 
-\begin_inset Formula $\sigma=5$
-\end_inset
-
- (measurements can vary 
-\begin_inset Formula $\pm10$
-\end_inset
-
-MBit with 95% probability)
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-My 
-\series bold
-\color blue
-prior
-\series default
-\color inherit
-: 
-\begin_inset Formula $\theta\sim N(50,5^{2})$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Download speed n=1
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/WiFi_n1.png
-	lyxscale 30
-	scale 35
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Download speed n=2
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/WiFi_n2.png
-	lyxscale 30
-	scale 35
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Download speed n=5
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/WiFi_n5.png
-	lyxscale 30
-	scale 35
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Bayesian updating
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/wifiUpdating.png
-	lyxscale 30
-	scale 35
-
-\end_inset
-
-
 \end_layout
 
 \end_deeper
@@ -2454,7 +1883,7 @@ status open
 
 \series bold
 \color orange
-Prior elicitation - AR(p) example
+Autoregressive time series model
 \end_layout
 
 \end_inset
@@ -2478,7 +1907,11 @@ Autoregressive process
 \begin_inset Formula $p$
 \end_inset
 
+ - AR(
+\begin_inset Formula $p$
+\end_inset
 
+)
 \begin_inset Formula 
 \begin{eqnarray*}
 y_{t} & = & \mu+\phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t},\text{ \ensuremath{\varepsilon_{t}\overset{iid}{\sim}N(0,\sigma^{2})}}
@@ -2490,86 +1923,31 @@ y_{t} & = & \mu+\phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t},
 \end_layout
 
 \begin_layout Itemize
-Informative prior on the unconditional mean: 
-\begin_inset Formula $\mu\sim N(\mu_{0},\tau_{0}^{2})$
+Unconditional mean: 
+\begin_inset Formula $\mathbb{E}(y_{t})=\mu$
 \end_inset
 
 .
-\begin_inset VSpace medskip
+ Long run forecast attraction.
+\begin_inset Formula 
+\[
+\mathbb{E}(y_{T+h}|y_{1:T})\rightarrow\mu\text{ as }h\rightarrow\infty.
+\]
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-\begin_inset Quotes eld
-\end_inset
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/InflSwedenPreds.png
+	scale 35
 
-Noninformative
-\begin_inset Quotes erd
-\end_inset
-
- prior on 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
-: 
-\begin_inset Formula $p(\sigma^{2})\propto1/\sigma^{2}$
 \end_inset
 
 
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Assume 
-\begin_inset Formula $\phi_{i}\sim N(\mu_{i},\psi_{i})$
-\end_inset
-
-
-\begin_inset Formula $,\text{}i=1,...,p$
-\end_inset
-
- are independent a priori.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Prior on 
-\begin_inset Formula $\phi=(\phi_{1},...,\phi_{p})$
-\end_inset
-
- centered on persistent AR(1) process: 
-\begin_inset Formula $\mu_{1}=0.8,\text{}\mu_{2}=...=\mu_{p}=0$
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $Var(\phi_{i})=\frac{c}{i^{\lambda}}$
-\end_inset
-
-.
- 
-\begin_inset Quotes eld
-\end_inset
-
-Longer
-\begin_inset Quotes erd
-\end_inset
-
- lags are more likely to be zero a priori.
 \end_layout
 
 \end_deeper
@@ -2588,13 +1966,169 @@ status open
 
 \series bold
 \color orange
-Jeffreys' prior
+Prior elicitation - AR(p)
 \end_layout
 
 \end_inset
 
 
 \begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Autoregressive process
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t} & = & \mu+\phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Expert prior
+\series default
+\color inherit
+ on the unconditional mean: 
+\begin_inset Formula $\mu\sim N(\mu_{0},\tau_{0}^{2})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Regularization prior
+\series default
+\color inherit
+ on 
+\begin_inset Formula $\phi_{1},\ldots\phi_{p}$
+\end_inset
+
+ 
+\size footnotesize
+
+\begin_inset Formula 
+\[
+\phi_{k}\sim N\left(\mu_{k},\frac{\tau^{2}}{k^{2}}\right)\:\text{ independently apriori}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Prior mean on persistent AR(1): 
+\begin_inset Formula $\mu_{1}=0.8,\text{}\mu_{2}=...=\mu_{p}=0$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{V}(\phi_{k})=\frac{\tau^{2}}{k^{2}}$
+\end_inset
+
+.
+ Coeff on 
+\begin_inset Quotes eld
+\end_inset
+
+longer
+\begin_inset Quotes erd
+\end_inset
+
+ lags more likely to be small.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hierarchical prior
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Hard to specify 
+\begin_inset Formula $\tau^{2}$
+\end_inset
+
+? Put a prior on it!
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\phi_{k}\vert\tau^{2}\sim N\left(\mu_{k},\frac{\tau^{2}}{k^{2}}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau^{2}\sim\chi_{\nu}^{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Gives a posterior on global shrinkage 
+\begin_inset Formula $\tau^{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Invariant prior
+\end_layout
+
 \end_inset
 
 
@@ -2626,22 +2160,6 @@ J_{\theta,\mathbf{x}}=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\theta)}{\partial\
 \end_inset
 
 
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-
-\begin_inset VSpace bigskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -2663,38 +2181,22 @@ Fisher information
 
 \begin_inset Formula 
 \[
-I_{\theta}=E_{\mathbf{x}|\theta}\left(J_{\theta,\mathbf{x}}\right)
+I(\theta)=E_{\mathbf{x}|\theta}\left(J_{\theta,\mathbf{x}}\right)
 \]
 
-\end_inset
-
-
-\family default
-\series default
-\shape default
-\size default
-\emph default
-\bar default
-\strikeout default
-\uuline default
-\uwave default
-\noun default
-\color inherit
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-A common non-informative prior is 
+
 \series bold
 \color blue
-Jeffreys' prior 
+Jeffreys' rule 
 \series default
 \color inherit
-
+to construct prior
 \begin_inset Separator latexpar
 \end_inset
 
@@ -2704,13 +2206,9 @@ Jeffreys' prior
 \begin_layout Standard
 \begin_inset Formula 
 \[
-p(\theta)=\left|I_{\theta}\right|^{1/2}.
+p(\theta)=I(\theta)^{1/2}.
 \]
 
-\end_inset
-
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -2719,25 +2217,52 @@ p(\theta)=\left|I_{\theta}\right|^{1/2}.
 \begin_layout Itemize
 
 \series bold
-\color orange
-Invariant
+\color blue
+Invariance
 \series default
 \color inherit
- to 1:1 transformations of 
-\begin_inset Formula $\theta$
+ under 1:1 parameter transformation 
+\begin_inset Formula $\phi=g(\theta)$
+\end_inset
+
+.
+ Example: 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}.$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\theta}(\theta)$
+\end_inset
+
+ directly
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\phi}(\phi)$
+\end_inset
+
+ and then obtain 
+\begin_inset Formula $p_{\theta}(\theta)=p_{\phi}(g^{-1}(\theta))\left|\frac{dg^{-1}(\theta)}{d\theta}\right|$
 \end_inset
 
 .
 \end_layout
 
-\begin_layout Itemize
-Often non-conjugate.
-\end_layout
-
-\begin_layout Itemize
-Often problematic in multiparameter settings.
-\end_layout
-
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -2925,96 +2450,6 @@ violates the likelihood principle
 \end_inset
 
  is sampling-based.
-\end_layout
-
-\end_deeper
-\begin_layout Frame
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Different types of prior information
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Real 
-\series bold
-\color blue
-expert information
-\series default
-\color inherit
-.
- Combo of previous studies and experience.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Vague prior
-\series default
-\color inherit
- information.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Reporting priors
-\series default
-\color inherit
-.
- Easy to understand the information they contain.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Smoothness priors
-\series default
-\color inherit
-.
- Regularization.
- Shrinkage.
- Big thing in modern statistics/machine learning.
 \begin_inset Formula 
 \[
 \text{ }
