@@ -176,7 +176,7 @@ The course examination consists of:
 ---
 
 ### Pluto Notebooks
-As a bonus, I will occasionally post Notebooks where you can interactively play around with some Bayesian analyses. I will use a new type of notebook system called [Pluto](https://github.com/fonsp/Pluto.jl) in the [Julia](https://julialang.org/) programming language. The advantage of Pluto is that it is reactive: changing one variable in the notebook immediately updates the parts of the notebook that depends on the variable.
+As a bonus, I will occasionally post Notebooks where you can interactively play around with some Bayesian analyses. I will use a new type of notebook system called [Pluto](https://github.com/fonsp/Pluto.jl) in the [Julia](https://julialang.org/) programming language. The advantage of Pluto is that it is reactive: changing one variable in the notebook immediately updates the parts of the notebook that depend on the variable.
 
 Here is what you need to do to access this bonus feature:
 * [Download Julia](https://julialang.org/downloads/) and install it.
@@ -189,6 +189,7 @@ Here is what you need to do to access this bonus feature:
   Pluto.run()      # Opens up Pluto in your browser (Firefox or Chrome)
   ```
 * Open up a notebook file in the Pluto browser tab and start playing around by changing value in the cells.
+  
 Julia is a very attractive programming language for numerical and statistical analysis. If you are curious and want to use if for more than Notebooks, I suggest downloading the fantastic editor [VS Code](https://code.visualstudio.com/) and the [Julia for VS Code](https://www.julia-vscode.org/) extension that turns VS Code into an RStudio-like experience for Julia.
 
 ---
