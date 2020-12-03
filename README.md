@@ -192,4 +192,8 @@ Here is what you need to do to access this bonus feature:
   
 Julia is a very attractive programming language for numerical and statistical analysis. If you are curious and want to use if for more than Notebooks, I suggest downloading the fantastic editor [VS Code](https://code.visualstudio.com/) and the [Julia for VS Code](https://www.julia-vscode.org/) extension that turns VS Code into an RStudio-like experience for Julia.
 
+Here is an example with the Bernoulli model:
+
+![Bernoulli notebook](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Extras/BernPluto.gif "Bernoulli notebook")
+
 ---
