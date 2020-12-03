@@ -81,30 +81,30 @@ Department of Statistics, Stockholm University
 
 
 
-**Lecture 1 - Subjective probability. Likelihood. Bayesian updating. The Bernoulli model**\
+**Lecture 1 - Subjective probability. Bayesian updating. Bernoulli model. Gaussian model.**\
 Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
 Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/ManipBeta.R) | [Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipBern.R)
 
-**Lecture 2 - Gaussian model. The Poisson model. Conjugate priors. Prior elicitation**\
-Reading: BDA Ch. 2.-2.9 | BL Ch. 2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
+**Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
+Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
 Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)\
 Python Notebook: Poisson eBay data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.ipynb) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.html)
 
-**Lecture 3 - Multi-parameter models. Marginalization. Multinomial model. Multivariate normal model**\
+**Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
 Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R)\
 R Notebook: Multinomial survey data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.Rmd) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.nb.html)
 
-**Lecture 4 - Monte Carlo simulation. Prediction. Making Decisions**\
-Reading: BDA Ch. 9.1-9.2. | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) \
+**Lecture 4 - Linear Regression. Prediction. Making Decisions**\
+Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
-**Lecture 5 - Regression. Regularization priors**\
-Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
-
-**Lecture 6 - Classification. Posterior approximation.** \
-Reading: BDA Ch. 16.1-16.3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) \
+**Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
+Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) \
 Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip)
+
+**Lecture 6 - Nonlinear regression and Classification. Regularization.**\
+Reading: [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) 
 
 **Lecture 7 - Gibbs sampling and Data augmentation** \
 Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L7.pdf) \
@@ -157,7 +157,7 @@ Submission: [Athena]().
 
 ---
 
-#### Examination
+### Examination
 
 The course examination consists of:
 
@@ -167,11 +167,28 @@ The course examination consists of:
 
 ---
 
-#### R
+### R
 
 * The main page with links to downloads for the [programming language R](https://www.r-project.org/)
 * [RStudio](https://rstudio.com/products/rstudio/) - a very nice developing environment for R.
 * Short introduction to R | A little [longer introduction](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/).
 
+---
+
+### Pluto Notebooks
+As a bonus, I will occasionally post Notebooks where you can interactively play around with some Bayesian analyses. I will use a new type of notebook system called [Pluto](https://github.com/fonsp/Pluto.jl) in the [Julia](https://julialang.org/) programming language. The advantage of Pluto is that it is reactive: changing one variable in the notebook immediately updates the parts of the notebook that depends on the variable.
+
+Here is what you need to do to access this bonus feature:
+* [Download Julia](https://julialang.org/downloads/) and install it.
+* Start up Julia to get the `julia>` prompt where you can type commands.
+* Install and start Pluto by typing in the following commands at the `julia>` prompt
+  ```
+  using Pkg        # initializes the package manager
+  Pkg.add("Pluto") # installs the Pluto package. 
+  import Pluto     # loads the Pluto package.
+  Pluto.run()      # Opens up Pluto in your browser (Firefox or Chrome)
+  ```
+* Open up a notebook file in the Pluto browser tab and start playing around by changing value in the cells.
+Julia is a very attractive programming language for numerical and statistical analysis. If you are curious and want to use if for more than Notebooks, I suggest downloading the fantastic editor [VS Code](https://code.visualstudio.com/) and the [Julia for VS Code](https://www.julia-vscode.org/) extension that turns VS Code into an RStudio-like experience for Julia.
 
 ---

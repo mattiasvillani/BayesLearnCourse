@@ -967,7 +967,7 @@ E(\theta)=\frac{\alpha}{\beta}=4
 
 \begin_inset Formula 
 \[
-SD(\theta\vert\boldsymbol{y})=\frac{\alpha}{\beta^{2}}=2.823
+SD(\theta)=\frac{\alpha}{\beta^{2}}=2.823
 \]
 
 \end_inset
