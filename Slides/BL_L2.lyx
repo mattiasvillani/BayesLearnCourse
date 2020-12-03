@@ -1747,142 +1747,6 @@ status open
 
 \series bold
 \color orange
-Prior elicitation
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-The prior should be determined (
-\series bold
-\color blue
-elicited
-\series default
-\color inherit
-) by an 
-\series bold
-expert
-\series default
-.
- Typically, expert
-\begin_inset Formula $\neq$
-\end_inset
-
-statistician.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Elicit the prior on 
-\series bold
-\color blue
-a quantity that the expert knows well
-\series default
-\color inherit
-.
- Convert afterwards.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Ask probabilistic questions
-\series default
-\color inherit
- to the expert: 
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $E(\theta)=?$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $SD(\theta)=?$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $Pr(\theta<c)=?$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $Pr(y>c)=?$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Show some consequences
-\series default
-\color inherit
- of the elicitated prior to the expert.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Beware of
-\series bold
- 
-\color blue
-psychological effects
-\series default
-\color inherit
-, such as anchoring.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
 Autoregressive time series model
 \end_layout
 
@@ -2115,6 +1979,179 @@ Gives a posterior on global shrinkage
 \begin_inset Separator parbreak
 \end_inset
 
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Prior elicitation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Smoothness priors
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a version of regularization priors
+\end_layout
+
+\begin_layout Itemize
+nonlinear regression function 
+\begin_inset Formula $f(\cdot)$
+\end_inset
+
+ is believed to be smooth
+\begin_inset Formula 
+\[
+y=f(x)+\varepsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GPjagged.png
+	lyxscale 50
+	scale 15
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GPsmooth.png
+	lyxscale 50
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Noninformative priors
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Uniform
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim\mathrm{Beta}(1,1)$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Issue 1: same as prior sample with one success and one failure.
+\begin_inset Newline newline
+\end_inset
+
+Issue 2: not uniform for 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}.$
+\end_inset
+
+
+\series bold
+\color blue
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Zero prior sample size
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim\mathrm{Beta}(\epsilon,\epsilon)$
+\end_inset
+
+ with 
+\begin_inset Formula $\epsilon\downarrow0$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Posterior 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ 
+\begin_inset Formula $\mathrm{Beta}(s,f)$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Issue: posterior is improper if 
+\begin_inset Formula $s=0$
+\end_inset
+
+ or 
+\begin_inset Formula $f=0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
 
 \end_layout
 

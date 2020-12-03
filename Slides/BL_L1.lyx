@@ -134,9 +134,9 @@
 
 \size largest
 \color orange
-Bayesian Learning
+Bayesian 
 \size default
-
+Statistics I
 \begin_inset Argument 1
 status open
 
@@ -1196,7 +1196,7 @@ data
 \series default
 \color inherit
  
-\begin_inset Formula $\mathbf{x}$
+\begin_inset Formula $\mathrm{Data}$
 \end_inset
 
  and form the 
@@ -1206,7 +1206,7 @@ likelihood
 \series default
 \color inherit
  function 
-\begin_inset Formula ${\color{orange}p(\mathbf{x}\vert\theta)}$
+\begin_inset Formula ${\color{orange}p(\mathrm{Data}\vert\theta)}$
 \end_inset
 
 .
@@ -1228,7 +1228,7 @@ combine
 \end_inset
 
  with data information 
-\begin_inset Formula $p(\mathbf{x}\vert\theta)$
+\begin_inset Formula $p(\mathrm{Data}\vert\theta)$
 \end_inset
 
 .
@@ -1319,7 +1319,7 @@ posterior
 \series default
 \color inherit
  
-\begin_inset Formula $p(\theta|Data)$
+\begin_inset Formula $p(\theta|\mathrm{Data})$
 \end_inset
 
 ?
@@ -1359,7 +1359,7 @@ Bayes' Theorem for a model parameter
 
 \begin_inset Formula 
 \[
-p(\theta|Data)=\frac{p(Data|\theta)p(\theta)}{p(Data)}.
+p(\theta|\mathrm{Data})=\frac{p(\mathrm{Data}|\theta)p(\theta)}{p(\mathrm{Data})}.
 \]
 
 \end_inset
@@ -1373,11 +1373,11 @@ It is the prior
 \end_inset
 
  that takes us from 
-\begin_inset Formula $p(Data|\theta)$
+\begin_inset Formula $p(\mathrm{Data}|\theta)$
 \end_inset
 
  to 
-\begin_inset Formula $p(\theta|Data)$
+\begin_inset Formula $p(\theta|\mathrm{Data})$
 \end_inset
 
 .
@@ -1748,7 +1748,7 @@ p(x)=(2\pi\sigma^{2})^{-1/2}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
 We may write
 \begin_inset Formula 
 \[
-p(x){\normalcolor |\propto}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
+p(x){\normalcolor \propto}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
 \]
 
 \end_inset
