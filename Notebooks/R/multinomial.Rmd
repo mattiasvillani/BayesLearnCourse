@@ -1,11 +1,13 @@
 ---
 title: "Bayesian analysis of multinomial data"
-output: html_notebook
+output:
+  pdf_document: default
+  html_notebook: default
 ---
 
 
-Prepared for the course: Bayesian Learning/Bayesian Statistics I\
-Author: Mattias Villani, Linköping and Stockholm University, http://mattiasvillani.com
+Prepared for the course: Bayesian Learning
+Author: Mattias Villani, Stockholm and Linköping University, http://mattiasvillani.com
 
 #### **Data**
 A company has conduct a survey of mobile phone usage. 513 participants were asked the question: 'What kind of mobile phone do you main use?' with the four options:
@@ -62,7 +64,7 @@ Ok, let's use this piece of code on the survey data to obtain a sample from the 
 # Data and prior
 set.seed(123) # Set the seed for reproducibility
 y <- c(180,230,62,41) # The cell phone survey data (K=4)
-alpha <- c(15,15,10,10)*10 # Dirichlet prior hyperparameters 
+alpha <- c(15,15,10,10) # Dirichlet prior hyperparameters 
 nIter <- 1000 # Number of posterior draws
 thetaDraws <- SimDirichlet(nIter,y + alpha)
 names(thetaDraws) <- c('theta1','theta2','theta3','theta4')

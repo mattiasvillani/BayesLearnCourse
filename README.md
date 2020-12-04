@@ -84,17 +84,19 @@ Department of Statistics, Stockholm University
 **Lecture 1 - Subjective probability. Bayesian updating. Bernoulli model. Gaussian model.**\
 Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
 Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/ManipBeta.R) | [Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipBern.R)\
-Notebooks: [BernBeta.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/BernBeta.jl)
+Notebooks: [BernBeta.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/Julia/BernBeta.jl)
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
 Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)\
-Python Notebook: Poisson eBay data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.ipynb) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/eBayPoisson.html)
+Notebooks: [eBayPoisson.ipynb](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Notebooks/Python/eBayPoisson.ipynb)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
 Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R)\
-R Notebook: Multinomial survey data in [Notebook](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.Rmd) and [HTML](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Code/Notebooks/DirichletSurveyData.nb.html)
+Notebooks: [Multinomial.Rmd](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Notebooks/R/multinomial.Rmd) |
+[multinomial.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/Julia/BernBeta.jl)
+
 
 **Lecture 4 - Linear Regression. Prediction. Making Decisions**\
 Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
