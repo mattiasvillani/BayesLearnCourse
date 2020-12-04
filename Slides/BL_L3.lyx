@@ -22,6 +22,7 @@
 \usepackage{colortbl}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\v}[1]{\boldsymbol{#1}}
 
 
 
@@ -281,10 +282,10 @@ Normal model with unknown variance
 \end_layout
 
 \begin_layout Itemize
-Bayesian analysis of 
+
 \series bold
 \color blue
-multinomial data
+Multinomial data
 \series default
 \color inherit
 
@@ -295,10 +296,10 @@ multinomial data
 \end_layout
 
 \begin_layout Itemize
-Bayesian analysis of 
+
 \series bold
 \color blue
-multivariate normal data
+Dirichlet distribution
 \end_layout
 
 \end_deeper
@@ -377,9 +378,13 @@ p(\theta_{1},\theta_{2},...,\theta_{p}|y)\propto p(y|\theta_{1},\theta_{2},...,\
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+In vector form
 \begin_inset Formula 
 \[
-p(\theta|y)\propto p(y|\theta)p(\theta).
+p(\boldsymbol{\theta}|\mathbf{y})\propto p(\mathbf{y}|\boldsymbol{\theta})p(\boldsymbol{\theta}).
 \]
 
 \end_inset
@@ -394,42 +399,46 @@ p(\theta|y)\propto p(y|\theta)p(\theta).
 Marginalize
 \series default
 \color inherit
- out parameter of no direct interest (
-\series bold
-\color blue
-nuisance
-\series default
-\color inherit
-).
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Example: 
-\begin_inset Formula $\theta=(\theta_{1},\theta_{2})^{\prime}$
-\end_inset
-
-.
+ out parameters.
 
 \series bold
-\color orange
- 
 \color blue
-Marginal posterior 
+ Marginal posterior 
 \series default
 \color inherit
 of 
 \begin_inset Formula $\theta_{1}$
 \end_inset
 
- 
+:
 \begin_inset Formula 
 \begin{eqnarray*}
 p(\theta_{1}|y) & = & \int p(\theta_{1},\theta_{2}|y)d\theta_{2}=\int p(\theta_{1}|\theta_{2},y)p(\theta_{2}|y)d\theta_{2}.
 \end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/BivarSurface.png
+	lyxscale 60
+	scale 18
+
+\end_inset
+
+
+\begin_inset Formula $\qquad$
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/BivarContourMargins.png
+	lyxscale 60
+	scale 18
 
 \end_inset
 
@@ -526,226 +535,6 @@ s^{2}=\frac{\sum_{i=1}^{n}(x_{i}-\bar{x})^{2}}{n-1}
 \end_inset
 
 is the usual sample variance.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Normal model with unknown variance
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Simulating
-\series default
-\color inherit
- from the posterior :
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-[
-\end_layout
-
-\end_inset
-
-1.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-]
-\end_layout
-
-\end_inset
-
- Draw 
-\begin_inset Formula $X\sim\chi^{2}(n-1)$
-\end_inset
-
-
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-[
-\end_layout
-
-\end_inset
-
-2.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-]
-\end_layout
-
-\end_inset
-
- Compute 
-\begin_inset Formula $\sigma^{2}=\frac{(n-1)s^{2}}{X}$
-\end_inset
-
- (this a draw from 
-\begin_inset Formula $\mathrm{Inv}$
-\end_inset
-
--
-\begin_inset Formula $\chi^{2}(n-1,s^{2})$
-\end_inset
-
-)
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-[
-\end_layout
-
-\end_inset
-
-3.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-]
-\end_layout
-
-\end_inset
-
- Draw a 
-\begin_inset Formula $\theta$
-\end_inset
-
- from 
-\begin_inset Formula $N\left(\bar{x},\frac{\sigma^{2}}{n}\right)$
-\end_inset
-
- conditional on the previous draw 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
-
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-[
-\end_layout
-
-\end_inset
-
-4.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-]
-\end_layout
-
-\end_inset
-
- Repeat step 1-3 many times.
- 
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-The sampling is implemented in the R program 
-\family typewriter
-NormalNonInfoPrior.R
-\family default
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-We may derive the 
-\series bold
-\color blue
-marginal posterior
-\series default
-\color inherit
- analytically as
-\begin_inset Formula 
-\[
-\theta|\mathbf{x}\sim t_{n-1}\left(\bar{x},\frac{s^{2}}{n}\right).
-\]
-
-\end_inset
-
- 
 \end_layout
 
 \end_deeper
@@ -915,6 +704,251 @@ status open
 
 \series bold
 \color orange
+Simulating from posterior
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/simNormal.png
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Internet speed data - joint and marginal posteriors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Prior: 
+\size scriptsize
+
+\begin_inset Formula 
+\[
+\theta|\sigma^{2}\sim N\left(20,\frac{\sigma^{2}}{1}\right)\text{ and }\sigma^{2}\sim\mathrm{Inv\text{-}}\chi^{2}\left(\nu_{0}=5,\sigma_{0}^{2}=5^{2}\right)
+\]
+
+\end_inset
+
+
+\size footnotesize
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalPosteriorContours.png
+	lyxscale 60
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalPosteriorMarginals.png
+	lyxscale 60
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalPosteriorSimMarginals.png
+	lyxscale 60
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalPosteriorCVSim.png
+	lyxscale 60
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalPostSimConv.png
+	lyxscale 60
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalPostSimConvProb.png
+	lyxscale 60
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Law of large numbers for 
+\series bold
+\color blue
+consistency
+\series default
+\color inherit
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\bar{\theta}_{1:m}\equiv\frac{1}{m}\sum_{i=1}^{m}\theta^{(i)}\overset{\mathrm{a.s.}}{\rightarrow}\mathbb{E}(\theta|\mathbf{x})\text{ as }m\rightarrow\infty
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Central limit theorem for the 
+\series bold
+\color blue
+accuracy
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\[
+\bar{\theta}_{1:m}\sim N\left(\mathbb{E}(\theta|\mathbf{x}),\frac{\mathbb{V}(\theta|\mathbf{x})}{m}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Multinomial model with Dirichlet prior
 \end_layout
 
@@ -936,11 +970,11 @@ Categorical counts
 \series default
 \color inherit
 : 
-\begin_inset Formula $y=(y_{1},...y_{K})$
+\begin_inset Formula $y=(y_{1},...y_{C})$
 \end_inset
 
 , where 
-\begin_inset Formula $\sum_{k=1}^{K}y_{k}=n$
+\begin_inset Formula $\sum_{c=1}^{C}y_{c}=n$
 \end_inset
 
 .
@@ -948,11 +982,11 @@ Categorical counts
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $y_{k}$
+\begin_inset Formula $y_{c}$
 \end_inset
 
 = number of observations in 
-\begin_inset Formula $k$
+\begin_inset Formula $c$
 \end_inset
 
 th category.
@@ -973,7 +1007,7 @@ Multinomial model
 :
 \begin_inset Formula 
 \[
-p(y|\theta)\propto\prod_{k=1}^{K}\theta_{k}^{y_{k}},\text{ where }\sum_{k=1}^{K}\theta_{k}=1.
+p(y|\boldsymbol{\theta})\propto\prod_{c=1}^{C}\theta_{c}^{y_{c}},\text{ where }\sum_{c=1}^{C}\theta_{c}=1.
 \]
 
 \end_inset
@@ -993,13 +1027,13 @@ Dirichlet prior
 \series default
 \color inherit
 : 
-\begin_inset Formula $\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
+\begin_inset Formula $\boldsymbol{\theta}\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{C})$
 \end_inset
 
 
 \begin_inset Formula 
 \[
-p(\theta)\propto\prod_{k=1}^{K}\theta_{k}^{\alpha_{k}-1}.
+p(\boldsymbol{\theta})\propto\prod_{c=1}^{C}\theta_{c}^{\alpha_{c}-1}.
 \]
 
 \end_inset
@@ -1011,19 +1045,14 @@ p(\theta)\propto\prod_{k=1}^{K}\theta_{k}^{\alpha_{k}-1}.
 
 \series bold
 \color blue
-Mean and variance
+Marginal distributions 
 \series default
 \color inherit
- for 
-\begin_inset Formula $(\theta_{1},\ldots,\theta_{K})\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
-\end_inset
-
 
 \begin_inset Formula 
-\begin{align*}
-\mathrm{E}(\theta_{k}) & =\frac{\alpha_{k}}{\sum_{j=1}^{K}\alpha_{j}}\\
-\mathrm{V}(\theta_{k}) & =\frac{\mathrm{E}(\theta_{k})\left[1-\mathrm{E}(\theta_{k})\right]}{1+\sum_{j=1}^{K}\alpha_{j}}
-\end{align*}
+\[
+\theta_{c}\sim\mathrm{Beta}\left(\alpha_{c},\alpha_{+}-\alpha_{c}\right).
+\]
 
 \end_inset
 
@@ -1046,13 +1075,9 @@ status open
 
 \series bold
 \color orange
-Dirichlet distribution
+Dirichlet prior
 \end_layout
 
-\end_inset
-
-
-\begin_inset Separator latexpar
 \end_inset
 
 
@@ -1060,10 +1085,186 @@ Dirichlet distribution
 
 \begin_deeper
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray]          
+\end_layout
+
+\begin_layout Plain Layout
+
+	$(
+\backslash
+theta_1,
+\backslash
+dots,
+\backslash
+theta_C) 
+\backslash
+sim 
+\backslash
+mathrm{Dirichlet}(
+\backslash
+alpha_1,
+\backslash
+dots,
+\backslash
+alpha_C)$ 
+\backslash
+vspace{0.2cm} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+    $
+\backslash
+mathbb{E}(
+\backslash
+theta_c) = 
+\backslash
+frac{
+\backslash
+alpha_c}{
+\backslash
+sum_{j=1}^C
+\backslash
+alpha_j}$  
+\backslash
+vspace{0.2cm} 
+\backslash
+
+\backslash
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+	$
+\backslash
+mathbb{V}(
+\backslash
+theta_c) = 
+\backslash
+frac{
+\backslash
+mathbb{E}(
+\backslash
+theta_c)(1-
+\backslash
+mathbb{E}(
+\backslash
+theta_c))}{1+
+\backslash
+sum_{j=1}^C
+\backslash
+alpha_j}$     
+\backslash
+vspace{0.2cm}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/DirichletPlot.png
-	lyxscale 30
+	filename /home/mv/Dropbox/BayesBook/Figs/Dir1.jpg
+	lyxscale 40
+	scale 16
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/Dir2.jpg
+	lyxscale 40
+	scale 16
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/Dir3.jpg
+	lyxscale 40
+	scale 16
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+'Non-informative': 
+\begin_inset Formula $\alpha_{1}=...=\alpha_{K}=1$
+\end_inset
+
+ (uniform and proper).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Multinomial model with Dirichlet prior
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Simulation
+\series default
+\color inherit
+ from a 
+\begin_inset Formula $\mathrm{Dirichlet}(\boldsymbol{\alpha})$
+\end_inset
+
+ with 
+\begin_inset Formula $\boldsymbol{\alpha}=(\alpha_{1},\ldots,\alpha_{C})$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/dirsim.png
 	scale 35
 
 \end_inset
@@ -1071,119 +1272,18 @@ Dirichlet distribution
 
 \end_layout
 
-\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior-to-Posterior:
+\end_layout
+
 \begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-Multinomial model with Dirichlet prior
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-'Non-informative': 
-\begin_inset Formula $\alpha_{1}=...=\alpha_{K}=1$
-\end_inset
-
- (uniform and proper).
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Simulating
-\series default
-\color inherit
- from the Dirichlet distribution:
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Generate 
-\begin_inset Formula $x_{1}\sim Gamma(\alpha_{1},1),...,x_{K}\sim Gamma(\alpha_{K},1)$
-\end_inset
-
-.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Compute 
-\begin_inset Formula $z_{k}=x_{k}/(\sum_{j=1}^{K}x_{j})$
-\end_inset
-
-.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Then 
-\begin_inset Formula $z=(z_{1},...,z_{K})$
-\end_inset
-
-
-\begin_inset Formula $\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})$
-\end_inset
-
-.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-\shape italic
-\emph on
-\color blue
-Prior-to-Posterior updating
-\series default
-\shape default
-\color inherit
-:
-\emph default
-
-\begin_inset Formula 
-\begin{gather*}
-Model\text{: \ \ \ \ }y=(y_{1},...y_{K})\sim\mathrm{Multin}(n;\theta_{1},...,\theta_{K})\\
-Prior:\text{ \ \ }\theta=(\theta_{1},...,\theta_{K})\sim\mathrm{Dirichlet}(\alpha_{1},...,\alpha_{K})\\
-Posterior:\text{ \ \ }\theta|y\sim\mathrm{Dirichlet}(\alpha_{1}+y_{1},...,\alpha_{K}+y_{K}).
-\end{gather*}
+\align center
+\begin_inset Graphics
+	filename Images/multinomDir.png
+	scale 28
 
 \end_inset
 
@@ -1206,7 +1306,7 @@ status open
 
 \series bold
 \color orange
-Example: market shares
+Example: smartphone market shares
 \end_layout
 
 \end_inset
@@ -1329,79 +1429,19 @@ Posterior:
 
 \begin_layout Itemize
 
-\family typewriter
-DirichletSurveyData
-\family default
- 
-\series bold
-\color orange
-Rnotebook
-\series default
-\color inherit
- on web page.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Multivariate normal - known 
-\begin_inset Formula $\Sigma$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
 \series bold
 \color blue
-Model
+R Notebook
 \series default
 \color inherit
+: 
+\bar under
 
-\begin_inset Formula 
-\[
-y_{1},...,y_{n}\overset{iid}{\sim}N_{p}(\mu,\Sigma)
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $\Sigma$
-\end_inset
-
- is a known covariance matrix.
-\end_layout
-
-\begin_layout Itemize
-Density
-\begin_inset Formula 
-\[
-p(y|\mu,\Sigma)=\left|2\pi\Sigma\right|^{-1/2}\exp\left(-\frac{1}{2}(y-\mu)'\Sigma^{-1}(y-\mu)\right)
-\]
+\begin_inset CommandInset href
+LatexCommand href
+name "Multinomial.Rmd "
+target "https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Notebooks/R/multinomial.Rmd"
+literal "false"
 
 \end_inset
 
@@ -1409,23 +1449,21 @@ p(y|\mu,\Sigma)=\left|2\pi\Sigma\right|^{-1/2}\exp\left(-\frac{1}{2}(y-\mu)'\Sig
 \end_layout
 
 \begin_layout Itemize
-
+Julia 
 \series bold
 \color blue
-Likelihood
+Pluto Notebook
 \series default
 \color inherit
+: 
+\bar under
 
-\begin_inset Formula 
-\begin{align*}
-p(y_{1},...,y_{n}|\mu,\Sigma) & \propto\left|\Sigma\right|^{-n/2}\exp\left(-\frac{1}{2}\sum_{i=1}^{n}(y_{i}-\mu)'\Sigma^{-1}(y_{i}-\mu)\right)\\
- & =\left|\Sigma\right|^{-n/2}\exp\left(-\frac{1}{2}tr\Sigma^{-1}S_{\mu}\right)
-\end{align*}
+\begin_inset CommandInset href
+LatexCommand href
+name "multinom.jl"
+target "https://github.com/mattiasvillani/BayesianLearningBook/blob/main/notebooks/multinom.jl"
+literal "false"
 
-\end_inset
-
-where 
-\begin_inset Formula $S_{\mu}=\sum_{i=1}^{n}(y_{i}-\mu)(y_{i}-\mu)'.$
 \end_inset
 
 
@@ -1447,11 +1485,7 @@ status open
 
 \series bold
 \color orange
-Multivariate normal - known 
-\begin_inset Formula $\Sigma$
-\end_inset
-
-
+Posterior simulation output
 \end_layout
 
 \end_inset
@@ -1464,18 +1498,51 @@ Multivariate normal - known
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/tablesmartphone.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 
 \series bold
-\color blue
-Prior
-\series default
-\color inherit
+\color orange
+Example: smartphone market shares
+\end_layout
 
-\begin_inset Formula 
-\[
-\mu\sim N_{p}(\mu_{0},\Lambda_{0})
-\]
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MultinomialSurveyHist.png
+	scale 30
 
 \end_inset
 
@@ -1486,49 +1553,7 @@ Prior
 
 \series bold
 \color blue
-Posterior
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-\mu|y\sim N(\mu_{n},\Lambda_{n})
-\]
-
-\end_inset
-
-where
-\begin_inset Formula 
-\begin{align*}
-\mu_{n} & =(\Lambda_{0}^{-1}+n\Sigma^{-1})^{-1}(\Lambda_{0}^{-1}\mu_{0}+n\Sigma^{-1}\bar{y})\\
-\Lambda_{n}^{-1} & =\Lambda_{0}^{-1}+n\Sigma^{-1}
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Posterior mean is a weighted average of prior and data information.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Noninformative prior
-\series default
-\color inherit
-: let the precision go to zero: 
-\begin_inset Formula $\Lambda_{0}^{-1}\rightarrow0$
-\end_inset
-
-.
+Pr(Android has largest share | Data) = 0.991
 \end_layout
 
 \end_deeper

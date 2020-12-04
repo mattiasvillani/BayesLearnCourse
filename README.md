@@ -94,9 +94,8 @@ Notebooks: [eBayPoisson.ipynb](https://github.com/mattiasvillani/BayesLearnCours
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
 Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R)\
-Notebooks: [Multinomial.Rmd](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Notebooks/R/multinomial.Rmd) |
+Notebooks: [multinomial.Rmd](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Notebooks/R/multinomial.Rmd) |
 [multinomial.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/Julia/BernBeta.jl)
-
 
 **Lecture 4 - Linear Regression. Prediction. Making Decisions**\
 Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
@@ -107,12 +106,12 @@ Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani
 Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip)
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
-Reading: [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) 
+Reading: [Slides]() 
 
 **Lecture 7 - Gibbs sampling and Data augmentation** \
 Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L7.pdf) \
 Code: [Gibbs sampling for a bivariate normal](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/GibbsBivariateNormal.R) | [Gibbs sampling for a mixture of normals](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalMixtureGibbs.R) \
-Extra material: [Illustration](https://www.youtube.com/watch?v=iLKR9tCiwvA) of Gibbs sampling when parameters are strongly correlated.
+Extra material: [Illustration](https://www.youtube.com/watch?v=IGiQOCX9UbM&ab_channel=Red15) of Gibbs sampling when parameters are strongly correlated.
 
 **Lecture 8 - MCMC and Metropolis-Hastings** \
 Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L8.pdf) \
