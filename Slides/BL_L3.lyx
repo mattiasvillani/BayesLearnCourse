@@ -717,6 +717,7 @@ Simulating from posterior
 \align center
 \begin_inset Graphics
 	filename Images/simNormal.png
+	scale 30
 
 \end_inset
 
