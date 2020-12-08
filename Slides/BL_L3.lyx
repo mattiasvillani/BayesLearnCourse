@@ -971,7 +971,7 @@ Categorical counts
 \series default
 \color inherit
 : 
-\begin_inset Formula $y=(y_{1},...y_{C})$
+\begin_inset Formula $\boldsymbol{y}=(y_{1},...y_{C})$
 \end_inset
 
 , where 
@@ -1008,7 +1008,7 @@ Multinomial model
 :
 \begin_inset Formula 
 \[
-p(y|\boldsymbol{\theta})\propto\prod_{c=1}^{C}\theta_{c}^{y_{c}},\text{ where }\sum_{c=1}^{C}\theta_{c}=1.
+p(\boldsymbol{y}|\boldsymbol{\theta})\propto\prod_{c=1}^{C}\theta_{c}^{y_{c}},\text{ where }\sum_{c=1}^{C}\theta_{c}=1.
 \]
 
 \end_inset
@@ -1503,7 +1503,7 @@ Posterior simulation output
 \align center
 \begin_inset Graphics
 	filename Images/tablesmartphone.png
-	scale 35
+	scale 25
 
 \end_inset
 

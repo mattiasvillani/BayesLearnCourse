@@ -57,7 +57,7 @@
 \SetKwInput{KwInput}{Input}
 \SetKwInput{KwOutput}{Output}
 \end_preamble
-\options xcolor=svgnames
+\options xcolor=svgnames, handout
 \use_default_options false
 \maintain_unincluded_children false
 \language english
@@ -88,14 +88,14 @@
 \use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
-\use_package cancel 1
+\use_package cancel 0
 \use_package esint 0
 \use_package mathdots 1
-\use_package mathtools 1
+\use_package mathtools 0
 \use_package mhchem 1
-\use_package stackrel 1
-\use_package stmaryrd 1
-\use_package undertilde 1
+\use_package stackrel 0
+\use_package stmaryrd 0
+\use_package undertilde 0
 \cite_engine basic
 \cite_engine_type default
 \biblio_style plain
@@ -143,7 +143,7 @@ status open
 \begin_layout Plain Layout
 
 \color gray
-Multiparameter models
+Regression, Prediction and Decisions
 \end_layout
 
 \end_inset
@@ -154,7 +154,7 @@ Multiparameter models
 \begin_layout Subtitle
 
 \color orange
-Lecture 4 - Predictions
+Lecture 5 - Regression, Prediction and Decisions
 \end_layout
 
 \begin_layout Author
@@ -242,9 +242,72 @@ Lecture overview
 
 \series bold
 \color blue
+Normal model
+\series default
+\color inherit
+ with conjugate prior
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+linear regression
+\series default
+\color inherit
+ model
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
 Prediction
 \series default
 \color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Decision making
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Linear regression
+\end_layout
+
+\end_inset
+
 
 \begin_inset Separator latexpar
 \end_inset
@@ -254,16 +317,197 @@ Prediction
 
 \begin_deeper
 \begin_layout Itemize
-Normal model
-\begin_inset VSpace medskip
+The linear regression model in 
+\series bold
+\color blue
+matrix form
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\underset{(n\times1)}{\mathbf{y}}=\underset{(n\times k)(k\times1)}{\mathbf{X}\beta}+\underset{(n\times1)}{\varepsilon}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+\mathbf{y} & = & \left(\begin{array}{c}
+y_{1}\\
+\vdots\\
+y_{n}
+\end{array}\right),\text{ }\beta=\left(\begin{array}{c}
+\beta_{1}\\
+\vdots\\
+\beta_{k}
+\end{array}\right),\text{ }\varepsilon=\left(\begin{array}{c}
+\varepsilon_{1}\\
+\vdots\\
+\varepsilon_{n}
+\end{array}\right)\\
+\mathbf{X} & = & \left(\begin{array}{c}
+\mathbf{x}_{1}^{\prime}\\
+\vdots\\
+\mathbf{x}_{n}^{\prime}
+\end{array}\right)=\left(\begin{array}{ccc}
+x_{11} & \cdots & x_{1k}\\
+\vdots & \ddots & \vdots\\
+x_{n1} & \cdots & x_{nk}
+\end{array}\right)
+\end{eqnarray*}
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-More complex examples
-\begin_inset VSpace bigskip
+Usually 
+\begin_inset Formula $x_{i1}=1$
+\end_inset
+
+, for all 
+\begin_inset Formula $i$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\beta_{1}$
+\end_inset
+
+ is the intercept.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Likelihood
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mathbf{y}|\beta,\sigma^{2},\mathbf{X}\sim N(\mathbf{X}\beta,\sigma^{2}I_{n})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Linear regression - uniform prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Standard 
+\series bold
+\color blue
+non-informative prior
+\series default
+\color inherit
+: uniform on (
+\begin_inset Formula $\beta,\log\sigma^{2}$
+\end_inset
+
+)
+\begin_inset Formula 
+\[
+p(\beta,\sigma^{2})\propto\sigma^{-2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Joint posterior
+\series default
+\color inherit
+ of 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+\beta|\sigma^{2},\mathbf{y} & \sim & N\left[\hat{\beta},\sigma^{2}(\mathbf{X}^{\prime}\mathbf{X})^{-1}\right]\\
+\sigma^{2}|\mathbf{y} & \sim & Inv\text{-}\chi^{2}(n-k,s^{2})
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $\hat{\beta}=(\mathbf{X}^{\prime}\mathbf{X})^{-1}\mathbf{X}^{\prime}\mathbf{y}$
+\end_inset
+
+ and 
+\begin_inset Formula $s^{2}=\frac{1}{n-k}(\mathbf{y}-\mathbf{X}\hat{\beta})^{\prime}(\mathbf{y}-\mathbf{X}\hat{\beta}).$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Simulate
+\series default
+\color inherit
+ from the joint posterior by simulating from
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $p(\sigma^{2}|\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(\beta|\sigma^{2},\mathbf{y})$
 \end_inset
 
 
@@ -274,9 +518,47 @@ More complex examples
 
 \series bold
 \color blue
-Decision theory
+Marginal posterior
+\color orange
+ 
 \series default
 \color inherit
+of 
+\begin_inset Formula $\beta:$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\beta|\mathbf{y}\sim t_{n-k}\left[\hat{\beta},s^{2}(X^{\prime}X)^{-1}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Linear regression - conjugate prior
+\end_layout
+
+\end_inset
+
 
 \begin_inset Separator latexpar
 \end_inset
@@ -286,26 +568,159 @@ Decision theory
 
 \begin_deeper
 \begin_layout Itemize
-The elements of a decision problem
-\begin_inset VSpace medskip
+
+\series bold
+\color blue
+Joint prior
+\color orange
+ 
+\series default
+\color inherit
+for 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Formula 
+\begin{align*}
+\beta|\sigma^{2} & \sim N\left(\mu_{0},\sigma^{2}\Omega_{0}^{-1}\right)\\
+\sigma^{2} & \sim Inv-\chi^{2}\left(\nu_{0},\sigma_{0}^{2}\right)
+\end{align*}
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-The Bayesian way
-\begin_inset VSpace medskip
+
+\series bold
+\color blue
+Posterior
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align*}
+\beta|\sigma^{2},\mathbf{y} & \sim N\left[\mu_{n},\sigma^{2}\Omega_{n}^{-1}\right]\\
+\sigma^{2}\vert\mathbf{y} & \sim\mathrm{Inv-}\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)
+\end{align*}
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\begin{align*}
+\mu_{n} & =\left(\mathbf{X}'\mathbf{X}+\Omega_{0}\right)^{-1}\left(\mathbf{X}'\mathbf{X}\hat{\beta}+\Omega_{0}\mu_{0}\right)\\
+\Omega_{n} & =\mathbf{X}'\mathbf{X}+\Omega_{0}\\
+\nu_{n} & =\nu_{0}+n\\
+\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\left(\mathbf{y}'\mathbf{y}+\mu_{0}'\Omega_{0}\mu_{0}-\mu_{n}'\Omega_{n}\mu_{n}\right)
+\end{align*}
+
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Point estimation as a decision problem
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Polynomial regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Polynomial regression
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+f(x_{i})=\beta_{0}+\beta_{1}x_{i}+\beta_{2}x_{i}^{2}+...+\beta_{k}x_{i}^{k}.
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbf{y}=\mathbf{X}_{P}\beta+\varepsilon,
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\mathbf{X}_{P}=(1,x,x^{2},...,x^{k}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/polybasis.png
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/poly.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Priors for 
+\series bold
+\color blue
+regularization
+\series default
+\color inherit
+ (ridge, lasso etc) in Lecture 6.
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -366,11 +781,7 @@ p(\tilde{y}|\mathbf{y})=\int_{\theta}p(\tilde{y}|\theta,\mathbf{y})p(\theta|\mat
 \end_layout
 
 \begin_layout Itemize
-If 
-\begin_inset Formula $p(\tilde{y}|\theta,\mathbf{y})=p(\tilde{y}|\theta)$
-\end_inset
-
- [not true for time series], then 
+IID data:
 \begin_inset Formula 
 \[
 p(\tilde{y}|\mathbf{y})=\int_{\theta}p(\tilde{y}|\theta)p(\theta|\mathbf{y})d\theta
@@ -666,6 +1077,95 @@ status open
 
 \series bold
 \color orange
+Iteration laws
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Expectation with respect to what? Explicit:
+\begin_inset Formula 
+\[
+\mathbb{E}_{\theta|\mathbf{y}}(\theta)\equiv\int\theta p(\theta|\mathbf{y})d\theta
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Law of iterated expectation
+\series default
+\color inherit
+ and 
+\series bold
+\color blue
+Law of total variance
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/lawIter.png
+	lyxscale 50
+	scale 20
+
+\end_inset
+
+
+\begin_inset Formula $\;\;$
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/lawofiterBayes.png
+	lyxscale 50
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Predictive distribution - Normal model and prior
 \end_layout
 
@@ -680,12 +1180,16 @@ Predictive distribution - Normal model and prior
 
 \begin_deeper
 \begin_layout Itemize
-Easy to see that the predictive distribution is normal.
+Predictive distribution still normal (sum of normals is normal).
  
 \end_layout
 
 \begin_layout Itemize
-The mean
+Predictive mean conditional on 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is trivial:
 \begin_inset Formula 
 \[
 E_{\tilde{y}|\theta}(\tilde{y})=\theta
@@ -693,15 +1197,22 @@ E_{\tilde{y}|\theta}(\tilde{y})=\theta
 
 \end_inset
 
-and then remove the conditioning on 
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+Remove the conditioning
+\begin_inset Quotes erd
+\end_inset
+
+ on 
 \begin_inset Formula $\theta$
 \end_inset
 
- by averaging over 
-\begin_inset Formula $\theta$
-\end_inset
-
-
+ by averaging over posterior:
 \begin_inset Formula 
 \[
 E(\tilde{y}|\mathbf{y})=E_{\theta|\mathbf{y}}(\theta)=\mu_{n}\text{ (Posterior mean of }\theta\text{).}
@@ -717,13 +1228,18 @@ The predictive variance of
 \begin_inset Formula $\tilde{y}$
 \end_inset
 
- (total variance formula): 
+ by 
+\series bold
+\color blue
+law of total variance
+\series default
+\color inherit
+
 \begin_inset Formula 
 \begin{eqnarray*}
 V(\tilde{y}|\mathbf{y}) & = & E_{\theta|\mathbf{y}}[V_{\tilde{y}|\theta}(\tilde{y})]+V_{\theta|\mathbf{y}}[E_{\tilde{y}|\theta}(\tilde{y})]\\
  & = & E_{\theta|\mathbf{y}}(\sigma^{2})+V_{\theta|\mathbf{y}}(\theta)\\
- & = & \sigma^{2}+\tau_{n}^{2}\text{ \ }\\
- & = & \text{(Population variance + Posterior variance of }\theta\text{).}
+ & = & \sigma^{2}+\tau_{n}^{2}\text{ \ }
 \end{eqnarray*}
 
 \end_inset
@@ -732,11 +1248,68 @@ V(\tilde{y}|\mathbf{y}) & = & E_{\theta|\mathbf{y}}[V_{\tilde{y}|\theta}(\tilde{
 \end_layout
 
 \begin_layout Itemize
-In summary: 
+So, predictive distribution is
 \begin_inset Formula 
 \[
 \tilde{y}|\mathbf{y}\sim N(\mu_{n},\sigma^{2}+\tau_{n}^{2}).
 \]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Predictive distribution - Internet speed data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+My Netflix starts to buffer at speeds 
+\begin_inset Formula $<5$
+\end_inset
+
+Mbit.
+ 
+\begin_inset Graphics
+	filename Images/SwearMadEmoji.png
+	lyxscale 5
+	scale 3
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/WiFiPredictive.png
+	scale 40
 
 \end_inset
 
@@ -778,6 +1351,7 @@ Bayesian prediction for time series
 \color blue
 Autoregressive process
 \series default
+\size footnotesize
 \color inherit
 
 \begin_inset Formula 
@@ -788,90 +1362,57 @@ y_{t} & = & \mu+\phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t},
 \end_inset
 
 
-\begin_inset VSpace smallskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/AlgoPredAR.png
+	lyxscale 50
+	scale 20
 
-\series bold
-\color blue
-Simulation algorithm
-\series default
-\color inherit
-.
- Repeat 
-\begin_inset Formula $N$
-\end_inset
-
- times:
-\end_layout
-
-\begin_layout Enumerate
-Generate a 
-\series bold
-\color orange
-posterior draw
-\series default
-\color inherit
- of 
-\begin_inset Formula $\theta^{(1)}=(\phi_{1}^{(1)},...,\phi_{p}^{(1)},\mu^{(1)},\sigma^{(1)})$
-\end_inset
-
- from 
-\begin_inset Formula $p(\phi_{1},...,\phi_{p},\mu,\sigma|\mathbf{y}_{1:T})$
-\end_inset
-
-.
-\begin_inset VSpace medskip
 \end_inset
 
 
-\end_layout
-
-\begin_layout Enumerate
-Generate a 
-\series bold
-\color orange
-predictive draw
-\series default
-\color inherit
- of future time series by:
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset Formula $\tilde{y}_{T+1}\sim$
-\end_inset
-
-
-\begin_inset Formula $p(y_{T+1}|y_{T},y_{T-1},...,y_{T-p},\textcolor{blue}{\theta^{(1)}})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $\tilde{y}_{T+2}\sim p(y_{T+2}|\textcolor{orange}{\tilde{y}_{T+1}},y_{T},...,y_{T-p},\textcolor{blue}{\theta^{(1)}})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset Formula $\tilde{y}_{T+3}\sim p(y_{T+3}|\textcolor{orange}{\tilde{y}_{T+2}},\textcolor{orange}{\tilde{y}_{T+1}},y_{T},...,y_{T-p},\textcolor{blue}{\theta^{(1)}})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-...
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian prediction of Swedish inflation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/InflSwedenPredsMany.png
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -905,7 +1446,7 @@ Predicting auction prices on eBay
 Problem: 
 \series bold
 \color blue
-Predicting the auctioned price
+Predicting the final price
 \series default
 \color inherit
  in eBay coin auctions.
@@ -928,21 +1469,45 @@ Data
 
  auctions on eBay.
  
-\begin_inset Separator latexpar
+\begin_inset Newline newline
+\end_inset
+
+The highest bid is not observed (eBay proxy bidding).
+ 
+\begin_inset VSpace bigskip
 \end_inset
 
 
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+\color blue
+Covariates
+\series default
+\color inherit
+ are auction-specific:
+\end_layout
+
 \begin_deeper
 \begin_layout Itemize
-The highest bid is not observed.
- 
+catalog value
 \end_layout
 
 \begin_layout Itemize
-The lowest bids are also not observed because of the seller's reservation
- price.
+seller's 
+\series bold
+\color blue
+reservation price
+\end_layout
+
+\begin_layout Itemize
+quality
+\end_layout
+
+\begin_layout Itemize
+rating of seller etc
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -951,22 +1516,6 @@ The lowest bids are also not observed because of the seller's reservation
 
 \end_deeper
 \begin_layout Itemize
-
-\series bold
-\color blue
-Covariates
-\series default
-\color inherit
-: auction-specific, e.g.
- Book value from catalog, seller's reservation price, quality of sold object,
- rating of seller, powerseller, verified seller ID etc
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
 Buyers are 
 \series bold
 \color blue
@@ -974,17 +1523,49 @@ strategic
 \series default
 \color inherit
 .
- Their bids does not fully reflect their valuation.
  
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Bid 
+\begin_inset Formula $\neq$
+\end_inset
+
+ 
+\series bold
+\color blue
+valuation
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bid function
+\series default
+\color inherit
+, 
+\begin_inset Formula $b=\mathrm{BidFunction}(v)$
+\end_inset
+
+, from 
 \series bold
 \color blue
 Game theory
 \series default
 \color inherit
 .
- Very complicated likelihood.
 \end_layout
 
+\begin_layout Itemize
+Very complicated likelihood.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -1014,80 +1595,16 @@ Simulating auction prices on eBay
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-Simulate from 
-\series bold
-\color blue
-posterior predictive distibution
-\series default
-\color inherit
- of the 
-\series bold
-\color blue
-price
-\series default
-\color inherit
- in a new auction:
-\end_layout
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/AlgoeBay.png
+	lyxscale 50
+	scale 25
 
-\begin_layout Enumerate
-Simulate a draw 
-\begin_inset Formula $\theta^{(i)}$
-\end_inset
-
- from the posterior 
-\begin_inset Formula $p(\theta\vert\text{historical bids})$
 \end_inset
 
 
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Simulate the number of bidders conditional on 
-\begin_inset Formula $\theta^{(i)}$
-\end_inset
-
- (Poisson)
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Simulate the bidders' valuations, 
-\begin_inset Formula $\mathbf{v}^{(i)}$
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-Simulate all bids, 
-\begin_inset Formula $\mathbf{b}^{(i)},$
-\end_inset
-
- conditional on the valuations
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Enumerate
-For 
-\begin_inset Formula $\mathbf{b}^{(i)},$
-\end_inset
-
- return the next to largest bid (proxy bidding).
 \end_layout
 
 \end_deeper
@@ -1120,11 +1637,20 @@ Predicting auction prices on eBay
 
 \begin_deeper
 \begin_layout Standard
-\align center
 \begin_inset Graphics
-	filename Images/PredAuctionPrice.eps
-	scale 40
-	rotateAngle 270
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPrice1.png
+	scale 25
+
+\end_inset
+
+
+\begin_inset Formula $\quad$
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPrice3.png
+	scale 25
 
 \end_inset
 
@@ -1495,7 +2021,7 @@ status open
 
 \series bold
 \color orange
-Decision Theory, cont.
+Decision Theory
 \end_layout
 
 \end_inset
@@ -1939,10 +2465,6 @@ Lin-Lin loss
 \begin_inset Separator parbreak
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 
 \end_layout
 
