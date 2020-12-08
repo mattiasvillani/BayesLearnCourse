@@ -190,8 +190,18 @@ Here is what you need to do to access this bonus feature:
   import Pluto     # loads the Pluto package.
   Pluto.run()      # Opens up Pluto in your browser (Firefox or Chrome)
   ```
-* Open up a notebook file in the Pluto browser tab and start playing around by changing value in the cells.
-  
+* Open up a notebook file in the Pluto browser tab and start playing around by changing value in the cells. 
+ 
+Note that the notebooks uses modules (like R packages) that you need to install (similar to how you have to install.packages() in R). So you have to do Pkg.add("NameOfPackage") to install each package at the Julia prompt. This is only done once. Here is for example what you need to install for running the BernBeta.jl notebook:
+
+```
+Pkg.add("Plots")           # The basic plotting module
+Pkg.add("LaTeXStrings")    # The get LaTeX maths in plots
+Pkg.add("Distributions")   # Module with probability distributions
+Pkg.add("PlutoUI")         # A module with fancy sliders etc for Pluto
+Pkg.add("ColorSchemes")    # Fancy colors for plotting
+```
+
 Julia is a very attractive programming language for numerical and statistical analysis. If you are curious and want to use if for more than Notebooks, I suggest downloading the fantastic editor [VS Code](https://code.visualstudio.com/) and the [Julia for VS Code](https://www.julia-vscode.org/) extension that turns VS Code into an RStudio-like experience for Julia.
 
 Here is an animated GIF to give you a feel for how it works for the Bernoulli model:
