@@ -25,7 +25,7 @@ The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and PDF.
-* Villani, M. (2020). Bayesian Learning (BL). First chapters of a book that I am writing is [here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/BayesBook/BayesBook.pdf). This is a very rough version with lots of typos, but may be useful as a complement to Gelman et al.
+* Villani, M. (2020). Bayesian Learning (BL). First chapters of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is a very rough version with lots of typos, but may be useful as a complement to Gelman et al.
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39757&type=courseevent&h=t).
@@ -98,7 +98,7 @@ Notebooks: [multinomial.Rmd](https://github.com/mattiasvillani/BayesLearnCourse/
 [multinomial.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/Julia/BernBeta.jl)
 
 **Lecture 4 - Linear Regression. Prediction. Making Decisions**\
-Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf)  
+Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf)  
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
