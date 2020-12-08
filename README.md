@@ -192,7 +192,7 @@ Here is what you need to do to access this bonus feature:
   ```
 * Open up a notebook file in the Pluto browser tab and start playing around by changing value in the cells. 
  
-Note that the notebooks uses modules (like R packages) that you need to install (similar to how you have to install.packages() in R). So you have to do Pkg.add("NameOfPackage") to install each package at the Julia prompt. This is only done once. Here is for example what you need to install for running the BernBeta.jl notebook:
+Note that the notebooks uses modules (like R packages) that you need to install (similar to how you have to install.packages() in R). So you have to do Pkg.add("NameOfPackage") to install each package at the Julia prompt. This is only done once. The first cell of the notebook shows the needed modules (look for the `using` and `import` statements). Here is for example what you need to install for running the BernBeta.jl notebook:
 
 ```
 Pkg.add("Plots")           # The basic plotting module
