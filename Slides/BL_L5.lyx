@@ -57,7 +57,7 @@
 \SetKwInput{KwInput}{Input}
 \SetKwInput{KwOutput}{Output}
 \end_preamble
-\options xcolor=svgnames, handout
+\options xcolor=svgnames
 \use_default_options false
 \maintain_unincluded_children false
 \language english
@@ -88,14 +88,14 @@
 \use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
-\use_package cancel 0
+\use_package cancel 1
 \use_package esint 0
 \use_package mathdots 1
-\use_package mathtools 0
+\use_package mathtools 1
 \use_package mhchem 1
-\use_package stackrel 0
-\use_package stmaryrd 0
-\use_package undertilde 0
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
 \biblio_style plain
@@ -154,7 +154,8 @@ Multiparameter models
 \begin_layout Subtitle
 
 \color orange
-Lecture 5 - Regression and Regularization
+Lecture 6 - Large sample approximations.
+ Classification.
 \end_layout
 
 \begin_layout Author
@@ -242,37 +243,8 @@ Lecture overview
 
 \series bold
 \color blue
-Normal model
-\series default
-\color inherit
- with conjugate prior
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-The 
-\series bold
-\color blue
-linear regression
-\series default
-\color inherit
- model
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Non-linear regression
-\series default
-\color inherit
+Classification
+\color orange
 
 \begin_inset VSpace bigskip
 \end_inset
@@ -284,7 +256,27 @@ Non-linear regression
 
 \series bold
 \color blue
-Regularization priors
+Normal approximation
+\series default
+\color inherit
+ of posterior
+\series bold
+\color orange
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Logistic regression
+\series default
+\color inherit
+ - demo in R
 \end_layout
 
 \end_deeper
@@ -303,7 +295,7 @@ status open
 
 \series bold
 \color orange
-Linear regression
+Bayesian classification
 \end_layout
 
 \end_inset
@@ -317,46 +309,147 @@ Linear regression
 
 \begin_deeper
 \begin_layout Itemize
-The linear regression model in 
+
 \series bold
 \color blue
-matrix form
+Classification: output is a discrete label
+\series default
+\color inherit
+.
+ 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Binary (0-1).
+ Spam/Ham.
+\end_layout
+
+\begin_layout Itemize
+Multi-class.
+ (
+\begin_inset Formula $c=1,2,...,C$
+\end_inset
+
+).
+ Brand choice.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian classification
 \series default
 \color inherit
 
 \begin_inset Formula 
 \[
-\underset{(n\times1)}{\mathbf{y}}=\underset{(n\times k)(k\times1)}{\mathbf{X}\beta}+\underset{(n\times1)}{\varepsilon}
+\underset{c\in\mathcal{C}}{\mathrm{argmax}}\:p(c|\mathbf{x})
 \]
 
 \end_inset
 
+where 
+\begin_inset Formula $\mathbf{x}=(x_{1},...,x_{p})^{\top}$
+\end_inset
 
+ is a covariate/feature vector.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Discriminative models
+\series default
+\color inherit
+ - model 
+\begin_inset Formula $p(c\vert\mathbf{x})$
+\end_inset
+
+ directly.
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Examples: logistic regression, support vector machines.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Generative models
+\series default
+\color inherit
+ - Use Bayes' theorem
 \begin_inset Formula 
-\begin{eqnarray*}
-\mathbf{y} & = & \left(\begin{array}{c}
-y_{1}\\
-\vdots\\
-y_{n}
-\end{array}\right),\text{ }\beta=\left(\begin{array}{c}
-\beta_{1}\\
-\vdots\\
-\beta_{k}
-\end{array}\right),\text{ }\varepsilon=\left(\begin{array}{c}
-\varepsilon_{1}\\
-\vdots\\
-\varepsilon_{n}
-\end{array}\right)\\
-\mathbf{X} & = & \left(\begin{array}{c}
-\mathbf{x}_{1}^{\prime}\\
-\vdots\\
-\mathbf{x}_{n}^{\prime}
-\end{array}\right)=\left(\begin{array}{ccc}
-x_{11} & \cdots & x_{1k}\\
-\vdots & \ddots & \vdots\\
-x_{n1} & \cdots & x_{nk}
-\end{array}\right)
-\end{eqnarray*}
+\[
+p(c|\mathbf{x})\propto p(\mathbf{x}|c)p(c)
+\]
+
+\end_inset
+
+with class-conditional distribution 
+\begin_inset Formula $p(\mathbf{x}\vert c)$
+\end_inset
+
+ and prior 
+\begin_inset Formula $p(c)$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Examples: discriminant analysis, naive Bayes.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Naive Bayes
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+By Bayes' theorem
+\begin_inset Formula 
+\[
+p(c|\mathbf{x})\propto p(\mathbf{x}|c)p(c)
+\]
 
 \end_inset
 
@@ -364,20 +457,180 @@ x_{n1} & \cdots & x_{nk}
 \end_layout
 
 \begin_layout Itemize
-Usually 
-\begin_inset Formula $x_{i1}=1$
+\begin_inset Formula $p(c)$
 \end_inset
 
-, for all 
-\begin_inset Formula $i$
+ can be estimated by Multinomial-Dirichlet analysis.
+\begin_inset VSpace medskip
 \end_inset
 
-.
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(\mathbf{x}|c)$
+\end_inset
+
+ can be 
+\begin_inset Formula $N(\theta_{c},\Sigma_{c})$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(\mathbf{x}|c)$
+\end_inset
+
+ can be very high-dimensional and hard to estimate.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Even with binary features (e.g.
  
-\begin_inset Formula $\beta_{1}$
+\family typewriter
+hasWord('money')
+\family default
+ for spam), the outcome space of 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $p(\mathbf{x}|c)$
 \end_inset
 
- is the intercept.
+ can be huge.
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Naive Bayes
+\series default
+\color inherit
+: features are assumed
+\series bold
+ 
+\color blue
+independent
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\mathbf{x}|c)=\prod_{j=1}^{n}p(x_{j}|c)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Classification with logistic regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Response is assumed to be 
+\series bold
+\color blue
+binary
+\series default
+\color inherit
+ (
+\begin_inset Formula $y=0$
+\end_inset
+
+ or 
+\begin_inset Formula $1$
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Itemize
+Example: Spam/Ham.
+ Covariates: 
+\begin_inset Formula $\$$
+\end_inset
+
+-symbols, etc.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Logistic regression
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\Pr(y_{i}=1\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\prime}\beta)}{1+\exp(x_{i}^{\prime}\beta)}.
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -390,7 +643,56 @@ Likelihood
 
 \begin_inset Formula 
 \[
-\mathbf{y}|\beta,\sigma^{2},\mathbf{X}\sim N(\mathbf{X}\beta,\sigma^{2}I_{n})
+p(\mathbf{y}|\mathbf{X},\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\prime}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\prime}\beta)}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Prior 
+\begin_inset Formula $\beta\sim N(0,\tau^{2}I)$
+\end_inset
+
+.
+ Posterior is non-standard (demo later).
+\end_layout
+
+\begin_layout Itemize
+Alternative: 
+\series bold
+\color blue
+Probit regression
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+Pr(y_{i}=1|x_{i})=\Phi(x_{i}^{'}\beta)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Multi-class
+\series default
+\color inherit
+ (
+\begin_inset Formula $c=1,2,...,C$
+\end_inset
+
+) logistic regression
+\begin_inset Formula 
+\[
+\Pr(y_{i}=c\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\prime}\beta_{c})}{\sum_{k=1}^{C}\exp(x_{i}^{\prime}\beta_{k})}
 \]
 
 \end_inset
@@ -414,7 +716,7 @@ status open
 
 \series bold
 \color orange
-Linear regression - uniform prior
+Likelihood asymptotics
 \end_layout
 
 \end_inset
@@ -428,171 +730,21 @@ Linear regression - uniform prior
 
 \begin_deeper
 \begin_layout Itemize
-Standard 
-\series bold
-\color blue
-non-informative prior
-\series default
-\color inherit
-: uniform on (
-\begin_inset Formula $\beta,\log\sigma^{2}$
-\end_inset
-
-)
-\begin_inset Formula 
-\[
-p(\beta,\sigma^{2})\propto\sigma^{-2}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
 
 \series bold
 \color blue
-Joint posterior
+Taylor expansion of log-likelihood
 \series default
 \color inherit
- of 
-\begin_inset Formula $\beta$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma^{2}$
+ around the MLE 
+\begin_inset Formula $\theta=\hat{\theta}$
 \end_inset
 
 :
 \begin_inset Formula 
-\begin{eqnarray*}
-\beta|\sigma^{2},\mathbf{y} & \sim & N\left[\hat{\beta},\sigma^{2}(\mathbf{X}^{\prime}\mathbf{X})^{-1}\right]\\
-\sigma^{2}|\mathbf{y} & \sim & Inv\text{-}\chi^{2}(n-k,s^{2})
-\end{eqnarray*}
-
-\end_inset
-
-where 
-\begin_inset Formula $\hat{\beta}=(\mathbf{X}^{\prime}\mathbf{X})^{-1}\mathbf{X}^{\prime}\mathbf{y}$
-\end_inset
-
- and 
-\begin_inset Formula $s^{2}=\frac{1}{n-k}(\mathbf{y}-\mathbf{X}\hat{\beta})^{\prime}(\mathbf{y}-\mathbf{X}\hat{\beta}).$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Simulate
-\series default
-\color inherit
- from the joint posterior by simulating from
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $p(\sigma^{2}|\mathbf{y})$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $p(\beta|\sigma^{2},\mathbf{y})$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Marginal posterior
-\color orange
- 
-\series default
-\color inherit
-of 
-\begin_inset Formula $\beta:$
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\beta|\mathbf{y}\sim t_{n-k}\left[\hat{\beta},s^{2}(X^{\prime}X)^{-1}\right]
-\]
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Linear regression - conjugate prior
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Joint prior
-\color orange
- 
-\series default
-\color inherit
-for 
-\begin_inset Formula $\beta$
-\end_inset
-
- and 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Formula 
 \begin{align*}
-\beta|\sigma^{2} & \sim N\left(\mu_{0},\sigma^{2}\Omega_{0}^{-1}\right)\\
-\sigma^{2} & \sim Inv-\chi^{2}\left(\nu_{0},\sigma_{0}^{2}\right)
+\ln p(\mathbf{x}|\theta)= & \ln p(\mathbf{x}|\hat{\theta})+\frac{\partial\ln p(\mathbf{x}|\theta)}{\partial\theta}|_{\theta=\hat{\theta}}(\theta-\hat{\theta})\\
+ & +\frac{1}{2!}\frac{\partial^{2}\ln p(\mathbf{x}|\theta)}{\partial\theta^{2}}|_{\theta=\hat{\theta}}(\theta-\hat{\theta})^{2}+\dots
 \end{align*}
 
 \end_inset
@@ -601,275 +753,54 @@ for
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Posterior
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align*}
-\beta|\sigma^{2},\mathbf{y} & \sim N\left[\mu_{n},\sigma^{2}\Omega_{n}^{-1}\right]\\
-\sigma^{2}\vert\mathbf{y} & \sim Inv-\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)
-\end{align*}
-
+Higher order terms (
+\begin_inset Formula $\ldots$
 \end_inset
 
- 
-\begin_inset Formula 
-\begin{align*}
-\mu_{n} & =\left(\mathbf{X}'\mathbf{X}+\Omega_{0}\right)^{-1}\left(\mathbf{X}'\mathbf{X}\hat{\beta}+\Omega_{0}\mu_{0}\right)\\
-\Omega_{n} & =\mathbf{X}'\mathbf{X}+\Omega_{0}\\
-\nu_{n} & =\nu_{0}+n\\
-\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\left(\mathbf{y}'\mathbf{y}+\mu_{0}'\Omega_{0}\mu_{0}-\mu_{n}'\Omega_{n}\mu_{n}\right)
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Polynomial regression
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Polynomial regression
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-f(x_{i})=\beta_{0}+\beta_{1}x_{i}+\beta_{2}x_{i}^{2}+...+\beta_{k}x_{i}^{k}.
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\mathbf{y}=\mathbf{X}_{P}\beta+\varepsilon,
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula 
-\[
-\mathbf{X}_{P}=(1,x,x^{2},...,x^{k}).
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/quadraticBasis.eps
-	scale 35
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Spline regression
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Polynomials are too global.
- Need more local basis functions.
+) negligible in large samples.
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Truncated power splines
-\series default
-\color inherit
- given 
-\series bold
-\color blue
-knot locations
-\shape italic
-\emph on
-\color black
- 
-\begin_inset Formula $k_{1},...,k_{m}$
-\end_inset
-
-
-\color blue
- 
-\series default
-\shape default
-\emph default
-\color inherit
-
+From the definition of the MLE:
 \begin_inset Formula 
 \[
-b_{ij}=\left\{ \begin{array}{c}
-(x_{i}-k_{j})^{p}\text{ \ \ if }x_{i}>k_{j}\\
-0\text{ otherwise}
-\end{array}\right.
+\frac{\partial\ln p(\mathbf{x}|\theta)}{\partial\theta}|_{\theta=\hat{\theta}}=0
 \]
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/brokenStickBasis.eps
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Splines
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Spline regression is linear
-\series default
-\color inherit
- in the 
-\begin_inset Formula $m$
-\end_inset
-
- 'dummy variables' 
-\begin_inset Formula $b_{j}$
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\mathbf{y}=\mathbf{X}_{b}\beta+\varepsilon,
-\]
-
-\end_inset
-
-where 
-\begin_inset Formula $X_{b}$
-\end_inset
-
- is the 
-\series bold
-\color blue
-basis matrix
-\series default
-\color inherit
- 
-\begin_inset Formula 
-\[
-\mathbf{X}_{b}=(b_{1},...,b_{m}).
-\]
-
-\end_inset
-
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-Adding intercept and linear term
+So, in 
+\series bold
+\color blue
+large samples
+\series default
+\color inherit
+
 \begin_inset Formula 
 \[
-\mathbf{X}_{b}=(1,x,b_{1},...,b_{m}).
+p(\mathbf{x}|\theta)\approx p(\mathbf{x}|\hat{\theta})\exp\left(-\frac{1}{2}J_{\mathbf{x}}(\hat{\theta})(\theta-\hat{\theta})^{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Observed information
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+J_{\mathbf{x}}(\tilde{\theta})=-\frac{\partial^{2}\ln p(\mathbf{x}|\theta)}{\partial\theta^{2}}|_{\theta=\hat{\theta}}
 \]
 
 \end_inset
@@ -893,13 +824,9 @@ status open
 
 \series bold
 \color orange
-Smoothness prior for splines
+Likelihood asymptotics
 \end_layout
 
-\end_inset
-
-
-\begin_inset Separator latexpar
 \end_inset
 
 
@@ -907,119 +834,295 @@ Smoothness prior for splines
 
 \begin_deeper
 \begin_layout Itemize
-Problem: too many knots leads to 
+\begin_inset Formula $J_{\mathbf{x}}(\tilde{\theta})$
+\end_inset
+
+ varies from sample to sample.
+ 
 \series bold
 \color blue
-over-fitting
+Fisher information
+\series default
+\color inherit
+ 
+\begin_inset Formula 
+\[
+I(\theta)=\mathbb{E}_{\mathbf{x}|\theta}\left(J_{\theta,\mathbf{x}}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Multiparameter 
+\series bold
+\color blue
+observed information matrix 
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+J_{\boldsymbol{\theta},\mathbf{x}}=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{T}}\vert_{\boldsymbol{\theta}=\hat{\boldsymbol{\theta}}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\series bold
+
+\begin_inset Formula $\boldsymbol{\theta}=(\theta_{1},\theta_{2})^{\top}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{\top}}=\begin{pmatrix}\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{1}^{2}} & \frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{1}\partial\theta_{2}}\\
+\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{1}\partial\theta_{2}} & \frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{2}^{2}}
+\end{pmatrix}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Posterior asymptotics
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+We can do the same Taylor approximation on log posterior 
+\begin_inset Formula 
+\[
+\log p(\boldsymbol{\theta}\vert\mathbf{x})=\log p(\mathbf{x}\vert\boldsymbol{\theta})+\log p(\boldsymbol{\theta})-\log p(\boldsymbol{x})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Approximate normal posterior
+\color inherit
+ 
+\series default
+in large samples
+\begin_inset Formula 
+\[
+\boldsymbol{\theta}|\mathbf{x}\stackrel{\mathrm{approx}}{\sim}N\left[\tilde{\boldsymbol{\theta}},J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\tilde{\boldsymbol{\theta}}=\arg\max p(\boldsymbol{\theta}\vert\mathbf{x})$
+\end_inset
+
+ is the posterior mode and 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})$
+\end_inset
+
+ is now with respect to posterior 
+\begin_inset Formula $\log p(\boldsymbol{\theta}\vert\mathbf{x})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Likelihood will dominate the prior in large samples so
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\tilde{\boldsymbol{\theta}}\approx\hat{\boldsymbol{\theta}}$
+\end_inset
+
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})$
+\end_inset
+
+ will be close to the 
+\series bold
+\color blue
+observed information
 \series default
 \color inherit
 .
- 
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
-
-\series bold
-\color blue
-Smoothness
-\color inherit
-/
-\color blue
-shrinkage
-\color inherit
-/
-\color blue
-regularization
-\color inherit
- prior
-\series default
-
+Important: sufficient with proportional form 
 \begin_inset Formula 
 \[
-\beta_{i}|\sigma^{2}\overset{iid}{\sim}N\left(0,\frac{\sigma^{2}}{\lambda}\right)
+\log p(\boldsymbol{\theta}\vert\mathbf{x})=\log p(\mathbf{x}\vert\boldsymbol{\theta})+\log p(\boldsymbol{\theta})
 \]
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Larger 
-\begin_inset Formula $\lambda$
-\end_inset
-
- gives smoother fit.
- Note: 
-\begin_inset Formula $\mbox{\Omega}_{0}=\lambda I$
 \end_inset
 
 .
 \end_layout
 
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Example: gamma posterior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
-Equivalent to 
+
 \series bold
 \color blue
-penalized likelihood
+Poisson model
 \series default
 \color inherit
 : 
-\begin_inset Formula 
-\[
--2\cdot\log p(\beta\vert\sigma^{2},\mathbf{y},\mathbf{X})\propto RSS(\beta)+\lambda\beta'\beta
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Posterior mean gives 
-\series bold
-\color blue
-ridge regression
-\series default
-\color inherit
- estimator
-\begin_inset Formula 
-\[
-\tilde{\beta}=\left(\mathbf{X}'\mathbf{X}+\lambda I\right)^{-1}\mathbf{X}'\mathbf{y}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Shrinkage
-\series default
-\color inherit
- toward zero 
-\begin_inset Formula 
-\[
-\text{As }\lambda\rightarrow\infty,\text{ }\tilde{\beta}\rightarrow0
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-When 
-\begin_inset Formula $\mathbf{X}'\mathbf{X}=I$
+\begin_inset Formula $\theta\vert y_{1},...,y_{n}\sim\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)$
 \end_inset
 
  
 \begin_inset Formula 
 \[
-\tilde{\beta}=\frac{1}{1+\lambda}\hat{\beta}_{OLS}
+\log p(\theta|y_{1},...,y_{n})\propto(\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1)\log\theta-\theta(\beta+n)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+First derivative of log density
+\begin_inset Formula 
+\[
+\frac{\partial\ln p(\theta|\mathbf{y})}{\partial\theta}=\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\theta}-(\beta+n)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\tilde{\theta}=\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\beta+n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Second derivative at mode 
+\begin_inset Formula $\tilde{\theta}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\frac{\partial^{2}\ln p(\theta|\mathbf{y})}{\partial\theta^{2}}|_{\theta=\tilde{\theta}}=-\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\left(\frac{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}{\beta+n}\right)^{2}}=-\frac{(\beta+n)^{2}}{\alpha+\sum\nolimits _{i=\mbox{}1}^{n}y_{i}-1}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Normal approximation
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+N\left[\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1}{\beta+n},\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1}{(\beta+n)^{2}}\right]
 \]
 
 \end_inset
@@ -1043,7 +1146,7 @@ status open
 
 \series bold
 \color orange
-Bayesian spline with smoothness prior
+Example: gamma posterior
 \end_layout
 
 \end_inset
@@ -1059,7 +1162,7 @@ Bayesian spline with smoothness prior
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/LidarPoly1Knots24.eps
+	filename Images/NormalApprox2Gamma.eps
 	scale 55
 
 \end_inset
@@ -1083,9 +1186,65 @@ status open
 
 \series bold
 \color orange
-Smoothness prior for splines
+Normal approximation of posterior
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{\theta}|\mathbf{y}\stackrel{\mathrm{approx}}{\sim}N\left[\tilde{\boldsymbol{\theta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right]$
+\end_inset
+
+ works also when 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is a vector.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+How to compute 
+\begin_inset Formula $\tilde{\boldsymbol{\theta}}$
+\end_inset
+
+ and 
+\begin_inset Formula $J_{\mathbf{y}}(\tilde{\boldsymbol{\theta}})$
+\end_inset
+
+?
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Standard 
+\series bold
+\color blue
+optimization routines
+\series default
+\color inherit
+ may be used.
+ (
+\family typewriter
+optim.r
+\family default
+).
+ 
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -1100,263 +1259,216 @@ Smoothness prior for splines
 
 \series bold
 \color blue
-Lasso
+Input
 \series default
 \color inherit
- is equivalent to posterior mode under Laplace prior
+: expression proportional to 
+\begin_inset Formula $\log p(\theta|\mathbf{y})$
+\end_inset
+
+.
+ Initial values.
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+\color blue
+Output
+\series default
+\color inherit
+: 
+\begin_inset Formula $\log p(\tilde{\boldsymbol{\theta}}|\mathbf{y})$
+\end_inset
+
+, 
+\begin_inset Formula $\tilde{\boldsymbol{\theta}}$
+\end_inset
+
+ and Hessian matrix (
+\begin_inset Formula $-J_{\mathbf{y}}(\tilde{\boldsymbol{\theta}})$
+\end_inset
+
+).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Automatic differentation
+\series default
+\color inherit
+ - efficient derivatives on computer.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Re-parametrization
+\series default
+\color inherit
+ may improve normal approximation.
+ [Don't forget the 
+\series bold
+\color blue
+Jacobian
+\series default
+\color inherit
+!]
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $\theta\geq0$
+\end_inset
+
+ use 
+\begin_inset Formula $\phi=\log(\theta)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $0\leq\theta\leq1$
+\end_inset
+
+, use 
+\begin_inset Formula $\phi=\ln[\theta/(1-\theta)]$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Heavy tailed approximation
+\series default
+\color inherit
+: 
+\begin_inset Formula $\boldsymbol{\theta}|\mathbf{y}\stackrel{\mathrm{approx}}{\sim}t_{v}\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right]$
+\end_inset
+
+ for suitable degrees of freedom 
+\begin_inset Formula $v$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
-\align center
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Reparametrization - Gamma posterior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Poisson model.
+ Reparameterize to 
+\begin_inset Formula $\phi=\log(\theta)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Change-of-variables formula from a basic probability course
 \begin_inset Formula 
 \[
-\beta_{i}|\sigma^{2}\overset{iid}{\sim}\mathrm{Laplace}\left(0,\frac{\sigma^{2}}{\lambda}\right)
+\log p(\phi|y_{1},...,y_{n})\propto(\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1)\phi-\exp(\phi)(\beta+n)+\phi
 \]
 
 \end_inset
 
 
-\begin_inset Graphics
-	filename Images/Laplace.png
-	lyxscale 20
-	scale 3
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
-The 
-\series bold
-\color blue
-Bayesian shrinkage
-\series default
-\color inherit
- prior is 
-\series bold
-\color blue
-interpretable
-\series default
-\color inherit
-.
- 
-\series bold
-Not ad hoc
-\series default
-.
-\end_layout
-
-\begin_layout Itemize
-Laplace distribution have heavy tails.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Laplace prior
-\series default
-\color inherit
-: many 
-\begin_inset Formula $\beta_{i}$
+Taking first and second derivatives and evaluating at 
+\begin_inset Formula $\tilde{\phi}$
 \end_inset
 
- close to zero, but some 
-\begin_inset Formula $\beta_{i}$
-\end_inset
-
- very large.
-\end_layout
-
-\begin_layout Itemize
-Normal distribution have light tails.
- 
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Normal prior
-\series default
-\color inherit
-: all 
-\begin_inset Formula $\beta_{i}$
-\end_inset
-
-'s are similar in magnitude.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Estimating the shrinkage
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Cross-validation is often used to determine the degree of smoothness, 
-\begin_inset Formula $\lambda$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-Bayesian: 
-\begin_inset Formula $\lambda$
-\end_inset
-
- is 
-\series bold
-\color blue
-unknown
-\series default
-\color inherit
-
-\begin_inset Formula $\;\Rightarrow\;$
-\end_inset
-
-
-\series bold
-\color blue
-use a prior
-\series default
-\color inherit
- for 
-\begin_inset Formula $\lambda$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $\lambda\sim Inv-\chi^{2}(\eta_{0},\lambda_{0})$
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Itemize
-Hierarchical setup:
+ gives
 \begin_inset Formula 
-\begin{align*}
-\mathbf{y}|\beta,\mathbf{X} & \sim N(\mathbf{X}\beta,\sigma^{2}I_{n})\\
-\beta|\sigma^{2},\lambda & \sim N\left(0,\sigma^{2}\lambda^{-1}I_{m}\right)\\
-\sigma^{2} & \sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})\\
-\lambda & \sim Inv-\chi^{2}(\eta_{0},\lambda_{0})
-\end{align*}
+\[
+\tilde{\phi}=\log\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}\right)\text{ and }\frac{\partial^{2}\ln p(\phi|y)}{\partial\phi^{2}}|_{\phi=\tilde{\phi}}=\alpha+\sum\nolimits _{i=1}^{n}y_{i}
+\]
 
-\end_inset
-
-so 
-\begin_inset Formula $\Omega_{0}=\lambda I_{m}$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
 \end_inset
 
 
 \end_layout
 
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Regression with estimated shrinkage
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
 \begin_layout Itemize
-The 
-\series bold
-\color blue
-joint posterior
-\series default
-\color inherit
- of 
-\begin_inset Formula $\beta$
-\end_inset
-
-, 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
- and 
-\begin_inset Formula $\lambda$
+So, the normal approximation for 
+\begin_inset Formula $p(\phi\vert y_{1},...y_{n})$
 \end_inset
 
  is
 \begin_inset Formula 
-\begin{align*}
-\beta|\sigma^{2},\lambda,\mathbf{y} & \sim N\left(\mu_{n},\Omega_{n}^{-1}\right)\\
-\sigma^{2}|\lambda,\mathbf{y} & \sim Inv-\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)\\
-p(\lambda|\mathbf{y}) & \propto\sqrt{\frac{\left|\Omega_{0}\right|}{\left|\mathbf{X}^{T}\mathbf{X}+\Omega_{0}\right|}}\left(\frac{\nu_{n}\sigma_{n}^{2}}{2}\right)^{-\nu_{n}/2}\cdot p(\lambda)
-\end{align*}
+\[
+\phi=\log(\theta)\sim N\left[\log\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}\right),\frac{1}{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}\right]
+\]
 
 \end_inset
 
-where 
-\begin_inset Formula $\Omega_{0}=\lambda I_{m}$
+which means that 
+\begin_inset Formula $p(\theta\vert y_{1},...y_{n})$
 \end_inset
 
-, and 
-\begin_inset Formula $p(\lambda)$
-\end_inset
-
- is the prior for 
-\begin_inset Formula $\lambda$
-\end_inset
-
-, and 
+ is log-normal: 
 \begin_inset Formula 
-\begin{align*}
-\mu_{n} & =\left(\mathbf{X}^{T}\mathbf{X}+\Omega_{0}\right)^{-1}\mathbf{X}^{T}\mathbf{y}\\
-\Omega_{n} & =\mathbf{X}^{T}\mathbf{X}+\Omega_{0}\\
-\nu_{n} & =\nu_{0}+n\\
-\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\mathbf{y}^{T}\mathbf{y}-\mu_{n}^{T}\Omega_{n}\mu_{n}
-\end{align*}
+\[
+\theta\vert\mathbf{y}\sim LN\left[\log\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}\right),\frac{1}{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}\right]
+\]
 
 \end_inset
 
@@ -1379,7 +1491,47 @@ status open
 
 \series bold
 \color orange
-More complexity
+Reparametrization - Gamma posterior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/NormalApprox2GammaTrans.eps
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal approximation of posterior
 \end_layout
 
 \end_inset
@@ -1393,30 +1545,23 @@ More complexity
 
 \begin_deeper
 \begin_layout Itemize
-The
+Even if the posterior of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is approx normal, 
 \series bold
 \color blue
- location of the knots
+interesting functions
 \series default
 \color inherit
- can be unknown.
- Joint posterior:
-\begin_inset Formula 
-\[
-p(\beta,\sigma^{2},\lambda,k_{1},...,k_{m}|\mathbf{y},\mathbf{X})
-\]
-
+ of 
+\begin_inset Formula $g(\theta)$
 \end_inset
 
-
-\end_layout
-
-\begin_layout Itemize
-The marginal posterior for 
-\begin_inset Formula $\lambda,k_{1},...,k_{m}$
-\end_inset
-
- is a nightmare.
+ may not be (e.g.
+ predictions).
+ 
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1424,8 +1569,21 @@ The marginal posterior for
 \end_layout
 
 \begin_layout Itemize
-Simulate from joint posterior by MCMC.
- Li and Villani (2013).
+But approximate posterior of 
+\begin_inset Formula $g(\theta)$
+\end_inset
+
+ can be obtained by 
+\series bold
+\color blue
+simulating
+\series default
+\color inherit
+ from 
+\begin_inset Formula $N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
+\end_inset
+
+.
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1433,7 +1591,13 @@ Simulate from joint posterior by MCMC.
 \end_layout
 
 \begin_layout Itemize
-The basic spline model can be extended with:
+Posterior of 
+\series bold
+\color blue
+Gini coefficient
+\series default
+\color inherit
+
 \begin_inset Separator latexpar
 \end_inset
 
@@ -1442,44 +1606,80 @@ The basic spline model can be extended with:
 
 \begin_deeper
 \begin_layout Itemize
+Model: 
+\begin_inset Formula $x_{1},...,x_{n}\vert\mu,\sigma^{2}\sim LN(\mu,\sigma^{2})$
+\end_inset
 
-\series bold
-\color blue
-Heteroscedastic errors
-\series default
-\color inherit
- (also modelled with a spline)
-\begin_inset VSpace smallskip
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\phi=\log(\sigma^{2})$
+\end_inset
+
+.
+ And 
+\begin_inset Formula $\boldsymbol{\theta}=(\mu,\phi)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Joint posterior 
+\begin_inset Formula $p(\mu,\phi)$
+\end_inset
+
+ may be approximately normal: 
+\begin_inset Formula $\boldsymbol{\theta}|\mathbf{y}\stackrel{\mathrm{approx}}{\sim}N\left[\tilde{\boldsymbol{\theta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right]$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Simulate 
+\begin_inset Formula $\boldsymbol{\theta}^{(1)},...,\boldsymbol{\theta}^{(N)}$
+\end_inset
+
+ from 
+\begin_inset Formula $N\left[\tilde{\boldsymbol{\theta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right]$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Compute 
+\begin_inset Formula $\sigma^{(1)},...,\sigma^{(N)}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Compute 
+\begin_inset Formula $G^{(i)}=2\Phi\left(\sigma^{(i)}/\sqrt{2}\right)$
+\end_inset
+
+ for 
+\begin_inset Formula $i=1,...,N$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-
-\series bold
-\color blue
-Non-normal errors
-\series default
-\color inherit
- (student-t or mixture distributions)
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Autocorrelated/dependent errors
-\series default
-\color inherit
- (AR process for the errors)
-\end_layout
-
-\end_deeper
-\end_deeper
 \end_body
 \end_document
