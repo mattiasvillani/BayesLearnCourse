@@ -103,7 +103,7 @@ Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasv
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
 Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
-Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip)
+Notebook: [Normal approximation of posterior for logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/SpamOptim.Rmd) using the [spamdata](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/SpamReduced.dat) [html version](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/SpamOptim.html)
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
 Reading: [Slides]() 
@@ -164,7 +164,7 @@ Submission: [Athena]().
 The course examination consists of:
 
 * Written lab reports (deadlines given in Athena)
-* Take home exam (first exam on Jan 14)
+* Take home exam (first exam on Jan 15)
 
 
 ---
