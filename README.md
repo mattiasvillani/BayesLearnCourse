@@ -102,7 +102,7 @@ Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 and 6 | [Slides](https://github
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
-Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) \
+Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
 Code: [Logistic and Probit Regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSpam.zip)
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
