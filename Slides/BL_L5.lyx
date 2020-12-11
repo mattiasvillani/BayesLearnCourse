@@ -800,7 +800,7 @@ Observed information
 
 \begin_inset Formula 
 \[
-J_{\mathbf{x}}(\tilde{\theta})=-\frac{\partial^{2}\ln p(\mathbf{x}|\theta)}{\partial\theta^{2}}|_{\theta=\hat{\theta}}
+J_{\mathbf{x}}(\hat{\theta})=-\frac{\partial^{2}\ln p(\mathbf{x}|\theta)}{\partial\theta^{2}}|_{\theta=\hat{\theta}}
 \]
 
 \end_inset
@@ -834,7 +834,7 @@ Likelihood asymptotics
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $J_{\mathbf{x}}(\tilde{\theta})$
+\begin_inset Formula $J_{\mathbf{x}}(\hat{\theta})$
 \end_inset
 
  varies from sample to sample.
@@ -847,7 +847,7 @@ Fisher information
  
 \begin_inset Formula 
 \[
-I(\theta)=\mathbb{E}_{\mathbf{x}|\theta}\left(J_{\theta,\mathbf{x}}\right)
+I(\theta)=\mathbb{E}_{\mathbf{x}|\theta}\left(J_{\mathbf{x}}(\hat{\theta})\right)
 \]
 
 \end_inset
@@ -865,7 +865,7 @@ observed information matrix
 
 \begin_inset Formula 
 \[
-J_{\boldsymbol{\theta},\mathbf{x}}=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{T}}\vert_{\boldsymbol{\theta}=\hat{\boldsymbol{\theta}}}
+J_{\boldsymbol{\theta},\mathbf{x}}(\hat{\boldsymbol{\theta}})=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{T}}\vert_{\boldsymbol{\theta}=\hat{\boldsymbol{\theta}}}
 \]
 
 \end_inset
