@@ -570,7 +570,7 @@ penalized likelihood
 : 
 \begin_inset Formula 
 \[
--2\cdot\log p(\boldsymbol{\beta}\vert\sigma^{2},\mathbf{y},\mathbf{X})\propto(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta})^{T}(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta})+\lambda\beta'\beta
+-2\cdot\log p(\boldsymbol{\beta}\vert\sigma^{2},\mathbf{y},\mathbf{X})\propto(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta})^{T}(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta})+\lambda\beta^{T}\beta
 \]
 
 \end_inset
@@ -588,7 +588,7 @@ ridge regression
  estimator
 \begin_inset Formula 
 \[
-\tilde{\boldsymbol{\beta}}=\left(\mathbf{X}'\mathbf{X}+\lambda I\right)^{-1}\mathbf{X}'\mathbf{y}
+\tilde{\boldsymbol{\beta}}=\left(\mathbf{X}^{T}X+\lambda I\right)^{-1}\mathbf{X}^{T}\mathbf{y}
 \]
 
 \end_inset
@@ -616,7 +616,7 @@ Shrinkage
 
 \begin_layout Itemize
 When 
-\begin_inset Formula $\mathbf{X}'\mathbf{X}=I$
+\begin_inset Formula $\mathbf{X}^{T}\mathbf{X}=I$
 \end_inset
 
  
