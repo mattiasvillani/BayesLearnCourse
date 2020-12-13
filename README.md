@@ -106,7 +106,7 @@ Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani
 Notebook: [Normal approximation of posterior for logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd) using the [spamdata](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamReduced.dat).
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
-Reading: [Slides]() 
+Reading: [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) 
 
 **Lecture 7 - Gibbs sampling and Data augmentation** \
 Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L7.pdf) \
