@@ -98,7 +98,7 @@ Notebooks: [multinomial.Rmd](https://github.com/mattiasvillani/BayesLearnCourse/
 [multinomial.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/Julia/BernBeta.jl)
 
 **Lecture 4 - Linear Regression. Prediction. Making Decisions**\
-Reading: BDA Ch. 14 and Ch. 20.1-20.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf)  
+Reading: BDA Ch. 14, Ch. 20.1-20.2, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf)  
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
