@@ -899,7 +899,7 @@ Hierarchical
  setup:
 \begin_inset Formula 
 \begin{align*}
-\mathbf{y}|\boldsymbol{\beta},\mathbf{X} & \sim N(\mathbf{X}\boldsymbol{\beta},\sigma^{2}I_{n})\\
+\mathbf{y}|\boldsymbol{\beta},\sigma^{2},\mathbf{X} & \sim N(\mathbf{X}\boldsymbol{\beta},\sigma^{2}I_{n})\\
 \boldsymbol{\beta}|\sigma^{2},\lambda & \sim N\left(0,\sigma^{2}\lambda^{-1}I_{m}\right)\\
 \sigma^{2} & \sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})\\
 \lambda & \sim Inv-\chi^{2}(\eta_{0},\lambda_{0})

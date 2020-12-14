@@ -1498,14 +1498,14 @@ where
 optim
 \family default
  function in R.
- You can use my code 
+ You can use my R notebook code 
 \begin_inset Flex URL
 status open
 
 \begin_layout Plain Layout
 
-https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainOptimizeSp
-am.zip
+https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOpt
+im.Rmd
 \end_layout
 
 \end_inset

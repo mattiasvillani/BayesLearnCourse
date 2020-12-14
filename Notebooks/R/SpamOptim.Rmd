@@ -1,9 +1,9 @@
 ---
 title: "Posterior approximation - logistic regression"
 output:
-  pdf_document: default
   html_document:
     df_print: paged
+  pdf_document: default
 ---
 
 #### Load packages
@@ -23,7 +23,7 @@ tau <- 10;           # Prior std beta~N(0,tau^2*I)
 
 #### Reading data and setting up the prior
 ```{r}
-Data<-read.table("SpamReduced.dat",header=TRUE) # Spam data from Hastie et al.
+Data<-read.table("https://raw.githubusercontent.com/mattiasvillani/BayesLearnCourse/master/Notebooks/R/SpamReduced.dat",header=TRUE) # Reduced spambase data (http://archive.ics.uci.edu/ml/datasets/Spambase/)
 covNames <- names(Data)[2:length(names(Data))]; # Read off the covariate names
 y <- as.vector(Data[,1]); 
 X <- as.matrix(Data[,2:17]);
@@ -71,14 +71,16 @@ print(postStd)
 #### Plot the marginal posterior of $\beta$ for the ```free``` and ```hpl``` covariates
 ```{r}
 par(mfrow=c(1,2))
-gridVals = seq(postMode['free']-3*postStd['free'], postMode['free']+3*postStd['free'], length = 100)
+gridVals = seq(postMode['free']-3*postStd['free'], postMode['free']+3*postStd['free'], 
+               length = 100)
 plot(gridVals, dnorm(gridVals, mean = postMode['free'], sd = postStd['free']), 
-     xlab = "expression(beta)", ylab= "posterior density", type ="l", bty = "n", lwd = 2, col = prettyCol[2], 
-     main = expression(beta[free]))
-gridVals = seq(postMode['hpl']-3*postStd['hpl'], postMode['hpl']+3*postStd['hpl'], length = 100)
+     xlab = expression(beta), ylab= "posterior density", type ="l", bty = "n", 
+     lwd = 2, col = prettyCol[2], main = expression(beta[free]))
+gridVals = seq(postMode['hpl']-3*postStd['hpl'], postMode['hpl']+3*postStd['hpl'], 
+               length = 100)
 plot(gridVals, dnorm(gridVals, mean = postMode['hpl'], sd = postStd['hpl']), 
-     xlab = "expression(beta)", ylab= "posterior density", type ="l", bty = "n", lwd = 2, col = prettyCol[2],
-     main = expression(beta[hpl]))
+     xlab = expression(beta), ylab= "posterior density", type ="l", bty = "n", 
+     lwd = 2, col = prettyCol[2], main = expression(beta[hpl]))
 ```
 
 #### Simulate from normal approximation and make prediction at mean covariate
