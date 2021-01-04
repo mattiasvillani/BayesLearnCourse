@@ -20,6 +20,8 @@
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
+\usepackage[usecourier=false]{jlcode} % For julia code
+\usepackage{listings} % For R code
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -146,7 +148,7 @@ status open
 \begin_layout Plain Layout
 
 \color gray
-HMC and Variational Inference
+Probabilistic Programming
 \end_layout
 
 \end_inset
@@ -495,7 +497,11 @@ begin{frame}[fragile]
 
 
 \backslash
-frametitle{Stan Model 1: iid normal}
+frametitle{
+\backslash
+color{orange}
+\backslash
+textbf{Stan Model 1: iid Normal}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -652,7 +658,11 @@ begin{frame}[fragile]
 
 
 \backslash
-frametitle{Stan Model 2: multilevel normal}
+frametitle{
+\backslash
+color{orange}
+\backslash
+textbf{Stan Model 2: multilevel normal}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -856,7 +866,11 @@ begin{frame}[fragile]
 
 
 \backslash
-frametitle{Stan Model 3: multilevel Poisson}
+frametitle{
+\backslash
+color{orange}
+\backslash
+textbf{Stan Model 3: multilevel Poisson}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1057,7 +1071,11 @@ begin{frame}[fragile]
 
 
 \backslash
-frametitle{Stan: fit model and analyze output}
+frametitle{
+\backslash
+color{orange}
+\backslash
+textbf{Stan: fit model and analyze output}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1314,7 +1332,395 @@ Turing.jl
 
 \begin_deeper
 \begin_layout Itemize
-TBW
+
+\series bold
+\color blue
+Turing
+\color inherit
+ 
+\series default
+is a probabilistic programming language in Julia.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Similar to Stan, but takes advantage of Julia's features such a metaprogramming.
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Named after Alan Turing (1912-1954).
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Written in 
+\family typewriter
+Julia, which is fast natively.
+\end_layout
+
+\begin_layout Standard
+\begin_inset space \hspace{}
+\length 2cm
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Images/turinglogo.png
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/Alan_Turing_Aged_16.jpg
+	lyxscale 50
+	scale 8
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Turing.jl logo
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset space \hspace{}
+\length 1cm
+\end_inset
+
+Alan Turing
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{frame}[fragile]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+frametitle{
+\backslash
+color{orange}
+\backslash
+textbf{Turing.jl for Bernoulli model}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+small
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{jllisting} 
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+using Turing, StatsPlots, Random
+\end_layout
+
+\begin_layout Plain Layout
+
+# Declare the Turing model: 
+\end_layout
+
+\begin_layout Plain Layout
+
+@model function iidbern(y, α, β)     
+\end_layout
+
+\begin_layout Plain Layout
+
+	θ ~ Beta(α,β)  # prior     
+\end_layout
+
+\begin_layout Plain Layout
+
+	N = length(y)  # number of observations     
+\end_layout
+
+\begin_layout Plain Layout
+
+	for n in 1:N         
+\end_layout
+
+\begin_layout Plain Layout
+
+		y[n] ~ Bernoulli(θ) # model     
+\end_layout
+
+\begin_layout Plain Layout
+
+	end 
+\end_layout
+
+\begin_layout Plain Layout
+
+end
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Set up the observed data 
+\end_layout
+
+\begin_layout Plain Layout
+
+data = [0,1,1,0,0,1,1,0,1,1]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Settings for the Hamiltonian Monte Carlo (HMC) sampler.
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+niter = 10000 
+\end_layout
+
+\begin_layout Plain Layout
+
+nburn = 1000 
+\end_layout
+
+\begin_layout Plain Layout
+
+ϵ = 0.1 
+\end_layout
+
+\begin_layout Plain Layout
+
+τ = 10
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Sample the posterior using HMC 
+\end_layout
+
+\begin_layout Plain Layout
+
+postdraws = sample(iidbern(data, 1, 2), HMC(ϵ, τ), niter,    
+\end_layout
+
+\begin_layout Plain Layout
+
+	discard_initial = nburn) plot(postdraws)
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# Print and plot results display(postdraws) 
+\end_layout
+
+\begin_layout Plain Layout
+
+plot(postdraws)   
+\end_layout
+
+\begin_layout Plain Layout
+
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{jllisting}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{frame}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Turing.jl for normal model
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/turingNormal.png
+	lyxscale 40
+	scale 22
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Stan for normal model
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/stanNormal.png
+	lyxscale 40
+	scale 20
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
