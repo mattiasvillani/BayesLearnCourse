@@ -117,7 +117,7 @@ Extra material: [Illustration](https://www.youtube.com/watch?v=IGiQOCX9UbM&ab_ch
 Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L8.pdf) \
 Code: [Simulating Markov Chains](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/SimulateDiscreteMarkovChain.R)
 
-**Lecture 9 - HMC and Variational inference** \ 
+**Lecture 9 - HMC and Variational inference** \
 Reading: BDA Ch. 12.4 and Ch. 13.7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf)
 
 **Lecture 10 - Probabilistic programming for Bayesian learning**\
