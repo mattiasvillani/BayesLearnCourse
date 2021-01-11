@@ -126,7 +126,7 @@ RStan Code: [Bernoulli](https://github.com/mattiasvillani/BayesLearnCourse/raw/m
 Turing code (Julia): [Bernoulli model](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/ppl/Turing/BernTuring.jl) | [Normal model](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/ppl/Turing/NormalTuring.jl)
 
 **Lecture 11 - Bayesian model comparison**\
-Reading: BDA Ch. 7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L10.pdf) \
+Reading: BDA Ch. 7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L11.pdf) \
 Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R)
 
 **Lecture 12 - Bayesian variable selection and model averaging**\
