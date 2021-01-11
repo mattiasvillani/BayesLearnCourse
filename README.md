@@ -130,7 +130,7 @@ Reading: BDA Ch. 7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse
 Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R)
 
 **Lecture 12 - Bayesian variable selection and model averaging**\
-Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/GeorgeMcCulloch97.pdf) on Bayesian variable selection | [Slides]()
+Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/GeorgeMcCulloch97.pdf) on Bayesian variable selection | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L12.pdf)
 
 ---
 
