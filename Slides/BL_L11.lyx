@@ -3403,6 +3403,50 @@ status open
 
 \series bold
 \color orange
+LPS not sensitive to 
+\begin_inset Formula $\kappa_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/lpsVsTrainingFraction.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 And hey! ...
  let's be careful out there
 \end_layout
