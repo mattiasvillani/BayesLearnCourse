@@ -1242,7 +1242,7 @@ Prior
 independent
 \series default
  of 
-\begin_inset Formula $\sigma^{2}\sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})$
+\begin_inset Formula $\sigma^{2}\sim\mathrm{Inv-}\chi^{2}(\nu_{0},\sigma_{0}^{2})$
 \end_inset
 
 .

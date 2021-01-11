@@ -1,0 +1,1714 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+  \setbeamertemplate{headline}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% include necessary packages here
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+\usepackage{colortbl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{
+
+\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
+\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
+\hrulefill \break
+\tiny
+\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+}
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
+\definecolor{red}{RGB}{255, 128, 0}
+\definecolor{verylightgray}{RGB}{246, 246, 246}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
+
+\usepackage[ruled]{algorithm2e}
+\usepackage{wasysym}
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+\end_preamble
+\options xcolor=svgnames, handout
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\size largest
+\color orange
+Bayesian Learning
+\size default
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+Variable selection.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Lecture 12 - Variable selection
+\end_layout
+
+\begin_layout Author
+Mattias Villani
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Bayesian Learning
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+  Department of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Linköping and Stockholm University
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Date
+\begin_inset space \thinspace{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Computing the marginal likelihood
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian variable selection
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model averaging
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Laplace approximation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Taylor approximation of the log likelihood
+\begin_inset Formula 
+\begin{align*}
+\ln p(\mathbf{y}|\theta) & \approx\ln p(\mathbf{y}|\hat{\theta})-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2},
+\end{align*}
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{align*}
+p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\hat{\theta})\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]p(\hat{\theta})\\
+ & =p(\mathbf{y}|\hat{\theta})p(\hat{\theta})(2\pi)^{p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{1/2}\\
+ & =\times\underset{\text{multivariate normal density}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+The Laplace approximation
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\text{ln}p(\hat{\theta})+\frac{1}{2}\ln\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert +\frac{p}{2}\ln(2\pi),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p$
+\end_inset
+
+ is the number of unrestricted parameters.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+BIC
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+The Laplace approximation
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\text{ln}p(\hat{\theta})+\frac{1}{2}\ln\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert +\frac{p}{2}\ln(2\pi).
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $J_{\hat{\theta},\mathbf{y}}$
+\end_inset
+
+ can be obtained with 
+\series bold
+\color blue
+optimization
+\series default
+\color inherit
+/
+\series bold
+\color blue
+autodiff
+\series default
+\color inherit
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+BIC approximation
+\series default
+\color inherit
+ assumes that 
+\begin_inset Formula $J_{\hat{\theta},\mathbf{y}}$
+\end_inset
+
+ behaves like 
+\begin_inset Formula $n\cdot I_{p}$
+\end_inset
+
+ in large samples and the small term 
+\begin_inset Formula $\frac{p}{2}\ln(2\pi)$
+\end_inset
+
+ is ignored
+\begin_inset Formula 
+\[
+\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\ln p(\hat{\theta})-\frac{p}{2}\ln n.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian variable selection
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Linear regression:
+\begin_inset Formula 
+\[
+y=\beta_{0}+\beta_{1}x_{1}+...+\beta_{p}x_{p}+\varepsilon.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Which variables have 
+\series bold
+non-zero
+\series default
+ coefficient?
+\begin_inset Formula 
+\begin{eqnarray*}
+H_{0} & : & \beta_{0}=\beta_{1}=...=\beta_{p}=0\\
+H_{1} & : & \beta_{1}=0\\
+H_{2} & : & \beta_{1}=\beta_{2}=0
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Introduce 
+\series bold
+\color blue
+variable selection indicators
+\series default
+\color inherit
+ 
+\begin_inset Formula $\mathcal{I}=(I_{1},...,I_{p}).$
+\end_inset
+
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Formula $\mathcal{I}=(1,1,0)$
+\end_inset
+
+ means that 
+\begin_inset Formula $\beta_{1}\neq0$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta_{2}\neq0$
+\end_inset
+
+, but 
+\begin_inset Formula $\beta_{3}=0$
+\end_inset
+
+, so 
+\begin_inset Formula $x_{3}$
+\end_inset
+
+ drops out of the model.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian variable selection
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Model inference, just crank the Bayesian machine:
+\begin_inset Formula 
+\[
+p(\mathcal{I}|\mathbf{y},\mathbf{X})\propto p(\mathbf{y}|\mathbf{X},\mathbf{\mathcal{I}})\cdot p(\mathcal{I})
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The prior 
+\begin_inset Formula $p(\mathbf{\mathcal{I}})$
+\end_inset
+
+ is typically taken to be 
+\begin_inset Formula 
+\[
+I_{1},...,I_{p}|\theta\overset{iid}{\sim}Bernoulli(\theta)
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta$
+\end_inset
+
+ is the 
+\series bold
+\color blue
+prior inclusion probability
+\series default
+\color inherit
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Challenge: Computing the 
+\series bold
+\color blue
+marginal likelihood
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ for each model (
+\begin_inset Formula $\mathcal{I}$
+\end_inset
+
+)
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\mathbf{y}|\mathbf{X},\mathbf{\mathcal{I}})=\int p(\mathbf{y}|\mathbf{X},\mathbf{\mathcal{I}},\beta)p(\beta|\mathbf{X},\mathbf{\mathcal{I}})d\beta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian variable selection
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\beta_{\mathcal{I}}$
+\end_inset
+
+ denote the 
+\series bold
+non-zero
+\series default
+ coefficients under 
+\begin_inset Formula $\mathcal{I}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Prior:
+\begin_inset Formula 
+\begin{align*}
+\beta_{\mathcal{I}}|\sigma^{2} & \sim N\left(0,\sigma^{2}\Omega_{\mathcal{I},0}^{-1}\right)\\
+\sigma^{2} & \sim Inv-\chi^{2}\left(\nu_{0},\sigma_{0}^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood 
+\series default
+\size small
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\mathbf{y}|\mathbf{X},\mathbf{\mathcal{I}})\propto\left|\mathbf{X}_{\mathcal{I}}'\mathbf{X}_{\mathcal{I}}+\Omega_{\mathcal{I},0}^{-1}\right|^{-1/2}\left|\Omega_{\mathcal{I},0}\right|^{1/2}\left(\nu_{0}\sigma_{0}^{2}+RSS_{\mathcal{I}}\right)^{-(\nu_{0}+n-1)/2}
+\]
+
+\end_inset
+
+
+\size default
+where 
+\begin_inset Formula $\mathbf{X}_{\mathcal{I}}$
+\end_inset
+
+ is the covariate matrix for the subset selected by 
+\begin_inset Formula $\mathcal{I}$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $RSS_{\mathcal{I}}$
+\end_inset
+
+ is (almost) the residual sum of squares for model with 
+\begin_inset Formula $\mathbf{\mathcal{I}}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+RSS_{\mathcal{I}}=\mathbf{y}'\mathbf{y}-\mathbf{y}'\mathbf{X}_{\mathcal{I}}\left(\mathbf{X}_{\mathcal{I}}'\mathbf{X}_{\mathcal{I}}+\Omega_{\mathcal{I},0}\right)^{-1}\mathbf{X}_{\mathcal{I}}'\mathbf{y}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian variable selection via Gibbs sampling
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+But there are 
+\begin_inset Formula $2^{p}$
+\end_inset
+
+ model combinations to go through! 
+\emph on
+Ouch
+\emph default
+!
+\end_layout
+
+\begin_layout Itemize
+...
+ but most have essentially zero posterior probability.
+ 
+\emph on
+Phew
+\emph default
+!
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Simulate
+\series default
+\color inherit
+ from the joint posterior distribution:
+\begin_inset Formula 
+\[
+p(\beta,\sigma^{2},\mathcal{I}|\mathbf{y\textnormal{,}X})=p(\beta,\sigma^{2}|\mathcal{I},\mathbf{y}\textnormal{,}\mathbf{X})p(\mathcal{I}|\mathbf{y},\mathbf{X}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Simulate from 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $p(\mathbf{\mathcal{I}}|\mathbf{y},\mathbf{X})$
+\end_inset
+
+ using 
+\family default
+\series bold
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\uuline default
+\uwave default
+\noun default
+\color blue
+Gibbs sampling
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+:
+\family default
+\series default
+\shape default
+\size default
+\bar default
+\color inherit
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Draw 
+\begin_inset Formula $I_{1}|\mathcal{I}_{-1},\mathbf{y},\mathbf{X}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Draw 
+\begin_inset Formula $I_{2}|\mathbf{\mathcal{I}}_{-2}\textnormal{,}\mathbf{y},\mathbf{X}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+...
+\end_layout
+
+\begin_layout Itemize
+Draw 
+\begin_inset Formula $I_{p}|\mathbf{\mathcal{I}}_{-p},\mathbf{y},\mathbf{X}$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Note that: 
+\begin_inset Formula $Pr(I_{i}=0|\mathbf{\mathcal{I}}_{-i},\mathbf{y},\mathbf{X})\propto Pr(I_{i}=0,\mathbf{\mathcal{I}}_{-i}|\mathbf{y},\mathbf{X})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Compute 
+\size small
+
+\begin_inset Formula $p(\mathcal{I}|\mathbf{y},\mathbf{X})\propto p(\mathbf{y}|\mathbf{X},\mathbf{\mathcal{I}})\cdot p(\mathcal{I})$
+\end_inset
+
+ 
+\size default
+for 
+\begin_inset Formula $I_{i}=0$
+\end_inset
+
+ and for 
+\begin_inset Formula $I_{i}=1$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model averaging
+\series default
+\color inherit
+ in a single simulation run.
+\end_layout
+
+\begin_layout Itemize
+If needed, simulate from 
+\begin_inset Formula $p(\beta,\sigma^{2}|\mathcal{I},\mathbf{y}\textnormal{,}\mathbf{X})$
+\end_inset
+
+ for each draw of 
+\begin_inset Formula $\mathbf{\mathcal{I}}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Simple general Bayesian variable selection
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The previous algorithm only works when we can compute
+\begin_inset Formula 
+\[
+p(\mathcal{I}|\mathbf{y},\mathbf{X})=\int p(\beta,\sigma^{2},\mathcal{I}|\mathbf{y},\mathbf{X})d\beta d\sigma
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+MH
+\series default
+\color inherit
+ - 
+\series bold
+propose
+\series default
+ 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\mathcal{I}$
+\end_inset
+
+ jointly from the proposal distribution
+\begin_inset Formula 
+\[
+q(\beta_{p}|\beta_{c},\mathcal{I}_{p})q(\mathcal{I}_{p}|\mathcal{I}_{c})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Main difficulty: how to propose the non-zero elements in 
+\begin_inset Formula $\beta_{p}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Itemize
+Simple approach:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Approximate posterior with 
+\series bold
+\color blue
+all
+\series default
+\color inherit
+ variables in the model: 
+\begin_inset Formula 
+\[
+\beta|\mathbf{y},\mathbf{X}\overset{approx}{\sim}N\left[\hat{\beta},J_{\mathbf{y}}^{-1}(\hat{\beta})\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Propose 
+\begin_inset Formula $\beta_{p}$
+\end_inset
+
+ from 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $N\left[\hat{\beta},J_{\mathbf{y}}^{-1}(\hat{\beta})\right]$
+\end_inset
+
+, conditional on the zero restrictions implied by 
+\begin_inset Formula $\mathcal{I}_{p}$
+\end_inset
+
+.
+ Formulas are available.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Variable selection in more complex models
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+
+\series bold
+\begin_inset Graphics
+	filename ../../../Seminars/BayesLund2015/VarSelectAsymT.pdf
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Model averaging
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ be a quantity with the same interpretation in the two models.
+\end_layout
+
+\begin_layout Itemize
+Example: Prediction 
+\begin_inset Formula $\gamma=(y_{T+1},...,y_{T+h})$
+\end_inset
+
+'.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The marginal posterior distribution of 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ reads
+\begin_inset Formula 
+\[
+p(\gamma|\mathbf{y})=p(M_{1}|\mathbf{y})p_{1}(\gamma|\mathbf{y})+p(M_{2}|\mathbf{y})p_{2}(\gamma|\mathbf{y}),
+\]
+
+\end_inset
+
+
+\begin_inset Formula $p_{k}(\gamma|\mathbf{y})$
+\end_inset
+
+ is the marginal posterior of 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ conditional on 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Predictive distribution includes 
+\series bold
+\color blue
+three sources of uncertainty
+\series default
+\color inherit
+:
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Future errors
+\series default
+\color inherit
+/disturbances (e.g.
+ the 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+'s in a regression)
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Parameter uncertainty
+\series default
+\color inherit
+ (the predictive distribution has the parameters integrated out by their
+ posteriors)
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model uncertainty
+\series default
+\color inherit
+ (by model averaging)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Posterior predictive analysis
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $p(y|\theta)$
+\end_inset
+
+ is a 'good' model, then the data actually observed should not differ 'too
+ much' from simulated data from 
+\begin_inset Formula $p(y|\theta)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Bayesian: simulate data from the 
+\series bold
+\color blue
+posterior predictive distribution
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\[
+p(y^{rep}|y)=\int p(y^{rep}|\theta)p(\theta|y)d\theta.
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Difficult to compare 
+\begin_inset Formula $y$
+\end_inset
+
+ and 
+\begin_inset Formula $y^{rep}$
+\end_inset
+
+ because of dimensionality.
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Solution: compare 
+\series bold
+\color blue
+low-dimensional statistic
+\series default
+\color inherit
+ 
+\begin_inset Formula $T(y,\theta)$
+\end_inset
+
+ to 
+\begin_inset Formula $T(y^{rep},\theta)$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Evaluates the full probability model consisting of both the likelihood 
+\shape italic
+and
+\shape default
+ prior distribution.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Posterior predictive analysis
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Algorithm
+\series default
+\color inherit
+ for simulating from the posterior predictive density 
+\begin_inset Formula $p[T(y^{rep})|y]$
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+1
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Draw a 
+\begin_inset Formula $\theta^{(1)}$
+\end_inset
+
+ from the posterior 
+\begin_inset Formula $p(\theta|y)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Simulate a data-replicate 
+\begin_inset Formula $y^{(1)}$
+\end_inset
+
+ from 
+\begin_inset Formula $p(y^{rep}|\theta^{(1)})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+3
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Compute 
+\begin_inset Formula $T(y^{(1)})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+[
+\end_layout
+
+\end_inset
+
+4
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\end_inset
+
+ Repeat steps 1-3 a large number of times to obtain a sample from 
+\begin_inset Formula $T(y^{rep})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Pause
+
+\end_layout
+
+\begin_layout Itemize
+We may now compare the observed statistic 
+\begin_inset Formula $T(y)$
+\end_inset
+
+ with the distribution of 
+\begin_inset Formula $T(y^{rep})$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior predictive p-value
+\series default
+\color inherit
+: 
+\begin_inset Formula $\Pr[T(y^{rep})\geq T(y)]$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+Informal graphical analysis.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Posterior predictive analysis - Normal model, max statistic
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Slides/Images/PostPredNormalMaxStatistic.pdf
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

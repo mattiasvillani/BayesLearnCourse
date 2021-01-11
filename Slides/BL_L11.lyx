@@ -1,0 +1,3537 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+  \setbeamertemplate{headline}{}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% include necessary packages here
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+\usepackage{colortbl}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{
+
+\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
+\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
+\hrulefill \break
+\tiny
+\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
+\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+}
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
+\definecolor{red}{RGB}{255, 128, 0}
+\definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{lightbluegray}{RGB}{153, 194, 229}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
+
+\usepackage[ruled]{algorithm2e}
+\usepackage{wasysym}
+\SetKwInput{KwInput}{Input}
+\SetKwInput{KwOutput}{Output}
+\end_preamble
+\options xcolor=svgnames, handout
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\size largest
+\color orange
+Bayesian Statistics I
+\size default
+
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+Bayesian model comparison
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Lecture 11 - Bayesian Model Comparison
+\end_layout
+
+\begin_layout Author
+
+\series bold
+Mattias Villani
+\series default
+ 
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Mattias Villani
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+and
+\end_layout
+
+\end_inset
+
+ Department of Computer and Information Science
+\begin_inset Newline newline
+\end_inset
+
+Linköping University 
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Linköping and Stockholm University
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian model comparison
+\size small
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\size small
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Log Predictive Score
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Using likelihood for model comparison
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Consider two models for the data 
+\begin_inset Formula $\mathbf{y}=(y_{1},...,y_{n})$
+\end_inset
+
+: 
+\begin_inset Formula $M_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $M_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $p(\mathbf{y}|\theta_{k},M_{k})$
+\end_inset
+
+ denote the data density under model 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+.
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If we know 
+\begin_inset Formula $\theta_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta_{2}$
+\end_inset
+
+, the 
+\series bold
+\color blue
+likelihood ratio
+\series default
+\color inherit
+ is useful 
+\begin_inset Formula 
+\[
+\frac{p(\mathbf{y}|\theta_{1},M_{1})}{p(\mathbf{y}|\theta_{2},M_{2})}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The
+\series bold
+ 
+\color blue
+likelihood ratio
+\series default
+\color inherit
+ with 
+\series bold
+\color blue
+ML estimates
+\series default
+\color inherit
+ plugged in:
+\begin_inset Formula 
+\[
+\frac{p(\mathbf{y}|\hat{\theta}_{1},M_{1})}{p(\mathbf{y}|\hat{\theta}_{2},M_{2})}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Bigger models always win in estimated likelihood ratio.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hypothesis tests
+\series default
+\color inherit
+ are problematic for non-nested models.
+ 
+\begin_inset Newline newline
+\end_inset
+
+End results are not very useful for analysis.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian model comparison
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior model probabilities
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\underset{\text{posterior model prob.}}{\underbrace{\mathrm{Pr}(M_{k}\vert\mathbf{y})}}\propto\underset{\text{marginal likelihood}}{\underbrace{p(\mathbf{y}\vert M_{k})}}\cdot\underset{\text{prior model prob.}}{\underbrace{\mathrm{Pr}(M_{k})}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+marginal likelihood
+\color red
+ 
+\series default
+\color inherit
+for model 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+ with parameters 
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\underbrace{p(\mathbf{y}\vert M_{k})}=\int p(\boldsymbol{y}|\theta_{k},M_{k})p(\theta_{k}|M_{k})d\theta_{k}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{k}$
+\end_inset
+
+ is 'removed' by the averaging wrt prior.
+ 
+\series bold
+\color blue
+Priors matter!
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+Bayes factor
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+B_{12}(\boldsymbol{y})=\frac{p(\mathbf{y}\vert M_{1})}{p(\mathbf{y}\vert M_{2})}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Jeffreys scale of evidence for the Bayes factor
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Barely worth mentioning: 
+\begin_inset Formula $1<\mathrm{BF}\leq3$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Positive: 
+\begin_inset Formula $3<\mathrm{BF}\leq20$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Strong: 
+\begin_inset Formula $20<\mathrm{BF}\leq150$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Very strong: 
+\begin_inset Formula $>150$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayesian hypothesis testing - Bernoulli
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hypothesis testing
+\series default
+\color inherit
+ is just a special case of model selection: 
+\begin_inset Formula 
+\begin{align*}
+M_{0}: & x_{1},...,x_{n}\overset{iid}{\sim}\mathrm{Bernoulli}(\theta_{0})\\
+M_{1}: & x_{1},...,x_{n}\overset{iid}{\sim}\mathrm{Bernoulli}(\theta),\text{}\theta\sim\mathrm{Beta}(\alpha,\beta)
+\end{align*}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(x_{1},...,x_{n}|M_{0})=\theta_{0}^{s}(1-\theta_{0})^{f},
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{eqnarray*}
+p(x_{1},...,x_{n}|M_{1}) & = & \int_{0}^{1}\theta^{s}(1-\theta)^{f}{\color{orange}B(\alpha,\beta)^{-1}}\theta^{\alpha-1}(1-\theta)^{\beta-1}d\theta\\
+ & = & B(\alpha+s,\beta+f)/B(\alpha,\beta),
+\end{eqnarray*}
+
+\end_inset
+
+where 
+\begin_inset Formula $B(\cdot,\cdot)$
+\end_inset
+
+ is the Beta function.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior model probabilities
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mathrm{Pr}(M_{k}|x_{1},...,x_{n})\propto p(x_{1},...,x_{n}|M_{k})\mathrm{Pr}(M_{k}),\text{ for }k=0,1.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+Bayes factor 
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mathrm{BF}(M_{0};M_{1})=\frac{p(x_{1},...,x_{n}\mathbf{|}M_{0})}{p(x_{1},...,x_{n}\mathbf{|}M_{1})}=\frac{\theta_{0}^{s}(1-\theta_{0})^{f}B(\alpha,\beta)}{B(\alpha+s,\beta+f)}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal example
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+: 
+\begin_inset Formula $x_{1},\ldots,x_{n}\overset{\mathrm{iid}}{\sim}N(\theta,\sigma^{2})$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ known.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim N(\mu_{0},\sigma^{2}/\kappa_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Likelihood
+\series default
+\color inherit
+: 
+\begin_inset Formula $\bar{x}$
+\end_inset
+
+ is 
+\series bold
+\color blue
+sufficient
+\series default
+\color inherit
+ for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ and 
+\begin_inset Formula $\bar{x}\vert\theta\sim N(\theta,\sigma^{2}/n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\series default
+\color inherit
+: 
+\begin_inset Formula $p(\bar{x}\vert M_{1})=N\left(\mu_{0},\sigma^{2}(1/n+1/\kappa_{0})\right)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Testing a 
+\series bold
+\color blue
+sharp null
+\series default
+\color inherit
+: 
+\begin_inset Formula $M_{0}:\theta=\mu_{0}$
+\end_inset
+
+ vs 
+\begin_inset Formula $M_{1}:\theta\neq\mu_{0}$
+\end_inset
+
+.
+\size small
+
+\begin_inset Formula 
+\[
+B_{01}=\frac{p(\bar{x}\vert M_{0})}{p(\bar{x}\vert M_{1})}=\frac{N\left(\bar{x}|\mu_{0},\sigma^{2}/n\right)}{N\left(\bar{x}|\mu_{0},\sigma^{2}(1/n+1/\kappa_{0})\right)}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\log\frac{p(\bar{x}\vert M_{0})}{p(\bar{x}\vert M_{1})}=-\frac{1}{2}\log\left(\frac{\kappa_{0}}{\kappa_{0}+n}\right)-\frac{n(\bar{x}-\mu_{0})^{2}}{2\sigma^{2}}\left(\frac{n}{\kappa_{0}+n}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\kappa_{0}\rightarrow\infty$
+\end_inset
+
+ then 
+\series bold
+
+\begin_inset Formula $B_{01}\rightarrow1$
+\end_inset
+
+
+\series default
+ (prior under 
+\begin_inset Formula $M_{1}$
+\end_inset
+
+ is a point mass at 
+\begin_inset Formula $0$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\kappa_{0}\rightarrow0$
+\end_inset
+
+ then 
+\series bold
+
+\begin_inset Formula $B_{01}\rightarrow\infty$
+\end_inset
+
+ 
+\series default
+(
+\begin_inset Formula $p(\bar{x}\vert M_{1})$
+\end_inset
+
+ is average 
+\begin_inset Formula $p(\bar{x}\vert\theta)$
+\end_inset
+
+ wrt prior)
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Internet speed data - Bayes factor
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalMargLikeAllKappa0InternetSpeed.pdf
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Internet speed data - prior predictive density
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalMargLikeInternetSpeed.pdf
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Vague priors for marginal likelihoods is a bad idea
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Smaller models always win when priors are very vague.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Improper priors
+\series default
+\color inherit
+ cannot be used for model comparison.
+\begin_inset Graphics
+	filename Images/WarningSign.jpg
+	lyxscale 10
+	scale 5
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Internet speed data with 
+\begin_inset Formula $\bar{x}=12$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/NormalMargLikeAllKappa0InternetSpeedxBar12.pdf
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Example: Geometric vs Poisson
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Model 1 - 
+\series bold
+\color blue
+Geometric
+\series default
+\color inherit
+ with Beta prior:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y_{1},...,y_{n}\vert\theta_{1}\sim\mathrm{Geo}(\theta_{1})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{1}\sim\mathrm{Beta}(\alpha_{1},\beta_{1})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Model 2 - 
+\series bold
+\color blue
+Poisson
+\series default
+\color inherit
+ with Gamma prior:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $y_{1},...,y_{n}\vert\theta_{2}\sim\mathrm{Poisson}(\theta_{2})$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{2}\sim\mathrm{Gamma}(\alpha_{2},\beta_{2})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\series default
+\color inherit
+ for 
+\begin_inset Formula $M_{1}$
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+p(y_{1},...,y_{n}|M_{1}) & =\int p(y_{1},...,y_{n}\vert\theta_{1},M_{1})p(\theta_{1}|M_{1})d\theta_{1}\\
+ & =\frac{\Gamma\left(\alpha_{1}+\beta_{1}\right)}{\Gamma\left(\alpha_{1}\right)\Gamma\left(\beta_{1}\right)}\frac{\Gamma\left(n+\alpha_{1}\right)\Gamma\left(n\bar{y}+\beta_{1}\right)}{\Gamma\left(n+n\bar{y}+\alpha_{1}+\beta_{1}\right)}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\series default
+\color inherit
+ for 
+\begin_inset Formula $M_{2}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(y_{1},...,y_{n}|M_{2})=\frac{\Gamma(n\bar{y}+\alpha_{2})\beta_{2}^{\alpha_{2}}}{\Gamma(\alpha_{2})(n+\beta_{2})^{n\bar{y}+\alpha_{2}}}\frac{1}{\prod_{i=1}^{n}y_{i}!}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric and Poisson
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GeoPoissonModels.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Use priors to match prior predictive means: 
+\begin_inset Formula 
+\[
+E(y\vert M_{1})=E(y\vert M_{2})\quad\Longleftrightarrow\quad\alpha_{1}\alpha_{2}=\beta_{1}\beta_{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Geometric model: 
+\begin_inset Formula $\alpha_{1}=10,\beta_{1}=20$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Poisson model: 
+\begin_inset Formula $\alpha_{2}=20,\beta_{2}=10$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}=0,\:y_{2}=0$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $y_{1}=3,\:y_{2}=3$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $BF_{12}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $4.54$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.29$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{Pr}(M_{1}\vert\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.82$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.22$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\mathrm{Pr}(M_{2}\vert\mathbf{y})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.18$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\size small
+\color black
+\begin_inset Formula $0.78$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson for Pois(1) data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GeoVsPoisFirst100.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson for Pois(1) data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GeoVsPoisAll.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Asymptotic properties of marginal likelihood
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Set of compared models: 
+\begin_inset Formula $\mathcal{M}=\{M_{1},...,M_{K}\}$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+-closed
+\series default
+\color inherit
+: data generating process 
+\begin_inset Formula $M^{\star}$
+\end_inset
+
+ is in 
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+-closed
+\series bold
+\color blue
+ consistency
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\[
+\mathrm{Pr}\left(M=M^{\star}\vert\mathbf{y}\right)\rightarrow1\quad\text{as}\quad n\rightarrow\infty
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+-open
+\series default
+\color inherit
+: data generating process 
+\begin_inset Formula $M^{\star}$
+\end_inset
+
+ is 
+\series bold
+not
+\series default
+ in 
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+-open 
+\series default
+\color inherit
+is the realistic case.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+George Box: all models are false but some are useful.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Where do posterior model probabilities go in 
+\series bold
+\color blue
+
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+-open
+\series default
+\color inherit
+?
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson for NegBin(2,0.5) data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GeoVsPoisNegBin2Data.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Geometric vs Poisson for NegBin(2,0.5) data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GeoVsPoisFitNegBin2.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Marginal likelihood is KL-consistent in 
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+-open
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+-open
+\series default
+\color inherit
+: data generating process 
+\begin_inset Formula $M^{\star}$
+\end_inset
+
+ is 
+\series bold
+not
+\series default
+ in 
+\begin_inset Formula $\mathcal{M}$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+KL-consistency
+\series default
+\color inherit
+: when 
+\begin_inset Formula $M^{\star}\notin\mathcal{M}$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathrm{Pr}\left(M=\tilde{M}\vert\mathbf{y}\right)\rightarrow1\quad\text{as}\quad n\rightarrow\infty,
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\tilde{M}$
+\end_inset
+
+ minimizes 
+\series bold
+\color blue
+KL divergence
+\series default
+\color inherit
+ between 
+\begin_inset Formula $p(\mathbf{y}|M)$
+\end_inset
+
+ and 
+\begin_inset Formula $p(\mathbf{y}|M^{\star})$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\mathrm{KL}(M^{\star},M)=\int\log\frac{p(\mathbf{y}|M^{\star})}{p(\mathbf{y}|\hat{\theta}_{M},M)}p(\mathbf{y}|M^{\star})d\boldsymbol{y}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\hat{\theta}_{M}$
+\end_inset
+
+ - model parameter that makes 
+\begin_inset Formula $M$
+\end_inset
+
+ as KL-close as possible to 
+\begin_inset Formula $M^{\star}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Model choice in multivariate time series
+\series default
+\color inherit
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Corander and Villani (2004). Statistica Neerlandica."
+target "https://doi.org/10.1111/j.1467-9574.2004.00108.x"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Multivariate time series
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\mathbf{x}_{t}=\alpha\beta'\mathbf{z}_{t}+\Phi_{1}\mathbf{x}_{t-1}+...\Phi_{k}\mathbf{x}_{t-k}+\Psi_{1}+\Psi_{2}t+\Psi_{3}t^{2}+\varepsilon_{t}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Need to choose:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Lag length
+\series default
+\color inherit
+, (
+\begin_inset Formula $k=1,2..,4$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Trend model
+\series default
+\color inherit
+ (
+\begin_inset Formula $s=1,2,...,5$
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Long-run (cointegration) relations
+\series default
+\color inherit
+ (
+\begin_inset Formula $r=0,1,2,3,4$
+\end_inset
+
+).
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/MonetaryDataModelPost.pdf
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Graphical models for multivariate time series
+\series default
+\color inherit
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Corander and Villani (2004). Journal of Time Series Analysis."
+target "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1467-9892.2005.00460.x"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Graphical models
+\series default
+\color inherit
+ for multivariate time series.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Zero-restrictions on the effect from time series 
+\begin_inset Formula $i$
+\end_inset
+
+ on time series 
+\begin_inset Formula $j$
+\end_inset
+
+, for all lags.
+ (
+\series bold
+\color blue
+Granger Causality
+\series default
+\color inherit
+).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Zero-restrictions on inverse covariance matrix of the errors.
+ Contemporaneous conditional independence.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/CausalVARMonetary.pdf
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Laplace approximation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Taylor approximation of the log likelihood
+\begin_inset Formula 
+\begin{align*}
+\ln p(\mathbf{y}|\theta) & \approx\ln p(\mathbf{y}|\hat{\theta})-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2},
+\end{align*}
+
+\end_inset
+
+so
+\begin_inset Formula 
+\begin{align*}
+p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\hat{\theta})\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]p(\hat{\theta})\\
+ & =p(\mathbf{y}|\hat{\theta})p(\hat{\theta})(2\pi)^{p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{1/2}\\
+ & =\times\underset{\text{multivariate normal density}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]}}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+The Laplace approximation
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\text{ln}p(\hat{\theta})+\frac{1}{2}\ln\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert +\frac{p}{2}\ln(2\pi),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $p$
+\end_inset
+
+ is the number of unrestricted parameters.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+BIC
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+The Laplace approximation
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\text{ln}p(\hat{\theta})+\frac{1}{2}\ln\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert +\frac{p}{2}\ln(2\pi).
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+ and 
+\begin_inset Formula $J_{\hat{\theta},\mathbf{y}}$
+\end_inset
+
+ can be obtained with 
+\series bold
+\color blue
+optimization
+\series default
+\color inherit
+/
+\series bold
+\color blue
+autodiff
+\series default
+\color inherit
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+BIC approximation
+\series default
+\color inherit
+ assumes that 
+\begin_inset Formula $J_{\hat{\theta},\mathbf{y}}$
+\end_inset
+
+ behaves like 
+\begin_inset Formula $n\cdot I_{p}$
+\end_inset
+
+ in large samples and the small term 
+\begin_inset Formula $\frac{p}{2}\ln(2\pi)$
+\end_inset
+
+ is ignored
+\begin_inset Formula 
+\[
+\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\ln p(\hat{\theta})-\frac{p}{2}\ln n.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+\begin_inset Formula $\mathrm{Pr}(M_{k}\vert\boldsymbol{y})$
+\end_inset
+
+ can be overfident - macroeconomics
+\series default
+\color inherit
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Oelrich et al (2020). When are Bayesian model probabilities overconfident?"
+target "https://arxiv.org/abs/2003.04026"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Posterior model probabilities - Smets-Wouters DSGE model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="9">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Base
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+M8
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.01
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.99
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/plot_conclusive_evidence.jpg
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+\begin_inset Formula $\mathrm{Pr}(M_{k}\vert\boldsymbol{y})$
+\end_inset
+
+ can be overfident - neuroscience
+\series default
+\color inherit
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset href
+LatexCommand href
+name "Oelrich et al (2020). When are Bayesian model probabilities overconfident?"
+target "https://arxiv.org/abs/2003.04026"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float table
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Posterior model probabilities - Dynamic Causal Models
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="7">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+F
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+P
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+AF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PAF
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0.00
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/neuroModelsCrop.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename Images/NeuroBFbootNew.png
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Marginal likelihood measures out-of-sample predictive performance
+\series default
+\color inherit
+ 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+marginal likelihood
+\series default
+\color inherit
+ can be 
+\series bold
+\color blue
+decomposed
+\series default
+\color inherit
+ as
+\begin_inset Formula 
+\[
+p(x_{1},...,x_{n})=p(x_{1})p(x_{2}|x_{1})\cdots p(x_{n}|x_{1},x_{2},...,x_{n-1})
+\]
+
+\end_inset
+
+a product of 
+\series bold
+\color blue
+intermediate predictive densities
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(x_{i}|x_{1},...,x_{i-1})=\int p(x_{i}|x_{1},...,x_{i-1},\boldsymbol{\theta})p(\boldsymbol{\theta}|x_{1},...,x_{i-1})d\boldsymbol{\theta}
+\]
+
+\end_inset
+
+and 
+\begin_inset Formula $p(\boldsymbol{\theta}|x_{1},...,x_{i-1})$
+\end_inset
+
+ is the 
+\series bold
+\color blue
+intermediate posterior
+\series default
+\color inherit
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prediction of 
+\begin_inset Formula $x_{1}$
+\end_inset
+
+ 
+\series default
+\color inherit
+is based on the prior of 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+.
+ Sensitive to prior.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prediction of 
+\begin_inset Formula $x_{n}$
+\end_inset
+
+ 
+\series default
+\color inherit
+uses almost all the data to infer 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+.
+ Not sensitive to prior when 
+\begin_inset Formula $n$
+\end_inset
+
+ is not small.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal example 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+: 
+\begin_inset Formula $x_{1},...,x_{n}\vert\theta\sim N(\theta,\sigma^{2})$
+\end_inset
+
+ with 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ known.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim N(0,\sigma^{2}/\kappa_{0})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Intermediate predictive density
+\series default
+\color inherit
+ at time 
+\begin_inset Formula $i-1$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+x_{i}|x_{1},\dots,x_{i-1}\sim\mathrm{N}\left(\mu_{i-1},\sigma^{2}\left(1+\frac{1}{i-1+\kappa_{0}}\right)\right),
+\]
+
+\end_inset
+
+where 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mu_{i-1}=w_{i-1}\bar{x}_{i-1}+(1-w_{i-1})\mu_{0}$
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\bar{x}_{i-1}$
+\end_inset
+
+ is the sample mean of the first 
+\begin_inset Formula $i-1$
+\end_inset
+
+ obs
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $w_{i-1}=(i-1)/(i-1+\kappa_{0})$
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $i=1$
+\end_inset
+
+, 
+\begin_inset Formula $x_{1}\sim N\left[0,\sigma^{2}\left(1+\frac{1}{\kappa_{0}}\right)\right]$
+\end_inset
+
+ can be very sensitive to 
+\begin_inset Formula $\kappa_{0}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Large 
+\begin_inset Formula $i$
+\end_inset
+
+: 
+\begin_inset Formula $x_{i}|x_{1},...,x_{i-1}\overset{\mathrm{approx}}{\sim}N\left(\bar{x}_{i-1},\sigma^{2}\right)$
+\end_inset
+
+, not sensitive to 
+\begin_inset Formula $\kappa_{0}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+First observations are sensitive to 
+\begin_inset Formula $\kappa_{0}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/logmargdecomp.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+First observations are sensitive to 
+\begin_inset Formula $\kappa_{0}$
+\end_inset
+
+ - zoomed
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/logmargdecompzoom.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Log Predictive Score - LPS
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Reduce prior sensitivity: use 
+\begin_inset Formula $n^{*}$
+\end_inset
+
+ observations to train the prior.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+(Log) Predictive (Density) Score
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+PS
+\series default
+\color inherit
+):
+\begin_inset Formula 
+\[
+\underset{\textcolor{blue}{training}}{\underbrace{p(x_{1})p(x_{2}|x_{1})\cdots p(x_{n^{*}}|x_{1:(n^{*}-1)})}}\,\,\,\underset{\textcolor{blue}{test}}{\underbrace{p(x_{n^{*}+1}\vert x_{1:n^{*}})\cdots p(x_{n}|x_{1:(n-1)})}}
+\]
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Time-series: obvious which data are used for training.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Cross-sectional data: training-test split by 
+\series bold
+\color blue
+cross-validation
+\series default
+\color inherit
+:
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}   
+\backslash
+centering   
+\backslash
+begin{tabular}{llllll}     & 
+\backslash
+multicolumn{5}{c}{$
+\backslash
+underset{
+\backslash
+overbrace{       1,2,
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots
+\backslash
+dots,n-1,n       }}{n 
+\backslash
+text{ data observations}}$} 
+\backslash
+tabularnewline   
+\backslash
+hline   
+\backslash
+cellcolor{verylightgray}Split 1:
+\backslash
+hspace{0.1cm} &
+\backslash
+cellcolor{lightbluegray}Fold 1 &	Fold 2 &	Fold 3 &	Fold 4 &	Fold 5 
+\backslash
+tabularnewline   
+\backslash
+cellcolor{verylightgray}Split 2: & Fold 1 &	
+\backslash
+cellcolor{lightbluegray}Fold 2 &	Fold 3 &	Fold 4 &	Fold 5 
+\backslash
+tabularnewline   
+\backslash
+cellcolor{verylightgray}Split 3: & Fold 1 &	Fold 2 &	
+\backslash
+cellcolor{lightbluegray}Fold 3 &	Fold 4 &	Fold 5 
+\backslash
+tabularnewline   
+\backslash
+cellcolor{verylightgray}Split 4: & Fold 1 &	Fold 2 &	Fold 3 &	
+\backslash
+cellcolor{lightbluegray}Fold 4 &	Fold 5 
+\backslash
+tabularnewline   
+\backslash
+cellcolor{verylightgray}Split 5: & Fold 1 &	Fold 2 &	Fold 3 &	Fold 4 &	
+\backslash
+cellcolor{lightbluegray}Fold 5 
+\backslash
+tabularnewline   
+\backslash
+hline   
+\backslash
+end{tabular}   
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+And hey! ...
+ let's be careful out there
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Be especially 
+\series bold
+\color blue
+careful
+\series default
+\color inherit
+ with Bayesian model comparison when
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+compared models 
+\series default
+\color inherit
+are 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+very different in structure
+\end_layout
+
+\begin_layout Itemize
+severly misspecified
+\end_layout
+
+\begin_layout Itemize
+very complicated (black boxes).
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+priors
+\series default
+\color inherit
+ for the parameters in the models are 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+not carefully elicited
+\end_layout
+
+\begin_layout Itemize
+only weakly informative
+\end_layout
+
+\begin_layout Itemize
+not matched across models.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+data
+\series default
+\color inherit
+ 
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+has outliers (in all models)
+\end_layout
+
+\begin_layout Itemize
+has a multivariate response.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
