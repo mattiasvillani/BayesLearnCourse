@@ -9,7 +9,7 @@
 ### Contents
 
 The course gives a solid introduction to Bayesian statistical inference, with special emphasis on models and methods in computational statistics and machine learning. 
-* We will get off to a shocking start by introducing a very different probability concept than the one you are probably (:wink:) used to: subjective probability. 
+* We will get off to a shocking start by introducing a very different probability concept than the one you are probably used to: subjective probability. 
 * We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. 
 * Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making. 
 * The really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance. 
@@ -126,7 +126,7 @@ RStan Code: [Bernoulli](https://github.com/mattiasvillani/BayesLearnCourse/raw/m
 Turing code (Julia): [Bernoulli model](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/ppl/Turing/BernTuring.jl) | [Normal model](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/ppl/Turing/NormalTuring.jl)
 
 **Lecture 11 - Bayesian model comparison**\
-Reading: BDA Ch. 7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L11.pdf) \
+Reading: BDA Ch. 7 | BL Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L11.pdf) \
 Code: [Comparing models for count data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/MainGeoVsPois.R)
 
 **Lecture 12 - Bayesian variable selection and model averaging**\
