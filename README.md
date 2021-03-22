@@ -174,7 +174,7 @@ The course examination consists of:
 
 * The main page with links to downloads for the [programming language R](https://www.r-project.org/)
 * [RStudio](https://rstudio.com/products/rstudio/) - a very nice developing environment for R.
-* Short introduction to R | A little [longer introduction](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/).
+* [An introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/) | [R cheat sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf) .
 
 ---
 
