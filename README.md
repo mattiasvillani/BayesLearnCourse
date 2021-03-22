@@ -28,7 +28,7 @@ Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd editi
 * Villani, M. (2020). Bayesian Learning (BL). First chapters of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is a very rough version with lots of typos, but may be useful as a complement to Gelman et al.
 * Additional course material linked from this page, such as articles and tutorial.
 
-The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39757&type=courseevent&h=t).
+The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39769&type=courseevent&h=t).
 
 ---
 
