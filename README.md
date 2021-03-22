@@ -37,7 +37,7 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 * The three computer labs are central to the course. Expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
 * You are strongly encouraged to do the labs in R, but any programming language is ok to use.
 * The labs should be done in **pairs** of students.
-* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=7339&LocationType=1).
+* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=9595&LocationType=1).
 * There is only two hours of supervised time allocated to each lab. The idea is that you:
   *  should start working on the lab before the computer session
   *  so that you are in a position to ask questions at the session
@@ -83,12 +83,10 @@ Department of Statistics, Stockholm University
 
 **Lecture 1 - Subjective probability. Bayesian updating. Bernoulli model. Gaussian model.**\
 Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
-Code: [Beta density](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/ManipBeta.R) | [Bernoulli model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipBern.R)\
-Notebooks: [BernBeta.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/Julia/BernBeta.jl)
+Notebooks: [DownloadSpeedNormal](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/DownloadSpeedNormal)
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
-Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)\
 Notebooks: [eBayPoissonOneParam](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
