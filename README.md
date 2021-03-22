@@ -87,7 +87,7 @@ Notebooks: [Analysis of internet download speed data using a iid Gaussian model 
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
-Notebooks: [eBayPoissonOneParam](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)
+Notebooks: [Analyzing number of eBay bidders with an iid Poisson model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
