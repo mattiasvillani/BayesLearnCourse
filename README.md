@@ -83,7 +83,7 @@ Department of Statistics, Stockholm University
 
 **Lecture 1 - Subjective probability. Bayesian updating. Bernoulli model. Gaussian model.**\
 Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
-Notebooks: [DownloadSpeedNormal](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/DownloadSpeedNormal)
+Notebooks: [Analysis of internet download speed data using a iid Gaussian model with known variance](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/DownloadSpeedNormal)
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
@@ -92,8 +92,7 @@ Notebooks: [eBayPoissonOneParam](https://github.com/mattiasvillani/BayesianLearn
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
 Code: [Two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalNonInfoPrior.R)\
-Notebooks: [multinomial.Rmd](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Notebooks/R/multinomial.Rmd) |
-[multinomial.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/Julia/BernBeta.jl)
+Notebooks: [Analyzing mobile phone survey data with a multinomial model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SurveyMultinomial)
 
 **Lecture 4 - Linear Regression. Prediction. Making Decisions**\
 Reading: BDA Ch. 14, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf)  
