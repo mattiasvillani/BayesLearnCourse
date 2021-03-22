@@ -64,7 +64,7 @@ help(name_of_dataset)
 
 ### Teachers
 
-<img src="Misc/VillaniFotoMindre.jpg" width="100">\
+<img src="Misc/VillaniLowRes.jpg" width="100">\
 [Mattias Villani](https://mattiasvillani.com), Lecturer \
 Professor, Natural Born Bayesian :stuck_out_tongue_winking_eye: \
 Department of Statistics, Stockholm University \
