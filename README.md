@@ -89,7 +89,7 @@ Notebooks: [BernBeta.jl](https://github.com/mattiasvillani/BayesLearnCourse/raw/
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
 Code: [One-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PriorPosteriorManipNormal.R)\
-Notebooks: [eBayPoisson.ipynb](https://github.com/mattiasvillani/BayesLearnCourse/blob/master/Notebooks/Python/eBayPoisson.ipynb)
+Notebooks: [eBayPoissonOneParam](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
