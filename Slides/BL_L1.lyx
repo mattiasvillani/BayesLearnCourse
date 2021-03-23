@@ -2729,6 +2729,26 @@ Download speed
 
 \series bold
 \color blue
+Problem
+\series default
+\color inherit
+: My internet provider promises an average download speed of at least 20
+ Mbit/sec.
+ Are they lying?
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
 Data
 \series default
 \color inherit
@@ -2797,7 +2817,7 @@ prior
 \series default
 \color inherit
 : 
-\begin_inset Formula $\theta\sim N(50,5^{2})$
+\begin_inset Formula $\theta\sim N(20,5^{2})$
 \end_inset
 
 .
