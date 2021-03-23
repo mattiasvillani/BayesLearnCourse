@@ -83,7 +83,8 @@ Department of Statistics, Stockholm University
 
 **Lecture 1 - Subjective probability. Bayesian updating. Bernoulli model. Gaussian model.**\
 Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
-Notebooks: [Analysis of internet download speed data using a iid Gaussian model with known variance](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/DownloadSpeedNormal)
+Notebooks: [Analyzing email spam data with a Bernoulli model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SpamBern) \
+[Analysis of internet download speed data using a iid Gaussian model with known variance](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/DownloadSpeedNormal)
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
