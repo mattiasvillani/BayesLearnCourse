@@ -760,32 +760,129 @@ Do Exercise 13(a) in Chapter 2 of the course book.
 \begin_layout Enumerate
 
 \shape smallcaps
-Fill in the blanks
+Frequentist meltdown or Bayesian breakdown?
+\shape default
+ 
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-Derive the full conditional posterior of 
-\begin_inset Formula $I_{i}$
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}\mathrm{Uniform}(\theta-\frac{1}{2},\theta+\frac{1}{2})$
 \end_inset
 
- for the mixture of normals with two 
-\begin_inset Formula $(K=2$
+.
+ Let 
+\begin_inset Formula $\hat{\theta}=\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_{i}$
 \end_inset
 
-) components in the slides for Lecture 7.
+ be an estimator of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Derive an expression for the (repeated) sampling variance of 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Enumerate
-Derive the full conditional posterior of 
-\begin_inset Formula $\pi_{1},\pi_{2},...,\pi_{K}$
+Derive the posterior distribution for 
+\begin_inset Formula $\theta$
 \end_inset
 
- in the mixture model with 
-\begin_inset Formula $K$
+ assuming a uniform prior distribution.
+ [Hint: Here it absolutely crucial to think about the support for the data
+ distribution.
+ Once you have observed some data, some 
+\begin_inset Formula $\theta$
 \end_inset
 
- components in Lecture 7.
+ values are no longer possible.]
+\end_layout
+
+\begin_layout Enumerate
+Assume that you have observed three data observations: 
+\begin_inset Formula $x_{1}=1.1,x_{2}=2.09,x_{3}=1.4$
+\end_inset
+
+.
+ What would a frequestist conclude about 
+\begin_inset Formula $\theta$
+\end_inset
+
+? What would a Bayesian conclude? Discuss.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Who doesn't want to be Normal?
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}\mathrm{Bern}(\theta)$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta\sim\mathrm{Beta}(\alpha,\beta)$
+\end_inset
+
+ a priori.
+ Find the posterior mode of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Approximate the posterior distribution of 
+\begin_inset Formula $\theta$
+\end_inset
+
+ by a normal distribution.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Assume now that you have the data 
+\begin_inset Formula $n=6$
+\end_inset
+
+ and 
+\begin_inset Formula $s=1$
+\end_inset
+
+.
+ Plot the true posterior distribution and the normal approximation in the
+ same graph.
+ Assume a uniform prior for 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Redo the previous exercise, but this time with twice the data size: 
+\begin_inset Formula $n=12$
+\end_inset
+
+ and 
+\begin_inset Formula $s=2$
+\end_inset
+
+.
 \end_layout
 
 \end_deeper

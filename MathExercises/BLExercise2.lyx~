@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -42,6 +42,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -80,6 +82,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -92,7 +95,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -119,7 +125,7 @@
 \begin_inset Text
 
 \begin_layout Plain Layout
-Mattias Villani 
+Mattias Villani
 \end_layout
 
 \end_inset
@@ -170,7 +176,7 @@ Dept of Statistics, Stockholm University
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bayesian Learning 
+
 \end_layout
 
 \end_inset
@@ -421,82 +427,28 @@ height "1pt"
 \begin_layout Enumerate
 
 \shape smallcaps
-Tau-chi.
-
-\shape default
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Let 
-\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}N(\theta,\sigma^{2})$
-\end_inset
-
-.
- Assume that 
-\begin_inset Formula $\theta$
-\end_inset
-
- is known, but 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
- unknown.
- Derive the posterior distribution for 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
-.
- Use the conjugate prior.
- 
-\end_layout
-
-\begin_layout Enumerate
-Assume that 
-\begin_inset Formula $\theta=1$
-\end_inset
-
- and that you have observed the data 
-\begin_inset Formula $x_{1}=0.6,x_{2}=3.2,x_{3}=1.2$
-\end_inset
-
-.
- Compute the posterior of 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
- based on these three data points.
- Use a prior with very little information (it is up to you how to define
- little information).
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace 1cm
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-
-\shape smallcaps
 Feel the Bern.
 
 \shape default
  
+\begin_inset Graphics
+	filename bernie.png
+	lyxscale 5
+	scale 5
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
 Let 
-\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}Bern(\theta)$
+\begin_inset Formula $x_{1},...,x_{n}\overset{\mathrm{iid}}{\sim}\mathrm{Bern}(\theta)$
 \end_inset
 
 , with a 
-\begin_inset Formula $Beta(\alpha,\beta)$
+\begin_inset Formula $\mathrm{Beta}(\alpha,\beta)$
 \end_inset
 
  prior for 
@@ -504,7 +456,11 @@ Let
 \end_inset
 
 .
- Derive the predictive distribution for 
+ 
+\begin_inset Newline newline
+\end_inset
+
+Derive the predictive distribution for 
 \begin_inset Formula $x_{n+1}$
 \end_inset
 
@@ -517,7 +473,7 @@ You need to decide if you bring your umbrella during your daily walk.
  ten days to be representative also for the weather today, the 11th day.
  Your utility for the action-state combinations are given in the table below.
  Assume a 
-\begin_inset Formula $Beta(1,1)$
+\begin_inset Formula $\mathrm{Beta}(1,1)$
 \end_inset
 
  prior for 
@@ -550,6 +506,104 @@ name "table:utility"
 \end_inset
 
  
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Rainy
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Sunny
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Bring umbrella 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leave umbrella 
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+-50
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+50
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -700,6 +754,106 @@ Do Exercise 13(a) in Chapter 2 of the course book.
 \end_inset
 
 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Frequentist meltdown or Bayesian breakdown?
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}Uniform(\theta-\frac{1}{2},\theta+\frac{1}{2})$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $\hat{\theta}=\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_{i}$
+\end_inset
+
+ be an estimator of 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Derive an expression for the (repeated) sampling variance of 
+\begin_inset Formula $\hat{\theta}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Derive the posterior distribution for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ assuming a uniform prior distribution.
+ [Hint: Here it absolutely crucial to think about the support for the data
+ distribution.
+ Once you have observed some data, some 
+\begin_inset Formula $\theta$
+\end_inset
+
+ values are no longer possible.
+ I strongly suggest that you plot some imaginary data on the real line and
+ plot the data distribution in the same graph for some made up values of
+ 
+\begin_inset Formula $\theta$
+\end_inset
+
+.
+ Just to make you think in the right direction.]
+\end_layout
+
+\begin_layout Enumerate
+Assume that you have observed three data observations: 
+\begin_inset Formula $x_{1}=1.1,x_{2}=2.09,x_{3}=1.4$
+\end_inset
+
+.
+ What would a frequestist conclude about 
+\begin_inset Formula $\theta$
+\end_inset
+
+? What would a Bayesian conclude? Discuss.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Fill in the blanks
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Derive the full conditional posterior of 
+\begin_inset Formula $I_{i}$
+\end_inset
+
+ for the mixture of normals with two 
+\begin_inset Formula $(K=2$
+\end_inset
+
+) components in the slides for Lecture 7.
+\end_layout
+
+\begin_layout Enumerate
+Derive the full conditional posterior of 
+\begin_inset Formula $\pi_{1},\pi_{2},...,\pi_{K}$
+\end_inset
+
+ in the mixture model with 
+\begin_inset Formula $K$
+\end_inset
+
+ components in Lecture 7.
 \end_layout
 
 \end_deeper
