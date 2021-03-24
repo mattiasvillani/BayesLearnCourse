@@ -174,34 +174,5 @@ The course examination consists of:
 ---
 
 ### Pluto Notebooks
-As a bonus, I will occasionally post Notebooks where you can interactively play around with some Bayesian analyses. I will use a new type of notebook system called [Pluto](https://github.com/fonsp/Pluto.jl) in the [Julia](https://julialang.org/) programming language. The advantage of Pluto is that it is reactive: changing one variable in the notebook immediately updates the parts of the notebook that depend on the variable.
-
-Here is what you need to do to access this bonus feature:
-* [Download Julia](https://julialang.org/downloads/) and install it.
-* Start up Julia to get the `julia>` prompt where you can type commands.
-* Install and start Pluto by typing in the following commands at the `julia>` prompt
-  ```
-  using Pkg        # initializes the package manager
-  Pkg.add("Pluto") # installs the Pluto package. 
-  import Pluto     # loads the Pluto package.
-  Pluto.run()      # Opens up Pluto in your browser (Firefox or Chrome)
-  ```
-* Open up a notebook file in the Pluto browser tab and start playing around by changing value in the cells. 
- 
-Note that the notebooks uses modules (like R packages) that you need to install (similar to how you have to install.packages() in R). So you have to do Pkg.add("NameOfPackage") to install each package at the Julia prompt. This is only done once. The first cell of the notebook shows the needed modules (look for the `using` and `import` statements). Here is for example what you need to install for running the BernBeta.jl notebook:
-
-```
-Pkg.add("Plots")           # The basic plotting module
-Pkg.add("LaTeXStrings")    # The get LaTeX maths in plots
-Pkg.add("Distributions")   # Module with probability distributions
-Pkg.add("PlutoUI")         # A module with fancy sliders etc for Pluto
-Pkg.add("ColorSchemes")    # Fancy colors for plotting
-```
-
-Julia is a very attractive programming language for numerical and statistical analysis. If you are curious and want to use if for more than Notebooks, I suggest downloading the fantastic editor [VS Code](https://code.visualstudio.com/) and the [Julia for VS Code](https://www.julia-vscode.org/) extension that turns VS Code into an RStudio-like experience for Julia.
-
-Here is an animated GIF to give you a feel for how it works for the Bernoulli model:
-
-![Bernoulli notebook](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Extras/BernPluto.gif "Bernoulli notebook")
-
----
+As a bonus, I will occasionally post notebooks from a new notebook system called [Pluto](https://github.com/fonsp/Pluto.jl) in the [Julia](https://julialang.org/) programming language. The advantage of Pluto is that it is reactive: changing one variable in the notebook immediately updates the parts of the notebook that depend on the variable.
+Here are some instructions for how you can get started with Pluto Notebooks: <script src="https://gist.github.com/mattiasvillani/73c7a26bfc7c82d2fb35dbbb31f38945.js"></script>
