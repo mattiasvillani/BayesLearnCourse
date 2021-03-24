@@ -178,4 +178,5 @@ As a bonus, I will occasionally post notebooks from a new notebook system called
 Here are some instructions for how you can get started with Pluto Notebooks: 
 
 <script 
-src="https://gist.github.com/mattiasvillani/73c7a26bfc7c82d2fb35dbbb31f38945.js"></script>
+src="https://gist.github.com/mattiasvillani/73c7a26bfc7c82d2fb35dbbb31f38945.js">
+</script>
