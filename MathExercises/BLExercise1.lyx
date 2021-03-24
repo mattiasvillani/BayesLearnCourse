@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -42,6 +42,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -80,6 +82,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -92,7 +95,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -170,7 +176,7 @@ Dept of Statistics, Stockholm University
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bayesian Learning 
+
 \end_layout
 
 \end_inset
@@ -701,16 +707,72 @@ Let
 \end_inset
 
  .
-\end_layout
-
-\end_deeper
-\begin_layout Standard
 \begin_inset VSpace 1cm
 \end_inset
 
 
 \end_layout
 
+\end_deeper
+\begin_layout Enumerate
+
+\shape smallcaps
+Tau-chi.
+
+\shape default
+ 
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $x_{1},...,x_{n}\overset{iid}{\sim}N(\theta,\sigma^{2})$
+\end_inset
+
+.
+ Assume that 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is known, but 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ unknown.
+ Derive the posterior distribution for 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+ Use the conjugate prior.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Assume that 
+\begin_inset Formula $\theta=1$
+\end_inset
+
+ and that you have observed the data 
+\begin_inset Formula $x_{1}=0.6,x_{2}=3.2,x_{3}=1.2$
+\end_inset
+
+.
+ Compute the posterior of 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ based on these three data points.
+ Use a prior with very little information (it is up to you how to define
+ little information).
+ 
+\begin_inset VSpace 1cm
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset

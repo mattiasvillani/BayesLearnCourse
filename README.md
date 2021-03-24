@@ -138,8 +138,6 @@ Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/G
 
 **Exercise session 2:** [Problem set](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise2.pdf)
 
-**Exercise session 3:** [Problem set](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/MathExercises/BLExercise3.pdf)
-
 ---
 ## Computer labs
 ### Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
