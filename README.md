@@ -176,9 +176,4 @@ The course examination consists of:
 ### Pluto Notebooks
 As a bonus, I will occasionally post notebooks from a new notebook system called [Pluto](https://github.com/fonsp/Pluto.jl) in the [Julia](https://julialang.org/) programming language. The advantage of Pluto is that it is reactive: changing one variable in the notebook immediately updates the parts of the notebook that depend on the variable.
 Here are some instructions for how you can get started with Pluto Notebooks: 
-
-<script 
-
-src="https://gist.github.com/mattiasvillani/73c7a26bfc7c82d2fb35dbbb31f38945.js">
-
-</script>
+[Pluto instructions](https://gist.github.com/mattiasvillani/73c7a26bfc7c82d2fb35dbbb31f38945)
