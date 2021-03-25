@@ -178,6 +178,8 @@ As a bonus, I will occasionally post notebooks from a new notebook system called
 Here are some instructions for how you can get started with Pluto Notebooks: 
 [Pluto instructions](https://gist.github.com/mattiasvillani/73c7a26bfc7c82d2fb35dbbb31f38945)
 
+---
+
 ### Bayes was a cool dude
 
 <a href="http://www.youtube.com/watch?v=8ErvD90-BUU" target="_blank">
