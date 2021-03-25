@@ -180,4 +180,8 @@ Here are some instructions for how you can get started with Pluto Notebooks:
 
 ### Bayes was a cool dude
 
-[![](http://img.youtube.com/vi/8ErvD90-BUU/0.jpg)](http://www.youtube.com/watch?v=8ErvD90-BUU "Bayes AI")
+[![](http://img.youtube.com/vi/8ErvD90-BUU/0.jpg)](http://www.youtube.com/watch?v=8ErvD90-BUU "Click to play on YouTube")
+
+<a href="http://www.youtube.com/watch?v=8ErvD90-BUU" target="_blank">
+ <img src="http://img.youtube.com/vi/8ErvD90-BUU/0.jpg" alt="Click to watch on youtube" width="240" height="180" border="0" />
+</a>
