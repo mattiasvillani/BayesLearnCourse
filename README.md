@@ -162,7 +162,7 @@ The course examination consists of:
 * Written lab reports (deadlines given in Athena)
 * Take home exam (first exam on Jan 15)
 
-[Here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/OldExamsLiU/) are some past exams with solutions from a similar course that I have given at Linköping University. Not however that although the course contents are very similar that course had only a 4 hour exam in a computer room without internet access. You have more time and the internet available (from which you **cannot** copy or ask questions though) so your exam will be somewhat different.
+[Here](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/OldExamsLiU/) are some past exams with solutions from a similar course that I have given at Linköping University. **Note** however that although the course contents are very similar that course had only a 4 hour exam in a computer room without internet access. You have more time and the internet available (from which you **cannot** copy or ask questions though) so your exam will be somewhat different.
 
 
 ---
