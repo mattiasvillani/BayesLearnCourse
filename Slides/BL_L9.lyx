@@ -838,6 +838,55 @@ status open
 
 \series bold
 \color orange
+Gibbs vs HMC on bivariate normal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GibbsVsHMCTraj.pdf
+	lyxscale 50
+	scale 23
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GibbsVsHMCAutoCorr.pdf
+	lyxscale 50
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Variational Inference
 \end_layout
 
@@ -1008,7 +1057,7 @@ Mean field VI
  is based on factorized approximation:
 \begin_inset Formula 
 \[
-q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})
+q(\theta)=\prod_{j=1}^{p}q_{j}(\theta_{j})
 \]
 
 \end_inset
@@ -1027,7 +1076,7 @@ No specific functional forms
 are assumed
 \color inherit
  for the 
-\begin_inset Formula $q_{i}(\theta)$
+\begin_inset Formula $q_{j}(\theta)$
 \end_inset
 
 .
@@ -1047,7 +1096,7 @@ Optimal densities
  can be shown to satisfy:
 \begin_inset Formula 
 \[
-q_{j}(\theta)\propto\exp\left(E_{-\theta_{j}}\ln p(\mathbf{y},\theta)\right)
+q_{j}(\theta_{j})\propto\exp\left(E_{-\theta_{j}}\ln p(\mathbf{y},\theta)\right)
 \]
 
 \end_inset
@@ -1216,7 +1265,7 @@ Model
 \series default
 \color inherit
 : 
-\begin_inset Formula $X_{i}|\theta,\sigma^{2}\overset{iid}{\sim}N(\theta,\sigma^{2})$
+\begin_inset Formula $X_{i}|\theta,\sigma^{2}\overset{\mathrm{iid}}{\sim}N(\theta,\sigma^{2})$
 \end_inset
 
 .
@@ -1337,7 +1386,7 @@ where
 \end_inset
 
  and 
-\begin_inset Formula $\tilde{\sigma}_{n}=\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}(x_{i}-\textcolor{orange}{\tilde{\mu}_{n}})^{2}+n\cdot\textcolor{orange}{\tilde{\tau}_{n}^{2}}}{\nu_{0}+n}$
+\begin_inset Formula $\tilde{\sigma}_{n}^{2}=\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}(x_{i}-\textcolor{orange}{\tilde{\mu}_{n}})^{2}+n\cdot\textcolor{orange}{\tilde{\tau}_{n}^{2}}}{\nu_{0}+n}$
 \end_inset
 
 
