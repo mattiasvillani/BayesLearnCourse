@@ -115,7 +115,8 @@ Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCours
 Code: [Simulating Markov Chains](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/SimulateDiscreteMarkovChain.R)
 
 **Lecture 9 - HMC and Variational inference** \
-Reading: BDA Ch. 12.4 and Ch. 13.7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf)
+Reading: BDA Ch. 12.4 and Ch. 13.7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf) \
+Extras: [HMC animations](http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html) | [HarlMCMC shake](https://www.youtube.com/watch?v=Vv3f0QNWvWQ&ab_channel=DavidDuvenaud)
 
 **Lecture 10 - Probabilistic programming for Bayesian learning**\
 Reading: [RStan vignette](https://cran.r-project.org/web/packages/rstan/vignettes/rstan.html) | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L10new.pdf) \
