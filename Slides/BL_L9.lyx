@@ -838,7 +838,7 @@ status open
 
 \series bold
 \color orange
-Gibbs vs HMC on bivariate normal
+Comparing algorithms for bivariate normal
 \end_layout
 
 \end_inset
@@ -852,19 +852,44 @@ Gibbs vs HMC on bivariate normal
 \begin_inset Graphics
 	filename /home/mv/Dropbox/BayesBook/Figs/GibbsVsHMCTraj.pdf
 	lyxscale 50
-	scale 23
+	scale 28
 
 \end_inset
 
 
 \end_layout
 
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Comparing algorithms for bivariate normal
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
 \align center
 \begin_inset Graphics
 	filename /home/mv/Dropbox/BayesBook/Figs/GibbsVsHMCAutoCorr.pdf
 	lyxscale 50
-	scale 20
+	scale 28
 
 \end_inset
 
