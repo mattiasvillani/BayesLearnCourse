@@ -2181,7 +2181,7 @@ so
 \begin{align*}
 p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\hat{\theta})\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]p(\hat{\theta})\\
  & =p(\mathbf{y}|\hat{\theta})p(\hat{\theta})(2\pi)^{p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{1/2}\\
- & =\times\underset{\text{multivariate normal density}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]}}
+ & \times\underset{\text{multivariate normal density}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\hat{\theta},\mathbf{y}}^{-1}\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\hat{\theta},\mathbf{y}}(\theta-\hat{\theta})^{2}\right]}}
 \end{align*}
 
 \end_inset
