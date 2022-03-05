@@ -635,11 +635,11 @@ density
 \begin_layout Enumerate
 Bayesian inference for the concentration parameter in the von Mises distribution.
  This exercise is concerned with directional data.
- The point is to show you that the posterior distribution for somewhat weird
- models can be obtained by plotting it over a grid of values.
- The data points are observed wind directions at a given location on ten
- different days.
- The data are recorded in degrees: 
+ The point is to show you that the posterior distribution for somewhat non-stand
+ard models can be obtained by plotting it over a grid of values.
+ The wind direction was measured once a month at a given location.
+ The data were recorded in degrees, and the measurements for the first ten
+ months were
 \begin_inset Formula 
 \[
 (40,303,326,285,296,314,20,308,299,296),
@@ -647,8 +647,7 @@ Bayesian inference for the concentration parameter in the von Mises distribution
 
 \end_inset
 
-where North is located at zero degrees (see Figure 1 on the next page, where
- the angles are measured clockwise).
+where North is located at zero degrees.
  To fit with Wikipedias description of probability distributions for circular
  data we convert the data into radians 
 \begin_inset Formula $-\pi\leq y\leq\pi$
@@ -662,12 +661,22 @@ where North is located at zero degrees (see Figure 1 on the next page, where
  observations in radians are 
 \begin_inset Formula 
 \[
-(-2.44,2.14,2.54,1.83,2.02,2.33,-2.79,2.23,2.07,2.02).
+(-2.44,2.14,2.54,1.83,2.02,2.33,-2.79,2.23,2.07,2.02),
 \]
 
 \end_inset
 
-Assume that these data points are independent observations following the
+where South is now at a radian of 
+\begin_inset Formula $0$
+\end_inset
+
+ and North is at 
+\begin_inset Formula $\pm\pi$
+\end_inset
+
+.
+ See Figure 1 for a visualization of the data in radians.
+ Assume that these data points are independent observations following the
  von Mises distribution
 \begin_inset Formula 
 \[
@@ -777,8 +786,8 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename DirectionalData.png
-	scale 60
+	filename directionaldata.pdf
+	scale 50
 	rotateOrigin center
 
 \end_inset
@@ -790,8 +799,20 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-The wind direction data.
- Angles are measured clock-wise starting from North.
+The wind direction data 
+\begin_inset Formula $y\in(-\pi,\pi)$
+\end_inset
+
+.
+ South is at 
+\begin_inset Formula $y=0$
+\end_inset
+
+ radians and North is at 
+\begin_inset Formula $y=\pm\pi$
+\end_inset
+
+.
 \end_layout
 
 \end_inset
