@@ -100,7 +100,8 @@ Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasv
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
 Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
-Notebook: [Normal approximation of posterior for logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd) 
+Notebook: [Normal approximation of posterior for logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd) \
+Extras: [Video on Taylor approximation](https://youtu.be/3d6DsjIBzJ4)
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
 Reading: BDA Ch. 20.1-20.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) 
