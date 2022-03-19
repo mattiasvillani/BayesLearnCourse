@@ -25,7 +25,7 @@ The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and PDF.
-* Villani, M. (2022). Bayesian Learning (BL). Approximatelty half of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is currently a very rough version, but will be more polished when the course starts. 
+* Villani, M. (2022). Bayesian Learning (BL). Approximatelty half of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is work in progress, but currently covers L1-L6 and L11. 
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39769&type=courseevent&h=t).
@@ -43,16 +43,13 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
   *  so that you are in a position to ask questions at the session
   *  and then finish up the report after the lab session.
 
-* The datasets used in the labs are included in the **BayesLearnSU** R package which is available on github. To install it, you first need to install the devtools package.
+* The datasets used in the labs are included in the **SUdatasets** R package which is available on github. To install it, you first need to install the `remotes` package.
 ```
 # To install and load the package with the data
 install.packages("remotes") # only one time
 library(remotes)  
-install_github("ooelrich/BayesLearnSU") # only one time
-library(BayesLearnSU)
-
-# For general information about the package
-help("BayesLearnSU")
+install_github("StatisticsSU/SUdatasets") # only one time
+library(SUdatasets)
 
 # For a list of all available data sets
 help(, "BayesLearnSU")
