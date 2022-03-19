@@ -165,6 +165,14 @@ Lecture 2 - Poisson data.
 Mattias Villani
 \series default
  
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+ 
 \begin_inset Argument 1
 status collapsed
 
@@ -2148,10 +2156,6 @@ Issue: posterior is improper if
 \begin_inset Separator parbreak
 \end_inset
 
-
-\end_layout
-
-\begin_layout Frame
 
 \end_layout
 

@@ -158,9 +158,21 @@ Lecture 12 - Variable selection
 \end_layout
 
 \begin_layout Author
+
+\series bold
 Mattias Villani
+\series default
+ 
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+ 
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 

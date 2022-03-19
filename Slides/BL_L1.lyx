@@ -163,6 +163,14 @@ Lecture 1 - The Bayesics, Bernoulli and Normal data
 Mattias Villani
 \series default
  
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+ 
 \begin_inset Argument 1
 status collapsed
 
@@ -298,7 +306,22 @@ literal "false"
 
 \bar default
 \color inherit
-)
+ and 
+\bar under
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Oskar Gustafsson"
+target "https://www.su.se/profiles/osgu4809-1.252072"
+literal "false"
+
+\end_inset
+
+
+\bar default
+\color inherit
+ L7-L9)
 \end_layout
 
 \begin_layout Itemize
@@ -321,7 +344,22 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-Computer labs (Oscar Oelrich)
+Computer labs (
+\bar under
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "Oscar Oelrich"
+target "https://www.su.se/english/profiles/ooelr-1.342298"
+literal "false"
+
+\end_inset
+
+
+\bar default
+\color inherit
+)
 \begin_inset VSpace medskip
 \end_inset
 
@@ -430,7 +468,7 @@ Lab reports
 \end_layout
 
 \begin_layout Itemize
-Home exam
+Exam: Pen and paper + Computer
 \end_layout
 
 \end_deeper
@@ -863,7 +901,7 @@ Probabilities from the likelihood?
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/BigNoNoStamp.png
+	filename /home/mv/Dropbox/BayesBook/Figs/BigNoNoIntegrate.pdf
 	scale 55
 
 \end_inset

@@ -161,8 +161,16 @@ Lecture 3 - Multi-parameter models
 \begin_layout Author
 
 \series bold
-Mattias Villani
+Mattias Villani 
 \series default
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
  
 \begin_inset Argument 1
 status collapsed
@@ -1186,25 +1194,25 @@ end{tcolorbox}
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/Dir1.jpg
+	filename /home/mv/Dropbox/BayesBook/Figs/Dirichlet1.pdf
 	lyxscale 40
-	scale 16
+	scale 25
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/Dir2.jpg
+	filename /home/mv/Dropbox/BayesBook/Figs/Dirichlet2.pdf
 	lyxscale 40
-	scale 16
+	scale 25
 
 \end_inset
 
 
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/Dir3.jpg
+	filename /home/mv/Dropbox/BayesBook/Figs/Dirichlet3.pdf
 	lyxscale 40
-	scale 16
+	scale 25
 
 \end_inset
 
