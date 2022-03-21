@@ -96,7 +96,7 @@ Reading: BDA Ch. 14, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
-Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
+Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | BL 7-8 and appendix on Taylor approximations [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
 Notebook: [Normal approximation of posterior for logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd) \
 Extras: [Video on Taylor approximation](https://youtu.be/3d6DsjIBzJ4)
 
@@ -159,12 +159,12 @@ Submission: [Athena]().
 The course examination consists of:
 
 * Written lab reports (deadlines given in Athena)
-* Take home exam (first exam on Jan 15)
+* Exam (pen and paper + computer)
 
 Some old exams with solutions:
 
-- [Old exams at SU](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/OldExamsSU/)
-- [Old exams at LiU](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/OldExamsLiU/) are some past exams with solutions from a similar course that I have given at Linköping University. **Note** however that although the course contents are very similar that course had only a 4 hour exam in a computer room without internet access. You have more time and the internet available (from which you **cannot** copy or ask questions though) so your exam will be somewhat different.
+- [Old exams](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/OldExamsSU/)
+
 
 
 ---
@@ -174,13 +174,6 @@ Some old exams with solutions:
 * The main page with links to downloads for the [programming language R](https://www.r-project.org/)
 * [RStudio](https://rstudio.com/products/rstudio/) - a very nice developing environment for R.
 * [An introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/) | [R cheat sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf) .
-
----
-
-### Pluto Notebooks
-As a bonus, I will occasionally post notebooks from a new notebook system called [Pluto](https://github.com/fonsp/Pluto.jl) in the [Julia](https://julialang.org/) programming language. The advantage of Pluto is that it is reactive: changing one variable in the notebook immediately updates the parts of the notebook that depend on the variable.
-Here are some instructions for how you can get started with Pluto Notebooks: 
-[Pluto instructions](https://gist.github.com/mattiasvillani/73c7a26bfc7c82d2fb35dbbb31f38945)
 
 ---
 
