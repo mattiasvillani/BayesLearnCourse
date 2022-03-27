@@ -134,7 +134,7 @@
 
 \size largest
 \color orange
-Bayesian Statistics I
+Bayesian Learning
 \size default
 
 \begin_inset Argument 1
@@ -627,10 +627,10 @@ Posterior
  
 \begin_inset Formula 
 \begin{align*}
-\mu_{n} & =\left(\mathbf{X}'\mathbf{X}+\Omega_{0}\right)^{-1}\left(\mathbf{X}'\mathbf{X}\hat{\beta}+\Omega_{0}\mu_{0}\right)\\
-\Omega_{n} & =\mathbf{X}'\mathbf{X}+\Omega_{0}\\
+\mu_{n} & =\left(\mathbf{X}^{\top}\mathbf{X}+\Omega_{0}\right)^{-1}\left(\mathbf{X}^{\top}\mathbf{X}\hat{\beta}+\Omega_{0}\mu_{0}\right)\\
+\Omega_{n} & =\mathbf{X}^{\top}\mathbf{X}+\Omega_{0}\\
 \nu_{n} & =\nu_{0}+n\\
-\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\left(\mathbf{y}'\mathbf{y}+\mu_{0}'\Omega_{0}\mu_{0}-\mu_{n}'\Omega_{n}\mu_{n}\right)
+\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\left(\mathbf{y}^{\top}\mathbf{y}+\mu_{0}^{\top}\Omega_{0}\mu_{0}-\mu_{n}^{\top}\Omega_{n}\mu_{n}\right)
 \end{align*}
 
 \end_inset
@@ -770,13 +770,13 @@ Posterior predictive density
 \end_inset
 
  given observed 
-\begin_inset Formula $\mathbf{y}$
+\begin_inset Formula $\mathbf{\boldsymbol{y}}=(y_{1},\ldots,y_{n})$
 \end_inset
 
 
 \begin_inset Formula 
 \[
-p(\tilde{y}|\mathbf{y})=\int_{\theta}p(\tilde{y}|\theta,\mathbf{y})p(\theta|\mathbf{y})d\theta
+p(\tilde{y}|\boldsymbol{y})=\int_{\theta}p(\tilde{y}|\theta,\boldsymbol{y})p(\theta|\boldsymbol{y})d\theta
 \]
 
 \end_inset
@@ -792,7 +792,7 @@ p(\tilde{y}|\mathbf{y})=\int_{\theta}p(\tilde{y}|\theta,\mathbf{y})p(\theta|\mat
 IID data:
 \begin_inset Formula 
 \[
-p(\tilde{y}|\mathbf{y})=\int_{\theta}p(\tilde{y}|\theta)p(\theta|\mathbf{y})d\theta
+p(\tilde{y}|\boldsymbol{y})=\int_{\theta}p(\tilde{y}|\theta)p(\theta|\boldsymbol{y})d\theta
 \]
 
 \end_inset
@@ -812,7 +812,7 @@ Parameter uncertainty
 \series default
 \color inherit
  in 
-\begin_inset Formula $p(\tilde{y}|\mathbf{y})$
+\begin_inset Formula $p(\tilde{y}|\boldsymbol{y})$
 \end_inset
 
  by 
@@ -822,7 +822,7 @@ averaging over
 \series default
 \color inherit
  
-\begin_inset Formula $p(\theta|\mathbf{y})$
+\begin_inset Formula $p(\theta|\boldsymbol{y})$
 \end_inset
 
 .
@@ -865,8 +865,8 @@ Under the uniform prior
 , then
 \begin_inset Formula 
 \begin{align*}
-p(\tilde{y}|\mathbf{y}) & =\int_{\theta}p(\tilde{y}|\theta)p(\theta|\mathbf{y})d\theta\\
-\theta|\mathbf{y} & \sim N(\bar{y},\sigma^{2}/n)\\
+p(\tilde{y}|\boldsymbol{y}) & =\int_{\theta}p(\tilde{y}|\theta)p(\theta|\boldsymbol{y})d\theta\\
+\theta|\boldsymbol{y} & \sim N(\bar{y},\sigma^{2}/n)\\
 \tilde{y}|\theta & \sim N(\theta,\sigma^{2})
 \end{align*}
 
@@ -1052,8 +1052,8 @@ sum of two normal random variables is normal
  so 
 \begin_inset Formula 
 \begin{eqnarray*}
-E(\tilde{y}|\mathbf{y}) & = & \bar{y}\\
-V(\tilde{y}|\mathbf{y}) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+\frac{1}{n}\right)
+E(\tilde{y}|\boldsymbol{y}) & = & \bar{y}\\
+V(\tilde{y}|\boldsymbol{y}) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+\frac{1}{n}\right)
 \end{eqnarray*}
 
 \end_inset
@@ -1061,7 +1061,7 @@ V(\tilde{y}|\mathbf{y}) & = & \frac{\sigma^{2}}{n}+\sigma^{2}=\sigma^{2}\left(1+
 
 \begin_inset Formula 
 \[
-\tilde{y}\vert\mathbf{y}\sim N\left[\bar{y},\sigma^{2}\left(1+\frac{1}{n}\right)\right]
+\tilde{y}\vert\boldsymbol{y}\sim N\left[\bar{y},\sigma^{2}\left(1+\frac{1}{n}\right)\right]
 \]
 
 \end_inset
@@ -1106,7 +1106,7 @@ Iteration laws
 Expectation with respect to what? Explicit:
 \begin_inset Formula 
 \[
-\mathbb{E}_{\theta|\mathbf{y}}(\theta)\equiv\int\theta p(\theta|\mathbf{y})d\theta
+\mathbb{E}_{\theta|\mathbf{\boldsymbol{y}}}(\theta)\equiv\int\theta p(\theta|\boldsymbol{y})d\theta
 \]
 
 \end_inset
@@ -1223,7 +1223,7 @@ Remove the conditioning
  by averaging over posterior:
 \begin_inset Formula 
 \[
-E(\tilde{y}|\mathbf{y})=E_{\theta|\mathbf{y}}(\theta)=\mu_{n}\text{ (Posterior mean of }\theta\text{).}
+E(\tilde{y}|\mathbf{\boldsymbol{y}})=E_{\theta|\mathbf{\boldsymbol{y}}}(\theta)=\mu_{n}\text{ (Posterior mean of }\theta\text{).}
 \]
 
 \end_inset
@@ -1245,8 +1245,8 @@ law of total variance
 
 \begin_inset Formula 
 \begin{eqnarray*}
-V(\tilde{y}|\mathbf{y}) & = & E_{\theta|\mathbf{y}}[V_{\tilde{y}|\theta}(\tilde{y})]+V_{\theta|\mathbf{y}}[E_{\tilde{y}|\theta}(\tilde{y})]\\
- & = & E_{\theta|\mathbf{y}}(\sigma^{2})+V_{\theta|\mathbf{y}}(\theta)\\
+V(\tilde{y}|\boldsymbol{y}) & = & E_{\theta|\mathbf{\boldsymbol{y}}}[V_{\tilde{y}|\theta}(\tilde{y})]+V_{\theta|\mathbf{\boldsymbol{y}}}[E_{\tilde{y}|\theta}(\tilde{y})]\\
+ & = & E_{\theta|\mathbf{\boldsymbol{y}}}(\sigma^{2})+V_{\theta|\mathbf{\boldsymbol{y}}}(\theta)\\
  & = & \sigma^{2}+\tau_{n}^{2}\text{ \ }
 \end{eqnarray*}
 
@@ -1259,7 +1259,7 @@ V(\tilde{y}|\mathbf{y}) & = & E_{\theta|\mathbf{y}}[V_{\tilde{y}|\theta}(\tilde{
 So, predictive distribution is
 \begin_inset Formula 
 \[
-\tilde{y}|\mathbf{y}\sim N(\mu_{n},\sigma^{2}+\tau_{n}^{2}).
+\tilde{y}|\mathbf{\boldsymbol{y}}\sim N(\mu_{n},\sigma^{2}+\tau_{n}^{2}).
 \]
 
 \end_inset
@@ -1681,7 +1681,7 @@ status open
 
 \series bold
 \color orange
-Decision Theory
+Decision problems
 \end_layout
 
 \end_inset
@@ -1713,9 +1713,38 @@ State of nature
 \series default
 \color inherit
 .
- Examples: Future inflation, Global temperature, Disease.
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Future inflation
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Global temperature
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Disease.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Let 
 \begin_inset Formula $a\in\mathcal{A}$
@@ -1728,9 +1757,39 @@ action
 \series default
 \color inherit
 .
- Ex: Interest rate, Energy tax, Surgery.
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+Interest rate
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Energy tax
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Surgery.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Choosing action 
 \begin_inset Formula $a$
@@ -1769,6 +1828,184 @@ loss
 \end_inset
 
 .
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Decision tables - when both 
+\begin_inset Formula $a$
+\end_inset
+
+ and 
+\begin_inset Formula $\theta$
+\end_inset
+
+ are discrete
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Decision table
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{table}   
+\backslash
+smaller   
+\backslash
+center   
+\backslash
+begin{tabular}{c|c|c|c|c}           
+\backslash
+cellcolor{lightgray} & 
+\backslash
+cellcolor{lightgray}$
+\backslash
+theta_1$ & 
+\backslash
+cellcolor{lightgray}$
+\backslash
+theta_2$ & 
+\backslash
+cellcolor{lightgray} $
+\backslash
+cdots$ & 
+\backslash
+cellcolor{lightgray}$
+\backslash
+theta_K$ 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray} $a_{1}$ & $u(a_{1},
+\backslash
+theta_{1})$ & $u(a_{1},
+\backslash
+theta_{2})$ & $
+\backslash
+cdots$ & $u(a_{1},
+\backslash
+theta_{K})$ 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray} $a_{2}$ & $u(a_{2},
+\backslash
+theta_{1})$ & $u(a_{2},
+\backslash
+theta_{2})$ & $
+\backslash
+cdots$ & $u(a_{2},
+\backslash
+theta_{K})$ 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray}$
+\backslash
+vdots$ & $
+\backslash
+vdots$ & $
+\backslash
+vdots$ & & $
+\backslash
+vdots$ 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray}$a_{J}$ & $u(a_{J},
+\backslash
+theta_{1})$ & $u(a_{J},
+\backslash
+theta_{2})$ & $
+\backslash
+cdots$ & $u(a_{J},
+\backslash
+theta_{K})$ 
+\backslash
+tabularnewline         
+\backslash
+end{tabular}   
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1776,237 +2013,64 @@ loss
 \end_layout
 
 \begin_layout Itemize
-Loss table:
-\begin_inset space \hspace{}
-\length 2cm
-\end_inset
+The eternal umbrella decision:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
 
  
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
-\begin_inset Text
+\backslash
+begin{table}   
+\backslash
+smaller   
+\backslash
+center   
+\backslash
+begin{tabular}{l|r|r}
+\end_layout
 
 \begin_layout Plain Layout
 
+    
+\backslash
+cellcolor{lightgray} & 
+\backslash
+cellcolor{lightgray} Rain & 
+\backslash
+cellcolor{lightgray} Sun 
+\backslash
+tabularnewline
 \end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\theta_{1}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $\theta_{2}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{1}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $L(a_{1},\theta_{1}$
-\end_inset
-
-)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $L(a_{1},\theta_{2}$
-\end_inset
-
-)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $a_{2}$
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $L(a_{2},\theta_{1}$
-\end_inset
-
-)
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-\begin_inset Formula $L(a_{2},\theta_{2}$
-\end_inset
-
-)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Example:
-\begin_inset space \hspace{}
-\length 2cm
-\end_inset
-
- 
-\begin_inset Tabular
-<lyxtabular version="3" rows="3" columns="3">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" bottomline="true" rightline="true" usebox="none">
-\begin_inset Text
 
 \begin_layout Plain Layout
 
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray} No umbrella & $-50$ & $50$ 
+\backslash
+tabularnewline
 \end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
 
 \begin_layout Plain Layout
-Rainy
+
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray} Umbrella & $10$ & $30$  
+\backslash
+tabularnewline          
+\backslash
+end{tabular}    
+\backslash
+end{table}
 \end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Sunny
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Umbrella
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-20
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-10
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-No umbrella
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-50
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -2179,7 +2243,7 @@ status open
 
 \series bold
 \color orange
-Optimal decision
+Optimal decisions
 \end_layout
 
 \end_inset
@@ -2216,8 +2280,20 @@ Minimax
 \emph on
 Minimax-regret
 \emph default
- ...
- bla bla bla ...
+ 
+\end_layout
+
+\begin_layout Itemize
+...
+ 
+\begin_inset Graphics
+	filename /home/mv/Dropbox/IconsAndLogos/Sleeping Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -2228,13 +2304,21 @@ Minimax-regret
 Bayesian theory
 \series default
 \color inherit
-: maximize the 
+: maximize 
 \series bold
 \color blue
 posterior expected utility
 \series default
 \color inherit
-:
+ 
+\begin_inset Graphics
+	filename /home/mv/Dropbox/IconsAndLogos/HeartEyes.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+
 \begin_inset Formula 
 \[
 a_{bayes}=\mathrm{argmax}{}_{a\in\mathcal{A}}\text{ }E_{p(\theta|y)}[U(a,\theta)],
@@ -2316,11 +2400,121 @@ choose
 \begin_inset Formula $a$
 \end_inset
 
- that maximes 
+ that maximizes 
 \begin_inset Formula $E_{p(\theta|y)}[U(a,\theta)]$
 \end_inset
 
 .
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+The umbrella decision
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+ 
+\backslash
+begin{table}   
+\backslash
+smaller   
+\backslash
+center   
+\backslash
+begin{tabular}{l|r|r}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+cellcolor{lightgray} & 
+\backslash
+cellcolor{lightgray} Rain & 
+\backslash
+cellcolor{lightgray} Sun 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray} No umbrella & $-50$ & $50$ 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+hline      
+\backslash
+cellcolor{lightgray} Umbrella & $10$ & $30$  
+\backslash
+tabularnewline          
+\backslash
+end{tabular}    
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/EUumbrella.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -2461,13 +2655,61 @@ Lin-Lin loss
 \end_inset
 
  
-\begin_inset Formula $c_{2}/(c_{1}+c_{2})$
+\begin_inset Formula $c_{1}/(c_{1}+c_{2})$
 \end_inset
 
  quantile of the posterior
 \end_layout
 
 \end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+The umbrella decision
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/utility4est.pdf
+	lyxscale 50
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak

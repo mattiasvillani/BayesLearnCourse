@@ -133,11 +133,8 @@
 
 \begin_layout Title
 
-\size largest
 \color orange
-Bayesian Statistics I
-\size default
-
+Bayesian Learning
 \begin_inset Argument 1
 status open
 
@@ -558,6 +555,50 @@ is the usual sample variance.
 status open
 
 \begin_layout Plain Layout
+\begin_inset Formula $\mathrm{Inv}-\chi^{2}(\nu,\tau^{2})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/ScaledInvChi.png
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/ScaledInvChi2.pdf
+	lyxscale 40
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
 
 \series bold
 \color orange
@@ -712,7 +753,7 @@ status open
 
 \series bold
 \color orange
-Simulating from posterior
+Simulating from posterior - pseudo code
 \end_layout
 
 \end_inset
@@ -726,6 +767,42 @@ Simulating from posterior
 \begin_inset Graphics
 	filename Images/simNormal.png
 	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Simulating from posterior - output
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/MonteCarloOutputMatrix.png
+	scale 45
 
 \end_inset
 
@@ -958,6 +1035,48 @@ status open
 
 \series bold
 \color orange
+Simulation from marginals by selection
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+´
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/BivarContourMarginsWithData.pdf
+	lyxscale 60
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Multinomial model with Dirichlet prior
 \end_layout
 
@@ -1060,7 +1179,7 @@ Marginal distributions
 
 \begin_inset Formula 
 \[
-\theta_{c}\sim\mathrm{Beta}\left(\alpha_{c},\alpha_{+}-\alpha_{c}\right).
+\theta_{c}\sim\mathrm{Beta}\left(\alpha_{c},\alpha_{+}-\alpha_{c}\right),\text{ where }\alpha_{+}=\sum_{c=1}^{C}\alpha_{c}
 \]
 
 \end_inset

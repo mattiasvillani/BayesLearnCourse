@@ -132,11 +132,8 @@
 
 \begin_layout Title
 
-\size largest
 \color orange
-Bayesian 
-\size default
-Statistics I
+Bayesian Learning 
 \begin_inset Argument 1
 status open
 
@@ -2791,7 +2788,7 @@ Data
 \series default
 \color inherit
 : 
-\begin_inset Formula $\mbox{x}=(22.42,34.01,35.04,38.74,25.15)$
+\begin_inset Formula $\mbox{x}=(15.77,20.5,8.26,14.37,21.09)$
 \end_inset
 
  Mbit/sec.
@@ -3016,7 +3013,7 @@ Bayesian updating
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/wifiUpdating.png
+	filename /home/mv/Dropbox/BayesBook/Figs/wifiUpdating.pdf
 	lyxscale 30
 	scale 35
 
