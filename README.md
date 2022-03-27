@@ -43,16 +43,18 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
   *  so that you are in a position to ask questions at the session
   *  and then finish up the report after the lab session.
 
-* The datasets used in the labs are included in the **SUdatasets** R package which is available on github. To install it, you first need to install the `remotes` package.
+* The datasets used in the labs are included in the `SUdatasets` R package which is available on github. There is also a cours package `bayeslearn` with some distributions and functions for regression, logistic regression etc. To install the packages, you first need to install the `remotes` package.
 ```
 # To install and load the package with the data
 install.packages("remotes") # only one time
 library(remotes)  
 install_github("StatisticsSU/SUdatasets") # only one time
 library(SUdatasets)
+install_github("StatisticsSU/bayeslearn") # only one time
+library(bayeslearn)
 
 # For a list of all available data sets
-help(, "BayesLearnSU")
+help(, "SUdatasets")
 
 # For information about specific data sets
 help(name_of_dataset)
