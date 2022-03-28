@@ -99,7 +99,8 @@ Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasv
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
 Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | BL 7-8 and appendix on Taylor approximations  | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
-Notebook: [Normal approximation of posterior for logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd) \
+Notebook: [Logistic regression for spam data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd) \
+Code:  [bayeslearn package - Logistic and Probit regression for Titanic data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/binary_reg_script.R) \
 Extras: [Video on Taylor approximation](https://youtu.be/3d6DsjIBzJ4)
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
