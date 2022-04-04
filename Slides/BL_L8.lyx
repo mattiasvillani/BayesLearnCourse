@@ -797,8 +797,9 @@ Metropolis-Hastings
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/MarkovChainSimulation.eps
-	scale 60
+	filename Images/MarkovChainSimulation.png
+	lyxscale 20
+	scale 70
 
 \end_inset
 
@@ -837,7 +838,8 @@ Rejection sampling
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/RejectionSampling.eps
+	filename Images/RejectionSampling.pdf
+	lyxscale 30
 	scale 50
 
 \end_inset
