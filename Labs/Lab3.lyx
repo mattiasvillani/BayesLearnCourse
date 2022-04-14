@@ -594,9 +594,9 @@ Obtain the maximum likelihood estimator of
 
  in the Poisson regression model for the 
 \family typewriter
-eBayBidderData
+ebaycoins
 \family default
- [Hint: 
+ data [Hint: 
 \family typewriter
 glm.R
 \family default
