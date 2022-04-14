@@ -555,103 +555,38 @@ th observation in the sample and
 th observation.
  Use the data set 
 \family typewriter
-eBayBidderData
+ebaycoins
+\family default
+ from the library 
+\family typewriter
+SUdatasets
 \family default
 .
  This dataset contains observations from 1000 eBay auctions of coins.
- The response variable is 
+ See 
 \family typewriter
-nBids
+?ebaycoins
 \family default
- and records the number of bids in each auction.
- The remaining variables are features/covariates (
-\begin_inset Formula $\mathbf{x}$
-\end_inset
-
-): 
-\begin_inset Separator latexpar
-\end_inset
-
-
+ for variable definitions.
+ Use 
+\family typewriter
+NBidders
+\family default
+, the number of bids in each auction, as the response variable.
+ Use all remaining variables in the dataset as covariates, except for 
+\family typewriter
+FinalPrice
+\family default
+.
+ Add a columns of ones to model the intercept.
+ Make a log transform of the variable 
+\family typewriter
+BookVal
+\family default
+ before using it as a covariate.
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-
-\family typewriter
-const
-\family default
- (for the intercept)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-powerSeller
-\family default
- (is the seller selling large volumes on eBay?)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-verifyID
-\family default
- (is the seller verified by eBay?)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-sealed
-\family default
- (was the coin sold sealed in never opened envelope?)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-minBlem
-\family default
- (did the coin have a minor defect?)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-majBlem
-\family default
- (a major defect?)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-largNeg
-\family default
- (did the seller get a lot of negative feedback from customers?)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-logBook
-\family default
- (logarithm of the coins book value according to expert sellers.
- Standardized)
-\end_layout
-
-\begin_layout Itemize
-
-\family typewriter
-minBidShare
-\family default
- (a variable that measures ratio of the minimum selling price (starting
- price) to the book value.
- Standardized).
- 
-\end_layout
-
 \begin_layout Enumerate
 Obtain the maximum likelihood estimator of 
 \begin_inset Formula $\beta$
@@ -669,11 +604,7 @@ glm.R
 \family typewriter
 glm()
 \family default
- adds its own intercept so don't input the covariate 
-\family typewriter
-const
-\family default
-].
+ adds its own intercept so don't input the covariate for the intercept].
  Which covariates are significant?
 \end_layout
 
