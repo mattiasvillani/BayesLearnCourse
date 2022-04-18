@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -21,6 +21,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -50,6 +52,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -62,7 +65,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -111,7 +117,7 @@ Mattias Villani
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bayesian Statistics I 
+Bayesian Learning 
 \end_layout
 
 \end_inset
@@ -140,7 +146,7 @@ Department of Statistics
 \begin_inset Text
 
 \begin_layout Plain Layout
-Bayesian Learning 
+
 \end_layout
 
 \end_inset
@@ -332,16 +338,7 @@ height "1pt"
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-noindent
-\end_layout
-
+\begin_inset space \negmedspace{}
 \end_inset
 
 This little note will help you with coding up the random walk Metropolis
@@ -407,29 +404,22 @@ is a
 \emph on
 function object
 \emph default
- that computes the log posterior density at any value of the parameter vector.
- This is needed when you compute the acceptance probability of the Metropolis
- algorithm.
- I suggest 
-\series bold
-always
-\series default
- to program the 
+ that computes the log posterior density for any value of the parameter
+ vector, which is need for computing the acceptance probability in the Metropoli
+s algorithm.
+ You should always code the 
 \emph on
 log
 \emph default
- posterior density, since logs are more stable and avoids problems with
- too small or large numbers (overflow).
- Note that the ratio of posterior densities in the Metropolis acceptance
- probability can be written
+ posterior density and then evaluate the acceptance probability as
 \begin_inset Formula 
 \[
-\frac{p(\theta_{p}|\mathbf{y})}{p(\theta^{(i-1)}|\mathbf{y})}=\exp\left[\log p(\theta_{p}|\mathbf{y})-\log p(\theta^{(i-1)}|\mathbf{y})\right]
+\frac{p(\theta_{p}|\mathbf{y})}{p(\theta^{(i-1)}|\mathbf{y})}=\exp\left[\log p(\theta_{p}|\mathbf{y})-\log p(\theta^{(i-1)}|\mathbf{y})\right].
 \]
 
 \end_inset
 
-This is smart since common multiplicative factors in 
+This gives numerical stability since common multiplicative factors in 
 \begin_inset Formula $p(\theta_{p}|\mathbf{y})$
 \end_inset
 
@@ -439,7 +429,6 @@ This is smart since common multiplicative factors in
 
  cancel out before we evaluate the exponential function (which can otherwise
  overflow).
- 
 \end_layout
 
 \begin_layout Enumerate
@@ -450,8 +439,7 @@ theta
 \family default
 \size default
 , the vector of parameters for which the posterior density is evaluated.
- You can of course use some other name for the variable, but it must be
- the 
+ You can of course use some other variable name, but it must be the 
 \emph on
 first
 \emph default
@@ -478,12 +466,12 @@ any
  parameters supplied by the user.
  This makes it possible to use the Metropolis function for any problem,
  even when you as a programmer don't know what the user's posterior density
- function looks like or what kind of data and hyper-parameters will be used
- in that particular problem.
+ function looks like, or what kind of data and hyper-parameters will be
+ used in that particular problem.
  To illustrate the use of the triple dot argument, I give some very simple
  code below with the log posterior density for the Bernoulli model with
  a Beta prior.
- That log posterior density is then used in a useless, but illustrative,
+ The log posterior density is then used in a useless, but illustrative,
  function 
 \family typewriter
 \size footnotesize
@@ -524,7 +512,7 @@ takes a function object as input and how it uses the triple dot (
 \end_inset
 
  without explicitly using these symbols inside the function.
- That makes the 
+ This makes the 
 \family typewriter
 \size footnotesize
 MultiplyByTwo 
