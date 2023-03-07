@@ -24,26 +24,26 @@ The course gives a solid introduction to Bayesian statistical inference, with sp
 The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
-Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and PDF.
+Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and a free [PDF version](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf).
 * Villani, M. (2022). Bayesian Learning (BL). Approximately half of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is work in progress, but currently covers L1-L6 and L11. 
 * Additional course material linked from this page, such as articles and tutorial.
 
-The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39769&type=courseevent&h=t).
+The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39886_VT2023&startDate=20230218&endDate=20230805&type=courseevent&h=t&l=en).
 
 ---
 
 ### Computer labs
 
-* The three computer labs are central to the course. Expect to allocate substantial time for each lab. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
-* You are strongly encouraged to do the labs in R, but any programming language is ok to use.
+* The three computer labs are central to the course. Expect to allocate substantial time for each lab, not just the scheduled time for computer exercises. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
+* You are strongly encouraged to do the labs in R, but any programming language is ok to use. Note however that the exam will be R-based, hence the strong recommendation to use R throughout the course.
 * The labs should be done in **pairs** of students.
-* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=9595&LocationType=1).
+* Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 * There is only two hours of supervised time allocated to each lab. The idea is that you:
   *  should start working on the lab before the computer session
   *  so that you are in a position to ask questions at the session
   *  and then finish up the report after the lab session.
 
-* The datasets used in the labs are included in the `SUdatasets` R package which is available on github. There is also a cours package `bayeslearn` with some distributions and functions for regression, logistic regression etc. To install the packages, you first need to install the `remotes` package.
+* The datasets used in the labs are included in the `SUdatasets` R package which is available on github. There is also a course package `bayeslearn` with some distributions and functions for regression, logistic regression etc. To install the packages, you first need to install the `remotes` package.
 ```
 # To install and load the package with the data
 install.packages("remotes") # only one time
@@ -67,11 +67,10 @@ help(name_of_dataset)
 [Mattias Villani](https://mattiasvillani.com), Lecturer \
 Professor, Natural Born Bayesian :stuck_out_tongue_winking_eye: \
 Department of Statistics, Stockholm University \
-Division of Statistics and Machine Learning, Linköping University
 
 <img src="Misc/Oscar.jpg" width="100">\
 [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Math exercises and Computer labs \
-PhD Candidate, specializing in Bayesian Statistics \
+PhD in Statistics, specializing in Bayesian Statistics \
 Department of Statistics, Stockholm University
 
 ---
