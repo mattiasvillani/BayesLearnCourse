@@ -170,11 +170,11 @@ Some old exams with solutions:
 
 ---
 
-### R
+### R 
 
 * The main page with links to downloads for the [programming language R](https://www.r-project.org/)
 * [RStudio](https://rstudio.com/products/rstudio/) - a very nice developing environment for R.
-* [An introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/) | [R cheat sheet](https://rstudio.com/wp-content/uploads/2016/10/r-cheat-sheet-3.pdf) .
+* [An introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/) | [base-R cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/base-r.pdf) .
 
 ---
 
