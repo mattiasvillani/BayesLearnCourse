@@ -8,7 +8,7 @@
 
 ### Contents
 
-The course gives a solid introduction to Bayesian statistical inference, with special emphasis on models and methods in computational statistics and machine learning. 
+The course gives a gentle but solid introduction to Bayesian statistical inference, with special emphasis on models and methods in computational statistics and machine learning. 
 * We will get off to a shocking start by introducing a very different probability concept than the one you are probably used to: subjective probability. 
 * We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. 
 * Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making. 
