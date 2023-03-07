@@ -2,7 +2,7 @@
 
 ### Bayesian Learning
 
-![](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/Images/BayesTheoremNeonBlack.jpg "Bayesian Learning")
+![](Misc/bayesian_learning_course_banner.png "Bayesian Learning")
 
 ---
 
@@ -143,16 +143,16 @@ Reading: [Article](http://www-stat.wharton.upenn.edu/~edgeorge/Research_papers/G
 ## Computer labs
 ### Assistant: [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298)
 **Computer Lab 1** - Exploring posterior distributions in one-parameter models by simulation and direct numerical evaluation.\
-Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab1.pdf) \
-Submission: [Athena]().
+Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab1/Lab1.pdf) \
+Submission: [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 
 **Computer Lab 2** - Polynomial regression and classification with logistic regression.\
-Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
-Submission: [Athena]().
+Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2/Lab2.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
+Submission: [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 
 **Computer Lab 3** - Gibbs sampling, Metropolis-Hastings and Stan. \
-Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
-Submission: [Athena]().
+Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code RWM](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
+Submission: [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 
 ---
 
