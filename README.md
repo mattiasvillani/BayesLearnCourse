@@ -1,6 +1,5 @@
 <!-- font: frutiger -->
 
-### Bayesian Learning
 
 ![](Misc/bayesian_learning_course_banner.png "Bayesian Learning")
 
