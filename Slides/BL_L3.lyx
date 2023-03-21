@@ -12,31 +12,44 @@
   \usetheme{Luebeck}
   \usecolortheme{beaver}
   \beamertemplatenavigationsymbolsempty
-  \setbeamertemplate{headline}{}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% include necessary packages here
+\usepackage{mathtools}
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\renewcommand{\v}[1]{\boldsymbol{#1}}
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
 
 
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
 
 \date{} % Date, can be changed to a custom date
 
 \titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
 
-\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
-\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
-\hrulefill \break
+
 \tiny
-\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
@@ -44,8 +57,9 @@
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
 \definecolor{llorange}{RGB}{255, 229,204 }
-\definecolor{red}{RGB}{255, 128, 0}
 \definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
@@ -53,10 +67,12 @@
 
 \usepackage{tcolorbox}
 
-\usepackage[ruled]{algorithm2e}
-\usepackage{wasysym}
-\SetKwInput{KwInput}{Input}
-\SetKwInput{KwOutput}{Output}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -70,7 +86,7 @@
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -190,28 +206,11 @@ Department of Statistics
 \end_inset
 
 Stockholm University 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\end_inset
-
- Department of Computer and Information Science
-\begin_inset Newline newline
-\end_inset
-
-Linköping University 
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Linköping and Stockholm University
+Stockholm University
 \end_layout
 
 \end_inset
@@ -555,7 +554,25 @@ is the usual sample variance.
 status open
 
 \begin_layout Plain Layout
+
+\color orange
 \begin_inset Formula $\mathrm{Inv}-\chi^{2}(\nu,\tau^{2})$
+\end_inset
+
+
+\color none
+
+\begin_inset space \hspace{}
+\length 5.5cm
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.30\\textwidth]{/home/mv/Dropbox/BayesBook/Figs/observable_badges/dist_scaled_inv_chi2.pdf}"
+target "https://mattiasvillani.com/BayesianLearningBook/observable/bayes_covid.html"
+literal "true"
+
 \end_inset
 
 
