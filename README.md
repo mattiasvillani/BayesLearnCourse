@@ -34,7 +34,7 @@ The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/s
 ### Computer labs
 
 * The three computer labs are central to the course. Expect to allocate substantial time for each lab, not just the scheduled time for computer exercises. Many of the exam questions will be computer based, so working on the labs will also help you with the exam.
-* You are strongly encouraged to do the labs in R, but any programming language is ok to use. Note however that the exam will be R-based, hence the strong recommendation to use R throughout the course.
+* The labs should be done in R, since only R is available at the computer exam and your lab solutions will be available for you at the exam.
 * The labs should be done in **pairs** of students.
 * Each lab report should be submitted as a PDF along with the .R file with code. Submission is done through [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 * There is only two hours of supervised time allocated to each lab. The idea is that you:
