@@ -871,7 +871,7 @@ observed information matrix
 
 \begin_inset Formula 
 \[
-J_{\boldsymbol{\theta},\mathbf{x}}(\hat{\boldsymbol{\theta}})=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{T}}\vert_{\boldsymbol{\theta}=\hat{\boldsymbol{\theta}}}
+J_{\mathbf{x}}(\hat{\boldsymbol{\theta}})=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{T}}\vert_{\boldsymbol{\theta}=\hat{\boldsymbol{\theta}}}
 \]
 
 \end_inset
