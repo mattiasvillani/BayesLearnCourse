@@ -12,30 +12,44 @@
   \usetheme{Luebeck}
   \usecolortheme{beaver}
   \beamertemplatenavigationsymbolsempty
-  \setbeamertemplate{headline}{}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% include necessary packages here
+\usepackage{mathtools}
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
 
 
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
 
 \date{} % Date, can be changed to a custom date
 
 \titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
 
-\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
-\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
-\hrulefill \break
+
 \tiny
-\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
@@ -43,8 +57,9 @@
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
 \definecolor{llorange}{RGB}{255, 229,204 }
-\definecolor{red}{RGB}{255, 128, 0}
 \definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
@@ -52,10 +67,12 @@
 
 \usepackage{tcolorbox}
 
-\usepackage[ruled]{algorithm2e}
-\usepackage{wasysym}
-\SetKwInput{KwInput}{Input}
-\SetKwInput{KwOutput}{Output}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 \end_preamble
 \options xcolor=svgnames, handout
 \use_default_options false
@@ -69,7 +86,7 @@
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -191,29 +208,12 @@ Department of Statistics
 \begin_inset Newline newline
 \end_inset
 
-Stockholm University 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\end_inset
-
- Department of Computer and Information Science
-\begin_inset Newline newline
-\end_inset
-
-Linköping University 
+Stockholm University
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Linköping and Stockholm University
+Stockholm University
 \end_layout
 
 \end_inset
@@ -356,9 +356,9 @@ y_{n}
 \varepsilon_{n}
 \end{array}\right)\\
 \mathbf{X} & = & \left(\begin{array}{c}
-\mathbf{x}_{1}^{\prime}\\
+\mathbf{x}_{1}^{\top}\\
 \vdots\\
-\mathbf{x}_{n}^{\prime}
+\mathbf{x}_{n}^{\top}
 \end{array}\right)=\left(\begin{array}{ccc}
 x_{11} & \cdots & x_{1k}\\
 \vdots & \ddots & \vdots\\
@@ -475,18 +475,22 @@ Joint posterior
 :
 \begin_inset Formula 
 \begin{eqnarray*}
-\beta|\sigma^{2},\mathbf{y} & \sim & N\left[\hat{\beta},\sigma^{2}(\mathbf{X}^{\prime}\mathbf{X})^{-1}\right]\\
+\beta|\sigma^{2},\mathbf{y} & \sim & N\left(\hat{\beta},\sigma^{2}(\mathbf{X}^{\top}\mathbf{X})^{-1}\right)\\
 \sigma^{2}|\mathbf{y} & \sim & Inv\text{-}\chi^{2}(n-k,s^{2})
 \end{eqnarray*}
 
 \end_inset
 
 where 
-\begin_inset Formula $\hat{\beta}=(\mathbf{X}^{\prime}\mathbf{X})^{-1}\mathbf{X}^{\prime}\mathbf{y}$
+\begin_inset Formula $\hat{\beta}=(\mathbf{X}^{\top}\mathbf{X})^{-1}\mathbf{X}^{\top}\mathbf{y}$
 \end_inset
 
  and 
-\begin_inset Formula $s^{2}=\frac{1}{n-k}(\mathbf{y}-\mathbf{X}\hat{\beta})^{\prime}(\mathbf{y}-\mathbf{X}\hat{\beta}).$
+\begin_inset Formula $s^{2}=\frac{1}{n-k}(\mathbf{y}-\mathbf{X}\hat{\beta})^{\top}(\mathbf{y}-\mathbf{X}\hat{\beta}).$
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -500,6 +504,10 @@ Simulate
 \series default
 \color inherit
  from the joint posterior by simulating from
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \begin_inset Separator latexpar
 \end_inset
 
@@ -512,10 +520,18 @@ Simulate
 \end_inset
 
 
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $p(\beta|\sigma^{2},\mathbf{y})$
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -538,7 +554,7 @@ of
 
 \begin_inset Formula 
 \[
-\beta|\mathbf{y}\sim t_{n-k}\left[\hat{\beta},s^{2}(X^{\prime}X)^{-1}\right]
+\beta|\mathbf{y}\sim t_{n-k}\left(\hat{\beta},s^{2}(X^{\top}X)^{-1}\right)
 \]
 
 \end_inset
@@ -618,7 +634,7 @@ Posterior
 \begin_layout Standard
 \begin_inset Formula 
 \begin{align*}
-\beta|\sigma^{2},\mathbf{y} & \sim N\left[\mu_{n},\sigma^{2}\Omega_{n}^{-1}\right]\\
+\beta|\sigma^{2},\mathbf{y} & \sim N\left(\mu_{n},\sigma^{2}\Omega_{n}^{-1}\right)\\
 \sigma^{2}\vert\mathbf{y} & \sim\mathrm{Inv-}\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)
 \end{align*}
 
@@ -630,8 +646,447 @@ Posterior
 \mu_{n} & =\left(\mathbf{X}^{\top}\mathbf{X}+\Omega_{0}\right)^{-1}\left(\mathbf{X}^{\top}\mathbf{X}\hat{\beta}+\Omega_{0}\mu_{0}\right)\\
 \Omega_{n} & =\mathbf{X}^{\top}\mathbf{X}+\Omega_{0}\\
 \nu_{n} & =\nu_{0}+n\\
-\nu_{n}\sigma_{n}^{2} & =\nu_{0}\sigma_{0}^{2}+\left(\mathbf{y}^{\top}\mathbf{y}+\mu_{0}^{\top}\Omega_{0}\mu_{0}-\mu_{n}^{\top}\Omega_{n}\mu_{n}\right)
+\sigma_{n}^{2} & =\left(\nu_{0}\sigma_{0}^{2}+\mathbf{y}^{\top}\mathbf{y}+\mu_{0}^{\top}\Omega_{0}\mu_{0}-\mu_{n}^{\top}\Omega_{n}\mu_{n}\right)/\nu_{n}
 \end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bike share data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bike share data
+\series default
+\color inherit
+.
+ Predict the number of bike rides.
+\end_layout
+
+\begin_layout Itemize
+Response variable: number of rides on 
+\begin_inset Formula $731$
+\end_inset
+
+ days.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+small 
+\backslash
+begin{table}   
+\backslash
+small   
+\backslash
+center   
+\backslash
+begin{tabular}{l|r|r|r|r}     
+\backslash
+hline      
+\backslash
+cellcolor{lightgray} variable & 
+\backslash
+cellcolor{lightgray} 
+\backslash
+centering{description} & 
+\backslash
+cellcolor{lightgray}  type & 
+\backslash
+cellcolor{lightgray} values & 
+\backslash
+cellcolor{lightgray}  comment 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+texttt{nrides} & 
+\backslash
+# of rides & counts & $
+\backslash
+{0,1,...
+\backslash
+}$ & min$=22$, max$=8714$ 
+\backslash
+tabularnewline     
+\backslash
+texttt{feeltemp} & perceived temp & cont.
+ & $[0,1]$ & min$=0.07$, max$=0.85$
+\backslash
+tabularnewline     
+\backslash
+texttt{hum} & humidity & cont.
+ & $[0,1]$ & min$=0.00$, max$=0.98$ 
+\backslash
+tabularnewline     
+\backslash
+texttt{wind} & wind speed & cont.
+ & $[0,1]$ & min$=0.02$, max$=0.51$ 
+\backslash
+tabularnewline     
+\backslash
+texttt{year} & year & binary & $
+\backslash
+{0,1
+\backslash
+}$ & year 2011 $=0$ 
+\backslash
+tabularnewline     
+\backslash
+texttt{season} & season & cat.
+ &  $
+\backslash
+{1,2,3,4
+\backslash
+}$ & winter $
+\backslash
+rightarrow$ fall 
+\backslash
+tabularnewline     
+\backslash
+texttt{weather} & weather & ordinal & $
+\backslash
+{1,2,3
+\backslash
+}$ & clear $
+\backslash
+rightarrow$ rain/snow
+\backslash
+tabularnewline     
+\backslash
+texttt{weekday} & day of week & cat.
+ & $
+\backslash
+{0,...,6
+\backslash
+}$ & sunday $
+\backslash
+rightarrow$ saturday 
+\backslash
+tabularnewline     
+\backslash
+texttt{holiday} & holiday & binary & $
+\backslash
+{0,1
+\backslash
+}$ & holiday $=1$ 
+\backslash
+tabularnewline
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+hline      
+\backslash
+end{tabular}      
+\backslash
+end{table}
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Prior:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mu_{0}=(1000,0,\ldots,0)^{\top}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\Omega_{0}=\frac{\kappa_{0}}{n}\boldsymbol{X}^{\top}\boldsymbol{X}$
+\end_inset
+
+ with 
+\begin_inset Formula $\kappa_{0}=1$
+\end_inset
+
+ (unit information prior)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma_{0}^{2}=1000^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\nu_{0}=5$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bike share data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/biketimeseries.pdf
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/bikefeeltempbyyear.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/bikefeeltempbyweather.pdf
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/bikefeeltempbyseason.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bike share data - marginal posteriors of 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/bikemarginals.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bike share data - joint posteriors of 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/bikebivar1.pdf
+	scale 30
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/bikebivar2.pdf
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Interactive - Bayesian regression
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.55\\textwidth]{/Images/regressionscreen.png}"
+target "https://mattiasvillani.com/BayesianLearningBook/observable/bike_lin_reg.html"
+literal "true"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -1437,250 +1892,6 @@ status open
 
 \series bold
 \color orange
-Predicting auction prices on eBay
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Problem: 
-\series bold
-\color blue
-Predicting the final price
-\series default
-\color inherit
- in eBay coin auctions.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Data
-\series default
-\color inherit
-: Bid from 
-\begin_inset Formula $1000$
-\end_inset
-
- auctions on eBay.
- 
-\begin_inset Newline newline
-\end_inset
-
-The highest bid is not observed (eBay proxy bidding).
- 
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Covariates
-\series default
-\color inherit
- are auction-specific:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-catalog value
-\end_layout
-
-\begin_layout Itemize
-seller's 
-\series bold
-\color blue
-reservation price
-\end_layout
-
-\begin_layout Itemize
-quality
-\end_layout
-
-\begin_layout Itemize
-rating of seller etc
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-Buyers are 
-\series bold
-\color blue
-strategic
-\series default
-\color inherit
-.
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Bid 
-\begin_inset Formula $\neq$
-\end_inset
-
- 
-\series bold
-\color blue
-valuation
-\series default
-\color inherit
-.
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Bid function
-\series default
-\color inherit
-, 
-\begin_inset Formula $b=\mathrm{BidFunction}(v)$
-\end_inset
-
-, from 
-\series bold
-\color blue
-Game theory
-\series default
-\color inherit
-.
-\end_layout
-
-\begin_layout Itemize
-Very complicated likelihood.
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Simulating auction prices on eBay
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/AlgoeBay.png
-	lyxscale 50
-	scale 25
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Predicting auction prices on eBay
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/eBayPrice1.png
-	scale 25
-
-\end_inset
-
-
-\begin_inset Formula $\quad$
-\end_inset
-
-
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/eBayPrice3.png
-	scale 25
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
 Decision problems
 \end_layout
 
@@ -1893,7 +2104,7 @@ status open
 \backslash
 begin{table}   
 \backslash
-smaller   
+small   
 \backslash
 center   
 \backslash
@@ -2026,9 +2237,14 @@ status open
 \backslash
 begin{table}   
 \backslash
-smaller   
+small   
 \backslash
 center   
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 begin{tabular}{l|r|r}
 \end_layout
@@ -2066,8 +2282,18 @@ hline
 cellcolor{lightgray} Umbrella & $10$ & $30$  
 \backslash
 tabularnewline          
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 end{tabular}    
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
 end{table}
 \end_layout
@@ -2447,7 +2673,7 @@ status open
 \backslash
 begin{table}   
 \backslash
-smaller   
+small   
 \backslash
 center   
 \backslash
