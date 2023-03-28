@@ -99,7 +99,7 @@ Widgets: [linear regression](https://mattiasvillani.com/BayesianLearningBook/obs
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
 Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | BL 7-8 and appendix on Taylor approximations  | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
-Notebook: [Logistic regression - quarto](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.qmd) | [Logistic regression html](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.html) \
+Notebook: [Logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.qmd) \
 Code:  [bayeslearn package - Logistic and Probit regression for Titanic data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/binary_reg_script.R) \
 Extras: [Video on Taylor approximation](https://youtu.be/3d6DsjIBzJ4)
 
