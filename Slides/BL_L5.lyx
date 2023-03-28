@@ -485,7 +485,7 @@ Logistic regression
 
 \begin_inset Formula 
 \[
-\Pr(y_{i}=1\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\prime}\beta)}{1+\exp(x_{i}^{\prime}\beta)}.
+\Pr(y_{i}=1\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\top}\beta)}{1+\exp(x_{i}^{\top}\beta)}.
 \]
 
 \end_inset
@@ -503,7 +503,7 @@ Likelihood
 
 \begin_inset Formula 
 \[
-p(\mathbf{y}|\mathbf{X},\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\prime}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\prime}\beta)}.
+p(\mathbf{y}|\mathbf{X},\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\top}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\top}\beta)}.
 \]
 
 \end_inset
@@ -530,7 +530,7 @@ Probit regression
 
 \begin_inset Formula 
 \[
-Pr(y_{i}=1|x_{i})=\Phi(x_{i}^{'}\beta)
+Pr(y_{i}=1|x_{i})=\Phi(x_{i}^{\top}\beta)
 \]
 
 \end_inset
@@ -552,7 +552,7 @@ Multi-class
 ) logistic regression
 \begin_inset Formula 
 \[
-\Pr(y_{i}=c\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\prime}\beta_{c})}{\sum_{k=1}^{C}\exp(x_{i}^{\prime}\beta_{k})}
+\Pr(y_{i}=c\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\top}\beta_{c})}{\sum_{k=1}^{C}\exp(x_{i}^{\top}\beta_{k})}
 \]
 
 \end_inset

@@ -2201,7 +2201,7 @@ Observed information
 
 \begin_inset Formula 
 \[
-J_{\theta,\mathbf{x}}=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\theta)}{\partial\theta^{2}}\vert_{\theta=\hat{\theta}}
+J_{\mathbf{x}}(\hat{\theta})=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\theta)}{\partial\theta^{2}}\vert_{\theta=\hat{\theta}}
 \]
 
 \end_inset
@@ -2228,7 +2228,7 @@ Fisher information
 
 \begin_inset Formula 
 \[
-I(\theta)=E_{\mathbf{x}|\theta}\left(J_{\theta,\mathbf{x}}\right)
+I(\theta)=E_{\mathbf{x}|\theta}\left(J_{\mathbf{x}}(\theta)\right)
 \]
 
 \end_inset
