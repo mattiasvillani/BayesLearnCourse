@@ -12,30 +12,44 @@
   \usetheme{Luebeck}
   \usecolortheme{beaver}
   \beamertemplatenavigationsymbolsempty
-  \setbeamertemplate{headline}{}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% include necessary packages here
+\usepackage{mathtools}
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
 
 
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
 
 \date{} % Date, can be changed to a custom date
 
 \titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
 
-\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
-\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
-\hrulefill \break
+
 \tiny
-\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
@@ -43,8 +57,9 @@
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
 \definecolor{llorange}{RGB}{255, 229,204 }
-\definecolor{red}{RGB}{255, 128, 0}
 \definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
@@ -52,10 +67,12 @@
 
 \usepackage{tcolorbox}
 
-\usepackage[ruled]{algorithm2e}
-\usepackage{wasysym}
-\SetKwInput{KwInput}{Input}
-\SetKwInput{KwOutput}{Output}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -69,7 +86,7 @@
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -132,18 +149,15 @@
 
 \begin_layout Title
 
-\size largest
 \color orange
-Bayesian Statistics I
-\size default
-
+Bayesian Learning
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
 
 \color gray
-Multiparameter models
+MCMC
 \end_layout
 
 \end_inset
@@ -161,8 +175,16 @@ Lecture 8 - Markov Chain Monte Carlo.
 \begin_layout Author
 
 \series bold
-Mattias Villani
+Mattias Villani 
 \series default
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
  
 \begin_inset Argument 1
 status collapsed
@@ -184,29 +206,12 @@ Department of Statistics
 \begin_inset Newline newline
 \end_inset
 
-Stockholm University 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\end_inset
-
- Department of Computer and Information Science
-\begin_inset Newline newline
-\end_inset
-
-Linköping University 
+Stockholm University
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Linköping and Stockholm University
+Stockholm University
 \end_layout
 
 \end_inset
@@ -420,18 +425,6 @@ p_{21} & p_{22}
 
 \end_layout
 
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/3state_markov.jpg
-	lyxscale 20
-	scale 9
-
-\end_inset
-
-
-\end_layout
-
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -636,7 +629,7 @@ Stationary distribution, cont.
 
 \begin_deeper
 \begin_layout Itemize
-Limiting long-run distribution
+Limiting long-run distribution (unconditional probabilities)
 \series bold
 \color black
 
@@ -679,14 +672,24 @@ Stationary distribution
 \end_layout
 
 \begin_layout Itemize
-Example:
+Weather example:
 \begin_inset Formula 
 \[
-P=\left(\begin{array}{ccc}
-0.8 & 0.1 & 0.1\\
-0.2 & 0.6 & 0.2\\
-0.3 & 0.3 & 0.4
+\begin{aligned}P=\left(\begin{array}{cc}
+0.9 & 0.1\\
+0.3 & 0.7
+\end{array}\right), & P^{2}=\left(\begin{array}{cc}
+0.84 & 0.16\\
+0.42 & 0.58
+\end{array}\right)\\
+P^{5}=\left(\begin{array}{cc}
+0.77 & 0.23\\
+0.69 & 0.31
+\end{array}\right), & P^{100}=\left(\begin{array}{cc}
+0.75 & 0.25\\
+0.75 & 0.25
 \end{array}\right)
+\end{aligned}
 \]
 
 \end_inset
@@ -694,7 +697,7 @@ P=\left(\begin{array}{ccc}
 
 \begin_inset Formula 
 \[
-\pi=\left(0.545,0.272,0.181\right)
+\pi=\left(0.75,0.25\right)
 \]
 
 \end_inset
@@ -744,7 +747,7 @@ Simulate from discrete distribution
 \end_inset
 
 .
-\begin_inset VSpace bigskip
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -774,7 +777,8 @@ stationary distribution
 \end_inset
 
 .
-\begin_inset VSpace bigskip
+ Often continuous in our case
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -797,9 +801,8 @@ Metropolis-Hastings
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/MarkovChainSimulation.png
-	lyxscale 20
-	scale 70
+	filename Images/StateProb
+	scale 30
 
 \end_inset
 
@@ -839,7 +842,6 @@ Rejection sampling
 \align center
 \begin_inset Graphics
 	filename Images/RejectionSampling.pdf
-	lyxscale 30
 	scale 50
 
 \end_inset

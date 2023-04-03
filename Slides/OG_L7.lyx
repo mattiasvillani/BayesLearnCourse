@@ -12,33 +12,44 @@
   \usetheme{Luebeck}
   \usecolortheme{beaver}
   \beamertemplatenavigationsymbolsempty
-  \setbeamertemplate{headline}{}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% include necessary packages here
+\usepackage{mathtools}
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
-\usepackage{tcolorbox}
-\usepackage[ruled]{algorithm2e}
-\usepackage{wasysym}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
 
 
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
 
 \date{} % Date, can be changed to a custom date
-%\includegraphics[width=2.5cm]{/Users/oskarg/Box Sync/Undervisning/BayesianLearning/BayesLearnCourse/Slides/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
 
-\titlegraphic{\hspace{2cm}
-\includegraphics[width=2.5cm]{/Users/oskarg/Box Sync/Undervisning/BayesianLearning/BayesLearnCourse/Slides/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
-%\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
-%\hrulefill \break
-%\tiny
-%\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
-%\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
-%\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+\titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
+
+
+\tiny
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
@@ -46,16 +57,22 @@
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
 \definecolor{llorange}{RGB}{255, 229,204 }
-\definecolor{red}{RGB}{255, 128, 0}
 \definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
 \setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
 
+\usepackage{tcolorbox}
 
-\SetKwInput{KwInput}{Input}
-\SetKwInput{KwOutput}{Output}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -69,7 +86,7 @@
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -132,18 +149,15 @@
 
 \begin_layout Title
 
-\size largest
 \color orange
-Bayesian Statistics I
-\size default
-
+Bayesian Learning
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
 
 \color gray
-Multiparameter models
+Gibbs sampling
 \end_layout
 
 \end_inset
@@ -154,21 +168,31 @@ Multiparameter models
 \begin_layout Subtitle
 
 \color orange
-Lecture 7 - Monte Carlo.
- Gibbs sampling.
+Lecture 7 - Gibbs sampling
 \end_layout
 
 \begin_layout Author
 
 \series bold
-Oskar Gustafsson
+Mattias Villani 
 \series default
 
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+ 
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
-Oskar Gustafsson
+
+\series bold
+\color gray
+Mattias Villani
 \end_layout
 
 \end_inset
@@ -177,16 +201,29 @@ Oskar Gustafsson
 \end_layout
 
 \begin_layout Institute
-Department of Statistics, Stockholm University
+Department of Statistics
 \begin_inset Newline newline
 \end_inset
 
- (Original slides: Mattias Villani)
-\begin_inset Newline newline
+Stockholm University
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Stockholm University
+\end_layout
+
 \end_inset
 
 
-\begin_inset VSpace smallskip
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
 \end_inset
 
 
@@ -360,14 +397,26 @@ for some function
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\mathbb{V}(\bar{g}(\theta))=\frac{c}{N}$
-\end_inset
 
- for some constant 
-\begin_inset Formula $c$
-\end_inset
-
+\series bold
+\color blue
+Central limit theorem
+\series default
+\color inherit
 .
+ As 
+\begin_inset Formula $N\rightarrow\infty$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\bar{\theta}_{1:N}\overset{\mathrm{appr}}{\sim}N\left(E(\theta),\frac{V(\theta)}{N}\right)
+\]
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -389,11 +438,51 @@ g(\theta)=I\left(\theta\leq c\right)
 
 \end_inset
 
-and
+
 \begin_inset Formula 
 \[
 \frac{1}{N}\sum_{t=1}^{N}g(\theta^{(t)})=\frac{\#\text{ }\theta\text{-draws smaller than }c}{N}.
 \]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo sampling - convergence
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/clt_monte_carlo.png
+	scale 37
 
 \end_inset
 
@@ -3112,9 +3201,20 @@ increases the autocorrelation
 \series default
 \color inherit
  between draws.
+\begin_inset Separator parbreak
+\end_inset
+
+
 \end_layout
 
 \end_deeper
 \end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
