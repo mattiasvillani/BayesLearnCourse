@@ -1111,36 +1111,6 @@ status open
 
 \series bold
 \color orange
-Convergence of autocorrelated processes, Ex.
-\end_layout
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename Images/conv_AR1.png
-	scale 40
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
 Gibbs sampling bivariate normal
 \end_layout
 
@@ -1392,40 +1362,20 @@ status open
 
 \series bold
 \color orange
-Estimating 
-\begin_inset Formula $Pr(\theta_{1}>0,\theta_{2}>0)$
-\end_inset
-
-
+Normal model with conditionally conjugate prior
 \end_layout
 
-\end_inset
-
-
-\begin_inset Separator latexpar
 \end_inset
 
 
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-Joint probability by counting: 
-\begin_inset Formula 
-\[
-Pr(\theta_{1}>0,\theta_{2}>0)\approx N^{-1}\sum_{i=1}^{N}1(\theta_{1}^{(i)}>0,\theta_{2}^{(i)}>0)
-\]
-
-\end_inset
-
- .
-\end_layout
-
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/CumsumJointProb.png
-	scale 32
+	filename /home/mv/Dropbox/BayesBook/Figs/GibbsMultiNormalIF.pdf
+	scale 50
 
 \end_inset
 
@@ -1477,7 +1427,7 @@ conditionally conjugate prior
 
 \begin_inset Formula 
 \begin{align*}
-\mu & \sim N(\mu_{0},{\color{orange}\tau_{o}^{2}})\\
+\mu & \sim N(\mu_{0},{\color{orange}\tau_{0}^{2}})\\
 \sigma^{2} & \sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})
 \end{align*}
 
@@ -1588,6 +1538,10 @@ Prior
 \series default
 \color inherit
 : 
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \begin_inset Separator latexpar
 \end_inset
 
@@ -1599,25 +1553,37 @@ Prior
 \begin_inset Formula $\mu\sim$
 \end_inset
 
-Normal
+ Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $\phi\sim$
 \end_inset
 
-Multivariate Normal
+ Multivariate Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $\sigma^{2}\sim$
 \end_inset
 
-Scaled Inverse 
+ Scaled Inverse 
 \begin_inset Formula $\chi^{2}$
 \end_inset
 
 .
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -1633,29 +1599,29 @@ posterior
 \color blue
 Gibbs sampling
 \series default
-\size tiny
 \color inherit
 
-\begin_inset Foot
-status collapsed
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
-\size tiny
-Villani (2009).
+
+\backslash
+blfootnote{
+\backslash
+tiny Villani (2009).
  Steady State Priors for Vector Autoregressions.
- 
-\emph on
-Journal of Applied Econometrics
-\emph default
-.
+ Journal of Applied Econometrics.}
 \end_layout
 
 \end_inset
 
-
-\size default
 :
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \begin_inset Separator latexpar
 \end_inset
 
@@ -1668,6 +1634,10 @@ Journal of Applied Econometrics
 \end_inset
 
  Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1675,6 +1645,10 @@ Journal of Applied Econometrics
 \end_inset
 
  Multivariate Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1720,7 +1694,7 @@ Data augmentation - Mixture distributions
 \begin_deeper
 \begin_layout Itemize
 Let 
-\begin_inset Formula $\phi(x|\mu,\sigma^{2})$
+\begin_inset Formula $N(x|\mu,\sigma^{2})$
 \end_inset
 
  denote the 
@@ -1755,7 +1729,7 @@ mixture of normals
 )]
 \begin_inset Formula 
 \[
-p(x)=\pi\cdot\phi(x|\mu_{1},\sigma_{1}^{2})+(1-\pi)\cdot\phi(x|\mu_{2},\sigma_{2}^{2})
+p(x)=\pi\cdot N(x|\mu_{1},\sigma_{1}^{2})+(1-\pi)\cdot N(x|\mu_{2},\sigma_{2}^{2})
 \]
 
 \end_inset
@@ -1901,7 +1875,7 @@ status open
 
 \series bold
 \color orange
-Mixture distributions, cont.
+Likelihood for a mixture and data augmentation
 \end_layout
 
 \end_inset
@@ -2024,6 +1998,10 @@ Gibbs sampling
 \series default
 \color inherit
 :
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -2047,6 +2025,10 @@ given
 \end_inset
 
  
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -2103,7 +2085,7 @@ Prior:
 \end_inset
 
  
-\begin_inset Formula $\sim Beta(\alpha_{1},\alpha_{2})$
+\begin_inset Formula $\sim\mathrm{Beta}(\alpha_{1},\alpha_{2})$
 \end_inset
 
 .
@@ -2143,6 +2125,10 @@ Gibbs sampling
 \series default
 \color inherit
 :
+\begin_inset VSpace medskip
+\end_inset
+
+
 \begin_inset Separator latexpar
 \end_inset
 
@@ -2159,7 +2145,7 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $\mathbf{I},\mathbf{x}\sim Beta(\alpha_{1}+n_{1},\alpha_{2}+n_{2})$
+\begin_inset Formula $\boldsymbol{I},\boldsymbol{x}\sim\mathrm{Beta}(\alpha_{1}+n_{1},\alpha_{2}+n_{2})$
 \end_inset
 
 
@@ -2178,7 +2164,7 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $\mathbf{I},\mathbf{x}\sim Inv$
+\begin_inset Formula $\boldsymbol{I},\boldsymbol{x}\sim\mathrm{Inv}$
 \end_inset
 
 -
@@ -2186,7 +2172,7 @@ Gibbs sampling
 \end_inset
 
  and 
-\begin_inset Formula $\mu_{1}|\mathbf{I},\sigma_{1}^{2},\mathbf{x}\sim N\left(\mu_{n_{1}},\frac{\sigma_{1}^{2}}{\kappa_{n_{1}}}\right)$
+\begin_inset Formula $\mu_{1}|\sigma_{1}^{2},\boldsymbol{I},\boldsymbol{x}\sim N\left(\mu_{n_{1}},\frac{\sigma_{1}^{2}}{\kappa_{n_{1}}}\right)$
 \end_inset
 
 
@@ -2205,7 +2191,7 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $\mathbf{I},\mathbf{x}\sim Inv$
+\begin_inset Formula $\boldsymbol{I},\boldsymbol{x}\sim\mathrm{Inv}$
 \end_inset
 
 -
@@ -2213,7 +2199,7 @@ Gibbs sampling
 \end_inset
 
  and 
-\begin_inset Formula $\mu_{2}|\mathbf{I},\sigma_{2}^{2},\mathbf{x}\sim N\left(\mu_{n_{2}},\frac{\sigma_{2}^{2}}{\kappa_{n_{2}}}\right)$
+\begin_inset Formula $\mu_{2}|\sigma_{2}^{2},\boldsymbol{I},\boldsymbol{x}\sim N\left(\mu_{n_{2}},\frac{\sigma_{2}^{2}}{\kappa_{n_{2}}}\right)$
 \end_inset
 
 
@@ -2232,7 +2218,7 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $\pi,\mu_{1},\sigma_{1}^{2},\mu_{2},\sigma_{2}^{2},\mathbf{x}\sim Bern(\theta_{i})$
+\begin_inset Formula $\pi,\mu_{1},\sigma_{1}^{2},\mu_{2},\sigma_{2}^{2},\boldsymbol{x}\sim\mathrm{Bern}(\theta_{i})$
 \end_inset
 
 , 
@@ -2246,7 +2232,7 @@ Gibbs sampling
 
 \begin_inset Formula 
 \[
-\theta_{i}=\frac{(1-\pi)\phi(x_{i};\mu_{2},\sigma_{2}^{2})}{\pi\phi(x_{i};\mu_{1},\sigma_{1}^{2})+(1-\pi)\phi(x_{i};\mu_{2},\sigma_{2}^{2})}.
+\theta_{i}=\frac{(1-\pi)N(x_{i};\mu_{2},\sigma_{2}^{2})}{\pi N(x_{i};\mu_{1},\sigma_{1}^{2})+(1-\pi)N(x_{i};\mu_{2},\sigma_{2}^{2})}.
 \]
 
 \end_inset
@@ -2297,7 +2283,7 @@ Gibbs sampling for mixture distributions
 
 \begin_inset Formula 
 \[
-p(x)=\sum_{k=1}^{K}\pi_{k}\phi(x;\mu_{k},\sigma_{k}^{2})
+p(x)=\sum_{k=1}^{K}\pi_{k}N(x;\mu_{k},\sigma_{k}^{2})
 \]
 
 \end_inset
@@ -2335,6 +2321,10 @@ Gibbs sampling
 \series default
 \color inherit
  
+\begin_inset VSpace medskip
+\end_inset
+
+
 \begin_inset Separator latexpar
 \end_inset
 
@@ -2351,7 +2341,11 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $\mathbf{I},\mathbf{x}\sim Dirichlet(\alpha_{1}+n_{1},\alpha_{2}+n_{2},...,\alpha_{K}+n_{K})$
+\begin_inset Formula $\boldsymbol{I},\boldsymbol{x}\sim\mathrm{Dirichlet}(\alpha_{1}+n_{1},\alpha_{2}+n_{2},...,\alpha_{K}+n_{K})$
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -2366,7 +2360,7 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $\mathbf{I},\mathbf{x}\sim Inv$
+\begin_inset Formula $\boldsymbol{I},\boldsymbol{x}\sim Inv$
 \end_inset
 
 -
@@ -2374,23 +2368,19 @@ Gibbs sampling
 \end_inset
 
  and 
-\begin_inset Formula $\mu_{k}|\mathbf{I},\sigma_{k}^{2},\mathbf{x}\sim Normal$
+\begin_inset Formula $\mu_{k}|\sigma_{k}^{2},\boldsymbol{I},\boldsymbol{x}\sim\mathrm{Normal}$
 \end_inset
 
 , 
-\begin_inset space \space{}
-\end_inset
-
-
-\begin_inset space \space{}
-\end_inset
-
-
 \begin_inset Formula $for$
 \end_inset
 
  
-\begin_inset Formula $k=1,...,K,$
+\begin_inset Formula $k=1,\dots,K,$
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -2405,7 +2395,7 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $\pi,\mu,\sigma^{2},\mathbf{x}\sim Multinomial(\theta_{i1},...,\theta_{iK})$
+\begin_inset Formula $\pi,\mu,\sigma^{2},\boldsymbol{x}\sim\mathrm{Multinomial}(\theta_{i1},...,\theta_{iK})$
 \end_inset
 
 , 
@@ -2413,13 +2403,13 @@ Gibbs sampling
 \end_inset
 
  
-\begin_inset Formula $i=1,...,n,$
+\begin_inset Formula $i=1,\dots,n,$
 \end_inset
 
 
 \begin_inset Formula 
 \[
-\theta_{ij}=\frac{\pi_{j}\phi(x_{i};\mu_{j},\sigma_{j}^{2})}{\sum_{r=1}^{k}\pi_{r}\phi(x_{i};\mu_{r},\sigma_{r}^{2})}.
+\theta_{ij}=\frac{\pi_{j}N(x_{i};\mu_{j},\sigma_{j}^{2})}{\sum_{r=1}^{k}\pi_{r}N(x_{i};\mu_{r},\sigma_{r}^{2})}.
 \]
 
 \end_inset
@@ -2942,29 +2932,12 @@ Assume a Gamma prior for
 
 )
 \begin_inset Formula 
-\[
-\lambda\sim\mathsf{Gamma}\left(\frac{\eta_{0}}{2},\frac{\eta_{0}}{2\lambda_{0}}\right).
-\]
+\begin{align*}
+\boldsymbol{\beta}\vert\sigma^{2},\lambda & \sim N\left(\boldsymbol{0},\frac{\sigma^{2}}{\lambda}I_{k}\right)\\
+\sigma^{2} & \sim\mathsf{Inv}-\chi^{2}\left(\nu_{0},\sigma_{0}^{2}\right)\\
+\lambda^{-1} & \sim\mathsf{Inv}-\chi^{2}\left(\omega_{0},\psi_{0}^{2}\right).
+\end{align*}
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $\mathbb{E}(\lambda)=\frac{\eta_{0}/2}{\eta_{0}/(2\lambda_{0})}=\lambda_{0}$
-\end_inset
-
- and 
-\begin_inset Formula $\mathbb{V}(\lambda)=\frac{\eta_{0}/2}{\left(\eta_{0}/(2\lambda_{0})\right)^{2}}=\frac{1}{2\eta_{0}\lambda_{0}^{2}}$
-\end_inset
-
-.
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\begin_inset VSpace smallskip
 \end_inset
 
 
@@ -2974,9 +2947,7 @@ Assume a Gamma prior for
 Using Bayes' theorem twice:
 \begin_inset Formula 
 \begin{align*}
-p\left(\lambda|\beta,\sigma^{2},\mathbf{y}\right) & \propto p\left(\mathbf{y}|\beta,\sigma^{2},\lambda\right)p\left(\lambda|\beta,\sigma^{2}\right)\\
- & \propto p\left(\beta|\sigma^{2},\lambda\right)p\left(\lambda\vert\sigma^{2}\right)\\
- & \propto p\left(\beta|\sigma^{2},\lambda\right)p\left(\lambda\right)
+p\left(\lambda|\beta,\sigma^{2},\mathbf{y}\right) & \propto p\left(\mathbf{y}|\beta,\sigma^{2},\lambda\right)p\left(\lambda|\beta,\sigma^{2}\right)
 \end{align*}
 
 \end_inset
@@ -2985,16 +2956,7 @@ p\left(\lambda|\beta,\sigma^{2},\mathbf{y}\right) & \propto p\left(\mathbf{y}|\b
 \end_layout
 
 \begin_layout Itemize
-Note:
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-likelihood 
+Since likelihood 
 \begin_inset Formula $p\left(\mathbf{y}|\beta,\sigma^{2},\lambda\right)$
 \end_inset
 
@@ -3004,25 +2966,16 @@ likelihood
 
 .
  
-\begin_inset VSpace smallskip
+\begin_inset Formula 
+\[
+p\left(\lambda|\beta,\sigma^{2},\mathbf{y}\right)\propto p\left(\lambda|\beta,\sigma^{2}\right)\propto p\left(\beta|\sigma^{2},\lambda\right)p\left(\lambda\right)
+\]
+
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-prior 
-\begin_inset Formula $p\left(\lambda|\sigma^{2}\right)$
-\end_inset
-
- is assumed to not depend on 
-\begin_inset Formula $\sigma^{2}$
-\end_inset
-
-.
-\end_layout
-
-\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -3057,9 +3010,9 @@ Full conditional posterior
 \begin_inset Formula 
 \begin{multline*}
 p\left(\lambda|\beta,\sigma^{2},\mathbf{y}\right)\propto p\left(\beta|\sigma^{2},\lambda\right)p\left(\lambda\right)\\
-\propto\prod_{i=1}^{m}\frac{1}{\sqrt{2\pi\sigma^{2}/\lambda}}\exp\left(-\frac{\beta_{i}^{2}}{2\sigma^{2}/\lambda}\right)\cdot\lambda^{\eta_{0}/2-1}\exp\left(-\lambda\frac{\eta_{0}}{2\lambda_{0}}\right)\\
-\propto\lambda^{m/2}\exp\left(-\frac{\lambda}{2\sigma^{2}}\sum_{i=1}^{m}\beta_{i}^{2}\right)\cdot\lambda^{\eta_{0}/2-1}\exp\left(-\lambda\frac{\eta_{0}}{2\lambda_{0}}\right)\\
-\propto\lambda^{\left(m+\eta_{0}\right)/2-1}\exp\left(-\lambda\left(\frac{\sigma^{-2}\sum_{i=1}^{m}\beta_{i}^{2}+\eta_{0}/\lambda_{0}}{2}\right)\right)
+\propto\prod_{i=1}^{m}\frac{1}{\sqrt{2\pi\sigma^{2}/\lambda}}\exp\left(-\frac{\beta_{i}^{2}}{2\sigma^{2}/\lambda}\right)\cdot\lambda^{\omega_{0}/2+1}\exp\left(-\lambda\frac{\omega_{0}\psi_{0}^{2}}{2}\right)\\
+\propto\lambda^{p/2}\exp\left(-\frac{\lambda}{2}\sum_{i=1}^{p}\left(\frac{\beta_{i}}{\sigma}\right)^{2}\right)\cdot\lambda^{\omega_{0}/2+1}\exp\left(-\lambda\frac{\omega_{0}\psi_{0}^{2}}{2}\right)\\
+\propto\lambda^{\left(p+\omega_{0}\right)/2+1}\exp\left(-\lambda\left(\frac{\sum_{i=1}^{p}\left(\frac{\beta_{i}}{\sigma}\right)^{2}+\omega_{0}\psi_{0}^{2}}{2}\right)\right)
 \end{multline*}
 
 \end_inset
@@ -3071,7 +3024,7 @@ p\left(\lambda|\beta,\sigma^{2},\mathbf{y}\right)\propto p\left(\beta|\sigma^{2}
 This shows that
 \begin_inset Formula 
 \[
-\lambda|\beta,\sigma^{2},\mathbf{y}\sim\mathsf{Gamma}\left(\frac{m+\eta_{0}}{2},\frac{\sigma^{-2}\sum_{i=1}^{m}\beta_{i}^{2}+\eta_{0}/\lambda_{0}}{2}\right).
+\lambda^{-1}|\beta,\sigma^{2},\mathbf{y}\sim\mathrm{Inv-\chi^{2}}\left(\omega_{0}+p,\frac{\sum_{i=1}^{p}\left(\frac{\beta_{i}}{\sigma}\right)^{2}+\omega_{0}\psi_{0}^{2}}{\omega_{0}+p}\right).
 \]
 
 \end_inset
@@ -3080,10 +3033,7 @@ This shows that
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\mathbb{E}(\lambda|\beta,\sigma^{2},\mathbf{y})=\frac{m+\eta_{0}}{\sigma^{-2}\sum_{i=1}^{m}\beta_{i}^{2}+\eta_{0}/\lambda_{0}},$
-\end_inset
-
- so 
+So 
 \begin_inset Formula $\lambda$
 \end_inset
 
@@ -3093,7 +3043,7 @@ This shows that
 
 .
  Large 
-\begin_inset Formula $m$
+\begin_inset Formula $p$
 \end_inset
 
  helps! 
