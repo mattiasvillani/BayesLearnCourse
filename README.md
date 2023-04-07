@@ -86,7 +86,8 @@ Widgets: [gaussian known variance](https://mattiasvillani.com/BayesianLearningBo
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
-Notebooks: [Analyzing number of eBay bidders with an iid Poisson model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)
+Notebooks: [Analyzing number of eBay bidders with an iid Poisson model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)\
+Widget: [Autoregressive processes](https://observablehq.com/@mattiasvillani/ar-processes)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
@@ -109,6 +110,7 @@ Reading: BDA Ch. 20.1-20.2 | [Slides](https://github.com/mattiasvillani/BayesLea
 **Lecture 7 - Gibbs sampling and Data augmentation** \
 Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L7.pdf) \
 Code: [Gibbs sampling for a bivariate normal](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/GibbsBivariateNormal.R) | [Gibbs sampling for a mixture of normals](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalMixtureGibbs.R) \
+Widget: [mixture of normals](https://observablehq.com/@mattiasvillani/normal-mixture) \
 Extras: [Illustration](https://www.youtube.com/watch?v=IGiQOCX9UbM&ab_channel=Red15) of Gibbs sampling when parameters are strongly correlated.
 
 **Lecture 8 - MCMC and Metropolis-Hastings** \
