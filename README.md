@@ -150,11 +150,11 @@ Lab: [Lab 1](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/
 Submission: [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 
 **Computer Lab 2** - Polynomial regression and classification with logistic regression.\
-Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2/Lab2.pdf) | [Temp in Linköping dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/TempLinkoping.txt) | [WomenWork dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/WomenWork.dat)\
+Lab: [Lab 2](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab2/Lab2.pdf)\
 Submission: [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 
 **Computer Lab 3** - Gibbs sampling, Metropolis-Hastings and Stan. \
-Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3/Lab3.pdf) | [Rainfall dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/rainfall.dat) | [eBay dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/eBayNumberOfBidderData.dat) | [How to code RWM](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf) up Random Walk Metropolis | [campylobacter dataset](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/campy.dat)\
+Lab: [Lab 3](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/Lab3/Lab3.pdf) | [Note on how to code R functions which take functions as arguments](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Labs/HowToCodeRWM.pdf)\
 Submission: [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=18147&LocationType=1).
 
 ---

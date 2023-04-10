@@ -199,7 +199,7 @@ Stockholm University
 \noindent
 \align left
 \begin_inset Tabular
-<lyxtabular version="3" rows="9" columns="1">
+<lyxtabular version="3" rows="10" columns="1">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <row>
@@ -288,10 +288,8 @@ The labs should be done in R, since only R is available at the computer
 \uwave off
 \noun off
 \color none
-
 Your lab solutions will be available for you at the exam.
  
-
 \end_layout
 
 \end_inset
@@ -351,6 +349,37 @@ Submit your solutions via Athena.
 </cell>
 </row>
 <row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The datasets are available in the package 
+\family typewriter
+SUdatasets
+\family default
+.
+ See 
+\bar under
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "the course page"
+target "https://github.com/mattiasvillani/BayesLearnCourse#computer-labs"
+literal "false"
+
+\end_inset
+
+
+\bar default
+\color inherit
+ for instructions.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
 <cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
 \begin_inset Text
 
@@ -397,8 +426,12 @@ The data
 \family typewriter
 rainfall
 \family default
- consist of daily records, from the beginning of 1948 to the end of 1983,
- of precipitation (rain or snow in units of 
+ in the 
+\family typewriter
+SUdatasets
+\family default
+ package consist of daily records, from the beginning of 1948 to the end
+ of 1983, of precipitation (rain or snow in units of 
 \begin_inset Formula $\frac{1}{100}$
 \end_inset
 
@@ -944,6 +977,10 @@ For each of the two data sets, evaluate the convergence of the samplers
 The data 
 \family typewriter
 campy
+\family default
+ in the package 
+\family typewriter
+SUdatasets
 \family default
  contain the number of cases of campylobacter infections in the north of
  the province Quebec (Canada) in four week intervals from January 1990 to

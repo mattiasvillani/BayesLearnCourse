@@ -199,8 +199,9 @@ Stockholm University
 \noindent
 \align left
 \begin_inset Tabular
-<lyxtabular version="3" rows="9" columns="1">
+<lyxtabular version="3" rows="10" columns="2">
 <features tabularvalignment="middle">
+<column alignment="left" valignment="top">
 <column alignment="left" valignment="top">
 <row>
 <cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
@@ -225,6 +226,15 @@ Computer Lab 2
 
 \end_inset
 </cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell multicolumn="1" alignment="none" valignment="top" usebox="none" special="l">
@@ -238,6 +248,15 @@ height "1pt"
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -269,6 +288,15 @@ The labs should be done in R, since only R is available at the computer
 
 \end_inset
 </cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -288,9 +316,16 @@ The labs should be done in R, since only R is available at the computer
 \uwave off
 \noun off
 \color none
-
 Your lab solutions will be available for you at the exam.
  
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -308,6 +343,15 @@ You work and submit your labs in pairs, but both of you should contribute
 
 \end_inset
 </cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -315,6 +359,15 @@ You work and submit your labs in pairs, but both of you should contribute
 
 \begin_layout Plain Layout
 and understand all parts of your solutions.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -338,6 +391,15 @@ It is not allowed to share exact solutions
 
 \end_inset
 </cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
 </row>
 <row>
 <cell alignment="center" valignment="top" usebox="none">
@@ -345,6 +407,55 @@ It is not allowed to share exact solutions
 
 \begin_layout Plain Layout
 Submit your solutions via Athena.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+The datasets are available in the package 
+\family typewriter
+SUdatasets
+\family default
+.
+ See 
+\bar under
+\color blue
+
+\begin_inset CommandInset href
+LatexCommand href
+name "the course page"
+target "https://github.com/mattiasvillani/BayesLearnCourse#computer-labs"
+literal "false"
+
+\end_inset
+
+
+\bar default
+\color inherit
+ for instructions.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \end_inset
@@ -362,6 +473,15 @@ height "1pt"
 
 \end_inset
 
+
+\end_layout
+
+\end_inset
+</cell>
+<cell multicolumn="2" alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 
 \end_layout
 
@@ -397,6 +517,10 @@ The dataset
 \begin_inset Formula $\texttt{tempLinkoping}$
 \end_inset
 
+ in the package 
+\family typewriter
+SUdatasets
+\family default
  contains daily temperatures (in Celcius degrees) at Malmslätt, Linköping
  over the course of the year 2016 (366 days since 2016 was a leap year).
  The response variable is 
@@ -656,7 +780,11 @@ Posterior approximation for classification with logistic regression
 
 The dataset 
 \family typewriter
-womenWork
+womenwork
+\family default
+ in the package 
+\family typewriter
+SUdatasets
 \family default
  contains 
 \begin_inset Formula $n=200$
@@ -1471,7 +1599,7 @@ where
  Fit the logistic regression using maximum likelihood estimation by the
  command: 
 \family typewriter
-glmModel <- glm(work ~ 0 + ., data = womenWork, family = binomial)
+glmModel <- glm(work ~ 0 + ., data = womenwork, family = binomial)
 \family default
 .
  Note how I added a zero in the model formula so that R doesn't add an extra
@@ -1539,18 +1667,21 @@ where
 optim
 \family default
  function in R.
- You can use my R notebook code 
-\begin_inset Flex URL
-status open
+ You can use the code in this 
+\bar under
+\color blue
 
-\begin_layout Plain Layout
-
-https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOpt
-im.Rmd
-\end_layout
+\begin_inset CommandInset href
+LatexCommand href
+name "R notebook"
+target "https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd"
+literal "false"
 
 \end_inset
 
+
+\bar default
+\color inherit
  as a guide, but don't copy my code, write your own.
  Use the prior 
 \begin_inset Formula $\beta\sim\mathcal{N}(0,\tau^{2}I)$
@@ -1574,7 +1705,7 @@ Your report should include your code as well as numerical values for
 
  for the 
 \family typewriter
-womenWork
+womenwork
 \family default
  data.
  Compute an approximate 95% credible interval for the coefficient on 
