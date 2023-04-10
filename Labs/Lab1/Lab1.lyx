@@ -199,7 +199,7 @@ Stockholm University
 \noindent
 \align left
 \begin_inset Tabular
-<lyxtabular version="3" rows="8" columns="1">
+<lyxtabular version="3" rows="9" columns="1">
 <features tabularvalignment="middle">
 <column alignment="left" valignment="top">
 <row>
@@ -249,7 +249,20 @@ height "1pt"
 \begin_inset Text
 
 \begin_layout Plain Layout
-You are recommended to use R for solving the labs.
+The labs should be done in R, since only R is available at the computer
+ exam.
+ 
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Your lab solutions will be available for you at the exam.
  
 \end_layout
 

@@ -1909,7 +1909,7 @@ Regularization prior
 
 \begin_inset Formula 
 \[
-\phi_{k}\sim N\left(\mu_{k},\frac{\tau^{2}}{k^{2}}\right)\:\text{ independently apriori}
+\phi_{k}\sim N\left(\mu_{k},\sigma^{2}\frac{\tau^{2}}{k^{2}}\right)\:\text{ independently apriori}
 \]
 
 \end_inset
@@ -1968,7 +1968,7 @@ Hard to specify
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\phi_{k}\vert\tau^{2}\sim N\left(\mu_{k},\frac{\tau^{2}}{k^{2}}\right)$
+\begin_inset Formula $\phi_{k}\vert\tau^{2}\sim N\left(\mu_{k},\sigma^{2}\frac{\tau^{2}}{k^{2}}\right)$
 \end_inset
 
  and 
