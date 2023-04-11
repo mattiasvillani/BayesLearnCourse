@@ -12,30 +12,44 @@
   \usetheme{Luebeck}
   \usecolortheme{beaver}
   \beamertemplatenavigationsymbolsempty
-  \setbeamertemplate{headline}{}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% include necessary packages here
+\usepackage{mathtools}
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
 
 
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
 
 \date{} % Date, can be changed to a custom date
 
 \titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
 
-\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
-\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
-\hrulefill \break
+
 \tiny
-\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
@@ -43,8 +57,9 @@
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
 \definecolor{llorange}{RGB}{255, 229,204 }
-\definecolor{red}{RGB}{255, 128, 0}
 \definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
 
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
@@ -52,10 +67,12 @@
 
 \usepackage{tcolorbox}
 
-\usepackage[ruled]{algorithm2e}
-\usepackage{wasysym}
-\SetKwInput{KwInput}{Input}
-\SetKwInput{KwOutput}{Output}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -72,7 +89,7 @@ knitr
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -135,18 +152,15 @@ knitr
 
 \begin_layout Title
 
-\size largest
 \color orange
-Bayesian Statistics I
-\size default
-
+Bayesian Learning
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
 
 \color gray
-HMC and Variational Inference
+Gibbs sampling
 \end_layout
 
 \end_inset
@@ -157,14 +171,22 @@ HMC and Variational Inference
 \begin_layout Subtitle
 
 \color orange
-Lecture 9 - HMC and Variational Inference
+Lecture 9 - Hamiltonian Monte Carlo and Variational Inference
 \end_layout
 
 \begin_layout Author
 
 \series bold
-Mattias Villani
+Mattias Villani 
 \series default
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
  
 \begin_inset Argument 1
 status collapsed
@@ -186,35 +208,25 @@ Department of Statistics
 \begin_inset Newline newline
 \end_inset
 
-Stockholm University 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\end_inset
-
- Department of Computer and Information Science
-\begin_inset Newline newline
-\end_inset
-
-Linköping University 
+Stockholm University
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Linköping and Stockholm University
+Stockholm University
 \end_layout
 
 \end_inset
 
 
 \begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
 \end_inset
 
 
@@ -290,7 +302,11 @@ Hamiltonian Monte Carlo
 \begin_deeper
 \begin_layout Itemize
 When 
-\begin_inset Formula $\theta=(\theta_{1},\ldots,\theta_{p})$
+\begin_inset Formula $\boldsymbol{\theta}=(\theta_{1},\ldots,\theta_{p})$
+\end_inset
+
+
+\begin_inset Formula $^{\top}$
 \end_inset
 
  is 
@@ -300,7 +316,7 @@ high-dimensional
 \series default
 \color inherit
 , 
-\begin_inset Formula $p\left(\theta|\mathbf{y}\right)$
+\begin_inset Formula $p\left(\boldsymbol{\theta}|\mathbf{y}\right)$
 \end_inset
 
  usually located in some subregion of 
@@ -309,7 +325,7 @@ high-dimensional
 
  with complicated geometry.
  
-\begin_inset VSpace medskip
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -317,11 +333,11 @@ high-dimensional
 
 \begin_layout Itemize
 MH: hard to find good proposal distribution 
-\begin_inset Formula $q\left(\cdot|\theta^{(i-1)}\right)$
+\begin_inset Formula $q\left(\cdot|\boldsymbol{\theta}^{(i-1)}\right)$
 \end_inset
 
 .
-\begin_inset VSpace medskip
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -329,7 +345,7 @@ MH: hard to find good proposal distribution
 
 \begin_layout Itemize
 MH: use very small step sizes otherwise too many rejections.
-\begin_inset VSpace medskip
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -349,7 +365,7 @@ HMC
 \series default
 \color inherit
 ): 
-\begin_inset VSpace smallskip
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -364,7 +380,7 @@ and
 \series default
 \color inherit
 
-\begin_inset VSpace smallskip
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -372,7 +388,7 @@ and
 
 \begin_layout Itemize
 high acceptance probabilities.
-\begin_inset VSpace medskip
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -387,13 +403,17 @@ momentum
 \series default
 \color inherit
  parameters 
-\begin_inset Formula $\phi=\left(\phi_{1},\ldots,\phi_{p}\right)$
+\begin_inset Formula $\boldsymbol{\phi}=\left(\phi_{1},\ldots,\phi_{p}\right)$
+\end_inset
+
+
+\begin_inset Formula $^{\top}$
 \end_inset
 
  and sample from 
 \begin_inset Formula 
 \[
-p\left(\theta,\phi|\mathbf{y}\right)=p\left(\theta|\mathbf{y}\right)p\left(\phi\right)
+p\left(\boldsymbol{\theta},\boldsymbol{\phi}|\mathbf{y}\right)=p\left(\boldsymbol{\theta}|\mathbf{y}\right)p\left(\boldsymbol{\phi}\right)
 \]
 
 \end_inset
@@ -438,7 +458,7 @@ Hamiltonian
 \series default
 \color inherit
  system 
-\begin_inset Formula $H\left(\theta,\phi\right)=U\left(\theta\right)+K\left(\phi\right)$
+\begin_inset Formula $H\left(\boldsymbol{\theta},\boldsymbol{\phi}\right)=U\left(\boldsymbol{\theta}\right)+K\left(\boldsymbol{\phi}\right)$
 \end_inset
 
 , where 
@@ -499,16 +519,22 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-Use 
-\begin_inset Formula $U\left(\theta\right)=-\log\left[p\left(\theta\right)p\left(\mathbf{y}|\theta\right)\right]$
+
+\series bold
+\color blue
+Posterior sampling
+\series default
+\color inherit
+: 
+\begin_inset Formula $U\left(\boldsymbol{\theta}\right)=-\log\left[p\left(\boldsymbol{\theta}\right)p\left(\mathbf{y}|\boldsymbol{\theta}\right)\right]$
 \end_inset
 
 .
 \end_layout
 
 \begin_layout Itemize
-Use 
-\begin_inset Formula $\phi\sim N\left(0,\mathbf{M}\right)$
+Momentum: 
+\begin_inset Formula $\boldsymbol{\phi}\sim N\left(\boldsymbol{0},\mathbf{M}\right)$
 \end_inset
 
  where 
@@ -518,7 +544,7 @@ Use
  is the mass matrix and
 \begin_inset Formula 
 \[
-K\left(\phi\right)=-\log\left[p\left(\phi\right)\right]=\frac{1}{2}\phi^{T}\mathbf{M}^{-1}\phi+\text{const}
+K\left(\boldsymbol{\phi}\right)=-\log\left[p\left(\boldsymbol{\phi}\right)\right]=\frac{1}{2}\boldsymbol{\phi}^{\top}\mathbf{M}^{-1}\boldsymbol{\phi}+\text{const}
 \]
 
 \end_inset
@@ -528,7 +554,7 @@ K\left(\phi\right)=-\log\left[p\left(\phi\right)\right]=\frac{1}{2}\phi^{T}\math
 
 \begin_layout Itemize
 If we could propose 
-\begin_inset Formula $\theta$
+\begin_inset Formula $\boldsymbol{\theta}$
 \end_inset
 
  in continuous time (spoiler: we can't), the acceptance probability would
@@ -574,13 +600,17 @@ Hamiltonian Dynamics
 
 \begin_inset Formula 
 \begin{align*}
-\frac{d\theta_{i}}{dt} & =\left[\mathbf{M}^{-1}\phi\right]_{i},\\
-\frac{d\phi_{i}}{dt} & =\frac{\partial\log p\left(\theta|\mathbf{y}\right)}{\partial\theta_{i}}
+\frac{d\theta_{i}}{dt} & =\left[\mathbf{M}^{-1}\boldsymbol{\phi}\right]_{i},\\
+\frac{d\phi_{i}}{dt} & =\frac{\partial\log p\left(\boldsymbol{\theta}|\mathbf{y}\right)}{\partial\theta_{i}}
 \end{align*}
 
 \end_inset
 
-which can be simulated using the 
+approximated using 
+\begin_inset Formula $L$
+\end_inset
+
+ steps with the 
 \series bold
 \color blue
 leapfrog algorithm
@@ -589,18 +619,30 @@ leapfrog algorithm
 
 \begin_inset Formula 
 \begin{align*}
-\phi_{i}\left(t+\frac{\varepsilon}{2}\right) & =\phi_{i}\left(t\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},\\
-\theta\left(t+\varepsilon\right) & =\theta\left(t\right)+\varepsilon\mathbf{M}^{-1}\phi(t),\\
-\phi_{i}\left(t+\varepsilon\right) & =\phi_{i}\left(t+\frac{\varepsilon}{2}\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\theta(t)|\mathbf{y}\right)}{\partial\theta_{i}},
+\phi_{i}\left(t+\frac{\varepsilon}{2}\right) & =\phi_{i}\left(t\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\boldsymbol{\theta}|\mathbf{y}\right)}{\partial\theta_{i}}|_{\theta(t)}\\
+\theta_{i}\left(t+\varepsilon\right) & =\theta_{i}\left(t\right)+\varepsilon\mathbf{M}^{-1}\phi_{i}\left(t+\frac{\varepsilon}{2}\right),\\
+\phi_{i}\left(t+\varepsilon\right) & =\phi_{i}\left(t+\frac{\varepsilon}{2}\right)+\frac{\varepsilon}{2}\frac{\partial\log p\left(\boldsymbol{\theta}|\mathbf{y}\right)}{\partial\theta_{i}}|_{\theta(t+\varepsilon)},
 \end{align*}
 
 \end_inset
 
 where 
+\series bold
+\color blue
+
 \begin_inset Formula $\varepsilon$
 \end_inset
 
- is the step size.
+
+\series default
+\color inherit
+ is the 
+\series bold
+\color blue
+step size
+\series default
+\color inherit
+.
 \end_layout
 
 \begin_layout Itemize
@@ -778,6 +820,49 @@ With probability
 
 \end_layout
 
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Tuning Hamiltonian Monte Carlo
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+HMC is very efficient, but 
+\series bold
+\color blue
+needs careful tuning
+\series default
+\color inherit
+ to work.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 
 \series bold
@@ -785,43 +870,181 @@ With probability
 Tuning parameters
 \series default
 \color inherit
-: 1.
- 
+: 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
 \series bold
+\color blue
 stepsize
 \series default
+\color inherit
  
 \begin_inset Formula $\varepsilon$
 \end_inset
 
-, 2.
- 
+, 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
 \series bold
+\color blue
 number of leapfrog
 \series default
+\color inherit
  iterations 
 \begin_inset Formula $L$
 \end_inset
 
- and 3.
- 
+ and 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
 \series bold
+\color blue
 mass matrix
 \series default
+\color inherit
  
 \begin_inset Formula $M$
 \end_inset
 
 .
- 
+ (hello 
+\begin_inset Formula $J_{\mathbf{x}}^{-1}(\hat{\theta}),$
+\end_inset
+
+ our old friend)
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
 \series bold
-\color blue
+\color orange
 No U-turn
 \series default
 \color inherit
-.
+ sampler:
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Warm-up
+\series default
+\color inherit
+ to determine 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+ and 
+\begin_inset Formula $L$
+\end_inset
+
+ to get good acceptance rate.
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Avoids U-turns in the Hamiltonian proposals.
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Drawbacks of HMC:
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Need to 
+\series bold
+\color blue
+evaluate gradient of log posterior
+\series default
+\color inherit
+ many times during Hamiltonian iterations.
+ Costly! (Subsampling HMC).
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Difficulty with 
+\series bold
+\color blue
+multimodality
+\series default
+\color inherit
+ (true for most algorithms).
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Standard HMC cannot handle 
+\series bold
+\color blue
+discrete parameters
+\series default
+\color inherit
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Mixture example.
+ Some recent progress.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -926,13 +1149,8 @@ Variational Inference
 
 \begin_deeper
 \begin_layout Itemize
-Let 
-\begin_inset Formula $\theta=(\theta_{1},...,\theta_{p})$
-\end_inset
-
-.
- Approximate the posterior 
-\begin_inset Formula $p(\theta|y)$
+VI: approximate the posterior 
+\begin_inset Formula $p(\boldsymbol{\theta}|\boldsymbol{y})$
 \end_inset
 
  with a (simpler) distribution 
@@ -954,11 +1172,11 @@ Normal approximation
 \series default
 \color inherit
  from optimization: 
-\begin_inset Formula $q(\theta)=N\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\theta})\right]$
-\end_inset
+\begin_inset Formula 
+\[
+q(\boldsymbol{\theta})=N\left[\tilde{\boldsymbol{\theta}},J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})\right]
+\]
 
-.
-\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -980,11 +1198,11 @@ VI
 \series default
 \color inherit
 ): 
-\begin_inset Formula $q(\theta)=\prod_{i=1}^{p}q_{i}(\theta_{i})$
-\end_inset
+\begin_inset Formula 
+\[
+q(\boldsymbol{\theta})=\prod_{i=1}^{p}q_{i}(\theta_{i})
+\]
 
-
-\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -998,14 +1216,14 @@ Parametric VI
 \series default
 \color inherit
 : Parametric family 
-\begin_inset Formula $q_{\lambda}\left(\theta\right)$
+\begin_inset Formula $q_{\lambda}\left(\boldsymbol{\theta}\right)$
 \end_inset
 
  with parameters 
 \begin_inset Formula $\lambda$
 \end_inset
 
-
+.
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1014,7 +1232,7 @@ Parametric VI
 
 \begin_layout Itemize
 Find the 
-\begin_inset Formula $q(\theta)$
+\begin_inset Formula $q(\boldsymbol{\theta})$
 \end_inset
 
  that 
@@ -1035,7 +1253,7 @@ Kullback-Leibler distance
 :
 \begin_inset Formula 
 \[
-KL(q,p)=\int q(\theta)\ln\frac{q(\theta)}{p(\theta|y)}d\theta=E_{q}\left[\ln\frac{q(\theta)}{p(\theta|y)}\right].
+KL(q,p)=\int q(\boldsymbol{\theta})\ln\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}d\boldsymbol{\theta}=E_{q}\left[\ln\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}\right].
 \]
 
 \end_inset
@@ -1082,7 +1300,7 @@ Mean field VI
  is based on factorized approximation:
 \begin_inset Formula 
 \[
-q(\theta)=\prod_{j=1}^{p}q_{j}(\theta_{j})
+q(\boldsymbol{\theta})=\prod_{j=1}^{p}q_{j}(\theta_{j})
 \]
 
 \end_inset
@@ -1121,7 +1339,7 @@ Optimal densities
  can be shown to satisfy:
 \begin_inset Formula 
 \[
-q_{j}(\theta_{j})\propto\exp\left(E_{-\theta_{j}}\ln p(\mathbf{y},\theta)\right)
+q_{j}(\theta_{j})\propto\exp\left(E_{-\theta_{j}}\ln p(\mathbf{y},\boldsymbol{\theta})\right)
 \]
 
 \end_inset
@@ -1235,6 +1453,10 @@ Note: no assumptions about parametric form of the
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1247,6 +1469,10 @@ Optimal
 turn out
 \series default
  to be parametric (normal etc).
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1672,7 +1898,7 @@ Model
 : 
 \begin_inset Formula 
 \[
-\mathrm{Pr}\left(y_{i}=1|\mathbf{x}_{i}\right)=\Phi(\mathbf{x}_{i}^{T}\beta)
+\mathrm{Pr}\left(y_{i}=1|\mathbf{x}_{i}\right)=\Phi(\mathbf{x}_{i}^{T}\boldsymbol{\beta})
 \]
 
 \end_inset
@@ -1688,7 +1914,7 @@ Prior
 \series default
 \color inherit
 : 
-\begin_inset Formula $\beta\sim N(0,\Sigma_{\beta})$
+\begin_inset Formula $\boldsymbol{\beta}\sim N(0,\Sigma_{\beta})$
 \end_inset
 
 .
@@ -1713,7 +1939,7 @@ Latent variable formulation
 
 \begin_inset Formula 
 \[
-\mathbf{u}|\beta\sim N(\mathbf{X}\beta,1)
+\mathbf{u}|\boldsymbol{\beta}\sim N(\mathbf{X}\boldsymbol{\beta},1)
 \]
 
 \end_inset
@@ -1742,7 +1968,7 @@ variational approximation
 
 \begin_inset Formula 
 \[
-q(\mathbf{u},\beta)=q_{\mathbf{u}}(\mathbf{u})q_{\beta}(\beta)
+q(\mathbf{u},\boldsymbol{\beta})=q_{\mathbf{u}}(\mathbf{u})q_{\beta}(\boldsymbol{\beta})
 \]
 
 \end_inset
@@ -1789,7 +2015,7 @@ VI posterior
 
 \begin_inset Formula 
 \[
-\beta\sim N\left(\tilde{\mu}_{\beta},\left(\mathbf{X}^{T}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\right)
+\boldsymbol{\beta}\sim N\left(\tilde{\mu}_{\beta},\left(\mathbf{X}^{\top}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\right)
 \]
 
 \end_inset
@@ -1797,7 +2023,7 @@ VI posterior
 where 
 \begin_inset Formula 
 \[
-\tilde{\mu}_{\beta}=\left(\mathbf{X}^{T}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\mathbf{X}^{T}\textcolor{orange}{\tilde{\mu}_{\mathbf{u}}}
+\tilde{\mu}_{\beta}=\left(\mathbf{X}^{\top}\mathbf{X}+\Sigma_{\beta}^{-1}\right)^{-1}\mathbf{X}^{\top}\textcolor{orange}{\tilde{\mu}_{\mathbf{u}}}
 \]
 
 \end_inset
