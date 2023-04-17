@@ -6,38 +6,56 @@
 \origin unavailable
 \textclass beamer
 \begin_preamble
-
 % you can play with different themes and color themes to find your favorite combination.
 \mode<presentation> {
   \usetheme{Luebeck}
   \usecolortheme{beaver}
   \beamertemplatenavigationsymbolsempty
-  \setbeamertemplate{headline}{}
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% include necessary packages here
+\usepackage{mathtools}
 \usepackage{graphicx} % for including images
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
 \usepackage[usecourier=false]{jlcode} % For julia code
-\usepackage{listings} % For R code
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{listingsutf8}
+%\usepackage{fdsymbol} % for card symbols
 
 
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
 
 \date{} % Date, can be changed to a custom date
 
 \titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
 
-\includegraphics[width=1.5cm]{/home/mv/Dropbox/IconsAndLogos/LogoBlueJustRing.jpg}\hspace*{2.5cm}~%
-\includegraphics[width=2cm]{/home/mv/Dropbox/IconsAndLogos/liulogo.png} \linebreak
-\hrulefill \break
+
 \tiny
-\includegraphics[width=0.33cm]{/home/mv/Dropbox/IconsAndLogos/web.png} \href{https://mattiasvillani.com}{mattiasvillani.com}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/twitter.jpg} \href{https://twitter.com/matvil}{@matvil}\hspace*{1cm}~
-\includegraphics[width=0.3cm]{/home/mv/Dropbox/IconsAndLogos/github.png} \href{https://github.com/mattiasvillani}{mattiasvillani}~
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
@@ -45,19 +63,22 @@
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
 \definecolor{llorange}{RGB}{255, 229,204 }
-\definecolor{red}{RGB}{255, 128, 0}
 \definecolor{verylightgray}{RGB}{246, 246, 246}
-
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
+\definecolor{lightbluegray}{RGB}{153, 194, 229}
 
 \setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
 \setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
 
 \usepackage{tcolorbox}
 
-\usepackage[ruled]{algorithm2e}
-\usepackage{wasysym}
-\SetKwInput{KwInput}{Input}
-\SetKwInput{KwOutput}{Output}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -74,7 +95,7 @@ knitr
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
 \font_default_family default
-\use_non_tex_fonts false
+\use_non_tex_fonts true
 \font_sc false
 \font_osf false
 \font_sf_scale 100 100
@@ -137,11 +158,8 @@ knitr
 
 \begin_layout Title
 
-\size largest
 \color orange
-Bayesian Statistics I
-\size default
-
+Bayesian Learning
 \begin_inset Argument 1
 status open
 
@@ -165,9 +183,9 @@ Lecture 10 - Probabilistic programming for Bayesian inference
 \begin_layout Author
 
 \series bold
-Mattias Villani
+Mattias Villani 
 \series default
- 
+
 \begin_inset Graphics
 	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
 	lyxscale 10
@@ -196,29 +214,12 @@ Department of Statistics
 \begin_inset Newline newline
 \end_inset
 
-Stockholm University 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-and
-\end_layout
-
-\end_inset
-
- Department of Computer and Information Science
-\begin_inset Newline newline
-\end_inset
-
-Linköping University 
+Stockholm University
 \begin_inset Argument 1
 status open
 
 \begin_layout Plain Layout
-Linköping and Stockholm University
+Stockholm University
 \end_layout
 
 \end_inset
@@ -1464,192 +1465,40 @@ Alan Turing
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
+\begin_layout Frame
+\begin_inset Argument 4
 status open
 
 \begin_layout Plain Layout
 
-
-\backslash
-begin{frame}[fragile]
+\series bold
+\color orange
+Turing.jl for the Bernoulli model
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
 
-\backslash
-frametitle{
-\backslash
-color{orange}
-\backslash
-textbf{Turing.jl for Bernoulli model}}
-\end_layout
+\begin_inset Separator latexpar
+\end_inset
 
-\begin_layout Plain Layout
-
-
-\backslash
-small
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{jllisting} 
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
-\begin_layout Plain Layout
-
-using Turing, StatsPlots, Random
-\end_layout
-
-\begin_layout Plain Layout
-
-# Declare the Turing model: 
-\end_layout
-
-\begin_layout Plain Layout
-
-@model function iidbern(y, α, β)     
-\end_layout
-
-\begin_layout Plain Layout
-
-	θ ~ Beta(α,β)  # prior     
-\end_layout
-
-\begin_layout Plain Layout
-
-	N = length(y)  # number of observations     
-\end_layout
-
-\begin_layout Plain Layout
-
-	for n in 1:N         
-\end_layout
-
-\begin_layout Plain Layout
-
-		y[n] ~ Bernoulli(θ) # model     
-\end_layout
-
-\begin_layout Plain Layout
-
-	end 
-\end_layout
-
-\begin_layout Plain Layout
-
-end
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Set up the observed data 
-\end_layout
-
-\begin_layout Plain Layout
-
-data = [0,1,1,0,0,1,1,0,1,1]
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Settings for the Hamiltonian Monte Carlo (HMC) sampler.
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-niter = 10000 
-\end_layout
-
-\begin_layout Plain Layout
-
-nburn = 1000 
-\end_layout
-
-\begin_layout Plain Layout
-
-ϵ = 0.1 
-\end_layout
-
-\begin_layout Plain Layout
-
-τ = 10
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Sample the posterior using HMC 
-\end_layout
-
-\begin_layout Plain Layout
-
-postdraws = sample(iidbern(data, 1, 2), HMC(ϵ, τ), niter,    
-\end_layout
-
-\begin_layout Plain Layout
-
-	discard_initial = nburn) plot(postdraws)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Print and plot results display(postdraws) 
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(postdraws)   
-\end_layout
-
-\begin_layout Plain Layout
-
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{jllisting}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{frame}
-\end_layout
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/bernoulli_turing.png
+	lyxscale 40
+	scale 30
 
 \end_inset
 
 
 \end_layout
 
+\end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
 \end_inset
