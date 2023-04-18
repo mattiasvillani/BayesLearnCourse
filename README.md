@@ -166,6 +166,11 @@ The course examination consists of:
 * Written lab reports (deadlines given in Athena)
 * Exam (pen and paper + computer)
 
+The written exam will be in a room with computer access and R will be installed.
+Roughly 1/4 of the exam will be pen-and-paper math problems, and 3/4 computer based problems. 
+You will be given the opportunity to submit your lab solutions as a PDF so that they will be available to you during the exam. The uploaded lab solutions can be polished, but are only allowed to contain material related to the lab solutions. The uploaded lab solutions will be screened before the exam. 
+You will also have the following PDF with distributions available during the exam [Distributions from BDA3](/OldExamsSU/DistributionsBDA.pdf).
+
 Some old exams with solutions:
 
 - [Old exams](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/OldExamsSU/)
@@ -180,10 +185,3 @@ Some old exams with solutions:
 * [RStudio](https://rstudio.com/products/rstudio/) - a very nice developing environment for R.
 * [An introduction to R](https://cran.r-project.org/doc/manuals/r-release/R-intro.pdf) | John Cook's [intro to R for programmers](https://www.johndcook.com/blog/r_language_for_programmers/) | [base-R cheat sheet](https://github.com/rstudio/cheatsheets/raw/main/base-r.pdf) .
 
----
-
-### Bayes was a cool dude
-
-<a href="http://www.youtube.com/watch?v=8ErvD90-BUU" target="_blank">
- <img src="http://img.youtube.com/vi/8ErvD90-BUU/0.jpg" alt="Click to watch on youtube" width="240" height="180" border="10" />
-</a>
