@@ -1374,15 +1374,19 @@ Draw
 
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
-Note that: 
-\begin_inset Formula $Pr(I_{i}=0|\mathbf{\mathcal{I}}_{-i},\mathbf{y},\mathbf{X})\propto Pr(I_{i}=0,\mathbf{\mathcal{I}}_{-i}|\mathbf{y},\mathbf{X})$
+Draw 
+\begin_inset Formula $\beta,\sigma^{2}$
+\end_inset
+
+ from 
+\begin_inset Formula $p(\beta,\sigma^{2}|\mathcal{I},\mathbf{y}\textnormal{,}\mathbf{X})$
 \end_inset
 
 .
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
 Compute 
 \size small
@@ -1400,7 +1404,7 @@ for
 \begin_inset Formula $I_{i}=1$
 \end_inset
 
-.
+, and normalize.
 \end_layout
 
 \begin_layout Itemize
@@ -1411,18 +1415,6 @@ Model averaging
 \series default
 \color inherit
  in a single simulation run.
-\end_layout
-
-\begin_layout Itemize
-If needed, simulate from 
-\begin_inset Formula $p(\beta,\sigma^{2}|\mathcal{I},\mathbf{y}\textnormal{,}\mathbf{X})$
-\end_inset
-
- for each draw of 
-\begin_inset Formula $\mathbf{\mathcal{I}}$
-\end_inset
-
-.
 \end_layout
 
 \end_deeper
