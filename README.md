@@ -1,7 +1,7 @@
 <!-- font: frutiger -->
 
 # Bayesian Learning, 7.5 credits
-![](Misc/linocut_blsu.png "Bayesian Learning")
+<center><img src="Misc/linocut_blsu.png" alt="drawing" style="width:250px;"/></center>
 
 ---
 
