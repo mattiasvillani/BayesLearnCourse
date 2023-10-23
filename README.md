@@ -1,7 +1,7 @@
 <!-- font: frutiger -->
 
-
-![](Misc/bayesian_learning_course_banner.png "Bayesian Learning")
+# Bayesian Learning, 7.5 credits
+![](Misc/linocut_blsu.png "Bayesian Learning")
 
 ---
 
@@ -27,7 +27,7 @@ Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd editi
 * Villani, M. (2022). Bayesian Learning (BL). Approximately half of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is work in progress, but currently covers L1-L6 and L11. 
 * Additional course material linked from this page, such as articles and tutorial.
 
-The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=8&object=cevt_39886_VT2023&startDate=20230218&endDate=20230805&type=courseevent&h=t&l=en).
+The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&object=cevt_39946_VT2024&startDate=20240217&endDate=20240803&type=courseevent&h=t).
 
 ---
 
