@@ -30,7 +30,7 @@ Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd editi
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&object=cevt_39946_VT2024&startDate=20240217&endDate=20240803&type=courseevent&h=t).
 
-Some of the Lectures are pre-recorded (see the Schedule on TimeEdit), partly to make room for the discussion seminars. The recorded lectures are hosted on Athena in a folder called "Videos". See the file **videos** in the Resources at Athena for a lists of the videos, and the order in which they should be viewed.
+Some of the Lectures are pre-recorded (see the Schedule on TimeEdit), partly to make room for the discussion seminars. The recorded lectures are hosted on Athena in a folder called "Videos". See the file **videos** in the Resources at [Athena](https://athena.itslearning.com/ContentArea/ContentArea.aspx?LocationID=22499&LocationType=1) for a lists of the videos, and the order in which they should be viewed.
 
 ---
 
