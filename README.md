@@ -65,8 +65,11 @@ help(name_of_dataset)
 
 ### Interactivity 
 
-I have created a number of interactive widgets that can be used to explore the concepts in the course. The widgets are created in Observable, a platform for creating interactive web-based documents. The widgets are linked from the course schedule, but can also be found in the [Bayesian Learning collection](https://observablehq.com/collection/@mattiasvillani/bayesian-learning). Another useful collection is the [Distributions collection](https://observablehq.com/collection/@mattiasvillani/distributions).
-All collections (for different courses and topics) can be found [here](https://observablehq.com/@mattiasvillani).
+I have created a number of interactive widgets that can be used to explore the concepts in the course. The widgets are created in Observable, a platform for creating interactive web-based documents. The widgets are linked from the course schedule, but can also be found in:
+
+- [Bayesian Learning collection](https://observablehq.com/collection/@mattiasvillani/bayesian-learning). 
+- The [Distributions collection](https://observablehq.com/collection/@mattiasvillani/distributions).
+- All collections (for different courses and topics) can be found [here](https://observablehq.com/@mattiasvillani).
 ---
 
 ### Teachers
