@@ -325,7 +325,7 @@ Model
 
 \begin_inset Formula 
 \[
-y_{1},...,y_{n}\vert\theta\overset{iid}{\sim}Pois(\theta)
+y_{1},...,y_{n}\vert\theta\overset{iid}{\sim}\mathrm{Pois}(\theta)
 \]
 
 \end_inset
@@ -387,20 +387,12 @@ Prior
 
 \begin_inset Formula 
 \[
-p(\theta)\propto\theta^{\alpha-1}\exp(-\theta\beta)\propto Gamma(\alpha,\beta)
+p(\theta)\propto\theta^{\alpha-1}\exp(-\theta\beta)\propto\mathrm{Gamma}(\alpha,\beta)
 \]
 
 \end_inset
 
-which contains the info: 
-\begin_inset Formula $\alpha-1$
-\end_inset
 
- counts in 
-\begin_inset Formula $\beta$
-\end_inset
-
- observations.
 \end_layout
 
 \end_deeper
@@ -879,7 +871,7 @@ Prior-to-Posterior mapping
 
 \begin_inset Formula 
 \begin{gather*}
-\text{Model: \ }y_{1},...,y_{n}|\theta\overset{iid}{\sim}Pois(\theta)\\
+\text{Model: \ }y_{1},...,y_{n}|\theta\overset{iid}{\sim}\mathrm{Pois}(\theta)\\
 \text{Prior: \ }\theta\sim\mathrm{Gamma}(\alpha,\beta)\\
 \text{Posterior: }\theta|y_{1},...,y_{n}\sim\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)\text{.}
 \end{gather*}
@@ -1931,7 +1923,7 @@ Prior mean on persistent AR(1):
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\mathbb{V}(\phi_{k})=\frac{\tau^{2}}{k^{2}}$
+\begin_inset Formula $\mathbb{V}(\phi_{k})=\sigma^{2}\frac{\tau^{2}}{k^{2}}$
 \end_inset
 
 .
@@ -2201,7 +2193,7 @@ Observed information
 
 \begin_inset Formula 
 \[
-J_{\mathbf{x}}(\hat{\theta})=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\theta)}{\partial\theta^{2}}\vert_{\theta=\hat{\theta}}
+J_{\mathbf{x}}(\hat{\theta})=-\frac{d^{2}\ln p(\mathbf{x}\vert\theta)}{d\theta^{2}}\vert_{\theta=\hat{\theta}}
 \]
 
 \end_inset
@@ -2470,7 +2462,7 @@ p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1}(1-\theta)^{-1/2}\propto
 \begin_layout Itemize
 Jeffreys' prior is 
 \series bold
-\color orange
+\color blue
 improper
 \series default
 \color inherit
@@ -2483,12 +2475,16 @@ improper
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 Jeffreys' prior 
 \series bold
-\color orange
+\color blue
 violates the likelihood principle
 \series default
 \color inherit

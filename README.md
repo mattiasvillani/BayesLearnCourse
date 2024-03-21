@@ -85,12 +85,12 @@ Department of Statistics, Stockholm University
 Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
 Notebooks: [Analyzing email spam data with a Bernoulli model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SpamBern) | 
 [Analyzing internet download speeds with a Gaussian model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/DownloadSpeedNormal)\
-Widgets: [Bernoulli data - beta prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-bernoulli-iid-data) | [gaussian known variance](https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var) 
+Widgets: [Bernoulli data - beta prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-bernoulli-iid-data) | [Gaussian known variance](https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var) 
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
 Notebooks: [Analyzing number of eBay bidders with an iid Poisson model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)\
-Widget: [Poisson data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-iid-poisson-counts) | [Exponential data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-exponential-iid-data) | [Credible intervals](https://observablehq.com/@mattiasvillani/bayesian-credible-intervals) | [Autoregressive processes](https://observablehq.com/@mattiasvillani/ar-processes)
+Widgets: [Poisson data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-iid-poisson-counts) | [Exponential data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-exponential-iid-data) | [Credible intervals](https://observablehq.com/@mattiasvillani/bayesian-credible-intervals) | [Autoregressive processes](https://observablehq.com/@mattiasvillani/ar-processes) | [Second derivative measures curvature](https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \

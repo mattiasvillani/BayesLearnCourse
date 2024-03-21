@@ -450,7 +450,7 @@ Lab reports
 \end_layout
 
 \begin_layout Itemize
-Exam: Pen and paper + Computer
+Exam: Pen and paper + Computer (using R)
 \end_layout
 
 \end_deeper
@@ -698,27 +698,7 @@ as a function of
 
 \begin_layout Standard
 \align center
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/BernLiken10s4.png
-	scale 15
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/BernLiken100s40.png
-	scale 15
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/BernLiken10s9.png
-	scale 15
-
-\end_inset
-
-
+n
 \end_layout
 
 \end_deeper
