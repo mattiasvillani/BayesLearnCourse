@@ -25,7 +25,7 @@ The course will use the following book as the main course literature:
 
 * Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014).
 Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and a free [PDF version](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf).
-* Villani, M. (2022). Bayesian Learning (BL). Approximately half of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is work in progress, but currently covers L1-L7 and L11. 
+* Villani, M. (2024). Bayesian Learning (BL). Little more than half of a book that I am writing is [here](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is work in progress, but currently covers L1-L7 and L11. 
 * Additional course material linked from this page, such as articles and tutorial.
 
 The course schedule on TimeEdit is here: [Schedule](https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&object=cevt_39946_VT2024&startDate=20240217&endDate=20240803&type=courseevent&h=t).
@@ -85,21 +85,22 @@ Department of Statistics, Stockholm University
 Reading: BDA Ch. 1, 2.1-2.4 |  BL Ch. 1-2, 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L1.pdf) \
 Notebooks: [Analyzing email spam data with a Bernoulli model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SpamBern) | 
 [Analyzing internet download speeds with a Gaussian model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/DownloadSpeedNormal)\
-Widgets: [gaussian known variance](https://mattiasvillani.com/BayesianLearningBook/observable/gaussian_knownvariance.html) | [bayesian updating - widget](https://mattiasvillani.com/BayesianLearningBook/observable/gaussian_knownvariance_sequential.html)
+Widgets: [Bernoulli data - beta prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-bernoulli-iid-data) | [gaussian known variance](https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var) 
 
 **Lecture 2 - Poisson model. Summarizing posteriors. Conjugate priors. Prior elicitation.**\
 Reading: BDA Ch. 2.-2.9 | BL Ch. 2 and 4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L2.pdf) \
 Notebooks: [Analyzing number of eBay bidders with an iid Poisson model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/ebayPoissonOneParam)\
-Widget: [Autoregressive processes](https://observablehq.com/@mattiasvillani/ar-processes)
+Widget: [Poisson data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-iid-poisson-counts) | [Exponential data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-exponential-iid-data) | [Credible intervals](https://observablehq.com/@mattiasvillani/bayesian-credible-intervals) | [Autoregressive processes](https://observablehq.com/@mattiasvillani/ar-processes)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
 Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
-Notebooks: [Analyzing mobile phone survey data with a multinomial model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SurveyMultinomial)
+Notebooks: [Analyzing mobile phone survey data with a multinomial model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SurveyMultinomial)\
+Widgets: [Scaled inverse chi2 distribution](https://observablehq.com/@mattiasvillani/scaled-inverse-chi-2-distribution) | [Multinomial data - Dirichlet prior](https://observablehq.com/@mattiasvillani/multinomial-dirichlet)
 
 **Lecture 4 - Linear Regression. Prediction. Making Decisions**\
 Reading: BDA Ch. 14, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf)\  
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)\
-Widgets: [linear regression](https://mattiasvillani.com/BayesianLearningBook/observable/bike_lin_reg.html) | [prediction iid Gaussian](https://mattiasvillani.com/BayesianLearningBook/observable/pred_gaussian_knownvariance.html)
+Widgets: [linear regression](https://mattiasvillani.com/BayesianLearningBook/observable/bike_lin_reg.html) | [prediction iid Gaussian](https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var)
 
 **Lecture 5 - Classification. Large-sample properties and Posterior approximation.** \
 Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | BL 7-8 and appendix on Taylor approximations  | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
