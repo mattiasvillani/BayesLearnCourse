@@ -2310,6 +2310,13 @@ Specify
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Frame
 \begin_inset Argument 4
 status open
@@ -2318,7 +2325,160 @@ status open
 
 \series bold
 \color orange
-Jeffreys' prior for Bernoulli sampling
+Invariant prior
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Observed information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+J_{\mathbf{x}}(\hat{\theta})=-\frac{d^{2}\ln p(\mathbf{x}\vert\theta)}{d\theta^{2}}\vert_{\theta=\hat{\theta}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Fisher information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+I(\theta)=E_{\mathbf{x}|\theta}\left(J_{\mathbf{x}}(\theta)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Jeffreys' rule 
+\series default
+\color inherit
+to construct prior
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(\theta)=I(\theta)^{1/2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Invariance
+\series default
+\color inherit
+ under 1:1 parameter transformation 
+\begin_inset Formula $\phi=g(\theta)$
+\end_inset
+
+.
+ Example: 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}.$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\theta}(\theta)$
+\end_inset
+
+ directly
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\phi}(\phi)$
+\end_inset
+
+ and then obtain 
+\begin_inset Formula $p_{\theta}(\theta)=p_{\phi}(g^{-1}(\theta))\left|\frac{dg^{-1}(\theta)}{d\theta}\right|$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Second derivative measures curvature
 \end_layout
 
 \end_inset
@@ -2332,50 +2492,17 @@ Jeffreys' prior for Bernoulli sampling
 
 \begin_deeper
 \begin_layout Standard
-\begin_inset Formula 
-\[
-x_{1},...,x_{n}|\theta\overset{iid}{\sim}Bern(\theta).
-\]
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PeakynessHigh.pdf
+	scale 25
 
 \end_inset
 
 
-\begin_inset Formula 
-\[
-\ln p(\mathbf{x}|\theta)=s\ln\theta+f\ln(1-\theta)
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\frac{d\ln p(\mathbf{x}|\theta)}{d\theta}=\frac{s}{\theta}-\frac{f}{(1-\theta)}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-\frac{d^{2}\ln p(\mathbf{x}|\theta)}{d\theta^{2}}=-\frac{s}{\theta^{2}}-\frac{f}{(1-\theta)^{2}}
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-I(\theta)=\frac{E_{\mathbf{x}|\theta}(s)}{\theta^{2}}+\frac{E_{\mathbf{x}|\theta}(f)}{(1-\theta)^{2}}=\frac{n\theta}{\theta^{2}}+\frac{n(1-\theta)}{(1-\theta)^{2}}=\frac{n}{\theta(1-\theta)}
-\]
-
-\end_inset
-
-Thus, the Jeffreys' prior is
-\begin_inset Formula 
-\[
-p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1/2}(1-\theta)^{-1/2}\propto Beta(1/2,1/2).
-\]
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PeakynessLow.pdf
+	scale 25
 
 \end_inset
 

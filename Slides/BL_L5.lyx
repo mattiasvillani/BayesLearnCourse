@@ -485,7 +485,7 @@ Logistic regression
 
 \begin_inset Formula 
 \[
-\Pr(y_{i}=1\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\top}\beta)}{1+\exp(x_{i}^{\top}\beta)}.
+\Pr(y_{i}=1\text{ }|\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
 \]
 
 \end_inset
@@ -503,7 +503,7 @@ Likelihood
 
 \begin_inset Formula 
 \[
-p(\mathbf{y}|\mathbf{X},\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\top}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\top}\beta)}.
+p(\mathbf{y}|\mathbf{X},\boldsymbol{\beta})=\prod\nolimits _{i=1}^{n}\frac{[\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})]^{y_{i}}}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
 \]
 
 \end_inset
@@ -530,7 +530,7 @@ Probit regression
 
 \begin_inset Formula 
 \[
-Pr(y_{i}=1|x_{i})=\Phi(x_{i}^{\top}\beta)
+Pr(y_{i}=1|\boldsymbol{x}_{i})=\Phi(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})
 \]
 
 \end_inset
@@ -552,7 +552,7 @@ Multi-class
 ) logistic regression
 \begin_inset Formula 
 \[
-\Pr(y_{i}=c\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\top}\beta_{c})}{\sum_{k=1}^{C}\exp(x_{i}^{\top}\beta_{k})}
+\Pr(y_{i}=c\text{ }|\text{ }\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}_{c})}{\sum_{k=1}^{C}\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}_{k})}
 \]
 
 \end_inset
@@ -1062,43 +1062,6 @@ Large sample asymptotics
 	filename Images/NormalApproxBook.png
 	lyxscale 40
 	scale 28
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Large sample asymptotics
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/BernsteinVonMises.png
-	lyxscale 40
-	scale 30
 
 \end_inset
 
@@ -1830,7 +1793,43 @@ Logistic regression
 
 \begin_inset Formula 
 \[
-\Pr(y_{i}=1\text{ }|\text{ }x_{i})=\frac{\exp(x_{i}^{\prime}\beta)}{1+\exp(x_{i}^{\prime}\beta)}.
+\Pr(y_{i}=1\text{ }|\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Odds
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+{\rm {Odds}(\boldsymbol{x})\equiv\frac{{\rm {Pr}(y=1|\boldsymbol{x})}}{{\rm {Pr}(y=0|\boldsymbol{x})}}=\exp(\boldsymbol{x}^{\top}\boldsymbol{\beta}).}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Odds ratio
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+OR_{j}=\frac{{Odds}(x_{1},\ldots,x_{j}+1,\ldots,x_{p})}{{Odds}(x_{1},\ldots,x_{j},\ldots,x_{p})}=\exp(\beta_{j})
 \]
 
 \end_inset
@@ -1848,21 +1847,12 @@ Likelihood
 
 \begin_inset Formula 
 \[
-p(\mathbf{y}|\mathbf{X},\beta)=\prod\nolimits _{i=1}^{n}\frac{[\exp(x_{i}^{\prime}\beta)]^{y_{i}}}{1+\exp(x_{i}^{\prime}\beta)}.
+p(\mathbf{y}|\mathbf{X},\boldsymbol{\beta})=\prod\nolimits _{i=1}^{n}\frac{[\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})]^{y_{i}}}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Prior 
-\begin_inset Formula $\beta\sim N(0,\tau^{2}I)$
-\end_inset
-
-.
- 
 \end_layout
 
 \begin_layout Itemize
@@ -1883,8 +1873,211 @@ Normal approximation
 
 \end_layout
 
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Logistic regression - who survived the Titanic?
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
 \begin_layout Itemize
-Demo time!
+Prior
+\begin_inset Formula 
+\[
+\boldsymbol{\beta}\sim N(\boldsymbol{\mu},\boldsymbol{\Omega})
+\]
+
+\end_inset
+
+with
+\begin_inset Formula 
+\[
+\boldsymbol{\mu}=\big(-1,-1/80,1,1\big)^{\top}\qquad\boldsymbol{\Omega}=\begin{pmatrix}0.25 & 0 & 0 & 0\\
+0 & 1/(80^{2}) & 0 & 0\\
+0 & 0 & 0.5 & 0\\
+0 & 0 & 0 & 1
+\end{pmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/titanic_prior_age.pdf
+	lyxscale 40
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/titanic_prior_sex_class.pdf
+	lyxscale 40
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Logistic regression - who survived the Titanic?
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Normal posterior approximation
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\boldsymbol{\beta}\vert\boldsymbol{y}\sim N\left(\tilde{\boldsymbol{\beta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\beta}})\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Means that the posterior of each 
+\series bold
+
+\begin_inset Formula $\beta_{j}$
+\end_inset
+
+ 
+\series default
+is univariate normal.
+\end_layout
+
+\begin_layout Itemize
+Marginal posterior for each
+\series bold
+\color blue
+ 
+\begin_inset Formula $\exp(\beta_{j})$
+\end_inset
+
+ is LogNormal
+\series default
+\color inherit
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/titanic_post_oddsratio_info_vs_hmc.pdf
+	lyxscale 40
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Logistic regression - who survived the Titanic?
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Comparison with non-informative prior 
+\begin_inset Formula $\boldsymbol{\beta}\sim N(\boldsymbol{0},10^{2}\boldsymbol{I}_{p})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/titanic_post_oddsratio_info.pdf
+	lyxscale 40
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper

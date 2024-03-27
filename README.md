@@ -70,6 +70,7 @@ I have created a number of interactive widgets that can be used to explore the c
 - [Bayesian Learning collection](https://observablehq.com/collection/@mattiasvillani/bayesian-learning). 
 - The [Distributions collection](https://observablehq.com/collection/@mattiasvillani/distributions).
 - All collections (for different courses and topics) can be found [here](https://observablehq.com/@mattiasvillani).
+  
 ---
 
 ### Teachers
@@ -115,6 +116,7 @@ Widgets: [linear regression](https://mattiasvillani.com/BayesianLearningBook/obs
 Reading: BDA Ch. 16.1-16.3, 4.1-4.2 | BL 7-8 and appendix on Taylor approximations  | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L5.pdf) \
 Notebook: [Logistic regression](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.qmd) \
 Code:  [bayeslearn package - Logistic and Probit regression for Titanic data](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/binary_reg_script.R) \
+Widgets: [posterior approximation Beta model](https://observablehq.com/@mattiasvillani/posterior-approximation-beta-model) \
 Extras: [Video on Taylor approximation](https://youtu.be/3d6DsjIBzJ4)
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
