@@ -4,9 +4,13 @@ author: "Mattias Villani"
 date: last-modified
 format:
   html: default
+  #pdf: default
+#title-block-banner: true
 ---
 
+
 #### Load packages
+
 
 ```{r}
 # install.packages("mvtnorm") 
@@ -16,7 +20,9 @@ library(RColorBrewer) # just some fancy colors for plotting
 prettyCol = brewer.pal(10,"Paired")
 ```
 
+
 #### Reading data
+
 
 ```{r}
 Data<-read.table("https://raw.githubusercontent.com/mattiasvillani/BayesLearnCourse/master/Notebooks/R/SpamReduced.dat",header=TRUE)      
@@ -38,28 +44,28 @@ mu <- as.vector(rep(0,nPara)) # Prior mean vector
 Sigma <- tau^2*diag(nPara);
 ```
 
-##### Coding up the log posterior function 
+
+##### Coding up the log posterior function
+
 
 ```{r}
 LogPostLogistic <- function(betaVect,y,X,mu,Sigma){
-  nPara <- length(betaVect)
-  linPred <- X%*%betaVect
-  logLik <- sum( linPred*y - log(1 + exp(linPred)) )
-  logPrior <- dmvnorm(betaVect, mu, Sigma, log=TRUE)
+  nPara <- length(betaVect);
+  linPred <- X%*%betaVect;
+  logLik <- sum( linPred*y -log(1 + exp(linPred)));
+  logPrior <- dmvnorm(betaVect, matrix(0,nPara,1), Sigma, log=TRUE);
   return(logLik + logPrior)
 }
 ```
 
-```{r}
-LogPostNormal <- function(thetaVect, x, mu0, kappa0, nu0)
-```
 
 ##### Finding the mode and observed information using optim
 
+
 ```{r}
-initVal <- c(0, 1) 
-OptimResults <- optim(initVal, LogPostLogistic, gr=NULL, y, X, mu, Sigma,
-  method=c("BFGS"), control=list(fnscale=-1), hessian=TRUE)
+initVal <- as.vector(rep(0,nPara)); 
+OptimResults<-optim(initVal,LogPostLogistic,gr=NULL,y,X,mu,Sigma,
+  method=c("BFGS"), control=list(fnscale=-1),hessian=TRUE)
 postMode = OptimResults$par
 postCov = -solve(OptimResults$hessian) # inv(J) - Approx posterior covar matrix
 postStd <- sqrt(diag(postCov)) # Computing approximate stdev
@@ -67,19 +73,25 @@ names(postMode) <- covNames      # Naming the coefficient by covariates
 names(postStd) <- covNames # Naming the coefficient by covariates
 ```
 
+
 #### The posterior mode
+
 
 ```{r}
 print(postMode)
 ```
 
+
 #### The posterior standard deviations are computed from the covariance
+
 
 ```{r}
 print(postStd)
 ```
 
+
 #### Plot the marginal posterior of $\beta$ for the `free` and `hpl` covariates
+
 
 ```{r}
 par(mfrow=c(1,2))
@@ -95,7 +107,9 @@ plot(gridVals, dnorm(gridVals, mean = postMode['hpl'], sd = postStd['hpl']),
      lwd = 2, col = prettyCol[2], main = expression(beta[hpl]))
 ```
 
+
 #### Simulate from normal approximation and make prediction at mean covariate
+
 
 ```{r}
 xStar = colMeans(X)
@@ -116,3 +130,4 @@ barplot(c(sum(spamPred==0),sum(spamPred==1))/nSim, col = prettyCol[7],
   names.arg  = c("ham","spam"), 
   main = "Predictive distribution spam", cex.main = 0.7)
 ```
+

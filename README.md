@@ -78,7 +78,7 @@ I have created a number of interactive widgets that can be used to explore the c
 <img src="Misc/VillaniLowRes.jpg" width="100">\
 [Mattias Villani](https://mattiasvillani.com), Lecturer \
 Professor, Natural Born Bayesian :stuck_out_tongue_winking_eye: \
-Department of Statistics, Stockholm University \
+Department of Statistics, Stockholm University 
 
 <img src="Misc/Oscar.jpg" width="100">\
 [Oscar Oelrich](https://www.su.se/english/profiles/ooelr-1.342298), Math exercises and Computer labs \
@@ -103,12 +103,12 @@ Notebooks: [Analyzing number of eBay bidders with an iid Poisson model](https://
 Widgets: [Poisson data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-iid-poisson-counts) | [Exponential data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-exponential-iid-data) | [Credible intervals](https://observablehq.com/@mattiasvillani/bayesian-credible-intervals) | [Autoregressive processes](https://observablehq.com/@mattiasvillani/ar-processes) | [Second derivative measures curvature](https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
-Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
+Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) 
 Notebooks: [Analyzing mobile phone survey data with a multinomial model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SurveyMultinomial)\
 Widgets: [Scaled inverse chi2 distribution](https://observablehq.com/@mattiasvillani/scaled-inverse-chi-2-distribution) | [Multinomial data - Dirichlet prior](https://observablehq.com/@mattiasvillani/multinomial-dirichlet)
 
-**Lecture 4 - Linear Regression. Prediction. Making Decisions**\
-Reading: BDA Ch. 14, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf)\  
+**Lecture 4 - Linear Regression. Prediction. Making Decisions.**
+Reading: BDA Ch. 14, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) 
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)\
 Widgets: [linear regression](https://mattiasvillani.com/BayesianLearningBook/observable/bike_lin_reg.html) | [prediction iid Gaussian](https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var)
 
@@ -120,10 +120,10 @@ Widgets: [posterior approximation Beta model](https://observablehq.com/@mattiasv
 Extras: [Video on Taylor approximation](https://youtu.be/3d6DsjIBzJ4)
 
 **Lecture 6 - Nonlinear regression and Classification. Regularization.**\
-Reading: BDA Ch. 20.1-20.2 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) 
+Reading: BDA Ch. 20.1-20.2 | BL 12.1-12.4 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L6.pdf) 
 
 **Lecture 7 - Gibbs sampling and Data augmentation** \
-Reading: BDA Ch. 10-11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L7.pdf) \
+Reading: BDA Ch. 10-11 | BL 9.1-9.2 and 13.1-13.3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L7.pdf) \
 Code: [Gibbs sampling for a bivariate normal](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/GibbsBivariateNormal.R) | [Gibbs sampling for a mixture of normals](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/NormalMixtureGibbs.R) \
 Widget: [mixture of normals](https://observablehq.com/@mattiasvillani/normal-mixture) \
 Extras: [Illustration](https://www.youtube.com/watch?v=IGiQOCX9UbM&ab_channel=Red15) of Gibbs sampling when parameters are strongly correlated.
