@@ -363,7 +363,7 @@ Monte Carlo sampling
 \begin_deeper
 \begin_layout Itemize
 If 
-\begin_inset Formula $\theta^{(1)},...,\theta^{(N)}$
+\begin_inset Formula $\theta^{(1)},...,\theta^{(m)}$
 \end_inset
 
  is an 
@@ -383,8 +383,8 @@ If
 , then
 \begin_inset Formula 
 \begin{eqnarray*}
-\bar{\theta}=\frac{1}{N}\sum_{t=1}^{N}\theta^{(t)} & \rightarrow & E(\theta\vert\boldsymbol{y})\\
-\bar{g}(\theta)=\frac{1}{N}\sum_{t=1}^{N}g(\theta^{(t)}) & \rightarrow & E[g(\theta)\vert\boldsymbol{y}]
+\bar{\theta}=\frac{1}{m}\sum_{i=1}^{m}\theta^{(i)} & \rightarrow & \mathbb{E}(\theta\vert\boldsymbol{y})\\
+\bar{g}(\theta)=\frac{1}{m}\sum_{i=1}^{m}g(\theta^{(i)}) & \rightarrow & \mathbb{E}[g(\theta)\vert\boldsymbol{y}]
 \end{eqnarray*}
 
 \end_inset
@@ -394,6 +394,10 @@ for some function
 \end_inset
 
  of interest.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -403,15 +407,10 @@ for some function
 Central limit theorem
 \series default
 \color inherit
-.
- As 
-\begin_inset Formula $N\rightarrow\infty$
-\end_inset
-
 
 \begin_inset Formula 
 \[
-\bar{\theta}_{1:N}\overset{\mathrm{appr}}{\sim}N\left(E(\theta\vert\boldsymbol{y}),\frac{V(\theta\vert\boldsymbol{y})}{N}\right)
+\bar{\theta}_{1:m}\overset{\mathrm{appr}}{\sim}N\left(\mathbb{E}(\theta\vert\boldsymbol{y}),\frac{\mathbb{V}(\theta\vert\boldsymbol{y})}{m}\right)\quad\text{for large }m
 \]
 
 \end_inset
@@ -684,7 +683,7 @@ Gibbs sampling draws converge to the posterior
 \begin_deeper
 \begin_layout Itemize
 Gibbs draws 
-\begin_inset Formula $\boldsymbol{\theta}^{(1)},...,\boldsymbol{\theta}^{(N)}$
+\begin_inset Formula $\boldsymbol{\theta}^{(1)},...,\boldsymbol{\theta}^{(m)}$
 \end_inset
 
  are 
@@ -697,7 +696,7 @@ dependent
 \begin_inset Formula 
 \begin{eqnarray*}
 \bar{\boldsymbol{\theta}}=\frac{1}{m}\sum_{t=1}^{m}\boldsymbol{\theta}^{(t)} & \rightarrow & \mathbb{E}(\boldsymbol{\theta}\vert\boldsymbol{y})\\
-\bar{g}(\boldsymbol{\theta})=\frac{1}{m}\sum_{t=1}^{m}g(\boldsymbol{\theta}^{(t)}) & \rightarrow & \mathbb{E}[g(\boldsymbol{\theta})]
+\bar{g}(\boldsymbol{\theta})=\frac{1}{m}\sum_{t=1}^{m}g(\boldsymbol{\theta}^{(t)}) & \rightarrow & \mathbb{E}[g(\boldsymbol{\theta})\vert\boldsymbol{y}]
 \end{eqnarray*}
 
 \end_inset
@@ -715,22 +714,30 @@ dependent
 converges in distribution
 \series default
 \color inherit
- to the target 
+ to posterior 
 \begin_inset Formula $p(\boldsymbol{\theta}\vert\boldsymbol{y})$
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
 \begin_inset Formula $\theta_{j}^{(1)},...,\theta_{j}^{(m)}$
 \end_inset
 
- converges to the marginal distribution of 
+ converges to the marginal posterior of 
 \begin_inset Formula $\theta_{j}$
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -856,7 +863,7 @@ Inefficiency factor
 : 
 \begin_inset Formula 
 \[
-\mathrm{IF}=1+2\sum_{k=1}^{\infty}\rho_{k}
+\mathrm{IF}=1+2\sum_{k=1}^{\infty}\rho_{k}\approx1+2\sum_{k=1}^{K}\rho_{k}
 \]
 
 \end_inset
@@ -1092,7 +1099,11 @@ status open
 
 \series bold
 \color orange
-Direct sampling vs Gibbs sampling
+Direct vs Gibbs sampling, bivariate normal 
+\begin_inset Formula $\rho=0.9$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1108,8 +1119,8 @@ Direct sampling vs Gibbs sampling
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/BiNormDirect.png
-	scale 45
+	filename /home/mv/Dropbox/BayesBook/Figs/IIDvsGibbsRawDraws.pdf
+	scale 31
 
 \end_inset
 
