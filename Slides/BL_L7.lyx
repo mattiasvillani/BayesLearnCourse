@@ -2002,9 +2002,9 @@ Gibbs sampling for mixture distributions
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/GibbsMixtureCut.png
+	filename Images/GibbsSamplingMixtureNormal.png
 	lyxscale 50
-	scale 31.5
+	scale 29
 
 \end_inset
 
@@ -2221,7 +2221,7 @@ Check:
 \end_inset
 
  
-\begin_inset Formula $x_{i})=\Pr(u_{i}>0)=1-\Pr(u_{i}\leq0)=1-\Pr(u_{i}-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}<-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})=1-\Phi(-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})=\Phi(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})$
+\begin_inset Formula $\boldsymbol{x}_{i})=\Pr(u_{i}>0)=1-\Pr(u_{i}\leq0)=1-\Pr(u_{i}-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}\leq-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})=1-\Phi(-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})=\Phi(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})$
 \end_inset
 
 .
