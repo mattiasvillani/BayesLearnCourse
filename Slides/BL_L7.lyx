@@ -2203,7 +2203,7 @@ u_{i} & \sim & N(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta},1)\\
 y_{i} & = & \left\{ \begin{array}{c}
 1\text{ \ \ if }u_{i}>0\\
 0\text{ \ \ if }u_{i}\leq0
-\end{array}.\right.
+\end{array}\right.
 \end{eqnarray*}
 
 \end_inset
@@ -2241,7 +2241,7 @@ Given
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $u$
+\begin_inset Formula $\boldsymbol{u}$
 \end_inset
 
  is 
@@ -2349,6 +2349,28 @@ Gibbs sampling for the Probit regression
 
 \begin_deeper
 \begin_layout Itemize
+
+\series bold
+\color blue
+Random utility formulation
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{i} & \sim & N(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta},1)\\
+y_{i} & = & \left\{ \begin{array}{c}
+1\text{ \ \ if }u_{i}>0\\
+0\text{ \ \ if }u_{i}\leq0
+\end{array}\right.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 Simulate from 
 \series bold
 \color blue
@@ -2360,22 +2382,6 @@ joint posterior
 \series default
 \color inherit
  by iterating between
-\family roman
-\series medium
-\shape up
-\size normal
-\emph off
-\bar no
-\strikeout off
-\uuline off
-\uwave off
-\noun off
-\color none
-
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -2395,7 +2401,7 @@ joint posterior
 \begin_inset Formula $p(\boldsymbol{\beta}|\boldsymbol{u},\boldsymbol{y})$
 \end_inset
 
- is multivariate normal (linear regression)
+ which is multivariate normal (linear regression)
 \begin_inset VSpace smallskip
 \end_inset
 
@@ -2418,7 +2424,7 @@ joint posterior
 \begin_inset Formula $p(u_{i}|\boldsymbol{\beta},\boldsymbol{y}),\text{ }i=1,...,n$
 \end_inset
 
-.
+, independently.
 \begin_inset VSpace medskip
 \end_inset
 
@@ -2483,15 +2489,7 @@ Histogram of
 \begin_inset Formula $\boldsymbol{\beta}$
 \end_inset
 
-
-\begin_inset Formula 
-\[
-p(\boldsymbol{\beta}|\boldsymbol{y})=\int p(\boldsymbol{u},\boldsymbol{\beta}|y)d\boldsymbol{u}
-\]
-
-\end_inset
-
-
+.
 \end_layout
 
 \end_deeper
@@ -2510,7 +2508,15 @@ status open
 
 \series bold
 \color orange
-Truncated normal distributions
+Conditional posterior for latent utility 
+\begin_inset Formula $u$
+\end_inset
+
+
+\begin_inset Formula $_{i}$
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2526,15 +2532,8 @@ Truncated normal distributions
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/TruncNormDistLower.pdf
-	scale 25
-
-\end_inset
-
-
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/TruncNormDistUpper.pdf
-	scale 25
+	filename /home/mv/Dropbox/BayesBook/Figs/TruncNormZeroLowerAndUpper.pdf
+	scale 45
 
 \end_inset
 
