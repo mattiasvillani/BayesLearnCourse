@@ -396,10 +396,10 @@ high acceptance probabilities.
 
 \end_deeper
 \begin_layout Itemize
-HMC: add extra 
+Add
 \series bold
 \color blue
-momentum
+ momentum
 \series default
 \color inherit
  parameters 
@@ -410,7 +410,8 @@ momentum
 \begin_inset Formula $^{\top}$
 \end_inset
 
- and sample from 
+.
+ New target:
 \begin_inset Formula 
 \[
 p\left(\boldsymbol{\theta},\boldsymbol{\phi}|\mathbf{y}\right)=p\left(\boldsymbol{\theta}|\mathbf{y}\right)p\left(\boldsymbol{\phi}\right)
@@ -418,7 +419,7 @@ p\left(\boldsymbol{\theta},\boldsymbol{\phi}|\mathbf{y}\right)=p\left(\boldsymbo
 
 \end_inset
 
-.
+
 \end_layout
 
 \end_deeper
@@ -1149,11 +1150,11 @@ Variational Inference
 
 \begin_deeper
 \begin_layout Itemize
-VI: approximate the posterior 
+Approximate posterior 
 \begin_inset Formula $p(\boldsymbol{\theta}|\boldsymbol{y})$
 \end_inset
 
- with a (simpler) distribution 
+ with (simpler) distribution 
 \begin_inset Formula $q(\theta)$
 \end_inset
 
@@ -1224,6 +1225,16 @@ Parametric VI
 \end_inset
 
 .
+ Example: 
+\begin_inset Formula $q(\boldsymbol{\theta})=N(\boldsymbol{\mu},\boldsymbol{\Sigma})$
+\end_inset
+
+.
+ 
+\begin_inset Formula $\boldsymbol{\lambda}=(\boldsymbol{\mu},\mathrm{Chol}(\Sigma))$
+\end_inset
+
+.
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1231,7 +1242,7 @@ Parametric VI
 \end_layout
 
 \begin_layout Itemize
-Find the 
+Find 
 \begin_inset Formula $q(\boldsymbol{\theta})$
 \end_inset
 
@@ -1239,7 +1250,7 @@ Find the
 \series bold
 minimizes the 
 \color blue
-Kullback-Leibler distance
+Kullback-Leibler divergence
 \series default
 \color inherit
  between the true posterior 
@@ -1253,7 +1264,7 @@ Kullback-Leibler distance
 :
 \begin_inset Formula 
 \[
-KL(q,p)=\int q(\boldsymbol{\theta})\ln\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}d\boldsymbol{\theta}=E_{q}\left[\ln\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}\right].
+KL(q,p)=\int q(\boldsymbol{\theta})\log\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}d\boldsymbol{\theta}=E_{q}\left[\log\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}\right].
 \]
 
 \end_inset
@@ -1319,7 +1330,7 @@ No specific functional forms
 are assumed
 \color inherit
  for the 
-\begin_inset Formula $q_{j}(\theta)$
+\begin_inset Formula $q_{j}(\theta_{j})$
 \end_inset
 
 .
