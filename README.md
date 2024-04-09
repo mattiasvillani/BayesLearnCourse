@@ -103,12 +103,12 @@ Notebooks: [Analyzing number of eBay bidders with an iid Poisson model](https://
 Widgets: [Poisson data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-iid-poisson-counts) | [Exponential data - Gamma prior](https://observablehq.com/@mattiasvillani/bayesian-inference-for-exponential-iid-data) | [Credible intervals](https://observablehq.com/@mattiasvillani/bayesian-credible-intervals) | [Autoregressive processes](https://observablehq.com/@mattiasvillani/ar-processes) | [Second derivative measures curvature](https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function)
 
 **Lecture 3 - Multi-parameter models. Marginalization. Monte Carlo simulation. Multinomial model.**\
-Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) 
+Reading: BDA Ch. 3 | BL Ch. 3 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L3.pdf) \
 Notebooks: [Analyzing mobile phone survey data with a multinomial model](https://github.com/mattiasvillani/BayesianLearningBook/tree/main/notebooks/SurveyMultinomial)\
 Widgets: [Scaled inverse chi2 distribution](https://observablehq.com/@mattiasvillani/scaled-inverse-chi-2-distribution) | [Multinomial data - Dirichlet prior](https://observablehq.com/@mattiasvillani/multinomial-dirichlet)
 
 **Lecture 4 - Linear Regression. Prediction. Making Decisions.**
-Reading: BDA Ch. 14, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf) 
+Reading: BDA Ch. 14, Ch. 9.1-9.2 | BL Ch. 5 and 6 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L4.pdf)\
 Code: [Prediction with two-parameter Gaussian model](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/PostAndPredIIDNormalNonInfoPrior.R)\
 Widgets: [linear regression](https://mattiasvillani.com/BayesianLearningBook/observable/bike_lin_reg.html) | [prediction iid Gaussian](https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var)
 
@@ -129,13 +129,13 @@ Widget: [mixture of normals](https://observablehq.com/@mattiasvillani/normal-mix
 Extras: [Illustration](https://www.youtube.com/watch?v=IGiQOCX9UbM&ab_channel=Red15) of Gibbs sampling when parameters are strongly correlated.
 
 **Lecture 8 - MCMC and Metropolis-Hastings** \
-Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L8.pdf) \
-Widget: [Random walk Metropolis](https://observablehq.com/@mattiasvillani/random-walk-metropolis) \
+Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L8.pdf)\
+Widget: [Random walk Metropolis](https://observablehq.com/@mattiasvillani/random-walk-metropolis)\
 Code: [Simulating Markov Chains](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/SimulateDiscreteMarkovChain.R)
 
 **Lecture 9 - HMC and Variational inference** \
-Reading: BDA Ch. 12.4 and Ch. 13.7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf) \
-Widget: [Hamiltonian dynamics and leapfrog](https://observablehq.com/@mattiasvillani/leapfrog-integrator) | [HMC from multimodal distribution](https://observablehq.com/@mattiasvillani/hmc-sampling-from-multi-modal-distributions) \ 
+Reading: BDA Ch. 12.4 and Ch. 13.7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf)\
+Widget: [Hamiltonian dynamics and leapfrog](https://observablehq.com/@mattiasvillani/leapfrog-integrator) | [HMC from multimodal distribution](https://observablehq.com/@mattiasvillani/hmc-sampling-from-multi-modal-distributions)\ 
 Extras: [HMC animations](http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html) | [HarlMCMC shake](https://www.youtube.com/watch?v=Vv3f0QNWvWQ&ab_channel=DavidDuvenaud) | [visual explantion of HMC algorithm tuning](https://colcarroll.github.io/mcmc-adapt/) | [Radford Neal's handbook chapter on HMC](https://arxiv.org/pdf/1206.1901.pdf)
 
 **Lecture 10 - Probabilistic programming for Bayesian learning**\
