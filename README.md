@@ -130,10 +130,12 @@ Extras: [Illustration](https://www.youtube.com/watch?v=IGiQOCX9UbM&ab_channel=Re
 
 **Lecture 8 - MCMC and Metropolis-Hastings** \
 Reading: BDA Ch. 11 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L8.pdf) \
+Widget: [Random walk Metropolis](https://observablehq.com/@mattiasvillani/random-walk-metropolis) \
 Code: [Simulating Markov Chains](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Code/SimulateDiscreteMarkovChain.R)
 
 **Lecture 9 - HMC and Variational inference** \
 Reading: BDA Ch. 12.4 and Ch. 13.7 | [Slides](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Slides/BL_L9.pdf) \
+Widget: [Hamiltonian dynamics and leapfrog](https://observablehq.com/@mattiasvillani/leapfrog-integrator) | [HMC from multimodal distribution](https://observablehq.com/@mattiasvillani/hmc-sampling-from-multi-modal-distributions) \ 
 Extras: [HMC animations](http://arogozhnikov.github.io/2016/12/19/markov_chain_monte_carlo.html) | [HarlMCMC shake](https://www.youtube.com/watch?v=Vv3f0QNWvWQ&ab_channel=DavidDuvenaud) | [visual explantion of HMC algorithm tuning](https://colcarroll.github.io/mcmc-adapt/) | [Radford Neal's handbook chapter on HMC](https://arxiv.org/pdf/1206.1901.pdf)
 
 **Lecture 10 - Probabilistic programming for Bayesian learning**\
