@@ -1,0 +1,2963 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+}
+
+\usepackage{mathtools}
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
+
+
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
+
+
+\tiny
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
+}
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
+\definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\color orange
+Bayesian Learning
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+Gibbs sampling
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Lecture 7 - Gibbs sampling
+\end_layout
+
+\begin_layout Author
+
+\series bold
+Mattias Villani 
+\series default
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+ 
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Mattias Villani
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Stockholm University
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Lecture overview
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Monte Carlo simulation
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Gibbs sampling
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Data augmentation
+\series default
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Mixture models
+\series default
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Probit regression
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Regularized regression
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo sampling
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $\theta^{(1)},...,\theta^{(m)}$
+\end_inset
+
+ is an 
+\series bold
+\color blue
+
+\begin_inset Formula $\mathbf{iid}$
+\end_inset
+
+ sequence
+\series default
+\color inherit
+ from 
+\begin_inset Formula $p(\theta\vert\boldsymbol{y})$
+\end_inset
+
+, then
+\begin_inset Formula 
+\begin{eqnarray*}
+\bar{\theta}=\frac{1}{m}\sum_{i=1}^{m}\theta^{(i)} & \rightarrow & \mathbb{E}(\theta\vert\boldsymbol{y})\\
+\bar{g}(\theta)=\frac{1}{m}\sum_{i=1}^{m}g(\theta^{(i)}) & \rightarrow & \mathbb{E}[g(\theta)\vert\boldsymbol{y}]
+\end{eqnarray*}
+
+\end_inset
+
+for some function 
+\begin_inset Formula $g(\theta)$
+\end_inset
+
+ of interest.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Central limit theorem
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\bar{\theta}_{1:m}\overset{\mathrm{appr}}{\sim}N\left(\mathbb{E}(\theta\vert\boldsymbol{y}),\frac{\mathbb{V}(\theta\vert\boldsymbol{y})}{m}\right)\quad\text{for large }m
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo sampling - convergence
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/NormalPostSimConv.pdf
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Sampling from multivariate distributions
+\series default
+\color inherit
+, 
+\begin_inset Formula $p(X_{1},...,X_{p})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Typically a posterior distribution: 
+\begin_inset Formula $p(\theta_{1},\dots,\theta_{p}|\boldsymbol{y})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Requirement: Easily sampled 
+\series bold
+\color blue
+full conditional distributions
+\series default
+\color inherit
+:
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $p(\theta_{1}|\theta_{2},\theta_{3}...,\theta_{p},\boldsymbol{y})$
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(\theta_{2}|\theta_{1},\theta_{3},...,\theta_{p},\boldsymbol{y})$
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(\theta_{p}|\theta_{1},\theta_{2},...,\theta_{p-1},\boldsymbol{y})$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Gibbs sampling is a special case of
+\series bold
+ 
+\color blue
+Metropolis-Hastings
+\series default
+\color inherit
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Metropolis-Hastings is a 
+\series bold
+\color blue
+Markov Chain Monte Carlo
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+MCMC
+\series default
+\color inherit
+) algorithm.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+The Gibbs sampling algorithm
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsSamplingAlgorithm.png
+	scale 32
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling draws converge to the posterior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Gibbs draws 
+\begin_inset Formula $\boldsymbol{\theta}^{(1)},...,\boldsymbol{\theta}^{(m)}$
+\end_inset
+
+ are 
+\series bold
+\color blue
+dependent
+\series default
+\color inherit
+, but
+\begin_inset Formula 
+\begin{eqnarray*}
+\bar{\boldsymbol{\theta}}=\frac{1}{m}\sum_{t=1}^{m}\boldsymbol{\theta}^{(t)} & \rightarrow & \mathbb{E}(\boldsymbol{\theta}\vert\boldsymbol{y})\\
+\bar{g}(\boldsymbol{\theta})=\frac{1}{m}\sum_{t=1}^{m}g(\boldsymbol{\theta}^{(t)}) & \rightarrow & \mathbb{E}[g(\boldsymbol{\theta})\vert\boldsymbol{y}]
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{\theta}^{(1)},....,\boldsymbol{\theta}^{(m)}$
+\end_inset
+
+ 
+\series bold
+\color blue
+converges in distribution
+\series default
+\color inherit
+ to posterior 
+\begin_inset Formula $p(\boldsymbol{\theta}\vert\boldsymbol{y})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\theta_{j}^{(1)},...,\theta_{j}^{(m)}$
+\end_inset
+
+ converges to the marginal posterior of 
+\begin_inset Formula $\theta_{j}$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Central limit theorem
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\bar{\boldsymbol{\theta}}\overset{\mathrm{approx}}{\sim}N\left(\mathbb{E}(\boldsymbol{\theta}\vert\boldsymbol{y}),\mathbb{V}(\bar{\boldsymbol{\theta}})\right)\text{ for large }m
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Dependent draws for Gibbs are less efficient
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Dependent draws
+\series default
+\color inherit
+ 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+
+\series bold
+\color blue
+ less efficient
+\series default
+\color inherit
+ than iid sampling.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+IID samples
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\mathrm{Var}(\bar{\theta})=\frac{\sigma^{2}}{m},\qquad\text{where }\sigma^{2}=\mathbb{V}(\theta\vert\boldsymbol{y})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Autocorrelated samples
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\mathrm{Var}(\bar{\theta})=\frac{\sigma^{2}}{m}\left(1+2\sum_{k=1}^{\infty}\rho_{k}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\rho_{k}$
+\end_inset
+
+ is the autocorrelation at lag 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Inefficiency factor
+\series default
+\color inherit
+: 
+\begin_inset Formula 
+\[
+\mathrm{IF}=1+2\sum_{k=1}^{\infty}\rho_{k}\approx1+2\sum_{k=1}^{K}\rho_{k}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Effective sample size
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+ESS
+\series default
+\color inherit
+): 
+\begin_inset Formula $\frac{m}{\mathrm{IF}}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling bivariate normal
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Joint distribution
+\series default
+\color inherit
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\left(\begin{array}{c}
+\theta_{1}\\
+\theta_{2}
+\end{array}\right)\sim N_{2}\left[\left(\begin{array}{c}
+\mu_{1}\\
+\mu_{2}
+\end{array}\right),\left(\begin{array}{cc}
+\sigma_{1}^{2} & \rho\sigma_{1}\sigma_{2}\\
+\rho\sigma_{1}\sigma_{2} & \sigma_{2}^{2}
+\end{array}\right)\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsBivariateNormal.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling - Bivariate normal
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsBivariateNormal2.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling - Bivariate normal
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsBivariateNormal3.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Direct sampling vs Gibbs sampling
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsvsIID.pdf
+	lyxscale 30
+	scale 16.5
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Direct vs Gibbs sampling, bivariate normal 
+\begin_inset Formula $\rho=0.9$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/IIDvsGibbsRawDraws.pdf
+	scale 31
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs is inefficient when parameters are correlated
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GibbsMultiNormalIF.pdf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Normal model with conditionally conjugate prior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Normal model
+\series default
+\color inherit
+ with 
+\series bold
+\color blue
+conditionally conjugate prior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+\mu & \sim N(\mu_{0},{\color{orange}\tau_{0}^{2}})\\
+\sigma^{2} & \sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Full conditional posteriors
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+\mu|\sigma^{2},x & \sim N\left(\mu_{n},\tau_{n}^{2}\right)\\
+\sigma^{2}|\mu,x & \sim Inv-\chi^{2}\left(\nu_{n},\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}\left(x_{i}-\mu\right)^{2}}{n+\nu_{0}}\right)
+\end{align*}
+
+\end_inset
+
+with 
+\begin_inset Formula $\mu_{n}$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau_{n}^{2}$
+\end_inset
+
+ defined the same as when 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ is known.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for AR processes
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+AR(
+\begin_inset Formula $p$
+\end_inset
+
+) process
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+x_{t}=\mu+\phi_{1}(x_{t-1}-\mu)+...+\phi_{p}(x_{t-p}-\mu)+\varepsilon_{t},\text{ \ \ }\varepsilon_{t}\overset{iid}{\sim}N(0,\sigma^{2}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\phi=(\phi_{1},...,\phi_{p})'$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mu\sim$
+\end_inset
+
+ Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\phi\sim$
+\end_inset
+
+ Multivariate Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma^{2}\sim$
+\end_inset
+
+ Scaled Inverse 
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+.
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+posterior
+\series default
+\color inherit
+ can be simulated by 
+\series bold
+\color blue
+Gibbs sampling
+\series default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+blfootnote{
+\backslash
+tiny Villani (2009).
+ Steady State Priors for Vector Autoregressions.
+ Journal of Applied Econometrics.}
+\end_layout
+
+\end_inset
+
+:
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mu|\phi,\sigma^{2},x\sim$
+\end_inset
+
+ Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\text{\phi}|\mu,\sigma^{2},x\sim$
+\end_inset
+
+ Multivariate Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma^{2}|\mu,\phi,x\sim$
+\end_inset
+
+ Scaled Inverse 
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Data augmentation - Mixture distributions 
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Let 
+\begin_inset Formula $N(x|\mu,\sigma^{2})$
+\end_inset
+
+ denote the 
+\series bold
+PDF
+\series default
+ of 
+\begin_inset Formula $x\sim N(\mu,\sigma^{2})$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\color black
+Two-component
+\series bold
+ 
+\color blue
+mixture of normals
+\series default
+\color inherit
+ [MoN(
+\begin_inset Formula $2$
+\end_inset
+
+)]
+\begin_inset Formula 
+\[
+p(x)=\omega\cdot N(x|\mu_{1},\sigma_{1}^{2})+(1-\omega)\cdot N(x|\mu_{2},\sigma_{2}^{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Simulate
+\series default
+\color inherit
+ from a MoN(
+\begin_inset Formula $2$
+\end_inset
+
+):
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Simulate a 
+\series bold
+\color blue
+membership indicator
+\series default
+\color inherit
+ 
+\begin_inset Formula $Z\in\{1,2\}$
+\end_inset
+
+: 
+\begin_inset Formula $Z\sim Bern(\pi)$
+\end_inset
+
+.
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $Z=1$
+\end_inset
+
+, simulate 
+\begin_inset Formula $x$
+\end_inset
+
+ from 
+\begin_inset Formula $N(\mu_{1},\sigma_{1}^{2})$
+\end_inset
+
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $Z=2$
+\end_inset
+
+, simulate 
+\begin_inset Formula $x$
+\end_inset
+
+ from 
+\begin_inset Formula $N(\mu_{2},\sigma_{2}^{2}).$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Illustration of mixture of normals
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MoNBimodal.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MoNHeavyTails.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MoNTrimodal.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MoNSkew.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Data augmentation - Mixture distributions
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+\begin_inset Formula $K$
+\end_inset
+
+-component mixture of normals
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(x)=\sum_{k=1}^{K}\omega_{k}N(x|\mu_{k},\sigma_{k}^{2})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Indicators
+\series default
+\color inherit
+: 
+\begin_inset Formula $Z_{i}=k$
+\end_inset
+
+ if observation 
+\begin_inset Formula $x_{i}$
+\end_inset
+
+ comes from component 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/SimDataMixNormal.png
+	scale 24
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Fish length data with known yearly cohorts
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PikeLength.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PikeLengthByAge.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Fish length data - fit with known yearly cohorts
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PikeLengthByAgeDensity.pdf
+	lyxscale 50
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Likelihood for a mixture and data augmentation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+likelihood
+\series default
+\color inherit
+ is a product of sums.
+ 
+\series bold
+\color blue
+Messy
+\series default
+\color inherit
+ to work with.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Assume
+\series default
+\color inherit
+ that we know where each observation comes from 
+\begin_inset Formula 
+\[
+z_{i}=k\text{ if }x_{i}\text{ came from mixture component }k.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Given 
+\begin_inset Formula $z_{1},...,z_{n}$
+\end_inset
+
+ it is easy to estimate the means 
+\begin_inset Formula $\mu_{1},\ldots,\mu_{K}$
+\end_inset
+
+, the variances 
+\begin_inset Formula $\sigma_{1}^{2},\ldots,\sigma_{K}^{2}$
+\end_inset
+
+ and the mixture proportions 
+\begin_inset Formula $\omega_{1},\ldots\omega_{K}$
+\end_inset
+
+: just split up the data in 
+\begin_inset Formula $K$
+\end_inset
+
+ groups according to 
+\begin_inset Formula $z_{1},...,z_{n}$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+But we do 
+\series bold
+\color blue
+not
+\series default
+\color inherit
+ know 
+\begin_inset Formula $z_{1},...,z_{n}$
+\end_inset
+
+!
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Data augmentation
+\series default
+\color inherit
+: add 
+\begin_inset Formula $z_{1},...,z_{n}$
+\end_inset
+
+ as unknown parameters, and update them in separate Gibbs step.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for mixture distributions
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsSamplingMixtureNormal.png
+	lyxscale 50
+	scale 29
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Fish length data - mixture of normals fit
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PikeLengthMoNFit.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Illustration of mixture Poissons
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MixPoisBimodal.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MixPoisZeroinflated.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Fitting a mixture Poissons to the eBay bidders
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/EbayPoissonMixFit.pdf
+	lyxscale 50
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Data augmentation - Probit regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Probit regression
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\[
+\Pr(y_{i}=1\text{ }|\text{ }\boldsymbol{x}_{i})=\Phi(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Random utility formulation
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{i} & \sim & N(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta},1)\\
+y_{i} & = & \left\{ \begin{array}{c}
+1\text{ \ \ if }u_{i}>0\\
+0\text{ \ \ if }u_{i}\leq0
+\end{array}\right.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Check: 
+\begin_inset Formula $\Pr(y_{i}=1$
+\end_inset
+
+ 
+\begin_inset Formula $|$
+\end_inset
+
+ 
+\begin_inset Formula $\boldsymbol{x}_{i})=\Pr(u_{i}>0)=1-\Pr(u_{i}\leq0)=1-\Pr(u_{i}-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}\leq-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})=1-\Phi(-\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})=\Phi(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Given 
+\begin_inset Formula $\boldsymbol{u}=(u_{1},...,u_{n})$
+\end_inset
+
+, 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+ can be analyzed by linear regression.
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{u}$
+\end_inset
+
+ is 
+\series bold
+\color blue
+not observed
+\series default
+\color inherit
+.
+ Gibbs sampling to the rescue!
+\size tiny
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+
+\size tiny
+Albert and Chib (1993).
+ Bayesian Analysis of Binary and Polychotomous Response Data.
+ 
+\emph on
+JASA
+\emph default
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Latent utility formulation of Probit regression
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/ProbitUtility1.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/ProbitUtility2.pdf
+	lyxscale 50
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for the Probit regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Random utility formulation
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\begin{eqnarray*}
+u_{i} & \sim & N(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta},1)\\
+y_{i} & = & \left\{ \begin{array}{c}
+1\text{ \ \ if }u_{i}>0\\
+0\text{ \ \ if }u_{i}\leq0
+\end{array}\right.
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Simulate from 
+\series bold
+\color blue
+joint posterior 
+\begin_inset Formula $p(\boldsymbol{u},\boldsymbol{\beta}|\boldsymbol{y})$
+\end_inset
+
+
+\series default
+\color inherit
+ by iterating between
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $p(\boldsymbol{\beta}|\boldsymbol{u},\boldsymbol{y})$
+\end_inset
+
+ which is multivariate normal (linear regression)
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+\begin_inset Formula $p(u_{i}|\boldsymbol{\beta},\boldsymbol{y}),\text{ }i=1,...,n$
+\end_inset
+
+, independently.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+full conditional
+\series default
+\color inherit
+ posterior distribution of 
+\series bold
+\color blue
+
+\begin_inset Formula ${\normalcolor u_{i}}$
+\end_inset
+
+
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+p(u_{i}|\boldsymbol{\beta},\boldsymbol{y}) & \propto p(y_{i}|\boldsymbol{\beta},u_{i})p(u_{i}|\boldsymbol{\beta})\\
+ & =\begin{cases}
+N(u_{i}|x_{i}^{\top}\boldsymbol{\beta},1) & \text{truncated to }u_{i}\in(-\infty,0]\text{ if }y_{i}=0\\
+N(u_{i}|x_{i}^{\top}\boldsymbol{\beta},1) & \text{truncated to }u_{i}\in(0,\infty)\text{ if }y_{i}=1
+\end{cases}
+\end{align*}
+
+\end_inset
+
+
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Histogram of 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+-draws approximates marginal posterior of 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Conditional posterior for latent utility 
+\begin_inset Formula $u$
+\end_inset
+
+
+\begin_inset Formula $_{i}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/TruncNormZeroLowerAndUpper.pdf
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Direct sampling L2-regularized regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Recap: The joint posterior of 
+\begin_inset Formula $\beta$
+\end_inset
+
+, 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is
+\begin_inset Formula 
+\begin{align*}
+\beta|\sigma^{2},\lambda,\mathbf{y},\mathbf{X} & \sim N\left(\mu_{n},\Omega_{n}^{-1}\right)\\
+\sigma^{2}|\lambda,\mathbf{y},\mathbf{X} & \sim Inv-\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)\\
+p(\lambda|\mathbf{y},\mathbf{X}) & \propto\sqrt{\frac{\left|\Omega_{0}\right|}{\left|X'X+\Omega_{0}\right|}}\left(\frac{\nu_{n}\sigma_{n}^{2}}{2}\right)^{-\nu_{n}/2}\cdot p(\lambda)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+This is the 
+\series bold
+\color blue
+conditional-marginal decomposition
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\beta,\sigma^{2},\lambda\vert\mathbf{y},\mathbf{X})=p(\beta\vert\sigma^{2},\lambda,\mathbf{y},\mathbf{X})p(\sigma^{2}\vert\lambda,\mathbf{y},\mathbf{X})p(\lambda\vert\mathbf{y},\mathbf{X})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Gibbs sampling
+\series default
+\color inherit
+ can instead be used:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Sample 
+\begin_inset Formula $\beta\vert\sigma^{2},\lambda,\mathbf{y},\mathbf{X}$
+\end_inset
+
+ from Normal
+\end_layout
+
+\begin_layout Itemize
+Sample 
+\begin_inset Formula $\sigma^{2}\vert\beta,\lambda,\mathbf{y},\mathbf{X}$
+\end_inset
+
+ from Inv-
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sample 
+\begin_inset Formula $\lambda\vert\beta,\sigma^{2},\mathbf{y},\mathbf{X}$
+\end_inset
+
+ from Gamma
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is
+\series bold
+ 
+\color blue
+easy
+\color inherit
+ 
+\series default
+to simulate 
+\series bold
+\color blue
+conditional on
+\series default
+\color inherit
+ 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for L2-regularized regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Prior:
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{\beta}\vert\sigma^{2},\lambda & \sim N\left(\boldsymbol{0},\frac{\sigma^{2}}{\lambda}I_{k}\right)\\
+\sigma^{2} & \sim\mathsf{Inv}-\chi^{2}\left(\nu_{0},\sigma_{0}^{2}\right)\\
+\lambda^{-1} & \sim\mathsf{Inv}-\chi^{2}\left(\omega_{0},\psi_{0}^{2}\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+By Bayes' theorem
+\begin_inset Formula 
+\begin{align*}
+p\left(\lambda|\boldsymbol{\beta},\sigma^{2},\mathbf{y}\right) & \propto p\left(\mathbf{y}|\boldsymbol{\beta},\sigma^{2},\lambda\right)p\left(\lambda|\boldsymbol{\beta},\sigma^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p\left(\mathbf{y}|\boldsymbol{\beta},\sigma^{2},\lambda\right)$
+\end_inset
+
+ does not depend on 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ once we condition on 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+p\left(\lambda|\boldsymbol{\beta},\sigma^{2},\mathbf{y}\right)\propto p\left(\lambda|\boldsymbol{\beta},\sigma^{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+So using Bayes' theorem once more
+\begin_inset Formula 
+\[
+p\left(\lambda|\boldsymbol{\beta},\sigma^{2},\mathbf{y}\right)\propto p\left(\lambda|\boldsymbol{\beta},\sigma^{2}\right)\propto p\left(\boldsymbol{\beta}|\sigma^{2},\lambda\right)p\left(\lambda\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In conditional posterior for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, the 
+\begin_inset Formula $\beta_{1},\ldots,\beta_{p}$
+\end_inset
+
+ act like 
+\begin_inset Quotes eld
+\end_inset
+
+data
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for L2-regularized regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsL2regularization.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Improving the efficiency of the Gibbs sampler
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Efficient blocking
+\series default
+\color inherit
+.
+ Correlated parameters should ideally be included in the same updating block.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Reparametrization
+\series default
+\color inherit
+.
+ Convergence can improve dramatically in alternative parametrizations.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Data augmentation
+\series default
+\color inherit
+.
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Augment with latent variables to make 
+\series bold
+\color blue
+full conditional posteriors more easily sampled
+\series default
+\color inherit
+ (Probit, Mixture models).
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+But typically 
+\series bold
+\color blue
+increases the autocorrelation
+\series default
+\color inherit
+ between draws.
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

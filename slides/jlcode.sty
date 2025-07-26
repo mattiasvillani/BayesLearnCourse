@@ -1,0 +1,1462 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%
+%%% jlcode.sty
+%%% Copyright 2018 GitHub user wg030
+%%
+%% This work may be distributed and/or modified under the
+%% conditions of the LaTeX Project Public License, either
+%% version 1.3 of this license or (at your option) any
+%% later version.
+%% The latest version of this license is in
+%% http://www.latex-project.org/lppl.txt
+%% and version 1.3 or later is part of all distributions of
+%% LaTeX version 2005/12/01 or later.
+%%
+%% This work has the LPPL maintenance status 'maintained'.
+%%
+%% The Current Maintainer of this work is GitHub user wg030.
+%%
+%% This work consists of the files jlcode.sty, createlists.jl,
+%% testfile1.jl, testfile2.jl, example.tex and the derived file
+%% example.pdf.
+%%
+%%
+%%
+% keywords, literals and built-ins were created by
+% createlists.jl, which was inspired by the following script:
+% https://github.com/isagalaev/highlight.js/blob/master/src/languages/julia.js
+% colors for the themes from:
+% https://docs.julialang.org/en/v1/assets/themes/documenter-light.css
+% https://github.com/dietercastel/jlcode/blob/darktheme/jlcode.sty
+% special unicode characters from:
+% https://docs.julialang.org/en/v1/manual/unicode-input/
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% defining the jlcode package
+\def\fileversion{5.1}
+\def\filedate{2020/11/26}
+
+\typeout{-- Package: `jlcode' \fileversion\space <\filedate> --}
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{jlcode}[\filedate\space\fileversion]
+
+
+
+
+
+% loading required packages
+\RequirePackage{listings}
+\RequirePackage{xcolor}              % for coloring
+\RequirePackage{textcomp}            % for upright single quotes
+\RequirePackage{amssymb}             % for the ϰ symbol
+\RequirePackage{eurosym}             % for the € symbol
+\RequirePackage{pmboxdraw}           % for the unicode box characters
+\PassOptionsToPackage{T1}{fontenc}
+\RequirePackage{fontenc}             % for the « and » symbols
+
+\RequirePackage{calc}                % for the creation of the code box
+\RequirePackage{relsize}             % for scaling the font sizes
+\RequirePackage{etoolbox}            % for \ifdefstring
+\RequirePackage{kvoptions}           % for adding options to this package
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% option declarations
+\SetupKeyvalOptions{family=jlc, prefix=jlc@}
+
+% defining package options
+\DeclareBoolOption[true]{autoload}
+\DeclareBoolOption[true]{usecourier}
+\DeclareStringOption[80]{charsperline}
+\DeclareStringOption[default]{theme}[default]
+\DisableKeyvalOption[action=error,package=jlcode]{jlc}{courierasttdflt}
+\DisableKeyvalOption[action=error,package=jlcode]{jlc}{usecolors}
+\DisableKeyvalOption[action=error,package=jlcode]{jlc}{usebox}
+\DisableKeyvalOption[action=error,package=jlcode]{jlc}{usecolors}
+\DisableKeyvalOption[action=error,package=jlcode]{jlc}{usebox}
+
+% default option rule
+\DeclareDefaultOption{\@unknownoptionerror}
+
+% processing options
+\ProcessLocalKeyvalOptions*
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% julia language definition
+\lstdefinelanguage{julia}
+{%
+%
+% julia's keywords:
+%
+morekeywords=[1]
+{%
+abstract type,baremodule,begin,break,catch,ccall,const,continue,do,else,elseif,%
+end,export,finally,for,function,global,if,import,in,isa,let,local,macro,module,%
+mutable struct,primitive type,quote,return,struct,try,using,where,while%
+},%
+%
+% julia's literals:
+%
+morekeywords=[2]
+{%
+ARCH,ARGS,Apr,April,Aug,August,BINDIR,CPU_NAME,CPU_THREADS,C_NULL,DEPOT_PATH,%
+DL_LOAD_PATH,Dec,December,ENDIAN_BOM,ENV,Feb,February,Fri,Friday,I,%
+ISODateFormat,ISODateTimeFormat,ISOTimeFormat,Inf,Inf16,Inf32,Inf64,%
+InsertionSort,JIT,Jan,January,Jul,July,Jun,June,KERNEL,LOAD_PATH,MACHINE,Mar,%
+March,May,MergeSort,Mon,Monday,NaN,NaN16,NaN32,NaN64,Nov,November,Oct,October,%
+PROGRAM_FILE,QuickSort,RFC1123Format,RTLD_DEEPBIND,RTLD_FIRST,RTLD_GLOBAL,%
+RTLD_LAZY,RTLD_LOCAL,RTLD_NODELETE,RTLD_NOLOAD,RTLD_NOW,RoundDown,%
+RoundFromZero,RoundNearest,RoundNearestTiesAway,RoundNearestTiesUp,RoundToZero,%
+RoundUp,STDLIB,Sat,Saturday,Sep,September,Sun,Sunday,Thu,Thursday,Tue,Tuesday,%
+VERSION,WORD_SIZE,Wed,Wednesday,catalan,devnull,dlext,e,eulergamma,false,%
+golden,im,missing,nothing,pi,stderr,stdin,stdout,true,undef,γ,π,φ,ℯ%
+},%
+%
+% julia's built-ins:
+%
+morekeywords=[3]
+{%
+AbstractArray,AbstractChannel,AbstractChar,AbstractDict,AbstractDisplay,%
+AbstractFloat,AbstractIrrational,AbstractLogger,AbstractMatrix,AbstractREPL,%
+AbstractRNG,AbstractRange,AbstractSerializer,AbstractSet,AbstractSparseArray,%
+AbstractSparseMatrix,AbstractSparseVector,AbstractString,AbstractUnitRange,%
+AbstractVecOrMat,AbstractVector,AbstractWorkerPool,Adjoint,Any,ArgumentError,%
+Array,AssertionError,Atomic,Base64DecodePipe,Base64EncodePipe,BasicREPL,%
+Bidiagonal,BigFloat,BigInt,BitArray,BitMatrix,BitSet,BitVector,Bool,%
+BoundsError,BroadcastStyle,BunchKaufman,CachingPool,CapturedException,%
+CartesianIndex,CartesianIndices,Cchar,Cdouble,Cfloat,Channel,Char,Cholesky,%
+CholeskyPivoted,Cint,Cintmax_t,Clong,Clonglong,ClusterManager,Cmd,CodeInfo,%
+CodeInstance,Colon,Complex,ComplexF16,ComplexF32,ComplexF64,CompositeException,%
+Condition,ConsoleLogger,Cptrdiff_t,Cshort,Csize_t,Cssize_t,Cstring,Cuchar,%
+Cuint,Cuintmax_t,Culong,Culonglong,Cushort,Cvoid,Cwchar_t,Cwstring,DataType,%
+Date,DateFormat,DatePeriod,DateTime,Day,DenseArray,DenseMatrix,DenseVecOrMat,%
+DenseVector,Diagonal,Dict,DimensionMismatch,Dims,DivideError,DomainError,%
+EOFError,Eigen,Enum,ErrorException,Event,Exception,ExponentialBackOff,Expr,%
+FDWatcher,FILE,Factorization,FileMonitor,Float16,Float32,Float64,FolderMonitor,%
+Function,Future,GeneralizedEigen,GeneralizedSVD,GeneralizedSchur,GenericArray,%
+GenericDict,GenericOrder,GenericSet,GenericString,GitConfig,GitRepo,GlobalRef,%
+GotoNode,HMAC_CTX,HTML,Hermitian,Hessenberg,Hour,IO,IOBuffer,IOContext,%
+IOStream,IPAddr,IPv4,IPv6,IdDict,IndexCartesian,IndexLinear,IndexStyle,%
+InexactError,InitError,Int,Int128,Int16,Int32,Int64,Int8,Integer,%
+InterruptException,InvalidStateException,Irrational,KeyError,LAPACKException,%
+LDLt,LQ,LU,LinRange,LineEditREPL,LineInfoNode,LineNumberNode,LinearIndices,%
+LoadError,LogLevel,LowerTriangular,MIME,Matrix,MersenneTwister,Method,%
+MethodError,MethodInstance,Microsecond,Millisecond,Minute,Missing,%
+MissingException,Module,Month,NTuple,NamedTuple,Nanosecond,NewvarNode,Nothing,%
+NullLogger,Number,OrdinalRange,OutOfMemoryError,OverflowError,Pair,%
+PartialQuickSort,Period,PermutedDimsArray,PhiCNode,PhiNode,PiNode,Pipe,%
+PollingFileWatcher,PosDefException,ProcessExitedException,%
+ProcessFailedException,Ptr,QR,QRPivoted,QuoteNode,RandomDevice,%
+RankDeficientException,Rational,RawFD,ReadOnlyMemoryError,Real,ReentrantLock,%
+Ref,Regex,RegexMatch,RemoteChannel,RemoteException,RoundingMode,SHA1_CTX,%
+SHA224_CTX,SHA256_CTX,SHA2_224_CTX,SHA2_256_CTX,SHA2_384_CTX,SHA2_512_CTX,%
+SHA384_CTX,SHA3_224_CTX,SHA3_256_CTX,SHA3_384_CTX,SHA3_512_CTX,SHA512_CTX,%
+SSAValue,SVD,Schur,Second,SegmentationFault,Serializer,Set,SharedArray,%
+SharedMatrix,SharedVector,Signed,SimpleLogger,SingularException,Slot,%
+SlotNumber,Some,SparseMatrixCSC,SparseVector,SpinLock,StackFrame,%
+StackOverflowError,StackTrace,StepRange,StepRangeLen,StreamREPL,StridedArray,%
+StridedMatrix,StridedVecOrMat,StridedVector,String,StringIndexError,SubArray,%
+SubString,SubstitutionString,SymTridiagonal,Symbol,Symmetric,SystemError,%
+TCPSocket,Task,TaskFailedException,TestSetException,Text,TextDisplay,Time,%
+TimePeriod,TimeType,TimeZone,Timer,TmStruct,Transpose,Tridiagonal,Tuple,Type,%
+TypeError,TypeVar,TypedSlot,UDPSocket,UInt,UInt128,UInt16,UInt32,UInt64,UInt8,%
+UTC,UUID,UndefInitializer,UndefKeywordError,UndefRefError,UndefVarError,%
+UniformScaling,Union,UnionAll,UnitLowerTriangular,UnitRange,%
+UnitUpperTriangular,Unsigned,UpperHessenberg,UpperTriangular,UpsilonNode,Val,%
+Vararg,VecElement,VecOrMat,Vector,VersionNumber,WeakKeyDict,WeakRef,Week,%
+WorkerConfig,WorkerPool,Year,ZeroPivotException%
+},%
+%
+% julia's macros:
+%
+morekeywords=[4]
+{%
+@MIME_str,@NamedTuple,@__DIR__,@__FILE__,@__LINE__,@__MODULE__,@__dot__,%
+@allocated,@assert,@async,@b_str,@big_str,@boundscheck,@ccall,@cfunction,@cmd,%
+@code_llvm,@code_lowered,@code_native,@code_typed,@code_warntype,%
+@dateformat_str,@debug,@deprecate,@distributed,@doc,@doc_str,@dump,@edit,%
+@elapsed,@enum,@error,@eval,@evalpoly,@everywhere,@fastmath,@fetch,@fetchfrom,%
+@functionloc,@generated,@gensym,@goto,@html_str,@inbounds,@inferred,@info,%
+@inline,@int128_str,@ip_str,@isdefined,@label,@less,@logmsg,@macroexpand,%
+@macroexpand1,@md_str,@noinline,@nospecialize,@polly,@printf,@profile,@r_str,%
+@raw_str,@s_str,@show,@simd,@spawn,@spawnat,@specialize,@sprintf,@static,@sync,%
+@task,@test,@test_broken,@test_deprecated,@test_logs,@test_nowarn,@test_skip,%
+@test_throws,@test_warn,@testset,@text_str,@threadcall,@threads,@time,@timed,%
+@timev,@uint128_str,@v_str,@var,@view,@views,@warn,@which%
+},%
+%
+% julia's functions:
+%
+morekeywords=[5]
+{%
+BLAS,Base,Base64,Broadcast,CRC32c,Compiler,Core,Dates,DelimitedFiles,%
+Distributed,Docs,FileWatching,FormatMessage,GC,GetLastError,IR,%
+InteractiveUtils,Intrinsics,Iterators,LAPACK,LibGit2,Libc,Libdl,LinearAlgebra,%
+Logging,Main,Markdown,MathConstants,Meta,Mmap,PipeBuffer,Printf,Profile,REPL,%
+Random,SHA,Serialization,SharedArrays,Sockets,SparseArrays,StackTraces,%
+SuiteSparse,Sys,Test,Threads,UUIDs,Unicode,__precompile__,abs,abs2,abs_float,%
+abspath,accept,accumulate,accumulate!,acos,acosd,acosh,acot,acotd,acoth,acsc,%
+acscd,acsch,add_float,add_float_fast,add_int,add_ptr,addprocs,adjoint,adjoint!,%
+adjust,all,all!,allunique,and_int,angle,any,any!,append!,applicable,apropos,%
+argmax,argmin,arraylen,ascii,asec,asecd,asech,ashr_int,asin,asind,asinh,%
+asyncmap,asyncmap!,atan,atand,atanh,atexit,atomic_add!,atomic_and!,atomic_cas!,%
+atomic_fence,atomic_max!,atomic_min!,atomic_nand!,atomic_or!,atomic_sub!,%
+atomic_xchg!,atomic_xor!,atreplinit,axes,axpby!,axpy!,backtrace,base64decode,%
+base64encode,basename,big,bind,binomial,bitcast,bitrand,bitreverse,bitrotate,%
+bitstring,blockdiag,broadcast,broadcast!,broadcast_axes,%
+broadcast_preserving_zero_d,broadcastable,bswap,bswap_int,bunchkaufman,%
+bunchkaufman!,bytes2hex,bytesavailable,calloc,canonicalize,cat,catch_backtrace,%
+cbrt,cd,ceil,ceil_llvm,cglobal,channel_from_id,check_same_host,checkbounds,%
+checked_sadd_int,checked_sdiv_int,checked_smul_int,checked_srem_int,%
+checked_ssub_int,checked_uadd_int,checked_udiv_int,checked_umul_int,%
+checked_urem_int,checked_usub_int,checkindex,chmod,cholesky,cholesky!,chomp,%
+chop,chown,circcopy!,circshift,circshift!,cis,clamp,clamp!,cld,clear!,%
+clipboard,close,cluster_cookie,cmp,coalesce,code_llvm,code_lowered,code_native,%
+code_typed,code_warntype,codepoint,codeunit,codeunits,collect,complex,cond,%
+condskeel,conj,conj!,connect,contains,convert,copy,copy!,copy_transpose!,%
+copysign,copysign_float,copyto!,cos,cosc,cosd,cosh,cospi,cot,cotd,coth,count,%
+count!,count_ones,count_zeros,countfrom,countlines,cp,cpu_info,cpu_summary,%
+crc32c,cross,csc,cscd,csch,ctime,ctlz_int,ctpop_int,cttz_int,cumprod,cumprod!,%
+cumsum,cumsum!,current_logger,current_task,cycle,datetime2julian,datetime2rata,%
+datetime2unix,day,dayabbr,dayname,dayofmonth,dayofquarter,dayofweek,%
+dayofweekofmonth,dayofyear,daysinmonth,daysinyear,daysofweekinmonth,deepcopy,%
+default_worker_pool,deg2rad,delete!,deleteat!,denominator,deserialize,det,%
+detach,detect_ambiguities,detect_unbound_args,diag,diagind,diagm,diff,digest!,%
+digits,digits!,dirname,disable_logging,disable_sigint,display,displayable,%
+displaysize,div,div_float,div_float_fast,divrem,dlclose,dllist,dlopen,dlopen_e,%
+dlpath,dlsym,dlsym_e,doc,dot,dotview,download,drop,dropdims,droptol!,dropwhile,%
+dropzeros,dropzeros!,dump,eachcol,eachindex,eachline,eachmatch,eachrow,%
+eachslice,edit,eigen,eigen!,eigmax,eigmin,eigvals,eigvals!,eigvecs,eltype,%
+empty,empty!,endswith,enumerate,eof,eps,eq_float,eq_float_fast,eq_int,errno,%
+error,esc,escape_string,eval,evalfile,evalpoly,exit,exp,exp10,exp2,expanduser,%
+expm1,exponent,extrema,factorial,factorize,falses,fd,fdio,fetch,fieldcount,%
+fieldname,fieldnames,fieldoffset,fieldtype,fieldtypes,filemode,filesize,fill,%
+fill!,filter,filter!,finalize,finalizer,find_library,findall,findfirst,%
+findlast,findmax,findmax!,findmin,findmin!,findnext,findnz,findprev,first,%
+firstdayofmonth,firstdayofquarter,firstdayofweek,firstdayofyear,firstindex,%
+flatten,fld,fld1,fldmod,fldmod1,flipsign,flipsign_int,float,floatmax,floatmin,%
+floor,floor_llvm,flush,flush_cstdio,fma,fma_float,foldl,foldr,foreach,fpext,%
+fpiseq,fpislt,fptosi,fptoui,fptrunc,free,free_memory,frexp,fullname,%
+functionloc,gcd,gcdx,gensym,get,get!,get_zero_subnormals,getaddrinfo,%
+getalladdrinfo,getfield,gethostname,getindex,getipaddr,getipaddrs,getkey,%
+getnameinfo,getpeername,getpid,getproperty,getsockname,givens,global_logger,%
+gperm,graphemes,hasfield,hash,haskey,hasmethod,hasproperty,hcat,hessenberg,%
+hessenberg!,hex2bytes,hex2bytes!,hmac_sha1,hmac_sha224,hmac_sha256,%
+hmac_sha2_224,hmac_sha2_256,hmac_sha2_384,hmac_sha2_512,hmac_sha384,%
+hmac_sha3_224,hmac_sha3_256,hmac_sha3_384,hmac_sha3_512,hmac_sha512,homedir,%
+hour,html,htol,hton,hvcat,hypot,identity,ifelse,ignorestatus,imag,in,%
+include_dependency,include_string,indexin,indexpids,init_worker,insert!,%
+instances,interrupt,intersect,intersect!,inv,invmod,invoke,invperm,invpermute!,%
+isa,isabspath,isabstracttype,isapple,isapprox,isascii,isassigned,isbits,%
+isbitstype,isblockdev,isbsd,ischardev,iscntrl,isconcretetype,isconst,isdefined,%
+isdiag,isdigit,isdir,isdirpath,isdisjoint,isdispatchtuple,isdragonfly,isempty,%
+isequal,iseven,isexecutable,isexpr,isfifo,isfile,isfinite,isfreebsd,%
+ishermitian,isimmutable,isinf,isinteger,isinteractive,isjsvm,isleapyear,isless,%
+isletter,islink,islinklocaladdr,islinux,islocked,islowercase,ismarked,%
+ismissing,ismount,ismutable,isnan,isnetbsd,isnothing,isnumeric,isodd,isone,%
+isopen,isopenbsd,ispath,isperm,isposdef,isposdef!,ispow2,isprimitivetype,%
+isprint,ispunct,isqrt,isreadable,isreadonly,isready,isreal,issetequal,issetgid,%
+issetuid,issocket,issorted,isspace,issparse,issticky,isstructtype,issubnormal,%
+issubset,issuccess,issymmetric,istaskdone,istaskfailed,istaskstarted,%
+istextmime,istril,istriu,isunix,isuppercase,isvalid,iswindows,iswritable,%
+isxdigit,iszero,iterate,join,join_multicast_group,joinpath,julian2datetime,%
+keys,keytype,kill,kron,last,lastdayofmonth,lastdayofquarter,lastdayofweek,%
+lastdayofyear,lastindex,latex,launch,lcm,ldexp,ldiv!,ldlt,ldlt!,le_float,%
+le_float_fast,leading_ones,leading_zeros,leave_multicast_group,length,%
+less,listen,listenany,llvmcall,lmul!,loadavg,localindices,lock,log,log10,log1p,%
+log2,logabsdet,logdet,lowercase,lowercasefirst,lowrankdowndate,%
+lowrankdowndate!,lowrankupdate,lowrankupdate!,lpad,lq,lq!,lshr_int,lstat,%
+lstrip,lt_float,lt_float_fast,ltoh,lu,lu!,lyap,macroexpand,malloc,manage,map,%
+map!,mapfoldl,mapfoldr,mapreduce,mapslices,mark,match,max,maximum,maximum!,%
+maxintfloat,merge,merge!,mergewith,mergewith!,methods,methodswith,microsecond,%
+millisecond,min,minimum,minimum!,minmax,minute,mkdir,mkpath,mktemp,mktempdir,%
+mod,mod1,mod2pi,modf,month,monthabbr,monthday,monthname,mtime,mul!,mul_float,%
+mul_float_fast,mul_int,muladd,muladd_float,mv,myid,nameof,names,nanosecond,%
+ncodeunits,ndigits,ndims,ne_float,ne_float_fast,ne_int,neg_float,%
+neg_float_fast,neg_int,nextfloat,nextind,nextpow,nextprod,nfields,nnz,%
+nonmissingtype,nonzeros,norm,normalize,normalize!,normpath,not_int,notify,now,%
+nprocs,nthreads,ntoh,ntuple,nullspace,numerator,nworkers,nzrange,objectid,%
+occursin,oftype,one,ones,oneunit,only,open,operm,opnorm,or_int,ordschur,%
+ordschur!,pairs,parent,parentindices,parentmodule,parse,partialsort,%
+partialsort!,partialsortperm,partialsortperm!,partition,pathof,peakflops,peek,%
+permute,permute!,permutedims,permutedims!,pinv,pipeline,pkgdir,pmap,pointer,%
+pointer_from_objref,pointerref,pointerset,poll_fd,poll_file,pop!,popat!,%
+popdisplay,popfirst!,position,powermod,precision,precompile,prepend!,prevfloat,%
+prevind,prevpow,print,println,printstyled,process_exited,process_messages,%
+process_running,procs,prod,prod!,product,promote,promote_rule,promote_shape,%
+promote_type,propertynames,push!,pushdisplay,pushfirst!,put!,pwd,qr,qr!,%
+quarterofyear,quot,rad2deg,rand,rand!,randcycle,randcycle!,randexp,randexp!,%
+randn,randn!,randperm,randperm!,randstring,randsubseq,randsubseq!,range,rank,%
+rata2datetime,rationalize,rdiv!,read,read!,readavailable,readbytes!,readchomp,%
+readdir,readdlm,readline,readlines,readlink,readuntil,real,realloc,realpath,%
+recv,recvfrom,redirect_stderr,redirect_stdin,redirect_stdout,redisplay,reduce,%
+reenable_sigint,reflect!,reim,reinterpret,relpath,rem,rem2pi,rem_float,%
+rem_float_fast,remote,remote_do,remotecall,remotecall_fetch,remotecall_wait,%
+remoteref_id,repeat,repeated,replace,replace!,repr,reset,reshape,resize!,rest,%
+rethrow,retry,reverse,reverse!,reverseind,rint_llvm,rm,rmprocs,rmul!,rot180,%
+rotate!,rotl90,rotr90,round,rounding,rowvals,rpad,rsplit,rstrip,run,schedule,%
+schur,schur!,sdata,sdiv_int,searchsorted,searchsortedfirst,searchsortedlast,%
+sec,secd,sech,second,seek,seekend,seekstart,selectdim,send,serialize,%
+set_zero_subnormals,setdiff,setdiff!,setenv,setfield!,setindex!,setprecision,%
+setproperty!,setrounding,sext_int,sha1,sha224,sha256,sha2_224,sha2_256,%
+sha2_384,sha2_512,sha384,sha3_224,sha3_256,sha3_384,sha3_512,sha512,shl_int,%
+show,show_sexpr,showable,showerror,shuffle,shuffle!,sign,signbit,signed,%
+significand,similar,sin,sinc,sincos,sincosd,sind,sinh,sinpi,sitofp,size,%
+sizehint!,sizeof,skip,skipchars,skipmissing,sle_int,sleep,slt_int,something,%
+sort,sort!,sortperm,sortperm!,sotrtslices,sparse,sparsevec,spdiagm,splice!,%
+split,splitdir,splitdrive,splitext,splitpath,sprand,sprandn,sprint,spzeros,%
+sqrt,sqrt_llvm,sqrt_llvm_fast,srem_int,stacktrace,start_worker,srtartswith,%
+stat,step,strerror,strftime,stride,strides,string,stringmime,strip,strptime,%
+sub_float,sub_float_fast,sub_int,sub_ptr,subtypes,success,sum,sum!,summary,%
+supertype,supertypesd,svd,svd!,svdvals,svdvals!,sylvester,symdiff,symdiff!,%
+symlink,systemerror,systemsleep,take,take!,takewhile,tan,tand,tanh,%
+task_local_storage,tempdir,tempname,textwidth,thisind,threadhid,throw,time,%
+time_ns,timedwait,titlecase,to_indices,today,tofirst,tolast,tonext,toprev,%
+total_memory,touch,tr,trailing_ones,trailing_zeros,transcode,transpose,%
+transpose!,tril,tril!,ttriu,triu!,trues,trunc,trunc_int,trunc_llvm,truncate,%
+trylock,tryparse,tuple,typeassert,typeintersect,typejoin,typemax,typemin,%
+typeof,udiv_int,uitofp,ule_int,ult_int,unescape_string,uunion,union!,unique,%
+unique!,unix2datetime,unlock,unmark,unsafe_copyto!,unsafe_load,%
+unsafe_pointer_to_objref,unsafe_read,unsafe_store!,unsafe_string,unsafe_trunc,%
+unsafe_wrap,unsafe_wsrite,unsigned,unwatch_folder,update!,uperm,uppercase,%
+uppercasefirst,uptime,urem_int,uuid1,uuid4,uuid5,uuid_version,valtype,values,%
+varinfo,vcat,vec,versioninfo,view,wait,walkdir,watcah_file,watch_folder,week,%
+which,widemul,widen,with,with_logger,withenv,worker_id_from_socket,workers,%
+write,writedlm,xor,xor_int,year,yearmonth,yearmonthday,yield,yieldto,zero,%
+zeros,ziext_int,zip%
+},%
+%
+%
+sensitive=true,%
+%
+alsoother={$},%$%
+alsodigit={_},%
+%
+morecomment=[l]{\#},%
+morecomment=[n]{\#=}{=\#},%
+%
+morestring=[b]{"},%
+% just activate the next command if you dont use ' as the transposition
+% operator! comment out line 1283 in that case, too!
+%morestring=[m]{'},%
+morestring=[s]{"""}{"""},%
+morestring=[s]{L"}{"},%
+morestring=[s]{MIME"}{"},%
+morestring=[s]{b"}{"},%
+morestring=[s]{big"}{"},%
+morestring=[s]{dateformat"}{"},%
+morestring=[s]{doc"}{"},%
+morestring=[s]{html"}{"},%
+morestring=[s]{int128"}{"},%
+morestring=[s]{ip"}{"},%
+morestring=[s]{md"}{"},%
+morestring=[s]{pkg"}{"},%
+morestring=[s]{r"}{"},%
+morestring=[s]{raw"}{"},%
+morestring=[s]{s"}{"},%
+morestring=[s]{text"}{"},%
+morestring=[s]{uint128"}{"},%
+morestring=[s]{v"}{"},%
+morestring=[s]{var"}{"},%
+%
+}[keywords,comments,strings]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% default color theme
+\newcommand{\loaddefaultcolors}{%
+\definecolor{jlbase}{HTML}{444444}%         % julia's base color
+\definecolor{jlkeyword}{HTML}{444444}%      % julia's keywords
+\definecolor{jlliteral}{HTML}{78A960}%      % julia's literals
+\definecolor{jlbuiltin}{HTML}{397300}%      % julia's built-ins
+\definecolor{jlmacros}{HTML}{1F7199}%       % julia's macros
+\definecolor{jlfunctions}{HTML}{444444}%    % julia's functions
+\definecolor{jlcomment}{HTML}{888888}%      % julia's comments
+\definecolor{jlstrnum}{HTML}{880000}%       % julia's strings or numbers
+\definecolor{jlop}{HTML}{444444}%           % julia's operators
+\definecolor{jlbackground}{HTML}{F2F2F2}%   % the background of the code block
+\definecolor{jlrule}{HTML}{DDDDDD}%         % the rule of the code block
+\definecolor{jllinenumbers}{HTML}{000000}%  % the line numbers of the code block
+}
+
+\newcommand{\loadthemecolors}{\loaddefaultcolors}
+
+\ifdefstring{\jlc@theme}{default-plain}{%
+\renewcommand{\loadthemecolors}{\loaddefaultcolors}}{}
+
+
+
+% black and white color theme
+\newcommand{\loadgrayscalecolors}{%
+\definecolor{jlbase}{HTML}{000000}%         % julia's base color
+\definecolor{jlkeyword}{HTML}{000000}%      % julia's keywords
+\definecolor{jlliteral}{HTML}{000000}%      % julia's literals
+\definecolor{jlbuiltin}{HTML}{000000}%      % julia's built-ins
+\definecolor{jlmacros}{HTML}{000000}%       % julia's macros
+\definecolor{jlfunctions}{HTML}{000000}%    % julia's functions
+\definecolor{jlcomment}{HTML}{000000}%      % julia's comments
+\definecolor{jlstrnum}{HTML}{000000}%       % julia's strings or numbers
+\definecolor{jlop}{HTML}{000000}%           % julia's operators
+\definecolor{jlbackground}{HTML}{F5F5F5}%   % the background of the code block
+\definecolor{jlrule}{HTML}{DDDDDD}%         % the rule of the code block
+\definecolor{jllinenumbers}{HTML}{000000}%  % the line numbers of the code block
+}
+
+\ifdefstring{\jlc@theme}{grayscale}{%
+\renewcommand{\loadthemecolors}{\loadgrayscalecolors}}{}
+\ifdefstring{\jlc@theme}{grayscale-plain}{%
+\renewcommand{\loadthemecolors}{\loadgrayscalecolors}}{}
+
+
+
+% dark color theme
+% big thanks to "dietercastel" who put toegther this awesome dark theme,
+% which is designed to be ideally suited for the dark-beamer-theme
+\newcommand{\loaddarkbeamercolors}{%
+\definecolor{jlbase}{HTML}{66FFCC}%         % julia's base color
+\definecolor{jlkeyword}{HTML}{F9F2D7}%      % julia's keywords
+\definecolor{jlliteral}{HTML}{9B9B9B}%      % julia's literals
+\definecolor{jlbuiltin}{HTML}{F5AB35}%      % julia's built-ins
+\definecolor{jlmacros}{HTML}{9B9B9B}%       % julia's macros
+\definecolor{jlfunctions}{HTML}{9455AD}%    % julia's functions
+\definecolor{jlcomment}{HTML}{455ED3}%      % julia's comments
+\definecolor{jlstrnum}{HTML}{6BAED6}%       % julia's strings or numbers
+\definecolor{jlop}{HTML}{FF005A}%           % julia's operators
+\definecolor{jlbackground}{HTML}{181818}%   % the background of the code block
+\definecolor{jlrule}{HTML}{DDDDDD}%         % the rule of the code block
+\definecolor{jllinenumbers}{HTML}{F5AB35}%  % the line numbers of the code block
+}
+
+\ifdefstring{\jlc@theme}{darkbeamer}{%
+\renewcommand{\loadthemecolors}{\loaddarkbeamercolors}}{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% use courier as typewriter font
+\ifjlc@usecourier
+  \renewcommand{\ttdefault}{pcr}
+\fi
+
+% basic font style
+\def\jlbasicfont{\ttfamily\relsize{-2}\selectfont}
+
+% gerneral style for the code block
+\lstdefinestyle{jlcodeblockstyle}{%
+basicstyle={\loadthemecolors\color{jlstrnum}\jlbasicfont},
+keywordstyle={[1]\color{jlkeyword}\bfseries},
+keywordstyle={[2]\color{jlliteral}},
+keywordstyle={[3]\color{jlbuiltin}},
+keywordstyle={[4]\color{jlmacros}},
+keywordstyle={[5]\color{jlfunctions}},
+commentstyle={\color{jlcomment}},
+stringstyle={\color{jlstrnum}},
+identifierstyle={\color{jlbase}},
+showstringspaces=false,
+upquote=true,
+tabsize=4,
+aboveskip={1.5\baselineskip}, belowskip={1.5\baselineskip}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% defining required lengths for the code box
+\newlength{\bfem}
+\newlength{\xmrgn}
+\newcommand{\calcboxlengths}{%
+\settowidth{\bfem}{\jlbasicfont{m}}%
+\setlength{\xmrgn}{(\textwidth - \jlc@charsperline\bfem)*\real{0.5}}%
+}
+\calcboxlengths
+
+
+% style for the code box of the default theme
+\lstdefinestyle{jlcodeboxdfltstyle}{%
+backgroundcolor=\color{jlbackground}, rulecolor=\color{jlrule},
+frame=single, frameround=tttt,
+columns=fixed,
+basewidth=\bfem,
+linewidth=\textwidth,
+xleftmargin=\xmrgn, xrightmargin=\xmrgn,
+framexleftmargin=0.5\bfem, framexrightmargin=0.5\bfem
+}
+
+
+% style for the "code box" of the default theme without code box
+\lstdefinestyle{jlcodeboxnostyle}{%
+columns=fixed,
+basewidth=\bfem,
+linewidth=\textwidth,
+xleftmargin=\xmrgn, xrightmargin=\xmrgn,
+framexleftmargin=0.5\bfem, framexrightmargin=0.5\bfem
+}
+
+
+% style for the code box of the dark theme
+\lstdefinestyle{jlcodeboxdthstyle}{%
+backgroundcolor=\color{jlbackground}, rulecolor=\color{jlrule},
+numbers=left, stepnumber=1, numberstyle=\ttfamily\color{jllinenumbers},
+numbersep = 1.5\bfem,
+columns=fixed,
+basewidth=\bfem,
+linewidth=\textwidth,
+xleftmargin=\xmrgn, xrightmargin=\xmrgn,
+framexleftmargin=3.5\bfem, framexrightmargin=0.5\bfem
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% defining a new opliterate key
+\def\lst@OpLiteratekey#1\@nil@{\let\lst@ifxopliterate\lst@if
+                             \def\lst@opliterate{#1}}
+\lst@Key{opliterate}{}{\@ifstar{\lst@true \lst@OpLiteratekey}
+                             {\lst@false\lst@OpLiteratekey}#1\@nil@}
+\lst@AddToHook{SelectCharTable}
+    {\ifx\lst@opliterate\@empty\else
+         \expandafter\lst@OpLiterate\lst@opliterate{}\relax\z@
+     \fi}
+\def\lst@OpLiterate#1#2#3{%
+    \ifx\relax#2\@empty\else
+        \lst@CArgX #1\relax\lst@CDef
+            {}
+            {\let\lst@next\@empty
+             \lst@ifxopliterate
+                \lst@ifmode \let\lst@next\lst@CArgEmpty \fi
+             \fi
+             \ifx\lst@next\@empty
+                 \ifx\lst@OutputBox\@gobble\else
+                   \lst@XPrintToken \let\lst@scanmode\lst@scan@m
+                   \lst@token{#2}\lst@length#3\relax
+                   \lst@XPrintToken
+                 \fi
+                 \let\lst@next\lst@CArgEmptyGobble
+             \fi
+             \lst@next}%
+            \@empty
+        \expandafter\lst@OpLiterate
+    \fi}
+
+
+% defining the opc and the numc commands
+% for literating operators and numbers
+\newcommand{\opc}[1]{{\color{jlop}#1}}
+\newcommand{\numc}[1]{{\color{jlstrnum}#1}}
+
+
+
+\lstdefinestyle{jlcodeopstyle}{%
+opliterate=*
+%
+% julia's operators
+%
+{\$}{{\opc{\$}}}{1} {!}{{\opc{!}}}{1} {\%}{{\opc{\%}}}{1} {&}{{\opc{\&}}}{1}
+{’}{{\opc{’}}}{1} {(}{{\opc{(}}}{1} {)}{{\opc{)}}}{1} {*}{{\opc{*}}}{1}
+{+}{{\opc{+}}}{1} {,}{{\opc{,}}}{1} {-}{{\opc{-}}}{1} {.}{{\opc{.}}}{1}
+{/}{{\opc{/}}}{1} {:}{{\opc{:}}}{1} {;}{{\opc{;}}}{1} {<}{{\opc{<}}}{1}
+{=}{{\opc{=}}}{1} {>}{{\opc{>}}}{1} {?}{{\opc{?}}}{1} {[}{{\opc{[}}}{1}
+{\\}{{\opc{\lstum@backslash}}}{1} {]}{{\opc{]}}}{1} {^}{{\opc{\^{}}}}{1}
+{\{}{{\opc{\{}}}{1} {|}{{\opc{|}}}{1} {\}}{{\opc{\}}}}{1}
+{~}{{\opc{\textasciitilde{}}}}{1}
+%
+% julia's numbers
+%
+{.0}{{\numc{.0}}}{2} {.1}{{\numc{.1}}}{2} {.2}{{\numc{.2}}}{2}
+{.3}{{\numc{.3}}}{2} {.4}{{\numc{.4}}}{2} {.5}{{\numc{.5}}}{2}
+{.6}{{\numc{.6}}}{2} {.7}{{\numc{.7}}}{2} {.8}{{\numc{.8}}}{2}
+{.9}{{\numc{.9}}}{2}
+%
+{e+0}{{\numc{e+0}}}{3} {e+1}{{\numc{e+1}}}{3} {e+2}{{\numc{e+2}}}{3}
+{e+3}{{\numc{e+3}}}{3} {e+4}{{\numc{e+4}}}{3} {e+5}{{\numc{e+5}}}{3}
+{e+6}{{\numc{e+6}}}{3} {e+7}{{\numc{e+7}}}{3} {e+8}{{\numc{e+8}}}{3}
+{e+9}{{\numc{e+9}}}{3}
+%
+{0E+}{{\numc{0E+}}}{3} {1E+}{{\numc{1E+}}}{3} {2E+}{{\numc{2E+}}}{3}
+{3E+}{{\numc{3E+}}}{3} {4E+}{{\numc{4E+}}}{3} {5E+}{{\numc{5E+}}}{3}
+{6E+}{{\numc{6E+}}}{3} {7E+}{{\numc{7E+}}}{3} {8E+}{{\numc{8E+}}}{3}
+{9E+}{{\numc{9E+}}}{3}
+%
+{e-0}{{\numc{e-0}}}{3} {e-1}{{\numc{e-1}}}{3} {e-2}{{\numc{e-2}}}{3}
+{e-3}{{\numc{e-3}}}{3} {e-4}{{\numc{e-4}}}{3} {e-5}{{\numc{e-5}}}{3}
+{e-6}{{\numc{e-6}}}{3} {e-7}{{\numc{e-7}}}{3} {e-8}{{\numc{e-8}}}{3}
+{e-9}{{\numc{e-9}}}{3}
+%
+{0E-}{{\numc{0E-}}}{3} {1E-}{{\numc{1E-}}}{3} {2E-}{{\numc{2E-}}}{3}
+{3E-}{{\numc{3E-}}}{3} {4E-}{{\numc{4E-}}}{3} {5E-}{{\numc{5E-}}}{3}
+{6E-}{{\numc{6E-}}}{3} {7E-}{{\numc{7E-}}}{3} {8E-}{{\numc{8E-}}}{3}
+{9E-}{{\numc{9E-}}}{3}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% defining some symbols in such a way that they can be displayed correctly
+% \rvdots, \rddots, \riddots
+% (slightly modified versions of the commands of the mathdots package):
+
+\def\MDo@us#1{\@nameuse{#1style}}%
+ \def\MDo@uf#1{\@nameuse{#1font}0}%
+ \def\MDo@t{text}\def\MDo@s{script}\def\MDo@ss{scriptscript}%
+ \newdimen\MDo@unit \MDo@unit\p@
+
+\def\MDo@changestyle#1{\relax\MDo@unit0.1\fontdimen6\MDo@uf{#1}%
+ \everymath\expandafter{\the\everymath\MDo@us{#1}}}%
+\def\MDo@dot{$\m@th\ldotp$}%
+\def\MDo@palette#1{\mathchoice{#1\MDo@t}{#1\MDo@t}{#1\MDo@s}{#1\MDo@ss}}%
+
+
+\def\MDo@vdots#1{\vbox{\MDo@changestyle{#1}%
+ \baselineskip4\MDo@unit\lineskiplimit\z@
+ \kern-\MDo@unit\hbox{\MDo@dot}\hbox{\MDo@dot}\hbox{\MDo@dot}}}%
+
+\def\MDo@ddots#1{{\MDo@changestyle{#1}%
+ \mkern1mu\raise7\MDo@unit\vbox{\kern-\MDo@unit\hbox{\MDo@dot}}%
+ \mkern2mu\raise4\MDo@unit\hbox{\MDo@dot}%
+ \mkern2mu\raise \MDo@unit\hbox{\MDo@dot}\mkern1mu}}%
+
+\def\MDo@iddots#1{{\MDo@changestyle{#1}%
+ \mkern1mu\raise \MDo@unit\hbox{\MDo@dot}%
+ \mkern2mu\raise4\MDo@unit\hbox{\MDo@dot}%
+ \mkern2mu\raise7\MDo@unit\vbox{\kern-\MDo@unit\hbox{\MDo@dot}}}}%
+
+
+\DeclareRobustCommand\rvdots{\mathinner{\MDo@palette\MDo@vdots}}%
+\DeclareRobustCommand\rddots{\mathinner{\MDo@palette\MDo@ddots}}%
+\DeclareRobustCommand\riddots{\mathinner{\MDo@palette\MDo@iddots}}%
+
+
+
+% defining the ucc, the ucclit and uccop command
+% for literating special unicode characters
+\newcommand{\ucc}[1]{%
+\ifnum\lst@mode=\lst@Pmode\relax%
+{\color{jlbase}#1}%
+\else%
+#1%
+\fi%
+}
+
+\newcommand{\ucclit}[1]{%
+\ifnum\lst@mode=\lst@Pmode\relax%
+{\color{jlliteral}#1}%
+\else%
+#1%
+\fi%
+}
+
+\newcommand{\uccop}[1]{%
+\ifnum\lst@mode=\lst@Pmode\relax%
+{\color{jlop}#1}%
+\else%
+#1%
+\fi%
+}
+
+
+
+% special unicode characters
+%\DeclareUnicodeCharacter{0391}{A}
+\lstdefinestyle{jlcodeuccstyle}{%
+%inputencoding=utf8,
+extendedchars=true,
+literate=
+%
+% special characters that appear in latin languages
+%
+{á}{{\ucc{\'a}}}{1} {é}{{\ucc{\'e}}}{1} {í}{{\ucc{\'i}}}{1} {ó}{{\ucc{\'o}}}{1}
+{ú}{{\ucc{\'u}}}{1} {Á}{{\ucc{\'A}}}{1} {É}{{\ucc{\'E}}}{1} {Í}{{\ucc{\'I}}}{1}
+{Ó}{{\ucc{\'O}}}{1} {Ú}{{\ucc{\'U}}}{1}
+{à}{{\ucc{\`a}}}{1} {è}{{\ucc{\`e}}}{1} {ì}{{\ucc{\`i}}}{1} {ò}{{\ucc{\`o}}}{1}
+{ù}{{\ucc{\`u}}}{1} {À}{{\ucc{\`A}}}{1} {È}{{\ucc{\'E}}}{1} {Ì}{{\ucc{\`I}}}{1}
+{Ò}{{\ucc{\`O}}}{1} {Ù}{{\ucc{\`U}}}{1}
+{ä}{{\ucc{\"a}}}{1} {ë}{{\ucc{\"e}}}{1} {ï}{{\ucc{\"i}}}{1} {ö}{{\ucc{\"o}}}{1}
+{ü}{{\ucc{\"u}}}{1} {Ä}{{\ucc{\"A}}}{1} {Ë}{{\ucc{\"E}}}{1} {Ï}{{\ucc{\"I}}}{1}
+{Ö}{{\ucc{\"O}}}{1} {Ü}{{\ucc{\"U}}}{1}
+{â}{{\ucc{\^a}}}{1} {ê}{{\ucc{\^e}}}{1} {î}{{\ucc{\^i}}}{1} {ô}{{\ucc{\^o}}}{1}
+{û}{{\ucc{\^u}}}{1} {Â}{{\ucc{\^A}}}{1} {Ê}{{\ucc{\^E}}}{1} {Î}{{\ucc{\^I}}}{1}
+{Ô}{{\ucc{\^O}}}{1} {Û}{{\ucc{\^U}}}{1}
+{œ}{{\ucc{\oe}}}{1} {Œ}{{\ucc{\OE}}}{1} {æ}{{\ucc{\ae}}}{1} {Æ}{{\ucc{\AE}}}{1}
+{ß}{\ucc{{\ss}}}{1}
+{ű}{{\ucc{\H{u}}}}{1} {Ű}{{\ucc{\H{U}}}}{1} {ő}{{\ucc{\H{o}}}}{1}
+{Ő}{{\ucc{\H{O}}}}{1} {ç}{{\ucc{\c c}}}{1} {Ç}{{\ucc{\c C}}}{1}
+{ø}{{\ucc{\o}}}{1} {å}{{\ucc{\r a}}}{1} {Å}{{\ucc{\r A}}}{1}
+{€}{{\ucc{\euro}}}{1} {£}{{\ucc{\pounds}}}{1} {«}{{\ucc{\guillemotleft}}}{1}
+{»}{{\ucc{\guillemotright}}}{1} {ñ}{{\ucc{\~n}}}{1} {Ñ}{{\ucc{\~N}}}{1}
+{¿}{{\ucc{?`}}}{1}
+%
+% greek capital letters
+%
+{Α}{{\ucc{A}}}{1} {Β}{{\ucc{B}}}{1} {Γ}{{\ucc{$\Gamma$}}}{1}
+{Δ}{{\ucc{$\Delta$}}}{1} {Ε}{{\ucc{E}}}{1} {Ζ}{{\ucc{Z}}}{1}
+{Η}{{\ucc{H}}}{1} {Θ}{{\ucc{$\Theta$}}}{1} {Ι}{{\ucc{I}}}{1}
+{Κ}{{\ucc{K}}}{1} {Λ}{{\ucc{$\Lambda$}}}{1} {Μ}{{\ucc{M}}}{1}
+{Ν}{{\ucc{N}}}{1} {Ξ}{{\ucc{$\Xi$}}}{1} {Ο}{{\ucc{O}}}{1}
+{Π}{{\ucc{$\Pi$}}}{1} {Ρ}{{\ucc{P}}}{1} {Σ}{{\ucc{$\Sigma$}}}{1}
+{Τ}{{\ucc{T}}}{1} {Υ}{{\ucc{$\Upsilon$}}}{1} {Φ}{{\ucc{$\Phi$}}}{1}
+{Χ}{{\ucc{X}}}{1} {Ψ}{{\ucc{$\Psi$}}}{1} {Ω}{{\ucc{$\Omega$}}}{1}
+%
+% mircro sign + latin small letter open e
+%
+{µ}{{\ucc{$\mu$}}}{1} {ɛ}{{\ucc{$\varepsilon$}}}{1}
+{ℯ}{{\ucclit{$e$}}}{1}
+%
+% greek small letters
+%
+{α}{{\ucc{$\alpha$}}}{1} {β}{{\ucc{$\beta$}}}{1} {γ}{{\ucclit{$\gamma$}}}{1}
+{δ}{{\ucc{$\delta$}}}{1} {ε}{{\ucc{$\varepsilon$}}}{1}
+{ϵ}{{\ucc{$\epsilon$}}}{1} {ζ}{{\ucc{$\zeta$}}}{1} {η}{{\ucc{$\eta$}}}{1}
+{θ}{{\ucc{$\theta$}}}{1} {ϑ}{{\ucc{$\vartheta$}}}{1} {ι}{{\ucc{$\iota$}}}{1}
+{κ}{{\ucc{$\kappa$}}}{1} {ϰ}{{\ucc{$\varkappa$}}}{1} {λ}{{\ucc{$\lambda$}}}{1}
+{μ}{{\ucc{$\mu$}}}{1} {ν}{{\ucc{$\nu$}}}{1} {ξ}{{\ucc{$\xi$}}}{1}
+{ο}{{\ucc{o}}}{1} {π}{{\ucclit{$\pi$}}}{1} {ϖ}{{\ucc{$\varpi$}}}{1}
+{ρ}{{\ucc{$\rho$}}}{1} {ϱ}{{\ucc{$\varrho$}}}{1} {σ}{{\ucc{$\sigma$}}}{1}
+{ς}{{\ucc{$\varsigma$}}}{1} {τ}{{\ucc{$\tau$}}}{1} {υ}{{\ucc{$\upsilon$}}}{1}
+{φ}{{\ucclit{$\phi$}}}{1} {ϕ}{{\ucc{$\varphi$}}}{1} {χ}{{\ucc{$\chi$}}}{1}
+{ψ}{{\ucc{$\psi$}}}{1} {ω}{{\ucc{$\omega$}}}{1}
+%
+% latin capital letters with dot above
+%
+{Ȧ}{{\ucc{\.A}}}{1} {Ḃ}{{\ucc{\.B}}}{1} {Ċ}{{\ucc{\.C}}}{1} {Ḋ}{{\ucc{\.D}}}{1}
+{Ė}{{\ucc{\.E}}}{1} {Ḟ}{{\ucc{\.F}}}{1} {Ġ}{{\ucc{\.G}}}{1} {Ḣ}{{\ucc{\.H}}}{1}
+{İ}{{\ucc{\.I}}}{1} {J̇}{{\ucc{\.J}}}{1} {K̇}{{\ucc{\.K}}}{1} {L̇}{{\ucc{\.L}}}{1}
+{Ṁ}{{\ucc{\.M}}}{1} {Ṅ}{{\ucc{\.N}}}{1} {Ȯ}{{\ucc{\.O}}}{1} {Ṗ}{{\ucc{\.P}}}{1}
+{Q̇}{{\ucc{\.Q}}}{1} {Ṙ}{{\ucc{\.R}}}{1} {Ṡ}{{\ucc{\.S}}}{1} {Ṫ}{{\ucc{\.T}}}{1}
+{U̇}{{\ucc{\.U}}}{1} {V̇}{{\ucc{\.V}}}{1} {Ẇ}{{\ucc{\.W}}}{1} {Ẋ}{{\ucc{\.X}}}{1}
+{Ẏ}{{\ucc{\.Y}}}{1} {Ż}{{\ucc{\.Z}}}{1}
+%
+% latin small letters with dot above
+%
+{ȧ}{{\ucc{\.a}}}{1} {ḃ}{{\ucc{\.b}}}{1} {ċ}{{\ucc{\.c}}}{1} {ḋ}{{\ucc{\.d}}}{1}
+{ė}{{\ucc{\.e}}}{1} {ḟ}{{\ucc{\.f}}}{1} {ġ}{{\ucc{\.g}}}{1} {ḣ}{{\ucc{\.h}}}{1}
+{i̇}{{\ucc{\.i}}}{1} {j̇}{{\ucc{\.j}}}{1} {k̇}{{\ucc{\.k}}}{1} {l̇}{{\ucc{\.l}}}{1}
+{ṁ}{{\ucc{\.m}}}{1} {ṅ}{{\ucc{\.n}}}{1} {ȯ}{{\ucc{\.o}}}{1} {ṗ}{{\ucc{\.p}}}{1}
+{q̇}{{\ucc{\.q}}}{1} {ṙ}{{\ucc{\.r}}}{1} {ṡ}{{\ucc{\.s}}}{1} {ṫ}{{\ucc{\.t}}}{1}
+{u̇}{{\ucc{\.u}}}{1} {v̇}{{\ucc{\.v}}}{1} {ẇ}{{\ucc{\.w}}}{1} {ẋ}{{\ucc{\.x}}}{1}
+{ẏ}{{\ucc{\.y}}}{1} {ż}{{\ucc{\.z}}}{1}
+%
+% greek capital letters with dot above
+%
+{Α̇}{{\ucc{${\scriptstyle \dot{A}}$}}}{1}
+{Β̇}{{\ucc{${\scriptstyle \dot{B}}$}}}{1}
+{Γ̇}{{\ucc{${\scriptstyle \dot{\Gamma}}$}}}{1}
+{Δ̇}{{\ucc{${\scriptstyle \dot{\Delta}}$}}}{1}
+{Ε̇}{{\ucc{${\scriptstyle \dot{E}}$}}}{1}
+{Ζ̇}{{\ucc{${\scriptstyle \dot{Z}}$}}}{1}
+{Η̇}{{\ucc{${\scriptstyle \dot{H}}$}}}{1}
+{Θ̇}{{\ucc{${\scriptstyle \dot{\Theta}}$}}}{1}
+{Ι̇}{{\ucc{${\scriptstyle \dot{I}}$}}}{1}
+{Κ̇}{{\ucc{${\scriptstyle \dot{K}}$}}}{1}
+{Λ̇}{{\ucc{${\scriptstyle \dot{\Lambda}}$}}}{1}
+{Μ̇}{{\ucc{${\scriptstyle \dot{M}}$}}}{1}
+{Ν̇}{{\ucc{${\scriptstyle \dot{N}}$}}}{1}
+{Ξ̇}{{\ucc{${\scriptstyle \dot{\Xi}}$}}}{1}
+{Ο̇}{{\ucc{${\scriptstyle \dot{O}}$}}}{1}
+{Π̇}{{\ucc{${\scriptstyle \dot{\Pi}}$}}}{1}
+{Ρ̇}{{\ucc{${\scriptstyle \dot{P}}$}}}{1}
+{Σ̇}{{\ucc{${\scriptstyle \dot{\Sigma}}$}}}{1}
+{Τ̇}{{\ucc{${\scriptstyle \dot{T}}$}}}{1}
+{Υ̇}{{\ucc{${\scriptstyle \dot{\Upsilon}}$}}}{1}
+{Φ̇}{{\ucc{${\scriptstyle \dot{\Phi}}$}}}{1}
+{Χ̇}{{\ucc{${\scriptstyle \dot{X}}$}}}{1}
+{Ψ̇}{{\ucc{${\scriptstyle \dot{\Psi}}$}}}{1}
+{Ω̇}{{\ucc{${\scriptstyle \dot{\Omega}}$}}}{1}
+%
+% greek small letters with dot above
+%
+{α̇}{{\ucc{${\scriptstyle \dot{\alpha}}$}}}{1}
+{β̇}{{\ucc{${\scriptstyle \dot{\beta}}$}}}{1}
+{γ̇}{{\ucc{${\scriptstyle \dot{\gamma}}$}}}{1}
+{δ̇}{{\ucc{${\scriptstyle \dot{\delta}}$}}}{1}
+{ε̇}{{\ucc{${\scriptstyle \dot{\varepsilon}}$}}}{1}
+{ϵ̇}{{\ucc{${\scriptstyle \dot{\epsilon}}$}}}{1}
+{ζ̇}{{\ucc{${\scriptstyle \dot{\zeta}}$}}}{1}
+{η̇}{{\ucc{${\scriptstyle \dot{\eta}}$}}}{1}
+{θ̇}{{\ucc{${\scriptstyle \dot{\theta}}$}}}{1}
+{ϑ̇}{{\ucc{${\scriptstyle \dot{\vartheta}}$}}}{1}
+{ι̇}{{\ucc{${\scriptstyle \dot{\iota}}$}}}{1}
+{κ̇}{{\ucc{${\scriptstyle \dot{\kappa}}$}}}{1}
+{ϰ̇}{{\ucc{${\scriptstyle \dot{\varkappa}}$}}}{1}
+{λ̇}{{\ucc{${\scriptstyle \dot{\lambda}}$}}}{1}
+{μ̇}{{\ucc{${\scriptstyle \dot{\mu}}$}}}{1}
+{ν̇}{{\ucc{${\scriptstyle \dot{\nu}}$}}}{1}
+{ξ̇}{{\ucc{${\scriptstyle \dot{\xi}}$}}}{1}
+{ο̇}{{\ucc{${\scriptstyle \dot{o}}$}}}{1}
+{π̇}{{\ucc{${\scriptstyle \dot{\pi}}$}}}{1}
+{ϖ̇}{{\ucc{${\scriptstyle \dot{\varpi}}$}}}{1}
+{ρ̇}{{\ucc{${\scriptstyle \dot{\rho}}$}}}{1}
+{ϱ̇}{{\ucc{${\scriptstyle \dot{\varrho}}$}}}{1}
+{σ̇}{{\ucc{${\scriptstyle \dot{\sigma}}$}}}{1}
+{ς̇}{{\ucc{${\scriptstyle \dot{\varsigma}}$}}}{1}
+{τ̇}{{\ucc{${\scriptstyle \dot{\tau}}$}}}{1}
+{υ̇}{{\ucc{${\scriptstyle \dot{\upsilon}}$}}}{1}
+{ϕ̇}{{\ucc{${\scriptstyle \dot{\phi}}$}}}{1}
+{φ̇}{{\ucc{${\scriptstyle \dot{\varphi}}$}}}{1}
+{χ̇}{{\ucc{${\scriptstyle \dot{\chi}}$}}}{1}
+{ψ̇}{{\ucc{${\scriptstyle \dot{\psi}}$}}}{1}
+{ω̇}{{\ucc{${\scriptstyle \dot{\omega}}$}}}{1}
+%
+% latin capital letters with double dot above
+%
+{Ä}{{\ucc{\"A}}}{1} {B̈}{{\ucc{\"B}}}{1} {C̈}{{\ucc{\"C}}}{1} {D̈}{{\ucc{\"D}}}{1}
+{Ë}{{\ucc{\"E}}}{1} {F̈}{{\ucc{\"F}}}{1} {G̈}{{\ucc{\"G}}}{1} {Ḧ}{{\ucc{\"H}}}{1}
+{Ï}{{\ucc{\"I}}}{1} {J̈}{{\ucc{\"J}}}{1} {K̈}{{\ucc{\"K}}}{1} {L̈}{{\ucc{\"L}}}{1}
+{M̈}{{\ucc{\"M}}}{1} {N̈}{{\ucc{\"N}}}{1} {Ö}{{\ucc{\"O}}}{1} {P̈}{{\ucc{\"P}}}{1}
+{Q̈}{{\ucc{\"Q}}}{1} {R̈}{{\ucc{\"R}}}{1} {S̈}{{\ucc{\"S}}}{1} {T̈}{{\ucc{\"T}}}{1}
+{Ü}{{\ucc{\"U}}}{1} {V̈}{{\ucc{\"V}}}{1} {Ẅ}{{\ucc{\"W}}}{1} {Ẍ}{{\ucc{\"X}}}{1}
+{Ÿ}{{\ucc{\"Y}}}{1} {Z̈}{{\ucc{\"Z}}}{1}
+%
+% latin small letters with double dot above
+%
+{ä}{{\ucc{\"a}}}{1} {b̈}{{\ucc{\"b}}}{1} {c̈}{{\ucc{\"c}}}{1} {d̈}{{\ucc{\"d}}}{1}
+{ë}{{\ucc{\"e}}}{1} {f̈}{{\ucc{\"f}}}{1} {g̈}{{\ucc{\"g}}}{1} {ḧ}{{\ucc{\"h}}}{1}
+{ï}{{\ucc{\"i}}}{1} {j̈}{{\ucc{\"j}}}{1} {k̈}{{\ucc{\"k}}}{1} {l̈}{{\ucc{\"l}}}{1}
+{m̈}{{\ucc{\"m}}}{1} {n̈}{{\ucc{\"n}}}{1} {ö}{{\ucc{\"o}}}{1} {p̈}{{\ucc{\"p}}}{1}
+{q̈}{{\ucc{\"q}}}{1} {r̈}{{\ucc{\"r}}}{1} {s̈}{{\ucc{\"s}}}{1} {ẗ}{{\ucc{\"t}}}{1}
+{ü}{{\ucc{\"u}}}{1} {v̈}{{\ucc{\"v}}}{1} {ẅ}{{\ucc{\"w}}}{1} {ẍ}{{\ucc{\"x}}}{1}
+{ÿ}{{\ucc{\"y}}}{1} {z̈}{{\ucc{\"z}}}{1}
+%
+% greek capital letters with double dot above
+%
+{Α̈}{{\ucc{${\scriptstyle \ddot{A}}$}}}{1}
+{Β̈}{{\ucc{${\scriptstyle \ddot{B}}$}}}{1}
+{Γ̈}{{\ucc{${\scriptstyle \ddot{\Gamma}}$}}}{1}
+{Δ̈}{{\ucc{${\scriptstyle \ddot{\Delta}}$}}}{1}
+{Ε̈}{{\ucc{${\scriptstyle \ddot{E}}$}}}{1}
+{Ζ̈}{{\ucc{${\scriptstyle \ddot{Z}}$}}}{1}
+{Η̈}{{\ucc{${\scriptstyle \ddot{H}}$}}}{1}
+{Θ̈}{{\ucc{${\scriptstyle \ddot{\Theta}}$}}}{1}
+{Ϊ}{{\ucc{${\scriptstyle \ddot{I}}$}}}{1}
+{Κ̈}{{\ucc{${\scriptstyle \ddot{K}}$}}}{1}
+{Λ̈}{{\ucc{${\scriptstyle \ddot{\Lambda}}$}}}{1}
+{Μ̈}{{\ucc{${\scriptstyle \ddot{M}}$}}}{1}
+{Ν̈}{{\ucc{${\scriptstyle \ddot{N}}$}}}{1}
+{Ξ̈}{{\ucc{${\scriptstyle \ddot{\Xi}}$}}}{1}
+{Ο̈}{{\ucc{${\scriptstyle \ddot{O}}$}}}{1}
+{Π̈}{{\ucc{${\scriptstyle \ddot{\Pi}}$}}}{1}
+{Ρ̈}{{\ucc{${\scriptstyle \ddot{P}}$}}}{1}
+{Σ̈}{{\ucc{${\scriptstyle \ddot{\Sigma}}$}}}{1}
+{Τ̈}{{\ucc{${\scriptstyle \ddot{T}}$}}}{1}
+{Ϋ}{{\ucc{${\scriptstyle \ddot{\Upsilon}}$}}}{1}
+{Φ̈}{{\ucc{${\scriptstyle \ddot{\Phi}}$}}}{1}
+{Χ̈}{{\ucc{${\scriptstyle \ddot{X}}$}}}{1}
+{Ψ̈}{{\ucc{${\scriptstyle \ddot{\Psi}}$}}}{1}
+{Ω̈}{{\ucc{${\scriptstyle \ddot{\Omega}}$}}}{1}
+%
+% greek small letters with double dot above
+%
+{α̈}{{\ucc{${\scriptstyle \ddot{\alpha}}$}}}{1}
+{β̈}{{\ucc{${\scriptstyle \ddot{\beta}}$}}}{1}
+{γ̈}{{\ucc{${\scriptstyle \ddot{\gamma}}$}}}{1}
+{δ̈}{{\ucc{${\scriptstyle \ddot{\delta}}$}}}{1}
+{ε̈}{{\ucc{${\scriptstyle \ddot{\varepsilon}}$}}}{1}
+{ϵ̈}{{\ucc{${\scriptstyle \ddot{\epsilon}}$}}}{1}
+{ζ̈}{{\ucc{${\scriptstyle \ddot{\zeta}}$}}}{1}
+{η̈}{{\ucc{${\scriptstyle \ddot{\eta}}$}}}{1}
+{θ̈}{{\ucc{${\scriptstyle \ddot{\theta}}$}}}{1}
+{ϑ̈}{{\ucc{${\scriptstyle \ddot{\vartheta}}$}}}{1}
+{ϊ}{{\ucc{${\scriptstyle \ddot{\iota}}$}}}{1}
+{κ̈}{{\ucc{${\scriptstyle \ddot{\kappa}}$}}}{1}
+{ϰ̈}{{\ucc{${\scriptstyle \ddot{\varkappa}}$}}}{1}
+{λ̈}{{\ucc{${\scriptstyle \ddot{\lambda}}$}}}{1}
+{μ̈}{{\ucc{${\scriptstyle \ddot{\mu}}$}}}{1}
+{ν̈}{{\ucc{${\scriptstyle \ddot{\nu}}$}}}{1}
+{ξ̈}{{\ucc{${\scriptstyle \ddot{\xi}}$}}}{1}
+{ο̈}{{\ucc{${\scriptstyle \ddot{o}}$}}}{1}
+{π̈}{{\ucc{${\scriptstyle \ddot{\pi}}$}}}{1}
+{ϖ̈}{{\ucc{${\scriptstyle \ddot{\varpi}}$}}}{1}
+{ρ̈}{{\ucc{${\scriptstyle \ddot{\rho}}$}}}{1}
+{ϱ̈}{{\ucc{${\scriptstyle \ddot{\varrho}}$}}}{1}
+{σ̈}{{\ucc{${\scriptstyle \ddot{\sigma}}$}}}{1}
+{ς̈}{{\ucc{${\scriptstyle \ddot{\varsigma}}$}}}{1}
+{τ̈}{{\ucc{${\scriptstyle \ddot{\tau}}$}}}{1}
+{ϋ}{{\ucc{${\scriptstyle \ddot{\upsilon}}$}}}{1}
+{φ̈}{{\ucc{${\scriptstyle \ddot{\phi}}$}}}{1}
+{ϕ̈}{{\ucc{${\scriptstyle \ddot{\varphi}}$}}}{1}
+{χ̈}{{\ucc{${\scriptstyle \ddot{\chi}}$}}}{1}
+{ψ̈}{{\ucc{${\scriptstyle \ddot{\psi}}$}}}{1}
+{ω̈}{{\ucc{${\scriptstyle \dot{\omega}}$}}}{1}
+%
+% latin capital letters with tilde above
+%
+{Ã}{{\ucc{\~A}}}{1} {B̃}{{\ucc{\~B}}}{1} {C̃}{{\ucc{\~C}}}{1} {D̃}{{\ucc{\~D}}}{1}
+{Ẽ}{{\ucc{\~E}}}{1} {F̃}{{\ucc{\~F}}}{1} {G̃}{{\ucc{\~G}}}{1} {H̃}{{\ucc{\~H}}}{1}
+{Ĩ}{{\ucc{\~I}}}{1} {J̃}{{\ucc{\~J}}}{1} {K̃}{{\ucc{\~K}}}{1} {L̃}{{\ucc{\~L}}}{1}
+{M̃}{{\ucc{\~M}}}{1} {Ñ}{{\ucc{\~N}}}{1} {Õ}{{\ucc{\~O}}}{1} {P̃}{{\ucc{\~P}}}{1}
+{Q̃}{{\ucc{\~Q}}}{1} {R̃}{{\ucc{\~R}}}{1} {S̃}{{\ucc{\~S}}}{1} {T̃}{{\ucc{\~T}}}{1}
+{Ũ}{{\ucc{\~U}}}{1} {Ṽ}{{\ucc{\~V}}}{1} {W̃}{{\ucc{\~W}}}{1} {X̃}{{\ucc{\~X}}}{1}
+{Ỹ}{{\ucc{\~Y}}}{1} {Z̃}{{\ucc{\~Z}}}{1}
+%
+% latin small letters with tilde above
+%
+{ã}{{\ucc{\~a}}}{1} {b̃}{{\ucc{\~b}}}{1} {c̃}{{\ucc{\~c}}}{1} {d̃}{{\ucc{\~d}}}{1}
+{ẽ}{{\ucc{\~e}}}{1} {f̃}{{\ucc{\~f}}}{1} {g̃}{{\ucc{\~g}}}{1} {h̃}{{\ucc{\~h}}}{1}
+{ĩ}{{\ucc{\~i}}}{1} {j̃}{{\ucc{\~j}}}{1} {k̃}{{\ucc{\~k}}}{1} {l̃}{{\ucc{\~l}}}{1}
+{m̃}{{\ucc{\~m}}}{1} {ñ}{{\ucc{\~n}}}{1} {õ}{{\ucc{\~o}}}{1} {p̃}{{\ucc{\~p}}}{1}
+{q̃}{{\ucc{\~q}}}{1} {r̃}{{\ucc{\~r}}}{1} {s̃}{{\ucc{\~s}}}{1} {t̃}{{\ucc{\~t}}}{1}
+{ũ}{{\ucc{\~u}}}{1} {ṽ}{{\ucc{\~v}}}{1} {w̃}{{\ucc{\~w}}}{1} {x̃}{{\ucc{\~x}}}{1}
+{ỹ}{{\ucc{\~y}}}{1} {z̃}{{\ucc{\~z}}}{1}
+%
+% greek capital letters with tilde above
+%
+{Α̃}{{\ucc{${\scriptstyle \tilde{A}}$}}}{1}
+{Β̃}{{\ucc{${\scriptstyle \tilde{B}}$}}}{1}
+{Γ̃}{{\ucc{${\scriptstyle \tilde{\Gamma}}$}}}{1}
+{Δ̃}{{\ucc{${\scriptstyle \tilde{\Delta}}$}}}{1}
+{Ε̃}{{\ucc{${\scriptstyle \tilde{E}}$}}}{1}
+{Ζ̃}{{\ucc{${\scriptstyle \tilde{Z}}$}}}{1}
+{Η̃}{{\ucc{${\scriptstyle \tilde{H}}$}}}{1}
+{Θ̃}{{\ucc{${\scriptstyle \tilde{\Theta}}$}}}{1}
+{Ι̃}{{\ucc{${\scriptstyle \tilde{I}}$}}}{1}
+{Κ̃}{{\ucc{${\scriptstyle \tilde{K}}$}}}{1}
+{Λ̃}{{\ucc{${\scriptstyle \tilde{\Lambda}}$}}}{1}
+{Μ̃}{{\ucc{${\scriptstyle \tilde{M}}$}}}{1}
+{Ν̃}{{\ucc{${\scriptstyle \tilde{N}}$}}}{1}
+{Ξ̃}{{\ucc{${\scriptstyle \tilde{\Xi}}$}}}{1}
+{Ο̃}{{\ucc{${\scriptstyle \tilde{O}}$}}}{1}
+{Π̃}{{\ucc{${\scriptstyle \tilde{\Pi}}$}}}{1}
+{Ρ̃}{{\ucc{${\scriptstyle \tilde{P}}$}}}{1}
+{Σ̃}{{\ucc{${\scriptstyle \tilde{\Sigma}}$}}}{1}
+{Τ̃}{{\ucc{${\scriptstyle \tilde{T}}$}}}{1}
+{Υ̃}{{\ucc{${\scriptstyle \tilde{\Upsilon}}$}}}{1}
+{Φ̃}{{\ucc{${\scriptstyle \tilde{\Phi}}$}}}{1}
+{Χ̃}{{\ucc{${\scriptstyle \tilde{X}}$}}}{1}
+{Ψ̃}{{\ucc{${\scriptstyle \tilde{\Psi}}$}}}{1}
+{Ω̃}{{\ucc{${\scriptstyle \tilde{\Omega}}$}}}{1}
+%
+% greek small letters with tilde above
+%
+{α̃}{{\ucc{${\scriptstyle \tilde{\alpha}}$}}}{1}
+{β̃}{{\ucc{${\scriptstyle \tilde{\beta}}$}}}{1}
+{γ̃}{{\ucc{${\scriptstyle \tilde{\gamma}}$}}}{1}
+{δ̃}{{\ucc{${\scriptstyle \tilde{\delta}}$}}}{1}
+{ε̃}{{\ucc{${\scriptstyle \tilde{\varepsilon}}$}}}{1}
+{ϵ̃}{{\ucc{${\scriptstyle \tilde{\epsilon}}$}}}{1}
+{ζ̃}{{\ucc{${\scriptstyle \tilde{\zeta}}$}}}{1}
+{η̃}{{\ucc{${\scriptstyle \tilde{\eta}}$}}}{1}
+{θ̃}{{\ucc{${\scriptstyle \tilde{\theta}}$}}}{1}
+{ϑ̃}{{\ucc{${\scriptstyle \tilde{\vartheta}}$}}}{1}
+{ι̃}{{\ucc{${\scriptstyle \tilde{\iota}}$}}}{1}
+{κ̃}{{\ucc{${\scriptstyle \tilde{\kappa}}$}}}{1}
+{ϰ̃}{{\ucc{${\scriptstyle \tilde{\varkappa}}$}}}{1}
+{λ̃}{{\ucc{${\scriptstyle \tilde{\lambda}}$}}}{1}
+{μ̃}{{\ucc{${\scriptstyle \tilde{\mu}}$}}}{1}
+{ν̃}{{\ucc{${\scriptstyle \tilde{\nu}}$}}}{1}
+{ξ̃}{{\ucc{${\scriptstyle \tilde{\xi}}$}}}{1}
+{ο̃}{{\ucc{${\scriptstyle \tilde{o}}$}}}{1}
+{π̃}{{\ucc{${\scriptstyle \tilde{\pi}}$}}}{1}
+{ϖ̃}{{\ucc{${\scriptstyle \tilde{\varpi}}$}}}{1}
+{ρ̃}{{\ucc{${\scriptstyle \tilde{\rho}}$}}}{1}
+{ϱ̃}{{\ucc{${\scriptstyle \tilde{\varrho}}$}}}{1}
+{σ̃}{{\ucc{${\scriptstyle \tilde{\sigma}}$}}}{1}
+{ς̃}{{\ucc{${\scriptstyle \tilde{\varsigma}}$}}}{1}
+{τ̃}{{\ucc{${\scriptstyle \tilde{\tau}}$}}}{1}
+{υ̃}{{\ucc{${\scriptstyle \tilde{\upsilon}}$}}}{1}
+{φ̃}{{\ucc{${\scriptstyle \tilde{\phi}}$}}}{1}
+{ϕ̃}{{\ucc{${\scriptstyle \tilde{\varphi}}$}}}{1}
+{χ̃}{{\ucc{${\scriptstyle \tilde{\chi}}$}}}{1}
+{ψ̃}{{\ucc{${\scriptstyle \tilde{\psi}}$}}}{1}
+{ω̃}{{\ucc{${\scriptstyle \tilde{\omega}}$}}}{1}
+%
+% latin capital letters with hat above
+%
+{Â}{{\ucc{\^A}}}{1} {B̂}{{\ucc{\^B}}}{1} {Ĉ}{{\ucc{\^C}}}{1} {D̂}{{\ucc{\^D}}}{1}
+{Ê}{{\ucc{\^E}}}{1} {F̂}{{\ucc{\^F}}}{1} {Ĝ}{{\ucc{\^G}}}{1} {Ĥ}{{\ucc{\^H}}}{1}
+{Î}{{\ucc{\^I}}}{1} {Ĵ}{{\ucc{\^J}}}{1} {K̂}{{\ucc{\^K}}}{1} {L̂}{{\ucc{\^L}}}{1}
+{M̂}{{\ucc{\^M}}}{1} {N̂}{{\ucc{\^N}}}{1} {Ô}{{\ucc{\^O}}}{1} {P̂}{{\ucc{\^P}}}{1}
+{Q̂}{{\ucc{\^Q}}}{1} {R̂}{{\ucc{\^R}}}{1} {Ŝ}{{\ucc{\^S}}}{1} {T̂}{{\ucc{\^T}}}{1}
+{Û}{{\ucc{\^U}}}{1} {V̂}{{\ucc{\^V}}}{1} {Ŵ}{{\ucc{\^W}}}{1} {X̂}{{\ucc{\^X}}}{1}
+{Ŷ}{{\ucc{\^Y}}}{1} {Ẑ}{{\ucc{\^Z}}}{1}
+%
+% latin small letters with hat above
+%
+{â}{{\ucc{\^a}}}{1} {b̂}{{\ucc{\^b}}}{1} {ĉ}{{\ucc{\^c}}}{1} {d̂}{{\ucc{\^d}}}{1}
+{ê}{{\ucc{\^e}}}{1} {f̂}{{\ucc{\^f}}}{1} {ĝ}{{\ucc{\^g}}}{1} {ĥ}{{\ucc{\^h}}}{1}
+{î}{{\ucc{\^i}}}{1} {ĵ}{{\ucc{\^j}}}{1} {k̂}{{\ucc{\^k}}}{1} {l̂}{{\ucc{\^l}}}{1}
+{m̂}{{\ucc{\^m}}}{1} {n̂}{{\ucc{\^n}}}{1} {ô}{{\ucc{\^o}}}{1} {p̂}{{\ucc{\^p}}}{1}
+{q̂}{{\ucc{\^q}}}{1} {r̂}{{\ucc{\^r}}}{1} {ŝ}{{\ucc{\^s}}}{1} {t̂}{{\ucc{\^t}}}{1}
+{û}{{\ucc{\^u}}}{1} {v̂}{{\ucc{\^v}}}{1} {ŵ}{{\ucc{\^w}}}{1} {x̂}{{\ucc{\^x}}}{1}
+{ŷ}{{\ucc{\^y}}}{1} {ẑ}{{\ucc{\^z}}}{1}
+%
+% greek capital letters with hat above
+%
+{Α̂}{{\ucc{${\scriptstyle \hat{A}}$}}}{1}
+{Β̂}{{\ucc{${\scriptstyle \hat{B}}$}}}{1}
+{Γ̂}{{\ucc{${\scriptstyle \hat{\Gamma}}$}}}{1}
+{Δ̂}{{\ucc{${\scriptstyle \hat{\Delta}}$}}}{1}
+{Ε̂}{{\ucc{${\scriptstyle \hat{E}}$}}}{1}
+{Ζ̂}{{\ucc{${\scriptstyle \hat{Z}}$}}}{1}
+{Η̂}{{\ucc{${\scriptstyle \hat{H}}$}}}{1}
+{Θ̂}{{\ucc{${\scriptstyle \hat{\Theta}}$}}}{1}
+{Ι̂}{{\ucc{${\scriptstyle \hat{I}}$}}}{1}
+{Κ̂}{{\ucc{${\scriptstyle \hat{K}}$}}}{1}
+{Λ̂}{{\ucc{${\scriptstyle \hat{\Lambda}}$}}}{1}
+{Μ̂}{{\ucc{${\scriptstyle \hat{M}}$}}}{1}
+{Ν̂}{{\ucc{${\scriptstyle \hat{N}}$}}}{1}
+{Ξ̂}{{\ucc{${\scriptstyle \hat{\Xi}}$}}}{1}
+{Ο̂}{{\ucc{${\scriptstyle \hat{O}}$}}}{1}
+{Π̂}{{\ucc{${\scriptstyle \hat{\Pi}}$}}}{1}
+{Ρ̂}{{\ucc{${\scriptstyle \hat{P}}$}}}{1}
+{Σ̂}{{\ucc{${\scriptstyle \hat{\Sigma}}$}}}{1}
+{Τ̂}{{\ucc{${\scriptstyle \hat{T}}$}}}{1}
+{Υ̂}{{\ucc{${\scriptstyle \hat{\Upsilon}}$}}}{1}
+{Φ̂}{{\ucc{${\scriptstyle \hat{\Phi}}$}}}{1}
+{Χ̂}{{\ucc{${\scriptstyle \hat{X}}$}}}{1}
+{Ψ̂}{{\ucc{${\scriptstyle \hat{\Psi}}$}}}{1}
+{Ω̂}{{\ucc{${\scriptstyle \hat{\Omega}}$}}}{1}
+%
+% greek small letters with hat above
+%
+{α̂}{{\ucc{${\scriptstyle \hat{\alpha}}$}}}{1}
+{β̂}{{\ucc{${\scriptstyle \hat{\beta}}$}}}{1}
+{γ̂}{{\ucc{${\scriptstyle \hat{\gamma}}$}}}{1}
+{δ̂}{{\ucc{${\scriptstyle \hat{\delta}}$}}}{1}
+{ε̂}{{\ucc{${\scriptstyle \hat{\varepsilon}}$}}}{1}
+{ϵ̂}{{\ucc{${\scriptstyle \hat{\epsilon}}$}}}{1}
+{ζ̂}{{\ucc{${\scriptstyle \hat{\zeta}}$}}}{1}
+{η̂}{{\ucc{${\scriptstyle \hat{\eta}}$}}}{1}
+{θ̂}{{\ucc{${\scriptstyle \hat{\theta}}$}}}{1}
+{ϑ̂}{{\ucc{${\scriptstyle \hat{\vartheta}}$}}}{1}
+{ι̂}{{\ucc{${\scriptstyle \hat{\iota}}$}}}{1}
+{κ̂}{{\ucc{${\scriptstyle \hat{\kappa}}$}}}{1}
+{ϰ̂}{{\ucc{${\scriptstyle \hat{\varkappa}}$}}}{1}
+{λ̂}{{\ucc{${\scriptstyle \hat{\lambda}}$}}}{1}
+{μ̂}{{\ucc{${\scriptstyle \hat{\mu}}$}}}{1}
+{ν̂}{{\ucc{${\scriptstyle \hat{\nu}}$}}}{1}
+{ξ̂}{{\ucc{${\scriptstyle \hat{\xi}}$}}}{1}
+{ο̂}{{\ucc{${\scriptstyle \hat{o}}$}}}{1}
+{π̂}{{\ucc{${\scriptstyle \hat{\pi}}$}}}{1}
+{ϖ̂}{{\ucc{${\scriptstyle \hat{\varpi}}$}}}{1}
+{ρ̂}{{\ucc{${\scriptstyle \hat{\rho}}$}}}{1}
+{ϱ̂}{{\ucc{${\scriptstyle \hat{\varrho}}$}}}{1}
+{σ̂}{{\ucc{${\scriptstyle \hat{\sigma}}$}}}{1}
+{ς̂}{{\ucc{${\scriptstyle \hat{\varsigma}}$}}}{1}
+{τ̂}{{\ucc{${\scriptstyle \hat{\tau}}$}}}{1}
+{υ̂}{{\ucc{${\scriptstyle \hat{\upsilon}}$}}}{1}
+{φ̂}{{\ucc{${\scriptstyle \hat{\phi}}$}}}{1}
+{ϕ̂}{{\ucc{${\scriptstyle \hat{\varphi}}$}}}{1}
+{χ̂}{{\ucc{${\scriptstyle \hat{\chi}}$}}}{1}
+{ψ̂}{{\ucc{${\scriptstyle \hat{\psi}}$}}}{1}
+{ω̂}{{\ucc{${\scriptstyle \hat{\omega}}$}}}{1}
+%
+% latin capital letters with bar above
+%
+{Ā}{{\ucc{\=A}}}{1} {B̄}{{\ucc{\=B}}}{1} {C̄}{{\ucc{\=C}}}{1} {D̄}{{\ucc{\=D}}}{1}
+{Ē}{{\ucc{\=E}}}{1} {F̄}{{\ucc{\=F}}}{1} {Ḡ}{{\ucc{\=G}}}{1} {H̄}{{\ucc{\=H}}}{1}
+{Ī}{{\ucc{\=I}}}{1} {J̄}{{\ucc{\=J}}}{1} {K̄}{{\ucc{\=K}}}{1} {L̄}{{\ucc{\=L}}}{1}
+{M̄}{{\ucc{\=M}}}{1} {N̄}{{\ucc{\=N}}}{1} {Ō}{{\ucc{\=O}}}{1} {P̄}{{\ucc{\=P}}}{1}
+{Q̄}{{\ucc{\=Q}}}{1} {R̄}{{\ucc{\=R}}}{1} {S̄}{{\ucc{\=S}}}{1} {T̄}{{\ucc{\=T}}}{1}
+{Ū}{{\ucc{\=U}}}{1} {V̄}{{\ucc{\=V}}}{1} {W̄}{{\ucc{\=W}}}{1} {X̄}{{\ucc{\=X}}}{1}
+{Ȳ}{{\ucc{\=Y}}}{1} {Z̄}{{\ucc{\=Z}}}{1}
+%
+% latin small letters with bar above
+%
+{ā}{{\ucc{\=a}}}{1} {b̄}{{\ucc{\=b}}}{1} {c̄}{{\ucc{\=c}}}{1} {d̄}{{\ucc{\=d}}}{1}
+{ē}{{\ucc{\=e}}}{1} {f̄}{{\ucc{\=f}}}{1} {ḡ}{{\ucc{\=g}}}{1} {h̄}{{\ucc{\=h}}}{1}
+{ī}{{\ucc{\=i}}}{1} {j̄}{{\ucc{\=j}}}{1} {k̄}{{\ucc{\=k}}}{1} {l̄}{{\ucc{\=l}}}{1}
+{m̄}{{\ucc{\=m}}}{1} {n̄}{{\ucc{\=n}}}{1} {ō}{{\ucc{\=o}}}{1} {p̄}{{\ucc{\=p}}}{1}
+{q̄}{{\ucc{\=q}}}{1} {r̄}{{\ucc{\=r}}}{1} {s̄}{{\ucc{\=s}}}{1} {t̄}{{\ucc{\=t}}}{1}
+{ū}{{\ucc{\=u}}}{1} {v̄}{{\ucc{\=v}}}{1} {w̄}{{\ucc{\=w}}}{1} {x̄}{{\ucc{\=x}}}{1}
+{ȳ}{{\ucc{\=y}}}{1} {z̄}{{\ucc{\=z}}}{1}
+%
+% greek capital letters with bar above
+%
+{Ᾱ}{{\ucc{${\scriptstyle \bar{A}}$}}}{1}
+{Β̄}{{\ucc{${\scriptstyle \bar{B}}$}}}{1}
+{Γ̄}{{\ucc{${\scriptstyle \bar{\Gamma}}$}}}{1}
+{Δ̄}{{\ucc{${\scriptstyle \bar{\Delta}}$}}}{1}
+{Ε̄}{{\ucc{${\scriptstyle \bar{E}}$}}}{1}
+{Ζ̄}{{\ucc{${\scriptstyle \bar{Z}}$}}}{1}
+{Η̄}{{\ucc{${\scriptstyle \bar{H}}$}}}{1}
+{Θ̄}{{\ucc{${\scriptstyle \bar{\Theta}}$}}}{1}
+{Ῑ}{{\ucc{${\scriptstyle \bar{I}}$}}}{1}
+{Κ̄}{{\ucc{${\scriptstyle \bar{K}}$}}}{1}
+{Λ̄}{{\ucc{${\scriptstyle \bar{\Lambda}}$}}}{1}
+{Μ̄}{{\ucc{${\scriptstyle \bar{M}}$}}}{1}
+{Ν̄}{{\ucc{${\scriptstyle \bar{N}}$}}}{1}
+{Ξ̄}{{\ucc{${\scriptstyle \bar{\Xi}}$}}}{1}
+{Ο̄}{{\ucc{${\scriptstyle \bar{O}}$}}}{1}
+{Π̄}{{\ucc{${\scriptstyle \bar{\Pi}}$}}}{1}
+{Ρ̄}{{\ucc{${\scriptstyle \bar{P}}$}}}{1}
+{Σ̄}{{\ucc{${\scriptstyle \bar{\Sigma}}$}}}{1}
+{Τ̄}{{\ucc{${\scriptstyle \bar{T}}$}}}{1}
+{Ῡ}{{\ucc{${\scriptstyle \bar{\Upsilon}}$}}}{1}
+{Φ̄}{{\ucc{${\scriptstyle \bar{\Phi}}$}}}{1}
+{Χ̄}{{\ucc{${\scriptstyle \bar{X}}$}}}{1}
+{Ψ̄}{{\ucc{${\scriptstyle \bar{\Psi}}$}}}{1}
+{Ω̄}{{\ucc{${\scriptstyle \bar{\Omega}}$}}}{1}
+%
+% greek small letters with bar above
+%
+{ᾱ}{{\ucc{${\scriptstyle \bar{\alpha}}$}}}{1}
+{β̄}{{\ucc{${\scriptstyle \bar{\beta}}$}}}{1}
+{γ̄}{{\ucc{${\scriptstyle \bar{\gamma}}$}}}{1}
+{δ̄}{{\ucc{${\scriptstyle \bar{\delta}}$}}}{1}
+{ε̄}{{\ucc{${\scriptstyle \bar{\varepsilon}}$}}}{1}
+{ϵ̄}{{\ucc{${\scriptstyle \bar{\epsilon}}$}}}{1}
+{ζ̄}{{\ucc{${\scriptstyle \bar{\zeta}}$}}}{1}
+{η̄}{{\ucc{${\scriptstyle \bar{\eta}}$}}}{1}
+{θ̄}{{\ucc{${\scriptstyle \bar{\theta}}$}}}{1}
+{ϑ̄}{{\ucc{${\scriptstyle \bar{\vartheta}}$}}}{1}
+{ῑ}{{\ucc{${\scriptstyle \bar{\iota}}$}}}{1}
+{κ̄}{{\ucc{${\scriptstyle \bar{\kappa}}$}}}{1}
+{ϰ̄}{{\ucc{${\scriptstyle \bar{\varkappa}}$}}}{1}
+{λ̄}{{\ucc{${\scriptstyle \bar{\lambda}}$}}}{1}
+{μ̄}{{\ucc{${\scriptstyle \bar{\mu}}$}}}{1}
+{ν̄}{{\ucc{${\scriptstyle \bar{\nu}}$}}}{1}
+{ξ̄}{{\ucc{${\scriptstyle \bar{\xi}}$}}}{1}
+{ο̄}{{\ucc{${\scriptstyle \bar{o}}$}}}{1}
+{π̄}{{\ucc{${\scriptstyle \bar{\pi}}$}}}{1}
+{ϖ̄}{{\ucc{${\scriptstyle \bar{\varpi}}$}}}{1}
+{ρ̄}{{\ucc{${\scriptstyle \bar{\rho}}$}}}{1}
+{ϱ̄}{{\ucc{${\scriptstyle \bar{\varrho}}$}}}{1}
+{σ̄}{{\ucc{${\scriptstyle \bar{\sigma}}$}}}{1}
+{ς̄}{{\ucc{${\scriptstyle \bar{\varsigma}}$}}}{1}
+{τ̄}{{\ucc{${\scriptstyle \bar{\tau}}$}}}{1}
+{ῡ}{{\ucc{${\scriptstyle \bar{\upsilon}}$}}}{1}
+{φ̄}{{\ucc{${\scriptstyle \bar{\phi}}$}}}{1}
+{ϕ̄}{{\ucc{${\scriptstyle \bar{\varphi}}$}}}{1}
+{χ̄}{{\ucc{${\scriptstyle \bar{\chi}}$}}}{1}
+{ψ̄}{{\ucc{${\scriptstyle \bar{\psi}}$}}}{1}
+{ω̄}{{\ucc{${\scriptstyle \bar{\omega}}$}}}{1}
+%
+% latin double-struck capital letters
+%
+{𝔸}{{\ucc{$\mathbb{A}$}}}{1} {𝔹}{{\ucc{$\mathbb{B}$}}}{1}
+{ℂ}{{\ucc{$\mathbb{C}$}}}{1} {𝔻}{{\ucc{$\mathbb{D}$}}}{1}
+{𝔼}{{\ucc{$\mathbb{E}$}}}{1} {𝔽}{{\ucc{$\mathbb{F}$}}}{1}
+{𝔾}{{\ucc{$\mathbb{G}$}}}{1} {ℍ}{{\ucc{$\mathbb{H}$}}}{1}
+{𝕀}{{\ucc{$\mathbb{I}$}}}{1} {𝕁}{{\ucc{$\mathbb{J}$}}}{1}
+{𝕂}{{\ucc{$\mathbb{K}$}}}{1} {𝕃}{{\ucc{$\mathbb{L}$}}}{1}
+{𝕄}{{\ucc{$\mathbb{M}$}}}{1} {ℕ}{{\ucc{$\mathbb{N}$}}}{1}
+{𝕆}{{\ucc{$\mathbb{O}$}}}{1} {ℙ}{{\ucc{$\mathbb{P}$}}}{1}
+{ℚ}{{\ucc{$\mathbb{Q}$}}}{1} {ℝ}{{\ucc{$\mathbb{R}$}}}{1}
+{𝕊}{{\ucc{$\mathbb{S}$}}}{1} {𝕋}{{\ucc{$\mathbb{T}$}}}{1}
+{𝕌}{{\ucc{$\mathbb{U}$}}}{1} {𝕍}{{\ucc{$\mathbb{V}$}}}{1}
+{𝕎}{{\ucc{$\mathbb{W}$}}}{1} {𝕏}{{\ucc{$\mathbb{X}$}}}{1}
+{𝕐}{{\ucc{$\mathbb{Y}$}}}{1} {ℤ}{{\ucc{$\mathbb{Z}$}}}{1}
+%
+% latin script capital letters
+%
+{𝒜}{{\ucc{$\mathcal{A}$}}}{1} {ℬ}{{\ucc{$\mathcal{B}$}}}{1}
+{𝒞}{{\ucc{$\mathcal{C}$}}}{1} {𝒟}{{\ucc{$\mathcal{D}$}}}{1}
+{ℰ}{{\ucc{$\mathcal{E}$}}}{1} {ℱ}{{\ucc{$\mathcal{F}$}}}{1}
+{𝒢}{{\ucc{$\mathcal{G}$}}}{1} {ℋ}{{\ucc{$\mathcal{H}$}}}{1}
+{ℐ}{{\ucc{$\mathcal{I}$}}}{1} {𝒥}{{\ucc{$\mathcal{J}$}}}{1}
+{𝒦}{{\ucc{$\mathcal{K}$}}}{1} {ℒ}{{\ucc{$\mathcal{L}$}}}{1}
+{ℳ}{{\ucc{$\mathcal{M}$}}}{1} {𝒩}{{\ucc{$\mathcal{N}$}}}{1}
+{𝒪}{{\ucc{$\mathcal{O}$}}}{1} {𝒫}{{\ucc{$\mathcal{P}$}}}{1}
+{𝒬}{{\ucc{$\mathcal{Q}$}}}{1} {ℛ}{{\ucc{$\mathcal{R}$}}}{1}
+{𝒮}{{\ucc{$\mathcal{S}$}}}{1} {𝒯}{{\ucc{$\mathcal{T}$}}}{1}
+{𝒰}{{\ucc{$\mathcal{U}$}}}{1} {𝒱}{{\ucc{$\mathcal{V}$}}}{1}
+{𝒲}{{\ucc{$\mathcal{W}$}}}{1} {𝒳}{{\ucc{$\mathcal{X}$}}}{1}
+{𝒴}{{\ucc{$\mathcal{Y}$}}}{1} {𝒵}{{\ucc{$\mathcal{Z}$}}}{1}
+%
+% latin fraktur capital letters
+%
+{𝔄}{{\ucc{$\mathfrak{A}$}}}{1} {𝔅}{{\ucc{$\mathfrak{B}$}}}{1}
+{ℭ}{{\ucc{$\mathfrak{C}$}}}{1} {𝔇}{{\ucc{$\mathfrak{D}$}}}{1}
+{𝔈}{{\ucc{$\mathfrak{E}$}}}{1} {𝔉}{{\ucc{$\mathfrak{F}$}}}{1}
+{𝔊}{{\ucc{$\mathfrak{G}$}}}{1} {ℌ}{{\ucc{$\mathfrak{H}$}}}{1}
+{ℑ}{{\ucc{$\Im$}}}{1} {𝔍}{{\ucc{$\mathfrak{J}$}}}{1}
+{𝔎}{{\ucc{$\mathfrak{K}$}}}{1} {𝔏}{{\ucc{$\mathfrak{L}$}}}{1}
+{𝔐}{{\ucc{$\mathfrak{M}$}}}{1} {𝔑}{{\ucc{$\mathfrak{N}$}}}{1}
+{𝔒}{{\ucc{$\mathfrak{O}$}}}{1} {𝔓}{{\ucc{$\mathfrak{P}$}}}{1}
+{𝔔}{{\ucc{$\mathfrak{Q}$}}}{1} {ℜ}{{\ucc{$\Re$}}}{1}
+{𝔖}{{\ucc{$\mathfrak{S}$}}}{1} {𝔗}{{\ucc{$\mathfrak{T}$}}}{1}
+{𝔘}{{\ucc{$\mathfrak{U}$}}}{1} {𝔙}{{\ucc{$\mathfrak{V}$}}}{1}
+{𝔚}{{\ucc{$\mathfrak{W}$}}}{1} {𝔛}{{\ucc{$\mathfrak{X}$}}}{1}
+{𝔜}{{\ucc{$\mathfrak{Y}$}}}{1} {ℨ}{{\ucc{$\mathfrak{Z}$}}}{1}
+%
+% superscripts
+%
+{⁽}{{\ucc{${\scriptstyle {}^{(}}$}}}{1} {⁾}{{\ucc{${\scriptstyle {}^{)}}$}}}{1}
+{⁺}{{\ucc{${\scriptstyle {}^{+}}$}}}{1} {⁻}{{\ucc{${\scriptstyle {}^{-}}$}}}{1}
+{⁰}{{\ucc{${\scriptstyle {}^{0}}$}}}{1} {¹}{{\ucc{${\scriptstyle {}^{1}}$}}}{1}
+{²}{{\ucc{${\scriptstyle {}^{2}}$}}}{1} {³}{{\ucc{${\scriptstyle {}^{3}}$}}}{1}
+{⁴}{{\ucc{${\scriptstyle {}^{4}}$}}}{1} {⁵}{{\ucc{${\scriptstyle {}^{5}}$}}}{1}
+{⁶}{{\ucc{${\scriptstyle {}^{6}}$}}}{1} {⁷}{{\ucc{${\scriptstyle {}^{7}}$}}}{1}
+{⁸}{{\ucc{${\scriptstyle {}^{8}}$}}}{1} {⁹}{{\ucc{${\scriptstyle {}^{9}}$}}}{1}
+{⁼}{{\ucc{${\scriptstyle {}^{=}}$}}}{1} {ᴬ}{{\ucc{${\scriptstyle {}^{A}}$}}}{1}
+{ᴮ}{{\ucc{${\scriptstyle {}^{B}}$}}}{1} {ᴰ}{{\ucc{${\scriptstyle {}^{D}}$}}}{1}
+{ᴱ}{{\ucc{${\scriptstyle {}^{E}}$}}}{1} {ᴳ}{{\ucc{${\scriptstyle {}^{G}}$}}}{1}
+{ᴴ}{{\ucc{${\scriptstyle {}^{H}}$}}}{1} {ᴵ}{{\ucc{${\scriptstyle {}^{I}}$}}}{1}
+{ᴶ}{{\ucc{${\scriptstyle {}^{J}}$}}}{1} {ᴷ}{{\ucc{${\scriptstyle {}^{K}}$}}}{1}
+{ᴸ}{{\ucc{${\scriptstyle {}^{L}}$}}}{1} {ᴹ}{{\ucc{${\scriptstyle {}^{M}}$}}}{1}
+{ᴺ}{{\ucc{${\scriptstyle {}^{N}}$}}}{1} {ᴼ}{{\ucc{${\scriptstyle {}^{O}}$}}}{1}
+{ᴾ}{{\ucc{${\scriptstyle {}^{P}}$}}}{1} {ᴿ}{{\ucc{${\scriptstyle {}^{R}}$}}}{1}
+{ᵀ}{{\ucc{${\scriptstyle {}^{T}}$}}}{1} {ᵁ}{{\ucc{${\scriptstyle {}^{U}}$}}}{1}
+{ⱽ}{{\ucc{${\scriptstyle {}^{V}}$}}}{1} {ᵂ}{{\ucc{${\scriptstyle {}^{W}}$}}}{1}
+{ᵃ}{{\ucc{${\scriptstyle {}^{a}}$}}}{1} {ᵇ}{{\ucc{${\scriptstyle {}^{b}}$}}}{1}
+{ᶜ}{{\ucc{${\scriptstyle {}^{c}}$}}}{1} {ᵈ}{{\ucc{${\scriptstyle {}^{d}}$}}}{1}
+{ᵉ}{{\ucc{${\scriptstyle {}^{e}}$}}}{1} {ᶠ}{{\ucc{${\scriptstyle {}^{f}}$}}}{1}
+{ᵍ}{{\ucc{${\scriptstyle {}^{g}}$}}}{1} {ʰ}{{\ucc{${\scriptstyle {}^{h}}$}}}{1}
+{ⁱ}{{\ucc{${\scriptstyle {}^{i}}$}}}{1} {ʲ}{{\ucc{${\scriptstyle {}^{j}}$}}}{1}
+{ᵏ}{{\ucc{${\scriptstyle {}^{k}}$}}}{1} {ˡ}{{\ucc{${\scriptstyle {}^{l}}$}}}{1}
+{ᵐ}{{\ucc{${\scriptstyle {}^{m}}$}}}{1} {ⁿ}{{\ucc{${\scriptstyle {}^{n}}$}}}{1}
+{ᵒ}{{\ucc{${\scriptstyle {}^{o}}$}}}{1} {ᵖ}{{\ucc{${\scriptstyle {}^{p}}$}}}{1}
+{ʳ}{{\ucc{${\scriptstyle {}^{r}}$}}}{1} {ˢ}{{\ucc{${\scriptstyle {}^{s}}$}}}{1}
+{ᵗ}{{\ucc{${\scriptstyle {}^{t}}$}}}{1} {ᵘ}{{\ucc{${\scriptstyle {}^{u}}$}}}{1}
+{ᵛ}{{\ucc{${\scriptstyle {}^{v}}$}}}{1} {ʷ}{{\ucc{${\scriptstyle {}^{w}}$}}}{1}
+{ˣ}{{\ucc{${\scriptstyle {}^{x}}$}}}{1} {ʸ}{{\ucc{${\scriptstyle {}^{y}}$}}}{1}
+{ᶻ}{{\ucc{${\scriptstyle {}^{z}}$}}}{1}
+{ᵅ}{{\ucc{${\scriptstyle {}^{\alpha}}$}}}{1}
+{ᵝ}{{\ucc{${\scriptstyle {}^{\beta}}$}}}{1}
+{ᵞ}{{\ucc{${\scriptstyle {}^{\gamma}}$}}}{1}
+{ᵟ}{{\ucc{${\scriptstyle {}^{\delta}}$}}}{1}
+{ᵋ}{{\ucc{${\scriptstyle {}^{\varepsilon}}$}}}{1}
+{ᶿ}{{\ucc{${\scriptstyle {}^{\theta}}$}}}{1}
+{ᶥ}{{\ucc{${\scriptstyle {}^{\iota}}$}}}{1}
+{ᶲ}{{\ucc{${\scriptstyle {}^{\phi}}$}}}{1}
+{ᵡ}{{\ucc{${\scriptstyle {}^{\chi}}$}}}{1}
+{ᵠ}{{\ucc{${\scriptstyle {}^{\psi}}$}}}{1}
+%
+% subscripts
+%
+{₍}{{\ucc{${\scriptstyle {}_{(}}$}}}{1} {₎}{{\ucc{${\scriptstyle {}_{)}}$}}}{1}
+{₊}{{\ucc{${\scriptstyle {}_{+}}$}}}{1} {₋}{{\ucc{${\scriptstyle {}_{-}}$}}}{1}
+{₀}{{\ucc{${\scriptstyle {}_{0}}$}}}{1} {₁}{{\ucc{${\scriptstyle {}_{1}}$}}}{1}
+{₂}{{\ucc{${\scriptstyle {}_{2}}$}}}{1} {₃}{{\ucc{${\scriptstyle {}_{3}}$}}}{1}
+{₄}{{\ucc{${\scriptstyle {}_{4}}$}}}{1} {₅}{{\ucc{${\scriptstyle {}_{5}}$}}}{1}
+{₆}{{\ucc{${\scriptstyle {}_{6}}$}}}{1} {₇}{{\ucc{${\scriptstyle {}_{7}}$}}}{1}
+{₈}{{\ucc{${\scriptstyle {}_{8}}$}}}{1} {₉}{{\ucc{${\scriptstyle {}_{9}}$}}}{1}
+{₌}{{\ucc{${\scriptstyle {}_{=}}$}}}{1} {ₐ}{{\ucc{${\scriptstyle {}_{a}}$}}}{1}
+{ₑ}{{\ucc{${\scriptstyle {}_{e}}$}}}{1} {ₕ}{{\ucc{${\scriptstyle {}_{h}}$}}}{1}
+{ᵢ}{{\ucc{${\scriptstyle {}_{i}}$}}}{1} {ⱼ}{{\ucc{${\scriptstyle {}_{j}}$}}}{1}
+{ₖ}{{\ucc{${\scriptstyle {}_{k}}$}}}{1} {ₗ}{{\ucc{${\scriptstyle {}_{l}}$}}}{1}
+{ₘ}{{\ucc{${\scriptstyle {}_{m}}$}}}{1} {ₙ}{{\ucc{${\scriptstyle {}_{n}}$}}}{1}
+{ₒ}{{\ucc{${\scriptstyle {}_{o}}$}}}{1} {ₚ}{{\ucc{${\scriptstyle {}_{p}}$}}}{1}
+{ᵣ}{{\ucc{${\scriptstyle {}_{r}}$}}}{1} {ₛ}{{\ucc{${\scriptstyle {}_{s}}$}}}{1}
+{ₜ}{{\ucc{${\scriptstyle {}_{t}}$}}}{1} {ᵤ}{{\ucc{${\scriptstyle {}_{u}}$}}}{1}
+{ᵥ}{{\ucc{${\scriptstyle {}_{v}}$}}}{1} {ₓ}{{\ucc{${\scriptstyle {}_{x}}$}}}{1}
+{ᵦ}{{\ucc{${\scriptstyle {}_{\beta}}$}}}{1}
+{ᵧ}{{\ucc{${\scriptstyle {}_{\gamma}}$}}}{1}
+{ᵨ}{{\ucc{${\scriptstyle {}_{\rho}}$}}}{1}
+{ᵪ}{{\ucc{${\scriptstyle {}_{\chi}}$}}}{1}
+{ᵩ}{{\ucc{${\scriptstyle {}_{\psi}}$}}}{1}
+%
+% mathematical operators (julia functions)
+%
+% comment out the next command if you dont use ' as the transposition
+% operator! activate the command in line 361 in that case, too!
+{'}{{\uccop{\textquotesingle}}}{1}
+{×}{{\uccop{${\scriptstyle \times}$}}}{1}
+{÷}{{\uccop{${\scriptstyle \div}$}}}{1}
+{∈}{{\uccop{${\scriptstyle \in}$}}}{1}
+{∉}{{\uccop{${\scriptstyle \notin}$}}}{1}
+{∋}{{\uccop{${\scriptstyle \ni}$}}}{1}
+{∌}{{\uccop{${\scriptstyle \not\ni}$}}}{1}
+{∘}{{\uccop{${\scriptstyle \circ}$}}}{1}
+{√}{{\uccop{$\surd$}}}{1}
+{∛}{{\uccop{$\sqrt[3]{\vphantom{x}}$}}}{1}
+{∩}{{\uccop{${\scriptstyle \cap}$}}}{1}
+{∪}{{\uccop{${\scriptstyle \cup}$}}}{1}
+{≈}{{\uccop{${\scriptstyle \approx}$}}}{1}
+{≉}{{\uccop{${\scriptstyle \not\approx}$}}}{1}
+{≠}{{\uccop{${\scriptstyle \neq}$}}}{1}
+{≡}{{\uccop{${\scriptstyle \equiv}$}}}{1}
+{≢}{{\uccop{${\scriptstyle \not\equiv}$}}}{1}
+{≤}{{\uccop{${\scriptstyle \leq}$}}}{1}
+{≥}{{\uccop{${\scriptstyle \geq}$}}}{1}
+{⊆}{{\uccop{${\scriptstyle \subseteq}$}}}{1}
+{⊇}{{\uccop{${\scriptstyle \supseteq}$}}}{1}
+{⊈}{{\uccop{${\scriptstyle \not\subseteq}$}}}{1}
+{⊉}{{\uccop{${\scriptstyle \not\supseteq}$}}}{1}
+{⊊}{{\uccop{${\scriptstyle \subsetneq}$}}}{1}
+{⊋}{{\uccop{${\scriptstyle \supsetneq}$}}}{1}
+{⊻}{{\uccop{${\scriptstyle \veebar}$}}}{1}
+{⋅}{{\uccop{${\scriptstyle \cdot}$}}}{1}
+%
+% other mathematical symbols
+%
+{∇}{{\ucc{${\scriptstyle \nabla}$}}}{1}
+{⊗}{{\ucc{${\scriptstyle \otimes}$}}}{1}
+{⊕}{{\ucc{${\scriptstyle \oplus}$}}}{1}
+{‖}{{\ucc{${\scriptstyle \Vert}$}}}{1}
+{⊥}{{\ucc{${\scriptstyle \bot}$}}}{1}
+{ℓ}{{\ucc{${\scriptstyle \ell}$}}}{1}
+{∃}{{\ucc{${\scriptstyle \exists}$}}}{1}
+{∀}{{\ucc{${\scriptstyle \forall}$}}}{1}
+{ħ}{{\ucc{${\scriptstyle \hbar}$}}}{1}
+{ı}{{\ucc{${\scriptstyle \imath}$}}}{1}
+{ȷ}{{\ucc{${\scriptstyle \jmath}$}}}{1}
+{∄}{{\ucc{${\scriptstyle \exists}$}}}{1}
+{∂}{{\ucc{${\scriptstyle \partial}$}}}{1}
+{⊤}{{\ucc{${\scriptstyle \top}$}}}{1}
+{℘}{{\ucc{${\scriptstyle \wp}$}}}{1}
+{…}{{\ucc{${\scriptstyle \ldots}$}}}{3}
+{⋯}{{\ucc{${\scriptstyle \cdots}$}}}{3}
+{⋮}{{\ucc{${\scriptstyle \rvdots}$}}}{1}
+{⋱}{{\ucc{${\scriptstyle \rddots}$}}}{3}
+{⋰}{{\ucc{${\scriptstyle \riddots}$}}}{3}
+%
+% unicode box characters
+%
+{┌}{{\ucc{\textSFi}}}{1} {│}{{\ucc{\textSFxi}}}{1} {└}{{\ucc{\textSFii}}}{1}
+{─}{{\ucc{\textSFx}}}{1} {┄}{{\ucc{\textSFx}}}{1}
+%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% defining the \addlitjlbase and \addlitjlstrnum commands,
+% which help a user to fix some of the known managable issues
+\def\addToLiterate#1{%
+\protected@edef\lst@literate{%
+\unexpanded\expandafter{\lst@literate}\unexpanded{#1}}}
+\lst@Key{expandliterate}{}{\addToLiterate{#1}}
+\newcommand{\addlitjlbase}[3]{%
+\lstset{style=jlcodeuccstyle}
+\lstdefinestyle{jlcodeuccstyle}{expandliterate={#1}{{{\color{jlbase}#2}}}{#3}}
+\ifjlc@autoload
+  \lstset{language=julia, style=jlcodestyle}
+\fi
+}
+\newcommand{\addlitjlstrnum}[3]{%
+\lstset{style=jlcodeuccstyle}
+\lstdefinestyle{jlcodeuccstyle}{expandliterate={#1}{{{\color{jlstrnum}#2}}}{#3}}
+\ifjlc@autoload
+  \lstset{language=julia, style=jlcodestyle}
+\fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% commands for inserting code
+
+% defining the \jlinputlisting command for listing standalone files
+\newcommand{\jlinputlisting}[1]{%
+\calcboxlengths%
+\lstinputlisting[language=julia, style=jlcodestyle]{#1}}
+
+
+% defining the \jllisting for displaying code directly
+\lstnewenvironment{jllisting}[2][]{%
+  \calcboxlengths%
+  \lst@TestEOLChar{#2}%
+  \lstset{#1}%
+  \csname\@lst @SetFirstNumber\endcsname%
+}{%
+  \@nobreakfalse
+  \csname\@lst @SaveFirstNumber\endcsname%
+}
+
+
+% defining the font for the inline code
+\def\jlinlfont{\loadthemecolors\color{jlstrnum}\ttfamily\relsize{-0.5}\selectfont}
+
+% defining the \jlinl for dispalying in-line code snippets
+\newlength{\jlinlem}
+\newcommand{\jlinl}[1]{%
+\settowidth{\jlinlem}{\jlinlfont{m}}%
+\lstinline[language=julia,style=jlcodestyle,
+basicstyle=\jlinlfont,basewidth=\jlinlem]^^a7#1^^a7}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\lstdefinestyle{jlcodestyle}{%
+ style=jlcodeblockstyle,
+ style=jlcodeboxdfltstyle,
+ style=jlcodeopstyle,
+ style=jlcodeuccstyle}
+
+\ifdefstring{\jlc@theme}{default-plain}{%
+  \lstdefinestyle{jlcodestyle}{%
+   style=jlcodeblockstyle,
+   style=jlcodeboxnostyle,
+   style=jlcodeopstyle,
+   style=jlcodeuccstyle}
+}{}
+
+\ifdefstring{\jlc@theme}{grayscale}{%
+  \lstdefinestyle{jlcodestyle}{%
+   style=jlcodeblockstyle,
+   style=jlcodeboxdfltstyle,
+   style=jlcodeopstyle,
+   style=jlcodeuccstyle}
+}{}
+
+\ifdefstring{\jlc@theme}{grayscale-plain}{%
+  \lstdefinestyle{jlcodestyle}{%
+   style=jlcodeblockstyle,
+   style=jlcodeboxnostyle,
+   style=jlcodeopstyle,
+   style=jlcodeuccstyle}
+}{}
+
+\ifdefstring{\jlc@theme}{darkbeamer}{%
+  \lstdefinestyle{jlcodestyle}{%
+   style=jlcodeblockstyle,
+   style=jlcodeboxdthstyle,
+   style=jlcodeopstyle,
+   style=jlcodeuccstyle}
+}{}
+
+
+% activating the julia style
+\ifjlc@autoload
+  \lstset{language=julia, style=jlcodestyle}
+\fi
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

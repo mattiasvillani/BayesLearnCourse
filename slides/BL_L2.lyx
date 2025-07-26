@@ -1,0 +1,2635 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+}
+
+\usepackage{mathtools}
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{emoji}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
+
+
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
+
+
+\tiny
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
+}
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
+\definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\end_preamble
+\options xcolor=svgnames
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\color orange
+Bayesian Learning 
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+Poisson data and prior elicitation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Lecture 2 - Poisson data.
+ Prior elicitation.
+ Invariant priors.
+\end_layout
+
+\begin_layout Author
+
+\series bold
+Mattias Villani
+\series default
+ 
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
+ 
+\begin_inset Argument 1
+status collapsed
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Mattias Villani
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Stockholm University
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Lecture overview
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+Poisson model
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Conjugate priors
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior elicitation
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Jeffreys' prior
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Poisson model
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+y_{1},...,y_{n}\vert\theta\overset{iid}{\sim}\mathrm{Pois}(\theta)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Poisson distribution
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(y)=\text{\frac{\theta^{y}e^{-\theta}}{y!}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Likelihood
+\series default
+\color inherit
+ from iid Poisson sample
+\shape italic
+ 
+\shape default
+
+\begin_inset Formula $y=(y_{1},...,y_{n})$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(y|\theta)=\left[\prod\nolimits _{i=1}^{n}p(y_{i}|\theta)\right]\propto\theta^{(\sum\nolimits _{i=1}^{n}y_{i})}\exp(-\theta n),
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\theta)\propto\theta^{\alpha-1}\exp(-\theta\beta)\propto\mathrm{Gamma}(\alpha,\beta)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Poisson distribution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+small
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray] 
+\end_layout
+
+\begin_layout Plain Layout
+
+$X 
+\backslash
+sim 
+\backslash
+mathrm{Pois}(
+\backslash
+theta)$ 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+for $X
+\backslash
+in{0,1,2,
+\backslash
+ldots}$     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}       
+\end_layout
+
+\begin_layout Plain Layout
+
+	p(x) & = 
+\backslash
+frac{
+\backslash
+theta^xe^{-
+\backslash
+theta}}{x!} & 
+\backslash
+
+\backslash
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{E}(X) & = 
+\backslash
+theta & 
+\backslash
+
+\backslash
+       
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{V}(X) & = 
+\backslash
+theta & 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1cm}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "25col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PoisDist.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gamma distribution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\noindent
+\align left
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "50col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+small
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray]   
+\end_layout
+
+\begin_layout Plain Layout
+
+$X 
+\backslash
+sim 
+\backslash
+mathrm{Gamma}(
+\backslash
+alpha,
+\backslash
+beta)$ 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}      
+\end_layout
+
+\begin_layout Plain Layout
+
+	p(x) & = 
+\backslash
+frac{
+\backslash
+beta^
+\backslash
+alpha}{
+\backslash
+Gamma(
+\backslash
+alpha)}x^{
+\backslash
+alpha-1}e^{-
+\backslash
+beta x} & 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+mathbb{E}(X) & = 
+\backslash
+frac{
+\backslash
+alpha}{
+\backslash
+beta} & 
+\backslash
+
+\backslash
+       
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+mathbb{V}(X) & = 
+\backslash
+frac{
+\backslash
+alpha}{
+\backslash
+beta^2} & 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-1cm}  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "25col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GammaDist.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Poisson posterior
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{eqnarray*}
+p(\theta|y_{1},...,y_{n}) & \propto & \left[\prod\nolimits _{i=1}^{n}p(y_{i}|\theta)\right]p(\theta)\\
+ & \propto & \theta^{\sum\nolimits _{i=1}^{n}y_{i}}\exp(-\theta n)\theta^{\alpha-1}\exp(-\theta\beta)\\
+ & = & \theta^{\alpha+\sum\nolimits _{i=1}^{n}y_{i}-1}\exp[-\theta(\beta+n)],
+\end{eqnarray*}
+
+\end_inset
+
+which is proportional to 
+\begin_inset Formula $\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior-to-Posterior mapping
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{gather*}
+\text{Model: \ }y_{1},...,y_{n}|\theta\overset{iid}{\sim}\mathrm{Pois}(\theta)\\
+\text{Prior: \ }\theta\sim\mathrm{Gamma}(\alpha,\beta)\\
+\text{Posterior: }\theta|y_{1},...,y_{n}\sim\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)\text{.}
+\end{gather*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Example - Number of bids in eBay auctions
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Data
+\series default
+\color inherit
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Number of placed bids in 
+\begin_inset Formula $n=1000$
+\end_inset
+
+ eBay coin auctions.
+\end_layout
+
+\begin_layout Itemize
+Sum of counts: 
+\begin_inset Formula $\sum_{i=1}^{n}y_{i}=3635.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Average number bids per auction: 
+\begin_inset Formula $\bar{y}=3635/1000=3.635.$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset Formula $\alpha=2$
+\end_inset
+
+, 
+\begin_inset Formula $\beta=1/2$
+\end_inset
+
+.
+ 
+\begin_inset Formula 
+\[
+E(\theta)=\frac{\alpha}{\beta}=4
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+SD(\theta)=\frac{\alpha}{\beta^{2}}=2.823
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+E(\theta|\boldsymbol{y})=\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}=\frac{2+3635}{1/2+1000}\approx3.635.
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+SD(\theta|\boldsymbol{y})=\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{(\beta+n)^{2}}\right)^{1/2}\approx0.060.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+eBay data - Posterior of 
+\begin_inset Formula $\theta$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPost.png
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+eBay data - model fit at 
+\begin_inset Formula $\theta=\mathbb{E}(\theta\vert\mathbf{x})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.png
+	scale 50
+	BoundingBox 0bp 0cm 300bp 300bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+eBay - low/high seller's reservation price
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+The data is very heterogenous.
+ Some auctions start with very high reservations prices (lowest price accepted
+ by the seller).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Split the data into auctions with low/high reservation prices.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Low reservation price auctions
+\series default
+\color inherit
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $n=550$
+\end_inset
+
+ eBay coin auctions.
+\end_layout
+
+\begin_layout Itemize
+Posterior mean: 
+\begin_inset Formula $5.321$
+\end_inset
+
+ bids.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+High reservation price auctions
+\series default
+\color inherit
+: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $n=450$
+\end_inset
+
+ eBay coin auctions.
+\end_layout
+
+\begin_layout Itemize
+Posterior mean: 
+\begin_inset Formula $1.576$
+\end_inset
+
+ bids.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+eBay data split on reservation price
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPosteriorSplit.png
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+eBay data - model fit at 
+\begin_inset Formula $\mathbb{E}(\theta\vert\mathbf{x})$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.png
+	scale 35
+	BoundingBox 300bp 0bp 900bp 300bp
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Better fits, but still not good enough.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Lab 3: Fit 
+\series bold
+\color blue
+Poisson regression
+\series default
+\color inherit
+ with reservation price as continuous covariate.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Posterior intervals
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian 95% 
+\color orange
+credible interval
+\series default
+\color inherit
+: the probability that the unknown parameter 
+\begin_inset Formula $\theta$
+\end_inset
+
+ lies in the interval is 0.95.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+95% 
+\series bold
+\color blue
+equal-tail interval
+\series default
+\color inherit
+: from 
+\begin_inset Formula $2.5\%$
+\end_inset
+
+ to 
+\begin_inset Formula $97.5\%$
+\end_inset
+
+ percentile.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Approximate 
+\begin_inset Formula $95\%$
+\end_inset
+
+ 
+\series bold
+\color blue
+credible interval
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+E(\theta|y)\pm1.96\cdot SD(\theta|y)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Highest Posterior Density
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+HPD
+\series default
+\color inherit
+) interval contains the 
+\begin_inset Formula $\theta$
+\end_inset
+
+ values with highest pdf.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Illustration of different interval types
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/intervals.png
+	lyxscale 40
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Credible intervals - eBay auction data
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/ebayInterval.png
+	lyxscale 40
+	scale 33
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Conjugate priors
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\color black
+Normal likelihood: Normal prior
+\begin_inset Formula $\:\rightarrow\:$
+\end_inset
+
+Normal posterior.
+\end_layout
+
+\begin_layout Itemize
+
+\color black
+Bernoulli likelihood: Beta prior
+\begin_inset Formula $\:\rightarrow\:$
+\end_inset
+
+Beta posterior.
+\end_layout
+
+\begin_layout Itemize
+
+\color black
+Poisson likelihood: Gamma prior
+\begin_inset Formula $\:\rightarrow\:$
+\end_inset
+
+Gamma posterior.
+ 
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Conjugate priors
+\series default
+\color inherit
+: A prior is conjugate to a model if the prior and posterior belong to the
+ 
+\series bold
+\color blue
+same distributional family
+\series default
+\color inherit
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "85col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+small
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray]   
+\end_layout
+
+\begin_layout Plain Layout
+
+a family of prior distributions $
+\backslash
+mathcal{P}$ is {
+\backslash
+color{blue}
+\backslash
+textbf{conjugate}} for 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+a family of likelihoods $
+\backslash
+mathcal{L}=
+\backslash
+{p(
+\backslash
+mathbf{x}|
+\backslash
+theta),
+\backslash
+theta
+\backslash
+in
+\backslash
+Theta
+\backslash
+}$ if
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{equation*}      
+\end_layout
+
+\begin_layout Plain Layout
+
+	  p(
+\backslash
+theta)
+\backslash
+in
+\backslash
+mathcal{P
+\backslash
+Rightarrow}
+\backslash
+text{ }p(
+\backslash
+theta|
+\backslash
+mathbf{x})
+\backslash
+in
+\backslash
+mathcal{P}
+\backslash
+hspace{0.5cm}
+\backslash
+text{ for all }p(
+\backslash
+mathbf{x}|
+\backslash
+theta)
+\backslash
+in
+\backslash
+mathcal{L}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{equation*}    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+vspace{-0.5cm}  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Autoregressive time series model
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Autoregressive process
+\series default
+\color inherit
+ or order 
+\begin_inset Formula $p$
+\end_inset
+
+ - AR(
+\begin_inset Formula $p$
+\end_inset
+
+)
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t} & = & \mu+\phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t},\text{ \ensuremath{\varepsilon_{t}\overset{iid}{\sim}N(0,\sigma^{2})}}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Unconditional mean: 
+\begin_inset Formula $\mathbb{E}(y_{t})=\mu$
+\end_inset
+
+.
+ Long run forecast attraction.
+\begin_inset Formula 
+\[
+\mathbb{E}(y_{T+h}|y_{1:T})\rightarrow\mu\text{ as }h\rightarrow\infty.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/InflSwedenPreds.png
+	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Prior elicitation - AR(p)
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Autoregressive process
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{eqnarray*}
+y_{t} & = & \mu+\phi_{1}(y_{t-1}-\mu)+...+\phi_{p}(y_{t-p}-\mu)+\varepsilon_{t}
+\end{eqnarray*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Expert prior
+\series default
+\color inherit
+ on the unconditional mean: 
+\begin_inset Formula $\mu\sim N(\mu_{0},\tau_{0}^{2})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Regularization prior
+\series default
+\color inherit
+ on 
+\begin_inset Formula $\phi_{1},\ldots\phi_{p}$
+\end_inset
+
+ 
+\size footnotesize
+
+\begin_inset Formula 
+\[
+\phi_{k}\sim N\left(\mu_{k},\sigma^{2}\frac{\tau^{2}}{k^{2}}\right)\:\text{ independently apriori}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Prior mean on persistent AR(1): 
+\begin_inset Formula $\mu_{1}=0.8,\text{}\mu_{2}=...=\mu_{p}=0$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{V}(\phi_{k})=\sigma^{2}\frac{\tau^{2}}{k^{2}}$
+\end_inset
+
+.
+ Coeff on 
+\begin_inset Quotes eld
+\end_inset
+
+longer
+\begin_inset Quotes erd
+\end_inset
+
+ lags more likely to be small.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Hierarchical prior
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Hard to specify 
+\begin_inset Formula $\tau^{2}$
+\end_inset
+
+? Put a prior on it!
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\phi_{k}\vert\tau^{2}\sim N\left(\mu_{k},\sigma^{2}\frac{\tau^{2}}{k^{2}}\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\tau^{2}\sim\chi_{\nu}^{2}$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Gives a posterior on global shrinkage 
+\begin_inset Formula $\tau^{2}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Prior elicitation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Smoothness priors
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+a version of regularization priors
+\end_layout
+
+\begin_layout Itemize
+nonlinear regression function 
+\begin_inset Formula $f(\cdot)$
+\end_inset
+
+ is believed to be smooth
+\begin_inset Formula 
+\[
+y=f(x)+\varepsilon
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GPjagged.png
+	lyxscale 50
+	scale 15
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/GPsmooth.png
+	lyxscale 50
+	scale 15
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Noninformative priors
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Uniform
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim\mathrm{Beta}(1,1)$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Issue 1: same as prior sample with one success and one failure.
+\begin_inset Newline newline
+\end_inset
+
+Issue 2: not uniform for 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}.$
+\end_inset
+
+
+\series bold
+\color blue
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Zero prior sample size
+\series default
+\color inherit
+: 
+\begin_inset Formula $\theta\sim\mathrm{Beta}(\epsilon,\epsilon)$
+\end_inset
+
+ with 
+\begin_inset Formula $\epsilon\downarrow0$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Posterior 
+\begin_inset Formula $\rightarrow$
+\end_inset
+
+ 
+\begin_inset Formula $\mathrm{Beta}(s,f)$
+\end_inset
+
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Issue: posterior is improper if 
+\begin_inset Formula $s=0$
+\end_inset
+
+ or 
+\begin_inset Formula $f=0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Invariant prior
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Observed information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+J_{\mathbf{x}}(\hat{\theta})=-\frac{d^{2}\ln p(\mathbf{x}\vert\theta)}{d\theta^{2}}\vert_{\theta=\hat{\theta}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Fisher information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+I(\theta)=E_{\mathbf{x}|\theta}\left(J_{\mathbf{x}}(\theta)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Jeffreys' rule 
+\series default
+\color inherit
+to construct prior
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(\theta)=I(\theta)^{1/2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Invariance
+\series default
+\color inherit
+ under 1:1 parameter transformation 
+\begin_inset Formula $\phi=g(\theta)$
+\end_inset
+
+.
+ Example: 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}.$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\theta}(\theta)$
+\end_inset
+
+ directly
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\phi}(\phi)$
+\end_inset
+
+ and then obtain 
+\begin_inset Formula $p_{\theta}(\theta)=p_{\phi}(g^{-1}(\theta))\left|\frac{dg^{-1}(\theta)}{d\theta}\right|$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Invariant prior
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Observed information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+J_{\mathbf{x}}(\hat{\theta})=-\frac{d^{2}\ln p(\mathbf{x}\vert\theta)}{d\theta^{2}}\vert_{\theta=\hat{\theta}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Fisher information
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula 
+\[
+I(\theta)=E_{\mathbf{x}|\theta}\left(J_{\mathbf{x}}(\theta)\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Jeffreys' rule 
+\series default
+\color inherit
+to construct prior
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+p(\theta)=I(\theta)^{1/2}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Invariance
+\series default
+\color inherit
+ under 1:1 parameter transformation 
+\begin_inset Formula $\phi=g(\theta)$
+\end_inset
+
+.
+ Example: 
+\begin_inset Formula $\phi=\log\frac{\theta}{1-\theta}.$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\theta}(\theta)$
+\end_inset
+
+ directly
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Specify 
+\begin_inset Formula $p_{\phi}(\phi)$
+\end_inset
+
+ and then obtain 
+\begin_inset Formula $p_{\theta}(\theta)=p_{\phi}(g^{-1}(\theta))\left|\frac{dg^{-1}(\theta)}{d\theta}\right|$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Second derivative measures curvature
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PeakynessHigh.pdf
+	scale 25
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/PeakynessLow.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Jeffreys' prior for negative binomial sampling
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Jeffreys' prior:
+\begin_inset Formula 
+\[
+n|\theta\overset{iid}{\sim}NegBin(s,\theta).
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\ln p(\mathbf{x}|\theta)=\ln\binom{n-1}{s-1}+s\ln\theta+f\ln(1-\theta)
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\frac{d^{2}\ln p(\mathbf{x}|\theta)}{d\theta^{2}}=-\frac{s}{\theta^{2}}-\frac{f}{(1-\theta)^{2}}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+I(\theta)=\frac{s}{\theta^{2}}+\frac{E_{n|\theta}(n-s)}{(1-\theta)^{2}}=\frac{s}{\theta^{2}}+\frac{s/\theta-s}{(1-\theta)^{2}}=\frac{s}{\theta^{2}(1-\theta)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Thus, the Jeffreys' prior is
+\begin_inset Formula 
+\[
+p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1}(1-\theta)^{-1/2}\propto Beta(\theta|0,1/2).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Jeffreys' prior is 
+\series bold
+\color blue
+improper
+\series default
+\color inherit
+, but the posterior is proper: 
+\begin_inset Formula $\theta\vert n\sim\mathrm{Beta}(s,f+1/2)$
+\end_inset
+
+ which is proper since 
+\begin_inset Formula $s\geq1$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Jeffreys' prior 
+\series bold
+\color blue
+violates the likelihood principle
+\series default
+\color inherit
+ because 
+\begin_inset Formula $I(\theta)$
+\end_inset
+
+ is sampling-based.
+\begin_inset Formula 
+\[
+\text{ }
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
