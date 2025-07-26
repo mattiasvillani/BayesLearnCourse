@@ -1,0 +1,43 @@
+---
+title: "Exercises for Bayesian Learning, 7.5 hp"
+format: html
+---
+
+<img src="misc/mixture_mosaic3.png" alt="AI generated image of a mixture distribution" class="center" width="100%"/>
+
+> Practice makes perfect. Exercises are important for building up a proper understanding. 
+
+### Schedule
+The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&object=cevt_39011_HT2025&startDate=20250802&endDate=20260131&type=courseevent&h=t&l=en). 
+
+### Literature - problems
+- The **BL** listed below are problem numbers from the course book Villani (2025a). [Bayesian Learning](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf).
+- The **BLprequel** listed below are problem numbers from a book [Bayesian Learning - the prequel](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf).
+- The **BDA** listed below are problem numbers from the course book Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). [Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf).
+
+
+### Exercise problems
+
+**Exercise 1 - XXX.**\
+Problems: BL X.Y, BL X.Z
+
+**Exercise 2 - XXX.**\
+Problems: BL X.Y, BL X.Z
+
+**Exercise 3 - XXX.**\
+Problems: BL X.Y, BL X.Z
+
+**Exercise 4 - XXX.**\
+Problems: BL X.Y, BL X.Z
+
+**Exercise 5 - XXX.**\
+Problems: BL X.Y, BL X.Z
+
+**Exercise 6 - XXX.**\
+Problems: BL X.Y, BL X.Z
+
+**Exercise 7 - XXX.**\
+Problems: BL X.Y, BL X.Z
+
+**Exercise 8 - XXX.**\
+Problems: BL X.Y, BL X.Z

@@ -1,0 +1,37 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Bayesian Learning, 7.5 hp",
+    "section": "",
+    "text": "Star\n\nAim\n\nThis is a course on the Master’s Program in Statitics and the Master’s Program in Data Science, Statistics and Decision Analysis at Stockholm University.\n\n\nThe course gives a gentle but solid introduction to Bayesian statistics, with special emphasis on models and methods in computational statistics and machine learning.\n\n\n\nContents\n\nWe will get off to a shocking start by introducing a very different probability concept than the one you are probably used to: subjective probability.\nWe will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making.\nThe really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance.\nA new world will open up when we learn how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) and approximate optimization methods like Variational Inference (VI).\nYou will also get a taste for probabilistic programming languages for Bayesian learning, in particular the popular Stan language in R.\nFinally, we’ll round off with an introduction to Bayesian model selection and Bayesian variable selection.\n\n\n\nLiterature\n\nVillani, M. (2025a). Bayesian Learning. This is the main book for the course.\nGelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the book webpage and a free PDF version.\nAdditional material and handouts distributed during the course.\n\nIf you need to refresh some basic mathematics, like derivatives and integrals, you may find the first chapter of this Prequel book useful:\n\nVillani, M. (2025b). Bayesian Learning - the prequel. Notes on basic mathematics, probability and statistical inference. Work in progress, expect typos.\n\n\n\nStructure\nThe course consists of lectures, mathematical exercises and computer labs.\n\n\nExamination\nThe course is examined by a\n\nwritten exam (grades A-F)\nhome assignment (grade pass/fail).\n\n\n\nSchedule\nThe course schedule can be found on TimeEdit. A tip is to select Subscribe in the upper right corner of TimeEdit and then paste the link into your phone’s calendar program.\n\n\nInteractive material\nThe course makes use of interactive Observable notebooks in javascript that runs in your browser. The widgets will be linked below each relevant lecture. All widgets used in the course are available here.\n\n\nTeachers\n\n\n\n\nMattias VillaniCourse responsible and LecturerProfessor \n\n\n\nOskar GustafssonExercises and Computer labs  PhD in Statistics and Senior Lecturer\n\n\n\n\n\nAkram MahmoudiExercises and Computer labs  PhD in Statistics and Lecturer\n\n\n\nValentin ZuljExercises and Computer labs  PhD student in Statistics and Teaching assistant"
+  },
+  {
+    "objectID": "interactive_exercises.html",
+    "href": "interactive_exercises.html",
+    "title": "Interactive exercises",
+    "section": "",
+    "text": "A good way to learn Bayesian statistics is to experiment with different prior distributions etc by changing parameters interactively. These interactive exercises makes use of the Observable widgets for the course.\n\n\nInteractive exercises\n\nWx.y is the interactive widget exercise for Chapter x Problem y.\n\nExercise 1 - XXX.\nProblems:\nExercise 2 - XXX.\nProblems:\nExercise 3 - XXX.\nProblems:\nExercise 4 - XXX.\nProblems:\nExercise 5 - XXX.\nProblems:\nExercise 6 - XXX.\nProblems:\nExercise 7 - XXX.\nProblems:\nExercise 8 - XXX.\nProblems:"
+  },
+  {
+    "objectID": "computerlabs.html",
+    "href": "computerlabs.html",
+    "title": "Home assignment and Computer labs for Bayesian Learning, 7.5 hp",
+    "section": "",
+    "text": "Let’s get busy coding.\n\nThe home assignment for the course is split up in two parts:\n\nHome assignment - Part A: Computer lab 1 and 2.\nHome assignment - Part B: Computer lab 3 and 4.\n\n\n\n\n\n\n\nNote that the scheduled time for computer labs will not be enough for doing the home assignments.\n\n\n\nComputer lab 1 - XXX\nMaterial: html\nComputer lab 2 - XXX.\nMaterial: html\nComputer lab 3 - XXX.\nMaterial: html\nComputer lab 4 - XXX.\nMaterial: html"
+  },
+  {
+    "objectID": "exercises.html",
+    "href": "exercises.html",
+    "title": "Exercises for Bayesian Learning, 7.5 hp",
+    "section": "",
+    "text": "Practice makes perfect. Exercises are important for building up a proper understanding.\n\n\nSchedule\nThe course schedule can be found on TimeEdit.\n\n\nLiterature - problems\n\nThe BL listed below are problem numbers from the course book Villani (2025a). Bayesian Learning.\nThe BLprequel listed below are problem numbers from a book Bayesian Learning - the prequel.\nThe BDA listed below are problem numbers from the course book Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). Bayesian Data Analysis.\n\n\n\nExercise problems\nExercise 1 - XXX.\nProblems: BL X.Y, BL X.Z\nExercise 2 - XXX.\nProblems: BL X.Y, BL X.Z\nExercise 3 - XXX.\nProblems: BL X.Y, BL X.Z\nExercise 4 - XXX.\nProblems: BL X.Y, BL X.Z\nExercise 5 - XXX.\nProblems: BL X.Y, BL X.Z\nExercise 6 - XXX.\nProblems: BL X.Y, BL X.Z\nExercise 7 - XXX.\nProblems: BL X.Y, BL X.Z\nExercise 8 - XXX.\nProblems: BL X.Y, BL X.Z"
+  },
+  {
+    "objectID": "lectures.html",
+    "href": "lectures.html",
+    "title": "Lectures for Bayesian Learning, 7.5 hp",
+    "section": "",
+    "text": "This page contains a short description of the contents, reading instructions and additional material for each lecture.\n\n\nSchedule\nThe course schedule can be found on TimeEdit.\n\n\nLiterature\n\nThe BL listed below are section numbers from the course book Villani (2025a). Bayesian Learning.\nThe BLprequel listed below are section numbers from a book Bayesian Learning - the prequel.\nThe BDA listed below are section numbers from the course book Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). Bayesian Data Analysis.\n\n\n\nLecture contents\nLecture 1 (Recorded, no class)- XXX\nRead: this | Slides\nInteractive:\n\nLecture 2 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 3 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 4 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 5 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 6 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 7 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 8 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 9 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 10 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 11 - XXX\nRead: this | Slides\nInteractive:\n\nLecture 12 - XXX\nRead: this | Slides\nInteractive:"
+  }
+]

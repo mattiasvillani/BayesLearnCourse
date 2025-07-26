@@ -1,0 +1,66 @@
+---
+title: "Lectures for Bayesian Learning, 7.5 hp"
+format: html
+---
+
+<img src="misc/mixture_mosaic1.png" alt="AI generated image of a mixture distribution" class="center" width="100%"/>
+
+> This page contains a short description of the contents, reading instructions and additional material for each lecture.
+
+### Schedule
+The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&object=cevt_39011_HT2025&startDate=20250802&endDate=20260131&type=courseevent&h=t&l=en). 
+
+### Literature
+- The **BL** listed below are section numbers from the course book Villani (2025a). [Bayesian Learning](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf).
+- The **BLprequel** listed below are section numbers from a book [Bayesian Learning - the prequel](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf).
+- The **BDA** listed below are section numbers from the course book Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). [Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf).
+
+### Lecture contents
+
+**Lecture 1 (Recorded, no class)- XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 2 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 3 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 4 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 5 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 6 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 7 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 8 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 9 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 10 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 11 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 12 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \

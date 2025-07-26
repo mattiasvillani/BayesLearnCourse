@@ -1,0 +1,76 @@
+---
+title: "Bayesian Learning, 7.5 hp"
+format: html
+---
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<img src="misc/mixture_mosaic2.png" alt="AI generated image of a mixture distribution" class="center" width="100%"/>
+
+<!-- Place this tag where you want the button to render. -->
+<a class="github-button" href="https://github.com/mattiasvillani/BayesLearnCourse/" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star this course on GitHub">Star</a>
+
+### Aim
+
+> This is a course on the [Master's Program in Statitics](https://utbildning.su.se/english/education/course-catalogue/ss/sstao) and the [Master’s Program in Data Science, Statistics and Decision Analysis](https://dsv.su.se/sdsbo) at Stockholm University. 
+
+> The course gives a gentle but solid introduction to Bayesian statistics, with special emphasis on models and methods in computational statistics and machine learning.
+
+
+
+### Contents
+
+- We will get off to a shocking start by introducing a very different probability concept than the one you are probably used to: subjective probability.
+- We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models.
+Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making.
+- The really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance.
+- A new world will open up when we learn how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) and approximate optimization methods like Variational Inference (VI).
+- You will also get a taste for probabilistic programming languages for Bayesian learning, in particular the popular Stan language in R.
+- Finally, we'll round off with an introduction to Bayesian model selection and Bayesian variable selection.
+
+### Literature
+
+-   Villani, M. (2025a). [Bayesian Learning](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf). This is the main book for the course.
+-   Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). Bayesian Data Analysis (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the [book webpage](http://www.stat.columbia.edu/~gelman/book/) and a free [PDF version](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf).
+-   Additional material and handouts distributed during the course.
+
+If you need to refresh some basic mathematics, like derivatives and integrals, you may find the first chapter of this Prequel book useful:
+
+-   Villani, M. (2025b). [Bayesian Learning - the prequel](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf). Notes on basic mathematics, probability and statistical inference. Work in progress, expect typos.
+
+### Structure
+
+The course consists of [lectures](lectures.qmd), [mathematical exercises](exercises.qmd) and [computer labs](computerlabs.qmd).
+
+### Examination
+
+The course is examined by a
+
+-   written exam (grades A-F)
+-   [home assignment](homeassignment.qmd) (grade pass/fail).
+
+### Schedule
+
+The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?i=x7ce6e7Z4n0wknyaQhxnZclQln_0nbZZZZX501QcTcn_sl7916Qy6d640666u65690907ZWQnw). A tip is to select *Subscribe* in the upper right corner of TimeEdit and then paste the link into your phone's calendar program.
+
+### Interactive material
+
+The course makes use of interactive Observable notebooks in javascript that runs in your browser. The widgets will be linked below each relevant lecture. All widgets used in the course are available [here](https://observablehq.com/collection/@mattiasvillani/bayesian-learning).
+
+### Teachers
+
+::: {layout="[ [1,1],[1,1] ]"}
+<img src="/misc/VillaniLowRes.jpg" width="30%"/>\
+[Mattias Villani](https://mattiasvillani.com)<br>Course responsible and Lecturer<br>Professor <br><br>
+
+![](/misc/oskar.jpeg){width="35%"}\
+[Oskar Gustafsson](https://www.su.se/english/profiles/osgu4809-1.252072)<br>Exercises and Computer labs <br> PhD in Statistics and Senior Lecturer
+
+![](/misc/akram.jpeg){width="40%"}\
+[Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159)<br>Exercises and Computer labs <br> PhD in Statistics and Lecturer
+
+![](/misc/valentin.jpeg){width="40%"}\
+[Valentin Zulj](https://valentinzulj.github.io/)<br>Exercises and Computer labs <br> PhD student in Statistics and Teaching assistant
+:::
+

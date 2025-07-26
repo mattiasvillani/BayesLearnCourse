@@ -4,7 +4,6 @@
 
 <img src="Misc/linocut_mountaintops.png">
 
----
 
 ### Contents
 

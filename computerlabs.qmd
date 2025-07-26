@@ -1,0 +1,29 @@
+---
+title: "Home assignment and Computer labs for Bayesian Learning, 7.5 hp"
+format: html
+---
+
+<img src="misc/mixture_mosaic4.png" alt="AI generated image of a mixture distribution" class="center" width="100%"/>
+
+> Let's get busy coding.
+
+The home assignment for the course is split up in two parts:
+
+-   Home assignment - Part A: Computer lab 1 and 2.
+-   Home assignment - Part B: Computer lab 3 and 4.
+
+::: {.callout-caution appearance="minimal"}
+Note that the scheduled time for computer labs will not be enough for doing the home assignments.
+:::
+
+**Computer lab 1 - XXX**\
+Material: [html](misc/larry.png)
+
+**Computer lab 2 - XXX.**\
+Material: [html](misc/larry.png)
+
+**Computer lab 3 - XXX.**\
+Material: [html](misc/larry.png)
+
+**Computer lab 4 - XXX.**\
+Material: [html](misc/larry.png)

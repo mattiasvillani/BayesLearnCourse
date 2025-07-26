@@ -1,0 +1,71 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "!hidden/"
+    - "!OLD/"
+
+
+knitr:
+  opts_knit:
+    verbose: false
+  #output-dir: docs
+
+website:
+  title: "Bayesian Learning"
+  favicon: /misc/favicons/favicon.ico
+  navbar:
+    logo: /misc/SU_logo_small.png
+    background: primary
+    left:
+      - href: index.qmd
+        text: Overview
+      - href: lectures.qmd
+        text: Lectures
+      - href: exercises.qmd
+        text: Exercises
+      - href: interactive_exercises.qmd
+        text: Interactive exercises
+      - href: computerlabs.qmd
+        text: Home assignment/Computer labs
+        
+  page-footer:
+    left:
+      - text: "Department of Statistics - Stockholm University"
+        href: https://www.su.se/statistiska-institutionen/
+    center:
+      - text: "Use our course!"
+        #href: stealourcourse.qmd
+    right:
+      - icon: github
+        href: https://github.com/mattiasvillani/BayesLearnCourse
+        aria-label: Quarto GitHub
+format:
+  html:
+    theme:
+      light: united
+      dark: superhero # litera, lumen, superhero, united
+    css: styles.css
+    toc: true
+    toc-title: Sections
+    #monobackgroundcolor: #c3d0e6
+  revealjs:
+    center: true
+    slide-number: true
+    height: 1200
+    width: 2000
+    transition: none #convex
+    transition-speed: slow
+    preview-links: auto
+    toc: false
+    progress: true
+    citations-hover: false
+    logo: ../misc/SU_logotyp_Liggande_1000px.png
+    footnotes-hover: true
+    footer: "Bayesian Learning"
+callout-appearance: default
+
+
+
+
