@@ -1,0 +1,229 @@
+---
+#author: "Statistiska institutionen"
+#date: ""
+title: "Department of Statistics, HT 2025"
+format: pdf 
+classoption: 12pt
+geometry:
+      - top=30mm
+      - left=25mm
+      - heightrounded
+
+colorlinks: true
+include-in-header: 
+  text: |
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[L]{Bayesian Learning}
+    \fancyhead[R]{Course description}
+    \usepackage{titling}
+    \pretitle{
+    \includegraphics[width=100pt]{../misc/SU_logo_small.png}\hfill \large}
+    \posttitle{}
+    \usepackage{caption}
+    \captionsetup[table]{name=Tabell}
+editor: visual
+---
+
+# Bayesian Learning, Master's level, 7.5 hp, ST5301
+
+The course is part of the [Master's program in Statistics, 120 credits](https://utbildning.su.se/english/education/course-catalogue/ss/sstao) and the [Master's program in data science, statistics and decision analysis](https://www.su.se/english/search-courses-and-programmes/sdsbo-1.678892)[, 120 credits.](https://utbildning.su.se/english/education/course-catalogue/sd/sdsbo)
+
+## Course contents
+
+The course gives an introduction to Bayesian Learning, including its foundation on subjective probability and the practical implementation using simulation and approximation methods. The first part of the course presents Bayesian analysis for some simple models where the logic of Bayesian learning is clearly visible as tractable updating of a prior distribution from data. The latter part of the course focuses on more complex models and the computational methods, such as Gibbs sampling, Markov Chain Monte Carlo (MCMC) and Hamiltonian Monte Carlo (HMC) used to analyze them. An introduction probabilistic programming and Bayesian model selection is also given.
+
+See the [course web page](https://mattiasvillani.com/BayesLearnCourse/) for more detailed information.
+
+The examination consists of
+
+-   **Exam 1** (exam code 11BX): Exam (written, computer-aided).
+-   **Exam 2** (exam code 12BI): Mandatory home assignment.
+
+## Learning outcomes
+
+To pass the course, students should be able to:
+
+Knowledge and comprehension:
+
+-   Explain the principles behind Bayesian learning and how it differs from frequentist statistics.
+
+-   Select appropriate models, prior distributions and methods depending on the situation and research question within the course content
+
+Skills and abilities:
+
+-   Formulate and solve problems of advanced nature within Bayesian inference.
+-   Formulate and solve problems of advanced nature related to Bayesian point estimation, inference, prediction and decision making.
+-   Perform calculations, simulations, and analyses in a programming language related to the course content.
+
+Evaluation ability and approach:
+
+-   Interpret, evaluate, and critically review results from a Bayesian analysis with respect to relevant scientific aspects.
+
+## Teachers and general information
+
+| Teachers | Role |
+|----------------------------------------|--------------------------------|
+| [Mattias Villani](mattiasvillani.com) | Course responsible, examiner and lecturer \vspace{5pt} |
+| [Oskar Gustafsson](https://www.su.se/english/profiles/osgu4809-1.252072) | Exercises and Computer labs \vspace{5pt} |
+| [Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159) | Computer labs |
+| [Valentin Zulj](https://valentinzulj.github.io/) | Computer labs |
+
+All teachers have office hours by appointment. Contact us via email to schedule a meeting time (either on campus or via Zoom).
+
+The Statistical Department is located at the newly built Campus Albano, Albanovägen 12, House 4, 6th floor. General information regarding the department can be found on the [department website](http://www.statistics.su.se).
+
+All course material - including slides, reading instructions and schedule link - are available on the [course page](https://mattiasvillani.com/BayesLearnCourse/).
+
+Student-specific information, submission of the home assignments and messages during the course are handled on the learning platform [Athena](https://athena.itslearning.com/index.aspx).
+
+## Course evaluation
+
+After the course is completed, an evaluation of the course is conducted. The course evaluation is used as part of the quality work for the course and as a means of student influence. The evaluation is carried out by sending a survey via email to all registered course participants. The responses from the course participants are compiled and, along with the final report/course evaluation from the course responsible teacher, uploaded to Athena.
+
+## Teaching and mandatory participation
+
+The teaching consists of 13 lectures (F1-F13), 6 exercises (Ö1-Ö6) and 4 computer lab sessions (DL1-DL4) according to the schedule. Please see the link to TimeEdit on the course page for the current schedule.
+
+Participation in all teaching activities is voluntary, but **strongly recommended**. Learning statistics takes a lot of practice and it will be hard to pass the course without the necessary effort.
+
+## Knowledge Check and Examination
+
+**Exam 1** is an individual written exam - using both pen and paper and computer - graded on a seven-point scale related to the course objectives:
+
+::: callout-note
+## Grade Scale for Exam 1
+
+A   Excellent
+
+B   Very good
+
+C   Good
+
+D   Satisfactory
+
+E   Sufficient
+
+Fx  Insufficient, requires some additional work
+
+F   Insufficient, requires much more work
+:::
+
+**Exam 2** is a group assignment, graded on a two-point scale: pass (G) or fail (U).
+
+To pass the course, a minimum grade of E on Exam 1 and a pass grade on Exam 2 are required. The final grade for the course is determined by the grade on Exam 1.
+
+-   Students who receive at least an E grade on the exam may not retake the exam for a higher grade.
+
+-   Grades of Fx and F on the exam are failing grades and require re-examination. Therefore, students who receive an Fx grade cannot retake the exam for a higher grade.
+
+-   Students who receive an Fx or F grade on an exam have the right to undergo at least four additional exams as long as the course is offered to achieve at least an E grade.
+
+-   Students who receive an Fx or F grade on two occasions from an examiner have the right to request that a different examiner be appointed to determine the grade at the next exam session. This request must be made in writing to the head of department.
+
+-   Two examination opportunities are available for each exam during the current semester.
+
+### **Exam 1** (11BX): written exam, 7 credits
+
+-   The exam (code 11BX) is an individual written exam, using both pen and paper and computer.
+
+-   The exam duration is 5 hours.
+
+-   Internet access is not permitted during the exam.
+
+-   Personal code from your own solutions to computer labs is allowed as a resource. The personal code file must be uploaded for verification before the exam (as instructed on Athena).
+
+-   Collaboration is not allowed during the exam, nor are any aids other than those permitted by the examiner.
+
+-   Special accommodations may be allowed upon request to the department's study and career counselor and with the examiner's approval. Contact the study and career counselor well in advance of the exam, preferably no later than three weeks before the exam date.
+
+-   Rules governing exams at Stockholm University can be found at: [Rules for on-site exams](https://medarbetare.su.se/en/our-su/governance/rules--regulations/education/regulations-for-written-seated-examination)
+
+::: callout-important
+## Note!
+
+Remember, you must register at least 10 days before the exam. If you have registered correctly, you will receive a confirmation email with an anonymous code. This confirmation serves as your receipt of registration. If you need to re-register for an old course code, you can only do so via email to [expedition\@stat.su.se](mailto:expedition@stat.su.se). **Failure to register means you cannot take the exam!**
+:::
+
+See TimeEdit for scheduled exam sessions.
+
+### Exam 2 (12BI): Home Assignment, 0.5 credits
+
+-   The assignments are group work, with three (3) persons per group. Group division is done on Athena under the "Create Workgroups" document in the Assignment folder.
+
+-   The assignment consists of 2 subprojects presented as written reports using R. Instructions for the assignments will be available on Athena at the start of the course.
+
+-   Collaboration within the group is allowed, but individual assessment and grading within the group may occur. All group members are responsible for and must be able to account for all parts of the work presented in the reports. Collaboration between groups is permitted, but each group must submit their unique reports. All forms of plagiarism are prohibited, and text matching software may be used as needed. Read [Rules and Handling Procedures for Disciplinary Matters](https://www.su.se/medarbetare/organisation-styrning/styrdokument-regelboken/utbildning/regler-och-handl%C3%A4ggningsordning-f%C3%B6r-disciplin%C3%A4renden-1.605869).
+
+-   Exam 2 is graded Pass (all subtasks in both projects approved) or Fail (at least one subtask fails). If one or more subtasks fail, there is an opportunity for correction during the current semester.
+
+-   Note! It is not possible to correct if the submission is only made at the second opportunity. This means that if you miss a submission and instead submit at a later time and fail, you cannot correct the assignment.
+
+-   Note! All subtasks in both projects must be completed and approved during the current semester for the entire assignment to be approved. Results from subtasks are not saved and cannot be transferred to future semesters.
+
+#### Submission Deadlines
+
+-   Deadline for submission of home assignment, Part A: October 1, 2025.
+-   Deadline for possible correction: TBD
+-   Deadline for submission of home assignment, Part B: October 15, 2025.
+-   Deadline for possible correction: TBD
+
+## Grading Criteria
+
+### Exam 1 (11BX): written exam, 7 credits
+
+The exam (code 11BX) is an individual written exam, using both pen and paper and computer. The written exam covers material according to the course content.
+
+::: callout-note
+## Exam 1 Grading Criteria
+
+A (Excellent): The student can excellently use concepts within Bayesian Learning not necessarily directly covered in the course. They can correctly solve and interpret both simple and complex problems with Bayesian methodology in a well-structured manner, and use R for the implementation and data analysis. Requires at least 90% on the written exam.
+
+\vspace{10pt}
+
+B (Very Good): The student can very effectively use concepts within Bayesian Learning covered in the course. They can correctly solve and interpret both simple and complex problems with Bayesian methodology in a well-structured manner, and use R for the implementation and data analysis. Awarded for 80-89% on the written exam.
+
+\vspace{10pt}
+
+C (Good): The student can effectively use concepts within Bayesian Learning covered in the course. They can correctly solve and interpret both simple and complex problems with Bayesian methodology, and use R for the implementation and data analysis. Awarded for 70-79% on the written exam.
+
+\vspace{10pt}
+
+D (Satisfactory): The student can satisfactorily use concepts within Bayesian Learning covered in the course. They can correctly solve and interpret simpler problems with Bayesian methodology, and use R for the implementation and data analysis. Awarded for 60-69% on the written exam.
+
+\vspace{10pt}
+
+E (Sufficient): The student can sufficiently use concepts within Bayesian Learning covered in the course. They can mostly correctly solve and interpret simpler problems with Bayesian methodology, and use R for the implementation and data analysis. Awarded for 50-59% on the written exam.
+
+\vspace{10pt}
+
+Fx (Fail, additional work required): The student's performance is insufficient according to at least one criterion for E. Equivalent to 40-49% of points on the written exam.
+
+\vspace{10pt}
+
+F (Fail, much more work required): The student's performance shows clear deficiencies according to the criteria for E. Equivalent to 0-39% of points on the written exam.
+:::
+
+### Exam 2 (12BI): home assignment, 0.5 credits
+
+Grading for the assignment is Pass (G) or Fail (U). The following grading criteria apply:
+
+::: callout-note
+## Exam 2 (12BI) Grading Criteria
+
+G (Pass): The student has demonstrated sufficient ability to model data using appropriate statistical models with Bayesian methods, and presented the results using appropriate Bayesian terminology in well-written reports following the instructions. All subtasks should be correctly solved.
+
+\vspace{10pt}
+
+U (Fail): The student's performance is insufficient according to at least one criterion for Pass.
+:::
+
+## Course Literature
+
+The main books for the course are (free pdf versions available at the links):
+
+-   Villani, M. (2025). [Bayesian Learning - a gentle introduction](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf).
+-   Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). [Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf) (BDA). Chapman & Hall/CRC: Boca Raton, Florida. 3rd edition.
+
+Other course materials such as supplementary materials, lecture notes, exercises, and instructions for assignments will be posted on the [course web page](https://mattiasvillani.com/BayesLearnCourse/). Links to selected online sources will also be provided there.

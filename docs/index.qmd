@@ -41,7 +41,7 @@ If you need to refresh some basic mathematics, like derivatives and integrals, y
 
 ### Structure
 
-The course consists of [lectures](lectures.qmd), [mathematical exercises](exercises.qmd) and [computer labs](computerlabs.qmd) where you work on a two-part home assignments.
+The course consists of [lectures](lectures.qmd), [mathematical exercises](exercises.qmd) and [computer labs](computerlabs.qmd).
 
 ### Examination
 
@@ -52,7 +52,7 @@ The course is examined by a
 
 ### Schedule
 
-The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?i=x7ce6e5Z4n0wknyaQhxnZclQln_0nbZH05QcTcn_sl7916Qy6d650606u67310905ZWQnw). A tip is to select *Subscribe* in the upper right corner of TimeEdit and then paste the link into your phone's calendar program.
+The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?i=x7ce6e7Z4n0wknyaQhxnZclQln_0nbZZZZX501QcTcn_sl7916Qy6d640666u65690907ZWQnw). A tip is to select *Subscribe* in the upper right corner of TimeEdit and then paste the link into your phone's calendar program.
 
 ### Interactive material
 
@@ -68,9 +68,9 @@ The course makes use of interactive Observable notebooks in javascript that runs
 [Oskar Gustafsson](https://www.su.se/english/profiles/osgu4809-1.252072)<br>Exercises and Computer labs <br> PhD in Statistics and Senior Lecturer
 
 ![](/misc/akram.jpeg){width="40%"}\
-[Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159)<br>Computer labs <br> PhD in Statistics and Lecturer
+[Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159)<br>Exercises and Computer labs <br> PhD in Statistics and Lecturer
 
 ![](/misc/valentin.jpeg){width="40%"}\
-[Valentin Zulj](https://valentinzulj.github.io/)<br>Computer labs <br> PhD student in Statistics and Teaching assistant
+[Valentin Zulj](https://valentinzulj.github.io/)<br>Exercises and Computer labs <br> PhD student in Statistics and Teaching assistant
 :::
 

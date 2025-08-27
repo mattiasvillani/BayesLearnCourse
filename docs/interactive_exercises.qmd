@@ -1,0 +1,39 @@
+---
+title: "Interactive exercises"
+format: html
+output:
+  html_document:
+    collapse: false
+---
+
+<img src="misc/mixture_mosaic3.png" alt="AI generated image of a mixture distribution" class="center" width="100%"/>
+
+> A good way to learn Bayesian statistics is to experiment with different prior distributions etc by changing parameters interactively. These interactive exercises makes use of the [Observable widgets](https://observablehq.com/collection/@mattiasvillani/bayesian-learning) for the course.
+
+### Interactive exercises
+
+> Wx.y is the interactive widget exercise for Chapter x Problem y.
+
+**Exercise 1 - XXX.**\
+Problems:
+
+**Exercise 2 - XXX.**\
+Problems:
+
+**Exercise 3 - XXX.**\
+Problems:
+
+**Exercise 4 - XXX.**\
+Problems:
+
+**Exercise 5 - XXX.**\
+Problems:
+
+**Exercise 6 - XXX.**\
+Problems:
+
+**Exercise 7 - XXX.**\
+Problems:
+
+**Exercise 8 - XXX.**\
+Problems:

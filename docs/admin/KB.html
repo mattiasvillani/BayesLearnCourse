@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Lectures for Bayesian Learning, 7.5 hp – Bayesian Learning</title>
+<title>Department of Statistics, VT 2025 – Bayesian Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,28 +23,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href=".//misc/favicons/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-e3b568e5b7c3295ff2c0594c3e06f3f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//misc/favicons/favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e3b568e5b7c3295ff2c0594c3e06f3f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -72,12 +72,7 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
-
-
-<link rel="stylesheet" href="styles.css">
-</head>
-
-<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+</head><body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
     const toggleBodyColorMode = (bsSheetEl) => {
       const mode = bsSheetEl.getAttribute("data-mode");
       const bodyEl = window.document.querySelector("body");
@@ -239,17 +234,33 @@ ul.task-list li input[type="checkbox"] {
     } else {
       toggleColorMode(false);
     }
-  </script>
+  </script>\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Bayesian Learning}
+\fancyhead[R]{Course description}
+\usepackage{titling}
+\pretitle{
+\includegraphics[width=100pt]{SU_logo_small.png}\hfill \large}
+\posttitle{}
+\usepackage{caption}
+\captionsetup[table]{name=Tabell}
+
+
+<link rel="stylesheet" href="../styles.css">
+
+
+
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./misc/SU_logo_small.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../misc/SU_logo_small.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Bayesian Learning</span>
     </a>
   </div>
@@ -260,23 +271,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lectures.html" aria-current="page"> 
+    <a class="nav-link" href="../lectures.html"> 
 <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./exercises.html"> 
+    <a class="nav-link" href="../exercises.html"> 
 <span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./interactive_exercises.html"> 
+    <a class="nav-link" href="../interactive_exercises.html"> 
 <span class="menu-text">Interactive exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./computerlabs.html"> 
+    <a class="nav-link" href="../computerlabs.html"> 
 <span class="menu-text">Home assignment/Computer labs</span></a>
   </li>  
 </ul>
@@ -296,11 +307,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Sections</h2>
    
   <ul>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link active" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
-  <li><a href="#lecture-contents" id="toc-lecture-contents" class="nav-link" data-scroll-target="#lecture-contents">Lecture contents</a></li>
+  <li><a href="#bayesian-learning-masters-level-7.5-hp-st2601" id="toc-bayesian-learning-masters-level-7.5-hp-st2601" class="nav-link active" data-scroll-target="#bayesian-learning-masters-level-7.5-hp-st2601">Bayesian Learning, Master’s level, 7.5 hp, ST2601</a>
+  <ul class="collapse">
+  <li><a href="#course-contents" id="toc-course-contents" class="nav-link" data-scroll-target="#course-contents">Course contents</a></li>
+  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning outcomes</a></li>
+  <li><a href="#teachers-and-general-information" id="toc-teachers-and-general-information" class="nav-link" data-scroll-target="#teachers-and-general-information">Teachers and general information</a></li>
+  <li><a href="#course-evaluation" id="toc-course-evaluation" class="nav-link" data-scroll-target="#course-evaluation">Course evaluation</a></li>
+  <li><a href="#teaching-and-mandatory-participation" id="toc-teaching-and-mandatory-participation" class="nav-link" data-scroll-target="#teaching-and-mandatory-participation">Teaching and mandatory participation</a></li>
+  <li><a href="#knowledge-check-and-examination" id="toc-knowledge-check-and-examination" class="nav-link" data-scroll-target="#knowledge-check-and-examination">Knowledge Check and Examination</a>
+  <ul class="collapse">
+  <li><a href="#exam-1-11st-bayesian-learning-exam-7-credits" id="toc-exam-1-11st-bayesian-learning-exam-7-credits" class="nav-link" data-scroll-target="#exam-1-11st-bayesian-learning-exam-7-credits"><strong>Exam 1</strong> (11ST): Bayesian Learning, exam, 7 credits</a></li>
+  <li><a href="#exam-2-home-assignment-0.5-credits" id="toc-exam-2-home-assignment-0.5-credits" class="nav-link" data-scroll-target="#exam-2-home-assignment-0.5-credits">Exam 2 – Home Assignment, 0.5 credits</a></li>
+  </ul></li>
+  <li><a href="#grading-criteria" id="toc-grading-criteria" class="nav-link" data-scroll-target="#grading-criteria">Grading Criteria</a>
+  <ul class="collapse">
+  <li><a href="#exam-1-11st-7-credits" id="toc-exam-1-11st-7-credits" class="nav-link" data-scroll-target="#exam-1-11st-7-credits">Exam 1 (11ST), 7 credits</a></li>
+  <li><a href="#exam-2-12st-0.5-credits" id="toc-exam-2-12st-0.5-credits" class="nav-link" data-scroll-target="#exam-2-12st-0.5-credits">Exam 2 (12ST), 0.5 credits</a></li>
+  </ul></li>
+  <li><a href="#course-literature" id="toc-course-literature" class="nav-link" data-scroll-target="#course-literature">Course Literature</a></li>
+  </ul></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="KB.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -308,7 +335,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lectures for Bayesian Learning, 7.5 hp</h1>
+<h1 class="title">Department of Statistics, VT 2025</h1>
 </div>
 
 
@@ -325,74 +352,212 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="misc/mixture_mosaic1.png" alt="AI generated image of a mixture distribution" class="center" width="100%"></p>
-<blockquote class="blockquote">
-<p>This page contains a short description of the contents, reading instructions and additional material for each lecture.</p>
-</blockquote>
-<section id="schedule" class="level3">
-<h3 class="anchored" data-anchor-id="schedule">Schedule</h3>
-<p>The course schedule can be found on <a href="https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&amp;object=cevt_39011_HT2025&amp;startDate=20250802&amp;endDate=20260131&amp;type=courseevent&amp;h=t&amp;l=en">TimeEdit</a>.</p>
-</section>
-<section id="literature" class="level3">
-<h3 class="anchored" data-anchor-id="literature">Literature</h3>
+<section id="bayesian-learning-masters-level-7.5-hp-st2601" class="level1">
+<h1>Bayesian Learning, Master’s level, 7.5 hp, ST2601</h1>
+<p>The course is part of the Master’s program in Statistics, 120 credits and the <a href="https://www.su.se/english/search-courses-and-programmes/sdsbo-1.678892">Master’s program in data science, statistics and decision analysis</a>, 120 credits.</p>
+<section id="course-contents" class="level2">
+<h2 class="anchored" data-anchor-id="course-contents">Course contents</h2>
+<p>This course gives a solid introduction to Bayesian Learning. The foundations of Bayesian inference and subjective probability are carefully explained. The first part of the course presents Bayesian analysis for some simple models where the logic of Bayesian learning is clearly visible as tractable updating of prior from data. The latter part of the course focuses on more complex models and the computational methods, such as Gibbs sampling, Markov Chain Monte Carlo (MCMC) and Hamiltonian Monte Carlo (HMC) use to analyze them. An introduction probabilistic programming and Bayesian model selection is also given.</p>
+<p>The examination consists of</p>
 <ul>
-<li>The <strong>BL</strong> listed below are section numbers from the course book Villani (2025a). <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf">Bayesian Learning</a>.</li>
-<li>The <strong>BLprequel</strong> listed below are section numbers from a book <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf">Bayesian Learning - the prequel</a>.</li>
-<li>The <strong>BDA</strong> listed below are section numbers from the course book Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). <a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf">Bayesian Data Analysis</a>.</li>
+<li><strong>Exam 1</strong> (exam code XXXX): Bayesian Learning, exam.</li>
+<li><strong>Exam 2</strong> (exam code XXXX): Bayesian Learning, home assignment.</li>
 </ul>
 </section>
-<section id="lecture-contents" class="level3">
-<h3 class="anchored" data-anchor-id="lecture-contents">Lecture contents</h3>
-<p><strong>Lecture 1 (Recorded, no physical class)- The likelihood function. Information. Basic Monte Carlo simulation.</strong><br>
-Read: BL 1.1-1.2, BLprequel 8.3, 8.4, 8.6 (check that you know the concepts) | <a href="./misc/larry.png">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function">Second derivative as function curvature</a> | <a href="https://observablehq.com/@mattiasvillani/likelihood-and-information">Likelihood and Information</a><br>
-</p>
-<p><strong>Lecture 2 - Subjective probability and Bayesian learning. One-parameter models: iid Bernoulli, Gaussian and Poisson models. Summarizing a posterior distribution.</strong><br>
-Read: BL 1.4, 1.5, 2.1-2.4 | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 3 - Multi-parameter models: iid Gaussian, multinomial, multivariate normal. Marginalization.</strong><br>
-Read: BL 3.1-3.3, 3.5-3.6 | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 4 - Priors. Bayesian prediction and Decision making.</strong><br>
-Read: BL 4.1-4.8, 6.1-6.2 | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 5 - Regression</strong><br>
-Read: BL 5 | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 6 - Normal posterior approximation and Classification</strong><br>
-Read: BL 7.1-7.5, 8.1-8.5 | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 7 - Gibbs sampling</strong><br>
-Read: BL 8.1-8.5 | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 8 - Metropolis-Hastings</strong><br>
-Read: this | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 9 - Hamiltonian Monte Carlo</strong><br>
-Read: this | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 10 - Probabilistic programming for Bayes</strong><br>
-Read: this | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 11 - Model comparison</strong><br>
-Read: this | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
-<p><strong>Lecture 13 - Course summary.</strong><br>
-Read: this | <a href="./misc/larry.png">Slides</a><br>
-Interactive:<br>
-</p>
+<section id="learning-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="learning-outcomes">Learning outcomes</h2>
+<p>To pass the course, students should be able to:</p>
+<p>Knowledge and comprehension:</p>
+<ul>
+<li><p>Explain the principles behind Bayesian learning and how it differs from frequentist statistics.</p></li>
+<li><p>Select appropriate models, prior distributions and methods depending on the situation and research question within the course content</p></li>
+</ul>
+<p>Skills and abilities:</p>
+<ul>
+<li>Formulate and solve problems of advanced nature within Bayesian inference.</li>
+<li>Formulate and solve problems of advanced nature related to point estimation, inference, prediction and decision making.</li>
+<li>Perform calculations, simulations, and analyses in a programming language related to the course content.</li>
+</ul>
+<p>Evaluation ability and approach:</p>
+<ul>
+<li>Interpret, evaluate, and critically review results with respect to relevant scientific aspects.</li>
+</ul>
+</section>
+<section id="teachers-and-general-information" class="level2">
+<h2 class="anchored" data-anchor-id="teachers-and-general-information">Teachers and general information</h2>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Teachers</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="mattiasvillani.com">Mattias Villani</a></td>
+<td>Course responsible, examiner and lecturer </td>
+</tr>
+<tr class="even">
+<td>Oskar Gustafsson</td>
+<td>Exercises and Computer labs </td>
+</tr>
+<tr class="odd">
+<td>Valentin Zulj</td>
+<td>Computer labs</td>
+</tr>
+<tr class="even">
+<td>Akram Mahmoudi</td>
+<td>Computer labs</td>
+</tr>
+</tbody>
+</table>
+<p>All teachers have office hours by appointment. Contact us via email to schedule a meeting time (either on campus or via Zoom).</p>
+<p>The Statistical Department is located at the newly built Campus Albano, Albanovägen 12, House 4, 6th floor. General information regarding the department can be found on the <a href="http://www.statistics.su.se">department website</a>.</p>
+<p>All course material - including slides, reading instructions and schedule link - are available on the <a href="https://statisticssu.github.io/STM/">course page</a>.</p>
+<p>Student-specific information, submission of the home assignments and messages during the course are handled on the learning platform <a href="https://athena.itslearning.com/index.aspx">Athena</a>.</p>
+</section>
+<section id="course-evaluation" class="level2">
+<h2 class="anchored" data-anchor-id="course-evaluation">Course evaluation</h2>
+<p>After the course is completed, an evaluation of the course is conducted. The course evaluation is used as part of the quality work for the course and as a means of student influence. The evaluation is carried out by sending a survey via email to all registered course participants. The responses from the course participants are compiled and, along with the final report/course evaluation from the course responsible teacher, uploaded to Athena.</p>
+</section>
+<section id="teaching-and-mandatory-participation" class="level2">
+<h2 class="anchored" data-anchor-id="teaching-and-mandatory-participation">Teaching and mandatory participation</h2>
+<p>The teaching consists of 13 lectures (F1-F13), 6 exercises (Ö1-Ö6) and 4 computer lab sessions (DL1-DL4) according to the schedule. There are also eight scheduled slots for getting help from one of the teaching assistants (jour). Please see the link to TimeEdit on the course page for the current schedule.</p>
+<p>Participation in all teaching activities is voluntary, but <strong>strongly recommended</strong>. Learning statistics takes a lot of practice and it will be hard to pass the course without the necessary effort.</p>
+</section>
+<section id="knowledge-check-and-examination" class="level2">
+<h2 class="anchored" data-anchor-id="knowledge-check-and-examination">Knowledge Check and Examination</h2>
+<p><strong>Exam 1</strong> is an individual written exam - using both pen and paper and computer - graded on a seven-point scale related to the course objectives:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Grade Scale for Exam 1
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A&nbsp; &nbsp;Excellent</p>
+<p>B &nbsp;&nbsp;Very good</p>
+<p>C &nbsp;&nbsp;Good</p>
+<p>D &nbsp;&nbsp;Satisfactory</p>
+<p>E&nbsp;&nbsp;&nbsp;Sufficient</p>
+<p>Fx&nbsp; Insufficient, requires some additional work</p>
+<p>F&nbsp;&nbsp;&nbsp;Insufficient, requires much more work</p>
+</div>
+</div>
+<p><strong>Exam 2</strong> is a group assignment, graded on a two-point scale: pass (G) or fail (U).</p>
+<p>To pass the course, a minimum grade of E on Exam 1 and a pass grade on Exam 2 are required. The final grade for the course is determined by the grade on Exam 1.</p>
+<ul>
+<li><p>Students who receive at least an E grade on the exam may not retake the exam for a higher grade.</p></li>
+<li><p>Grades of Fx and F on the exam are failing grades and require re-examination. Therefore, students who receive an Fx grade cannot retake the exam for a higher grade.</p></li>
+<li><p>Students who receive an Fx or F grade on an exam have the right to undergo at least four additional exams as long as the course is offered to achieve at least an E grade.</p></li>
+<li><p>Students who receive an Fx or F grade on two occasions from an examiner have the right to request that a different examiner be appointed to determine the grade at the next exam session. This request must be made in writing to the head of department.</p></li>
+<li><p>Two examination opportunities are available for each exam during the current semester.</p></li>
+</ul>
+<section id="exam-1-11st-bayesian-learning-exam-7-credits" class="level3">
+<h3 class="anchored" data-anchor-id="exam-1-11st-bayesian-learning-exam-7-credits"><strong>Exam 1</strong> (11ST): Bayesian Learning, exam, 7 credits</h3>
+<ul>
+<li><p>The exam (code 11ST) is an individual written exam, using both pen and paper and computer.</p></li>
+<li><p>The exam duration is 5 hours.</p></li>
+<li><p>Internet access is not permitted during the exam.</p></li>
+<li><p>Personal code from your own solutions to computer labs is allowed as a resource. The personal code file must be uploaded for verification before the exam (as instructed on Athena).</p></li>
+<li><p>Collaboration is not allowed during the exam, nor are any aids other than those permitted by the examiner.</p></li>
+<li><p>Special accommodations may be allowed upon request to the department’s study and career counselor and with the examiner’s approval. Contact the study and career counselor well in advance of the exam, preferably no later than three weeks before the exam date.</p></li>
+<li><p>Rules governing exams at Stockholm University can be found at: <a href="https://medarbetare.su.se/en/our-su/governance/rules--regulations/education/regulations-for-written-seated-examination">Rules for on-site exams</a></p></li>
+</ul>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Remember, you must register at least 10 days before the exam. If you have registered correctly, you will receive a confirmation email with an anonymous code. This confirmation serves as your receipt of registration. If you need to re-register for an old course code, you can only do so via email to <a href="mailto:expedition@stat.su.se">expedition@stat.su.se</a>. <strong>Failure to register means you cannot take the exam!</strong></p>
+</div>
+</div>
+<p>See TimeEdit for scheduled exam sessions.</p>
+</section>
+<section id="exam-2-home-assignment-0.5-credits" class="level3">
+<h3 class="anchored" data-anchor-id="exam-2-home-assignment-0.5-credits">Exam 2 – Home Assignment, 0.5 credits</h3>
+<ul>
+<li><p>The assignments are group work, with three (3) persons per group. Group division is done on Athena under the “Create Workgroup” document in the Assignments folder.</p></li>
+<li><p>The assignment consists of 2 subprojects presented as written reports in R. Instructions for the assignments will be available on Athena at the start of the course.</p></li>
+<li><p>Collaboration within the group is allowed, but individual assessment and grading within the group may occur. All group members are responsible for and must be able to account for all parts of the work presented in the reports. Collaboration between groups is permitted, but each group must submit their unique reports. All forms of plagiarism are prohibited, and text matching software may be used as needed. Read <a href="https://www.su.se/medarbetare/organisation-styrning/styrdokument-regelboken/utbildning/regler-och-handl%C3%A4ggningsordning-f%C3%B6r-disciplin%C3%A4renden-1.605869">Rules and Handling Procedures for Disciplinary Matters</a>.</p></li>
+<li><p>Exam 2 is graded Pass (all subtasks in both projects approved) or Fail (at least one subtask fails). If one or more subtasks fail, there is an opportunity for correction during the current semester.</p></li>
+<li><p>Note! It is not possible to correct if the submission is only made at the second opportunity. This means that if you miss a submission and instead submit at a later time and fail, you cannot correct the assignment.</p></li>
+<li><p>Note! All subtasks in both projects must be completed and approved during the current semester for the entire assignment to be approved. Results from subtasks are not saved and cannot be transferred to future semesters.</p></li>
+</ul>
+<section id="submission-deadlines" class="level4">
+<h4 class="anchored" data-anchor-id="submission-deadlines">Submission Deadlines</h4>
+<ul>
+<li>Deadline for submission of home assignment, Part A: October 1, 2025.</li>
+<li>Deadline for possible correction: TBD</li>
+<li>Deadline for submission of home assignment, Part B: October 15, 2025.</li>
+<li>Deadline for possible correction: TBD</li>
+</ul>
+</section>
+</section>
+</section>
+<section id="grading-criteria" class="level2">
+<h2 class="anchored" data-anchor-id="grading-criteria">Grading Criteria</h2>
+<section id="exam-1-11st-7-credits" class="level3">
+<h3 class="anchored" data-anchor-id="exam-1-11st-7-credits">Exam 1 (11ST), 7 credits</h3>
+<p>The exam (code 11ST) is an individual written exam, using both pen and paper and computer. The written exam covers material according to the course content.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exam 1 Grading Criteria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A (Excellent): The student can excellently use concepts within Bayesian Learning not necessarily directly covered in the course. They can solve and interpret complex problems concerning random variables, distributions and estimators correctly and well-structured, set up simple statistical models for specific situations, and use R for calculations and data analysis. Requires at least 90% on the written exam.</p>
+<p>B (Very Good): The student can very effectively use concepts within Bayesian Learning covered in the course. They can solve and interpret complex problems concerning random variables, distributions and estimators correctly and well-structured, set up simple statistical models for some concrete situations, and use R for calculations and data analysis. Awarded for 80-89% on the written exam.</p>
+<p>C (Good): The student can effectively use concepts within Bayesian Learning covered in the course. They can correctly solve and interpret problems concerning random variables, distributions and estimators, set up simple statistical models for some concrete situations, and use R for calculations and data analysis. Awarded for 70-79% on the written exam.</p>
+<p>D (Satisfactory): The student can satisfactorily use concepts within Bayesian Learning covered in the course. They can correctly solve and interpret problems concerning random variables, distributions and estimators, set up simple statistical models for some concrete situations, and use R for calculations and data analysis. Awarded for 60-69% on the written exam.</p>
+<p>E (Sufficient): The student can sufficiently use concepts within Bayesian Learning covered in the course. They can mainly correctly solve and interpret problems concerning random variables, distributions and estimators, set up simple statistical models for some concrete situations, and use R for calculations and data analysis. Awarded for 50-59% on the written exam.</p>
+<p>Fx (Fail, additional work required): The student’s performance is insufficient according to at least one criterion for E. Equivalent to 40-49% of points on the written exam.</p>
+<p>F (Fail, much more work required): The student’s performance shows clear deficiencies according to the criteria for E. Equivalent to 0-39% of points on the written exam.</p>
+</div>
+</div>
+</section>
+<section id="exam-2-12st-0.5-credits" class="level3">
+<h3 class="anchored" data-anchor-id="exam-2-12st-0.5-credits">Exam 2 (12ST), 0.5 credits</h3>
+<p>Grading for the assignment is Pass (G) or Fail (U). The following grading criteria apply:</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Exam 2 (12ST) Grading Criteria
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>G (Pass): The student has set up appropriate statistical models for given situations, demonstrated sufficient ability to use Bayesian statistical terminology, use appropriate Bayesian methods, and presented the results in well-written reports following the instructions. All subtasks should be correctly solved.</p>
+<p>U (Fail): The student’s performance is insufficient according to at least one criterion for Pass.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="course-literature" class="level2">
+<h2 class="anchored" data-anchor-id="course-literature">Course Literature</h2>
+<p>The main books for the course are (free pdf versions available at the links):</p>
+<ul>
+<li>Villani, M. (2025). <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf">Bayesian Learning - a gentle introduction</a>.</li>
+<li>Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). <a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf">Bayesian Data Analysis</a> (BDA). Chapman &amp; Hall/CRC: Boca Raton, Florida. 3rd edition.</li>
+</ul>
+<p>Other course materials such as supplementary materials, lecture notes, exercises, and instructions for assignments will be posted on the <a href="https://mattiasvillani.com/BayesLearnCourse/">course web page</a>. Links to selected online sources will also be provided there.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

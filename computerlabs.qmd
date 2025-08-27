@@ -1,5 +1,5 @@
 ---
-title: "Home assignment and Computer labs for Bayesian Learning, 7.5 hp"
+title: "Assignments and Computer labs for Bayesian Learning, 7.5 hp"
 format: html
 ---
 
@@ -7,23 +7,27 @@ format: html
 
 > Let's get busy coding.
 
-The home assignment for the course is split up in two parts:
+The assignment for the course is split up in two parts:
 
--   Home assignment - Part A: Computer lab 1 and 2.
--   Home assignment - Part B: Computer lab 3 and 4.
+-   **Assignment - Part A**:
+    -   Work done in connection to Computer lab 1.
+    -   Deadline for submission: October 1, 2025.
+-   **Assignment - Part B**:
+    -   Work done in connection to Computer labs 2 and 3.
+    -   Deadline for submission: October 15, 2025.
 
-::: {.callout-caution appearance="minimal"}
-Note that the scheduled time for computer labs will not be enough for doing the home assignments.
+Each student will have access to his/her report when writing the exam. Students are allowed and encouraged to polish their assignment reports before uploading them for the exam. It is not allowed to add additional information unrelated to the assignments in the uploaded reports. Each uploaded report will be checked before the exam.
+
+::: callout-note
+Computer lab 4 is **after** the deadlines of both assignments, and should therefore be used to ask questions about both Part A and B of the assignment, and polishing the assignments before the written exam.
 :::
 
-**Computer lab 1 - XXX**\
-Material: [html](misc/larry.png)
+::: callout-caution
+The scheduled time for computer labs will not be enough for doing the assignments.
+:::
 
-**Computer lab 2 - XXX.**\
-Material: [html](misc/larry.png)
+**Assignment, Part A - XXX**\
+Material: [html](misc/larry.png) \| [pdf](misc/larry.png)
 
-**Computer lab 3 - XXX.**\
-Material: [html](misc/larry.png)
-
-**Computer lab 4 - XXX.**\
-Material: [html](misc/larry.png)
+**Assignment, Part B - XXX**\
+Material: [html](misc/larry.png) \| [pdf](misc/larry.png)

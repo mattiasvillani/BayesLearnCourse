@@ -10,16 +10,16 @@ format: html
 ### Schedule
 The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&object=cevt_39011_HT2025&startDate=20250802&endDate=20260131&type=courseevent&h=t&l=en). 
 
-### Literature
+### Literature - problems
 - The **BL** listed below are problem numbers from the course book Villani (2025a). [Bayesian Learning](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf).
 - The **BLprequel** listed below are problem numbers from a book [Bayesian Learning - the prequel](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf).
 - The **BDA** listed below are problem numbers from the course book Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). [Bayesian Data Analysis](http://www.stat.columbia.edu/~gelman/book/BDA3.pdf).
 
 
-### Exercises
+### Exercise problems
 
-**Exercise 1 (preparatory) - Likelihood. Information. Basic Monte Carlo methods.**\
-Problems: 1.1-1.4 in [Bayesian Learning exercises](exercises/BayesianLearningExercises.pdf)
+**Exercise 1 - XXX.**\
+Problems: BL X.Y, BL X.Z
 
 **Exercise 2 - XXX.**\
 Problems: BL X.Y, BL X.Z

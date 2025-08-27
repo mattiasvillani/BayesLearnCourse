@@ -17,50 +17,50 @@ The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web
 
 ### Lecture contents
 
-**Lecture 1 (Recorded, no physical class)- The likelihood function. Information. Basic Monte Carlo simulation.**\
-Read: BL 1.1-1.2, BLprequel 8.3, 8.4, 8.6 (check that you know the concepts) | [Slides](/misc/larry.png) \
-Interactive: [Second derivative as function curvature](https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function) | [Likelihood and Information](https://observablehq.com/@mattiasvillani/likelihood-and-information) \
-
-**Lecture 2 - Subjective probability and Bayesian learning. One-parameter models: iid Bernoulli, Gaussian and Poisson models. Summarizing a posterior distribution.**\
-Read: BL 1.4, 1.5, 2.1-2.4 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 3 - Multi-parameter models: iid Gaussian, multinomial, multivariate normal. Marginalization.**\
-Read: BL 3.1-3.3, 3.5-3.6 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 4 - Priors. Bayesian prediction and Decision making.**\
-Read: BL 4.1-4.8, 6.1-6.2 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 5 - Regression**\
-Read: BL 5 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 6 - Normal posterior approximation and Classification**\
-Read: BL 7.1-7.5, 8.1-8.5  | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 7 - Gibbs sampling**\
-Read: BL 8.1-8.5 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 8 - Metropolis-Hastings**\
+**Lecture 1 (Recorded, no class)- XXX**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 9 - Hamiltonian Monte Carlo**\
+**Lecture 2 - XXX**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 10 - Probabilistic programming for Bayes**\
+**Lecture 3 - XXX**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 11 - Model comparison**\
+**Lecture 4 - XXX**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 13 - Course summary.**\
+**Lecture 5 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 6 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 7 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 8 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 9 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 10 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 11 - XXX**\
+Read: this | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 12 - XXX**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
