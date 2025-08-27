@@ -37,28 +37,32 @@ Interactive: \
 Read: BL 5 | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 6 - Normal posterior approximation and Classification**\
+**Lecture 6 - Regularization priors**\
+Read: BL 11.1-11.4 | [Slides](/misc/larry.png) \
+Interactive: \
+
+**Lecture 7 - Normal posterior approximation and Classification**\
 Read: BL 7.1-7.5, 8.1-8.5  | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 7 - Gibbs sampling**\
+**Lecture 8 - Gibbs sampling**\
 Read: BL 8.1-8.5 | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 8 - Metropolis-Hastings**\
+**Lecture 9 - Metropolis-Hastings**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 9 - Hamiltonian Monte Carlo**\
+**Lecture 10 - Hamiltonian Monte Carlo**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 10 - Probabilistic programming for Bayes**\
+**Lecture 11 - Probabilistic programming for Bayes**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 11 - Model comparison**\
-Read: this | [Slides](/misc/larry.png) \
+**Lecture 12 - Model comparison**\
+Read: BL 14.1-14.4 | [Slides](/misc/larry.png) \
 Interactive: \
 
 **Lecture 13 - Course summary.**\
