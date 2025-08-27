@@ -27,7 +27,7 @@ website:
         text: Exercises
       - href: interactive_exercises.qmd
         text: Interactive exercises
-      - href: computerlabs.qmd
+      - href: homeassignment.qmd
         text: Home assignment/Computer labs
         
   page-footer:

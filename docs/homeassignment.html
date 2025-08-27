@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bayesian Learning, 7.5 hp – Bayesian Learning</title>
+<title>Assignments and Computer labs for Bayesian Learning, 7.5 hp – Bayesian Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -260,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
@@ -276,7 +276,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Interactive exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./homeassignment.html"> 
+    <a class="nav-link active" href="./homeassignment.html" aria-current="page"> 
 <span class="menu-text">Home assignment/Computer labs</span></a>
   </li>  
 </ul>
@@ -291,21 +291,8 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Sections</h2>
-   
-  <ul>
-  <li><a href="#aim" id="toc-aim" class="nav-link active" data-scroll-target="#aim">Aim</a></li>
-  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents">Contents</a></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
-  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
-  <li><a href="#examination" id="toc-examination" class="nav-link" data-scroll-target="#examination">Examination</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#interactive-material" id="toc-interactive-material" class="nav-link" data-scroll-target="#interactive-material">Interactive material</a></li>
-  <li><a href="#teachers" id="toc-teachers" class="nav-link" data-scroll-target="#teachers">Teachers</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -313,7 +300,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Bayesian Learning, 7.5 hp</h1>
+<h1 class="title">Assignments and Computer labs for Bayesian Learning, 7.5 hp</h1>
 </div>
 
 
@@ -330,90 +317,56 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
-<p><img src="misc/mixture_mosaic2.png" alt="AI generated image of a mixture distribution" class="center" width="100%"></p>
-<!-- Place this tag where you want the button to render. -->
-<p><a class="github-button" href="https://github.com/mattiasvillani/BayesLearnCourse/" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star this course on GitHub">Star</a></p>
-<section id="aim" class="level3">
-<h3 class="anchored" data-anchor-id="aim">Aim</h3>
+<p><img src="misc/mixture_mosaic4.png" alt="AI generated image of a mixture distribution" class="center" width="100%"></p>
 <blockquote class="blockquote">
-<p>This is a course on the <a href="https://utbildning.su.se/english/education/course-catalogue/ss/sstao">Master’s Program in Statistics</a> and the <a href="https://dsv.su.se/sdsbo">Master’s Program in Data Science, Statistics and Decision Analysis</a> at Stockholm University.</p>
+<p>Let’s get busy coding.</p>
 </blockquote>
-<blockquote class="blockquote">
-<p>The course gives a gentle, but solid, introduction to Bayesian statistics, with special emphasis on models and methods in computational statistics and machine learning.</p>
-</blockquote>
-</section>
-<section id="contents" class="level3">
-<h3 class="anchored" data-anchor-id="contents">Contents</h3>
+<p>The assignment for the course is split up in two parts:</p>
 <ul>
-<li>We will get off to a shocking start by introducing a very different probability concept than the one you are probably used to: subjective probability.</li>
-<li>We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making.</li>
-<li>The really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance.</li>
-<li>A new world will open up when we learn how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) and approximate optimization methods like Variational Inference (VI).</li>
-<li>You will also get a taste for probabilistic programming languages for Bayesian learning, in particular the popular Stan language in R.</li>
-<li>Finally, we’ll round off with an introduction to Bayesian model selection and Bayesian variable selection.</li>
-</ul>
-</section>
-<section id="literature" class="level3">
-<h3 class="anchored" data-anchor-id="literature">Literature</h3>
+<li><strong>Assignment - Part A</strong>:
 <ul>
-<li>Villani, M. (2025a). <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf">Bayesian Learning</a>. This is the main book for the course.</li>
-<li>Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). Bayesian Data Analysis (BDA). Chapman &amp; Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the <a href="http://www.stat.columbia.edu/~gelman/book/">book webpage</a> and a free <a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf">PDF version</a>.</li>
-<li>Additional material and handouts distributed during the course.</li>
-</ul>
-<p>If you need to refresh some basic mathematics, like derivatives and integrals, you may find the first chapter of this Prequel book useful:</p>
+<li>Work done in connection to Computer lab 1.</li>
+<li>Deadline for submission: October 1, 2025.</li>
+</ul></li>
+<li><strong>Assignment - Part B</strong>:
 <ul>
-<li>Villani, M. (2025b). <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf">Bayesian Learning - the prequel</a>. Notes on basic mathematics, probability and statistical inference. Work in progress, expect typos.</li>
+<li>Work done in connection to Computer labs 2 and 3.</li>
+<li>Deadline for submission: October 15, 2025.</li>
+</ul></li>
 </ul>
-</section>
-<section id="structure" class="level3">
-<h3 class="anchored" data-anchor-id="structure">Structure</h3>
-<p>The course consists of <a href="./lectures.html">lectures</a>, <a href="./exercises.html">mathematical exercises</a> and <a href="computerlabs.qmd">computer labs</a> where you work on a two-part home assignments.</p>
-</section>
-<section id="examination" class="level3">
-<h3 class="anchored" data-anchor-id="examination">Examination</h3>
-<p>The course is examined by a</p>
-<ul>
-<li>written exam (grades A-F)</li>
-<li><a href="./homeassignment.html">home assignment</a> (grade pass/fail).</li>
-</ul>
-</section>
-<section id="schedule" class="level3">
-<h3 class="anchored" data-anchor-id="schedule">Schedule</h3>
-<p>The course schedule can be found on <a href="https://cloud.timeedit.net/su/web/stud1/s.html?i=x7ce6e5Z4n0wknyaQhxnZclQln_0nbZH05QcTcn_sl7916Qy6d650606u67310905ZWQnw">TimeEdit</a>. A tip is to select <em>Subscribe</em> in the upper right corner of TimeEdit and then paste the link into your phone’s calendar program.</p>
-</section>
-<section id="interactive-material" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-material">Interactive material</h3>
-<p>The course makes use of interactive Observable notebooks in javascript that runs in your browser. The widgets will be linked below each relevant lecture. All widgets used in the course are available <a href="https://observablehq.com/collection/@mattiasvillani/bayesian-learning">here</a>.</p>
-</section>
-<section id="teachers" class="level3">
-<h3 class="anchored" data-anchor-id="teachers">Teachers</h3>
-<div class="quarto-layout-panel" data-layout="[ [1,1],[1,1] ]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="./misc/VillaniLowRes.jpg" width="30%"><br>
-<a href="https://mattiasvillani.com">Mattias Villani</a><br>Course responsible and Lecturer<br>Professor <br><br></p>
+<p>Each student will have access to his/her report when writing the exam. Students are allowed and encouraged to polish their assignment reports before uploading them for the exam. It is not allowed to add additional information unrelated to the assignments in the uploaded reports. Each uploaded report will be checked before the exam.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="./misc/oskar.jpeg" class="img-fluid" style="width:35.0%"><br>
-<a href="https://www.su.se/english/profiles/osgu4809-1.252072">Oskar Gustafsson</a><br>Exercises and Computer labs <br> PhD in Statistics and Senior Lecturer</p>
+<div class="callout-title-container flex-fill">
+Note
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="./misc/akram.jpeg" class="img-fluid" style="width:40.0%"><br>
-<a href="https://www.su.se/english/profiles/akma0227-1.800159">Akram Mahmoudi</a><br>Computer labs <br> PhD in Statistics and Lecturer</p>
-</div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="./misc/valentin.jpeg" class="img-fluid" style="width:40.0%"><br>
-<a href="https://valentinzulj.github.io/">Valentin Zulj</a><br>Computer labs <br> PhD student in Statistics and Teaching assistant</p>
+<div class="callout-body-container callout-body">
+<p>Computer lab 4 is <strong>after</strong> the deadlines of both assignments, and should therefore be used to ask questions about both Part A and B of the assignment, and polishing the assignments before the written exam.</p>
 </div>
 </div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
+<div class="callout-title-container flex-fill">
+Caution
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The scheduled time for computer labs will not be enough for doing the assignments.</p>
+</div>
+</div>
+<p><strong>Assignment, Part A - XXX</strong><br>
+Material: <a href="misc/larry.png">html</a> | <a href="misc/larry.png">pdf</a></p>
+<p><strong>Assignment, Part B - XXX</strong><br>
+Material: <a href="misc/larry.png">html</a> | <a href="misc/larry.png">pdf</a></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
