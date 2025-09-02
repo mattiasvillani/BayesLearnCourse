@@ -28,7 +28,7 @@ format: html
 -   The really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance.
 -   A new world will open up when we learn how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) and approximate optimization methods like Variational Inference (VI).
 -   You will also get a taste for probabilistic programming languages for Bayesian learning, in particular the popular Stan language in R.
--   Finally, we'll round off with an introduction to Bayesian model selection and Bayesian variable selection.
+-   Finally, we'll consider the case with multiple possible models and introduce Bayesian model averaging and model selection.
 
 ### Literature
 
