@@ -1,0 +1,32 @@
+---
+title: "Bayesian Learning, 7.5 hp "
+subtitle: "Home assignment - Part B"
+author: 
+- Mattias Villani
+date: last-modified
+format: 
+  html:
+    self-contained: true
+  pdf:
+    colorlinks: true
+toc: true
+language: 
+  title-block-author-single: " "
+toc-title-document: "Content"
+crossref-fig-title: "Figure"
+theme: lumen
+title-block-banner-color: Primary
+title-block-published: "Publicerad"
+callout-warning-caption: "Warning"
+callout-note-caption: "Note!"
+callout-tip-caption: "Tip"
+editor: visual
+---
+
+```{r}
+#| echo: false
+#| output: false
+colors = c("#6C8EBF", "#c0a34d", "#780000","#007878","#B5C6DF","#EADAAA","#AE6666")
+```
+
+## Problem 1 - This and that

@@ -1,0 +1,15 @@
+{
+  "hash": "81fd460e7f48587ab9080f1e0494b952",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Bayesian Learning, 7.5 hp \"\nsubtitle: \"Home assignment - Part B\"\nauthor: \n- Mattias Villani\ndate: last-modified\nformat: \n  html:\n    self-contained: true\n  pdf:\n    colorlinks: true\ntoc: true\nlanguage: \n  title-block-author-single: \" \"\ntoc-title-document: \"Content\"\ncrossref-fig-title: \"Figure\"\ntheme: lumen\ntitle-block-banner-color: Primary\ntitle-block-published: \"Publicerad\"\ncallout-warning-caption: \"Warning\"\ncallout-note-caption: \"Note!\"\ncallout-tip-caption: \"Tip\"\neditor: visual\n---\n\n\n::: {.cell}\n\n:::\n\n\n## Problem 1 - This and that\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

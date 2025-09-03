@@ -1,0 +1,181 @@
+%% LyX 2.3.6 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[11pt,english]{article}
+\usepackage[T1]{fontenc}
+\usepackage[latin9]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,tmargin=2cm,bmargin=2cm,lmargin=2cm,rmargin=2cm}
+\usepackage{color}
+\usepackage{babel}
+\usepackage{amsmath}
+\PassOptionsToPackage{normalem}{ulem}
+\usepackage{ulem}
+\usepackage[unicode=true]
+ {hyperref}
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+
+\makeatother
+
+\begin{document}
+\noindent \begin{flushleft}
+\begin{tabular}{llr}
+Mattias Villani  & \hspace{8.5cm} & Bayesian Learning \tabularnewline
+Department of Statistics &  & \tabularnewline
+Stockholm University  &  & \tabularnewline
+\end{tabular}
+\par\end{flushleft}
+
+\vspace{0.3cm}
+
+\noindent \begin{flushleft}
+\begin{tabular}{ll}
+\multicolumn{2}{l}{\textbf{\large{}{}Computer Lab 2}}\tabularnewline
+\multicolumn{2}{l}{\rule{0.975\columnwidth}{1pt}}\tabularnewline
+\multicolumn{2}{l}{The labs should be done in R, since only R is available at the computer
+exam. }\tabularnewline
+Your lab solutions will be available for you at the exam.  & \tabularnewline
+\multicolumn{2}{l}{You work and submit your labs in pairs, but both of you should contribute
+equally}\tabularnewline
+and understand all parts of your solutions. & \tabularnewline
+\multicolumn{2}{l}{\texttt{\textbf{\textcolor{blue}{It is not allowed to share exact
+solutions}}} with other student pairs.}\tabularnewline
+Submit your solutions via Athena. & \tabularnewline
+The datasets are available in the package \texttt{SUdatasets}. See
+\textcolor{blue}{\uline{\href{https://github.com/mattiasvillani/BayesLearnCourse\#computer-labs}{the course page}}}
+for instructions. & \tabularnewline
+\multicolumn{2}{l}{\rule{0.975\columnwidth}{1pt}}\tabularnewline
+\end{tabular}
+\par\end{flushleft}
+
+{\footnotesize{}\vspace{0.5cm}
+}{\footnotesize\par}
+\begin{enumerate}
+\item \textbf{Linear and polynomial regression}\\
+The dataset $\texttt{tempLinkoping}$ in the package \texttt{SUdatasets}
+contains daily temperatures (in Celcius degrees) at Malmslätt, Linköping
+over the course of the year 2016 (366 days since 2016 was a leap year).
+The response variable is $temp$ and the covariate is
+\[
+time=\frac{\text{the number of days since beginning of year}}{366}.
+\]
+The task is to perform a Bayesian analysis of a quadratic regression
+\[
+temp=\beta_{0}+\beta_{1}\cdot time+\beta_{2}\cdot time^{2}+\varepsilon\mbox{,\text{ }}\varepsilon\overset{iid}{\sim}N(0,\sigma^{2}).
+\]
+
+\begin{enumerate}
+\item \textit{Determining the prior distribution of the model parameters.}
+Your task is to set the hyperparameters $\mu_{0}$, $\Omega_{0}$,
+$\nu_{0}$ and $\sigma_{0}^{2}$ in the conjugate prior to sensible
+values. Start with $\mu_{0}=(-10,100,-100)^{T}$, $\Omega_{0}=0.01\cdot I_{3}$,
+$\nu_{0}=4$ and $\sigma_{0}^{2}=1$. Check if this prior agrees with
+your prior opinions by simulating draws from the joint prior of all
+parameters and for every draw compute the regression curve. This gives
+a collection of regression curves, one for each draw from the prior.
+Do the collection of curves look reasonable? If not, change the prior
+hyperparameters until the results agree with your prior beliefs about
+the regression curve.\\
+{[}Hint: the R package $\texttt{mvtnorm}$ will be handy. And use
+your $Inv$-$\chi^{2}$ simulator from Lab 1.{]}
+\item Write a program that \textit{simulates from the joint posterior distribution}
+of $\beta_{0}$, $\beta_{1}$,$\beta_{2}$ and $\sigma^{2}$. Plot
+the marginal posteriors for each parameter as a histogram. Also produce
+another figure with a scatter plot of the temperature data and overlay
+a curve for the posterior median of the regression function $f(time)=\beta_{0}+\beta_{1}\cdot time+\beta_{2}\cdot time^{2}$,
+computed for every value of $time$. Also overlay curves for the lower
+2.5\% and upper 97.5\% posterior credible interval for $f(time)$.
+That is, compute the 95\% equal tail posterior probability intervals
+for every value of $time$ and then connect the lower and upper limits
+of the interval by curves. Does the interval bands contain most of
+the data points? Should they?
+\item It is of interest to locate the $time$ with the highest expected
+temperature (that is, the $time$ where $f(time)$ is maximal). Let's
+call this value $\tilde{x}$. Use the simulations in b) to simulate
+from the \textit{posterior distribution of} $\tilde{x}$. {[}Hint:
+the regression curve is a quadratic. You can find a simple formula
+for $\tilde{x}$ given $\beta_{0},\beta_{1}$ and $\beta_{2}$.{]}
+\item Say now that you want to \textit{estimate a polynomial model of order
+$7$}, but you suspect that higher order terms may not be needed,
+and you worry about over-fitting. Suggest a suitable prior that mitigates
+this potential problem. You do not need to compute the posterior,
+just write down your prior. {[}Hint: the task is to specify $\mu_{0}$
+and $\Omega_{0}$ in a smart way.{]}
+\end{enumerate}
+{\footnotesize{}\vspace{0.5cm}
+}{\footnotesize\par}
+\item \textbf{Posterior approximation for classification with logistic regression}\\
+The dataset \texttt{womenwork} in the package \texttt{SUdatasets}
+contains $n=200$ observations on the following nine variables:\\
+ %
+\begin{tabular}{lllllll}
+ &  &  &  &  &  & \tabularnewline
+\cline{4-7} \cline{5-7} \cline{6-7} \cline{7-7} 
+ &  &  & Variable & Data type & Meaning & Role\tabularnewline
+\cline{4-7} \cline{5-7} \cline{6-7} \cline{7-7} 
+ &  &  & \texttt{work}  & Binary & Whether or not the woman works & Response\tabularnewline
+ &  &  & \texttt{constant } & 1 & Constant to the intercept & Feature\tabularnewline
+ &  &  & \texttt{husbandInc} & Numeric & Husband's income & Feature\tabularnewline
+ &  &  & \texttt{educYears} & Counts & Years of education & Feature\tabularnewline
+ &  &  & \texttt{expYears} & Counts & Years of experience & Feature\tabularnewline
+ &  &  & \texttt{expYears2} & Numeric & (Years of experience/10)$^{2}$ & Feature\tabularnewline
+ &  &  & \texttt{age } & Counts & Age & Feature\tabularnewline
+ &  &  & \texttt{nSmallChild} & Counts & Number of child $\leq6$ years & Feature\tabularnewline
+ &  &  & \texttt{nBigChild} & Counts & Number of child $>6$ years & Feature\tabularnewline
+\cline{4-7} \cline{5-7} \cline{6-7} \cline{7-7} 
+\end{tabular}
+
+\begin{enumerate}
+\item Consider the logistic regression
+\[
+\mathrm{Pr}(y=1\vert\mathbf{x})=\frac{\exp\left(\mathbf{x}^{T}\beta\right)}{1+\exp\left(\mathbf{x}^{T}\beta\right)},
+\]
+where $y$ is the binary variable with $y=1$ if the woman works and
+$y=0$ if she does not. $\mathbf{x}$ is a $8$-dimensional vector
+containing the eight features (including a one for the constant term
+that models the intercept). Fit the logistic regression using maximum
+likelihood estimation by the command: \texttt{glmModel <- glm(work
+\textasciitilde{} 0 + ., data = womenwork, family = binomial)}. Note
+how I added a zero in the model formula so that R doesn't add an extra
+intercept (we already have an intercept term from the \texttt{constant}
+feature). Note also that a dot (.) in the model formula means to add
+all other variables in the dataset as features. \texttt{family = binomial
+}tells R that we want to fit a logistic regression.
+\item Now the fun begins. Our goal is to approximate the posterior distribution
+of the 8-dim parameter vector $\beta$ with a multivariate normal
+distribution
+\[
+\beta\vert\mathbf{y},\mathbf{X}\sim N\left(\tilde{\beta},J_{\mathbf{y}}^{-1}(\tilde{\beta})\right),
+\]
+where $\tilde{\beta}$ is the posterior mode and $J(\tilde{\beta})=-\frac{\partial^{2}\ln p(\beta\vert\mathbf{y})}{\partial\beta\partial\beta^{T}}\vert_{\beta=\tilde{\beta}}$
+is the observed Hessian evaluated at the posterior mode. Note that
+$\frac{\partial^{2}\ln p(\beta\vert\mathbf{y})}{\partial\beta\partial\beta^{T}}$
+is an $8\times8$ matrix with second derivatives on the diagonal and
+cross-derivatives $\frac{\partial^{2}\ln p(\beta\vert\mathbf{y})}{\partial\beta_{i}\partial\beta_{j}}$
+on the off-diagonal. Now, both $\tilde{\beta}$ and $J(\tilde{\beta})$
+are computed by the \texttt{optim} function in R. You can use the
+code in this \textcolor{blue}{\uline{\href{https://github.com/mattiasvillani/BayesLearnCourse/raw/master/Notebooks/R/SpamOptim.Rmd}{R notebook}}}
+as a guide, but don't copy my code, write your own. Use the prior
+$\beta\sim\mathcal{N}(0,\tau^{2}I)$, with $\tau=10$.\\
+Your report should include your code as well as numerical values for
+$\tilde{\beta}$ and $J_{\mathbf{y}}^{-1}(\tilde{\beta})$ for the
+\texttt{womenwork} data. Compute an approximate 95\% credible interval
+for the coefficient on \texttt{nSmallChild}. Would you say that this
+feature is an important determinant of the probability that a women
+works?
+\item Write a function that simulates from the predictive distribution of
+the response variable in a logistic regression. Use your normal approximation
+from 2(b). Use that function to simulate and plot the predictive distribution
+for the \texttt{work} variable for a 40 year old woman, with two children
+(3 and 9 years old), 8 years of education, 10 years of experience,
+and a husband with an income of 10.\\
+{[}Hint: the R package $\texttt{mvtnorm}$ will again be handy. And
+remember my discussion on how Bayesian prediction can be done by simulation.{]}
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
