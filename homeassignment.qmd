@@ -12,12 +12,12 @@ The assignment for the course is split up in two parts:
 -   **Assignment - Part A**:
     -   Work done in connection to Computer lab 1.
     -   Deadline for submission: October 1, 2025.
-    -   The assignment in different formats: [html](assignment/AssignmentPartA.html) \| [pdf](assignment/AssignmentPartA.pdf)
-    -   Dataset for Assignment, part A: [ericsson](assignment/Ericsson.RData) 
+    -   The assignment in different formats: [html](assignment/AssignmentPartA.html) \| [pdf](assignment/AssignmentPartA.pdf) \| [quarto](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/AssignmentPartA.qmd)
+    -   Dataset for Assignment, part A: [ericsson](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/ericsson.RData) 
 -   **Assignment - Part B**:
     -   Work done in connection to Computer labs 2 and 3.
     -   Deadline for submission: October 15, 2025.
-    -   The assignment in different formats: [html](misc/larry.png) \| [pdf](misc/larry.png)<br><br>
+    -   The assignment in different formats: [html](misc/larry.png) \| [pdf](misc/larry.png) \| [quarto](misc/larry.png)<br>
 
 Each student will have access to his/her report when writing the exam. Students are allowed and encouraged to polish their assignment reports before uploading them for the exam. It is not allowed to add additional information unrelated to the assignments in the uploaded reports. Each uploaded report will be checked before the exam.
 
