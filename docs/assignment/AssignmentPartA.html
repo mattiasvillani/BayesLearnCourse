@@ -4191,7 +4191,17 @@ U(X_{11}, a_{11}) = 10 \cdot \mathrm{min}(X_{11}, a_{11}) -7 \cdot \mathrm{max}(
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;remotes&quot;)                # Uncomment this the first time</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#install_github(&quot;StatisticsSU/SUdatasets&quot;)  # Uncomment this the first time</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SUdatasets)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SUdatasets)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tempLinkoping)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         time  temp
+1 0.002732240   0.1
+2 0.005464481  -4.5
+3 0.008196721  -6.3
+4 0.010928962  -9.6
+5 0.013661202  -9.9
+6 0.016393443 -17.1</code></pre>
+</div>
 </div>
 <section id="problem-4a-determine-a-suitable-prior-distribution" class="level4">
 <h4 class="anchored" data-anchor-id="problem-4a-determine-a-suitable-prior-distribution">Problem 4a) Determine a suitable prior distribution</h4>
@@ -4202,10 +4212,10 @@ U(X_{11}, a_{11}) = 10 \cdot \mathrm{min}(X_{11}, a_{11}) -7 \cdot \mathrm{max}(
 \]</span></p>
 <p>You need to determine suitable prior hyperparameters <span class="math inline">\(\boldsymbol{\mu}_0\)</span>, <span class="math inline">\(\boldsymbol{\Omega}_0\)</span>, <span class="math inline">\(\sigma_0^2\)</span> and <span class="math inline">\(\nu_0\)</span>. Start with <span class="math inline">\(\boldsymbol{\mu}_0 = (-10, 100, -100)^\top\)</span>, <span class="math inline">\(\boldsymbol{\Omega}_0 = 0.01\cdot I_3\)</span>, where <span class="math inline">\(I_3\)</span> is the <span class="math inline">\(3\times 3\)</span> identity matrix, <span class="math inline">\(\nu_0=3\)</span> and <span class="math inline">\(\sigma^2_0 = 1\)</span>. Check if this prior agrees with your prior opinions by simulating draws from the joint prior of all parameters and for every draw compute the regression curve. This gives a collection of regression curves, one for each draw from the prior. Do the collection of curves look reasonable? If not, change the prior hyperparameters until the results agree with your prior beliefs about the regression curve. The <code>mvtnorm</code> package contains the multivariate normal distribution, and here is an implementation of a random number generator for the <span class="math inline">\(\mathrm{inv-}\chi^2(\nu_0, \sigma_0^2)\)</span> distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulator for the scaled inverse Chi-square distribution</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>rScaledInvChi2 <span class="ot">&lt;-</span> <span class="cf">function</span>(n, nu_0, sigma2_0){</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>((nu_0<span class="sc">*</span>sigma2_0)<span class="sc">/</span><span class="fu">rchisq</span>(n, <span class="at">df =</span> nu_0))</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Simulator for the scaled inverse Chi-square distribution</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>rScaledInvChi2 <span class="ot">&lt;-</span> <span class="cf">function</span>(n, v_0, sigma2_0){</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>((v_0<span class="sc">*</span>sigma2_0)<span class="sc">/</span><span class="fu">rchisq</span>(n, <span class="at">df =</span> v_0))</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="problem-4b-simulating-from-the-posterior" class="level4">
@@ -4214,11 +4224,7 @@ U(X_{11}, a_{11}) = 10 \cdot \mathrm{min}(X_{11}, a_{11}) -7 \cdot \mathrm{max}(
 </section>
 <section id="problem-4c-locating-the-day-with-the-highest-expected-temperature" class="level4">
 <h4 class="anchored" data-anchor-id="problem-4c-locating-the-day-with-the-highest-expected-temperature">Problem 4c) Locating the day with the highest expected temperature</h4>
-<p>It is of interest to locate the <span class="math inline">\(time\)</span> with the highest expected temperature (that is, the <span class="math inline">\(time\)</span> where <span class="math inline">\(f(time)\)</span> is maximal). Let’s call this value <span class="math inline">\(\tilde{x}\)</span>. Use the simulations in b) to simulate from the posterior distribution of <span class="math inline">\(\tilde{x}\)</span>. [Hint: the regression curve is a quadratic. You can find a simple formula for <span class="math inline">\(\tilde{x}\)</span> given <span class="math inline">\(\beta_{0},\beta_{1}\)</span> and <span class="math inline">\(\beta_{2}\)</span>.]</p>
-</section>
-<section id="problem-4d-prior-against-overfitting" class="level4">
-<h4 class="anchored" data-anchor-id="problem-4d-prior-against-overfitting">Problem 4d) Prior against overfitting</h4>
-<p>Say now that you want to estimate a polynomial of order 7, but you suspect that higher order terms may not be needed, and you worry about over-fitting. Suggest a suitable prior that mitigates this potential problem. You do not need to compute the posterior, just write down your prior. [Hint: the task is to specify <span class="math inline">\(\mu_{0}\)</span> and <span class="math inline">\(\Omega_{0}\)</span> in a smart way.]</p>
+<p>It is of interest to locate the <span class="math inline">\(time\)</span> with the highest expected temperature (that is, the <span class="math inline">\(time\)</span> where <span class="math inline">\(f(time)\)</span> is maximal). Let’s call this value <span class="math inline">\(\tilde{x}\)</span>. Use the simulations in b) to simulate from the posterior distribution of <span class="math inline">\(\tilde{x}\)</span>. [Hint: since the regression curve is a quadratic, the maximum on the curve is given by <span class="math inline">\(\tilde{x}=-\frac{\beta_1}{2\beta_2}\)</span>]</p>
 
 
 </section>

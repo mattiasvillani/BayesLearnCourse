@@ -25,7 +25,9 @@ editor: visual
 ```{r}
 #| echo: false
 #| output: false
-prettycols = c("#6C8EBF", "#c0a34d", "#780000","#007878","#B5C6DF","#EADAAA","#AE6666")
+prettycols = c("#6C8EBF", "#c0a34d", "#780000","#007878","#B5C6DF","#EADAAA","#AE6666", 
+               "#4CA0A0","#bf9d6c", "#3A6B35", "#9d6a6d","#d9c6c7", "#98bbb9", "#bf8d6c", 
+               "#CBD18F")
 ```
 
 ## Problem 1 - Bernoulli data with a Beta prior
@@ -154,6 +156,7 @@ You can access the data from Github as follows
 library(remotes)
 #install_github("StatisticsSU/SUdatasets")  # Uncomment this the first time
 library(SUdatasets)
+head(tempLinkoping)
 ```
 
 #### Problem 4a) Determine a suitable prior distribution
@@ -169,8 +172,8 @@ You need to determine suitable prior hyperparameters $\boldsymbol{\mu}_0$, $\bol
 
 ```{r}
 # Simulator for the scaled inverse Chi-square distribution
-rScaledInvChi2 <- function(n, nu_0, sigma2_0){
-  return((nu_0*sigma2_0)/rchisq(n, df = nu_0))
+rScaledInvChi2 <- function(n, v_0, sigma2_0){
+  return((v_0*sigma2_0)/rchisq(n, df = v_0))
 }
 ```
 
@@ -180,8 +183,4 @@ Write a program that *simulates from the joint posterior distribution* of $\beta
 
 #### Problem 4c) Locating the day with the highest expected temperature
 
-It is of interest to locate the $time$ with the highest expected temperature (that is, the $time$ where $f(time)$ is maximal). Let's call this value $\tilde{x}$. Use the simulations in b) to simulate from the posterior distribution of $\tilde{x}$. \[Hint: the regression curve is a quadratic. You can find a simple formula for $\tilde{x}$ given $\beta_{0},\beta_{1}$ and $\beta_{2}$.\]
-
-#### Problem 4d) Prior against overfitting
-
-Say now that you want to estimate a polynomial of order 7, but you suspect that higher order terms may not be needed, and you worry about over-fitting. Suggest a suitable prior that mitigates this potential problem. You do not need to compute the posterior, just write down your prior. \[Hint: the task is to specify $\mu_{0}$ and $\Omega_{0}$ in a smart way.\]
+It is of interest to locate the $time$ with the highest expected temperature (that is, the $time$ where $f(time)$ is maximal). Let's call this value $\tilde{x}$. Use the simulations in b) to simulate from the posterior distribution of $\tilde{x}$. \[Hint: since the regression curve is a quadratic, the maximum on the curve is given by $\tilde{x}=-\frac{\beta_1}{2\beta_2}$\]

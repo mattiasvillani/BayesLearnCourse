@@ -1,0 +1,1584 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass beamer
+\begin_preamble
+
+% you can play with different themes and color themes to find your favorite combination.
+\mode<presentation> {
+  \usetheme{Luebeck}
+  \usecolortheme{beaver}
+  \beamertemplatenavigationsymbolsempty
+}
+
+\usepackage{mathtools}
+\usepackage{graphicx} % for including images
+\usepackage{pgf} % for logo
+\usepackage{colortbl}
+\usepackage{booktabs}
+\usepackage{listings}
+\usepackage[many]{tcolorbox}
+\usepackage{tabularx}
+\usepackage{array}
+\tcbuselibrary{skins}
+%\usepackage{fdsymbol} % for card symbols
+
+
+\newcolumntype{Y}{>{\raggedleft\arraybackslash}X}
+\tcbset{tab2/.style={enhanced, fontupper=\small,
+colback=lightgray!10!white,colframe=cobalt!50!black,colbacktitle=lightsteelblue!40!white,
+coltitle=black,center title}}
+
+\newcommand\boldblue[1]{\textcolor{cobalt}{\textbf{#1}}}
+\newcommand\boldorange[1]{\textcolor{burntoranger}{\textbf{#1}}}
+\def\*#1{\mathbf{#1}}
+
+\date{} % Date, can be changed to a custom date
+
+\titlegraphic{
+\vspace{-0.6cm}
+\includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
+
+
+\tiny
+\vspace{1cm}
+\href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
+\href{https://bsky.app/profile/matvil.bsky.social}{\includegraphics[width=0.3cm]{/misc/bluesky.png} @matvil}\hspace*{1cm}~
+\href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
+\href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
+}
+
+
+\definecolor{blue}{RGB}{38, 122, 181}
+\definecolor{orange}{RGB}{255, 128, 0}
+\definecolor{lorange}{RGB}{255, 178, 102}
+\definecolor{llorange}{RGB}{255, 229,204 }
+\definecolor{verylightgray}{RGB}{246, 246, 246}
+\definecolor{cobalt}{HTML}{0047AB}
+\definecolor{lightsteelblue}{HTML}{b0c4de}
+
+
+\setbeamertemplate{itemize item}{\color{orange}$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{orange}$\blacktriangleright$}
+
+\usepackage{tcolorbox}
+
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\end_preamble
+\options xcolor=svgnames, handout
+\use_default_options false
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts true
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 0
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\color orange
+Bayesian Learning 
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\color gray
+Monte Carlo methods
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subtitle
+
+\color orange
+Video Lecture 0 - Monte Carlo methods
+\end_layout
+
+\begin_layout Author
+
+\series bold
+Mattias Villani
+\series default
+ 
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color gray
+Mattias Villani
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Institute
+Department of Statistics
+\begin_inset Newline newline
+\end_inset
+
+Stockholm University 
+\begin_inset Argument 1
+status open
+
+\begin_layout Plain Layout
+Stockholm University
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Interest: 
+\series bold
+\color blue
+expectations of functions
+\series default
+\color inherit
+ 
+\begin_inset Formula $f\left(X\right)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\mathbb{E}_{p}(f(X))=\begin{cases}
+\sum_{\text{all }x}f\left(x\right)\cdot p\left(x\right) & \text{ for discrete }X\\
+\int f\left(x\right)\cdot p\left(x\right)\mathrm{d}x & \text{ for continuous }X
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Examples: 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Mean
+\series default
+\color inherit
+ 
+\begin_inset Formula $\mathbb{\mathbb{E}}(X)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f\left(x\right)=x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Variance
+\series default
+\color inherit
+ 
+\begin_inset Formula $\mathbb{\mathbb{V}}(X)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f\left(x\right)=(x-\mu)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Probabilities
+\series default
+\color inherit
+ 
+\begin_inset Formula $\mathrm{Pr}(a\leq X\leq b)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f\left(x\right)=\begin{cases}
+1 & \text{if }a\leq x\leq b\\
+0 & \text{otherwise}
+\end{cases}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Properties of sample averages
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Law of Large Numbers
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+LLN
+\series default
+\color inherit
+): sample means 
+\begin_inset Formula $\bar{X}_{n}=\frac{1}{n}\sum_{i=1}^{n}X_{i}$
+\end_inset
+
+ converges to population means 
+\begin_inset Formula $\mu=\mathbb{E}_{p}(X)$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\bar{X}_{n}\overset{p}{\rightarrow}\mathbb{E}_{p}(X)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $X_{1},\ldots,X_{n}$
+\end_inset
+
+ are iid from 
+\begin_inset Formula $p(x)$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Central limit theorem
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+CLT
+\series default
+\color inherit
+): informally, for large 
+\begin_inset Formula $n$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+\bar{X}_{n}\overset{\mathrm{approx}}{\sim}N\left(\mu,\frac{\sigma^{2}}{n}\right),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma^{2}=\mathbb{V}(X)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/lawoflarge_numbers.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Law of large numbers - widget
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.7\\textwidth]{Images/lln_widget.png}"
+target "https://observablehq.com/@mattiasvillani/law-large-numbers#userinputs"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Central limit theorem - widget
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.7\\textwidth]{Images/widget_clt.png}"
+target "https://observablehq.com/@mattiasvillani/central-limit-theorem#dist_type"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Sample averages of functions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+LLN for a function 
+\begin_inset Formula $f\left(x\right)$
+\end_inset
+
+
+\series default
+\color inherit
+
+\begin_inset Formula 
+\begin{align*}
+\bar{f_{n}} & =\frac{1}{n}\sum_{i=1}^{n}f\left(X_{i}\right)\overset{p}{\rightarrow}\mathbb{E}_{p}\left(f\left(X\right)\right)
+\end{align*}
+
+\end_inset
+
+where 
+\begin_inset Formula $X_{1},\ldots,X_{n}$
+\end_inset
+
+ are iid from 
+\begin_inset Formula $p(x)$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+CLT for a function 
+\begin_inset Formula $f\left(x\right)$
+\end_inset
+
+
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\bar{f_{n}}\overset{\mathrm{approx}}{\sim}N\left(\mu_{f},\frac{\sigma_{f}^{2}}{n}\right),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mu_{f}=\mathbb{E}_{p}\left(f\left(X\right)\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\sigma_{f}^{2}=\mathbb{V}_{p}\left(f\left(X\right)\right)$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+We can estimate 
+\begin_inset Formula $\sigma_{f}^{2}$
+\end_inset
+
+ by sample variance of function evaluations
+\begin_inset Formula 
+\[
+\hat{\sigma}_{f}^{2}=\frac{1}{n-1}\sum_{i=1}^{n}\left(f(x_{i})-\bar{f_{n}}\right)^{2}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo simulation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Monte Carlo integration
+\series default
+\color inherit
+ 
+\begin_inset Formula 
+\[
+\hat{\mu}_{f}=\frac{1}{m}\sum_{i=1}^{m}f\left(x_{i}\right),\qquad x_{i}\overset{\mathrm{iid}}{\sim}p(x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Unbiased
+\series default
+\color inherit
+ 
+\begin_inset Formula $\mathbb{E}_{p}(\hat{\mu}_{f})=\mu_{f}$
+\end_inset
+
+ for all 
+\begin_inset Formula $m$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+LLN
+\series default
+\color inherit
+: 
+\series bold
+\color orange
+consistent
+\series default
+\color inherit
+ 
+\begin_inset Formula $\hat{\mu}_{f}\overset{p}{\rightarrow}\mu_{f}$
+\end_inset
+
+ as 
+\begin_inset Formula $m\rightarrow\infty$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+CLT
+\series default
+\color inherit
+: quantifies 
+\series bold
+\color orange
+estimation error
+\series default
+\color inherit
+ 
+\begin_inset Formula $\hat{\mu}_{f}-\mu_{f}$
+\end_inset
+
+ for finite 
+\begin_inset Formula $m$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Formula $f(x)=\exp(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $X\sim N(0,1)$
+\end_inset
+
+.
+ 
+\size footnotesize
+
+\begin_inset Newline newline
+\end_inset
+
+
+\size default
+
+\begin_inset Formula $\text{True mean: }\quad\mathbb{E}_{p}(\exp(X))=\exp(1/2)\approx1.648$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/montecarlo_exp_conv.pdf
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Monte Carlo simulation - multivariate
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Two extensions:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Multivariate input: 
+\begin_inset Formula $\boldsymbol{x}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Multivariate output: 
+\begin_inset Formula $\boldsymbol{f}(\boldsymbol{x})$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Example: 
+\begin_inset Formula $\boldsymbol{x}\text{\ensuremath{\sim}}N(\boldsymbol{\mu},\boldsymbol{\Sigma}$
+\end_inset
+
+) and 
+\begin_inset Formula $\boldsymbol{f}(\boldsymbol{x})=\boldsymbol{x}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Monte Carlo integration
+\series default
+\color inherit
+ 
+\begin_inset Formula 
+\[
+\hat{\boldsymbol{\mu}}_{f}=\frac{1}{m}\sum_{i=1}^{m}\boldsymbol{f}\left(\boldsymbol{x}_{i}\right),\qquad\boldsymbol{x}_{i}\overset{\mathrm{iid}}{\sim}p(\boldsymbol{x})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Still unbiased and consistent.
+\end_layout
+
+\begin_layout Itemize
+Multivariate
+\series bold
+\color blue
+ CLT
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\[
+\hat{\boldsymbol{\mu}}_{f}\overset{\mathrm{approx}}{\sim}N\left(\boldsymbol{\mu}_{f},\frac{1}{m}\mathbb{V}_{p}\left(\boldsymbol{f}\left(X\right)\right)\right),
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\mathbb{V}_{p}\left(\boldsymbol{f}\left(X\right)\right)$
+\end_inset
+
+ is a 
+\begin_inset Formula $d\times d$
+\end_inset
+
+ covariance matrix.
+ 
+\end_layout
+
+\begin_layout Itemize
+Same 
+\begin_inset Formula $\frac{1}{m}$
+\end_inset
+
+ rate in multivariate case.
+ Works in high dimensions!
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Importance sampling
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Aim:
+\begin_inset Formula 
+\[
+\mathbb{E}_{p}\left(f\left(X\right)\right)=\int f\left(x\right)p\left(x\right)\mathrm{d}x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Importance sampling 
+\series default
+\color inherit
+(
+\series bold
+\color blue
+IS
+\series default
+\color inherit
+) samples from a 
+\series bold
+\color blue
+proposal distribution
+\series default
+\color inherit
+ 
+\begin_inset Formula $q\left(x\right)$
+\end_inset
+
+ instead of target distribution 
+\begin_inset Formula $p\left(x\right)$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Based on the trivial identity
+\begin_inset Formula 
+\[
+\int f\left(x\right)p\left(x\right)\mathrm{d}x=\int f\left(x\right)\frac{p\left(x\right)}{q\left(x\right)}q\left(x\right)\mathrm{d}x=\int f\left(x\right)w\left(x\right)p\left(x\right)\mathrm{d}x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Weight function
+\series default
+\color inherit
+ (importance function)
+\begin_inset Formula 
+\[
+w\left(x\right)=\frac{p\left(x\right)}{q\left(x\right)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Importance sampling estimator
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\hat{\mu}_{f}^{\mathrm{IS}}=\frac{1}{m}\sum_{i=1}^{m}f\left(x_{i}\right)w(x_{i}),\qquad\textcolor{orange}{x_{i}\overset{\mathrm{iid}}{\sim}q(x)}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Importance sampling
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Importance sampling estimator
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+\hat{\mu}_{f}^{\mathrm{IS}}=\frac{1}{m}\sum_{i=1}^{m}f\left(x_{i}\right)w(x_{i}),\qquad x_{i}\overset{\mathrm{iid}}{\sim}q(x)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Unbiased
+\series default
+\color inherit
+ 
+\begin_inset Formula $\mathbb{E}_{q}(\hat{\mu}_{f}^{\mathrm{IS}})=\mu_{f}$
+\end_inset
+
+ and 
+\series bold
+\color blue
+consistent
+\series default
+\color inherit
+ 
+\begin_inset Formula $\hat{\mu}_{f}^{\mathrm{IS}}\overset{p}{\rightarrow}\mu_{f}.$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The proposal distribution determines the efficiency (variance).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Proposal 
+\begin_inset Formula $q\left(x\right)$
+\end_inset
+
+ proportional to integrand 
+\begin_inset Formula $f\left(x\right)p\left(x\right)$
+\end_inset
+
+ is ideal.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Example: 
+\begin_inset Formula $f(x)=\exp(x)$
+\end_inset
+
+ and 
+\begin_inset Formula $X\sim N(0,1)$
+\end_inset
+
+.
+ Proposal: 
+\begin_inset Formula $N(\tilde{\mu},1)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/IS_exp_normal_densities.pdf
+	scale 22
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/IS_exp_normal.pdf
+	scale 22
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+The tails of the proposal are important
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Proposal
+\series default
+\color inherit
+ 
+\begin_inset Formula $q(x)$
+\end_inset
+
+ should have 
+\series bold
+\color blue
+heavier tails
+\series default
+\color inherit
+ than target 
+\begin_inset Formula $p(x)$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Example 1: (OK!):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Target: 
+\begin_inset Formula $N(0,1)$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Proposal: Student-
+\begin_inset Formula $t$
+\end_inset
+
+ with three df.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Example 2 (not OK!):
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Target: Student-
+\begin_inset Formula $t$
+\end_inset
+
+ with three df.
+\end_layout
+
+\begin_layout Itemize
+Proposal: 
+\begin_inset Formula $N(0,1)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/IS_mindthetails.pdf
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Rejection sampling
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Rejection sampling samples from the target distribution 
+\begin_inset Formula $p(x)$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Draws from proposal 
+\begin_inset Formula $q(x)\neq p(x)$
+\end_inset
+
+ and then accepts/rejects draws.
+\end_layout
+
+\begin_layout Itemize
+Need to find a majorization constant
+\begin_inset Formula 
+\[
+p(x)\leq M\cdot q(x)\qquad\text{for all }x
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\color blue
+Rejection sampling
+\series default
+\color inherit
+:
+\end_layout
+
+\begin_layout Enumerate
+Draw a candidate 
+\begin_inset Formula $x^{\star}$
+\end_inset
+
+ from the proposal distribution 
+\begin_inset Formula $q(x)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Draw 
+\begin_inset Formula $u\sim\mathrm{Uniform}(0,1)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Accept the candidate 
+\begin_inset Formula $x^{\star}$
+\end_inset
+
+ if
+\begin_inset Formula 
+\[
+u<\frac{p(x^{\star})}{M\cdot q(x^{\star})}
+\]
+
+\end_inset
+
+Otherwise, reject the candidate and return to step 1.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Rejection sampling - example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Simulation from Logistic-Beta density
+\begin_inset Formula 
+\[
+p(x)=\frac{\sigma(x)^{\alpha}\sigma(-x)^{\beta}}{B(\alpha,\beta)}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\sigma(x)=1/(1+e^{-x})$
+\end_inset
+
+ is the logistic function.
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/rejection_sampling_zdist.pdf
+	scale 20
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Unnormalized target density
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Both Importance sampling and Rejection sampling works with 
+\series bold
+\color blue
+unnormalized target density
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(x)=\frac{\tilde{p}(x)}{\int\tilde{p}(x)dx}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The unnormalized density 
+\begin_inset Formula $\tilde{p}(x)$
+\end_inset
+
+ is known ...
+ 
+\end_layout
+
+\begin_layout Itemize
+...
+ but 
+\series bold
+\color blue
+normalizing constant
+\series default
+\color inherit
+ 
+\begin_inset Formula $\int\tilde{p}(x)dx$
+\end_inset
+
+ cannot be computed.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Common in 
+\series bold
+\color blue
+Bayesian learning
+\series default
+\color inherit
+ where the target is the 
+\series bold
+\color blue
+posterior distribution
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\theta\vert x)=\frac{p(x\vert\theta)p(\theta)}{\int p(x\vert\theta)p(\theta)d\theta}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+(Much) more later!
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
