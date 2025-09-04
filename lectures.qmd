@@ -18,7 +18,7 @@ The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web
 ### Lecture contents
 
 **Lecture 0 (Recorded, no physical class) - The likelihood function. Information. Basic Monte Carlo simulation.**\
-Read: BL 1.1-1.2, BLprequel 8.3, 8.4, 8.6 (check that you know the concepts) | [Slides](/slides/BL_L0.pdf) \
+Read: BL 1.1-1.2, BL 10.1-10.3, BLprequel 8.3, 8.4, 8.6 (check that you know the concepts) | [Slides](/slides/BL_L0.pdf) \
 Interactive: [Second derivative as function curvature](https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function) | [Likelihood and Information](https://observablehq.com/@mattiasvillani/likelihood-and-information) \
 
 **Lecture 1 - Subjective probability and Bayesian learning. One-parameter models: iid Bernoulli, Gaussian and Poisson models. Summarizing a posterior distribution.**\
