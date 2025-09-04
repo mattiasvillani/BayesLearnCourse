@@ -1034,7 +1034,7 @@ proposal distribution
 Based on the trivial identity
 \begin_inset Formula 
 \[
-\int f\left(x\right)p\left(x\right)\mathrm{d}x=\int f\left(x\right)\frac{p\left(x\right)}{q\left(x\right)}q\left(x\right)\mathrm{d}x=\int f\left(x\right)w\left(x\right)p\left(x\right)\mathrm{d}x
+\int f\left(x\right)p\left(x\right)\mathrm{d}x=\int f\left(x\right)\frac{p\left(x\right)}{q\left(x\right)}q\left(x\right)\mathrm{d}x=\int f\left(x\right)w\left(x\right)\textcolor{orange}{q(x)}\mathrm{d}x
 \]
 
 \end_inset
