@@ -19,7 +19,6 @@
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
 \usepackage{booktabs}
-\usepackage{emoji}
 \usepackage{listings}
 \usepackage[many]{tcolorbox}
 \usepackage{tabularx}
@@ -43,16 +42,27 @@ coltitle=black,center title}}
 \vspace{-0.6cm}
 \includegraphics[width=1.5cm]{/misc/LogoBlueJustRing.jpg}\break
 
-
 \tiny
 \vspace{1cm}
 \href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
-\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://bsky.app/profile/matvil.bsky.social}{\includegraphics[width=0.3cm]{/misc/bluesky.png} @matvil}\hspace*{1cm}~
 \href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
 \href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
+\newcommand{\simiid}{\stackrel{\mathrm{iid}}{\sim}}
+\renewcommand{\v}[1]{\boldsymbol{#1}}
+\newcommand{\m}[1]{\boldsymbol{\mathrm{#1}}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+%\newcommand{\bf}[1]{\mathbf{#1}}
+\newcommand{\data}{x_1,\ldots,x_n}
+\newcommand{\iiddata}{x_1,\ldots,x_n|\hspace{0.1em}\theta\simiid}
+\newcommand{\Iiddata}{X_1,\ldots,X_n|\hspace{0.1em}\theta\simiid}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\btheta}{\boldsymbol{\theta}}
+
+\definecolor{darkgreen}{RGB}{17, 59, 8}
 \definecolor{blue}{RGB}{38, 122, 181}
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
@@ -178,15 +188,7 @@ Lecture 2 - Poisson data.
 \series bold
 Mattias Villani
 \series default
- 
-\begin_inset Graphics
-	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
-	lyxscale 10
-	scale 2
 
-\end_inset
-
- 
 \begin_inset Argument 1
 status collapsed
 
@@ -242,6 +244,20 @@ The
 \series bold
 \color blue
 Poisson model
+\series default
+\color inherit
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Summarizing a posterior distribution
 \series default
 \color inherit
 
@@ -584,7 +600,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/PoisDist.png
+	filename /home/mv/Dropbox/BayesBook/Figs/PoisDist.pdf
 	scale 25
 
 \end_inset
@@ -795,7 +811,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/GammaDist.png
+	filename /home/mv/Dropbox/BayesBook/Figs/GammaDist.pdf
 	scale 25
 
 \end_inset
@@ -865,16 +881,109 @@ which is proportional to
 
 \series bold
 \color blue
-Prior-to-Posterior mapping
+Bayesian updating
 \series default
 \color inherit
 
-\begin_inset Formula 
-\begin{gather*}
-\text{Model: \ }y_{1},...,y_{n}|\theta\overset{iid}{\sim}\mathrm{Pois}(\theta)\\
-\text{Prior: \ }\theta\sim\mathrm{Gamma}(\alpha,\beta)\\
-\text{Posterior: }\theta|y_{1},...,y_{n}\sim\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)\text{.}
-\end{gather*}
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray]     
+\backslash
+textbf{
+\backslash
+textcolor{darkgreen}{Conjugate analysis - Poisson model}}  
+\backslash
+
+\backslash
+ 
+\backslash
+smallskip     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{Model}:
+\backslash
+hspace{0.5cm} $X_1,
+\backslash
+ldots,X_n 
+\backslash
+simiid 
+\backslash
+mathrm{Pois}(
+\backslash
+theta)$ 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{Prior}:
+\backslash
+hspace{0.78cm} $
+\backslash
+theta 
+\backslash
+sim 
+\backslash
+mathrm{Gamma}(
+\backslash
+alpha,
+\backslash
+beta)$ 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+textbf{Posterior}:
+\backslash
+hspace{0.13cm} $
+\backslash
+theta | 
+\backslash
+data 
+\backslash
+sim 
+\backslash
+mathrm{Gamma}(
+\backslash
+alpha + 
+\backslash
+sum_{i=1}^n x_i,
+\backslash
+beta + n)$ 
+\backslash
+
+\backslash
+ 
+\backslash
+smallskip   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
 
 \end_inset
 
@@ -965,7 +1074,7 @@ Prior
  
 \begin_inset Formula 
 \[
-E(\theta)=\frac{\alpha}{\beta}=4
+\mathbb{E}(\theta)=\frac{\alpha}{\beta}=4
 \]
 
 \end_inset
@@ -973,7 +1082,7 @@ E(\theta)=\frac{\alpha}{\beta}=4
 
 \begin_inset Formula 
 \[
-SD(\theta)=\frac{\alpha}{\beta^{2}}=2.823
+\mathbb{S}(\theta)=\sqrt{\frac{\alpha}{\beta^{2}}}\approx2.823
 \]
 
 \end_inset
@@ -985,22 +1094,22 @@ SD(\theta)=\frac{\alpha}{\beta^{2}}=2.823
 
 \series bold
 \color blue
-Posterior
+Posterior mean
+\series default
+\color inherit
+ and 
+\series bold
+\color blue
+posterior standard deviation
 \series default
 \color inherit
 
 \begin_inset Formula 
-\[
-E(\theta|\boldsymbol{y})=\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}=\frac{2+3635}{1/2+1000}\approx3.635.
-\]
-
-\end_inset
-
-
-\begin_inset Formula 
-\[
-SD(\theta|\boldsymbol{y})=\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{(\beta+n)^{2}}\right)^{1/2}\approx0.060.
-\]
+\begin{align*}
+\theta|\boldsymbol{y} & \sim\mathrm{Gamma}(\alpha+\sum\nolimits _{i=1}^{n}y_{i},\beta+n)=\mathrm{Gamma}(3637,1000.5)\\
+\mathbb{E}(\theta|\boldsymbol{y}) & =\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{\beta+n}=\frac{2+3635}{1/2+1000}\approx3.635\\
+\mathbb{S}(\theta|\boldsymbol{y}) & =\left(\frac{\alpha+\sum\nolimits _{i=1}^{n}y_{i}}{(\beta+n)^{2}}\right)^{1/2}\approx0.060
+\end{align*}
 
 \end_inset
 
@@ -1043,7 +1152,7 @@ eBay data - Posterior of
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPost.png
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPost.pdf
 	scale 33
 
 \end_inset
@@ -1087,7 +1196,7 @@ eBay data - model fit at
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.png
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.pdf
 	scale 50
 	BoundingBox 0bp 0cm 300bp 300bp
 	clip
@@ -1234,7 +1343,7 @@ eBay data split on reservation price
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPosteriorSplit.png
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayPriorPostSplit.pdf
 	scale 33
 
 \end_inset
@@ -1278,7 +1387,7 @@ eBay data - model fit at
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.png
+	filename /home/mv/Dropbox/BayesBook/Figs/eBayFit.pdf
 	scale 35
 	BoundingBox 300bp 0bp 900bp 300bp
 	clip
@@ -1344,11 +1453,15 @@ Bayesian 95%
 credible interval
 \series default
 \color inherit
-: the probability that the unknown parameter 
+: the unknown parameter 
 \begin_inset Formula $\theta$
 \end_inset
 
- lies in the interval is 0.95.
+ lies in the interval with 0.95 probability 
+\series bold
+conditional on the observed data
+\series default
+.
  
 \begin_inset VSpace bigskip
 \end_inset
@@ -1392,7 +1505,7 @@ credible interval
 
 \begin_inset Formula 
 \[
-E(\theta|y)\pm1.96\cdot SD(\theta|y)
+\mathbb{E}(\theta|\boldsymbol{y})\pm1.96\cdot\mathbb{S}(\theta|\boldsymbol{y})
 \]
 
 \end_inset
@@ -1452,7 +1565,7 @@ Illustration of different interval types
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/intervals.png
+	filename /home/mv/Dropbox/BayesBook/Figs/intervals.pdf
 	lyxscale 40
 	scale 33
 
@@ -1493,7 +1606,7 @@ Credible intervals - eBay auction data
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/ebayInterval.png
+	filename /home/mv/Dropbox/BayesBook/Figs/ebayInterval.pdf
 	lyxscale 40
 	scale 33
 
@@ -1539,6 +1652,12 @@ Normal likelihood: Normal prior
 \end_inset
 
 Normal posterior.
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1549,6 +1668,12 @@ Bernoulli likelihood: Beta prior
 \end_inset
 
 Beta posterior.
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1562,7 +1687,7 @@ Gamma posterior.
  
 \color inherit
 
-\begin_inset VSpace medskip
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -1584,154 +1709,6 @@ same distributional family
 \color inherit
 .
 \begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\noindent
-\align center
-\begin_inset Box Frameless
-position "c"
-hor_pos "c"
-has_inner_box 1
-inner_pos "c"
-use_parbox 0
-use_makebox 0
-width "85col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-small
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tcolorbox}[colback=verylightgray]   
-\end_layout
-
-\begin_layout Plain Layout
-
-a family of prior distributions $
-\backslash
-mathcal{P}$ is {
-\backslash
-color{blue}
-\backslash
-textbf{conjugate}} for 
-\backslash
-
-\backslash
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-a family of likelihoods $
-\backslash
-mathcal{L}=
-\backslash
-{p(
-\backslash
-mathbf{x}|
-\backslash
-theta),
-\backslash
-theta
-\backslash
-in
-\backslash
-Theta
-\backslash
-}$ if
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{equation*}      
-\end_layout
-
-\begin_layout Plain Layout
-
-	  p(
-\backslash
-theta)
-\backslash
-in
-\backslash
-mathcal{P
-\backslash
-Rightarrow}
-\backslash
-text{ }p(
-\backslash
-theta|
-\backslash
-mathbf{x})
-\backslash
-in
-\backslash
-mathcal{P}
-\backslash
-hspace{0.5cm}
-\backslash
-text{ for all }p(
-\backslash
-mathbf{x}|
-\backslash
-theta)
-\backslash
-in
-\backslash
-mathcal{L}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{equation*}    
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-vspace{-0.5cm}  
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tcolorbox}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \end_inset
 
 
@@ -1812,7 +1789,7 @@ Unconditional mean:
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/InflSwedenPreds.png
+	filename /home/mv/Dropbox/BayesBook/Figs/InflSwedenPreds.pdf
 	scale 35
 
 \end_inset
@@ -2040,7 +2017,7 @@ y=f(x)+\varepsilon
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/GPjagged.png
+	filename /home/mv/Dropbox/BayesBook/Figs/GPjagged.pdf
 	lyxscale 50
 	scale 15
 
@@ -2048,7 +2025,7 @@ y=f(x)+\varepsilon
 
 
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/GPsmooth.png
+	filename /home/mv/Dropbox/BayesBook/Figs/GPsmooth.pdf
 	lyxscale 50
 	scale 15
 
@@ -2535,7 +2512,7 @@ Jeffreys' prior for negative binomial sampling
 Jeffreys' prior:
 \begin_inset Formula 
 \[
-n|\theta\overset{iid}{\sim}NegBin(s,\theta).
+n|\theta\overset{iid}{\sim}\mathrm{NegBin}(s,\theta).
 \]
 
 \end_inset
@@ -2571,7 +2548,7 @@ I(\theta)=\frac{s}{\theta^{2}}+\frac{E_{n|\theta}(n-s)}{(1-\theta)^{2}}=\frac{s}
 Thus, the Jeffreys' prior is
 \begin_inset Formula 
 \[
-p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1}(1-\theta)^{-1/2}\propto Beta(\theta|0,1/2).
+p(\theta)=\left|I(\theta)\right|^{1/2}\propto\theta^{-1}(1-\theta)^{-1/2}\propto\mathrm{Beta}(\theta|0,1/2).
 \]
 
 \end_inset

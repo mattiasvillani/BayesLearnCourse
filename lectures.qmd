@@ -18,30 +18,30 @@ The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web
 ### Lecture contents
 
 **Lecture 0 (Recorded, no physical class) - The likelihood function. Information. Basic Monte Carlo simulation.**\
-Read: BL 1.1-1.2, BL 10.1-10.3, BLprequel 8.3, 8.4, 8.6 (check that you know the concepts) | [Slides](/slides/BL_L0.pdf) \
-Interactive: [Second derivative as function curvature](https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function) | [Likelihood and Information](https://observablehq.com/@mattiasvillani/likelihood-and-information) \
+Read: BL 1.1-1.3, BL 10.1-10.3, BLprequel 8.3, 8.4, 8.6 (check that you know the concepts) | [Slides](/slides/BL_L0.pdf) \
+Interactive (check that you know the concepts): [MLE for Bernoulli data](https://observablehq.com/@mattiasvillani/maximum-likelihood-bernoulli-data) | [MLE for Poisson](https://observablehq.com/@mattiasvillani/maximum-likelihood-for-iid-poisson-data) | [Second derivative as function curvature](https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function) | [Likelihood and Information](https://observablehq.com/@mattiasvillani/likelihood-and-information) | [Law of large numbers](https://observablehq.com/@mattiasvillani/law-large-numbers) | [Central limit theorem](https://observablehq.com/@mattiasvillani/central-limit-theorem) \
 
-**Lecture 1 - Subjective probability and Bayesian learning. One-parameter models: iid Bernoulli, Gaussian and Poisson models. Summarizing a posterior distribution.**\
-Read: BL 1.4, 1.5, 2.1-2.4 | [Slides](/misc/larry.png) \
+**Lecture 1 - Subjective probability and Bayesian learning. Bernoulli. Gaussian with known variance.**\
+Read: BL 1.4-1.5, 2.1-2.3 |  [Slides](/slides/BL_L1.pdf) \
+Interactive: [Bayes theorem for events](https://observablehq.com/@mattiasvillani/bayes-theorem-for-events) | [Bernoulli data](https://observablehq.com/@mattiasvillani/bayesian-inference-for-bernoulli-iid-data) | [Normal data - known variance](https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var) \
+
+**Lecture 2 - Poisson. Summarizing a posterior distribution. Priors.**\
+Read: BL 2.2-2.5, BL 4.1-4.8 |  [Slides](/slides/BL_L2.pdf) \
+Interactive: [Poisson data](https://observablehq.com/@mattiasvillani/bayesian-inference-for-iid-poisson-counts) | [Credible intervals](https://observablehq.com/@mattiasvillani/bayesian-credible-intervals) \
+
+**Lecture 2 - Marginalization. Gaussian with unknown variance. Multinomial. Multivariate normal.**\
+Read: BL 3.1-3.3, 3.5-3.6 |  [Slides](/slides/BL_L3.pdf) \
+Interactive: [Normal data - unknown variance](https://observablehq.com/@mattiasvillani/bayesian-inference-for-gaussian-iid-data) | [Scaled inverse chi2](https://observablehq.com/@mattiasvillani/scaled-inverse-chi-2-distribution) | [Dirichlet distribution](https://observablehq.com/@mattiasvillani/dirichlet-distribution) | [Multinomial data](https://observablehq.com/@mattiasvillani/multinomial-dirichlet)  | [Multivariate normal distribution](https://observablehq.com/@mattiasvillani/multivariate-normal-distribution) \
+
+**Lecture 4 - Bayesian prediction. Decision making.**\
+Read: BL 6.1-6.2 | [Slides](/misc/larry.png) \
+Interactive: [Prior predictive distribution - Poisson model](https://observablehq.com/@mattiasvillani/prior_pred_poismodel) \
+
+**Lecture 5 - Regression. Regularization priors.**\
+Read: BL 5, 11.1-11.4 | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 2 - Multi-parameter models: iid Gaussian, multinomial, multivariate normal. Marginalization.**\
-Read: BL 3.1-3.3, 3.5-3.6 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 3 - Priors. Bayesian prediction and Decision making.**\
-Read: BL 4.1-4.8, 6.1-6.2 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 4 - Regression**\
-Read: BL 5 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 5 - Regularization priors**\
-Read: BL 11.1-11.4 | [Slides](/misc/larry.png) \
-Interactive: \
-
-**Lecture 6 - Normal posterior approximation and Classification**\
+**Lecture 6 - Normal posterior approximation. Classification.**\
 Read: BL 7.1-7.5, 8.1-8.5  | [Slides](/misc/larry.png) \
 Interactive: \
 

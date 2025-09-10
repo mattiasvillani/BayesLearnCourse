@@ -19,7 +19,6 @@
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
 \usepackage{booktabs}
-\usepackage{emoji}
 \usepackage{listings}
 \usepackage[many]{tcolorbox}
 \usepackage{tabularx}
@@ -47,12 +46,24 @@ coltitle=black,center title}}
 \tiny
 \vspace{1cm}
 \href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
-\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://bsky.app/profile/matvil.bsky.social}{\includegraphics[width=0.3cm]{/misc/bluesky.png} @matvil}\hspace*{1cm}~
 \href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
 \href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
 
+\newcommand{\simiid}{\stackrel{\mathrm{iid}}{\sim}}
+\renewcommand{\v}[1]{\boldsymbol{#1}}
+\newcommand{\m}[1]{\boldsymbol{\mathrm{#1}}}
+\newcommand{\bb}[1]{\mathbb{#1}}
+%\newcommand{\bf}[1]{\mathbf{#1}}
+\newcommand{\data}{x_1,\ldots,x_n}
+\newcommand{\iiddata}{x_1,\ldots,x_n|\hspace{0.1em}\theta\simiid}
+\newcommand{\Iiddata}{X_1,\ldots,X_n|\hspace{0.1em}\theta\simiid}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\btheta}{\boldsymbol{\theta}}
+
+\definecolor{darkgreen}{RGB}{17, 59, 8}
 \definecolor{blue}{RGB}{38, 122, 181}
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}

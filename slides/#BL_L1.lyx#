@@ -19,6 +19,7 @@
 \usepackage{pgf} % for logo
 \usepackage{colortbl}
 \usepackage{booktabs}
+\usepackage{emoji}
 \usepackage{listings}
 \usepackage[many]{tcolorbox}
 \usepackage{tabularx}
@@ -46,23 +47,12 @@ coltitle=black,center title}}
 \tiny
 \vspace{1cm}
 \href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
-\href{https://bsky.app/profile/matvil.bsky.social}{\includegraphics[width=0.3cm]{/misc/bluesky.png} @matvil}\hspace*{1cm}~
+\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
 \href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
 \href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
 
-\newcommand{\simiid}{\stackrel{\mathrm{iid}}{\sim}}
-\renewcommand{\v}[1]{\boldsymbol{#1}}
-\newcommand{\m}[1]{\boldsymbol{\mathrm{#1}}}
-\newcommand{\bb}[1]{\mathbb{#1}}
-%\newcommand{\bf}[1]{\mathbf{#1}}
-\newcommand{\data}{x_1,\ldots,x_n}
-\newcommand{\iiddata}{x_1,\ldots,x_n|\hspace{0.1em}\theta\simiid}
-\newcommand{\Iiddata}{X_1,\ldots,X_n|\hspace{0.1em}\theta\simiid}
-\newcommand{\bbeta}{\boldsymbol{\beta}}
-\newcommand{\btheta}{\boldsymbol{\theta}}
 
-\definecolor{darkgreen}{RGB}{17, 59, 8}
 \definecolor{blue}{RGB}{38, 122, 181}
 \definecolor{orange}{RGB}{255, 128, 0}
 \definecolor{lorange}{RGB}{255, 178, 102}
@@ -328,7 +318,7 @@ literal "false"
 \end_layout
 
 \begin_layout Itemize
-Computer labs to work on Home Assignment (
+Computer labs (
 \bar under
 \color blue
 
@@ -385,7 +375,7 @@ literal "false"
 
 \series bold
 \color orange
-High-level contents
+Modules
 \series default
 \color inherit
 :
@@ -430,16 +420,13 @@ Advanced models
 \series bold
 \color blue
 Posterior Approximation
+\series default
+\color inherit
+ methods
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Simulation-based inference
-\series default
-\color inherit
- and 
+Simulation-based inference and 
 \series bold
 \color blue
 Probabilistic programming
@@ -469,32 +456,11 @@ Examination
 
 \begin_deeper
 \begin_layout Itemize
-
-\series bold
-\color blue
-Home assignment
-\series default
-\color inherit
-, Part A and B.
+Lab reports
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Exam
-\series default
-\color inherit
-: Pen and paper + Computer (using R).
- 
-\begin_inset Newline newline
-\end_inset
-
-
-\emph on
-Polished home assignment can be uploaded as pdf
-\emph default
-.
+Exam: Pen and paper + Computer (using R)
 \end_layout
 
 \end_deeper
@@ -902,7 +868,7 @@ Probabilities from the likelihood?
 \align center
 \begin_inset Graphics
 	filename /home/mv/Dropbox/BayesBook/Figs/BigNoNoIntegrate.pdf
-	scale 45
+	scale 55
 
 \end_inset
 
@@ -1197,10 +1163,6 @@ Bayesian learning
 \end_inset
 
 : 
-\begin_inset VSpace medskip
-\end_inset
-
-
 \begin_inset Separator latexpar
 \end_inset
 
@@ -1237,6 +1199,10 @@ collect
 data
 \series default
 \color inherit
+ 
+\begin_inset Formula $\mathrm{Data}$
+\end_inset
+
  and form the 
 \series bold
 \color orange
@@ -1261,11 +1227,11 @@ likelihood
 combine
 \series default
 \color inherit
- prior 
+ prior knowledge 
 \begin_inset Formula $p(\theta)$
 \end_inset
 
- and data information 
+ with data information 
 \begin_inset Formula $p(\mathrm{Data}\vert\theta)$
 \end_inset
 
@@ -1449,15 +1415,6 @@ Predictions
 \series default
 \color inherit
 .
- 
-\begin_inset Graphics
-	filename emojis/HeartEyesEmoji.png
-	lyxscale 7
-	scale 2
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -1679,9 +1636,9 @@ You can't enjoy the Bayesian omelette
 \emph on
 \color blue
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/bayeseggs.png
+	filename /home/mv/Dropbox/BayesBook/Figs/eggs.jpg
 	lyxscale 10
-	scale 20
+	scale 3
 
 \end_inset
 
@@ -1801,7 +1758,7 @@ Integral
  is only a constant
 \series default
 \color inherit
- to ensure that 
+ so that 
 \begin_inset Formula $\int p(\theta|Data)=1$
 \end_inset
 
@@ -1828,7 +1785,7 @@ p(x)=(2\pi\sigma^{2})^{-1/2}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
 We may write
 \begin_inset Formula 
 \[
-p(x){\normalcolor \,\propto\,}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
+p(x){\normalcolor \propto}\exp\left[-\frac{1}{2\sigma^{2}}(x-\mu)^{2}\right].
 \]
 
 \end_inset
@@ -1886,8 +1843,8 @@ or
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/bayestattoo_ai.png
-	scale 14
+	filename Images/BayesTattoo.png
+	scale 37
 
 \end_inset
 
@@ -1974,7 +1931,7 @@ Posterior
 \begin_inset Formula 
 \begin{eqnarray*}
 p(\theta|x_{1},...,x_{n}) & \propto & p(x_{1},...,x_{n}|\theta)p(\theta)\\
- & \propto & \theta^{s}(1-\theta)^{f}\cdot\theta^{\alpha-1}(1-\theta)^{\beta-1}\\
+ & \propto & \theta^{s}(1-\theta)^{f}\theta^{\alpha-1}(1-\theta)^{\beta-1}\\
  & = & \theta^{s+\alpha-1}(1-\theta)^{f+\beta-1}.
 \end{eqnarray*}
 
@@ -1990,10 +1947,14 @@ Posterior is proportional to the
 
  density.
  
-\begin_inset Graphics
-	filename emojis/HeartEyesEmoji.png
-	lyxscale 7
-	scale 2
+\end_layout
+
+\begin_layout Itemize
+The prior-to-posterior mapping:
+\begin_inset Formula 
+\[
+{\color{orange}\theta\sim\mathrm{Beta}(\alpha,\beta)\overset{x_{1},...,x_{n}}{\Longrightarrow}\theta|x_{1},...,x_{n}\sim\mathrm{Beta}(\alpha+s,\beta+f)}
+\]
 
 \end_inset
 
@@ -2289,136 +2250,6 @@ status open
 
 \series bold
 \color orange
-Bayesian updating in Bernoulli trials
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tcolorbox}[colback=verylightgray]     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{
-\backslash
-textcolor{darkgreen}{Conjugate analysis - Bernoulli model}}  
-\backslash
-
-\backslash
- 
-\backslash
-smallskip     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{Model}:
-\backslash
-hspace{0.5cm} $X_1,
-\backslash
-ldots,X_n 
-\backslash
-overset{iid}{
-\backslash
-sim}
-\backslash
-mathrm{Bern}(
-\backslash
-theta)$ 
-\backslash
-
-\backslash
-     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{Prior}:
-\backslash
-hspace{0.78cm} $
-\backslash
-theta 
-\backslash
-sim 
-\backslash
-mathrm{Beta}(
-\backslash
-alpha,
-\backslash
-beta)$ 
-\backslash
-
-\backslash
-     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{Posterior}:
-\backslash
-hspace{0.13cm} $
-\backslash
-theta | 
-\backslash
-data 
-\backslash
-sim 
-\backslash
-mathrm{Beta}(
-\backslash
-alpha + s,
-\backslash
-beta + f)$ 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tcolorbox}   
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
 Spam data (n=10) - Prior is influential
 \end_layout
 
@@ -2509,6 +2340,136 @@ Spam data (n=4601) - Prior does not matter
 \end_inset
 
 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator plain
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Bayes respects the Likelihood Principle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color orange
+Bernoulli trials
+\series default
+ 
+\series bold
+with order
+\series default
+\color inherit
+: 
+\begin_inset Formula $x_{1}=1,x_{2}=0,...,x_{4}=1,...,x_{n}=1$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+p(\mathbf{x}\vert\theta)=\theta^{s}(1-\theta)^{f}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color orange
+Bernoulli trials without order
+\series default
+\color inherit
+.
+ 
+\begin_inset Formula $n$
+\end_inset
+
+ fixed, 
+\begin_inset Formula $s$
+\end_inset
+
+ random.
+\begin_inset Formula 
+\[
+p(s\vert\theta)=\binom{n}{s}\theta^{s}(1-\theta)^{f}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color orange
+Negative binomial sampling
+\series default
+\color inherit
+: sample until you get 
+\begin_inset Formula $s$
+\end_inset
+
+ successes.
+ 
+\begin_inset Formula $s$
+\end_inset
+
+ fixed, 
+\begin_inset Formula $n$
+\end_inset
+
+ random.
+\begin_inset Formula 
+\[
+p(n\vert\theta)=\binom{n-1}{s-1}\theta^{s}(1-\theta)^{f}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+posterior distribution is the same
+\series default
+\color inherit
+ in all three cases.
+ 
+\end_layout
+
+\begin_layout Itemize
+Bayesian inference respects the 
+\series bold
+\color blue
+likelihood principle
+\series default
+\color inherit
+.
 \end_layout
 
 \end_deeper
@@ -2719,209 +2680,27 @@ status open
 
 \series bold
 \color orange
-Bayesian updating for Normal data
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tcolorbox}[colback=verylightgray]     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{
-\backslash
-textcolor{darkgreen}{Conjugate analysis - Gaussian model, known variance}}
-  
-\backslash
-
-\backslash
- 
-\backslash
-smallskip     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{Model}:
-\backslash
-hspace{0.5cm} $X_1,
-\backslash
-ldots,X_n 
-\backslash
-simiid 
-\backslash
-mathrm{N}(
-\backslash
-theta,
-\backslash
-sigma^2)$, $
-\backslash
-sigma^2$ known 
-\backslash
-
-\backslash
-     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{Prior}:
-\backslash
-hspace{0.78cm} $
-\backslash
-theta 
-\backslash
-sim 
-\backslash
-mathrm{N}(
-\backslash
-mu_0,
-\backslash
-tau_0^2)$ 
-\backslash
-
-\backslash
-     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{Posterior}:
-\backslash
-hspace{0.13cm} $
-\backslash
-theta | 
-\backslash
-data 
-\backslash
-sim 
-\backslash
-mathrm{N}
-\backslash
-big(
-\backslash
-mu_n,
-\backslash
-tau_n^2
-\backslash
-big)$ 
-\backslash
-
-\backslash
- 
-\backslash
-smallskip     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-hspace{0.0cm}Posterior precision: $
-\backslash
-frac{1}{
-\backslash
-tau_n^2} = 
-\backslash
-frac{n}{
-\backslash
-sigma^2} + 
-\backslash
-frac{1}{
-\backslash
-tau_0^2}$ 
-\backslash
-
-\backslash
-     
-\end_layout
-
-\begin_layout Plain Layout
-
-Posterior mean: $
-\backslash
-mu_n = w 
-\backslash
-bar x + (1-w)
-\backslash
-mu_0$ 
-\backslash
-
-\backslash
-     
-\end_layout
-
-\begin_layout Plain Layout
-
-Posterior weight: $w = 
-\backslash
-frac{n/
-\backslash
-sigma^2}{n/
-\backslash
-sigma^2 + 1/
-\backslash
-tau_0^2}$     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tcolorbox} 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
 Normal data, known variance - normal prior
 \end_layout
 
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Formula $\theta\sim N(\mu_{0},\tau_{0}^{2})\overset{x_{1},...,x_{n}}{\Longrightarrow}\theta|x\sim N(\mu_{n},\tau_{n}^{2}).$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \align center
 \begin_inset VSpace bigskip
@@ -3278,136 +3057,6 @@ Bayesian updating
 \end_inset
 
 
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator plain
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Bayes respects the Likelihood Principle
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color orange
-Bernoulli trials
-\series default
- 
-\series bold
-with order
-\series default
-\color inherit
-: 
-\begin_inset Formula $x_{1}=1,x_{2}=0,...,x_{4}=1,...,x_{n}=1$
-\end_inset
-
-
-\begin_inset Formula 
-\[
-p(\mathbf{x}\vert\theta)=\theta^{s}(1-\theta)^{f}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color orange
-Bernoulli trials without order
-\series default
-\color inherit
-.
- 
-\begin_inset Formula $n$
-\end_inset
-
- fixed, 
-\begin_inset Formula $s$
-\end_inset
-
- random.
-\begin_inset Formula 
-\[
-p(s\vert\theta)=\binom{n}{s}\theta^{s}(1-\theta)^{f}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color orange
-Negative binomial sampling
-\series default
-\color inherit
-: sample until you get 
-\begin_inset Formula $s$
-\end_inset
-
- successes.
- 
-\begin_inset Formula $s$
-\end_inset
-
- fixed, 
-\begin_inset Formula $n$
-\end_inset
-
- random.
-\begin_inset Formula 
-\[
-p(n\vert\theta)=\binom{n-1}{s-1}\theta^{s}(1-\theta)^{f}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-The 
-\series bold
-\color blue
-posterior distribution is the same
-\series default
-\color inherit
- in all three cases.
- 
-\end_layout
-
-\begin_layout Itemize
-Bayesian inference respects the 
-\series bold
-\color blue
-likelihood principle
-\series default
-\color inherit
-.
 \end_layout
 
 \end_deeper
