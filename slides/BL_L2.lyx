@@ -1406,7 +1406,7 @@ Better fits, but still not good enough.
 \end_layout
 
 \begin_layout Itemize
-Lab 3: Fit 
+Even better: 
 \series bold
 \color blue
 Poisson regression
@@ -1530,7 +1530,7 @@ HPD
 \begin_inset Formula $\theta$
 \end_inset
 
- values with highest pdf.
+ values with highest posterior pdf.
 \end_layout
 
 \end_deeper
