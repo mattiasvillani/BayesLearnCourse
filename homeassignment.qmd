@@ -12,7 +12,7 @@ The assignment for the course is split up in two parts:
 -   **Assignment - Part A**:
     -   Work done in connection to Computer lab 1.
     -   Deadline for submission: October 1, 2025.
-    -   The assignment in different formats: [html](assignment/AssignmentPartA.html) \| [pdf](assignment/AssignmentPartA.pdf) \| [quarto](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/AssignmentPartA.qmd)
+    -   The assignment in different formats: [html](assignment/AssignmentPartA.qmd) \| [pdf](assignment/AssignmentPartA.pdf) \| [quarto](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/AssignmentPartA.qmd)
     -   Dataset for Assignment, part A: [ericsson](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/ericsson.RData) 
 -   **Assignment - Part B**:
     -   Work done in connection to Computer labs 2 and 3.
