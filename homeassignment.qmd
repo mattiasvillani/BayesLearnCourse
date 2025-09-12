@@ -7,7 +7,7 @@ format: html
 
 > Let's get busy coding.
 
-The assignment for the course is split up in two parts:
+The assignment for the course is divided in two parts:
 
 -   **Assignment - Part A**:
     -   Work done in connection to Computer lab 1.

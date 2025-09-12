@@ -749,7 +749,7 @@ Marginal posterior
 
 \begin_inset Formula 
 \begin{gather*}
-\theta\vert\mathbf{y}\sim t_{\nu_{n}}\left(\mu_{n},\sigma_{n}^{2}/\kappa_{n}\right)
+\theta\vert\mathbf{y}\sim t\left(\mu_{n},\sigma_{n}^{2}/\kappa_{n},\nu_{n}\right)
 \end{gather*}
 
 \end_inset
