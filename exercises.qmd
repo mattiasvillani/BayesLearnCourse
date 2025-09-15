@@ -21,8 +21,8 @@ The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web
 **Exercise 1 (preparatory) - Likelihood. Information. Basic Monte Carlo methods.**\
 Problems: 1.1-1.4 in [Bayesian Learning exercises](exercises/BayesianLearningExercises.pdf)
 
-**Exercise 2 - XXX.**\
-Problems: BL X.Y, BL X.Z
+**Exercise 2 - One-parameter models.**\
+Problems: BL 2.1-2.5, 2.7.
 
 **Exercise 3 - XXX.**\
 Problems: BL X.Y, BL X.Z
