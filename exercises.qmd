@@ -22,7 +22,7 @@ The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web
 Problems: 1.1-1.4 in [Bayesian Learning exercises](exercises/BayesianLearningExercises.pdf)
 
 **Exercise 2 - One-parameter models.**\
-Problems: BL 2.1-2.5, 2.7.
+Problems: BL [2.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2solutions.html#exercise-2.1), [2.2](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2solutions.html#exercise-2.2), [2.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2solutions.html#exercise-2.3), [2.4](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2solutions.html#exercise-2.4), [2.5](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2solutions.html#exercise-2.5), [2.7](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2solutions.html#exercise-2.7)
 
 **Exercise 3 - XXX.**\
 Problems: BL X.Y, BL X.Z
