@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mattias Villani">
-<meta name="dcterms.date" content="2025-09-03">
+<meta name="dcterms.date" content="2025-09-17">
 
 <title>Bayesian Learning, 7.5 hp – Bayesian Learning</title>
 <style>
@@ -4066,7 +4066,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">September 3, 2025</p>
+      <p class="date">September 17, 2025</p>
     </div>
   </div>
   
@@ -4207,7 +4207,9 @@ U(X_{11}, a_{11}) = 10 \cdot \mathrm{min}(X_{11}, a_{11}) -7 \cdot \mathrm{max}(
 <h4 class="anchored" data-anchor-id="problem-4a-determine-a-suitable-prior-distribution">Problem 4a) Determine a suitable prior distribution</h4>
 <p>Use the conjugate prior</p>
 <p><span class="math display">\[
-\boldsymbol{\beta} \vert \sigma^2 \sim N(\boldsymbol{\mu}_0,\sigma^2\boldsymbol{\Omega}_0^{-1}) \\
+\boldsymbol{\beta} \vert \sigma^2 \sim N(\boldsymbol{\mu}_0,\sigma^2\boldsymbol{\Omega}_0^{-1})
+\]</span></p>
+<p><span class="math display">\[
 \sigma^2 \sim \mathrm{inv-}\chi^2(\nu_0, \sigma_0^2)
 \]</span></p>
 <p>You need to determine suitable prior hyperparameters <span class="math inline">\(\boldsymbol{\mu}_0\)</span>, <span class="math inline">\(\boldsymbol{\Omega}_0\)</span>, <span class="math inline">\(\sigma_0^2\)</span> and <span class="math inline">\(\nu_0\)</span>. Start with <span class="math inline">\(\boldsymbol{\mu}_0 = (-10, 100, -100)^\top\)</span>, <span class="math inline">\(\boldsymbol{\Omega}_0 = 0.01\cdot I_3\)</span>, where <span class="math inline">\(I_3\)</span> is the <span class="math inline">\(3\times 3\)</span> identity matrix, <span class="math inline">\(\nu_0=3\)</span> and <span class="math inline">\(\sigma^2_0 = 1\)</span>. Check if this prior agrees with your prior opinions by simulating draws from the joint prior of all parameters and for every draw compute the regression curve. This gives a collection of regression curves, one for each draw from the prior. Do the collection of curves look reasonable? If not, change the prior hyperparameters until the results agree with your prior beliefs about the regression curve. The <code>mvtnorm</code> package contains the multivariate normal distribution, and here is an implementation of a random number generator for the <span class="math inline">\(\mathrm{inv-}\chi^2(\nu_0, \sigma_0^2)\)</span> distribution:</p>

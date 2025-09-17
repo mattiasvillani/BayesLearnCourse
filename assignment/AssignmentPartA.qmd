@@ -164,7 +164,10 @@ head(tempLinkoping)
 Use the conjugate prior
 
 $$
-\boldsymbol{\beta} \vert \sigma^2 \sim N(\boldsymbol{\mu}_0,\sigma^2\boldsymbol{\Omega}_0^{-1}) \\
+\boldsymbol{\beta} \vert \sigma^2 \sim N(\boldsymbol{\mu}_0,\sigma^2\boldsymbol{\Omega}_0^{-1}) 
+$$
+
+$$
 \sigma^2 \sim \mathrm{inv-}\chi^2(\nu_0, \sigma_0^2)
 $$
 
