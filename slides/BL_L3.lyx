@@ -1335,7 +1335,7 @@ end{tcolorbox}
 \begin_inset Graphics
 	filename /home/mv/Dropbox/BayesBook/Figs/Dirichlet1.pdf
 	lyxscale 40
-	scale 25
+	scale 22
 
 \end_inset
 
@@ -1343,7 +1343,7 @@ end{tcolorbox}
 \begin_inset Graphics
 	filename /home/mv/Dropbox/BayesBook/Figs/Dirichlet2.pdf
 	lyxscale 40
-	scale 25
+	scale 22
 
 \end_inset
 
@@ -1351,7 +1351,7 @@ end{tcolorbox}
 \begin_inset Graphics
 	filename /home/mv/Dropbox/BayesBook/Figs/Dirichlet3.pdf
 	lyxscale 40
-	scale 25
+	scale 22
 
 \end_inset
 
@@ -1429,9 +1429,139 @@ Prior-to-Posterior:
 
 \begin_layout Standard
 \align center
-\begin_inset Graphics
-	filename Images/multinomDir.png
-	scale 28
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tcolorbox}[colback=verylightgray]     
+\backslash
+textbf{
+\backslash
+textcolor{darkgreen}{Multinomial data with Dirichlet prior}} 
+\backslash
+
+\backslash
+ 
+\backslash
+smallskip     
+\backslash
+textbf{Model}:
+\backslash
+hspace{0.5cm} $
+\backslash
+mathbf{y}|
+\backslash
+v
+\backslash
+theta 
+\backslash
+sim 
+\backslash
+mathrm{Multinom}(n,
+\backslash
+v
+\backslash
+theta)$
+\backslash
+
+\backslash
+     
+\backslash
+textbf{Prior}:
+\backslash
+hspace{0.78cm} $
+\backslash
+v
+\backslash
+theta 
+\backslash
+sim 
+\backslash
+mathrm{Dirichlet}(
+\backslash
+v
+\backslash
+alpha)$, for $
+\backslash
+alpha=(
+\backslash
+alpha_1,
+\backslash
+dots,
+\backslash
+alpha_C)$ 
+\backslash
+
+\backslash
+     
+\backslash
+textbf{Posterior}:
+\backslash
+hspace{0.15cm} $
+\backslash
+v
+\backslash
+theta 
+\backslash
+vert 
+\backslash
+*y 
+\backslash
+sim 
+\backslash
+mathrm{Dirichlet}(
+\backslash
+v
+\backslash
+alpha + 
+\backslash
+mathbf{y})$ 
+\backslash
+smallskip 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+$
+\backslash
+mathbf{y}=(y_1,
+\backslash
+dots,y_C)$ are counts in $C$ categories 
+\backslash
+
+\backslash
+     
+\end_layout
+
+\begin_layout Plain Layout
+
+$
+\backslash
+v
+\backslash
+theta=(
+\backslash
+theta_1,
+\backslash
+dots,
+\backslash
+theta_C)$ are category probabilities.
+    
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tcolorbox}
+\end_layout
 
 \end_inset
 
