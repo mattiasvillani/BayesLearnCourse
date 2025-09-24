@@ -1,5 +1,5 @@
 ---
-title: "Assignments and Computer labs for Bayesian Learning, 7.5 hp"
+title: "Assignments for Bayesian Learning, 7.5 hp"
 format: html
 ---
 
