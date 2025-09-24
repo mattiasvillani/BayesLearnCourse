@@ -28,7 +28,7 @@ Problems: BL [2.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2
 Problems: BL [2.12](https://mattiasvillani.com/BayesianLearningBook/exercises/ch2solutions.html#exercise-2.12), [3.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch3solutions.html#exercise-3.1), 3.2, [3.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch3solutions.html#exercise-3.3), [3.6](https://mattiasvillani.com/BayesianLearningBook/exercises/ch3solutions.html#exercise-3.6), [3.7](https://mattiasvillani.com/BayesianLearningBook/exercises/ch3solutions.html#exercise-3.7).
 
 **Exercise 4 - Prior, Prediction and Decisions.**\
-Problems: BL [4.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch4solutions.html#exercise-4.3) and TBA.
+Problems: BL [4.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch4solutions.html#exercise-4.3), [6.2](https://mattiasvillani.com/BayesianLearningBook/exercises/ch6solutions.html#exercise-6.2)
 
 **Exercise 5 - XXX.**\
 Problems: BL X.Y, BL X.Z
