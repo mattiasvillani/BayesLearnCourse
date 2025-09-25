@@ -1223,6 +1223,46 @@ status open
 
 \series bold
 \color orange
+Predictive distribution regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/preddensreg.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Fossil data
 \begin_inset ERT
 status open
@@ -1424,42 +1464,11 @@ Larger
 
 \end_layout
 
-\begin_layout Itemize
-
-\series bold
-\color orange
-Prior
-\series default
-\color inherit
- acts like penalty in 
-\series bold
-\color blue
-penalized likelihood
-\series default
-\color inherit
-: 
-\begin_inset Formula 
-\[
--2\cdot\log p(\boldsymbol{\beta}\vert\sigma^{2},\boldsymbol{y},\boldsymbol{X})\propto(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta})^{T}(\boldsymbol{y}-\boldsymbol{X}\boldsymbol{\beta})+{\color{orange}\lambda\boldsymbol{\beta}^{T}\boldsymbol{\beta}}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Posterior mean gives 
-\series bold
-\color blue
-ridge regression
-\series default
-\color inherit
- estimator
-\begin_inset Formula 
-\[
-\tilde{\boldsymbol{\beta}}=\left(\boldsymbol{X}^{T}\boldsymbol{X}+\lambda I_{p}\right)^{-1}\boldsymbol{X}^{T}\mathbf{\boldsymbol{y}}
-\]
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/ridgereg.png
+	scale 25
 
 \end_inset
 
