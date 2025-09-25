@@ -43,6 +43,7 @@ Interactive: [Bayesian linear regression](https://observablehq.com/@mattiasvilla
 
 **Lecture 6 - Normal posterior approximation. Classification.**\
 Read: BL 7.1-7.5, 8.1-8.5  | [Slides](/slides/BL_L6.pdf) \
+Notebooks: [Quarto notebook Logistic regression for Titanic data](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/notebooks/TitanicLogistic/TitanicLogistic.qmd) \
 Interactive: [Taylor approximation](https://observablehq.com/@mattiasvillani/taylor-approximation) | [Beta model for proportions](https://observablehq.com/@mattiasvillani/posterior-approximation-beta-model) \
 
 **Lecture 7 - Gibbs sampling**\
