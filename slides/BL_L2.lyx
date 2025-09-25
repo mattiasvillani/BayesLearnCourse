@@ -83,6 +83,15 @@ coltitle=black,center title}}
   \addtocounter{footnote}{-1}%
   \endgroup
 }
+
+
+\setbeamertemplate{footline}
+{%
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip2pt
+}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false

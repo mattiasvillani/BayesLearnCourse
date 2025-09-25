@@ -84,16 +84,6 @@ coltitle=black,center title}}
   \addtocounter{footnote}{-1}%
   \endgroup
 }
-
-
-
-\setbeamertemplate{footline}
-{%
-  \hfill%
-  \usebeamercolor[fg]{page number in head/foot}%
-  \usebeamerfont{page number in head/foot}%
-  \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip2pt
-}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -326,16 +316,10 @@ Classification with logistic regression
 
 \begin_deeper
 \begin_layout Itemize
-Regression with 
+Response is assumed to be 
 \series bold
 \color blue
 binary
-\series default
-\color inherit
- 
-\series bold
-\color blue
-response
 \series default
 \color inherit
  (
@@ -350,6 +334,15 @@ response
 \end_layout
 
 \begin_layout Itemize
+Example: Spam/Ham.
+ Covariates: 
+\begin_inset Formula $\$$
+\end_inset
+
+-symbols, etc.
+\end_layout
+
+\begin_layout Itemize
 
 \series bold
 \color blue
@@ -359,7 +352,7 @@ Logistic regression
 
 \begin_inset Formula 
 \[
-\Pr(y_{i}=1\text{ }|\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}
+\Pr(y_{i}=1\text{ }|\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
 \]
 
 \end_inset
@@ -371,13 +364,13 @@ Logistic regression
 
 \series bold
 \color blue
-Likelihood 
+Likelihood
 \series default
 \color inherit
-for independent observations
+
 \begin_inset Formula 
 \[
-p(\mathbf{y}|\mathbf{X},\boldsymbol{\beta})=\prod\nolimits _{i=1}^{n}\frac{\big(\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})\big){}^{y_{i}}}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}
+p(\mathbf{y}|\mathbf{X},\boldsymbol{\beta})=\prod\nolimits _{i=1}^{n}\frac{[\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})]^{y_{i}}}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
 \]
 
 \end_inset
@@ -386,7 +379,16 @@ p(\mathbf{y}|\mathbf{X},\boldsymbol{\beta})=\prod\nolimits _{i=1}^{n}\frac{\big(
 \end_layout
 
 \begin_layout Itemize
+Prior 
+\begin_inset Formula $\beta\sim N(0,\tau^{2}I)$
+\end_inset
 
+.
+ Posterior is non-standard (demo later).
+\end_layout
+
+\begin_layout Itemize
+Alternative: 
 \series bold
 \color blue
 Probit regression
@@ -403,42 +405,21 @@ Probit regression
 
 \end_layout
 
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Poisson regression and beyond
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
 \begin_layout Itemize
 
 \series bold
 \color blue
-Poisson regression
+Multi-class
 \series default
 \color inherit
+ (
+\begin_inset Formula $c=1,2,...,C$
+\end_inset
 
+) logistic regression
 \begin_inset Formula 
 \[
-y_{i}\vert\boldsymbol{x}_{i}\overset{\mathrm{ind}}{\sim}\mathrm{Pois}\big(\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})\big)
+\Pr(y_{i}=c\text{ }|\text{ }\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}_{c})}{\sum_{k=1}^{C}\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}_{k})}
 \]
 
 \end_inset
@@ -446,88 +427,6 @@ y_{i}\vert\boldsymbol{x}_{i}\overset{\mathrm{ind}}{\sim}\mathrm{Pois}\big(\exp(\
 
 \end_layout
 
-\begin_layout Itemize
-Gamma regression, exponential regression, ...
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Generalized linear models
-\series default
-\color inherit
-
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-The posterior distribution is generally intractable.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Three approaches:
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-
-\series bold
-\color blue
-Numerical integration
-\series default
-\color inherit
-.
- Works only for a few parameters.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Posterior simulation
-\series default
-\color inherit
-.
- Gibbs sampling, MCMC.
- Lecture 7-9.
-\begin_inset VSpace medskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Posterior approximation
-\series default
-\color inherit
-.
- Now!
-\end_layout
-
-\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -565,7 +464,7 @@ Taylor approximation
 \series default
 \color inherit
  of the function 
-\begin_inset Formula $f\,(x)$
+\begin_inset Formula $f(x)$
 \end_inset
 
  around 
@@ -575,7 +474,7 @@ Taylor approximation
 
 \begin_inset Formula 
 \[
-f\,(x)\approx f\,(a)+f^{\,\,\prime}(a)(x-a)+\frac{1}{2!}f^{\,\,\prime\prime}(a)(x-a)^{2}+\frac{1}{3!}f^{\,(3)}(a)(x-a)^{3}+\ldots
+f(x)\approx f(a)+\sum_{k=0}^{K}\frac{f^{(k)}(a)}{k!}(x-a)^{k}
 \]
 
 \end_inset
@@ -585,11 +484,7 @@ f\,(x)\approx f\,(a)+f^{\,\,\prime}(a)(x-a)+\frac{1}{2!}f^{\,\,\prime\prime}(a)(
 
 \begin_layout Itemize
 Taylor approximation of 
-\begin_inset Formula $f\,(x)=\exp(x)$
-\end_inset
-
- around 
-\begin_inset Formula $x=0$
+\begin_inset Formula $f(x)=\exp(x)$
 \end_inset
 
 
@@ -719,8 +614,6 @@ Taylor expansion of log-likelihood
 \end_inset
 
 :
-\size small
-
 \begin_inset Formula 
 \begin{align*}
 \ln p(\mathbf{x}|\theta)= & \ln p(\mathbf{x}|\hat{\theta})+\frac{\partial\ln p(\mathbf{x}|\theta)}{\partial\theta}|_{\theta=\hat{\theta}}(\theta-\hat{\theta})\\
@@ -733,9 +626,15 @@ Taylor expansion of log-likelihood
 \end_layout
 
 \begin_layout Itemize
-From the definition of the MLE:
-\size small
+Higher order terms (
+\begin_inset Formula $\ldots$
+\end_inset
 
+) negligible in large samples.
+\end_layout
+
+\begin_layout Itemize
+From the definition of the MLE:
 \begin_inset Formula 
 \[
 \frac{\partial\ln p(\mathbf{x}|\theta)}{\partial\theta}|_{\theta=\hat{\theta}}=0
@@ -747,33 +646,29 @@ From the definition of the MLE:
 \end_layout
 
 \begin_layout Itemize
-In 
+So, in 
 \series bold
 \color blue
 large samples
 \series default
-\size small
 \color inherit
 
 \begin_inset Formula 
-\begin{align*}
-\ln p(\mathbf{x}|\theta)\approx & \ln p(\mathbf{x}|\hat{\theta})+\frac{1}{2}\frac{\partial^{2}\ln p(\mathbf{x}|\theta)}{\partial\theta^{2}}|_{\theta=\hat{\theta}}(\theta-\hat{\theta})^{2}\\
-= & \ln p(\mathbf{x}|\hat{\theta})-\frac{1}{2}J_{\mathbf{x}}(\hat{\theta})(\theta-\hat{\theta})^{2}
-\end{align*}
+\[
+p(\mathbf{x}|\theta)\approx p(\mathbf{x}|\hat{\theta})\exp\left(-\frac{1}{2}J_{\mathbf{x}}(\hat{\theta})(\theta-\hat{\theta})^{2}\right)
+\]
 
 \end_inset
 
 
 \end_layout
 
-\begin_deeper
-\begin_layout Standard
-using the definition of the
+\begin_layout Itemize
+
 \series bold
 \color blue
- observed information
+Observed information
 \series default
-\size small
 \color inherit
 
 \begin_inset Formula 
@@ -786,7 +681,6 @@ J_{\mathbf{x}}(\hat{\theta})=-\frac{\partial^{2}\ln p(\mathbf{x}|\theta)}{\parti
 
 \end_layout
 
-\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -803,7 +697,70 @@ status open
 
 \series bold
 \color orange
-Normal approximation of likelihood
+Multi-dimensional Taylor approximation
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Multi-dimensional Taylor approximation
+\series default
+\color inherit
+ of 
+\begin_inset Formula $f(\boldsymbol{x})$
+\end_inset
+
+
+\begin_inset Formula 
+\[
+f(\boldsymbol{x})\approx f(\boldsymbol{a})+\frac{\partial f(\boldsymbol{x})}{\partial\boldsymbol{x}}\left(\boldsymbol{x}-\boldsymbol{a}\right)+\frac{1}{2}\left(\boldsymbol{x}-\boldsymbol{a}\right)^{\top}\frac{\partial^{2}f(\boldsymbol{x})}{\partial\boldsymbol{x}\partial\boldsymbol{x}^{\top}}\left(\boldsymbol{x}-\boldsymbol{a}\right)+\ldots
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/taylorapprox2dimsurface.png
+	lyxscale 40
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Multi-dimensional observed information
 \end_layout
 
 \end_inset
@@ -812,46 +769,6 @@ Normal approximation of likelihood
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-So, taking 
-\begin_inset Formula $\exp$
-\end_inset
-
- on both sides:
-\begin_inset Formula 
-\[
-p(\mathbf{x}|\theta)\approx p(\mathbf{x}|\hat{\theta})\exp\left(-\frac{1}{2}J_{\mathbf{x}}(\hat{\theta})(\theta-\hat{\theta})^{2}\right)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Likelihood looks like a 
-\begin_inset Formula $N\big(\hat{\theta},J_{\mathbf{x}}^{-1}(\hat{\theta})\big)$
-\end_inset
-
- density in large samples.
-\end_layout
-
-\begin_layout Itemize
-Multi-parameter 
-\begin_inset Formula $\boldsymbol{\theta}$
-\end_inset
-
-: Likelihood 
-\begin_inset Formula $\approx$
-\end_inset
-
- 
-\begin_inset Formula $N\big(\hat{\boldsymbol{\theta}},\boldsymbol{J}_{\mathbf{x}}^{-1}(\hat{\boldsymbol{\theta}})\big)$
-\end_inset
-
-
-\end_layout
-
 \begin_layout Itemize
 Multiparameter 
 \series bold
@@ -862,7 +779,7 @@ observed information matrix
 
 \begin_inset Formula 
 \[
-\boldsymbol{J}_{\mathbf{x}}(\hat{\boldsymbol{\theta}})=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{T}}\vert_{\boldsymbol{\theta}=\hat{\boldsymbol{\theta}}}
+J_{\mathbf{x}}(\hat{\boldsymbol{\theta}})=-\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{T}}\vert_{\boldsymbol{\theta}=\hat{\boldsymbol{\theta}}}
 \]
 
 \end_inset
@@ -882,7 +799,7 @@ Example:
 \[
 \frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\boldsymbol{\theta}\partial\boldsymbol{\theta}^{\top}}=\begin{pmatrix}\frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{1}^{2}} & \frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{1}\partial\theta_{2}}\\
 \frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{1}\partial\theta_{2}} & \frac{\partial^{2}\ln p(\mathbf{x}\vert\boldsymbol{\theta})}{\partial\theta_{2}^{2}}
-\end{pmatrix}
+\end{pmatrix}.
 \]
 
 \end_inset
@@ -938,7 +855,7 @@ Approximate normal posterior
 in large samples
 \begin_inset Formula 
 \[
-\boldsymbol{\theta}|\mathbf{x}\stackrel{\mathrm{approx}}{\sim}N\big(\tilde{\boldsymbol{\theta}},J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})\big)
+\boldsymbol{\theta}|\mathbf{x}\stackrel{\mathrm{approx}}{\sim}N\left[\tilde{\boldsymbol{\theta}},J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})\right]
 \]
 
 \end_inset
@@ -958,15 +875,13 @@ in large samples
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $J_{\mathbf{x}}(\tilde{\boldsymbol{\theta}})$
+\begin_inset Formula $J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})$
 \end_inset
 
- is now the 
-\series bold
-\color blue
-observed posterior information
-\series default
-\color inherit
+ is now with respect to posterior 
+\begin_inset Formula $\log p(\boldsymbol{\theta}\vert\mathbf{x})$
+\end_inset
+
 .
 \begin_inset VSpace medskip
 \end_inset
@@ -974,6 +889,44 @@ observed posterior information
 
 \end_layout
 
+\begin_layout Itemize
+Likelihood will dominate the prior in large samples so
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\tilde{\boldsymbol{\theta}}\approx\hat{\boldsymbol{\theta}}$
+\end_inset
+
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $J_{\mathbf{x}}^{-1}(\tilde{\boldsymbol{\theta}})$
+\end_inset
+
+ will be close to the 
+\series bold
+\color blue
+observed information
+\series default
+\color inherit
+.
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Itemize
 Important: sufficient with proportional form 
 \begin_inset Formula 
@@ -1013,196 +966,10 @@ Normal posterior approximation
 \begin_deeper
 \begin_layout Standard
 \align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tcolorbox}[colback=verylightgray]     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-textbf{
-\backslash
-textcolor{darkgreen}{Normal posterior approximation}}  
-\backslash
-
-\backslash
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-smallskip     
-\end_layout
-
-\begin_layout Plain Layout
-
-The posterior can in large samples be approximated by     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{equation*}       
-\end_layout
-
-\begin_layout Plain Layout
-
-	
-\backslash
-v
-\backslash
-theta 
-\backslash
-vert 
-\backslash
-* y 
-\backslash
-overset{
-\backslash
-mathrm{a}}{
-\backslash
-sim} 
-\backslash
-mathrm{N}
-\backslash
-Big(
-\backslash
-tilde{
-\backslash
-v
-\backslash
-theta},J^{-1}_{
-\backslash
-* y}	(
-\backslash
-tilde{
-\backslash
-v 
-\backslash
-theta})
-\backslash
-Big)     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{equation*}     
-\end_layout
-
-\begin_layout Plain Layout
-
-where $
-\backslash
-tilde{
-\backslash
-v
-\backslash
-theta}$ is the posterior mode and      
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{equation*}       
-\end_layout
-
-\begin_layout Plain Layout
-
-J_{
-\backslash
-*y}(
-\backslash
-tilde{
-\backslash
-v
-\backslash
-theta})=-
-\backslash
-frac{
-\backslash
-partial^{2}
-\backslash
-ln p(
-\backslash
-*y
-\backslash
-vert
-\backslash
-v
-\backslash
-theta)p(
-\backslash
-v 
-\backslash
-theta)}{
-\backslash
-partial
-\backslash
-v
-\backslash
-theta
-\backslash
-partial
-\backslash
-v
-\backslash
-theta^
-\backslash
-top}
-\backslash
-vert_{
-\backslash
-v
-\backslash
-theta=
-\backslash
-tilde{
-\backslash
-v
-\backslash
-theta}}     
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{equation*}   
-\end_layout
-
-\begin_layout Plain Layout
-
-is the $d 
-\backslash
-times d$ observed posterior information matrix at $
-\backslash
-tilde{
-\backslash
-v
-\backslash
-theta}$.
-   
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tcolorbox}
-\end_layout
+\begin_inset Graphics
+	filename Images/NormalApproxBook.png
+	lyxscale 40
+	scale 28
 
 \end_inset
 
@@ -1377,9 +1144,28 @@ Normal approximation of posterior
 \end_inset
 
 
+\begin_inset Separator latexpar
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{\theta}|\mathbf{y}\stackrel{\mathrm{approx}}{\sim}N\left[\tilde{\boldsymbol{\theta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right]$
+\end_inset
+
+ works also when 
+\begin_inset Formula $\theta$
+\end_inset
+
+ is a vector.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
 \begin_layout Itemize
 How to compute 
 \begin_inset Formula $\tilde{\boldsymbol{\theta}}$
@@ -1420,47 +1206,26 @@ optim.r
 
 \end_layout
 
+\begin_deeper
 \begin_layout Itemize
 
 \series bold
 \color blue
-Inputs
+Input
 \series default
 \color inherit
-: 
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-function: 
-\begin_inset Formula $\log p(\mathbf{y}|\boldsymbol{\theta})+\log p(\boldsymbol{\theta})$
+: expression proportional to 
+\begin_inset Formula $\log p(\theta|\mathbf{y})$
 \end_inset
 
 .
- 
+ Initial values.
 \begin_inset VSpace smallskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Itemize
-Initial value 
-\begin_inset Formula $\boldsymbol{\theta}_{0}$
-\end_inset
-
-.
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1469,30 +1234,18 @@ Output
 \series default
 \color inherit
 : 
-\begin_inset VSpace smallskip
+\begin_inset Formula $\log p(\tilde{\boldsymbol{\theta}}|\mathbf{y})$
 \end_inset
 
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
+, 
 \begin_inset Formula $\tilde{\boldsymbol{\theta}}$
 \end_inset
 
-
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Hessian matrix 
+ and Hessian matrix (
 \begin_inset Formula $-J_{\mathbf{y}}(\tilde{\boldsymbol{\theta}})$
 \end_inset
 
-.
+).
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1514,6 +1267,47 @@ Automatic differentation
 
 \end_layout
 
+\begin_layout Itemize
+
+\series bold
+\color blue
+Re-parametrization
+\series default
+\color inherit
+ may improve normal approximation:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+If 
+\begin_inset Formula $\theta\geq0$
+\end_inset
+
+ use 
+\begin_inset Formula $\phi=\log(\theta)$
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+If 
+\begin_inset Formula $0\leq\theta\leq1$
+\end_inset
+
+, use 
+\begin_inset Formula $\phi=\log\left(\frac{\theta}{1-\theta}\right)$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -1547,45 +1341,15 @@ Normal approximation of posterior
 
 \series bold
 \color blue
-Re-parametrization
+Heavy tailed approximation
 \series default
 \color inherit
- may improve normal approximation:
-\begin_inset VSpace smallskip
+: 
+\begin_inset Formula $\boldsymbol{\theta}|\mathbf{y}\stackrel{\mathrm{approx}}{\sim}t_{v}\left[\tilde{\theta},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right]$
 \end_inset
 
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-If 
-\begin_inset Formula $\theta\geq0$
-\end_inset
-
- use 
-\begin_inset Formula $\phi=\log(\theta)$
-\end_inset
-
-.
- 
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-If 
-\begin_inset Formula $0\leq\theta\leq1$
-\end_inset
-
-, use 
-\begin_inset Formula $\phi=\log\left(\frac{\theta}{1-\theta}\right)$
+ for suitable degrees of freedom 
+\begin_inset Formula $v$
 \end_inset
 
 .
@@ -1595,7 +1359,6 @@ If
 
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
 Even if the posterior of 
 \begin_inset Formula $\theta$
@@ -1681,7 +1444,7 @@ Logistic regression
 
 \begin_inset Formula 
 \[
-\Pr(y_{i}=1|\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}\text{ and }\Pr(y_{i}=0|\boldsymbol{x}_{i})=\frac{1}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}
+\Pr(y_{i}=1\text{ }|\boldsymbol{x}_{i})=\frac{\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
 \]
 
 \end_inset
@@ -1735,7 +1498,7 @@ Likelihood
 
 \begin_inset Formula 
 \[
-p(\mathbf{y}|\mathbf{X},\boldsymbol{\beta})=\prod\nolimits _{i=1}^{n}\frac{\big(\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})\big){}^{y_{i}}}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}
+p(\mathbf{y}|\mathbf{X},\boldsymbol{\beta})=\prod\nolimits _{i=1}^{n}\frac{[\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})]^{y_{i}}}{1+\exp(\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta})}.
 \]
 
 \end_inset
@@ -1791,24 +1554,6 @@ Logistic regression - who survived the Titanic?
 
 \begin_deeper
 \begin_layout Itemize
-
-\series bold
-\color blue
-Logistic regression
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-\mathrm{Pr}(\texttt{survived})=f\,(\texttt{intercept},\texttt{age},\texttt{sex},\texttt{class})
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
 Prior
 \begin_inset Formula 
 \[
@@ -1817,17 +1562,10 @@ Prior
 
 \end_inset
 
-
-\size footnotesize
-
+with
 \begin_inset Formula 
 \[
-\boldsymbol{\mu}=\left(\begin{array}{c}
--1\\
--1/80\\
-1\\
-1
-\end{array}\right)\qquad\boldsymbol{\Omega}=\begin{pmatrix}0.25 & 0 & 0 & 0\\
+\boldsymbol{\mu}=\big(-1,-1/80,1,1\big)^{\top}\qquad\boldsymbol{\Omega}=\begin{pmatrix}0.25 & 0 & 0 & 0\\
 0 & 1/(80^{2}) & 0 & 0\\
 0 & 0 & 0.5 & 0\\
 0 & 0 & 0 & 1
@@ -1974,7 +1712,7 @@ Logistic regression - who survived the Titanic?
 
 \begin_deeper
 \begin_layout Itemize
-Comparison with weakly informative prior 
+Comparison with non-informative prior 
 \begin_inset Formula $\boldsymbol{\beta}\sim N(\boldsymbol{0},10^{2}\boldsymbol{I}_{p})$
 \end_inset
 
