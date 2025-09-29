@@ -70,3 +70,8 @@ This is the perfect first book for a newborn Bayesian.<br>
 A New York Times Book Review Editor’s Choice: "A vivid account of the generations-long dispute over Bayes’ rule, one of the greatest breakthroughs in the history of applied mathematics and statistics"<br>
 ![](/culture/bayeswouldnotdie.avif){width="20%"}
 [Book](https://yalebooks.yale.edu/book/9780300188226/the-theory-that-would-not-die/) 
+
+
+## Art
+
+[Various Bayesian works of art](https://www.redbubble.com/shop?query=bayesian&ref=search_box)
