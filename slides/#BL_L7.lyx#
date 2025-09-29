@@ -285,6 +285,25 @@ Gibbs sampling
 
 \series bold
 \color blue
+Data augmentation
+\series default
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
 Mixture models
 \series default
 \color inherit
@@ -293,15 +312,20 @@ Mixture models
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+
 \series bold
 \color blue
-
+Probit regression
 \begin_inset VSpace bigskip
 \end_inset
 
 
 \end_layout
 
+\end_deeper
 \begin_layout Itemize
 
 \series bold
@@ -1185,7 +1209,7 @@ conditionally conjugate prior
 
 \begin_inset Formula 
 \begin{align*}
-\theta & \sim N(\mu_{0},{\color{orange}\tau_{0}^{2}})\\
+\mu & \sim N(\mu_{0},{\color{orange}\tau_{0}^{2}})\\
 \sigma^{2} & \sim Inv-\chi^{2}(\nu_{0},\sigma_{0}^{2})
 \end{align*}
 
@@ -1204,8 +1228,8 @@ Full conditional posteriors
 
 \begin_inset Formula 
 \begin{align*}
-\theta|\sigma^{2},x & \sim N\left(\mu_{n},\tau_{n}^{2}\right)\\
-\sigma^{2}|\theta,x & \sim Inv-\chi^{2}\left(\nu_{n},\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}\left(x_{i}-{\color{orange}\theta}\right)^{2}}{n+\nu_{0}}\right)
+\mu|\sigma^{2},x & \sim N\left(\mu_{n},\tau_{n}^{2}\right)\\
+\sigma^{2}|\mu,x & \sim Inv-\chi^{2}\left(\nu_{n},\frac{\nu_{0}\sigma_{0}^{2}+\sum_{i=1}^{n}\left(x_{i}-\mu\right)^{2}}{n+\nu_{0}}\right)
 \end{align*}
 
 \end_inset
@@ -1225,6 +1249,202 @@ with
  is known.
 \end_layout
 
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for AR processes
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+AR(
+\begin_inset Formula $p$
+\end_inset
+
+) process
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+x_{t}=\mu+\phi_{1}(x_{t-1}-\mu)+...+\phi_{p}(x_{t-p}-\mu)+\varepsilon_{t},\text{ \ \ }\varepsilon_{t}\overset{iid}{\sim}N(0,\sigma^{2}).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\phi=(\phi_{1},...,\phi_{p})'$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Prior
+\series default
+\color inherit
+: 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mu\sim$
+\end_inset
+
+ Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\phi\sim$
+\end_inset
+
+ Multivariate Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma^{2}\sim$
+\end_inset
+
+ Scaled Inverse 
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+.
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+posterior
+\series default
+\color inherit
+ can be simulated by 
+\series bold
+\color blue
+Gibbs sampling
+\series default
+\color inherit
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+blfootnote{
+\backslash
+tiny Villani (2009).
+ Steady State Priors for Vector Autoregressions.
+ Journal of Applied Econometrics.}
+\end_layout
+
+\end_inset
+
+:
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mu|\phi,\sigma^{2},x\sim$
+\end_inset
+
+ Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\text{\phi}|\mu,\sigma^{2},x\sim$
+\end_inset
+
+ Multivariate Normal
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\sigma^{2}|\mu,\phi,x\sim$
+\end_inset
+
+ Scaled Inverse 
+\begin_inset Formula $\chi^{2}$
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -1334,7 +1554,7 @@ membership indicator
 \end_inset
 
 .
-\begin_inset VSpace medskip
+\begin_inset VSpace smallskip
 \end_inset
 
 
@@ -1354,7 +1574,7 @@ If
 \end_inset
 
 
-\begin_inset VSpace medskip
+\begin_inset VSpace smallskip
 \end_inset
 
 
@@ -1440,69 +1660,6 @@ Illustration of mixture of normals
 	filename /home/mv/Dropbox/BayesBook/Figs/MoNSkew.pdf
 	lyxscale 50
 	scale 25
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Interactive - Mixture of Normals
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "1pt"
-separation "1pt"
-shadowsize "4pt"
-framecolor "orange"
-backgroundcolor "white"
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset href
-LatexCommand href
-name "\\includegraphics[width=0.7\\textwidth]{Images/mixturenormals_widget.png}"
-target "https://observablehq.com/@mattiasvillani/normal-mixture"
-literal "true"
-
-\end_inset
-
-
-\end_layout
 
 \end_inset
 
@@ -1751,53 +1908,37 @@ z_{i}=k\text{ if }x_{i}\text{ came from mixture component }k.
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
 Given 
 \begin_inset Formula $z_{1},...,z_{n}$
 \end_inset
 
-, split up the data
-\series default
-\color inherit
- in 
-\begin_inset Formula $K$
-\end_inset
-
- groups and estimate for each group separately:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-means 
+ it is easy to estimate the means 
 \begin_inset Formula $\mu_{1},\ldots,\mu_{K}$
 \end_inset
 
- 
-\end_layout
-
-\begin_layout Itemize
-variances 
+, the variances 
 \begin_inset Formula $\sigma_{1}^{2},\ldots,\sigma_{K}^{2}$
 \end_inset
 
- 
-\end_layout
-
-\begin_layout Itemize
-mixture proportions 
+ and the mixture proportions 
 \begin_inset Formula $\omega_{1},\ldots\omega_{K}$
 \end_inset
 
+: just split up the data in 
+\begin_inset Formula $K$
+\end_inset
 
+ groups according to 
+\begin_inset Formula $z_{1},...,z_{n}$
+\end_inset
+
+.
 \begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\end_deeper
 \begin_layout Itemize
 But we do 
 \series bold
@@ -1928,9 +2069,13 @@ status open
 
 \series bold
 \color orange
-Interactive - Mixture of Poissons
+Illustration of mixture Poissons
 \end_layout
 
+\end_inset
+
+
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -1939,36 +2084,18 @@ Interactive - Mixture of Poissons
 \begin_deeper
 \begin_layout Standard
 \align center
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "1pt"
-separation "1pt"
-shadowsize "4pt"
-framecolor "orange"
-backgroundcolor "white"
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset href
-LatexCommand href
-name "\\includegraphics[width=0.7\\textwidth]{Images/mixturepoissons_widget.png}"
-target "https://observablehq.com/@mattiasvillani/mixture-of-poissons"
-literal "true"
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MixPoisBimodal.pdf
+	lyxscale 50
+	scale 25
 
 \end_inset
 
 
-\end_layout
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MixPoisZeroinflated.pdf
+	lyxscale 50
+	scale 25
 
 \end_inset
 
@@ -2046,19 +2173,24 @@ Direct sampling L2-regularized regression
 
 \begin_deeper
 \begin_layout Itemize
+Recap: The joint posterior of 
+\begin_inset Formula $\beta$
+\end_inset
 
-\series bold
-\color blue
-Hierarchical
-\series default
-\color inherit
- model setup:
+, 
+\begin_inset Formula $\sigma^{2}$
+\end_inset
+
+ and 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ is
 \begin_inset Formula 
 \begin{align*}
-\mathbf{y}|\boldsymbol{\beta},\sigma^{2},\mathbf{X} & \sim N(\mathbf{X}\boldsymbol{\beta},\sigma^{2}I_{n})\\
-\boldsymbol{\beta}|\sigma^{2},\lambda & \sim N\left(0,\sigma^{2}\lambda^{-1}I_{m}\right)\\
-\sigma^{2} & \sim\mathrm{Inv-}\chi^{2}(\nu_{0},\sigma_{0}^{2})\\
-\lambda^{-1} & \sim\mathrm{Inv-}\chi^{2}(\omega_{0},\psi_{0}^{2})
+\beta|\sigma^{2},\lambda,\mathbf{y},\mathbf{X} & \sim N\left(\mu_{n},\Omega_{n}^{-1}\right)\\
+\sigma^{2}|\lambda,\mathbf{y},\mathbf{X} & \sim Inv-\chi^{2}\left(\nu_{n},\sigma_{n}^{2}\right)\\
+p(\lambda|\mathbf{y},\mathbf{X}) & \propto\sqrt{\frac{\left|\Omega_{0}\right|}{\left|X'X+\Omega_{0}\right|}}\left(\frac{\nu_{n}\sigma_{n}^{2}}{2}\right)^{-\nu_{n}/2}\cdot p(\lambda)
 \end{align*}
 
 \end_inset
@@ -2067,7 +2199,7 @@ Hierarchical
 \end_layout
 
 \begin_layout Itemize
-Posterior from 
+This is the 
 \series bold
 \color blue
 conditional-marginal decomposition
@@ -2076,24 +2208,12 @@ conditional-marginal decomposition
 
 \begin_inset Formula 
 \[
-p(\boldsymbol{\beta},\sigma^{2},\lambda\vert\mathbf{y},\mathbf{X})=p(\boldsymbol{\beta}\vert\sigma^{2},\lambda,\mathbf{y},\mathbf{X})p(\sigma^{2}\vert\lambda,\mathbf{y},\mathbf{X})p(\lambda\vert\mathbf{y},\mathbf{X})
+p(\beta,\sigma^{2},\lambda\vert\mathbf{y},\mathbf{X})=p(\beta\vert\sigma^{2},\lambda,\mathbf{y},\mathbf{X})p(\sigma^{2}\vert\lambda,\mathbf{y},\mathbf{X})p(\lambda\vert\mathbf{y},\mathbf{X})
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-However, 
-\begin_inset Formula $p(\lambda\vert\mathbf{y},\mathbf{X})$
-\end_inset
-
- is not a known distribution.
-\begin_inset VSpace bigskip
-\end_inset
-
- 
 \end_layout
 
 \begin_layout Itemize
@@ -2113,7 +2233,7 @@ Gibbs sampling
 \begin_deeper
 \begin_layout Itemize
 Sample 
-\begin_inset Formula $\boldsymbol{\beta}\vert\sigma^{2},\lambda,\mathbf{y},\mathbf{X}$
+\begin_inset Formula $\beta\vert\sigma^{2},\lambda,\mathbf{y},\mathbf{X}$
 \end_inset
 
  from Normal
@@ -2121,7 +2241,7 @@ Sample
 
 \begin_layout Itemize
 Sample 
-\begin_inset Formula $\sigma^{2}\vert\boldsymbol{\beta},\lambda,\mathbf{y},\mathbf{X}$
+\begin_inset Formula $\sigma^{2}\vert\beta,\lambda,\mathbf{y},\mathbf{X}$
 \end_inset
 
  from Inv-
@@ -2133,18 +2253,10 @@ Sample
 
 \begin_layout Itemize
 Sample 
-\begin_inset Formula $\lambda^{-1}\vert\boldsymbol{\beta},\sigma^{2},\mathbf{y},\mathbf{X}$
+\begin_inset Formula $\lambda\vert\beta,\sigma^{2},\mathbf{y},\mathbf{X}$
 \end_inset
 
- from Inv-
-\begin_inset Formula $\chi^{2}$
-\end_inset
-
-
-\begin_inset VSpace medskip
-\end_inset
-
-
+ from Gamma
 \end_layout
 
 \end_deeper
@@ -2167,7 +2279,7 @@ conditional on
 \series default
 \color inherit
  
-\begin_inset Formula $\boldsymbol{\beta}$
+\begin_inset Formula $\beta$
 \end_inset
 
  and 
@@ -2175,7 +2287,158 @@ conditional on
 \end_inset
 
 .
- See book.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for L2-regularized regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Prior:
+\begin_inset Formula 
+\begin{align*}
+\boldsymbol{\beta}\vert\sigma^{2},\lambda & \sim N\left(\boldsymbol{0},\frac{\sigma^{2}}{\lambda}I_{k}\right)\\
+\sigma^{2} & \sim\mathsf{Inv}-\chi^{2}\left(\nu_{0},\sigma_{0}^{2}\right)\\
+\lambda^{-1} & \sim\mathsf{Inv}-\chi^{2}\left(\omega_{0},\psi_{0}^{2}\right).
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+By Bayes' theorem
+\begin_inset Formula 
+\begin{align*}
+p\left(\lambda|\boldsymbol{\beta},\sigma^{2},\mathbf{y}\right) & \propto p\left(\mathbf{y}|\boldsymbol{\beta},\sigma^{2},\lambda\right)p\left(\lambda|\boldsymbol{\beta},\sigma^{2}\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p\left(\mathbf{y}|\boldsymbol{\beta},\sigma^{2},\lambda\right)$
+\end_inset
+
+ does not depend on 
+\begin_inset Formula $\lambda$
+\end_inset
+
+ once we condition on 
+\begin_inset Formula $\boldsymbol{\beta}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+p\left(\lambda|\boldsymbol{\beta},\sigma^{2},\mathbf{y}\right)\propto p\left(\lambda|\boldsymbol{\beta},\sigma^{2}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+So using Bayes' theorem once more
+\begin_inset Formula 
+\[
+p\left(\lambda|\boldsymbol{\beta},\sigma^{2},\mathbf{y}\right)\propto p\left(\lambda|\boldsymbol{\beta},\sigma^{2}\right)\propto p\left(\boldsymbol{\beta}|\sigma^{2},\lambda\right)p\left(\lambda\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+In conditional posterior for 
+\begin_inset Formula $\lambda$
+\end_inset
+
+, the 
+\begin_inset Formula $\beta_{1},\ldots,\beta_{p}$
+\end_inset
+
+ act like 
+\begin_inset Quotes eld
+\end_inset
+
+data
+\begin_inset Quotes erd
+\end_inset
+
+.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Gibbs sampling for L2-regularized regression
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Images/GibbsL2regularization.png
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -2252,8 +2515,9 @@ Reparametrization
 Data augmentation
 \series default
 \color inherit
+.
  
-\begin_inset VSpace bigskip
+\begin_inset VSpace smallskip
 \end_inset
 
 
@@ -2261,35 +2525,32 @@ Data augmentation
 
 \begin_deeper
 \begin_layout Itemize
-make 
+Augment with latent variables to make 
 \series bold
 \color blue
 full conditional posteriors more easily sampled
 \series default
 \color inherit
+ (Probit, Mixture models).
  
-\begin_inset VSpace bigskip
+\begin_inset VSpace smallskip
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-examples: mixture models, missing data etc etc
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-but typically 
+But typically 
 \series bold
 \color blue
 increases the autocorrelation
 \series default
 \color inherit
- between draws
+ between draws.
+\begin_inset Separator parbreak
+\end_inset
+
+
 \end_layout
 
 \end_deeper

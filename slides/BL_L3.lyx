@@ -923,6 +923,69 @@ status open
 
 \series bold
 \color orange
+Interactive - Normal model unknown variance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.7\\textwidth]{Images/iid_normal_widget.png}"
+target "https://observablehq.com/@mattiasvillani/bayesian-inference-for-gaussian-iid-data"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Monte Carlo simulation
 \end_layout
 
@@ -1391,6 +1454,69 @@ status open
 
 \series bold
 \color orange
+Interactive - Dirichlet distribution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.7\\textwidth]{Images/dirichlet_widget.png}"
+target "https://observablehq.com/@mattiasvillani/dirichlet-distribution"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Multinomial model with Dirichlet prior
 \end_layout
 
@@ -1820,6 +1946,69 @@ Example: smartphone market shares
 \series bold
 \color blue
 Pr(Android has largest share | Data) = 0.991
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Interactive - Multinomial model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.7\\textwidth]{Images/multinomial_widget.png}"
+target "https://observablehq.com/@mattiasvillani/multinomial-dirichlet"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper

@@ -73,14 +73,6 @@ coltitle=black,center title}}
   \addtocounter{footnote}{-1}%
   \endgroup
 }
-
-\setbeamertemplate{footline}
-{%
-  \hfill%
-  \usebeamercolor[fg]{page number in head/foot}%
-  \usebeamerfont{page number in head/foot}%
-  \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip2pt
-}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -183,8 +175,16 @@ Lecture 8 - Markov Chain Monte Carlo.
 \begin_layout Author
 
 \series bold
-Mattias Villani
+Mattias Villani 
 \series default
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
  
 \begin_inset Argument 1
 status collapsed
@@ -965,65 +965,21 @@ Draw
 \begin_inset Formula $u\sim\mathrm{Uniform}(0,1)$
 \end_inset
 
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-[]
-\end_layout
-
-\end_inset
-
-If 
-\begin_inset Formula $u\leq\mbox{\alpha}$
+ probability 
+\begin_inset Formula $\mbox{\alpha}$
 \end_inset
 
  set 
-\begin_inset Formula $\boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{\star}$
+\begin_inset Formula $\boldsymbol{\theta}^{(i)}=\theta_{p}$
 \end_inset
 
- 
-\begin_inset space \hspace{}
-\length 0.45cm
-\end_inset
-
-(accept and move)
-\end_layout
-
-\begin_layout Enumerate
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-[]
-\end_layout
-
-\end_inset
-
-If 
-\begin_inset Formula $u>\alpha$
-\end_inset
-
- set 
+ and 
 \begin_inset Formula $\boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{(i-1)}$
 \end_inset
 
- 
-\begin_inset space \hspace{}
-\length 0cm
-\end_inset
-
-(reject and stay)
+ otherwise.
 \end_layout
 
-\end_deeper
 \end_deeper
 \end_inset
 
@@ -1109,7 +1065,7 @@ status open
 
 \series bold
 \color orange
-Proportional form of posterior is enough!
+Random walk Metropolis, cont.
 \end_layout
 
 \end_inset
@@ -1184,7 +1140,7 @@ status open
 
 \series bold
 \color orange
-Random walk Metropolis - choosing a proposal
+Random walk Metropolis, cont.
 \end_layout
 
 \end_inset
@@ -1199,15 +1155,15 @@ Random walk Metropolis - choosing a proposal
 \begin_deeper
 \begin_layout Itemize
 Common choices of 
-\begin_inset Formula $\boldsymbol{\Sigma}$
+\begin_inset Formula $\Sigma$
 \end_inset
 
  in proposal 
-\begin_inset Formula $N\left(\boldsymbol{\theta}^{(i-1)},c\cdot\boldsymbol{\Sigma}\right)$
+\begin_inset Formula $N\left(\theta^{(i-1)},c\cdot\Sigma\right)$
 \end_inset
 
 :
-\begin_inset VSpace medskip
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -1215,25 +1171,17 @@ Common choices of
 
 \begin_deeper
 \begin_layout Itemize
-\begin_inset Formula $\boldsymbol{\Sigma}=\boldsymbol{I}$
+\begin_inset Formula $\Sigma=I$
 \end_inset
 
  (proposes 'off the cigar')
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
-\begin_inset Formula $\boldsymbol{\Sigma}=J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})$
+\begin_inset Formula $\Sigma=J_{\hat{\theta},\mathbf{y}}^{-1}$
 \end_inset
 
  (propose 'along the cigar')
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -1245,12 +1193,12 @@ Adaptive
 \color inherit
 .
  Start with 
-\begin_inset Formula $\boldsymbol{\Sigma}=\boldsymbol{I}$
+\begin_inset Formula $\Sigma=I$
 \end_inset
 
 .
  Update 
-\begin_inset Formula $\boldsymbol{\Sigma}$
+\begin_inset Formula $\Sigma$
 \end_inset
 
  from initial run.
@@ -1281,7 +1229,7 @@ Good proposal
 \series default
 \color inherit
 :
-\begin_inset VSpace medskip
+\begin_inset Separator latexpar
 \end_inset
 
 
@@ -1293,13 +1241,6 @@ Good proposal
 \series bold
 \color blue
 Easy to sample
-\series default
-\color inherit
-
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -1313,12 +1254,6 @@ Easy to compute
 \end_inset
 
 
-\series default
-
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -1329,14 +1264,10 @@ large steps
 \series default
 \color inherit
  in 
-\begin_inset Formula $\boldsymbol{\theta}$
+\begin_inset Formula $\theta$
 \end_inset
 
 -space
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Itemize
@@ -1405,7 +1336,7 @@ status open
 
 \begin_layout Itemize
 Initialize 
-\begin_inset Formula $\boldsymbol{\theta}^{(0)}$
+\begin_inset Formula $\theta^{(0)}$
 \end_inset
 
  and iterate for 
@@ -1432,7 +1363,7 @@ Sample proposal
 \series default
 \color inherit
 : 
-\begin_inset Formula $\boldsymbol{\theta}^{\star}\sim q\left(\cdot\vert\boldsymbol{\theta}^{(i-1)}\right)$
+\begin_inset Formula $\theta_{p}\sim q\left(\cdot\vert\theta^{(i-1)}\right)$
 \end_inset
 
 
@@ -1452,7 +1383,7 @@ acceptance probability
 
 \begin_inset Formula 
 \[
-\alpha=\min\left(1,\frac{p(\boldsymbol{\theta}^{\star}\vert\mathbf{y})}{p(\boldsymbol{\theta}^{(i-1)}\vert\mathbf{y})}\frac{q\left(\boldsymbol{\theta}^{(i-1)}\vert\boldsymbol{\theta}^{\star}\right)}{q\left(\boldsymbol{\theta}^{\star}\vert\boldsymbol{\theta}^{(i-1)}\right)}\right)
+\alpha=\min\left(1,\frac{p(\mathbf{y}\vert\theta_{p})p(\theta_{p})}{p(\mathbf{y}\vert\theta^{(i-1)})p(\theta^{(i-1)})}\frac{q\left(\theta^{(i-1)}\vert\theta_{p}\right)}{q\left(\theta_{p}\vert\theta^{(i-1)}\right)}\right)
 \]
 
 \end_inset
@@ -1461,69 +1392,21 @@ acceptance probability
 \end_layout
 
 \begin_layout Enumerate
-Draw 
-\begin_inset Formula $u\sim\mathrm{Uniform}(0,1)$
-\end_inset
-
- 
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-[]
-\end_layout
-
-\end_inset
-
-If 
-\begin_inset Formula $u\leq\mbox{\alpha}$
+With probability 
+\begin_inset Formula $\mbox{\alpha}$
 \end_inset
 
  set 
-\begin_inset Formula $\boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{\star}$
+\begin_inset Formula $\theta^{(i)}=\theta_{p}$
 \end_inset
 
- 
-\begin_inset space \hspace{}
-\length 0.45cm
+ and 
+\begin_inset Formula $\theta^{(i)}=\theta^{(i-1)}$
 \end_inset
 
-(accept and move)
+ otherwise.
 \end_layout
 
-\begin_layout Enumerate
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-[]
-\end_layout
-
-\end_inset
-
-If 
-\begin_inset Formula $u>\alpha$
-\end_inset
-
- set 
-\begin_inset Formula $\boldsymbol{\theta}^{(i)}=\boldsymbol{\theta}^{(i-1)}$
-\end_inset
-
- 
-\begin_inset space \hspace{}
-\length 0cm
-\end_inset
-
-(reject and stay)
-\end_layout
-
-\end_deeper
 \end_deeper
 \end_inset
 
@@ -1567,7 +1450,7 @@ Independence sampler
 \series default
 \color inherit
 : 
-\begin_inset Formula $q\left(\boldsymbol{\theta}^{\star}\vert\boldsymbol{\theta}^{(i-1)}\right)=q\left(\boldsymbol{\theta}^{\star}\right)$
+\begin_inset Formula $q\left(\theta_{p}\vert\theta^{(i-1)}\right)=q\left(\theta_{p}\right)$
 \end_inset
 
 .
@@ -1602,17 +1485,17 @@ independent of previous draw
 Example: 
 \begin_inset Formula 
 \[
-\boldsymbol{\theta}^{\star}\sim t_{v}\left(\tilde{\boldsymbol{\theta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right),
+\theta_{p}\sim t_{v}\left(\hat{\theta},J_{\hat{\theta},\mathbf{y}}^{-1}\right),
 \]
 
 \end_inset
 
 where 
-\begin_inset Formula $\tilde{\boldsymbol{\theta}}$
+\begin_inset Formula $\hat{\theta}$
 \end_inset
 
  and 
-\begin_inset Formula $J_{\mathbf{y}}(\tilde{\boldsymbol{\theta}})$
+\begin_inset Formula $,J_{\hat{\theta},\mathbf{y}}$
 \end_inset
 
  are computed by numerical optimization.
@@ -1644,7 +1527,7 @@ get stuck
 
 \begin_layout Itemize
 Make sure that 
-\begin_inset Formula $q\left(\boldsymbol{\theta}^{\star}\right)$
+\begin_inset Formula $q\left(\theta_{p}\right)$
 \end_inset
 
  has 
@@ -1654,7 +1537,7 @@ heavier tails
 \series default
 \color inherit
  than 
-\begin_inset Formula $p(\boldsymbol{\theta}\vert\mathbf{y})$
+\begin_inset Formula $p(\theta\vert\mathbf{y})$
 \end_inset
 
 .
@@ -1861,27 +1744,15 @@ Convergence diagnostics
 
 \begin_deeper
 \begin_layout Itemize
-Raw plots of simulated sequences (
-\series bold
-MCMC trajectories
-\series default
-)
+Raw plots of simulated sequences (trajectories)
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-Cumulative estimates
-\series default
- plots
+CUSUM plots
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-Repeated runs
-\series default
- with different initial values
+Repeated runs with different initial values
 \end_layout
 
 \begin_layout Itemize

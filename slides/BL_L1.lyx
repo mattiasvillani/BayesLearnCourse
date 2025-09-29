@@ -2034,15 +2034,6 @@ Beta distribution
 \end_inset
 
 
-\begin_inset CommandInset href
-LatexCommand href
-name "\\includegraphics[width=0.20\\textwidth]{/home/mv/Dropbox/BayesBook/Figs/observable_badges/dist_beta.pdf}"
-target "https://mattiasvillani.com/BayesianLearningBook/observable/distributions#beta-distribution"
-literal "true"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -2536,6 +2527,69 @@ status open
 
 \series bold
 \color orange
+Interactive - Bernoulli model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.7\\textwidth]{Images/iidbern_post_widget.png}"
+target "https://observablehq.com/@mattiasvillani/bayesian-inference-for-bernoulli-iid-data"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
 Normal data, known variance - uniform prior
 \end_layout
 
@@ -2998,23 +3052,6 @@ status open
 \series bold
 \color orange
 Internet speed
-\series default
-\color none
-
-\begin_inset space \hspace{}
-\length 5.5cm
-\end_inset
-
-
-\begin_inset CommandInset href
-LatexCommand href
-name "\\includegraphics[width=0.30\\textwidth]{/home/mv/Dropbox/BayesBook/Figs/observable_badges/internetspeed_prior2post.pdf}"
-target "https://mattiasvillani.com/BayesianLearningBook/observable/bayes_covid.html"
-literal "true"
-
-\end_inset
-
-
 \end_layout
 
 \end_inset
@@ -3242,6 +3279,69 @@ Internet speed n=5
 	filename /home/mv/Dropbox/BayesBook/Figs/WiFi_n5.pdf
 	lyxscale 30
 	scale 35
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Interactive - Normal model known variance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Box Boxed
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "1pt"
+separation "1pt"
+shadowsize "4pt"
+framecolor "orange"
+backgroundcolor "white"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset href
+LatexCommand href
+name "\\includegraphics[width=0.7\\textwidth]{Images/iidnormalpost_known_var_widget.png}"
+target "https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var"
+literal "true"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 

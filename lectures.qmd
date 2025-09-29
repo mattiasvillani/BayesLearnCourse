@@ -48,21 +48,23 @@ Interactive: [Taylor approximation](https://observablehq.com/@mattiasvillani/tay
 
 **Lecture 7 - Gibbs sampling**\
 Read: BL 9.1-9.5 | [Slides](/slides/BL_L7.pdf) \
-Interactive: [Mixture of normals](https://observablehq.com/@mattiasvillani/normal-mixture) | [Mixture of Poissons](https://observablehq.com/@mattiasvillani/mixture-of-poissons)
+Interactive: [Mixture of normals](https://observablehq.com/@mattiasvillani/normal-mixture) | [Mixture of Poissons](https://observablehq.com/@mattiasvillani/mixture-of-poissons)\
+Video: [Gibbs sampling for correlated parameters](https://www.youtube.com/watch?v=IGiQOCX9UbM)
 
 **Lecture 8 - Metropolis-Hastings**\
-Read: this | [Slides](/misc/larry.png) \
-Interactive: \
+Read: this | [Slides](/slides/BL_L8.pdf) \
+Interactive: [Metropolis-Hastings](https://observablehq.com/@mattiasvillani/random-walk-metropolis) \
+Video: [HarlMCMC shake](https://www.youtube.com/watch?v=Vv3f0QNWvWQ)
 
-**Lecture 9 - Hamiltonian Monte Carlo**\
+**Lecture 9 - Hamiltonian Monte Carlo and Probabilistic programming**\
 Read: this | [Slides](/misc/larry.png) \
-Interactive: \
+Interactive: [HMC](https://observablehq.com/@mattiasvillani/hamiltonian-markov-chain-monte-carlo) | [Leapfrog algorithm for HMC proposals](https://observablehq.com/@mattiasvillani/leapfrog-integrator) | [HMC can struggle on multimodal distributions](https://observablehq.com/@mattiasvillani/hmc-sampling-from-multi-modal-distributions)\
 
 **Lecture 10 - Probabilistic programming for Bayes**\
 Read: this | [Slides](/misc/larry.png) \
 Interactive: \
 
-**Lecture 11 - Model comparison**\
+**Lecture 11 - Model comparison and averaging**\
 Read: BL 14.1-14.4 | [Slides](/misc/larry.png) \
 Interactive: \
 
