@@ -319,7 +319,7 @@
     "href": "culture.html#music",
     "title": "Bayesian Culture",
     "section": "Music",
-    "text": "Music\nHere is the complete Bayesian Songbook\nBayesian Believer   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nTime to be Bayesian   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nValencia Wood   Your browser does not support the audio element. \n\n\nLyrics"
+    "text": "Music\nHere is the complete Bayesian Songbook\nBayesian Believer   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nTime to be Bayesian   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nValencia Wood   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nOh, what a prior   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nPrior   Your browser does not support the audio element. \n\n\nLyrics"
   },
   {
     "objectID": "culture.html#literature",
@@ -327,5 +327,19 @@
     "title": "Bayesian Culture",
     "section": "Literature",
     "text": "Literature\nBayesian Probability for Babies This is the perfect first book for a newborn Bayesian.  Book | YouTube Read-Aloud  The theory that would not die - How Bayes’ Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy A New York Times Book Review Editor’s Choice: “A vivid account of the generations-long dispute over Bayes’ rule, one of the greatest breakthroughs in the history of applied mathematics and statistics”  Book"
+  },
+  {
+    "objectID": "culture/prior.html",
+    "href": "culture/prior.html",
+    "title": "Prior",
+    "section": "",
+    "text": "Music:  The Shocking Blue (Venus)\nLyrics:  Mark Glickman\nVocal:  Mark Glickman\nGuitar:  Mark Glickman\n\nI had some extra information,\ndon't know where it should go.\nA method to express this knowledge\nis what I don't know!\n\nI've got it, yeah, baby, I've got it!\nWell, I'm the thesis, I'm the prior that you require!\nWell, I'm the thesis, I'm the prior that you require!\n\nI had myself a complex model\nI didn't know how to constrain.\nI tried to estimate the unknowns.\nMy attempts were in vain!\n\nI've got it, yeah, baby, I've got it!\nWell, I'm the thesis, I'm the prior that you require!\nWell, I'm the thesis, I'm the prior that you require!"
+  },
+  {
+    "objectID": "culture/ohwhataprior.html",
+    "href": "culture/ohwhataprior.html",
+    "title": "Oh, what a prior!",
+    "section": "",
+    "text": "Oh What a Prior\n---------------\n\nMusic:  Frankie Valli and the Four Seasons \n        (December 1963/Oh What a Night)\nLyrics:  Mark Glickman\nVocals:  Mark Glickman\n\nOh what a prior\nA unimodal proper density\nShe captured all my subjectivity\nWhat a function, what a prior\n\nOh what a prior\nTall and thin, right then I understood\nShe towered over every likelihood\nOh I believed her, what a prior\n\nOh I, I fit a Bayesian model after all\nand assumed\nthat my results would verify the truth\n\nOh what a prior\nElicited from deep inside my head\nExpert thought I would not use instead\nOh I committed to the prior\n\nI saw the others dressed in uniform attire\nBut when she came to me, I knew my data would not defy her!\n\nOh what a prior\nI was so sure but I could make no sense\nOf this false posterior inference\nOh I got bitten by a prior"
   }
 ]

@@ -39,6 +39,26 @@ Here is the complete [Bayesian Songbook](https://mindstalk.net/bayesSongbook2006
   <p>![](/culture/valencia_wood_lyrics.png){width="100%"}</p>
 </details>
 
+**Oh, what a prior**<br>
+<audio controls>
+  <source src="https://www.glicko.net/music/ohwhataprior.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<details>
+  <summary>Lyrics</summary>
+  <p>![](/culture/ohwhataprior.png){width="100%"}</p>
+</details>
+
+**Prior**<br>
+<audio controls>
+  <source src="https://www.glicko.net/music/prior.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<details>
+  <summary>Lyrics</summary>
+  <p>![](/culture/prior.png){width="100%"}</p>
+</details>
+
 ## Literature
 
 **Bayesian Probability for Babies**<br>

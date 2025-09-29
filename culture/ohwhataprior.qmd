@@ -1,0 +1,41 @@
+---
+title: "Oh, what a prior!"
+editor: visual
+---
+
+```         
+Oh What a Prior
+---------------
+
+Music:  Frankie Valli and the Four Seasons 
+        (December 1963/Oh What a Night)
+Lyrics:  Mark Glickman
+Vocals:  Mark Glickman
+
+Oh what a prior
+A unimodal proper density
+She captured all my subjectivity
+What a function, what a prior
+
+Oh what a prior
+Tall and thin, right then I understood
+She towered over every likelihood
+Oh I believed her, what a prior
+
+Oh I, I fit a Bayesian model after all
+and assumed
+that my results would verify the truth
+
+Oh what a prior
+Elicited from deep inside my head
+Expert thought I would not use instead
+Oh I committed to the prior
+
+I saw the others dressed in uniform attire
+But when she came to me, I knew my data would not defy her!
+
+Oh what a prior
+I was so sure but I could make no sense
+Of this false posterior inference
+Oh I got bitten by a prior
+```
