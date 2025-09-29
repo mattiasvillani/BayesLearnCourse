@@ -1,0 +1,52 @@
+---
+title: "Bayesian Culture"
+format: html
+---
+
+> Let's not forget the cultural dimension of Bayes. One should know the cultural landmarks, the literary and musical traditions, and the art.
+
+## Music
+
+Here is the complete [Bayesian Songbook](https://mindstalk.net/bayesSongbook2006.pdf)         
+
+**Bayesian Believer**<br>
+<audio controls>
+  <source src="https://www.glicko.net/music/believer.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<details>
+  <summary>Lyrics</summary>
+  <p>![](/culture/bayesian_believer.png){width="100%"}</p>
+</details>
+
+**Time to be Bayesian**<br>
+<audio controls>
+  <source src="https://www.glicko.net/music/timebayes1.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<details>
+  <summary>Lyrics</summary>
+  <p>![](/culture/timetobebayesian_lyrics.png){width="100%"}</p>
+</details>
+
+**Valencia Wood**<br>
+<audio controls>
+  <source src="https://www.glicko.net/music/valen.wav" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<details>
+  <summary>Lyrics</summary>
+  <p>![](/culture/valencia_wood_lyrics.png){width="100%"}</p>
+</details>
+
+## Literature
+
+**Bayesian Probability for Babies**<br>
+This is the perfect first book for a newborn Bayesian.<br>
+![](/culture/bayesian-probability-for-babies.jpg){width="20%"}
+[Book]() | [YouTube Read-Aloud](https://www.youtube.com/watch?v=CcnLnKU26dg)
+<br><br>
+**The theory that would not die - How Bayes' Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy**<br>
+A New York Times Book Review Editor’s Choice: "A vivid account of the generations-long dispute over Bayes’ rule, one of the greatest breakthroughs in the history of applied mathematics and statistics"<br>
+![](/culture/bayeswouldnotdie.avif){width="20%"}
+[Book](https://yalebooks.yale.edu/book/9780300188226/the-theory-that-would-not-die/) 

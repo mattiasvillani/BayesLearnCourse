@@ -292,5 +292,40 @@
     "title": "Normal posterior approximation - iid Poisson model",
     "section": "LogNormal distribution",
     "text": "LogNormal distribution\nRecall the definition of a LogNormal distribution:\nIf \\(X \\sim N(\\mu\\, \\sigma^2)\\) then \\(Y=\\exp(X)\\sim \\mathrm{LogNormal}(\\mu, \\sigma^2)\\).\nUse the prior \\(\\theta \\sim N(\\log(4), 0.5^2)\\) which implies a LogNormal prior for \\(\\lambda\\). The prior in both parameterizations are plotted below.\n\nnSim = 10000\nthetaDraws = rnorm(nSim, mean = log(4), sd = 0.5)\nlambdaDraws = exp(thetaDraws)\npar(mfrow = c(1,2))\nhist(thetaDraws, 50, xlab = expression(theta), ylab = \"prior density\", col = prettycols[5], main = paste(\"prior for\", expression(theta)))\nhist(lambdaDraws, 50, xlab = expression(lambda), ylab = \"prior density\", col = prettycols[6], main = paste(\"prior for\", expression(lambda)))\n\n\n\n\n\n\n\n\n\nProblem 5a)\nDo a normal approximation of the posterior distribution of \\(\\theta\\) using optimization and plot that normal approximation. Use this posterior approximation for \\(\\theta\\) to simulate the approximate posterior of \\(\\lambda = \\exp(\\theta)\\).\n\n\nSolution 5a)\nWe start by setting up the (unnormalized) log posterior by coding up the log-likelihood and the log-prior and finally adding them up:\n\nLogPostPoisson &lt;- function(theta, y, mu0, tau0){\n  logLik = sum(dpois(y, exp(theta), log = TRUE))\n  logPrior = dnorm(theta, mu0, tau0, log = TRUE)\n  return(logLik + logPrior)\n}\n\nWe use the optim function to maximize the log posterior (with the argument control=list(fnscale=-1) that multiplies the objective function by \\(-1\\) to turn the problem into a minimization problem, which is what optim handles). The initial value is set to \\(0\\) for simplicity ( \\(\\log(\\bar y)\\) would have been better).\n\nmu0 = log(4)\ntau0 = 0.5\ninitVal &lt;- 0; \nOptimResults&lt;-optim(initVal, LogPostPoisson, gr=NULL, y, mu0, tau0,\n  method = c(\"BFGS\"), control=list(fnscale=-1), hessian=TRUE)\npostMode = OptimResults$par[1]\npostVar = -1/OptimResults$hessian[1] # inv(J) - Approx posterior variance\npostStd &lt;- sqrt(postVar)          # Approximate stdev\nmessage(\"The posterior mode is \", round(postMode, 3), \" and the approximate posterior standard deviation is \", round(postStd, 3), \".\") \n\nThe posterior mode is 1.657 and the approximate posterior standard deviation is 0.046.\n\n\nHence the approximate posterior is\n\\[\n\\theta \\vert \\boldsymbol{y} \\overset{\\mathrm{approx}}{\\sim} N(1.657, 0.046)\n\\]\n\nthetaGrid = seq(postMode - 4*postStd, postMode + 4* postStd, length = 1000)\nplot(thetaGrid, dnorm(thetaGrid, postMode, postStd), type = \"l\", lwd = 3, \n     xlab = expression(theta), ylab = \"posterior density\", col = prettycols[3])\n\n\n\n\n\n\n\n\n\n\nProblem 5b)\nUse the posterior approximation for \\(\\theta\\) in Problem 5a) to simulate from the approximate posterior of \\(\\lambda = \\exp(\\theta)\\). Plot a histogram.\n\n\nSolution 5b)\n\nnSim = 10000\nthetaDraws = rnorm(nSim, postMode, postStd)\nlambdaDraws = exp(thetaDraws)\nhist(lambdaDraws, 50, freq = FALSE, col = prettycols[6],\n     xlab = expression(lambda), ylab = \"posterior density\", main = \"Posterior lambda\")\n\n\n\n\n\n\n\n\nThis posterior is slightly skewed (we actually know it is logNormal)."
+  },
+  {
+    "objectID": "culture/timetobebayesian.html",
+    "href": "culture/timetobebayesian.html",
+    "title": "Time to be Bayesian",
+    "section": "",
+    "text": "Music:  The Zombies (\"Time of the Season\")\nLyrics:  Mark Glickman\nVocals:  Mark Glickman, Mark Glickman, Mark Glickman\n\nIt's the time to be Bayesian --\nDon't get me wrong.\nI'll explain all of the reasons\nto pitch your long-run frequency.\n\nYou formulate a prior\ndensity\nto represent beliefs.\nIt's the time to be Bayesian in thinking!\n\nWho is Bayes? (Who is Bayes?)\nWhat's the difference? (What's the difference?  Is this...)\nIs this MLE?\nWhy've you taken  (Why've you taken)\nall my time (all my time, to show)\nto show you probability?\n\nYou run a Monte Carlo\nMarkov chain\nfor model summaries.\nIt's the time to be Bayesian in thinking!"
+  },
+  {
+    "objectID": "culture.html",
+    "href": "culture.html",
+    "title": "Bayesian Culture",
+    "section": "",
+    "text": "Let’s not forget the cultural dimension of Bayes. One should know the cultural landmarks, the literary and musical traditions, and the art."
+  },
+  {
+    "objectID": "culture.html#the-music",
+    "href": "culture.html#the-music",
+    "title": "Bayesian Culture",
+    "section": "The music",
+    "text": "The music\nBayesian Believer   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nTime to be Bayesian   Your browser does not support the audio element. \n\n\nLyrics"
+  },
+  {
+    "objectID": "culture.html#music",
+    "href": "culture.html#music",
+    "title": "Bayesian Culture",
+    "section": "Music",
+    "text": "Music\nHere is the complete Bayesian Songbook\nBayesian Believer   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nTime to be Bayesian   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nValencia Wood   Your browser does not support the audio element. \n\n\nLyrics"
+  },
+  {
+    "objectID": "culture.html#literature",
+    "href": "culture.html#literature",
+    "title": "Bayesian Culture",
+    "section": "Literature",
+    "text": "Literature\nBayesian Probability for Babies This is the perfect first book for a newborn Bayesian.  Book | YouTube Read-Aloud  The theory that would not die - How Bayes’ Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy A New York Times Book Review Editor’s Choice: “A vivid account of the generations-long dispute over Bayes’ rule, one of the greatest breakthroughs in the history of applied mathematics and statistics”  Book"
   }
 ]

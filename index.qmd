@@ -74,3 +74,4 @@ The course makes use of interactive Observable notebooks in javascript that runs
 ![](/misc/valentin.jpeg){width="40%"}\
 [Valentin Zulj](https://valentinzulj.github.io/)<br>Computer labs <br> PhD student in Statistics and Teaching assistant
 :::
+

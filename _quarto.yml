@@ -27,6 +27,8 @@ website:
         text: Exercises
       - href: homeassignment.qmd
         text: Assignments
+      - href: culture.qmd
+        text: Culture
         
   page-footer:
     left:

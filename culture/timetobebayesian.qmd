@@ -1,0 +1,32 @@
+---
+title: "Time to be Bayesian"
+editor: visual
+---
+
+```         
+Music:  The Zombies ("Time of the Season")
+Lyrics:  Mark Glickman
+Vocals:  Mark Glickman, Mark Glickman, Mark Glickman
+
+It's the time to be Bayesian --
+Don't get me wrong.
+I'll explain all of the reasons
+to pitch your long-run frequency.
+
+You formulate a prior
+density
+to represent beliefs.
+It's the time to be Bayesian in thinking!
+
+Who is Bayes? (Who is Bayes?)
+What's the difference? (What's the difference?  Is this...)
+Is this MLE?
+Why've you taken  (Why've you taken)
+all my time (all my time, to show)
+to show you probability?
+
+You run a Monte Carlo
+Markov chain
+for model summaries.
+It's the time to be Bayesian in thinking!
+```
