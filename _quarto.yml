@@ -14,7 +14,7 @@ knitr:
 
 website:
   title: "Bayesian Learning"
-  favicon: /misc/favicon.ico
+  favicon: /misc/Thomas_Bayes.ico
   navbar:
     logo: /misc/SU_logo_small.png
     background: primary
