@@ -305,7 +305,7 @@
     "href": "culture.html",
     "title": "Bayesian Culture",
     "section": "",
-    "text": "Let’s not forget the cultural dimension of Bayes. One should know the cultural landmarks, the literary and musical traditions, and the art."
+    "text": "Let’s not forget the cultural dimension of Bayes: its cultural landmarks, the literary and musical traditions, and the art."
   },
   {
     "objectID": "culture.html#the-music",
@@ -319,7 +319,7 @@
     "href": "culture.html#music",
     "title": "Bayesian Culture",
     "section": "Music",
-    "text": "Music\nHere is the complete Bayesian Songbook\nBayesian Believer   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nTime to be Bayesian   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nValencia Wood   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nOh, what a prior   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nPrior   Your browser does not support the audio element. \n\n\nLyrics"
+    "text": "Music\nThe Bayesian Songbook contains the main gospels, often performed at the World Meetings in Bayesian Statistics. Some recorded songs from Mark Glickman’s Music webpage are linked below, with Lyrics to help you sing along.\nBayesian Believer   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nTime to be Bayesian   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nValencia Wood   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nOh, what a prior   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nFrequentists and Bayesians   Your browser does not support the audio element. \n\n\nLyrics\n\n\n\n\n\nPrior   Your browser does not support the audio element. \n\n\nLyrics"
   },
   {
     "objectID": "culture.html#literature",
@@ -355,5 +355,19 @@
     "title": "Bayesian Culture",
     "section": "",
     "text": "The theory that would not die - How Bayes’ Rule Cracked the Enigma Code, Hunted Down Russian Submarines, and Emerged Triumphant from Two Centuries of Controversy\n\nA New York Times Book Review Editor’s Choice: “A vivid account of the generations-long dispute over Bayes’ rule, one of the greatest breakthroughs in the history of applied mathematics and statistics”\nBook"
+  },
+  {
+    "objectID": "culture/frequentist_and_bayesians.html",
+    "href": "culture/frequentist_and_bayesians.html",
+    "title": "Frequentists and Bayesians",
+    "section": "",
+    "text": "Words:  Mark Glickman\nMusic:  Lennon/McCartney (\"Two of Us\")\n\nFrequentists incoherent - dredging data,\nProcedural flaws,\nBayesians model science - update priors,\nUse MC-MC!\nUse MCMC - use MCMC - use MC squared!\n\nFrequentists pick their noses - never shower,\nPencil-necked geeks!\nBayesians hosting parties - making money,\nMeetings on a beach!\nWe meet on a beach - we meet on a beach - a topless beach!\n\nBayesians have remedies,\nFor problems frequentists can't handle out of hand...\n\n(Verse 1 - repeat)\n\n(Bridge - repeat)\n\n(Verse 2 - repeat, and out)"
+  },
+  {
+    "objectID": "culture.html#cultural-landmarks",
+    "href": "culture.html#cultural-landmarks",
+    "title": "Bayesian Culture",
+    "section": "Cultural landmarks",
+    "text": "Cultural landmarks\n Ashton Lodge, where Thomas Bayes lived 1734-1761.\n Thomas Bayes’ tomb\n The Bayes Centre at University of Edinburgh\n Bayes Cafe at University of Edinburgh"
   }
 ]

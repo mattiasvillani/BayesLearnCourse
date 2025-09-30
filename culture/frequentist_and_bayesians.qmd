@@ -1,0 +1,30 @@
+---
+title: "Frequentists and Bayesians"
+editor: visual
+---
+
+```         
+Words:  Mark Glickman
+Music:  Lennon/McCartney ("Two of Us")
+
+Frequentists incoherent - dredging data,
+Procedural flaws,
+Bayesians model science - update priors,
+Use MC-MC!
+Use MCMC - use MCMC - use MC squared!
+
+Frequentists pick their noses - never shower,
+Pencil-necked geeks!
+Bayesians hosting parties - making money,
+Meetings on a beach!
+We meet on a beach - we meet on a beach - a topless beach!
+
+Bayesians have remedies,
+For problems frequentists can't handle out of hand...
+
+(Verse 1 - repeat)
+
+(Bridge - repeat)
+
+(Verse 2 - repeat, and out)
+```

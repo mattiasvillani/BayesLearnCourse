@@ -3,11 +3,21 @@ title: "Bayesian Culture"
 format: html
 ---
 
-> Let's not forget the cultural dimension of Bayes. One should know the cultural landmarks, the literary and musical traditions, and the art.
+> Let's not forget the cultural dimension of Bayes: its cultural landmarks, the literary and musical traditions, and the art.
+
+## Cultural landmarks
+
+![](/culture/Bayes_tab.jpg){width="20%"} [Ashton Lodge](https://en.wikipedia.org/wiki/Ashton_Lodge), where Thomas Bayes lived 1734-1761.
+
+![](/culture/Bayes_after.jpg){width="20%"}  [Thomas Bayes' tomb](https://www.2bestsystems.com/foundation/restoration.htm)
+
+![](/culture/bayescentre.jpg){width="20%"} [The Bayes Centre at University of Edinburgh](https://maps.app.goo.gl/UucsZDWbe8X6L1Gr7)
+
+![Bayes cafe photo](/culture/bayescafe.jpg){width="20%"} [Bayes Cafe at University of Edinburgh](https://maps.app.goo.gl/HswG4RA7iJhrcea4A "Photo: Christian Robert") 
 
 ## Music
 
-Here is the complete [Bayesian Songbook](https://mindstalk.net/bayesSongbook2006.pdf)
+The [Bayesian Songbook](https://mindstalk.net/bayesSongbook2006.pdf) contains the main gospels, often performed at the World Meetings in Bayesian Statistics. Some recorded songs from [Mark Glickman's Music webpage](https://www.glicko.net/music.html) are linked below, with Lyrics to help you sing along.
 
 **Bayesian Believer**<br> <audio controls> <source src="https://www.glicko.net/music/believer.mp3" type="audio/mpeg"> Your browser does not support the audio element. </audio>
 <details>
@@ -35,6 +45,12 @@ Here is the complete [Bayesian Songbook](https://mindstalk.net/bayesSongbook2006
 <p>![](/culture/ohwhataprior.png){width="100%"}</p>
 </details>
 
+**Frequentists and Bayesians**<br> <audio controls> <source src="https://www.glicko.net/music/twoofus.wav" type="audio/mpeg"> Your browser does not support the audio element. </audio>
+<details>
+<summary>Lyrics</summary>
+<p>![](/culture/frequentist_and_bayesians.png){width="100%"}</p>
+</details>
+
 **Prior**<br> <audio controls> <source src="https://www.glicko.net/music/prior.mp3" type="audio/mpeg"> Your browser does not support the audio element. </audio>
 <details>
 <summary>Lyrics</summary>
@@ -59,6 +75,8 @@ Here is the complete [Bayesian Songbook](https://mindstalk.net/bayesSongbook2006
 +-----------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 <br>
+
+
 
 ## Art
 
