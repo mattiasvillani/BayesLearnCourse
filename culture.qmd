@@ -3,7 +3,7 @@ title: "Bayesian Culture"
 format: html
 ---
 
-> Let's not forget the cultural dimension of Bayes: its cultural landmarks, the literary and musical traditions, and the art.
+> Let's not forget the cultural dimension of Bayes: its cultural landmarks, the literary and musical traditions, and the art. 😊
 
 ## Cultural landmarks
 
