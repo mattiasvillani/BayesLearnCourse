@@ -303,7 +303,7 @@ status open
 
 \series bold
 \color orange
-Markov chains
+Stochastic process
 \end_layout
 
 \end_inset
@@ -318,7 +318,7 @@ Markov chains
 \begin_deeper
 \begin_layout Itemize
 Let 
-\begin_inset Formula $\mathcal{S}=\{s_{1},s_{2},...,s_{k})$
+\begin_inset Formula $\mathcal{S}=\{1,2,\ldots,K\}$
 \end_inset
 
  be a finite set of 
@@ -329,7 +329,7 @@ states
 \color inherit
 .
  
-\begin_inset Separator latexpar
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -342,6 +342,10 @@ Weather:
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -361,29 +365,41 @@ School grades:
 
 \series bold
 \color blue
-Markov chain 
+Stochastic process
 \series default
 \color inherit
-is a stochastic process 
-\begin_inset Formula $\{X_{t}\}_{t=1}^{T}$
+: collection of random variables 
+\begin_inset Formula $X_{1},X_{2},X_{3},\ldots$
 \end_inset
 
- with 
+, often over time.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+A 
 \series bold
 \color blue
-state transitions
+time series
 \series default
 \color inherit
-
-\begin_inset Formula 
-\[
-p_{ij}=\mathrm{Pr}(X_{t+1}=s_{j}\vert X_{t}=s_{i})
-\]
-
+ with categories.
+\begin_inset VSpace bigskip
 \end_inset
 
 
-\begin_inset VSpace medskip
+\end_layout
+
+\begin_layout Itemize
+Weather: 
+\begin_inset Formula $X_{1}=\text{sunny},\,X_{2}=\text{sunny},\,X_{3}=\text{rain},\,X_{4}=\text{sunny}$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -391,11 +407,69 @@ p_{ij}=\mathrm{Pr}(X_{t+1}=s_{j}\vert X_{t}=s_{i})
 
 \begin_layout Itemize
 School grades: 
-\begin_inset Formula $X_{1}=C,X_{2}=C,X_{3}=B,X_{4}=A,X_{5}=B$
+\begin_inset Formula $X_{1}=C,\,X_{2}=C,\,X_{3}=B,\,X_{4}=A,\,X_{5}=B$
 \end_inset
 
 .
-\begin_inset VSpace medskip
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Markov chains
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color orange
+Markov chain
+\series default
+\color inherit
+: probability distribution of tomorrow's state 
+\begin_inset Formula $X_{t+1}$
+\end_inset
+
+ depends (only) on today's state 
+\begin_inset Formula $X_{t}$
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+p_{ij}=\mathrm{Pr}(X_{t+1}=j\vert X_{t}=i)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MarkovChainWeather.pdf
+	scale 60
+
 \end_inset
 
 
@@ -411,7 +485,7 @@ Transition matrix
  for weather example
 \begin_inset Formula 
 \[
-P=\left(\begin{array}{cc}
+\boldsymbol{P}=\left(\begin{array}{cc}
 p_{11} & p_{12}\\
 p_{21} & p_{22}
 \end{array}\right)=\left(\begin{array}{cc}
@@ -419,6 +493,129 @@ p_{21} & p_{22}
 0.7 & 0.3
 \end{array}\right)
 \]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Markov chains - Grades example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align left
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename /home/mv/Dropbox/BayesBook/Figs/MarkovChainGrades.pdf
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "45col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\size footnotesize
+\begin_inset Formula 
+\[
+\underset{P=\begin{array}{c}
+A\\
+B\\
+C\\
+D\\
+E\\
+F
+\end{array}\left(\begin{array}{cccccc}
+0.3 & 0.3 & 0.2 & 0.1 & 0.07 & 0.03\\
+\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
+\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
+\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
+\cdot & \cdot & \cdot & \cdot & \cdot & \cdot\\
+\cdot & \cdot & \cdot & \cdot & \cdot & \cdot
+\end{array}\right)}{\begin{array}{cccccc}
+\ \ \ \ \ \ \ \ \ A\  & \ \ B\  & \ \ \ C\  & \ \ \ D\ \  & \ \ E\ \  & \ \ F\end{array}}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -467,7 +664,7 @@ Stationary distribution
 
 \begin_inset Formula 
 \[
-P_{ij}^{{\color{orange}(h)}}=\mathrm{Pr}(X_{t+{\color{orange}h}}=s_{j}\vert X_{t}=s_{i})
+p_{ij}^{{\color{orange}(h)}}=\mathrm{Pr}(X_{t+{\color{orange}h}}=j\vert X_{t}=i)
 \]
 
 \end_inset
@@ -496,7 +693,7 @@ matrix power
 
 \begin_inset Formula 
 \[
-P^{(h)}=P^{h}
+\boldsymbol{P}^{(h)}=\boldsymbol{P}^{h}
 \]
 
 \end_inset
@@ -517,10 +714,16 @@ equilbrium distribution
  
 \series default
 
-\begin_inset Formula $\pi=(\pi_{1},...,\pi_{k})$
+\begin_inset Formula $\boldsymbol{\pi}=(\pi_{1},...,\pi_{k})$
 \end_inset
 
- if chain is
+ if chain is 
+\series bold
+\color blue
+ergodic
+\series default
+\color inherit
+:
 \begin_inset VSpace smallskip
 \end_inset
 
@@ -576,22 +779,49 @@ Limiting
 \series bold
 \color blue
  long-run distribution
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ as 
+\begin_inset Formula $h\rightarrow\infty$
+\end_inset
+
+
+\family default
 \series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
 \color inherit
 
 \begin_inset Formula 
 \[
-P^{t}\rightarrow\left(\begin{array}{c}
-\pi\\
-\pi\\
+\boldsymbol{P}^{h}\rightarrow\left(\begin{array}{c}
+\boldsymbol{\pi}\\
+\boldsymbol{\pi}\\
 \vdots\\
-\pi
+\boldsymbol{\pi}
 \end{array}\right)=\left(\begin{array}{cccc}
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}\\
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}\\
 \vdots & \vdots &  & \vdots\\
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}
-\end{array}\right)\text{ as }t\rightarrow\infty
+\end{array}\right)
 \]
 
 \end_inset
@@ -629,23 +859,53 @@ Stationary distribution, cont.
 
 \begin_deeper
 \begin_layout Itemize
-Limiting long-run distribution (unconditional probabilities)
+Limiting
 \series bold
-\color black
+\color blue
+ long-run distribution
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ as 
+\begin_inset Formula $h\rightarrow\infty$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size small
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
 
 \begin_inset Formula 
 \[
-P^{t}\rightarrow\left(\begin{array}{c}
-\pi\\
-\pi\\
+\boldsymbol{P}^{h}\rightarrow\left(\begin{array}{c}
+\boldsymbol{\pi}\\
+\boldsymbol{\pi}\\
 \vdots\\
-\pi
+\boldsymbol{\pi}
 \end{array}\right)=\left(\begin{array}{cccc}
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}\\
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}\\
 \vdots & \vdots &  & \vdots\\
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}
-\end{array}\right)\text{ as }t\rightarrow\infty
+\end{array}\right)
 \]
 
 \end_inset
@@ -663,7 +923,7 @@ Stationary distribution
 
 \begin_inset Formula 
 \[
-\pi=\pi P
+\boldsymbol{\pi}=\boldsymbol{\pi}\boldsymbol{P}
 \]
 
 \end_inset
@@ -672,20 +932,39 @@ Stationary distribution
 \end_layout
 
 \begin_layout Itemize
+Draw starting point using 
+\begin_inset Formula $\boldsymbol{\pi}$
+\end_inset
+
+.
+ All future states of the Markov Chain will have distribution 
+\begin_inset Formula $\boldsymbol{\pi}$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 Weather example:
+\size small
+
 \begin_inset Formula 
 \[
-\begin{aligned}P=\left(\begin{array}{cc}
+\begin{aligned}\boldsymbol{P}=\left(\begin{array}{cc}
 0.9 & 0.1\\
 0.3 & 0.7
-\end{array}\right), & P^{2}=\left(\begin{array}{cc}
+\end{array}\right), & \boldsymbol{P}^{2}=\left(\begin{array}{cc}
 0.84 & 0.16\\
 0.42 & 0.58
 \end{array}\right)\\
-P^{5}=\left(\begin{array}{cc}
+\boldsymbol{P}^{5}=\left(\begin{array}{cc}
 0.77 & 0.23\\
 0.69 & 0.31
-\end{array}\right), & P^{100}=\left(\begin{array}{cc}
+\end{array}\right), & \boldsymbol{P}^{100}=\left(\begin{array}{cc}
 0.75 & 0.25\\
 0.75 & 0.25
 \end{array}\right)
@@ -697,7 +976,7 @@ P^{5}=\left(\begin{array}{cc}
 
 \begin_inset Formula 
 \[
-\pi=\left(0.75,0.25\right)
+\boldsymbol{\pi}=\left(0.75,0.25\right)
 \]
 
 \end_inset
@@ -738,12 +1017,8 @@ The basic MCMC idea
 
 \begin_deeper
 \begin_layout Itemize
-Simulate from discrete distribution 
+Aim: simulate from a discrete distribution 
 \begin_inset Formula $p(x)$
-\end_inset
-
- when 
-\begin_inset Formula $x\in\{s_{1},..,s_{k}\}$
 \end_inset
 
 .
@@ -777,7 +1052,6 @@ stationary distribution
 \end_inset
 
 .
- Often continuous in our case
 \begin_inset VSpace medskip
 \end_inset
 
@@ -786,7 +1060,7 @@ stationary distribution
 
 \begin_layout Itemize
 How to set up the transition matrix 
-\begin_inset Formula $P$
+\begin_inset Formula $\boldsymbol{P}$
 \end_inset
 
 ? 
@@ -807,6 +1081,16 @@ Metropolis-Hastings
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+Can be extended to 
+\series bold
+\color blue
+continuous random variables
+\series default
+\color inherit
+.
 \end_layout
 
 \end_deeper
