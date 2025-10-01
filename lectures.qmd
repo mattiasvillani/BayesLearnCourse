@@ -52,12 +52,12 @@ Interactive: [Mixture of normals](https://observablehq.com/@mattiasvillani/norma
 Video: [Gibbs sampling for correlated parameters](https://www.youtube.com/watch?v=IGiQOCX9UbM)
 
 **Lecture 8 - Metropolis-Hastings**\
-Read: this | [Slides](/slides/BL_L8.pdf) \
+Read: [BDA 11.2-11.5](https://sites.stat.columbia.edu/gelman/book/BDA3.pdf) | [Slides](/slides/BL_L8.pdf) \
 Interactive: [Metropolis-Hastings](https://observablehq.com/@mattiasvillani/random-walk-metropolis) \
 Video: [HarlMCMC shake](https://www.youtube.com/watch?v=Vv3f0QNWvWQ)
 
 **Lecture 9 - Hamiltonian Monte Carlo and Probabilistic programming**\
-Read: this | [Slides](/misc/larry.png) \
+Read: [Slides](/misc/larry.png) \
 Interactive: [HMC](https://observablehq.com/@mattiasvillani/hamiltonian-markov-chain-monte-carlo) | [Leapfrog algorithm for HMC proposals](https://observablehq.com/@mattiasvillani/leapfrog-integrator) | [HMC can struggle on multimodal distributions](https://observablehq.com/@mattiasvillani/hmc-sampling-from-multi-modal-distributions)\
 
 **Lecture 10 - Probabilistic programming for Bayes**\
