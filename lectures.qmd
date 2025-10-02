@@ -49,6 +49,7 @@ Interactive: [Taylor approximation](https://observablehq.com/@mattiasvillani/tay
 **Lecture 7 - Gibbs sampling**\
 Read: BL 9.1-9.5 | [Slides](/slides/BL_L7.pdf) \
 Interactive: [Mixture of normals](https://observablehq.com/@mattiasvillani/normal-mixture) | [Mixture of Poissons](https://observablehq.com/@mattiasvillani/mixture-of-poissons)\
+Code: [Gibbs sampling for Mixture of Normals](/code/NormalMixtureGibbs.R)\
 Video: [Gibbs sampling for correlated parameters](https://www.youtube.com/watch?v=IGiQOCX9UbM)
 
 **Lecture 8 - Metropolis-Hastings**\

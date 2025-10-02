@@ -1,0 +1,190 @@
+Bayesian Learning
+
+Lecture 11 - Bayesian model comparison
+
+Mattias Villani <Graphics file: /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png>
+ 
+
+Department of Statistics
+Stockholm University
+
+
+
+
+
+
+  • Bayesian model comparison
+
+
+
+  • Marginal likelihood
+
+
+
+
+
+
+
+
+
+  • Posterior model probabilities\underset{\text{posterior model prob.}}{\underbrace{\mathrm{Pr}(M_{k}\vert\mathbf{y})}}\propto\underset{\text{marginal likelihood}}{\underbrace{p(\mathbf{y}\vert M_{k})}}\cdot\underset{\text{prior model prob.}}{\underbrace{\mathrm{Pr}(M_{k})}}
+
+  • The marginal likelihood for model M_{k} with parameters \theta_{k}
+    \underbrace{p(\mathbf{y}\vert M_{k})}=\int p(\boldsymbol{y}|\theta_{k},M_{k})p(\theta_{k}|M_{k})d\theta_{k}.
+
+  • \theta_{k} is 'removed' by the averaging wrt prior. Priors 
+    matter!
+
+
+
+  • The Bayes factorB_{12}(\boldsymbol{y})=\frac{p(\mathbf{y}\vert M_{1})}{p(\mathbf{y}\vert M_{2})}
+
+
+
+
+
+
+
+
+
+  • Barely worth mentioning: 1<\mathrm{BF}\leq3
+
+
+
+  • Positive: 3<\mathrm{BF}\leq20
+
+
+
+  • Strong: 20<\mathrm{BF}\leq150
+
+
+
+  • Very strong: >150
+
+
+
+
+
+
+
+  <Graphics file: /home/mv/Dropbox/BayesBook/Figs/NormalMargLikeAllKappa0InternetSpeed.pdf>
+
+
+
+
+
+
+
+  <Graphics file: /home/mv/Dropbox/BayesBook/Figs/NormalMargLikeInternetSpeed.pdf>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  • Taylor approximation of the log posterior around the 
+    posterior mode \tilde{\theta}\ln\left(p(\mathbf{y}|\theta)p(\theta)\right)	\approx\ln p(\mathbf{y}|\tilde{\theta})-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}
+    sop(\mathbf{y}|\theta)p(\theta)	\approx p(\mathbf{y}|\tilde{\theta})\exp\left[-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right]p(\hat{\theta})
+	=p(\mathbf{y}|\tilde{\theta})p(\tilde{\theta})(2\pi)^{p/2}\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert ^{1/2}
+	\times\underset{\text{multivariate normal density}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right]}}
+
+  • The Laplace approximation: \ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\tilde{\theta})+\text{ln}p(\tilde{\theta})+\frac{1}{2}\ln\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert +\frac{p}{2}\ln(2\pi),
+    where p is the number of unrestricted parameters. 
+
+
+
+
+
+
+
+  • The Laplace approximation: \ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\tilde{\theta})+\text{ln}p(\tilde{\theta})+\frac{1}{2}\ln\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert +\frac{p}{2}\ln(2\pi)
+    
+
+
+
+  • \hat{\theta} and J_{\mathbf{y}}(\tilde{\theta}) can be 
+    obtained with optimization/autodiff.
+
+
+
+  • The BIC approximation \ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\ln p(\hat{\theta})-\frac{p}{2}\ln n.
+    assumes that:
+
+    – \tilde{\theta}\approx\hat{\theta} 
+
+    – J_{\mathbf{y}}(\tilde{\theta}) behaves like n\cdot I_{p} in 
+      large samples and 
+
+    – the small term \frac{p}{2}\ln(2\pi) is ignored.
+
+
+
+
+
+
+
+  [float Table:
+[Table 1: 
+Posterior model probabilities - Smets-Wouters DSGE model
+]
+
+
+------------------------------------------------------------------------
+  Base     M1      M2      M3      M4      M5      M6      M7      M8   
+  0.01    0.00    0.00    0.99    0.00    0.00    0.00    0.00    0.00  
+------------------------------------------------------------------------
+
+]
+
+  <Graphics file: /home/mv/Dropbox/Teaching/BayesLearning/slides/Images/plot_conclusive_evidence.jpg>
+
+
+
+
+¨
+
+
+  • Be especially careful with Bayesian model comparison when
+
+
+
+
+    – The compared models are 
+
+
+      ∗ very different in structure
+
+      ∗ severly misspecified
+
+      ∗ very complicated (black boxes).
+
+
+
+    – The priors for the parameters in the models are 
+
+
+      ∗ not carefully elicited
+
+      ∗ only weakly informative
+
+      ∗ not matched across models.
+
+
+
+    – The data 
+
+
+      ∗ has outliers (in all models)
+
+      ∗ has a multivariate response.
+
+
+
+

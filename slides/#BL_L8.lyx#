@@ -664,7 +664,7 @@ Stationary distribution
 
 \begin_inset Formula 
 \[
-p_{ij}^{{\color{orange}(h)}}=\mathrm{Pr}(X_{t+{\color{orange}h}}=s_{j}\vert X_{t}=s_{i})
+p_{ij}^{{\color{orange}(h)}}=\mathrm{Pr}(X_{t+{\color{orange}h}}=j\vert X_{t}=i)
 \]
 
 \end_inset
@@ -714,10 +714,16 @@ equilbrium distribution
  
 \series default
 
-\begin_inset Formula $\pi=(\pi_{1},...,\pi_{k})$
+\begin_inset Formula $\boldsymbol{\pi}=(\pi_{1},...,\pi_{k})$
 \end_inset
 
- if chain is
+ if chain is 
+\series bold
+\color blue
+ergodic
+\series default
+\color inherit
+:
 \begin_inset VSpace smallskip
 \end_inset
 
@@ -773,12 +779,39 @@ Limiting
 \series bold
 \color blue
  long-run distribution
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ as 
+\begin_inset Formula $h\rightarrow\infty$
+\end_inset
+
+
+\family default
 \series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
 \color inherit
 
 \begin_inset Formula 
 \[
-\boldsymbol{P}^{t}\rightarrow\left(\begin{array}{c}
+\boldsymbol{P}^{h}\rightarrow\left(\begin{array}{c}
 \boldsymbol{\pi}\\
 \boldsymbol{\pi}\\
 \vdots\\
@@ -788,7 +821,7 @@ Limiting
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}\\
 \vdots & \vdots &  & \vdots\\
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}
-\end{array}\right)\text{ as }t\rightarrow\infty
+\end{array}\right)
 \]
 
 \end_inset
@@ -826,13 +859,43 @@ Stationary distribution, cont.
 
 \begin_deeper
 \begin_layout Itemize
-Limiting long-run distribution (unconditional probabilities)
+Limiting
 \series bold
-\color black
+\color blue
+ long-run distribution
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+ as 
+\begin_inset Formula $h\rightarrow\infty$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size small
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
 
 \begin_inset Formula 
 \[
-P^{t}\rightarrow\left(\begin{array}{c}
+\boldsymbol{P}^{h}\rightarrow\left(\begin{array}{c}
 \boldsymbol{\pi}\\
 \boldsymbol{\pi}\\
 \vdots\\
@@ -842,7 +905,7 @@ P^{t}\rightarrow\left(\begin{array}{c}
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}\\
 \vdots & \vdots &  & \vdots\\
 \pi_{1} & \pi_{2} & \cdots & \pi_{k}
-\end{array}\right)\text{ as }t\rightarrow\infty
+\end{array}\right)
 \]
 
 \end_inset
@@ -869,7 +932,26 @@ Stationary distribution
 \end_layout
 
 \begin_layout Itemize
+Draw starting point using 
+\begin_inset Formula $\boldsymbol{\pi}$
+\end_inset
+
+.
+ All future states of the Markov Chain will have distribution 
+\begin_inset Formula $\boldsymbol{\pi}$
+\end_inset
+
+.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 Weather example:
+\size small
+
 \begin_inset Formula 
 \[
 \begin{aligned}\boldsymbol{P}=\left(\begin{array}{cc}
@@ -1002,7 +1084,13 @@ Metropolis-Hastings
 \end_layout
 
 \begin_layout Itemize
-Can be extended to continuous random variables.
+Can be extended to 
+\series bold
+\color blue
+continuous random variables
+\series default
+\color inherit
+.
 \end_layout
 
 \end_deeper
@@ -1795,10 +1883,14 @@ independent of previous draw
 \end_layout
 
 \begin_layout Itemize
-Example: 
+Example: a multivariate-
+\begin_inset Formula $t$
+\end_inset
+
+ distribution (we want heavy tails)
 \begin_inset Formula 
 \[
-\boldsymbol{\theta}^{\star}\sim t_{v}\left(\tilde{\boldsymbol{\theta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}})\right),
+\boldsymbol{\theta}^{\star}\sim t\left(\tilde{\boldsymbol{\theta}},J_{\mathbf{y}}^{-1}(\tilde{\boldsymbol{\theta}}),\nu\right),
 \]
 
 \end_inset
