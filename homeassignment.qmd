@@ -18,7 +18,7 @@ The assignment for the course is divided in two parts:
     -   Work done in connection to Computer labs 2 and 3.
     -   Deadline for submission: October 15, 2025.
     -   The assignment in different formats: [html](assignment/AssignmentPartB.qmd) \| [pdf](assignment/AssignmentPartB.pdf) \| [quarto](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/AssignmentPartB.qmd)
-    -   Dataset for Assignment, part B: [bugs](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/bugs.RData)
+    -   Dataset for Assignment, part B: [bugs](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/bugs.csv)
 
 Each student will have access to his/her report when writing the exam. Students are allowed and encouraged to polish their assignment reports before uploading them for the exam. It is not allowed to add additional information unrelated to the assignments in the uploaded reports. Each uploaded report will be checked before the exam.
 
