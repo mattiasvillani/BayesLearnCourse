@@ -112,11 +112,11 @@ where `nSim` is the number of draws after the `nBurn` burn-in draws. `logPostFun
 The `mvtnorm` package contains a random number generator `rmvnorm` for the multivariate normal distribution. The output of that function is an $n\times p$ matrix where each row is draw of the $p$-dimensional multivariate normal vector. So when used to generate a single draw $n=1$, the output is $1\times p$ matrix, **not** a vector (in R's sense). Use the `as.vector()` function to convert that $1\times p$ matrix into a vector.
 :::
 
-#### Problem 6b) 
+#### Problem 6b)
 
 Use the RWM sampler from Problem 6a) to sample from the posterior of the Poisson regression model in Problem 5a). Set the proposal covariance matrix $\Sigma$ equal to the posterior covariance matrix from the Normal approximation in Problem 5) and the RWM scaling constant to $c=0.5$. Use `nSim = 5000` and `nBurn = 1000`. Use the zero vector as initial value for the algorithm. Plot histograms of the posterior draws to represent the marginal posterior densities.
 
-#### Problem 6c) 
+#### Problem 6c)
 
 Check if the posterior samples from MCMC seems to have **converged** to the true posterior by:
 
@@ -126,7 +126,7 @@ Check if the posterior samples from MCMC seems to have **converged** to the true
 
 3.  **Re-run the sampler** a second time, this time starting from the unit vector $(1,1,1,1,1)$, and compare the posterior mean estimates from the two runs.
 
-####  Problem 6d) 
+#### Problem 6d)
 
 Re-run the RWM algorithm, this time using $\Sigma = I_p$ and with $c=1$ (again using the zero vector as initial value). Is the mixing of the MCMC chain better or worse, compared to the samples obtained in Problem 6b)? Why?
 
@@ -147,15 +147,15 @@ rstan_options(auto_write = TRUE)
 ```
 :::
 
-#### Problem 7a) 
+#### Problem 7a)
 
 Sample $1000$ draws from the posterior distribution of $\boldsymbol{\beta}$ in the Poisson regression from Problem 5), but this time using the Hamiltonian Monte Carlo algorithm in the `rstan` package.
 
 ::: callout-tip
-Stan includes a special function `poisson_log` that implements the Poisson distribution with a so called *log link*. This is the same as a Poisson distribution with $\lambda = \exp(\theta)$, so that the exponential function (which is the inverse function to the log function) is built-in from the start. Read this: [Stan ](https://mc-stan.org/docs/2_28/functions-reference/poisson-log-glm.html)[User](https://mc-stan.org/docs/functions-reference/unbounded_discrete_distributions.html#poisson-log-glm)[ Guide - Poisson regression](https://mc-stan.org/docs/2_28/functions-reference/poisson-log-glm.html).
+Stan includes a special function `poisson_log` that implements the Poisson distribution with a so called *log link*. This is the same as a Poisson distribution with $\lambda = \exp(\theta)$, so that the exponential function (which is the inverse function to the log function) is built-in from the start. Read this: [Stan](https://mc-stan.org/docs/2_28/functions-reference/poisson-log-glm.html)[User](https://mc-stan.org/docs/functions-reference/unbounded_discrete_distributions.html#poisson-log-glm)[Guide - Poisson regression](https://mc-stan.org/docs/2_28/functions-reference/poisson-log-glm.html).
 :::
 
-#### Problem 7b) 
+#### Problem 7b)
 
 The upcoming release, has the following covariate vector:
 
@@ -169,7 +169,7 @@ So, the release is based on 10 commits, good proportions of C and Java code and 
 Add a `generated quantities` section to your Stan model to produce the predictive distribution, see [Stan User Guide - Prediction](https://mc-stan.org/docs/stan-users-guide/regression.html#prediction-forecasting-and-backcasting).
 :::
 
-#### Problem 7c) 
+#### Problem 7c)
 
 Consider the negative binomial regression for the same bugs data:
 
@@ -183,7 +183,7 @@ We are here using the parameterization of the negative binomial distribution whe
 
 The parameters in this model are therefore the vector of negative binomial regression coefficients $\boldsymbol{\beta}$ **and** the scalar parameter $r>0$ . Use HMC in Stan to sample $1000$ draws from joint posterior $p(\boldsymbol{\beta},r \vert \boldsymbol{y},\boldsymbol{X})$. Plot the marginal posterior for $r$. What does this posterior tell you about the suitability of the Poisson regression model in 7a)?
 
-####  Problem 7d) 
+#### Problem 7d)
 
 Compare the Poisson regression and Negative binomial regression models using Bayesian **leave-one-out (LOO) cross-validation**. Use the posterior samples from `rstan` and the `loo` package to compute the expected log predictive density from leave-one-out cross-validation (**ELPD-LOO**) for each model. Which model is preferred?
 
