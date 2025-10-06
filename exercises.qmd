@@ -32,7 +32,7 @@ Problems: BL [4.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch4
 [6.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch6solutions.html#exercise-6.3)
 
 **Exercise 5 - XXX.**\
-Problems: BL X.Y, BL X.Z
+Problems: BL [5.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch5solutions.html#exercise-5.1)
 
 **Exercise 6 - XXX.**\
 Problems: BL X.Y, BL X.Z

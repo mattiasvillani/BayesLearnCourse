@@ -73,15 +73,6 @@ coltitle=black,center title}}
   \addtocounter{footnote}{-1}%
   \endgroup
 }
-
-
-\setbeamertemplate{footline}
-{%
-  \hfill%
-  \usebeamercolor[fg]{page number in head/foot}%
-  \usebeamerfont{page number in head/foot}%
-  \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip2pt
-}
 \end_preamble
 \options xcolor=svgnames
 \use_default_options false
@@ -186,8 +177,16 @@ Lecture 9 - Hamiltonian Monte Carlo and Variational Inference
 \begin_layout Author
 
 \series bold
-Mattias Villani
+Mattias Villani 
 \series default
+
+\begin_inset Graphics
+	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
+	lyxscale 10
+	scale 2
+
+\end_inset
+
  
 \begin_inset Argument 1
 status collapsed
@@ -507,7 +506,6 @@ Hamiltonian Dynamics
 
 \begin_layout Itemize
 Hockey puck sliding over a friction-less surface: 
-\bar under
 \color blue
 
 \begin_inset CommandInset href
@@ -518,8 +516,6 @@ literal "false"
 
 \end_inset
 
-
-\bar default
 .
 \end_layout
 
@@ -530,15 +526,11 @@ literal "false"
 Posterior sampling
 \series default
 \color inherit
-: potential energy is negative log posterior 
-\begin_inset Formula 
-\[
-U\left(\boldsymbol{\theta}\right)=-\log\left[p\left(\boldsymbol{\theta}\right)p\left(\mathbf{y}|\boldsymbol{\theta}\right)\right]
-\]
-
+: 
+\begin_inset Formula $U\left(\boldsymbol{\theta}\right)=-\log\left[p\left(\boldsymbol{\theta}\right)p\left(\mathbf{y}|\boldsymbol{\theta}\right)\right]$
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Itemize
