@@ -55,6 +55,10 @@ The course is examined by a
 
 The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?i=x7ce6e5Z4n0wknyaQhxnZclQln_0nbZH05QcTcn_sl7916Qy6d650606u67310905ZWQnw). A tip is to select *Subscribe* in the upper right corner of TimeEdit and then paste the link into your phone's calendar program.
 
+### Formula sheet
+
+This [formula sheet](/misc/BLformulaSheetv0_1.pdf) will be available as a pdf via the computer in the exam room.
+
 ### Interactive material
 
 The course makes use of interactive Observable notebooks in javascript that runs in your browser. The widgets will be linked below each relevant lecture. All widgets used in the course are available [here](https://observablehq.com/collection/@mattiasvillani/bayesian-learning).
