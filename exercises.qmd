@@ -32,7 +32,7 @@ Problems: BL [4.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch4
 [6.3](https://mattiasvillani.com/BayesianLearningBook/exercises/ch6solutions.html#exercise-6.3)
 
 **Exercise 5 - Linear Regression and Normal posterior approximation**\
-Problems: BL [5.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch5solutions.html#exercise-5.1), [7.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch8solutions.html#exercise-7.1), [8.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch8solutions.html#exercise-8.1)
+Problems: BL [5.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch5solutions.html#exercise-5.1), [7.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch7solutions.html#exercise-7.1), [8.1](https://mattiasvillani.com/BayesianLearningBook/exercises/ch8solutions.html#exercise-8.1)
 
 **Exercise 6 - XXX.**\
 Problems: BL X.Y, BL X.Z
