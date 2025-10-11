@@ -430,69 +430,6 @@ status open
 
 \series bold
 \color orange
-Interactive - Random Walk Metropolis
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Box Boxed
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "1pt"
-separation "1pt"
-shadowsize "4pt"
-framecolor "orange"
-backgroundcolor "white"
-status collapsed
-
-\begin_layout Plain Layout
-\align center
-\begin_inset CommandInset href
-LatexCommand href
-name "\\includegraphics[width=0.7\\textwidth]{Images/rwm_widget.png}"
-target "https://observablehq.com/@mattiasvillani/random-walk-metropolis"
-literal "true"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
 HMC is based on ideas from physics
 \end_layout
 
@@ -674,8 +611,8 @@ changes over time
 :
 \begin_inset Formula 
 \begin{align*}
-\frac{d\boldsymbol{\theta}}{dt} & =\frac{\partial H}{\partial\boldsymbol{\phi}}\\
-\frac{d\boldsymbol{\phi}}{dt} & =-\frac{\partial H}{\partial\boldsymbol{\theta}}
+\frac{d\theta}{dt} & =\frac{\partial H}{\partial\phi}\\
+\frac{d\phi}{dt} & =-\frac{\partial H}{\partial\theta}
 \end{align*}
 
 \end_inset
@@ -1203,6 +1140,41 @@ evaluate gradient of log posterior
 \color inherit
  many times during Hamiltonian iterations.
  Costly! (Subsampling HMC).
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Difficulty with 
+\series bold
+\color blue
+multimodality
+\series default
+\color inherit
+ (true for most algorithms).
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Standard HMC cannot handle 
+\series bold
+\color blue
+discrete parameters
+\series default
+\color inherit
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Mixture example.
+ Some recent progress.
 \end_layout
 
 \end_deeper
@@ -1222,7 +1194,7 @@ status open
 
 \series bold
 \color orange
-Interactive - HMC
+Interactive - Leapfrog
 \end_layout
 
 \end_inset
@@ -1255,8 +1227,8 @@ status open
 \align center
 \begin_inset CommandInset href
 LatexCommand href
-name "\\includegraphics[width=0.7\\textwidth]{Images/hmc_widget.png}"
-target "https://observablehq.com/@mattiasvillani/hamiltonian-markov-chain-monte-carlo"
+name "\\includegraphics[width=0.7\\textwidth]{Images/Leapfrog_widget.png}"
+target "https://observablehq.com/@mattiasvillani/leapfrog-integrator"
 literal "true"
 
 \end_inset
@@ -1594,11 +1566,103 @@ where
 \end_layout
 
 \begin_layout Itemize
+
+\series bold
+\color blue
+Structured mean field approximation
+\series default
+\color inherit
+.
+ Group subset of parameters in tractable blocks.
+ Similar to Gibbs sampling.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Mean field approximation - algorithm
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Initialize: 
+\begin_inset Formula $q_{2}^{*}(\theta_{2}),...,q_{M}^{*}(\theta_{p})$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Repeat until convergence:
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $q_{1}^{*}(\theta_{1})\leftarrow\frac{\exp\left[E_{-\theta_{1}}\ln p(\mathbf{y},\theta)\right]}{\int\exp\left[E_{-\theta_{1}}\ln p(\mathbf{y},\theta)\right]d\theta_{1}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\vdots$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $q_{p}^{*}(\theta_{p})\leftarrow\frac{\exp\left[E_{-\theta_{p}}\ln p(\mathbf{y},\theta)\right]}{\int\exp\left[E_{-\theta_{p}}\ln p(\mathbf{y},\theta)\right]d\theta_{p}}$
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
 Note: no assumptions about parametric form of the 
 \begin_inset Formula $q_{i}(\theta)$
 \end_inset
 
 .
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -1611,26 +1675,14 @@ Optimal
 turn out
 \series default
  to be parametric (normal etc).
-\end_layout
-
-\begin_layout Itemize
-Just update hyperparameters in the optimal densities.
-\begin_inset VSpace bigskip
+\begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Structured mean field approximation
-\series default
-\color inherit
-.
- Group subset of parameters in tractable blocks.
- Similar to Gibbs sampling.
+Just update hyperparameters in the optimal densities.
 \end_layout
 
 \end_deeper
