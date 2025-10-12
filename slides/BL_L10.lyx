@@ -53,7 +53,7 @@ coltitle=black,center title}}
 \tiny
 \vspace{1cm}
 \href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
-\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://bsky.app/profile/matvil.bsky.social}{\includegraphics[width=0.3cm]{/misc/bluesky.png} @matvil}\hspace*{1cm}~
 \href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
 \href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
@@ -78,6 +78,15 @@ coltitle=black,center title}}
   \renewcommand\thefootnote{}\footnote{#1}%
   \addtocounter{footnote}{-1}%
   \endgroup
+}
+
+
+\setbeamertemplate{footline}
+{%
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip2pt
 }
 \end_preamble
 \options xcolor=svgnames
@@ -161,7 +170,7 @@ knitr
 \color orange
 Bayesian Learning
 \begin_inset Argument 1
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -183,16 +192,8 @@ Lecture 10 - Probabilistic programming for Bayesian inference
 \begin_layout Author
 
 \series bold
-Mattias Villani 
+Mattias Villani
 \series default
-
-\begin_inset Graphics
-	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
-	lyxscale 10
-	scale 2
-
-\end_inset
-
  
 \begin_inset Argument 1
 status collapsed
@@ -253,6 +254,9 @@ Lecture overview
 \series bold
 \color blue
 Stan
+\series default
+\color inherit
+
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -263,7 +267,7 @@ Stan
 
 \series bold
 \color blue
-Turing.jl
+Stan demo
 \end_layout
 
 \end_deeper
@@ -428,62 +432,21 @@ status open
 
 \series bold
 \color orange
-Stan - toy example: three plants
+HMC sampling for iid normal model in rstan
 \end_layout
 
-\end_inset
-
-
-\begin_inset Separator latexpar
 \end_inset
 
 
 \end_layout
 
 \begin_deeper
-\begin_layout Itemize
-Three plants were observed for four months, measuring the number of flowers
-\end_layout
-
 \begin_layout Standard
-\begin_inset space \hspace{}
-\length 2cm
-\end_inset
-
-
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="1">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
-	filename Images/ThreePlants.eps
-	scale 35
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
+	filename /home/mv/Dropbox/Seminars/CEDASBergen2023/figs/stannormal.png
+	lyxscale 40
+	scale 22
 
 \end_inset
 
@@ -491,724 +454,6 @@ Three plants were observed for four months, measuring the number of flowers
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{frame}[fragile]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-frametitle{
-\backslash
-color{orange}
-\backslash
-textbf{Stan Model 1: iid Normal}}
-\end_layout
-
-\begin_layout Plain Layout
-
-$$y_{i}
-\backslash
-stackrel{iid}{
-\backslash
-sim}N
-\backslash
-left(
-\backslash
-mu,
-\backslash
-sigma^{2}
-\backslash
-right)$$
-\end_layout
-
-\begin_layout Plain Layout
-
-<<StanModel1, eval=FALSE, size='tiny'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-library(rstan)
-\end_layout
-
-\begin_layout Plain Layout
-
-y = c(4,5,6,4,0,2,5,3,8,6,10,8) 
-\end_layout
-
-\begin_layout Plain Layout
-
-N = length(y)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-StanModel = '
-\end_layout
-
-\begin_layout Plain Layout
-
-data { 
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> N; // Number of observations 
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> y[N]; // Number of flowers 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-parameters { 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real mu; 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real<lower=0> sigma2; 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-model { 
-\end_layout
-
-\begin_layout Plain Layout
-
-  mu ~ normal(0,100); // Normal with mean 0, st.dev.
- 100 
-\end_layout
-
-\begin_layout Plain Layout
-
-  sigma2 ~ scaled_inv_chi_square(1,2); // Scaled-inv-chi2 with nu 1, sigma
- 2 
-\end_layout
-
-\begin_layout Plain Layout
-
-  for(i in 1:N)   
-\end_layout
-
-\begin_layout Plain Layout
-
-    y[i] ~ normal(mu,sqrt(sigma2)); 
-\end_layout
-
-\begin_layout Plain Layout
-
-}'
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{frame}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{frame}[fragile]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-frametitle{
-\backslash
-color{orange}
-\backslash
-textbf{Stan Model 2: multilevel normal}}
-\end_layout
-
-\begin_layout Plain Layout
-
-$$y_{i,p}
-\backslash
-sim N
-\backslash
-left(
-\backslash
-mu_{p},
-\backslash
-sigma_{p}^{2}
-\backslash
-right),
-\backslash
-,
-\backslash
-,
-\backslash
-,
-\backslash
-,
-\backslash
-,
-\backslash
-mu_{p}
-\backslash
-sim N
-\backslash
-left(
-\backslash
-mu,
-\backslash
-sigma^{2}
-\backslash
-right)$$
-\end_layout
-
-\begin_layout Plain Layout
-
-<<StanModel2, eval=FALSE, size='tiny'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-StanModel = '
-\end_layout
-
-\begin_layout Plain Layout
-
-data {   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> N; // Number of observations   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> y[N]; // Number of flowers   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> P; // Number of plants 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-transformed data {   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> M; // Number of months   
-\end_layout
-
-\begin_layout Plain Layout
-
-  M = N / P; 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-parameters { 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real mu; 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real<lower=0> sigma2; 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real mup[P]; 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real sigmap2[P]; 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-model { 
-\end_layout
-
-\begin_layout Plain Layout
-
-  mu ~ normal(0,100); // Normal with mean 0, st.dev.
- 100 
-\end_layout
-
-\begin_layout Plain Layout
-
-  sigma2 ~ scaled_inv_chi_square(1,2); // Scaled-inv-chi2 with nu 1, sigma
- 2
-\end_layout
-
-\begin_layout Plain Layout
-
-  for(p in 1:P){   
-\end_layout
-
-\begin_layout Plain Layout
-
-    mup[p] ~ normal(mu,sqrt(sigma2));   
-\end_layout
-
-\begin_layout Plain Layout
-
-    for(m in 1:M)     
-\end_layout
-
-\begin_layout Plain Layout
-
-      y[M*(p-1)+m] ~ normal(mup[p],sqrt(sigmap2[p]));  
-\end_layout
-
-\begin_layout Plain Layout
-
-  } 
-\end_layout
-
-\begin_layout Plain Layout
-
-}'
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{frame}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{frame}[fragile]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-frametitle{
-\backslash
-color{orange}
-\backslash
-textbf{Stan Model 3: multilevel Poisson}}
-\end_layout
-
-\begin_layout Plain Layout
-
-$$y_{i,p}
-\backslash
-sim Poisson
-\backslash
-left(
-\backslash
-mu_{p}
-\backslash
-right),
-\backslash
-,
-\backslash
-,
-\backslash
-,
-\backslash
-,
-\backslash
-,
-\backslash
-mu_{p}
-\backslash
-sim logN
-\backslash
-left(
-\backslash
-mu,
-\backslash
-sigma^{2}
-\backslash
-right)$$
-\end_layout
-
-\begin_layout Plain Layout
-
-<<StanModel3, eval=FALSE, size='tiny'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-StanModel = '
-\end_layout
-
-\begin_layout Plain Layout
-
-data {   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> N; // Number of observations   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> y[N]; // Number of flowers   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> P; // Number of plants 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-transformed data {   
-\end_layout
-
-\begin_layout Plain Layout
-
-  int<lower=0> M; // Number of months   
-\end_layout
-
-\begin_layout Plain Layout
-
-  M = N / P; 
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-parameters { 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real mu; 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real<lower=0> sigma2; 
-\end_layout
-
-\begin_layout Plain Layout
-
-  real mup[P];
-\end_layout
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\begin_layout Plain Layout
-
-model { 
-\end_layout
-
-\begin_layout Plain Layout
-
-  mu ~ normal(0,100); // Normal with mean 0, st.dev.
- 100 
-\end_layout
-
-\begin_layout Plain Layout
-
-  sigma2 ~ scaled_inv_chi_square(1,2); // Scaled-inv-chi2 with nu 1, sigma
- 2
-\end_layout
-
-\begin_layout Plain Layout
-
-  for(p in 1:P){     
-\end_layout
-
-\begin_layout Plain Layout
-
-    mup[p] ~ lognormal(mu,sqrt(sigma2)); // Log-normal     
-\end_layout
-
-\begin_layout Plain Layout
-
-    for(m in 1:M)       
-\end_layout
-
-\begin_layout Plain Layout
-
-      y[M*(p-1)+m] ~ poisson(mup[p]); // Poisson   
-\end_layout
-
-\begin_layout Plain Layout
-
-  }
-\end_layout
-
-\begin_layout Plain Layout
-
-}'
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{frame}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{frame}[fragile]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-frametitle{
-\backslash
-color{orange}
-\backslash
-textbf{Stan: fit model and analyze output}}
-\end_layout
-
-\begin_layout Plain Layout
-
-<<StanModel4, eval=FALSE, size='tiny'>>=
-\end_layout
-
-\begin_layout Plain Layout
-
-data = list(N=N, y=y, P=P) 
-\end_layout
-
-\begin_layout Plain Layout
-
-burnin = 1000 
-\end_layout
-
-\begin_layout Plain Layout
-
-niter = 2000 
-\end_layout
-
-\begin_layout Plain Layout
-
-fit = stan(model_code=StanModel,data=data,            
-\end_layout
-
-\begin_layout Plain Layout
-
-           warmup=burnin,iter=niter,chains=4)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Print the fitted model
-\end_layout
-
-\begin_layout Plain Layout
-
-print(fit,digits_summary=3)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Extract posterior samples 
-\end_layout
-
-\begin_layout Plain Layout
-
-postDraws <- extract(fit) 
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Do traceplots of the first chain 
-\end_layout
-
-\begin_layout Plain Layout
-
-par(mfrow = c(1,1)) 
-\end_layout
-
-\begin_layout Plain Layout
-
-plot(postDraws$mu[1:(niter-burnin)],type="l",ylab="mu",main="Traceplot")
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Do automatic traceplots of all chains 
-\end_layout
-
-\begin_layout Plain Layout
-
-traceplot(fit)
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-# Bivariate posterior plots 
-\end_layout
-
-\begin_layout Plain Layout
-
-pairs(fit)
-\end_layout
-
-\begin_layout Plain Layout
-
-@
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{frame}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
 \begin_inset Separator parbreak
 \end_inset
@@ -1327,7 +572,7 @@ status open
 
 \series bold
 \color orange
-Turing.jl
+Turing.jl - Probabilistic Programming in Julia
 \end_layout
 
 \end_inset
@@ -1473,13 +718,9 @@ status open
 
 \series bold
 \color orange
-Turing.jl for the Bernoulli model
+HMC sampling for iid normal model in Turing.jl
 \end_layout
 
-\end_inset
-
-
-\begin_inset Separator latexpar
 \end_inset
 
 
@@ -1489,91 +730,9 @@ Turing.jl for the Bernoulli model
 \begin_layout Standard
 \align center
 \begin_inset Graphics
-	filename Images/bernoulli_turing.png
+	filename /home/mv/Dropbox/Seminars/CEDASBergen2023/figs/turingnormal.png
 	lyxscale 40
-	scale 30
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Turing.jl for normal model
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/turingNormal.png
-	lyxscale 40
-	scale 22
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Stan for normal model
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/stanNormal.png
-	lyxscale 40
-	scale 20
+	scale 25
 
 \end_inset
 

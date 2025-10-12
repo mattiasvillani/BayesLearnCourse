@@ -181,7 +181,7 @@ $$
 We are here using the parameterization of the negative binomial distribution where the **second parameter is the mean**; this corresponds to using the `mean` argument in `dnbinom` function in plain R. In Stan, this distribution (again, with the log link built-in) is called `neg_binomial_2_log`, see [Stan User Guide - negative binomial regression](https://mc-stan.org/docs/functions-reference/unbounded_discrete_distributions.html#neg-binom-2-log).
 :::
 
-The parameters in this model are therefore the vector of negative binomial regression coefficients $\boldsymbol{\beta}$ **and** the scalar parameter $r>0$ . Use HMC in Stan to sample $1000$ draws from joint posterior $p(\boldsymbol{\beta},r \vert \boldsymbol{y},\boldsymbol{X})$. Plot the marginal posterior for $r$. What does this posterior tell you about the suitability of the Poisson regression model in 7a)?
+The parameters in this model are therefore the vector of negative binomial regression coefficients $\boldsymbol{\beta}$ **and** the scalar parameter $r>0$ . Use HMC in Stan to sample $1000$ draws from joint posterior $p(\boldsymbol{\beta},r \vert \boldsymbol{y},\boldsymbol{X})$. Use an $\mathrm{Expon}(1)$ prior for $r$. Plot the marginal posterior for $r$. What does this posterior tell you about the suitability of the Poisson regression model in 7a)?
 
 #### Problem 7d)
 

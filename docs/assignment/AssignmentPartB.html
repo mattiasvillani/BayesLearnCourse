@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Mattias Villani">
-<meta name="dcterms.date" content="2025-10-02">
+<meta name="dcterms.date" content="2025-10-12">
 
 <title>Bayesian Learning, 7.5 hp – Bayesian Learning</title>
 <style>
@@ -4065,7 +4065,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 2, 2025</p>
+      <p class="date">October 12, 2025</p>
     </div>
   </div>
   
@@ -4304,7 +4304,7 @@ Note
 <p>We are here using the parameterization of the negative binomial distribution where the <strong>second parameter is the mean</strong>; this corresponds to using the <code>mean</code> argument in <code>dnbinom</code> function in plain R. In Stan, this distribution (again, with the log link built-in) is called <code>neg_binomial_2_log</code>, see <a href="https://mc-stan.org/docs/functions-reference/unbounded_discrete_distributions.html#neg-binom-2-log">Stan User Guide - negative binomial regression</a>.</p>
 </div>
 </div>
-<p>The parameters in this model are therefore the vector of negative binomial regression coefficients <span class="math inline">\(\boldsymbol{\beta}\)</span> <strong>and</strong> the scalar parameter <span class="math inline">\(r&gt;0\)</span> . Use HMC in Stan to sample <span class="math inline">\(1000\)</span> draws from joint posterior <span class="math inline">\(p(\boldsymbol{\beta},r \vert \boldsymbol{y},\boldsymbol{X})\)</span>. Plot the marginal posterior for <span class="math inline">\(r\)</span>. What does this posterior tell you about the suitability of the Poisson regression model in 7a)?</p>
+<p>The parameters in this model are therefore the vector of negative binomial regression coefficients <span class="math inline">\(\boldsymbol{\beta}\)</span> <strong>and</strong> the scalar parameter <span class="math inline">\(r&gt;0\)</span> . Use HMC in Stan to sample <span class="math inline">\(1000\)</span> draws from joint posterior <span class="math inline">\(p(\boldsymbol{\beta},r \vert \boldsymbol{y},\boldsymbol{X})\)</span>. Use an <span class="math inline">\(\mathrm{Expon}(1)\)</span> prior for <span class="math inline">\(r\)</span>. Plot the marginal posterior for <span class="math inline">\(r\)</span>. What does this posterior tell you about the suitability of the Poisson regression model in 7a)?</p>
 </section>
 <section id="problem-7d" class="level4">
 <h4 class="anchored" data-anchor-id="problem-7d">Problem 7d)</h4>

@@ -47,7 +47,7 @@ coltitle=black,center title}}
 \tiny
 \vspace{1cm}
 \href{https://mattiasvillani.com}{\includegraphics[width=0.33cm]{/misc/web.png} mattiasvillani.com}\hspace*{1cm}~
-\href{https://twitter.com/matvil}{\includegraphics[width=0.3cm]{/misc/twitter.jpg} @matvil}\hspace*{1cm}~
+\href{https://bsky.app/profile/matvil.bsky.social}{\includegraphics[width=0.3cm]{/misc/bluesky.png} @matvil}\hspace*{1cm}~
 \href{https://fosstodon.org/@matvil}{\includegraphics[width=0.3cm]{/misc/mastodon.pdf} @matvil}\hspace*{1cm}~
 \href{https://github.com/mattiasvillani}{\includegraphics[width=0.3cm]{/misc/github.png} mattiasvillani}~
 }
@@ -1187,7 +1187,7 @@ Avoids U-turns in the Hamiltonian proposals.
 \end_deeper
 \begin_layout Itemize
 Drawbacks of HMC:
-\begin_inset VSpace smallskip
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -1203,6 +1203,40 @@ evaluate gradient of log posterior
 \color inherit
  many times during Hamiltonian iterations.
  Costly! (Subsampling HMC).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Difficulty with 
+\series bold
+\color blue
+multimodality
+\series default
+\color inherit
+ (true for most algorithms).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Standard HMC cannot handle 
+\series bold
+\color blue
+discrete parameters
+\series default
+\color inherit
+.
+ 
+\begin_inset Newline newline
+\end_inset
+
+Mixture example.
+ Some recent progress.
 \end_layout
 
 \end_deeper
@@ -1487,7 +1521,7 @@ Kullback-Leibler divergence
 :
 \begin_inset Formula 
 \[
-KL(q,p)=\int q(\boldsymbol{\theta})\log\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}d\boldsymbol{\theta}=E_{q}\left[\log\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}\right].
+KL(q,p)=\int q(\boldsymbol{\theta})\log\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}d\boldsymbol{\theta}=E_{q}\left(\log\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{\theta}|\boldsymbol{y})}\right).
 \]
 
 \end_inset
@@ -2264,13 +2298,45 @@ Probit example
 \end_layout
 
 \begin_deeper
+\begin_layout Itemize
+Minimizing KL divergence = maximizing 
+\series bold
+\color blue
+evidence lower bound
+\series default
+\color inherit
+ (
+\series bold
+\color blue
+ELBO
+\series default
+\color inherit
+)
+\begin_inset Formula 
+\[
+\mathrm{ELBO}=E_{q}\left(\log\frac{q(\boldsymbol{\theta})}{p(\boldsymbol{y}\vert\boldsymbol{\theta})p(\boldsymbol{\theta})}\right)
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+So proportional form of the posterior is enough.
+\end_layout
+
+\begin_layout Itemize
+Can use ELBO to detect convergence.
+\end_layout
+
 \begin_layout Standard
 \align center
 
 \series bold
 \begin_inset Graphics
 	filename Images/Probit_LowerBound.eps
-	scale 45
+	scale 35
 
 \end_inset
 
