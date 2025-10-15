@@ -73,6 +73,16 @@ coltitle=black,center title}}
   \addtocounter{footnote}{-1}%
   \endgroup
 }
+
+
+
+\setbeamertemplate{footline}
+{%
+  \hfill%
+  \usebeamercolor[fg]{page number in head/foot}%
+  \usebeamerfont{page number in head/foot}%
+  \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip2pt
+}
 \end_preamble
 \options xcolor=svgnames, handout
 \use_default_options false
@@ -177,14 +187,6 @@ Lecture 11 - Bayesian model comparison
 Mattias Villani 
 \series default
 
-\begin_inset Graphics
-	filename /home/mv/Dropbox/Teaching/BayesLearning/Misc/Beard Man Emoji.png
-	lyxscale 10
-	scale 2
-
-\end_inset
-
- 
 \begin_inset Argument 1
 status collapsed
 
@@ -267,6 +269,13 @@ Marginal likelihood
 \end_inset
 
 
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model averaging
 \end_layout
 
 \end_deeper
@@ -396,123 +405,6 @@ status open
 
 \series bold
 \color orange
-Jeffreys scale of evidence for the Bayes factor
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Barely worth mentioning: 
-\begin_inset Formula $1<\mathrm{BF}\leq3$
-\end_inset
-
-
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Positive: 
-\begin_inset Formula $3<\mathrm{BF}\leq20$
-\end_inset
-
-
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Strong: 
-\begin_inset Formula $20<\mathrm{BF}\leq150$
-\end_inset
-
-
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-Very strong: 
-\begin_inset Formula $>150$
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Internet speed data - Bayes factor
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename /home/mv/Dropbox/BayesBook/Figs/NormalMargLikeAllKappa0InternetSpeed.pdf
-	scale 45
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
 Internet speed data - prior predictive density
 \end_layout
 
@@ -538,30 +430,7 @@ Internet speed data - prior predictive density
 \end_layout
 
 \end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
 \begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-Regression example
-\series default
-\color inherit
- 
-\end_layout
-
-\end_inset
-
-
 \begin_inset Separator latexpar
 \end_inset
 
@@ -601,18 +470,10 @@ Taylor approximation of the log posterior around the posterior mode
 \begin_inset Formula $\tilde{\theta}$
 \end_inset
 
-
+ gives:
 \begin_inset Formula 
 \begin{align*}
-\ln\left(p(\mathbf{y}|\theta)p(\theta)\right) & \approx\ln p(\mathbf{y}|\tilde{\theta})-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}
-\end{align*}
-
-\end_inset
-
-so
-\begin_inset Formula 
-\begin{align*}
-p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\tilde{\theta})\exp\left[-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right]p(\hat{\theta})\\
+p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\tilde{\theta})p(\hat{\theta})\exp\left[-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right]\\
  & =p(\mathbf{y}|\tilde{\theta})p(\tilde{\theta})(2\pi)^{p/2}\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert ^{1/2}\\
  & \times\underset{\text{multivariate normal density}}{\underbrace{(2\pi)^{-p/2}\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert ^{-1/2}\exp\left[-\frac{1}{2}J_{\mathbf{y}}(\tilde{\theta})(\theta-\tilde{\theta})^{2}\right]}}
 \end{align*}
@@ -623,26 +484,19 @@ p(\mathbf{y}|\theta)p(\theta) & \approx p(\mathbf{y}|\tilde{\theta})\exp\left[-\
 \end_layout
 
 \begin_layout Itemize
+So integrating both sides with respect to 
+\begin_inset Formula $\theta$
+\end_inset
 
-\series bold
-\color blue
-The Laplace approximation
-\series default
-\color inherit
-: 
+ gives
 \begin_inset Formula 
 \[
-\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\tilde{\theta})+\text{ln}p(\tilde{\theta})+\frac{1}{2}\ln\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert +\frac{p}{2}\ln(2\pi),
+p(\mathbf{y})=\int p(\mathbf{y}|\theta)p(\theta)d\theta=p(\mathbf{y}|\tilde{\theta})p(\tilde{\theta})(2\pi)^{p/2}\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert ^{1/2}
 \]
 
 \end_inset
 
-where 
-\begin_inset Formula $p$
-\end_inset
 
- is the number of unrestricted parameters.
- 
 \end_layout
 
 \end_deeper
@@ -661,13 +515,9 @@ status open
 
 \series bold
 \color orange
-Laplace approximation and BIC
+Laplace approximation
 \end_layout
 
-\end_inset
-
-
-\begin_inset Separator latexpar
 \end_inset
 
 
@@ -681,16 +531,21 @@ Laplace approximation and BIC
 The Laplace approximation
 \series default
 \color inherit
-: 
+ of the log marginal likelihood:
 \begin_inset Formula 
 \[
-\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\tilde{\theta})+\text{ln}p(\tilde{\theta})+\frac{1}{2}\ln\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert +\frac{p}{2}\ln(2\pi)
+\ln\hat{p}(\mathbf{y})\approx\ln p(\mathbf{y}|\tilde{\theta})+\text{ln}p(\tilde{\theta})+\frac{1}{2}\ln\left\vert J_{\mathbf{y}}^{-1}(\tilde{\theta})\right\vert +\frac{p}{2}\ln(2\pi),
 \]
 
 \end_inset
 
+where 
+\begin_inset Formula $p$
+\end_inset
 
-\begin_inset VSpace medskip
+ is the number of unrestricted parameters.
+ 
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -717,372 +572,105 @@ autodiff
 \series default
 \color inherit
 .
-\begin_inset VSpace bigskip
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Model averaging
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ be a quantity with the same interpretation in the two models, 
+\begin_inset Formula $M_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $M_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Example: Prediction 
+\begin_inset Formula $\gamma=y_{T+1}$
+\end_inset
+
+.
+\begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
 \begin_layout Itemize
-The 
-\series bold
-\color blue
-BIC approximation
-\series default
-\color inherit
- 
+The marginal posterior distribution of 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ is
 \begin_inset Formula 
 \[
-\ln\hat{p}(\mathbf{y})=\ln p(\mathbf{y}|\hat{\theta})+\ln p(\hat{\theta})-\frac{p}{2}\ln n.
+p(\gamma|\mathbf{y})=p(M_{1}|\mathbf{y})p_{1}(\gamma|\mathbf{y})+p(M_{2}|\mathbf{y})p_{2}(\gamma|\mathbf{y}),
 \]
 
 \end_inset
 
-assumes that:
-\end_layout
 
-\begin_deeper
-\begin_layout Itemize
-\begin_inset Formula $\tilde{\theta}\approx\hat{\theta}$
+\begin_inset Formula $p_{k}(\gamma|\mathbf{y})$
 \end_inset
 
- 
-\end_layout
-
-\begin_layout Itemize
-\begin_inset Formula $J_{\mathbf{y}}(\tilde{\theta})$
+ is the marginal posterior of 
+\begin_inset Formula $\gamma$
 \end_inset
 
- behaves like 
-\begin_inset Formula $n\cdot I_{p}$
+ from model 
+\begin_inset Formula $M_{k}$
 \end_inset
 
- in large samples and 
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
-the small term 
-\begin_inset Formula $\frac{p}{2}\ln(2\pi)$
-\end_inset
-
- is ignored.
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-\begin_inset Formula $\mathrm{Pr}(M_{k}\vert\boldsymbol{y})$
-\end_inset
-
- can be overfident - macroeconomics
-\series default
-\color inherit
-
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset href
-LatexCommand href
-name "Oelrich et al (2020). When are Bayesian model probabilities overconfident?"
-target "https://arxiv.org/abs/2003.04026"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Standard
-\begin_inset Float table
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Posterior model probabilities - Smets-Wouters DSGE model
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="2" columns="9">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
-<row>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Base
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M1
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M2
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M3
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M4
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M5
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M6
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M7
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-M8
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.01
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.99
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" bottomline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-0.00
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align center
-\begin_inset Graphics
-	filename Images/plot_conclusive_evidence.jpg
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Standard
-\begin_inset Separator parbreak
-\end_inset
-
-
-\end_layout
-
-\begin_layout Frame
-¨
-\begin_inset Argument 4
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-\color orange
-And hey! ...
- let's be careful out there
-\end_layout
-
-\end_inset
-
-
-\begin_inset Separator latexpar
-\end_inset
-
-
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Be especially 
+Predictive distribution includes 
 \series bold
 \color blue
-careful
+three sources of uncertainty
 \series default
 \color inherit
- with Bayesian model comparison when
+:
 \begin_inset VSpace medskip
 \end_inset
 
@@ -1095,93 +683,49 @@ careful
 
 \begin_deeper
 \begin_layout Itemize
-The 
+
 \series bold
 \color blue
-compared models 
+Future errors
 \series default
 \color inherit
-are 
-\begin_inset Separator latexpar
+/disturbances (e.g.
+ the 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+'s in a regression)
+\begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-very different in structure
-\end_layout
 
-\begin_layout Itemize
-severly misspecified
-\end_layout
-
-\begin_layout Itemize
-very complicated (black boxes).
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-The 
 \series bold
 \color blue
-priors
+Parameter uncertainty
 \series default
 \color inherit
- for the parameters in the models are 
-\begin_inset Separator latexpar
+ (the predictive distribution has the parameters integrated out by their
+ posteriors)
+\begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_deeper
 \begin_layout Itemize
-not carefully elicited
-\end_layout
 
-\begin_layout Itemize
-only weakly informative
-\end_layout
-
-\begin_layout Itemize
-not matched across models.
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\end_deeper
-\begin_layout Itemize
-The 
 \series bold
 \color blue
-data
+Model uncertainty
 \series default
 \color inherit
- 
-\begin_inset Separator latexpar
-\end_inset
-
-
+ (by model averaging)
 \end_layout
 
-\begin_deeper
-\begin_layout Itemize
-has outliers (in all models)
-\end_layout
-
-\begin_layout Itemize
-has a multivariate response.
-\end_layout
-
-\end_deeper
 \end_deeper
 \end_deeper
 \begin_layout Standard

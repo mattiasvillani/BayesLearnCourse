@@ -62,6 +62,6 @@ Read: [Slides](/slides/BL_L9.pdf) \
 Interactive: [HMC](https://observablehq.com/@mattiasvillani/hamiltonian-markov-chain-monte-carlo) | [Leapfrog algorithm for HMC proposals](https://observablehq.com/@mattiasvillani/leapfrog-integrator) | [HMC can struggle on multimodal distributions](https://observablehq.com/@mattiasvillani/hmc-sampling-from-multi-modal-distributions)\
 
 **Lecture 10 - Probabilistic programming for Bayes. Model comparison.**\
-Read: BL 14.1-14.4 | [Intro to Stan](/misc/intro_stan.qmd) \
+Read: BL 14.1-14.4 | [Intro to Stan](/misc/intro_stan.qmd) | [Slides](/slides/BL_L11.pdf) \
 
 **Lecture 11 - Course summary.**\
