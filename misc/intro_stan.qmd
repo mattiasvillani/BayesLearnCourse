@@ -167,7 +167,7 @@ The output has several columns:
 
 -   `n_eff` is the number of *effective* draws in each chain. It is defined as `iter`/`IF`, where `IF` is the inefficiency factor. We asked for `iter=1000` draws, but due to the autocorrelation of the draws from HMC we only got the equivalent of `n_eff` *iid* draws. For this simple model, HMC is very efficient: the number of effective draws `n_eff` is almost the same as the nominal number of draws `iter`; we can therefore deduce that $\mathrm{IF} \approx 1$, and the draws are close to the ideal *iid* case.
 
--   `Rhat` in the final column is a measure convergence that compares the mean from the different runs using a so called ANOVA analysis. It looks at all parameters jointly (i.e. technically Multivariate ANOVA). The ideal case is `Rhat=1`, and the rule-of-thumb is that `Rhat` should be below X for the sampler to have converged.
+-   `Rhat` in the final column is a measure convergence that compares the mean from the different runs using a so called ANOVA analysis. It looks at all parameters jointly (i.e. technically Multivariate ANOVA). The ideal case is `Rhat=1`, and the very rough rule-of-thumb is that `Rhat` should be below $1.01$ for the sampler to have converged.
 
 We can use Stan's `traceplot` function to plot the MCMC trajectories for all parameters and for each chain (the different colors of the trajectories).
 
@@ -243,21 +243,27 @@ fit = stan(model_code = iidnormal, data = c(data, prior), iter = 1000, refresh =
 
 ## Model comparison using leave-one-out predictive cross-validation
 
-A natural way compare models is to compare their predictive performance on new data (test data). The `loo` package, made by some of Stan developers, can be used to assess the predictive performance of a model using leave-of-out cross-validation. This means that the model is fitted to all data points except one which is left as single piece of test data to evaluate the model prediction. This is then repeated so that all data points are used exactly once as test data.
+A natural way compare models is to compare their predictive performance on new data (test data). The `loo` package, made by some of Stan developers, can be used to assess the predictive performance of a model using leave-of-out cross-validation. This means that the model is fitted to all data points, except one which is left as single piece of test data to evaluate the model prediction. This is then repeated so that every data point is used exactly once as test data.
 
-Since we are doing Bayesian inference, where we obtain a predictive distribution, we often would like to evaluate the predictive density, not just a point prediction. Let $y_i$ be the $i$th observation and $\boldsymbol{y}_{-i}$ the rest of the dataset, excluding $y_i$. The predictive density for the $i$ observation is then
+Since we are doing Bayesian inference - where we obtain a predictive distribution - we often want to evaluate the predictive *density*, not just a point prediction. Let $y_i$ be the $i$th observation and $\boldsymbol{y}_{-i}$ the rest of the dataset, *excluding* $y_i$. The predictive density for the $i$ observation is then
 
 $$
 p(\tilde{y}_i \vert \boldsymbol{y}_{-i}) =   \int p(\tilde{y}_i \vert \boldsymbol{y}_{-i}, \boldsymbol{\theta})p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})d \boldsymbol{\theta},\text{ for } i = 1,\ldots,n,
 $$
 
-where $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$ is the posterior distribution for the vector of model parameters $\boldsymbol{\theta}$ given the data $\boldsymbol{y}_{-i}$ without the $i$th observation. We are here using the tilde (\~) notation for prediction. If we have iid observations, we can simplify this a bit
+where $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$ is the posterior distribution for the model parameters $\boldsymbol{\theta}$ given the data $\boldsymbol{y}_{-i}$ without the $i$th observation. We are here using the tilde (\~) notation on $y$ to show that this is a predicted quantity. If we have iid observations, we can simplify this a bit
 
 $$
 p(\tilde{y}_i \vert \boldsymbol{y}_{-i}) =   \int p(\tilde{y}_i \vert \boldsymbol{\theta})p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})d \boldsymbol{\theta},\text{ for } i = 1,\ldots,n,
 $$
 
-where $p(\tilde{y}_i\vert \boldsymbol{\theta})$ is just the model density, or, for discrete data, the probability (mass) function. When this predictive density $p(\tilde{y}_i\vert \boldsymbol{\theta})$ is evaluated at the observed data point $y_i$, we call the resulting density value, $p(y_i\vert \boldsymbol{\theta})$, the **density score** for the $i$th observation. A good model would give high density scores for all (or most) observations in the dataset, i.e. $p(y_i\vert \boldsymbol{\theta})$ is large for all $i=1,\ldots,n$. A predictive density with a small variance that is centered over the test data gives a high density score, while a predictive density with a large variance would give a lower density score. Note however that a tightly concentrated predictive density that "misses" the observed data would get a terribly low density score, so it is clearly not a good model that is over-confident. This is illustrated in the figure below where the red density has a better score for the observed $y=0.5$ data point than the wide blue density, and much better than the green density that is over-confident and essentially misses the observed data point and obtains a very low density score.
+where $p(\tilde{y}_i\vert \boldsymbol{\theta})$ is just the model density, or, for discrete data, the probability (mass) function. When the predictive density $p(\tilde{y}_i\vert \boldsymbol{\theta})$ is *evaluated at the observed data point* $y_i$, we call the resulting density value, $p(y_i\vert \boldsymbol{\theta})$, the **density score** for the $i$th observation. A good model would give high density scores for all (or most) observations in the dataset, i.e. $p(y_i\vert \boldsymbol{\theta})$ is large for all $i=1,\ldots,n$. The figure below illustrates several predictive densities and the density scores at a given test point $y=0.5$ (dashed line). The red density has a better score for the observed $y=0.5$ data point than the wide blue density, and much better than the green density that is over-confident and essentially misses the observed data point and obtains a very low density score. This shows that a good model should:
+
+-   have a tightly concentrated predictive density
+
+-   ... that is centered close to the observed test data
+
+A model with a very tightly concentrated predictive density far from the observed data will get a very low density score. But a model that 'plays it safe' by having a large variance to be sure to capture the observed data will also have a low density score since the density will be rather flat (i.e. low, since a density must integrate to one).
 
 ```{r}
 yGrid = seq(-5, 5, length = 1000)
@@ -271,25 +277,25 @@ legend("topleft", legend = c("Normal(0,1)", "Normal(0,3^2)", "Normal(2,0.5^2)", 
     col = c("indianred", "steelblue", "darkgreen", "black"))
 ```
 
-It is convenient to work on the log scale and compute the log predictive scores: $\log p(\tilde{y}_i \vert \boldsymbol{y}_{-i})$. The **log predictive density score** (**LPDS**) with **leave-one-out** (**LOO**) cross-validation is just the sum of the log preditive density evaluations over all data points:
+It is convenient to work on the log scale and compute the *log* predictive scores: $\log p(y_i \vert \boldsymbol{y}_{-i})$. The **log predictive density score** (**LPDS**) with **leave-one-out** (**LOO**) cross-validation is just the sum of the log preditive density evaluations over all data points:
 
 $$
-\mathrm{LPDS}_{\mathrm{LOO}} = \sum_{i=1}^n \log p(\tilde{y}_i \vert \boldsymbol{y}_{-i}) 
+\mathrm{LPDS}_{\mathrm{LOO}} = \sum_{i=1}^n \log p(y_i \vert \boldsymbol{y}_{-i}) 
 $$
 
 If we compare $K$ models we prefer the model with largest $\mathrm{LPDS}_{\mathrm{LOO}}$ since that model assigns highest density to the actually observed data. Note that this measure penalizes model complexity since an over-parameterized model will have a lot of uncertainty in the posterior for the parameters $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$ and therefore a predictive density with large variability, resulting in lower predictive density values for the test data. See the Figure above.
 
 The log predictive density score is called the **expected log pointwise predictive density** (**elpd**) and the $\mathrm{LPDS}_{\mathrm{LOO}}$ is the correspondingly called $\mathrm{elpd}_{\mathrm{LOO}}$.
 
-The leave-one-out predictive densities $p(\tilde{y}_i \vert \boldsymbol{y}_{-i})$ are tyically intractable and needs be approximated numerically. The most common approach is to use a Monte Carlo approximation to approximate the predictive scores:
+The leave-one-out predictive densities $p(\tilde{y}_i \vert \boldsymbol{y}_{-i})$ are typically intractable and needs be approximated numerically. The most common approach is to use a Monte Carlo approximation to approximate the predictive scores:
 
 $$
 p(y_i \vert \boldsymbol{y}_{-i}) =   \int p(y_i \vert \boldsymbol{\theta})p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})d \boldsymbol{\theta} \approx \frac{1}{m}\sum_{j=1}^m p(y_i \vert \boldsymbol{\theta}^{(j)})
 $$
 
-where $\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}$ are draws from the leave-one-out posterior $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$. Since we need to compute $p(y_i \vert \boldsymbol{y}_{-i})$ for all $n$ observations $y_i$, we to sample for all $n$ leave-one-out posteriors $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$ for $i=1,\ldots,n$. Computing the $\mathrm{LPDS}_{\mathrm{LOO}}$ for a model is therefore computationally costly since it requires running a posterior sampler like MCMC or HMC $n$ times. Even though these runs can be done in parallel, it is still a very costly operation. However, these $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$ are typically all very similar to the posterior based on all observations $p(\boldsymbol{\theta} \vert \boldsymbol{y})$ and an efficient approach is to use draws from $p(\boldsymbol{\theta} \vert \boldsymbol{y})$ as an importance density in importance sampling. This only requires a single run of MCMC/HMC to sample from $p(\boldsymbol{\theta} \vert \boldsymbol{y})$. This is implemented in the loo package in an efficient way using a variant of importance sampling called Pareto smoothed importance sampling (PSIS).
+where $\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}$ are draws from the leave-one-out posterior $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$. Since we need to compute $p(y_i \vert \boldsymbol{y}_{-i})$ for all $n$ observations $y_i$, we to sample from all $n$ leave-one-out posteriors $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$ for $i=1,\ldots,n$. Computing the $\mathrm{LPDS}_{\mathrm{LOO}}$ for a model is therefore computationally costly since it requires running a posterior sampler like MCMC or HMC $n$ times. Even though these runs can be done in parallel, it is still a very costly operation. However, the leave-one-out posteriors $p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})$ for $i=1,\ldots,n$ are typically all very similar to the posterior based on *all* observations $p(\boldsymbol{\theta} \vert \boldsymbol{y})$ and an efficient approach is to use draws from $p(\boldsymbol{\theta} \vert \boldsymbol{y})$ as an importance density in importance sampling. This only requires a single run of MCMC/HMC to sample from $p(\boldsymbol{\theta} \vert \boldsymbol{y})$. This is implemented in the `loo` package in an efficient way using a variant of importance sampling called Pareto smoothed importance sampling (PSIS).
 
-The `loo` package needs evaluations of the log densities for each observation $p(y_i \vert \boldsymbol{\theta}^{(j)}) ,\text{ for } i=1,\ldots,n$ at each posterior parameter draw $\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}$ , which are not automatically computed by `stan`. We can have stan compute this by adding it to the `generated quantities` section:
+The `loo` package needs evaluations of the log densities for each observation $p(y_i \vert \boldsymbol{\theta}^{(j)}) ,\text{ for } i=1,\ldots,n$, at each posterior parameter draw $\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}$ , which are not automatically computed by `stan`. We can have `stan` compute this by adding it to the `generated quantities` section:
 
 ```{r}
 iidnormal = '
@@ -343,9 +349,9 @@ loo_iidnormal <- loo(log_lik_iidnormal)
 message("ELPD-LOO for the iid normal model is: ", loo_iidnormal$estimates[1])
 ```
 
-This number does not say much in itself as it depends on the scale of the data, but can be compared to $\mathrm{elpd}_{\mathrm{LOO}}$ for other models. The model with highest $\mathrm{elpd}_{\mathrm{LOO}}$ is the best model, at least in this sense.
+This number does not say much in itself as it depends on the scale of the data, but can be compared to $\mathrm{elpd}_{\mathrm{LOO}}$ for other models. The model with highest $\mathrm{elpd}_{\mathrm{LOO}}$ is the best model, at least in this predictive density sense.
 
-Let us try another model for the data: a student-t distribution $t(\theta, \sigma^2, \nu)$ (which written as $t(\nu, \theta, \sigma)$ in `stan`). which has heavier tails and can therefore capture outliers better. We use the same prior for $\theta$ and $\sigma^2$ and a $\mathrm{Expon}(1)$ for the degrees of freedom $\nu$. Note that we the posterior distribution $p(\theta,\sigma^2,\nu \vert \boldsymbol{y})$ is highly intractable, but Stan doesn't care, it will happily sample it with HMC anyway!
+Let us try another model for the data: a student-t distribution $t(\theta, \sigma^2, \nu)$ (which written as $t(\nu, \theta, \sigma)$ in `stan`), which has heavier tails and can therefore capture outliers better. We use the same prior for $\theta$ and $\sigma^2$ and an $\nu \sim \mathrm{Expon}(1)$ for the degrees of freedom $\nu$ of the student-$t$ distribution. Note that the joint posterior distribution $p(\theta,\sigma^2,\nu \vert \boldsymbol{y})$ is highly intractable, but Stan doesn't care, it will happily sample it with HMC anyway! We can copy-paste the code for the iid normal model can just change a few lines to the student-$t$ distribution:
 
 ```{r}
 iidstudent = '
