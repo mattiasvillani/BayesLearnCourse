@@ -42,7 +42,7 @@ If you need to refresh some basic mathematics, like derivatives and integrals, y
 
 ### Structure
 
-The course consists of [lectures](lectures.qmd), [mathematical exercises](exercises.qmd) and [computer labs](computerlabs.qmd) where you work on a two-part home assignments.
+The course consists of [lectures](lectures.qmd), [mathematical exercises](exercises.qmd) and computer labs where you work on a [two-part home assignment](homeassignment.qmd).
 
 ### Examination
 
@@ -57,7 +57,7 @@ The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web
 
 ### Formula sheet
 
-This [formula sheet](/misc/BLformulaSheetv0_1.pdf) will be available as a pdf via the computer in the exam room.
+This [formula sheet](/misc/BLformulaSheet.pdf) will be available as a pdf via the computer in the exam room.
 
 ### Interactive material
 
