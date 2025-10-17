@@ -522,37 +522,14 @@ Different types of priors:
 
 \begin_deeper
 \begin_layout Itemize
-
-\series bold
-\color blue
-Expert
-\series default
-\color inherit
- elicitation
+Expert elicitation
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Other data
-\series default
-\color inherit
- sources
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Non-informative priors
-\series default
-\color inherit
- (prior sample size).
- Bernoulli model:
+Non-informative priors (prior sample size)
 \begin_inset Formula 
 \[
-\theta\vert\boldsymbol{x}\sim\mathrm{Beta}(\alpha+s,\beta+f)
+\theta
 \]
 
 \end_inset
@@ -561,13 +538,7 @@ Non-informative priors
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Jeffreys' prior
-\series default
-\color inherit
- 
+Jeffreys prior 
 \begin_inset Formula $p(\theta)=\vert I(\theta)\vert^{1/2}$
 \end_inset
 
@@ -575,13 +546,7 @@ Jeffreys' prior
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Hierarchical priors
-\series default
-\color inherit
-.
+Hierarchical priors.
  L2-regularization
 \begin_inset Formula 
 \[
@@ -594,16 +559,7 @@ p(\boldsymbol{\beta},\sigma^{2},\lambda)=p(\boldsymbol{\beta}\vert\sigma^{2}\lam
 \end_layout
 
 \begin_layout Itemize
-
-\series bold
-\color blue
-Regularization
-\series default
-\color inherit
- and 
-\series bold
-\color blue
-smoothness priors
+Regularization and smoothness priors
 \end_layout
 
 \end_deeper
@@ -615,8 +571,157 @@ smoothness priors
 
 \end_layout
 
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Model averaging
+\end_layout
+
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Let 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ be a quantity with the same interpretation in the two models, 
+\begin_inset Formula $M_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $M_{2}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Itemize
+Example: Prediction 
+\begin_inset Formula $\gamma=y_{T+1}$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The marginal posterior distribution of 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ is
+\begin_inset Formula 
+\[
+p(\gamma|\mathbf{y})=p(M_{1}|\mathbf{y})p_{1}(\gamma|\mathbf{y})+p(M_{2}|\mathbf{y})p_{2}(\gamma|\mathbf{y}),
+\]
+
+\end_inset
+
+
+\begin_inset Formula $p_{k}(\gamma|\mathbf{y})$
+\end_inset
+
+ is the marginal posterior of 
+\begin_inset Formula $\gamma$
+\end_inset
+
+ from model 
+\begin_inset Formula $M_{k}$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Predictive distribution includes 
+\series bold
+\color blue
+three sources of uncertainty
+\series default
+\color inherit
+:
+\begin_inset VSpace medskip
+\end_inset
+
+
+\begin_inset Separator latexpar
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Future errors
+\series default
+\color inherit
+/disturbances (e.g.
+ the 
+\begin_inset Formula $\varepsilon$
+\end_inset
+
+'s in a regression)
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Parameter uncertainty
+\series default
+\color inherit
+ (the predictive distribution has the parameters integrated out by their
+ posteriors)
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Model uncertainty
+\series default
+\color inherit
+ (by model averaging)
+\end_layout
+
+\end_deeper
+\end_deeper
 \begin_layout Standard
-More later today!
+\begin_inset Separator parbreak
+\end_inset
+
+
 \end_layout
 
 \end_body

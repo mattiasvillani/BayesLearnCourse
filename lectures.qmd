@@ -65,3 +65,4 @@ Interactive: [HMC](https://observablehq.com/@mattiasvillani/hamiltonian-markov-c
 Read: BL 14.1-14.4 | [Intro to Stan](/misc/intro_stan.qmd) | [Slides](/slides/BL_L11.pdf) \
 
 **Lecture 11 - Course summary.**\
+[Slides](/slides/BL_L12.pdf) \

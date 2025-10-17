@@ -466,8 +466,10 @@ X_1,\ldots,X_n \vert \theta, \sigma^2 \overset{\mathrm{iid}}{\sim} N(\theta, \si
 \]</span></p>
 <p>with conjugate prior</p>
 <p><span class="math display">\[
-\theta \vert \sigma^2 \sim N\Big(\mu_0,\frac{\sigma^2}{\kappa_0}\Big) \\
-\sigma^2 \sim \mathrm{Inv-}\chi^2(\nu_0, \sigma_0^2)
+\begin{aligned}
+\theta \vert \sigma^2 &amp;\sim N\Big(\mu_0,\frac{\sigma^2}{\kappa_0}\Big) \\
+\sigma^2 &amp;\sim \mathrm{Inv-}\chi^2(\nu_0, \sigma_0^2)
+\end{aligned}
 \]</span></p>
 <p>The Stan model syntax, here expressed as string named <code>iidnormal</code> :</p>
 <div class="cell">
@@ -574,11 +576,11 @@ make: *** [/usr/lib/R/etc/Makeconf:168: foo.o] Error 1</code></pre>
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"theta"</span>, <span class="st">"sigma2"</span>))<span class="sc">$</span>summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mean    se_mean        sd     2.5%      25%      50%      75%
-theta  16.68383 0.07399696  2.289489 12.18146 15.23383 16.73060 18.15490
-sigma2 30.58733 0.57519069 17.399569 12.29935 19.95322 26.47876 36.47608
-          97.5%    n_eff     Rhat
-theta  21.00497 957.3027 1.003179
-sigma2 73.28751 915.0678 1.003465</code></pre>
+theta  16.70451 0.06643499  2.191206 12.30550 15.30541 16.72069 18.10753
+sigma2 30.59825 0.60515695 17.552975 12.31823 19.27542 26.23976 35.92268
+          97.5%     n_eff     Rhat
+theta  20.83511 1087.8592 1.003969
+sigma2 72.45648  841.3281 1.001767</code></pre>
 </div>
 </div>
 <p>We could have just written summary(fit), which would return a summary for all parameters and for all four chains/runs. By only printing out the summary element (hence the <code>$summary</code> at the end) we get a more compact summary that merges the draws from all four chains.</p>
@@ -683,11 +685,6 @@ In file included from /home/mv/R/x86_64-pc-linux-gnu-library/4.1/RcppEigen/inclu
 compilation terminated.
 make: *** [/usr/lib/R/etc/Makeconf:168: foo.o] Error 1</code></pre>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Tail Effective Samples Size (ESS) is too low, indicating posterior variances and tail quantiles may be unreliable.
-Running the chains for more iterations may help. See
-https://mc-stan.org/misc/warnings.html#tail-ess</code></pre>
-</div>
 </div>
 </section>
 <section id="model-comparison-using-leave-one-out-predictive-cross-validation" class="level2">
@@ -708,15 +705,15 @@ p(\tilde{y}_i \vert \boldsymbol{y}_{-i}) =   \int p(\tilde{y}_i \vert \boldsymbo
 </ul>
 <p>A model with a very tightly concentrated predictive density far from the observed data will get a very low density score. But a model that ‘plays it safe’ by having a large variance to be sure to capture the observed data will also have a low density score since the density will be rather flat (i.e.&nbsp;low, since a density must integrate to one).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>yGrid <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">1000</span>)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">"indianred"</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"ỹ"</span>, <span class="at">ylab =</span> <span class="st">"predictive density"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.8</span>))</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">0</span>, <span class="dv">3</span>), <span class="at">col =</span> <span class="st">"steelblue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">2</span>, <span class="fl">0.5</span>), <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fl">0.5</span></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> y, <span class="at">lty =</span> <span class="dv">3</span>)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Normal(0,1)"</span>, <span class="st">"Normal(0,3^2)"</span>, <span class="st">"Normal(2,0.5^2)"</span>, <span class="st">"observed y"</span>), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>), </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"indianred"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkgreen"</span>, <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>yGrid <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">"indianred"</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"ỹ"</span>, <span class="at">ylab =</span> <span class="st">"predictive density"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.8</span>))</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">0</span>, <span class="dv">3</span>), <span class="at">col =</span> <span class="st">"steelblue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">2</span>, <span class="fl">0.5</span>), <span class="at">col =</span> <span class="st">"darkgreen"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fl">0.5</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> y, <span class="at">lty =</span> <span class="dv">3</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Normal(0,1)"</span>, <span class="st">"Normal(0,3^2)"</span>, <span class="st">"Normal(2,0.5^2)"</span>, <span class="st">"observed y"</span>), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>), </span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"indianred"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkgreen"</span>, <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -738,43 +735,43 @@ p(y_i \vert \boldsymbol{y}_{-i}) =   \int p(y_i \vert \boldsymbol{\theta})p(\bol
 <p>where <span class="math inline">\(\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}\)</span> are draws from the leave-one-out posterior <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})\)</span>. Since we need to compute <span class="math inline">\(p(y_i \vert \boldsymbol{y}_{-i})\)</span> for all <span class="math inline">\(n\)</span> observations <span class="math inline">\(y_i\)</span>, we to sample from all <span class="math inline">\(n\)</span> leave-one-out posteriors <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})\)</span> for <span class="math inline">\(i=1,\ldots,n\)</span>. Computing the <span class="math inline">\(\mathrm{LPDS}_{\mathrm{LOO}}\)</span> for a model is therefore computationally costly since it requires running a posterior sampler like MCMC or HMC <span class="math inline">\(n\)</span> times. Even though these runs can be done in parallel, it is still a very costly operation. However, the leave-one-out posteriors <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})\)</span> for <span class="math inline">\(i=1,\ldots,n\)</span> are typically all very similar to the posterior based on <em>all</em> observations <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y})\)</span> and an efficient approach is to use draws from <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y})\)</span> as an importance density in importance sampling. This only requires a single run of MCMC/HMC to sample from <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y})\)</span>. This is implemented in the <code>loo</code> package in an efficient way using a variant of importance sampling called Pareto smoothed importance sampling (PSIS).</p>
 <p>The <code>loo</code> package needs evaluations of the log densities for each observation <span class="math inline">\(p(y_i \vert \boldsymbol{\theta}^{(j)}) ,\text{ for } i=1,\ldots,n\)</span>, at each posterior parameter draw <span class="math inline">\(\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}\)</span> , which are not automatically computed by <code>stan</code>. We can have <code>stan</code> compute this by adding it to the <code>generated quantities</code> section:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="st">  // data</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=0&gt; n;</span></span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] y;</span></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="st">  // prior</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="st">  real mu0;</span></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; kappa0;</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; nu0;</span></span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; sigma20;</span></span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="st">// specify which are the model parameters</span></span>
-<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="st">parameters {</span></span>
-<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a><span class="st">    real theta;</span></span>
-<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="st">    real&lt;lower=0&gt; sigma2;</span></span>
-<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="st">// the model connects parameters to the data</span></span>
-<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a><span class="st">model {</span></span>
-<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a><span class="st">  sigma2 ~ scaled_inv_chi_square(nu0, sqrt(sigma20));</span></span>
-<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="st">  theta ~ normal(mu0, sqrt(sigma2/kappa0));</span></span>
-<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a><span class="st">  y ~ normal(theta, sqrt(sigma2));</span></span>
-<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a><span class="st">generated quantities {</span></span>
-<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] log_lik;</span></span>
-<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a><span class="st">  for (i in 1:n) {</span></span>
-<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a><span class="st">    log_lik[i] = normal_lpdf(y[i] | theta, sqrt(sigma2));</span></span>
-<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">  // data</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=0&gt; n;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] y;</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="st">  // prior</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="st">  real mu0;</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; kappa0;</span></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; nu0;</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; sigma20;</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="st">// specify which are the model parameters</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="st">parameters {</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="st">    real theta;</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="st">    real&lt;lower=0&gt; sigma2;</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a><span class="st">// the model connects parameters to the data</span></span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a><span class="st">model {</span></span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a><span class="st">  sigma2 ~ scaled_inv_chi_square(nu0, sqrt(sigma20));</span></span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a><span class="st">  theta ~ normal(mu0, sqrt(sigma2/kappa0));</span></span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a><span class="st">  y ~ normal(theta, sqrt(sigma2));</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a><span class="st">generated quantities {</span></span>
+<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] log_lik;</span></span>
+<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="st">  for (i in 1:n) {</span></span>
+<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="st">    log_lik[i] = normal_lpdf(y[i] | theta, sqrt(sigma2));</span></span>
+<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb21-33"><a href="#cb21-33" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>And then we have to run the <code>stan</code> function again to sample from the posterior and compute the log densities for the observations:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Trying to compile a simple C file</code></pre>
 </div>
@@ -793,8 +790,8 @@ make: *** [/usr/lib/R/etc/Makeconf:168: foo.o] Error 1</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("loo")</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"loo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("loo")</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"loo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>This is loo version 2.8.0</code></pre>
 </div>
@@ -813,55 +810,55 @@ Attaching package: 'loo'</code></pre>
 
     loo</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidnormal <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>loo_iidnormal <span class="ot">&lt;-</span> <span class="fu">loo</span>(log_lik_iidnormal)</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid normal model is: "</span>, loo_iidnormal<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidnormal <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>loo_iidnormal <span class="ot">&lt;-</span> <span class="fu">loo</span>(log_lik_iidnormal)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid normal model is: "</span>, loo_iidnormal<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>ELPD-LOO for the iid normal model is: -16.2383581350425</code></pre>
+<pre><code>ELPD-LOO for the iid normal model is: -16.347541560005</code></pre>
 </div>
 </div>
 <p>This number does not say much in itself as it depends on the scale of the data, but can be compared to <span class="math inline">\(\mathrm{elpd}_{\mathrm{LOO}}\)</span> for other models. The model with highest <span class="math inline">\(\mathrm{elpd}_{\mathrm{LOO}}\)</span> is the best model, at least in this predictive density sense.</p>
 <p>Let us try another model for the data: a student-t distribution <span class="math inline">\(t(\theta, \sigma^2, \nu)\)</span> (which written as <span class="math inline">\(t(\nu, \theta, \sigma)\)</span> in <code>stan</code>), which has heavier tails and can therefore capture outliers better. We use the same prior for <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\sigma^2\)</span> and an <span class="math inline">\(\nu \sim \mathrm{Expon}(1)\)</span> for the degrees of freedom <span class="math inline">\(\nu\)</span> of the student-<span class="math inline">\(t\)</span> distribution. Note that the joint posterior distribution <span class="math inline">\(p(\theta,\sigma^2,\nu \vert \boldsymbol{y})\)</span> is highly intractable, but Stan doesn’t care, it will happily sample it with HMC anyway! We can copy-paste the code for the iid normal model can just change a few lines to the student-<span class="math inline">\(t\)</span> distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>iidstudent <span class="ot">=</span> <span class="st">'</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="st">  // data</span></span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=0&gt; n;</span></span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] y;</span></span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="st">  // prior</span></span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="st">  real mu0;</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; kappa0;</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; nu0;</span></span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; sigma20;</span></span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="st">// specify which are the model parameters</span></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="st">parameters {</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a><span class="st">    real theta;</span></span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a><span class="st">    real&lt;lower=0&gt; sigma2;</span></span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a><span class="st">    real&lt;lower=0&gt; nu;</span></span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a><span class="st">// the model connects parameters to the data</span></span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="st">model {</span></span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a><span class="st">  sigma2 ~ scaled_inv_chi_square(nu0, sqrt(sigma20));</span></span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a><span class="st">  theta ~ normal(mu0, sqrt(sigma2/kappa0));</span></span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a><span class="st">  nu ~ exponential(1);</span></span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a><span class="st">  y ~ student_t(nu, theta, sqrt(sigma2));</span></span>
-<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a><span class="st">generated quantities {</span></span>
-<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] log_lik;</span></span>
-<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a><span class="st">  for (i in 1:n) {</span></span>
-<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a><span class="st">    log_lik[i] = student_t_lpdf(y[i] | nu, theta, sqrt(sigma2));</span></span>
-<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
-<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>iidstudent <span class="ot">=</span> <span class="st">'</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="st">  // data</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="st">  int&lt;lower=0&gt; n;</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] y;</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="st">  // prior</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="st">  real mu0;</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; kappa0;</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; nu0;</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a><span class="st">  real&lt;lower=0&gt; sigma20;</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a><span class="st">// specify which are the model parameters</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a><span class="st">parameters {</span></span>
+<span id="cb33-17"><a href="#cb33-17" aria-hidden="true" tabindex="-1"></a><span class="st">    real theta;</span></span>
+<span id="cb33-18"><a href="#cb33-18" aria-hidden="true" tabindex="-1"></a><span class="st">    real&lt;lower=0&gt; sigma2;</span></span>
+<span id="cb33-19"><a href="#cb33-19" aria-hidden="true" tabindex="-1"></a><span class="st">    real&lt;lower=0&gt; nu;</span></span>
+<span id="cb33-20"><a href="#cb33-20" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb33-21"><a href="#cb33-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-22"><a href="#cb33-22" aria-hidden="true" tabindex="-1"></a><span class="st">// the model connects parameters to the data</span></span>
+<span id="cb33-23"><a href="#cb33-23" aria-hidden="true" tabindex="-1"></a><span class="st">model {</span></span>
+<span id="cb33-24"><a href="#cb33-24" aria-hidden="true" tabindex="-1"></a><span class="st">  sigma2 ~ scaled_inv_chi_square(nu0, sqrt(sigma20));</span></span>
+<span id="cb33-25"><a href="#cb33-25" aria-hidden="true" tabindex="-1"></a><span class="st">  theta ~ normal(mu0, sqrt(sigma2/kappa0));</span></span>
+<span id="cb33-26"><a href="#cb33-26" aria-hidden="true" tabindex="-1"></a><span class="st">  nu ~ exponential(1);</span></span>
+<span id="cb33-27"><a href="#cb33-27" aria-hidden="true" tabindex="-1"></a><span class="st">  y ~ student_t(nu, theta, sqrt(sigma2));</span></span>
+<span id="cb33-28"><a href="#cb33-28" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb33-29"><a href="#cb33-29" aria-hidden="true" tabindex="-1"></a><span class="st">generated quantities {</span></span>
+<span id="cb33-30"><a href="#cb33-30" aria-hidden="true" tabindex="-1"></a><span class="st">  vector[n] log_lik;</span></span>
+<span id="cb33-31"><a href="#cb33-31" aria-hidden="true" tabindex="-1"></a><span class="st">  for (i in 1:n) {</span></span>
+<span id="cb33-32"><a href="#cb33-32" aria-hidden="true" tabindex="-1"></a><span class="st">    log_lik[i] = student_t_lpdf(y[i] | nu, theta, sqrt(sigma2));</span></span>
+<span id="cb33-33"><a href="#cb33-33" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
+<span id="cb33-34"><a href="#cb33-34" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb33-35"><a href="#cb33-35" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>fit_student <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidstudent, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>fit_student <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidstudent, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Trying to compile a simple C file</code></pre>
 </div>
@@ -881,12 +878,12 @@ make: *** [/usr/lib/R/etc/Makeconf:168: foo.o] Error 1</code></pre>
 </div>
 <p>And we again use the loo package to compute the <span class="math inline">\(\mathrm{elpd}_{\mathrm{LOO}}\)</span> for the student-<span class="math inline">\(t\)</span> model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidstudent <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit_student, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>loo_iidstudent <span class="ot">&lt;-</span> <span class="fu">loo</span>(log_lik_iidstudent)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid student-t model is: "</span>, loo_iidstudent<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidstudent <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit_student, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>loo_iidstudent <span class="ot">&lt;-</span> <span class="fu">loo</span>(log_lik_iidstudent)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid student-t model is: "</span>, loo_iidstudent<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>ELPD-LOO for the iid student-t model is: -17.0740668785883</code></pre>
+<pre><code>ELPD-LOO for the iid student-t model is: -17.0498839555018</code></pre>
 </div>
 </div>
 <p>Since the <span class="math inline">\(\mathrm{elpd}_{\mathrm{LOO}}\)</span> for the normal model is a little higher than that of the student-<span class="math inline">\(t\)</span> model, the normal model is preferred for this data, even though it is a special case of the student-t model with the degrees of freedom <span class="math inline">\(\nu\)</span> approaching infinity.</p>

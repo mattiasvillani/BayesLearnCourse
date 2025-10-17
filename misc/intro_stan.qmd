@@ -61,8 +61,10 @@ $$
 with conjugate prior
 
 $$
-\theta \vert \sigma^2 \sim N\Big(\mu_0,\frac{\sigma^2}{\kappa_0}\Big) \\
-\sigma^2 \sim \mathrm{Inv-}\chi^2(\nu_0, \sigma_0^2)
+\begin{aligned}
+\theta \vert \sigma^2 &\sim N\Big(\mu_0,\frac{\sigma^2}{\kappa_0}\Big) \\
+\sigma^2 &\sim \mathrm{Inv-}\chi^2(\nu_0, \sigma_0^2)
+\end{aligned}
 $$
 
 The Stan model syntax, here expressed as string named `iidnormal` :
