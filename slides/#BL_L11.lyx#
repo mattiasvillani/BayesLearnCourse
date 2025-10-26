@@ -675,12 +675,16 @@ Posterior distribution
 \end_inset
 
  is intractable.
- Solutions:
+ Three solutions:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
 Normal approximation
+\end_layout
+
+\begin_layout Itemize
+Gibbs sampling by Polya-Gamma augmention (not in course)
 \end_layout
 
 \begin_layout Itemize
@@ -692,52 +696,12 @@ Posterior sampling using MH/HMC
 Linear Gaussian regression is modeling a conditional density
 \begin_inset Formula 
 \[
-y_{i}\vert\boldsymbol{x}_{i}\overset{\mathrm{ind}}{\sim}N(\mu_{i},\sigma^{2})\text{ where }\mu_{i}=\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}
+y_{i}\vert\boldsymbol{x}_{i}\overset{\mathrm{ind}}{\sim}N(
 \]
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Itemize
-Paves the way for 
-\series bold
-\color blue
-Poisson regression
-\series default
-\color inherit
-:
-\begin_inset Formula 
-\[
-y_{i}\vert\boldsymbol{x}_{i}\overset{\mathrm{ind}}{\sim}\mathrm{Pois}(\mu_{i})\text{ where }\mu_{i}=e^{\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Itemize
-
-\series bold
-\color blue
-Exponential regression
-\series default
-\color inherit
-
-\begin_inset Formula 
-\[
-y_{i}\vert\boldsymbol{x}_{i}\overset{\mathrm{ind}}{\sim}\mathrm{Expon}(\theta_{i})\text{ where }\theta_{i}=\frac{1}{e^{\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}}}
-\]
-
-\end_inset
-
-so that 
-\begin_inset Formula $\mathbb{E}(y_{i}\vert\boldsymbol{x}_{i})=\mu_{i}=e^{\boldsymbol{x}_{i}^{\top}\boldsymbol{\beta}}$
-\end_inset
-
-.
 \end_layout
 
 \end_deeper

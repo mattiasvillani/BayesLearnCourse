@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mattias Villani">
 
-<title>Lectures for Bayesian Learning, 7.5 hp – Bayesian Learning</title>
+<title>Normal posterior approximation - iid Poisson model – Bayesian Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,31 +21,66 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href=".//misc/Thomas_Bayes.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-e3b568e5b7c3295ff2c0594c3e06f3f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="..//misc/Thomas_Bayes.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-e3b568e5b7c3295ff2c0594c3e06f3f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -73,8 +109,37 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -246,10 +311,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./misc/SU_logo_small.png" alt="" class="navbar-logo">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../misc/SU_logo_small.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Bayesian Learning</span>
     </a>
   </div>
@@ -260,23 +325,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html"> 
+    <a class="nav-link" href="../index.html"> 
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./lectures.html" aria-current="page"> 
+    <a class="nav-link" href="../lectures.html"> 
 <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./exercises.html"> 
+    <a class="nav-link" href="../exercises.html"> 
 <span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./homeassignment.html"> 
+    <a class="nav-link" href="../homeassignment.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./culture.html"> 
+    <a class="nav-link" href="../culture.html"> 
 <span class="menu-text">Culture</span></a>
   </li>  
 </ul>
@@ -296,11 +361,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Sections</h2>
    
   <ul>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link active" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
-  <li><a href="#lecture-contents" id="toc-lecture-contents" class="nav-link" data-scroll-target="#lecture-contents">Lecture contents</a></li>
+  <li><a href="#problem-5---normal-approximation" id="toc-problem-5---normal-approximation" class="nav-link active" data-scroll-target="#problem-5---normal-approximation">Problem 5 - Normal approximation</a></li>
+  <li><a href="#lognormal-distribution" id="toc-lognormal-distribution" class="nav-link" data-scroll-target="#lognormal-distribution">LogNormal distribution</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="NormalApproxIIDPoisson.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -308,13 +372,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lectures for Bayesian Learning, 7.5 hp</h1>
+<h1 class="title">Normal posterior approximation - iid Poisson model</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mattias Villani </p>
+          </div>
+  </div>
     
   
     
@@ -325,74 +395,112 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p><img src="misc/mixture_mosaic1.png" alt="AI generated image of a mixture distribution" class="center" width="100%"></p>
-<blockquote class="blockquote">
-<p>This page contains a short description of the contents, reading instructions and additional material for each lecture.</p>
-</blockquote>
-<section id="schedule" class="level3">
-<h3 class="anchored" data-anchor-id="schedule">Schedule</h3>
-<p>The course schedule can be found on <a href="https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&amp;object=cevt_39011_HT2025&amp;startDate=20250802&amp;endDate=20260131&amp;type=courseevent&amp;h=t&amp;l=en">TimeEdit</a>.</p>
+<section id="problem-5---normal-approximation" class="level2">
+<h2 class="anchored" data-anchor-id="problem-5---normal-approximation">Problem 5 - Normal approximation</h2>
+<p>The file <code>bugs.csv</code> contains a dataset with the number of bugs and some other explanatory variables for <span class="math inline">\(n=91\)</span> releases of several software projects. We will here do a Bayesian analysis using only the variable <code>nBugs</code>, which we will store in a vector <code>y</code>, for simplicity. Load the data like this:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">=</span> <span class="fu">read.csv</span>(<span class="st">"https://github.com/mattiasvillani/BayesLearnCourse/raw/master/assignment/bugs.csv"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> data<span class="sc">$</span>nBugs <span class="co"># number of bugs, a vector with n = 91 observations</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>You can ignore that some of the observations actually comes from the same project at different releases, and assume that the observations are <em>independent</em> and identically distributed. Consider first the model</p>
+<p><span class="math display">\[Y_1,Y_2,\ldots,Y_n \vert \lambda \overset{iid}{\sim}\mathrm{Poisson}(\lambda),\]</span></p>
+<p>where the parameter <span class="math inline">\(\lambda = \mathbb{E}(Y)\)</span> must be positive. Our interest is in obtaining the posterior distribution for <span class="math inline">\(\lambda\)</span>. If we use the conjugate Gamma prior we can obtain the posterior in closed form (it is also Gamma). We will however use a <strong>normal posterior approximation</strong> here, since next problem will extend the model to a Poisson regression model with covariates, and for that model there is no conjugate prior.</p>
+<p>A normal approximation of the posterior for <span class="math inline">\(\lambda\)</span> is not a great idea, however; a normal approximation can give probability mass on negative values for <span class="math inline">\(\lambda\)</span>, and we need to have <span class="math inline">\(\lambda&gt;0\)</span> in the Poisson model. We therefore instead parameterize the Poisson model as</p>
+<p><span class="math display">\[Y_1,Y_2,\ldots,Y_n \vert \theta \overset{iid}{\sim}\mathrm{Poisson}(\exp(\theta))\]</span></p>
+<p>where <span class="math inline">\(\theta\)</span> can be any value on the real line <span class="math inline">\(-\infty &lt; \theta &lt;\infty\)</span> because the exponential function makes sure that <span class="math inline">\(\lambda = \exp(\theta) &gt;0\)</span>. This kind of reparameterization usually makes the posterior more normal and the approximation more accurate. An additional benefit of working the <span class="math inline">\(\theta\)</span> is that we can use <em>unconstrained</em> <em>maximization</em> without specifying a bound in the optimizer.</p>
+<p>A Normal posterior approximation for <span class="math inline">\(\theta\)</span> implies a LogNormal approximation of the posterior for <span class="math inline">\(\lambda = \exp(\theta)\)</span>, which therefore <em>guarantees that all posterior probability mass is on positive values of</em> <span class="math inline">\(\lambda\)</span>.</p>
 </section>
-<section id="literature" class="level3">
-<h3 class="anchored" data-anchor-id="literature">Literature</h3>
-<ul>
-<li>The <strong>BL</strong> listed below are section numbers from the course book Villani (2025a). <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf">Bayesian Learning</a>.</li>
-<li>The <strong>BLprequel</strong> listed below are section numbers from a book <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf">Bayesian Learning - the prequel</a>.</li>
-<li>The <strong>BDA</strong> listed below are section numbers from the course book Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). <a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf">Bayesian Data Analysis</a>.</li>
-</ul>
+<section id="lognormal-distribution" class="level2">
+<h2 class="anchored" data-anchor-id="lognormal-distribution">LogNormal distribution</h2>
+<p>Recall the definition of a LogNormal distribution:</p>
+<p>If <span class="math inline">\(X \sim N(\mu\, \sigma^2)\)</span> then <span class="math inline">\(Y=\exp(X)\sim \mathrm{LogNormal}(\mu, \sigma^2)\)</span>.</p>
+<p>Use the prior <span class="math inline">\(\theta \sim N(\log(4), 0.5^2)\)</span> which implies a LogNormal prior for <span class="math inline">\(\lambda\)</span>. The prior in both parameterizations are plotted below.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>thetaDraws <span class="ot">=</span> <span class="fu">rnorm</span>(nSim, <span class="at">mean =</span> <span class="fu">log</span>(<span class="dv">4</span>), <span class="at">sd =</span> <span class="fl">0.5</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lambdaDraws <span class="ot">=</span> <span class="fu">exp</span>(thetaDraws)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(thetaDraws, <span class="dv">50</span>, <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"prior density"</span>, <span class="at">col =</span> prettycols[<span class="dv">5</span>], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"prior for"</span>, <span class="fu">expression</span>(theta)))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(lambdaDraws, <span class="dv">50</span>, <span class="at">xlab =</span> <span class="fu">expression</span>(lambda), <span class="at">ylab =</span> <span class="st">"prior density"</span>, <span class="at">col =</span> prettycols[<span class="dv">6</span>], <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"prior for"</span>, <span class="fu">expression</span>(lambda)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="NormalApproxIIDPoisson_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="problem-5a" class="level4">
+<h4 class="anchored" data-anchor-id="problem-5a">Problem 5a)</h4>
+<p>Do a normal approximation of the posterior distribution of <span class="math inline">\(\theta\)</span> using optimization and plot that normal approximation. Use this posterior approximation for <span class="math inline">\(\theta\)</span> to simulate the approximate posterior of <span class="math inline">\(\lambda = \exp(\theta)\)</span>.</p>
 </section>
-<section id="lecture-contents" class="level3">
-<h3 class="anchored" data-anchor-id="lecture-contents">Lecture contents</h3>
-<p><strong>Lecture 0 (Recorded, no physical class) - The likelihood function. Information. Basic Monte Carlo simulation.</strong><br>
-Read: BL 1.1-1.3, BL 10.1-10.3, BLprequel 8.3, 8.4, 8.6 (check that you know the concepts) | <a href="./slides/BL_L0.pdf">Slides</a><br>
-Interactive (check that you know the concepts): <a href="https://observablehq.com/@mattiasvillani/maximum-likelihood-bernoulli-data">MLE for Bernoulli data</a> | <a href="https://observablehq.com/@mattiasvillani/maximum-likelihood-for-iid-poisson-data">MLE for Poisson</a> | <a href="https://observablehq.com/@mattiasvillani/second-derivative-measures-the-curvature-of-a-function">Second derivative as function curvature</a> | <a href="https://observablehq.com/@mattiasvillani/likelihood-and-information">Likelihood and Information</a> | <a href="https://observablehq.com/@mattiasvillani/law-large-numbers">Law of large numbers</a> | <a href="https://observablehq.com/@mattiasvillani/central-limit-theorem">Central limit theorem</a><br>
-</p>
-<p><strong>Lecture 1 - Subjective probability and Bayesian learning. Bernoulli. Gaussian with known variance.</strong><br>
-Read: BL 1.4-1.5, 2.1-2.3 | <a href="./slides/BL_L1.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/bayes-theorem-for-events">Bayes theorem for events</a> | <a href="https://observablehq.com/@mattiasvillani/bayesian-inference-for-bernoulli-iid-data">Bernoulli data</a> | <a href="https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var">Normal data - known variance</a><br>
-</p>
-<p><strong>Lecture 2 - Poisson. Summarizing a posterior distribution. Priors.</strong><br>
-Read: BL 2.2-2.5, BL 4.1-4.8 | <a href="./slides/BL_L2.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/bayesian-inference-for-iid-poisson-counts">Poisson data</a> | <a href="https://observablehq.com/@mattiasvillani/bayesian-credible-intervals">Credible intervals</a><br>
-</p>
-<p><strong>Lecture 3 - Marginalization. Gaussian with unknown variance. Multinomial. Multivariate normal.</strong><br>
-Read: BL 3.1-3.3, 3.5-3.6 | <a href="./slides/BL_L3.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/bayesian-inference-for-gaussian-iid-data">Normal data - unknown variance</a> | <a href="https://observablehq.com/@mattiasvillani/scaled-inverse-chi-2-distribution">Scaled inverse chi2</a> | <a href="https://observablehq.com/@mattiasvillani/dirichlet-distribution">Dirichlet distribution</a> | <a href="https://observablehq.com/@mattiasvillani/multinomial-dirichlet">Multinomial data</a> | <a href="https://observablehq.com/@mattiasvillani/multivariate-normal-distribution">Multivariate normal distribution</a><br>
-</p>
-<p><strong>Lecture 4 - Bayesian prediction. Decision making.</strong><br>
-Read: BL 6.1-6.2 | <a href="./slides/BL_L4.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/bayes-iid-gaussian-known-var">Prediction of Normal data - known variance</a> | <a href="https://observablehq.com/@mattiasvillani/prior_pred_poismodel">Prior predictive distribution - Poisson model</a><br>
-</p>
-<p><strong>Lecture 5 - Regression. Regularization priors.</strong><br>
-Read: BL 5, 12.1-12.4, 12.6 | <a href="./slides/BL_L5.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/bayesian-linear-regression-bike-share-data">Bayesian linear regression</a><br>
-</p>
-<p><strong>Lecture 6 - Normal posterior approximation. Classification.</strong><br>
-Read: BL 7.1-7.5, 8.1-8.5 | <a href="./slides/BL_L6.pdf">Slides</a><br>
-Notebooks: Logistic regression for Titanic data: <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/notebooks/TitanicLogistic/TitanicLogistic.qmd">quarto</a> | <a href="https://mattiasvillani.com/BayesianLearningBook/notebooks/TitanicLogistic/TitanicLogistic.html">html</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/taylor-approximation">Taylor approximation</a> | <a href="https://observablehq.com/@mattiasvillani/posterior-approximation-beta-model">Beta model for proportions</a><br>
-</p>
-<p><strong>Lecture 7 - Gibbs sampling</strong><br>
-Read: BL 9.1-9.5 | <a href="./slides/BL_L7.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/normal-mixture">Mixture of normals</a> | <a href="https://observablehq.com/@mattiasvillani/mixture-of-poissons">Mixture of Poissons</a><br>
-Code: <a href="./code/GibbsBivariateNormal.R">Gibbs sampling for bivariate normal</a> | <a href="./code/NormalMixtureGibbs.R">Gibbs sampling for Mixture of Normals</a><br>
-Video: <a href="https://www.youtube.com/watch?v=IGiQOCX9UbM">Gibbs sampling for correlated parameters</a></p>
-<p><strong>Lecture 8 - Metropolis-Hastings</strong><br>
-Read: <a href="https://sites.stat.columbia.edu/gelman/book/BDA3.pdf">BDA 11.2-11.5</a> | <a href="./slides/BL_L8.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/random-walk-metropolis">Metropolis-Hastings</a><br>
-Video: <a href="https://www.youtube.com/watch?v=Vv3f0QNWvWQ">HarlMCMC shake</a></p>
-<p><strong>Lecture 9 - Hamiltonian Monte Carlo and an intro to Variational inference</strong><br>
-Read: <a href="./slides/BL_L9.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/hamiltonian-markov-chain-monte-carlo">HMC</a> | <a href="https://observablehq.com/@mattiasvillani/leapfrog-integrator">Leapfrog algorithm for HMC proposals</a> | <a href="https://observablehq.com/@mattiasvillani/hmc-sampling-from-multi-modal-distributions">HMC can struggle on multimodal distributions</a><br>
-</p>
-<p><strong>Lecture 10 - Probabilistic programming for Bayes. Model comparison.</strong><br>
-Read: BL 14.1-14.4 | <a href="./misc/intro_stan.html">Intro to Stan</a> | <a href="./slides/BL_L10.pdf">Slides</a><br>
-Interactive: <a href="https://observablehq.com/@mattiasvillani/bayesian-test-mean-normal-pop">Bayesian model comparison using marginal likelihood</a></p>
-<p><strong>Lecture 11 - Course summary.</strong><br>
-<a href="./slides/BL_L11.pdf">Slides</a><br>
-</p>
+<section id="solution-5a" class="level4">
+<h4 class="anchored" data-anchor-id="solution-5a"><span style="color:red;">Solution 5a)</span></h4>
+<p>We start by setting up the (unnormalized) log posterior by coding up the log-likelihood and the log-prior and finally adding them up:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>LogPostPoisson <span class="ot">&lt;-</span> <span class="cf">function</span>(theta, y, mu0, tau0){</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  logLik <span class="ot">=</span> <span class="fu">sum</span>(<span class="fu">dpois</span>(y, <span class="fu">exp</span>(theta), <span class="at">log =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  logPrior <span class="ot">=</span> <span class="fu">dnorm</span>(theta, mu0, tau0, <span class="at">log =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(logLik <span class="sc">+</span> logPrior)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We use the <code>optim</code> function to maximize the log posterior (with the argument <code>control=list(fnscale=-1)</code> that multiplies the objective function by <span class="math inline">\(-1\)</span> to turn the problem into a minimization problem, which is what <code>optim</code> handles). The initial value is set to <span class="math inline">\(0\)</span> for simplicity ( <span class="math inline">\(\log(\bar y)\)</span> would have been better).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>mu0 <span class="ot">=</span> <span class="fu">log</span>(<span class="dv">4</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>tau0 <span class="ot">=</span> <span class="fl">0.5</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>initVal <span class="ot">&lt;-</span> <span class="dv">0</span>; </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>OptimResults<span class="ot">&lt;-</span><span class="fu">optim</span>(initVal, LogPostPoisson, <span class="at">gr=</span><span class="cn">NULL</span>, y, mu0, tau0,</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">method =</span> <span class="fu">c</span>(<span class="st">"BFGS"</span>), <span class="at">control=</span><span class="fu">list</span>(<span class="at">fnscale=</span><span class="sc">-</span><span class="dv">1</span>), <span class="at">hessian=</span><span class="cn">TRUE</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>postMode <span class="ot">=</span> OptimResults<span class="sc">$</span>par[<span class="dv">1</span>]</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>postVar <span class="ot">=</span> <span class="sc">-</span><span class="dv">1</span><span class="sc">/</span>OptimResults<span class="sc">$</span>hessian[<span class="dv">1</span>] <span class="co"># inv(J) - Approx posterior variance</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>postStd <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(postVar)          <span class="co"># Approximate stdev</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"The posterior mode is "</span>, <span class="fu">round</span>(postMode, <span class="dv">3</span>), <span class="st">" and the approximate posterior standard deviation is "</span>, <span class="fu">round</span>(postStd, <span class="dv">3</span>), <span class="st">"."</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>The posterior mode is 1.657 and the approximate posterior standard deviation is 0.046.</code></pre>
+</div>
+</div>
+<p>Hence the approximate posterior is</p>
+<p><span class="math display">\[
+\theta \vert \boldsymbol{y} \overset{\mathrm{approx}}{\sim} N(1.657, 0.046)
+\]</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>thetaGrid <span class="ot">=</span> <span class="fu">seq</span>(postMode <span class="sc">-</span> <span class="dv">4</span><span class="sc">*</span>postStd, postMode <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span> postStd, <span class="at">length =</span> <span class="dv">1000</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(thetaGrid, <span class="fu">dnorm</span>(thetaGrid, postMode, postStd), <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, </span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"posterior density"</span>, <span class="at">col =</span> prettycols[<span class="dv">3</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="NormalApproxIIDPoisson_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="problem-5b" class="level4">
+<h4 class="anchored" data-anchor-id="problem-5b">Problem 5b)</h4>
+<p>Use the posterior approximation for <span class="math inline">\(\theta\)</span> in Problem 5a) to simulate from the approximate posterior of <span class="math inline">\(\lambda = \exp(\theta)\)</span>. Plot a histogram.</p>
+</section>
+<section id="solution-5b" class="level4">
+<h4 class="anchored" data-anchor-id="solution-5b"><span style="color:red;">Solution 5b)</span></h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>nSim <span class="ot">=</span> <span class="dv">10000</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>thetaDraws <span class="ot">=</span> <span class="fu">rnorm</span>(nSim, postMode, postStd)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>lambdaDraws <span class="ot">=</span> <span class="fu">exp</span>(thetaDraws)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(lambdaDraws, <span class="dv">50</span>, <span class="at">freq =</span> <span class="cn">FALSE</span>, <span class="at">col =</span> prettycols[<span class="dv">6</span>],</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(lambda), <span class="at">ylab =</span> <span class="st">"posterior density"</span>, <span class="at">main =</span> <span class="st">"Posterior lambda"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="NormalApproxIIDPoisson_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This posterior is slightly skewed (we actually know it is logNormal).</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

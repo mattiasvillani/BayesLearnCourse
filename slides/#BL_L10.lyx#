@@ -682,7 +682,7 @@ Model averaging
 
 \begin_deeper
 \begin_layout Itemize
-Two models 
+We have two models 
 \begin_inset Formula $M_{1}$
 \end_inset
 
@@ -691,10 +691,6 @@ Two models
 \end_inset
 
 , each giving a predictive density:
-\begin_inset VSpace smallskip
-\end_inset
-
-
 \end_layout
 
 \begin_deeper
@@ -705,10 +701,6 @@ Predictive density Model
 
 : 
 \begin_inset Formula $p_{1}(\tilde{y}|\mathbf{y})$
-\end_inset
-
-
-\begin_inset VSpace smallskip
 \end_inset
 
 
@@ -724,34 +716,19 @@ Predictive density Model
 \end_inset
 
 
-\begin_inset VSpace medskip
-\end_inset
-
-
 \end_layout
 
 \end_deeper
 \begin_layout Itemize
-Instead of selecting one model, we can 
-\series bold
-\color blue
-marginalize over the models
-\series default
-\color inherit
- using the posterior model probabilities 
+Instead of selecting one model, we can marginalize over the models using
+ the posterior model probabilities 
 \begin_inset Formula $\mathrm{Pr}(M_{k}\vert\mathbf{y})$
 \end_inset
 
- in 
-\series bold
-\color blue
-model averaging
-\series default
-\color inherit
 :
 \begin_inset Formula 
 \[
-p(\tilde{y}|\mathbf{y})=\mathrm{Pr}(M_{1}\vert\mathbf{y})p_{1}(\tilde{y}|\mathbf{y})+\mathrm{Pr}(M_{2}\vert\mathbf{y})p_{2}(\tilde{y}|\mathbf{y})
+p(\tilde{y}|\mathbf{y})=\mathrm{Pr}(M_{k}\vert\mathbf{y})p_{1}(\tilde{y}|\mathbf{y})+\mathrm{Pr}(M_{k}\vert\mathbf{y})p_{2}(\tilde{y}|\mathbf{y})
 \]
 
 \end_inset

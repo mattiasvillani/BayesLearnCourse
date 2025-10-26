@@ -517,11 +517,6 @@ Priors
 
 \begin_deeper
 \begin_layout Itemize
-Different types of priors:
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
 
 \series bold
 \color blue
@@ -529,6 +524,10 @@ Expert
 \series default
 \color inherit
  elicitation
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -539,6 +538,10 @@ Other data
 \series default
 \color inherit
  sources
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -569,6 +572,10 @@ Jeffreys' prior
 \color inherit
  
 \begin_inset Formula $p(\theta)=\vert I(\theta)\vert^{1/2}$
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -607,6 +614,159 @@ smoothness priors
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Prediction
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+(Posterior) predictive distribution
+\series default
+\color inherit
+ for iid data:
+\begin_inset Formula 
+\[
+p(\tilde{y}|\boldsymbol{y})=\int_{\theta}p(\tilde{y}|\theta)p(\theta|\boldsymbol{y})d\theta
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $p(\tilde{y}\vert\theta)$
+\end_inset
+
+ is the model density for a new observation 
+\begin_inset Formula $\tilde{y}$
+\end_inset
+
+ given 
+\begin_inset Formula $\theta$
+\end_inset
+
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $p(\theta|\boldsymbol{y})$
+\end_inset
+
+ is the posterior density for 
+\begin_inset Formula $\theta$
+\end_inset
+
+ given the training data 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+With no training data: the 
+\series bold
+\color blue
+prior predictive distribution
+\series default
+\color inherit
+
+\begin_inset Formula 
+\[
+p(\tilde{y})=\int_{\theta}p(\tilde{y}|\theta)p(\theta)d\theta
+\]
+
+\end_inset
+
+where we integrate of the parameters using the 
+\series bold
+\color blue
+prior 
+\begin_inset Formula $p(\theta)$
+\end_inset
+
+
+\series default
+\color inherit
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Use prior predictive density to set the prior hyperparameters when the expert
+ expresses prior beliefs about observable data: 
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\mathbb{E}(\tilde{y})$
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $\mathrm{Pr}(\tilde{y}>c)$
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\bar under
+\color blue
+\begin_inset CommandInset href
+LatexCommand href
+name "Interactive example"
+target "https://observablehq.com/@mattiasvillani/prior_pred_poismodel"
+literal "false"
+
+\end_inset
+
+
+\bar default
+\color inherit
+ with Gamma prior for Poisson model.
+\end_layout
+
 \end_deeper
 \begin_layout Standard
 \begin_inset Separator parbreak
@@ -615,8 +775,564 @@ smoothness priors
 
 \end_layout
 
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Decisions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Need to make a 
+\series bold
+\color blue
+decision/action
+\series default
+\color inherit
+ 
+\begin_inset Formula $a\in\mathcal{A}$
+\end_inset
+
+ when 
+\series bold
+\color blue
+state of nature
+\series default
+\color inherit
+ 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ is partially unknown.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+\color blue
+utility function
+\series default
+\color inherit
+ describes the consequence of taking action 
+\begin_inset Formula $a$
+\end_inset
+
+ when state of nature is 
+\begin_inset Formula $\boldsymbol{\theta}$
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+U(a,\boldsymbol{\theta})
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The utility function is subjective (also for non-Bayesians) and is determined
+ by the decision maker.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Bayesian theory
+\series default
+\color inherit
+ gives a single universal decision rule: choose the action that 
+\series bold
+\color blue
+maximizes (posterior) expected utility
+\series default
+\color inherit
+:
+\begin_inset Formula 
+\[
+\mathrm{EU}(a)=\int U(a,\boldsymbol{\theta})p(\boldsymbol{\theta}\vert\boldsymbol{y})d\boldsymbol{\theta}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\boldsymbol{y}$
+\end_inset
+
+ is some training data.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
-More later today!
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Posterior approximation
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Three ways to approximate the posterior:
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Normal approximation
+\series default
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior sampling
+\series default
+\color inherit
+ (Gibbs, MH, HMC)
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Numerical integration
+\series default
+\color inherit
+
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Normal approximation is fast, but is approximate unless we have a lot of
+ data (infinite in theory).
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Posterior sampling will converge to true posterior if simulated long enough,
+ but is approximate in finite time.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Numerical integration is only a good option when the number of parameters
+ is small.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Model evaluation and comparison
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Three main ways to compare models
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Posterior model probabilities 
+\series default
+\color inherit
+(
+\series bold
+\color blue
+marginal likelihood
+\series default
+\color inherit
+)
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Log Predictive Density Score
+\series default
+\color inherit
+ (LPDS/elpd)
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Leave-one-out (LOO) 
+\series default
+\color inherit
+LPDS/elpd
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Evaluate the 
+\series bold
+\color blue
+predictive 
+\color orange
+density
+\color blue
+ performance
+\series default
+\color inherit
+ on test data
+\begin_inset Formula 
+\[
+p(\boldsymbol{y}_{\mathrm{test}}\vert\boldsymbol{y}_{\mathrm{train}})=\int p(\boldsymbol{y}_{\mathrm{test}}\vert\boldsymbol{\theta},\boldsymbol{y}_{\mathrm{train}})p(\boldsymbol{\theta}\vert\boldsymbol{y}_{\mathrm{train}})d\boldsymbol{\theta}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+test data 
+\begin_inset Formula $\boldsymbol{y}_{\mathrm{test}}$
+\end_inset
+
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+posterior 
+\begin_inset Formula $p(\boldsymbol{\theta}\vert\boldsymbol{y}_{\mathrm{train}})$
+\end_inset
+
+ based on some training data.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Often evaluated on the log scale: 
+\begin_inset Formula $\log p(\boldsymbol{y}_{\mathrm{test}}\vert\boldsymbol{y}_{\mathrm{train}})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+
+\series bold
+\color blue
+Parameter uncertainty is included
+\series default
+\color inherit
+ in the model comparison by integrating with respect to the posterior 
+\begin_inset Formula $p(\boldsymbol{\theta}\vert\boldsymbol{y}_{\mathrm{train}})$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Frame
+\begin_inset Argument 4
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\color orange
+Model evaluation and comparison
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Marginal likelihood
+\series default
+\color inherit
+: 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+no 
+\begin_inset Formula $\boldsymbol{y}_{\mathrm{train}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{y}_{\mathrm{test}}$
+\end_inset
+
+ is all the data.
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Sensitive to the prior on the parameters 
+\begin_inset Formula $p(\boldsymbol{\theta})$
+\end_inset
+
+.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Log Predictive Density Score
+\series default
+\color inherit
+: 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{y}_{\mathrm{train}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{y}_{\mathrm{test}}$
+\end_inset
+
+ is some partition of the data.
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $K$
+\end_inset
+
+-fold cross-validation.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+
+\series bold
+\color blue
+Leave-one-out (LOO)
+\series default
+\color inherit
+
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Formula $\boldsymbol{y}_{\mathrm{test}}=y_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $\boldsymbol{y}_{\mathrm{train}}=\boldsymbol{y}_{-i}$
+\end_inset
+
+ (all data except obs 
+\begin_inset Formula $i$
+\end_inset
+
+)
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Formula $n$
+\end_inset
+
+-fold cross-validation.
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Time-consuming: posterior sampling from 
+\begin_inset Formula $n$
+\end_inset
+
+ posteriors
+\begin_inset Formula 
+\[
+p(\boldsymbol{\theta}\vert\boldsymbol{y}_{-i})\text{ for }i=1,\ldots,n
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+The 
+\series bold
+loo
+\series default
+ package uses a importance sampling trick for speed.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Separator parbreak
+\end_inset
+
+
 \end_layout
 
 \end_body
