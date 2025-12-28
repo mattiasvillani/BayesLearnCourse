@@ -2,7 +2,7 @@
 
 # Bayesian Learning, 7.5 credits - GitHub repository for course material
 
-<img src="Misc/linocut_mountaintops.png">
+<img src="misc/linocut_mountaintops.png">
 
 This repository contains the course material for the course *Bayesian Learning* (7.5 credits) taught at Stockholm University, Sweden. 
 
