@@ -53,7 +53,7 @@ The course is examined by a
 
 ### Schedule
 
-The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?i=x7ce6e5Z4n0wknyaQhxnZclQln_0nbZH05QcTcn_sl7916Qy6d650606u67310905ZWQnw). A tip is to select *Subscribe* in the upper right corner of TimeEdit and then paste the link into your phone's calendar program.
+The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?sid=3&object=cevt_39064_HT2026&startDate=20260801&endDate=20270206&type=courseevent&h=t&l=en). A tip is to select *Subscribe* in the upper right corner of TimeEdit and then paste the link into your phone's calendar program.
 
 ### Formula sheet
 
@@ -69,13 +69,12 @@ The course makes use of interactive Observable notebooks in javascript that runs
 <img src="/misc/VillaniLowRes.jpg" width="30%"/>\
 [Mattias Villani](https://mattiasvillani.com)<br>Course responsible and Lecturer<br>Professor <br><br>
 
-![](/misc/oskar.jpeg){width="35%"}\
-[Oskar Gustafsson](https://www.su.se/english/profiles/osgu4809-1.252072)<br>Exercises and Computer labs <br> PhD in Statistics and Senior Lecturer
+![](/misc/yulia.jpeg){width="30%"}\
+[Yulia Ryanova](https://www.su.se/english/profiles/akma0227-1.800159)<br>Exercises <br> PhD student in Statistics
 
-![](/misc/akram.jpeg){width="40%"}\
+![](/misc/akram.jpeg){width="37%"}\
 [Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159)<br>Computer labs <br> PhD in Statistics and Lecturer
 
-![](/misc/valentin.jpeg){width="40%"}\
-[Valentin Zulj](https://valentinzulj.github.io/)<br>Computer labs <br> PhD student in Statistics and Teaching assistant
+
 :::
 
