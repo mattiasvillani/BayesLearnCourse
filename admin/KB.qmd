@@ -26,7 +26,7 @@ include-in-header:
 editor: visual
 ---
 
-# Bayesian Learning, Master's level, 7.5 hp, ST5301
+# Bayesian Learning, Master's level, 7.5 hp, ST5301 and ST8101.
 
 The course is part of the [Master's program in Statistics, 120 credits](https://utbildning.su.se/english/education/course-catalogue/ss/sstao) and the [Master's program in data science, statistics and decision analysis](https://www.su.se/english/search-courses-and-programmes/sdsbo-1.678892)[, 120 credits.](https://utbildning.su.se/english/education/course-catalogue/sd/sdsbo)
 
@@ -66,9 +66,8 @@ Evaluation ability and approach:
 | Teachers | Role |
 |----------------------------------------|--------------------------------|
 | [Mattias Villani](mattiasvillani.com) | Course responsible, examiner and lecturer \vspace{5pt} |
-| [Oskar Gustafsson](https://www.su.se/english/profiles/osgu4809-1.252072) | Exercises and Computer labs \vspace{5pt} |
+| [Yulia Ryanova](https://www.su.se/english/profiles/akma0227-1.800159) | Exercises |
 | [Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159) | Computer labs |
-| [Valentin Zulj](https://valentinzulj.github.io/) | Computer labs |
 
 All teachers have office hours by appointment. Contact us via email to schedule a meeting time (either on campus or via Zoom).
 
@@ -76,15 +75,15 @@ The Statistical Department is located at the newly built Campus Albano, Albanov�
 
 All course material - including slides, reading instructions and schedule link - are available on the [course page](https://mattiasvillani.com/BayesLearnCourse/).
 
-Student-specific information, submission of the home assignments and messages during the course are handled on the learning platform [Athena](https://athena.itslearning.com/index.aspx).
+Student-specific information, submission of the home assignments and messages during the course are handled on the learning platform Canvas.
 
 ## Course evaluation
 
-After the course is completed, an evaluation of the course is conducted. The course evaluation is used as part of the quality work for the course and as a means of student influence. The evaluation is carried out by sending a survey via email to all registered course participants. The responses from the course participants are compiled and, along with the final report/course evaluation from the course responsible teacher, uploaded to Athena.
+After the course is completed, an evaluation of the course is conducted. The course evaluation is used as part of the quality work for the course and as a means of student influence. The evaluation is carried out by sending a survey via email to all registered course participants. The responses from the course participants are compiled and, along with the final report/course evaluation from the course responsible teacher, uploaded to Canvas.
 
 ## Teaching and mandatory participation
 
-The teaching consists of 13 lectures (F1-F13), 6 exercises (Ö1-Ö6) and 4 computer lab sessions (DL1-DL4) according to the schedule. Please see the link to TimeEdit on the course page for the current schedule.
+The teaching consists of 12 lectures (F1-F12), 6 exercises (Ö1-Ö6) and 4 computer lab sessions (DL1-DL4) according to the schedule. Please see the link to TimeEdit on the course page for the current schedule.
 
 Participation in all teaching activities is voluntary, but **strongly recommended**. Learning statistics takes a lot of practice and it will be hard to pass the course without the necessary effort.
 
@@ -132,7 +131,7 @@ To pass the course, a minimum grade of E on Exam 1 and a pass grade on Exam 2 ar
 
 -   Internet access is not permitted during the exam.
 
--   Personal code from your own solutions to computer labs is allowed as a resource. The personal code file must be uploaded for verification before the exam (as instructed on Athena).
+-   Personal code from your own solutions to computer labs is allowed as a resource. The personal code file must be uploaded for verification before the exam (as instructed on Canvas).
 
 -   Collaboration is not allowed during the exam, nor are any aids other than those permitted by the examiner.
 
@@ -150,9 +149,9 @@ See TimeEdit for scheduled exam sessions.
 
 ### Exam 2 (12BI): Home Assignment, 0.5 credits
 
--   The assignments are group work, with three (3) persons per group. Group division is done on Athena under the "Create Workgroups" document in the Assignment folder.
+-   The assignments are group work, with three (3) persons per group. Group division is done on Canvas under the "Create Workgroups" document in the Assignment folder.
 
--   The assignment consists of 2 subprojects presented as written reports using R. Instructions for the assignments will be available on Athena at the start of the course.
+-   The assignment consists of 2 subprojects presented as written reports using R. Instructions for the assignments will be available on Canvas at the start of the course.
 
 -   Collaboration within the group is allowed, but individual assessment and grading within the group may occur. All group members are responsible for and must be able to account for all parts of the work presented in the reports. Collaboration between groups is permitted, but each group must submit their unique reports.
 
@@ -166,9 +165,9 @@ See TimeEdit for scheduled exam sessions.
 
 #### Submission Deadlines
 
--   Deadline for submission of home assignment, Part A: October 1, 2025.
+-   Deadline for submission of home assignment, Part A: September 30, 2026.
 -   Deadline for possible correction: TBD
--   Deadline for submission of home assignment, Part B: October 15, 2025.
+-   Deadline for submission of home assignment, Part B: October 13, 2026.
 -   Deadline for possible correction: TBD
 
 ## Grading Criteria
