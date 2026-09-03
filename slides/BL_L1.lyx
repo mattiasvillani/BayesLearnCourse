@@ -1,5 +1,5 @@
-#LyX 2.3 created this file. For more info see http://www.lyx.org/
-\lyxformat 544
+#LyX 2.4 created this file. For more info see https://www.lyx.org/
+\lyxformat 620
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -95,11 +95,11 @@ coltitle=black,center title}}
 \end_preamble
 \options xcolor=svgnames, handout
 \use_default_options false
-\maintain_unincluded_children false
+\maintain_unincluded_children no
 \language english
 \language_package default
-\inputencoding auto
-\fontencoding global
+\inputencoding auto-legacy
+\fontencoding auto
 \font_roman "palatino" "default"
 \font_sans "default" "default"
 \font_typewriter "default" "default"
@@ -107,7 +107,9 @@ coltitle=black,center title}}
 \font_default_family default
 \use_non_tex_fonts true
 \font_sc false
-\font_osf false
+\font_roman_osf false
+\font_sans_osf false
+\font_typewriter_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
 \use_microtype false
@@ -141,7 +143,9 @@ coltitle=black,center title}}
 \suppress_date false
 \justification true
 \use_refstyle 0
+\use_formatted_ref 0
 \use_minted 0
+\use_lineno 0
 \index Index
 \shortcut idx
 \color #008000
@@ -157,11 +161,16 @@ coltitle=black,center title}}
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
+\tablestyle default
 \tracking_changes false
 \output_changes false
+\change_bars false
+\postpone_fragile_content false
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
+\docbook_table_output 0
+\docbook_mathml_prefix 1
 \end_header
 
 \begin_body
@@ -176,7 +185,8 @@ status open
 \begin_layout Plain Layout
 
 \color gray
-The Bayesics, Bernoulli and Normal data
+The Bayesics,
+ Bernoulli and Normal data
 \end_layout
 
 \end_inset
@@ -187,7 +197,8 @@ The Bayesics, Bernoulli and Normal data
 \begin_layout Subtitle
 
 \color orange
-Lecture 1 - The Bayesics, Bernoulli and Normal data
+Lecture 1 - The Bayesics,
+ Bernoulli and Normal data
 \end_layout
 
 \begin_layout Author
@@ -324,8 +335,8 @@ Mathematical exercises (
 
 \begin_inset CommandInset href
 LatexCommand href
-name "Oskar Gustafsson"
-target "https://www.su.se/english/profiles/osgu4809-1.252072"
+name "Yulia Ryanova"
+target "https://www.su.se/english/profiles/a/akma0227"
 literal "false"
 
 \end_inset
@@ -343,38 +354,8 @@ Computer labs to work on Home Assignment (
 
 \begin_inset CommandInset href
 LatexCommand href
-name "Oskar Gustafsson"
-target "https://www.su.se/english/profiles/osgu4809-1.252072"
-literal "false"
-
-\end_inset
-
-
-\bar default
-\color inherit
-, 
-\bar under
-\color blue
-
-\begin_inset CommandInset href
-LatexCommand href
 name "Akram Mahmoudi"
 target "https://www.su.se/english/profiles/akma0227-1.800159"
-literal "false"
-
-\end_inset
-
-
-\bar default
-\color inherit
- and 
-\bar under
-\color blue
-
-\begin_inset CommandInset href
-LatexCommand href
-name "Valentin Zulj"
-target "https://valentinzulj.github.io/"
 literal "false"
 
 \end_inset
@@ -412,7 +393,8 @@ The
 Bayesics
 \series default
 \color inherit
-, single- and multiparameter models
+,
+ single- and multiparameter models
 \end_layout
 
 \begin_layout Itemize
@@ -484,7 +466,8 @@ Examination
 Home assignment
 \series default
 \color inherit
-, Part A and B.
+,
+ Part A and B.
 \end_layout
 
 \begin_layout Itemize
@@ -494,7 +477,8 @@ Home assignment
 Exam
 \series default
 \color inherit
-: Pen and paper + Computer (using R).
+:
+ Pen and paper + Computer (using R).
  
 \begin_inset Newline newline
 \end_inset
@@ -693,7 +677,8 @@ Given the data
 \begin_inset Formula $x_{1},...,x_{n}$
 \end_inset
 
-, plot 
+,
+ plot 
 \begin_inset Formula $p(x_{1},...,x_{n}|\theta)$
 \end_inset
 
@@ -774,7 +759,8 @@ The likelihood function
 
 \begin_deeper
 \begin_layout Itemize
-Say it out loud: 
+Say it out loud:
+ 
 \end_layout
 
 \begin_layout Quotation
@@ -983,7 +969,8 @@ a fixed natural constant?
 
 \series bold
 \color blue
-Bayesian: doesn't matter if 
+Bayesian:
+ doesn't matter if 
 \begin_inset Formula $\theta$
 \end_inset
 
@@ -1205,7 +1192,8 @@ Bayesian learning
 \begin_inset Formula $\theta$
 \end_inset
 
-: 
+:
+ 
 \begin_inset VSpace medskip
 \end_inset
 
@@ -1294,7 +1282,8 @@ combine
 How to combine
 \series default
 \color inherit
- the two sources of information? 
+ the two sources of information?
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1530,7 +1519,8 @@ A =
 \begin_inset Formula $\left\{ \text{Covid}\right\} $
 \end_inset
 
-, B =
+,
+ B =
 \begin_inset Formula $\left\{ \text{Positive home test}\right\} $
 \end_inset
 
@@ -1544,7 +1534,8 @@ A =
 Sensitivity
 \series default
 \color inherit
-: 
+:
+ 
 \begin_inset Formula $96.77\%$
 \end_inset
 
@@ -1563,7 +1554,8 @@ Sensitivity
 Specificity
 \series default
 \color inherit
-: 
+:
+ 
 \begin_inset Formula $99.20\%$
 \end_inset
 
@@ -1582,7 +1574,8 @@ Specificity
 Prevalence
 \series default
 \color inherit
-: 
+:
+ 
 \begin_inset Formula $5\%$
 \end_inset
 
@@ -1636,7 +1629,8 @@ p(A\vert B)=0.9965.
 Morale
 \series default
 \color inherit
-: If you want 
+:
+ If you want 
 \begin_inset Formula $p(A|B)$
 \end_inset
 
@@ -1818,7 +1812,8 @@ Integral
 \end_layout
 
 \begin_layout Itemize
-Example: 
+Example:
+ 
 \begin_inset Formula $x\sim N(\mu,\sigma^{2})$
 \end_inset
 
@@ -2590,7 +2585,8 @@ status open
 
 \series bold
 \color orange
-Normal data, known variance - uniform prior
+Normal data,
+ known variance - uniform prior
 \end_layout
 
 \end_inset
@@ -2692,7 +2688,8 @@ status open
 
 \series bold
 \color orange
-Normal data, known variance - normal prior
+Normal data,
+ known variance - normal prior
 \end_layout
 
 \end_inset
@@ -2808,8 +2805,8 @@ begin{tcolorbox}[colback=verylightgray]
 \backslash
 textbf{
 \backslash
-textcolor{darkgreen}{Conjugate analysis - Gaussian model, known variance}}
-  
+textcolor{darkgreen}{Conjugate analysis - Gaussian model,
+ known variance}}  
 \backslash
 
 \backslash
@@ -2834,7 +2831,8 @@ mathrm{N}(
 \backslash
 theta,
 \backslash
-sigma^2)$, $
+sigma^2)$,
+ $
 \backslash
 sigma^2$ known 
 \backslash
@@ -2901,7 +2899,8 @@ smallskip
 
 
 \backslash
-hspace{0.0cm}Posterior precision: $
+hspace{0.0cm}Posterior precision:
+ $
 \backslash
 frac{1}{
 \backslash
@@ -2922,7 +2921,8 @@ tau_0^2}$
 
 \begin_layout Plain Layout
 
-Posterior mean: $
+Posterior mean:
+ $
 \backslash
 mu_n = w 
 \backslash
@@ -2937,7 +2937,8 @@ mu_0$
 
 \begin_layout Plain Layout
 
-Posterior weight: $w = 
+Posterior weight:
+ $w = 
 \backslash
 frac{n/
 \backslash
@@ -2976,7 +2977,8 @@ status open
 
 \series bold
 \color orange
-Normal data, known variance - normal prior
+Normal data,
+ known variance - normal prior
 \end_layout
 
 \end_inset
@@ -3071,8 +3073,8 @@ Internet speed
 Problem
 \series default
 \color inherit
-: My internet provider promises an average download speed of at least 20
- Mbit/sec.
+:
+ My internet provider promises an average download speed of at least 20 Mbit/sec.
  Are they lying?
 \begin_inset VSpace bigskip
 \end_inset
@@ -3091,7 +3093,8 @@ Problem
 Data
 \series default
 \color inherit
-: 
+:
+ 
 \begin_inset Formula $\mbox{x}=(15.77,20.5,8.26,14.37,21.09)$
 \end_inset
 
@@ -3113,7 +3116,8 @@ Data
 Model
 \series default
 \color inherit
-: 
+:
+ 
 \begin_inset Formula $X_{1},...,X_{5}\sim N(\theta,\sigma^{2})$
 \end_inset
 
@@ -3155,7 +3159,8 @@ My
 prior
 \series default
 \color inherit
-: 
+:
+ 
 \begin_inset Formula $\theta\sim N(20,5^{2})$
 \end_inset
 
@@ -3425,7 +3430,8 @@ Bernoulli trials
 with order
 \series default
 \color inherit
-: 
+:
+ 
 \begin_inset Formula $x_{1}=1,x_{2}=0,...,x_{4}=1,...,x_{n}=1$
 \end_inset
 
@@ -3452,7 +3458,8 @@ Bernoulli trials without order
 \begin_inset Formula $n$
 \end_inset
 
- fixed, 
+ fixed,
+ 
 \begin_inset Formula $s$
 \end_inset
 
@@ -3474,7 +3481,8 @@ p(s\vert\theta)=\binom{n}{s}\theta^{s}(1-\theta)^{f}
 Negative binomial sampling
 \series default
 \color inherit
-: sample until you get 
+:
+ sample until you get 
 \begin_inset Formula $s$
 \end_inset
 
@@ -3483,7 +3491,8 @@ Negative binomial sampling
 \begin_inset Formula $s$
 \end_inset
 
- fixed, 
+ fixed,
+ 
 \begin_inset Formula $n$
 \end_inset
 
