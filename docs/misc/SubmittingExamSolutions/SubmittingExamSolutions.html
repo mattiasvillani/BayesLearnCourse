@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Mattias Villani">
 
-<title>Bayesian Learning, 7.5 hp – Bayesian Learning</title>
+<title>Submitting your exam solutions – Bayesian Learning</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -29,28 +30,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href=".//misc/Thomas_Bayes.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c1a0cd17a20995bdade490a39341ab36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-d525f3daefb749f9861220bbafe2bde7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-c1a0cd17a20995bdade490a39341ab36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../..//misc/Thomas_Bayes.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-c1a0cd17a20995bdade490a39341ab36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-d525f3daefb749f9861220bbafe2bde7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-c1a0cd17a20995bdade490a39341ab36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -252,11 +253,11 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./misc/SU_logo_small.png" alt="" class="navbar-logo light-content">
-    <img src="./misc/SU_logo_small.png" alt="" class="navbar-logo dark-content">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../misc/SU_logo_small.png" alt="" class="navbar-logo light-content">
+    <img src="../../misc/SU_logo_small.png" alt="" class="navbar-logo dark-content">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Bayesian Learning</span>
     </a>
   </div>
@@ -267,23 +268,23 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./lectures.html"> 
+    <a class="nav-link" href="../../lectures.html"> 
 <span class="menu-text">Lectures</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./exercises.html"> 
+    <a class="nav-link" href="../../exercises.html"> 
 <span class="menu-text">Exercises</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./homeassignment.html"> 
+    <a class="nav-link" href="../../homeassignment.html"> 
 <span class="menu-text">Assignments</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./culture.html"> 
+    <a class="nav-link" href="../../culture.html"> 
 <span class="menu-text">Culture</span></a>
   </li>  
 </ul>
@@ -303,17 +304,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Sections</h2>
    
   <ul>
-  <li><a href="#aim" id="toc-aim" class="nav-link active" data-scroll-target="#aim">Aim</a></li>
-  <li><a href="#contents" id="toc-contents" class="nav-link" data-scroll-target="#contents">Contents</a></li>
-  <li><a href="#literature" id="toc-literature" class="nav-link" data-scroll-target="#literature">Literature</a></li>
-  <li><a href="#structure" id="toc-structure" class="nav-link" data-scroll-target="#structure">Structure</a></li>
-  <li><a href="#examination" id="toc-examination" class="nav-link" data-scroll-target="#examination">Examination</a></li>
-  <li><a href="#schedule" id="toc-schedule" class="nav-link" data-scroll-target="#schedule">Schedule</a></li>
-  <li><a href="#formula-sheet" id="toc-formula-sheet" class="nav-link" data-scroll-target="#formula-sheet">Formula sheet</a></li>
-  <li><a href="#interactive-material" id="toc-interactive-material" class="nav-link" data-scroll-target="#interactive-material">Interactive material</a></li>
-  <li><a href="#teachers" id="toc-teachers" class="nav-link" data-scroll-target="#teachers">Teachers</a></li>
+  <li><a href="#pdf" id="toc-pdf" class="nav-link active" data-scroll-target="#pdf">pdf</a></li>
+  <li><a href="#html" id="toc-html" class="nav-link" data-scroll-target="#html">html</a></li>
   </ul>
-</nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="SubmittingExamSolutions.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -321,13 +315,19 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Bayesian Learning, 7.5 hp</h1>
+<h1 class="title">Submitting your exam solutions</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Mattias Villani </p>
+          </div>
+  </div>
     
   
     
@@ -338,87 +338,40 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async="" defer="" src="https://buttons.github.io/buttons.js"></script>
-<p><img src="misc/mixture_mosaic2.png" alt="AI generated image of a mixture distribution" class="center" width="100%"></p>
-<!-- Place this tag where you want the button to render. -->
-<p><a class="github-button" href="https://github.com/mattiasvillani/BayesLearnCourse/" data-color-scheme="no-preference: dark; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star this course on GitHub">Star</a></p>
-<section id="aim" class="level3">
-<h3 class="anchored" data-anchor-id="aim">Aim</h3>
-<blockquote class="blockquote">
-<p>This is a course on the <a href="https://utbildning.su.se/english/education/course-catalogue/ss/sstao">Master’s Program in Statistics</a> and the <a href="https://dsv.su.se/sdsbo">Master’s Program in Data Science, Statistics and Decision Analysis</a> at Stockholm University.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>The course gives a gentle, but solid, introduction to Bayesian statistics, with special emphasis on models and methods in computational statistics and machine learning.</p>
-</blockquote>
-</section>
-<section id="contents" class="level3">
-<h3 class="anchored" data-anchor-id="contents">Contents</h3>
+<p>You can submit your exam solutions using <em>either</em>:</p>
 <ul>
-<li>We will get off to a shocking start by introducing a very different probability concept than the one you are probably used to: subjective probability.</li>
-<li>We will then move on to the mathematics of the prior-to-posterior updating in basic statistical models, such as the Bernoulli, normal and multinomial models. Bayesian prediction and decision making under uncertainty is carefully explained, and you will hopefully see why Bayesian methods are so useful in modern application where so much focuses on prediction and decision making.</li>
-<li>The really interesting stuff starts to happen when we study regression and classification. You will learn how prior distributions can be seen as regularization that allows us to use flexible models with many parameters without overfitting the data and improving predictive performance.</li>
-<li>A new world will open up when we learn how complex models can be analyzed with simulation methods like Markov Chain Monte Carlo (MCMC), Hamiltonian Monte Carlo (HMC) and approximate optimization methods like Variational Inference (VI).</li>
-<li>You will also get a taste for probabilistic programming languages for Bayesian learning, in particular the popular Stan language in R.</li>
-<li>Finally, we’ll consider the case with multiple possible models and introduce Bayesian model averaging and model selection.</li>
+<li><p>html</p></li>
+<li><p>pdf (works since late October)</p></li>
 </ul>
-</section>
-<section id="literature" class="level3">
-<h3 class="anchored" data-anchor-id="literature">Literature</h3>
-<ul>
-<li>Villani, M. (2025a). <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf">Bayesian Learning</a>. This is the main book for the course.</li>
-<li>Gelman, Carlin, Stern, Dunson, Vehtari, Rubin (2014). Bayesian Data Analysis (BDA). Chapman &amp; Hall/CRC: Boca Raton, Florida. 3rd edition. Here is the <a href="http://www.stat.columbia.edu/~gelman/book/">book webpage</a> and a free <a href="http://www.stat.columbia.edu/~gelman/book/BDA3.pdf">PDF version</a>.</li>
-<li>Additional material and handouts distributed during the course.</li>
-</ul>
-<p>If you need to refresh some basic mathematics, like derivatives and integrals, you may find the first chapter of this Prequel book useful:</p>
-<ul>
-<li>Villani, M. (2025b). <a href="https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/PreBayesBook.pdf">Bayesian Learning - the prequel</a>. Notes on basic mathematics, probability and statistical inference. Work in progress, expect typos.</li>
-</ul>
-</section>
-<section id="structure" class="level3">
-<h3 class="anchored" data-anchor-id="structure">Structure</h3>
-<p>The course consists of <a href="./lectures.html">lectures</a>, <a href="./exercises.html">mathematical exercises</a> and computer labs where you work on a <a href="./homeassignment.html">two-part home assignment</a>.</p>
-</section>
-<section id="examination" class="level3">
-<h3 class="anchored" data-anchor-id="examination">Examination</h3>
-<p>The course is examined by a</p>
-<ul>
-<li>written exam (grades A-F)</li>
-<li><a href="./homeassignment.html">home assignment</a> (grade pass/fail).</li>
-</ul>
-</section>
-<section id="schedule" class="level3">
-<h3 class="anchored" data-anchor-id="schedule">Schedule</h3>
-<p>The course schedule can be found on <a href="https://cloud.timeedit.net/su/web/stud1/s.html?sid=3&amp;object=cevt_39064_HT2026&amp;startDate=20260801&amp;endDate=20270206&amp;type=courseevent&amp;h=t&amp;l=en">TimeEdit</a>. A tip is to select <em>Subscribe</em> in the upper right corner of TimeEdit and then paste the link into your phone’s calendar program.</p>
-</section>
-<section id="formula-sheet" class="level3">
-<h3 class="anchored" data-anchor-id="formula-sheet">Formula sheet</h3>
-<p>This <a href="./misc/BLformulaSheet.pdf">formula sheet</a> will be available as a pdf via the computer in the exam room.</p>
-</section>
-<section id="interactive-material" class="level3">
-<h3 class="anchored" data-anchor-id="interactive-material">Interactive material</h3>
-<p>The course makes use of interactive Observable notebooks in javascript that runs in your browser. The widgets will be linked below each relevant lecture. All widgets used in the course are available <a href="https://observablehq.com/collection/@mattiasvillani/bayesian-learning">here</a>.</p>
-</section>
-<section id="teachers" class="level3">
-<h3 class="anchored" data-anchor-id="teachers">Teachers</h3>
-<div class="quarto-layout-panel" data-layout="[ [1,1],[1,1] ]">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="./misc/VillaniLowRes.jpg" width="30%"><br>
-<a href="https://mattiasvillani.com">Mattias Villani</a><br>Course responsible and Lecturer<br>Professor <br><br></p>
+<p>Below are instructions for each type of file.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="./misc/yulia.jpeg" class="img-fluid" style="width:30.0%"><br>
-<a href="https://www.su.se/english/profiles/akma0227-1.800159">Yulia Ryanova</a><br>Exercises <br> PhD student in Statistics</p>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Files can only be submitted from the <code>Downloads</code> folder
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<p><img src="./misc/akram.jpeg" class="img-fluid" style="width:37.0%"><br>
-<a href="https://www.su.se/english/profiles/akma0227-1.800159">Akram Mahmoudi</a><br>Computer labs <br> PhD in Statistics and Lecturer</p>
+<div class="callout-body-container callout-body">
+<p>Save or move all exam files to the <code>Downloads</code> folder before submitting your final solutions.</p>
 </div>
 </div>
-</div>
+<section id="pdf" class="level2">
+<h2 class="anchored" data-anchor-id="pdf">pdf</h2>
+<p>Render the Quarto file to pdf (<code>format: pdf</code> in the so called YAML at the top of your Quarto file) and submit the pdf file. No extra files needed. It may take a minute on the first render, so try to render to pdf early in the exam, to make sure it works.</p>
+</section>
+<section id="html" class="level2">
+<h2 class="anchored" data-anchor-id="html">html</h2>
+<p>When you render to html (<code>format: html</code> in the so called YAML at the top of your Quarto file) RStudio produces a html file <strong>and</strong> a folder in the same directory, containing figures and other things. <strong>You need to submit both the html file and this folder with graphics</strong>. To do this, you need to compress all files into a .zip file. Select all files and right-click to compress to a .zip file, as illustrated by the two figures below. Then submit only the .zip file.</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td><img src="Picture1.png" class="img-fluid" width="300"></td>
+<td><img src="Picture2.png" class="img-fluid" width="300"></td>
+</tr>
+</tbody>
+</table>
 
 
 </section>
