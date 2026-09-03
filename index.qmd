@@ -69,12 +69,9 @@ The course makes use of interactive Observable notebooks in javascript that runs
 <img src="/misc/VillaniLowRes.jpg" width="30%"/>\
 [Mattias Villani](https://mattiasvillani.com)<br>Course responsible and Lecturer<br>Professor <br><br>
 
-![](/misc/yulia.jpeg){width="30%"}\
+![](/misc/yulia.jpeg){width="40%"}\
 [Yulia Ryanova](https://www.su.se/english/profiles/akma0227-1.800159)<br>Exercises <br> PhD student in Statistics
 
 ![](/misc/akram.jpeg){width="37%"}\
 [Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159)<br>Computer labs <br> PhD in Statistics and Lecturer
-
-
 :::
-
