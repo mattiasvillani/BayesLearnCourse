@@ -8,7 +8,7 @@ format: html
 > This page contains a short description of the contents, reading instructions and additional material for each lecture.
 
 ### Schedule
-The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?tab=3&object=cevt_39011_HT2025&startDate=20250802&endDate=20260131&type=courseevent&h=t&l=en). 
+The course schedule can be found on [TimeEdit](https://cloud.timeedit.net/su/web/stud1/s.html?sid=3&object=cevt_39006_HT2026&startDate=20260801&endDate=20270206&type=courseevent&h=t). 
 
 ### Literature
 - The **BL** listed below are section numbers from the course book Villani (2025a). [Bayesian Learning](https://github.com/mattiasvillani/BayesianLearningBook/raw/main/pdf/BayesBook.pdf).
@@ -55,6 +55,7 @@ Video: [Gibbs sampling for correlated parameters](https://www.youtube.com/watch?
 **Lecture 8 - Metropolis-Hastings**\
 Read: [BDA 11.2-11.5](https://sites.stat.columbia.edu/gelman/book/BDA3.pdf) | [Slides](/slides/BL_L8.pdf) \
 Interactive: [Metropolis-Hastings](https://observablehq.com/@mattiasvillani/random-walk-metropolis) \
+Code: [Simulate Markov Chains](/code/SimulateDiscreteMarkovChain.R) \
 Video: [HarlMCMC shake](https://www.youtube.com/watch?v=Vv3f0QNWvWQ)
 
 **Lecture 9 - Hamiltonian Monte Carlo and an intro to Variational inference**\
