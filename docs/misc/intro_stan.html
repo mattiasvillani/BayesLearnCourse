@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,10 +10,16 @@
 
 <title>Stan – Bayesian Learning</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -73,14 +79,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-2fef5ea3f8957b3e4ecc936fc74692ca.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-e3b568e5b7c3295ff2c0594c3e06f3f0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-78e328b0c72c0f0b6e1746f53d3d74cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-c1a0cd17a20995bdade490a39341ab36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-d525f3daefb749f9861220bbafe2bde7.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-c1a0cd17a20995bdade490a39341ab36.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -110,7 +116,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -123,7 +129,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -312,7 +318,8 @@ window.Quarto = {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../misc/SU_logo_small.png" alt="" class="navbar-logo">
+    <img src="../misc/SU_logo_small.png" alt="" class="navbar-logo light-content">
+    <img src="../misc/SU_logo_small.png" alt="" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">Bayesian Learning</span>
@@ -410,8 +417,8 @@ window.Quarto = {
 <p>The user expresses the model and prior in a special Stan syntax, which is then parsed to C++ and eventually compiled to machine code.</p>
 <p>We can install R package <code>rstan</code> as any other package (use the options below for using all cores and avoiding re-compilation when not needed:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("rstan)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("rstan)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstan)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: StanHeaders</code></pre>
 </div>
@@ -428,8 +435,8 @@ For within-chain threading using `reduce_sum()` or `map_rect()` Stan functions,
 change `threads_per_chain` option:
 rstan_options(threads_per_chain = 1)</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>())</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">mc.cores =</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>())</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rstan_options</span>(<span class="at">auto_write =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="stan-model-syntax" class="level2">
@@ -448,7 +455,7 @@ rstan_options(threads_per_chain = 1)</code></pre>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Data includes also prior hyperparameters
+<span class="screen-reader-only">Note</span>Data includes also prior hyperparameters
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -473,7 +480,7 @@ X_1,\ldots,X_n \vert \theta, \sigma^2 \overset{\mathrm{iid}}{\sim} N(\theta, \si
 \]</span></p>
 <p>The Stan model syntax, here expressed as string named <code>iidnormal</code> :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
@@ -499,7 +506,7 @@ X_1,\ldots,X_n \vert \theta, \sigma^2 \overset{\mathrm{iid}}{\sim} N(\theta, \si
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="st">  theta ~ normal(mu0, sqrt(sigma2/kappa0));</span></span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="st">  y ~ normal(theta, sqrt(sigma2));</span></span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -507,7 +514,7 @@ X_1,\ldots,X_n \vert \theta, \sigma^2 \overset{\mathrm{iid}}{\sim} N(\theta, \si
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Stan code is not R code
+<span class="screen-reader-only">Note</span>Stan code is not R code
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -521,13 +528,13 @@ Stan code is not R code
 <li><p><strong>model</strong> - this is the part that defines the prior and model, using data and parameters defined in the previous two sections. Stan has a large number of pre-defined statistical distributions, including <code>scaled_inv_chi_square</code> for the <span class="math inline">\(\mathrm{Inv-}\chi^2\)</span> distribution, and a normal distribution; note that the normal distributions is defined using the standard deviation, not the variance (as in R). Finally, the last line of the model definition section <code>y ~ normal(theta, sqrt(sigma2))</code> uses a short-hand syntax where Stan will understand that the elements of the data vector <code>y</code> are <em>iid</em> from a normal distribution with mean <code>theta</code> and standard deviation <code>sqrt(sigma2)</code>. Alternatively, this part can be written as loop:</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model {</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>model {</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  sigma2 <span class="sc">~</span> <span class="fu">scaled_inv_chi_square</span>(nu0, <span class="fu">sqrt</span>(sigma20));</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  theta <span class="sc">~</span> <span class="fu">normal</span>(mu0, <span class="fu">sqrt</span>(sigma2<span class="sc">/</span>kappa0));</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n){</span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="sc">~</span> <span class="fu">normal</span>(theta, <span class="fu">sqrt</span>(sigma2));</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -535,7 +542,7 @@ Stan code is not R code
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Stan comments
+<span class="screen-reader-only">Note</span>Stan comments
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -544,20 +551,20 @@ Stan comments
 </div>
 <p>Now that the model is defined, let us set up the data and prior hyperparameters. Here we analyze the internet speed data from Chapter 2 in the Bayesian Learning book:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the data</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up the data</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="fl">15.77</span>, <span class="fl">20.5</span>, <span class="fl">8.26</span>, <span class="fl">14.37</span>, <span class="fl">21.09</span>))</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Set up prior</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">mu0 =</span> <span class="dv">20</span>, <span class="at">kappa0 =</span> <span class="dv">1</span>, <span class="at">nu0 =</span> <span class="dv">5</span>, <span class="at">sigma20 =</span> <span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>prior <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">mu0 =</span> <span class="dv">20</span>, <span class="at">kappa0 =</span> <span class="dv">1</span>, <span class="at">nu0 =</span> <span class="dv">5</span>, <span class="at">sigma20 =</span> <span class="dv">5</span><span class="sc">^</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>The code above is plain R code and will run in R.</p>
 <p>Now, finally we throw the model definition, data and prior hyperparameters to the <code>stan</code> function to sample from the posterior. Note that I pack together the <code>data</code> and <code>prior</code> list in the <code>data</code> argument to the <code>stan</code> function. We could have define these together from the start, but it is cleaner to separate data and prior hyperparameters like I have done here. I have four cores on this computer so Stan will run four runs in parallel, each with <code>iter = 1000</code> iterations and different initial values. Each such run is referred to as a <strong>chain</strong> in Stan. Have multiple runs is useful for diagnosing convergence: the draws from different runs should give rather similar posteriors (for example histograms). The argument <code>refresh = 0</code> makes Stan print less to the screen while running HMC.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>We can now summarize the posterior, for example by using Stan’s built-in summary function:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"theta"</span>, <span class="st">"sigma2"</span>))<span class="sc">$</span>summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"theta"</span>, <span class="st">"sigma2"</span>))<span class="sc">$</span>summary</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>           mean    se_mean        sd     2.5%      25%      50%      75%
 theta  16.82119 0.06567286  2.234916 12.52806 15.39428 16.76561 18.18549
@@ -579,8 +586,8 @@ sigma2 70.42633  670.1138 1.0068771</code></pre>
 </ul>
 <p>We can use Stan’s <code>traceplot</code> function to plot the MCMC trajectories for all parameters and for each chain (the different colors of the trajectories).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot trajectories</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"theta"</span>, <span class="st">"sigma2"</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot trajectories</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">traceplot</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"theta"</span>, <span class="st">"sigma2"</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -592,13 +599,13 @@ sigma2 70.42633  670.1138 1.0068771</code></pre>
 <p>The sampler is mixing rapidly, there are no clearly trending patterns and the chains seems to have similar behavior and visiting similar regions over the iterations; convergence seems fine, as we have already seen with the <code>n_eff</code> and <code>Rhat</code> metrics.</p>
 <p>The draws in the <code>fit</code> object can be extracted with the <code>extract</code> function, and the plotted using your favorite plotting functions in R. Note how I take the square root of the <code>sigma2</code> draws and plot the histogram of the posterior standard deviation <span class="math inline">\(\sigma\)</span>, which is more interpretable.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract draws</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract draws</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>postDraws <span class="ot">=</span> <span class="fu">extract</span>(fit, <span class="at">pars =</span> <span class="fu">c</span>(<span class="st">"theta"</span>, <span class="st">"sigma2"</span>), <span class="at">permuted =</span> <span class="cn">TRUE</span>) </span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(postDraws<span class="sc">$</span>theta, <span class="dv">50</span>, <span class="at">freq =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"cornflowerblue"</span>,</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(theta), <span class="at">ylab =</span> <span class="st">"density"</span>, <span class="at">main =</span> <span class="fu">expression</span>(theta))</span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(<span class="fu">sqrt</span>(postDraws<span class="sc">$</span>sigma2), <span class="dv">50</span>, <span class="at">freq =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"cornsilk"</span>, </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(sigma), <span class="at">ylab =</span> <span class="st">"density"</span>, <span class="at">main =</span> <span class="fu">expression</span>(sigma))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="fu">expression</span>(sigma), <span class="at">ylab =</span> <span class="st">"density"</span>, <span class="at">main =</span> <span class="fu">expression</span>(sigma))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -617,7 +624,7 @@ sigma2 70.42633  670.1138 1.0068771</code></pre>
 </ul>
 <p>Here is an example using the iid normal model where we directly compute the standard deviation and the coefficient of variation <span class="math inline">\(\frac{\theta}{\sigma}\)</span> and generate draws from the predictive distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
@@ -648,11 +655,11 @@ sigma2 70.42633  670.1138 1.0068771</code></pre>
 <span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a><span class="st">  real cv = theta/sigma;</span></span>
 <span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a><span class="st">  real yPred = normal_rng(theta, sigma);   // one posterior predictive draw</span></span>
 <span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Running the sampler again with the new model defintion (which requires a new compilation):</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
 <section id="model-comparison-using-leave-one-out-predictive-cross-validation" class="level2">
@@ -673,7 +680,7 @@ p(\tilde{y}_i \vert \boldsymbol{y}_{-i}) =   \int p(\tilde{y}_i \vert \boldsymbo
 </ul>
 <p>A model with a very tightly concentrated predictive density far from the observed data will get a very low density score. But a model that ‘plays it safe’ by having a large variance to be sure to capture the observed data will also have a low density score since the density will be rather flat (i.e.&nbsp;low, since a density must integrate to one).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>yGrid <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">1000</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>yGrid <span class="ot">=</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">5</span>, <span class="at">length =</span> <span class="dv">1000</span>)</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="st">"indianred"</span>, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">3</span>, </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"ỹ"</span>, <span class="at">ylab =</span> <span class="st">"predictive density"</span>, <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="fl">0.8</span>))</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(yGrid, <span class="fu">dnorm</span>(yGrid, <span class="dv">0</span>, <span class="dv">3</span>), <span class="at">col =</span> <span class="st">"steelblue"</span>, <span class="at">lwd =</span> <span class="dv">3</span>)</span>
@@ -681,7 +688,7 @@ p(\tilde{y}_i \vert \boldsymbol{y}_{-i}) =   \int p(\tilde{y}_i \vert \boldsymbo
 <span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>y <span class="ot">=</span> <span class="fl">0.5</span></span>
 <span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> y, <span class="at">lty =</span> <span class="dv">3</span>)</span>
 <span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topleft"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Normal(0,1)"</span>, <span class="st">"Normal(0,3^2)"</span>, <span class="st">"Normal(2,0.5^2)"</span>, <span class="st">"observed y"</span>), <span class="at">lwd =</span> <span class="dv">3</span>, <span class="at">lty =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>), </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"indianred"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkgreen"</span>, <span class="st">"black"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"indianred"</span>, <span class="st">"steelblue"</span>, <span class="st">"darkgreen"</span>, <span class="st">"black"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -703,7 +710,7 @@ p(y_i \vert \boldsymbol{y}_{-i}) =   \int p(y_i \vert \boldsymbol{\theta})p(\bol
 <p>where <span class="math inline">\(\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}\)</span> are draws from the leave-one-out posterior <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})\)</span>. Since we need to compute <span class="math inline">\(p(y_i \vert \boldsymbol{y}_{-i})\)</span> for all <span class="math inline">\(n\)</span> observations <span class="math inline">\(y_i\)</span>, we to sample from all <span class="math inline">\(n\)</span> leave-one-out posteriors <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})\)</span> for <span class="math inline">\(i=1,\ldots,n\)</span>. Computing the <span class="math inline">\(\mathrm{LPDS}_{\mathrm{LOO}}\)</span> for a model is therefore computationally costly since it requires running a posterior sampler like MCMC or HMC <span class="math inline">\(n\)</span> times. Even though these runs can be done in parallel, it is still a very costly operation. However, the leave-one-out posteriors <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y}_{-i})\)</span> for <span class="math inline">\(i=1,\ldots,n\)</span> are typically all very similar to the posterior based on <em>all</em> observations <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y})\)</span> and an efficient approach is to use draws from <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y})\)</span> as an importance density in importance sampling. This only requires a single run of MCMC/HMC to sample from <span class="math inline">\(p(\boldsymbol{\theta} \vert \boldsymbol{y})\)</span>. This is implemented in the <code>loo</code> package in an efficient way using a variant of importance sampling called Pareto smoothed importance sampling (PSIS).</p>
 <p>The <code>loo</code> package needs evaluations of the log densities for each observation <span class="math inline">\(p(y_i \vert \boldsymbol{\theta}^{(j)}) ,\text{ for } i=1,\ldots,n\)</span>, at each posterior parameter draw <span class="math inline">\(\boldsymbol{\theta}^{(1)},\ldots,\boldsymbol{\theta}^{(m)}\)</span> , which are not automatically computed by <code>stan</code>. We can have <code>stan</code> compute this by adding it to the <code>generated quantities</code> section:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>iidnormal <span class="ot">=</span> <span class="st">'</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
@@ -735,15 +742,15 @@ p(y_i \vert \boldsymbol{y}_{-i}) =   \int p(y_i \vert \boldsymbol{\theta})p(\bol
 <span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a><span class="st">    log_lik[i] = normal_lpdf(y[i] | theta, sqrt(sigma2));</span></span>
 <span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
 <span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>And then we have to run the <code>stan</code> function again to sample from the posterior and compute the log densities for the observations:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidnormal, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("loo")</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"loo"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages("loo")</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"loo"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>This is loo version 2.8.0</code></pre>
 </div>
@@ -762,10 +769,10 @@ Attaching package: 'loo'</code></pre>
 
     loo</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidnormal <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidnormal <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>loo_iidnormal <span class="ot">&lt;-</span> <span class="fu">loo</span>(log_lik_iidnormal)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid normal model is: "</span>, loo_iidnormal<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid normal model is: "</span>, loo_iidnormal<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ELPD-LOO for the iid normal model is: -16.3033846303571</code></pre>
 </div>
@@ -773,7 +780,7 @@ Attaching package: 'loo'</code></pre>
 <p>This number does not say much in itself as it depends on the scale of the data, but can be compared to <span class="math inline">\(\mathrm{elpd}_{\mathrm{LOO}}\)</span> for other models. The model with highest <span class="math inline">\(\mathrm{elpd}_{\mathrm{LOO}}\)</span> is the best model, at least in this predictive density sense.</p>
 <p>Let us try another model for the data: a student-t distribution <span class="math inline">\(t(\theta, \sigma^2, \nu)\)</span> (which written as <span class="math inline">\(t(\nu, \theta, \sigma)\)</span> in <code>stan</code>), which has heavier tails and can therefore capture outliers better. We use the same prior for <span class="math inline">\(\theta\)</span> and <span class="math inline">\(\sigma^2\)</span> and an <span class="math inline">\(\nu \sim \mathrm{Expon}(1)\)</span> for the degrees of freedom <span class="math inline">\(\nu\)</span> of the student-<span class="math inline">\(t\)</span> distribution. Note that the joint posterior distribution <span class="math inline">\(p(\theta,\sigma^2,\nu \vert \boldsymbol{y})\)</span> is highly intractable, but Stan doesn’t care, it will happily sample it with HMC anyway! We can copy-paste the code for the iid normal model can just change a few lines to the student-<span class="math inline">\(t\)</span> distribution:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>iidstudent <span class="ot">=</span> <span class="st">'</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>iidstudent <span class="ot">=</span> <span class="st">'</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="st">// data and prior hyperparameters</span></span>
 <span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="st">data {</span></span>
@@ -807,17 +814,17 @@ Attaching package: 'loo'</code></pre>
 <span id="cb27-32"><a href="#cb27-32" aria-hidden="true" tabindex="-1"></a><span class="st">    log_lik[i] = student_t_lpdf(y[i] | nu, theta, sqrt(sigma2));</span></span>
 <span id="cb27-33"><a href="#cb27-33" aria-hidden="true" tabindex="-1"></a><span class="st">  }</span></span>
 <span id="cb27-34"><a href="#cb27-34" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-35"><a href="#cb27-35" aria-hidden="true" tabindex="-1"></a><span class="st">'</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fit_student <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidstudent, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fit_student <span class="ot">=</span> <span class="fu">stan</span>(<span class="at">model_code =</span> iidstudent, <span class="at">data =</span> <span class="fu">c</span>(data, prior), <span class="at">iter =</span> <span class="dv">1000</span>, <span class="at">refresh =</span> <span class="dv">0</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>And we again use the loo package to compute the <span class="math inline">\(\mathrm{elpd}_{\mathrm{LOO}}\)</span> for the student-<span class="math inline">\(t\)</span> model:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidstudent <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit_student, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>log_lik_iidstudent <span class="ot">&lt;-</span> <span class="fu">extract_log_lik</span>(fit_student, <span class="at">merge_chains =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>loo_iidstudent <span class="ot">&lt;-</span> <span class="fu">loo</span>(log_lik_iidstudent)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid student-t model is: "</span>, loo_iidstudent<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">message</span>(<span class="st">"ELPD-LOO for the iid student-t model is: "</span>, loo_iidstudent<span class="sc">$</span>estimates[<span class="dv">1</span>])</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>ELPD-LOO for the iid student-t model is: -17.0641939717861</code></pre>
 </div>
@@ -892,13 +899,14 @@ Attaching package: 'loo'</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy

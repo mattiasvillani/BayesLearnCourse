@@ -136,6 +136,10 @@ Re-run the RWM algorithm, this time using $\Sigma = I_p$ and with $c=1$ (again u
 This exercise uses Probabilistic programming in the Stan language. You need to use the `rstan` and `loo` packages. If you run into troubles installing `rstan` on your own computer, consult the [Getting started with Rstan guide](https://github.com/stan-dev/rstan/wiki/Rstan-Getting-Started).
 :::
 
+::: callout-note
+Read through [my rstan tutorial](../misc/intro_stan.qmd) before trying to solve this problem.
+:::
+
 ::: callout-important
 `rstan` compiles your model the first time you define it. This takes some time. To avoid re-compilation every time you use the model, and to use all available cores on your computer, add the following settings in the beginning of your stan code:
 

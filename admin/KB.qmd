@@ -64,7 +64,7 @@ Evaluation ability and approach:
 ## Teachers and general information
 
 | Teachers | Role |
-|----------------------------------------|--------------------------------|
+|----|----|
 | [Mattias Villani](mattiasvillani.com) | Course responsible, examiner and lecturer \vspace{5pt} |
 | [Yulia Ryanova](https://www.su.se/english/profiles/akma0227-1.800159) | Exercises |
 | [Akram Mahmoudi](https://www.su.se/english/profiles/akma0227-1.800159) | Computer labs |
