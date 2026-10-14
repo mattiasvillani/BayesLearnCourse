@@ -29,6 +29,8 @@ website:
         text: Assignments
       - href: culture.qmd
         text: Culture
+      - href: exam.qmd
+        text: Exam
         
   page-footer:
     left:

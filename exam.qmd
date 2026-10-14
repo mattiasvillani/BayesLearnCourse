@@ -1,0 +1,83 @@
+---
+title: "Exam information"
+author: "Mattias Villani"
+format: html
+editor: visual
+---
+
+### Exam format
+
+-   The exam is for a maximum of 5 hours.
+
+-   The exam is both traditional pen and paper (approximately 25% of the exam) and computer-based with some light coding to solve Bayesian problems (75% of the exam).
+
+### In the exam room
+
+-   You will have access to a computer running R. No Python!
+
+-   There will be calculators available. **You cannot bring your own calculator**, according to new department rules.
+
+-   Your computer will have:
+
+    -   the **exam** and [**formula sheet**](BLformulaSheet.pdf) in pdf format
+
+    -   an **R script with commands** for loading packages, datasets and other functions for solving the problems. The script file will be named `BLExamYYYYMMDD.R` where `YYYYMMDD` is the date of the exam. Click on the "\>R script" below to see an example of this file.
+
+    ```{r}
+    #| eval: false
+    #| code-fold: true
+    #| code-summary: "R script"
+    # install.packages("mvtnorm") # uncomment if this package is not installed.
+    library(mvtnorm)
+
+    ######## Problem 1
+    load("reaction.RData")  # loads vector y with 84 obs
+
+    # The skew normal density function
+    dskewnormal <- function(y, alpha = 0, log = FALSE){
+      if (log == FALSE){
+        return(2*dnorm(y)*pnorm(alpha*y))}
+      else{
+        return(log(2) + dnorm(y, log = TRUE) + 
+                 pnorm(alpha*y, log.p = TRUE))
+      }
+    }
+
+    ########  Problem 2
+    # Nothing to load for this problem :)
+
+    ########  Problem 3
+    load("reaction.RData")  # loads: the data vector y 
+                            # matrix X with covariates.
+
+    ######## Problem 4
+    load("reaction.RData") # loads the data vector y and matrix with covariates X
+    ```
+
+-   Your uploaded assignment report solutions. See next section.
+
+::: callout-important
+## R packages
+
+You are only allowed to use the R packages loaded from the Rscript `BLExamYYYYMMDD.R` available at the exam.
+:::
+
+### Uploaded Assignment solutions
+
+-   Your report for the assignment parts should be uploaded some days before the exam (exact dates will be announced on Canvas, well before each exam).
+
+-   The report should be uploaded in **pdf format** at <http://gauss.stat.su.se/tenta/>. The upload button for this course will be available roughly a week before the exam.
+
+-   The uploaded report can be your own individual version of the group report:
+
+    -   Each student is allowed to polish on the report as much as they want before submitting.
+
+    -   The questions in the assignments can be included in the report.
+
+    -   The report can contain code than you can copy and paste into your exam solutions.
+
+::: callout-note
+## Very important!
+
+-   **You are not allowed to write things in the report that is unrelated to the assignment**. That is, you cannot sneak in material not related to the assignment, such as which prior is conjugate to which likelihood, for models that are not part of the assignment. I will personally check the submitted reports and also run them through an AI. I will write on Canvas when I have checked all reports and if you did not get a canvas message about any problems, then all is OK with your uploaded report and I have not found any cheating. You can upload the two parts as separate pdf files. The upload page allows for multiple file uploads, but you can also upload a zip file.
+:::

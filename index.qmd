@@ -63,6 +63,10 @@ This [formula sheet](/misc/BLformulaSheet.pdf) will be available as a pdf via th
 
 The course makes use of interactive Observable notebooks in javascript that runs in your browser. The widgets will be linked below each relevant lecture. All widgets used in the course are available [here](https://observablehq.com/collection/@mattiasvillani/bayesian-learning).
 
+### Examination
+
+The exam is 25% pen and paper (mathematical) problem-solving and 75% computer-based problems. See the [Exam](exam.qmd) page for more info.
+
 ### Teachers
 
 ::: {layout="[ [1,1],[1,1] ]"}
