@@ -15,11 +15,11 @@ editor: visual
 
 -   You will have access to a computer running R. No Python!
 
--   There will be calculators available. **You cannot bring your own calculator**, according to new department rules.
+-   There will be calculators available in the exam room of [this type](misc/calculator.qmd). **You cannot bring your own calculator**, according to new department rules.
 
 -   Your computer will have:
 
-    -   the **exam** and [**formula sheet**](BLformulaSheet.pdf) in pdf format
+    -   the **exam** and [**formula sheet**](misc/BLformulaSheet.pdf) in pdf format
 
     -   an **R script with commands** for loading packages, datasets and other functions for solving the problems. The script file will be named `BLExamYYYYMMDD.R` where `YYYYMMDD` is the date of the exam. Click on the "\>R script" below to see an example of this file.
 
@@ -56,6 +56,12 @@ editor: visual
 
 -   Your uploaded assignment report solutions. See next section.
 
+::: callout-note
+## Stan
+
+The exam will **not** use Stan since the IT department cannot yet guarantee a stable smooth use in the exam rooms.
+:::
+
 ::: callout-important
 ## R packages
 
@@ -76,7 +82,7 @@ You are only allowed to use the R packages loaded from the Rscript `BLExamYYYYMM
 
     -   The report can contain code than you can copy and paste into your exam solutions.
 
-::: callout-note
+::: callout-important
 ## Very important!
 
 -   **You are not allowed to write things in the report that is unrelated to the assignment**. That is, you cannot sneak in material not related to the assignment, such as which prior is conjugate to which likelihood, for models that are not part of the assignment. I will personally check the submitted reports and also run them through an AI. I will write on Canvas when I have checked all reports and if you did not get a canvas message about any problems, then all is OK with your uploaded report and I have not found any cheating. You can upload the two parts as separate pdf files. The upload page allows for multiple file uploads, but you can also upload a zip file.

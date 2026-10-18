@@ -1,0 +1,34 @@
+---
+title: "Calculators during exams at SU"
+author: "Mattias Villani"
+format: html
+editor: visual
+---
+
+> **Students can no longer bring their own calculators to the exams**. The only permitted calculators are those provided in the exam rooms. Modern calculators can have internet access and AI features, so for security reasons personal calculators are no longer allowed.
+
+#### The calculator provided
+
+-   The exam rooms provide the *Sagitta scientific calculator*. Here is a [manual](CalcSangittaManual.pdf), for the truly curious.
+
+[![Click the image for a larger version.](calculator.jpg){width="171"}](calculator.jpg)
+
+::: callout-important
+## How to change the decimal notation
+
+The Sagitta calculator may use scientific notation by default:
+
+-   small numbers such as $0.000032$ are shown as $3.2 ^{-05}$ or $3.2e\text{-}05$
+
+-   large numbers such as $12000000$ are shown as $1.2^{07}$ or $1.2e\text{+}07$
+
+If you prefer to see these numbers written out in full, do the following:
+
+-   Press the **Mode** button in the upper right several times until you see the screen below.
+
+    ![](CalcNotation.png){fig-align="center" width="67" height="19"}
+
+-   Press **3** to choose the *Norm* mode.
+
+-   Press **2** to choose *Norm 2*. This mode switches to scientific notation only for very small and very large numbers.
+:::
