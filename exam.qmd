@@ -29,7 +29,7 @@ Have your anonymous code available. If you do not have your anonymous code with 
 
     -   the **exam** and [**formula sheet**](misc/BLformulaSheet.pdf) in pdf format
 
-    -   a **quarto file** [`exam_template.qmd`](https://github.com/mattiasvillani/BayesLearnCourse/raw/master/misc/exam_template.qmd) (here is the file compiled to [pdf](misc/exam_template.qmd)) which
+    -   a **quarto file** `exam_template.qmd` ([here](exam_template.zip) is an example of the quarto file along with a dataset and the file compiled to [pdf](misc/exam_template.qmd)) which
 
         -   installs the needed/allowed packages for the exam
 
