@@ -13,7 +13,7 @@ editor: visual
 
 ### In the exam room
 
--   There will be calculators available in the exam room of [this type](misc/calculator.qmd). **You cannot bring your own calculator**, according to new department rules.
+-   There will be calculators available in the exam room of [this type](https://statisticssu.github.io/info/calculator.html). **You cannot bring your own calculator**, according to new department rules.
 
 -   You will have access to a computer running R. No Python!
 
