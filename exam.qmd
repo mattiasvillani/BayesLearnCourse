@@ -29,7 +29,7 @@ Have your anonymous code available. If you do not have your anonymous code with 
 
     -   the **exam** and [**formula sheet**](misc/BLformulaSheet.pdf) in pdf format
 
-    -   a **quarto file** `exam_template.qmd` ([here](misc/exam_template.zip) is an example of the quarto file along with a dataset and the file compiled to [pdf](misc/exam_template.qmd)) which
+    -   a **quarto file** `exam_templateYYYYMMDD.qmd` where `YYYYMMDD` is the date of the exam ([here](misc/exam_template.zip) is an example of the quarto file along with a dataset and the file compiled to [pdf](misc/exam_template.qmd)) which
 
         -   installs the needed/allowed packages for the exam
 
@@ -42,10 +42,10 @@ Have your anonymous code available. If you do not have your anonymous code with 
         ::: callout-important
         Place **all** files in the Downloads folder on your computer. This is the only folder from where you can submit your answers for the exam.
 
-        Compile the `exam_template.qmd` file at the beginning of the exam and ask for help if the file does not compile to pdf (it can take a few minutes the first time, so read the exam or solve the math problem while you wait).
+        Compile the `exam_templateYYYYMMDD.qmd` file at the beginning of the exam and ask for help if the file does not compile to pdf (it can take a few minutes the first time, so read the exam or solve the math problem while you wait).
         :::
 
-    -   an **R script** with the same commands as in the above mentioned quarto file `exam_template.qmd` file for loading packages, datasets etc. *This file is not needed*, but may be useful depending on your coding style. The script file will be named `BLExamYYYYMMDD.R` where `YYYYMMDD` is the date of the exam. Click on the "\>R script" below to see an example of this file.
+    -   an **R script** with the same commands as in the above mentioned quarto file `exam_templateYYYYMMDD.qmd` file for loading packages, datasets etc. *This file is not needed*, but may be useful depending on your coding style. The script file will be named `BLExamYYYYMMDD.R` . Click on the "\>R script" below to see an example of this file.
 
     ```{r}
     #| eval: false

@@ -9,3 +9,4 @@
 /OLD
 
 **/*.quarto_ipynb
+/_freeze/hidden
