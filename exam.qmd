@@ -13,9 +13,17 @@ editor: visual
 
 ### In the exam room
 
+-   There will be calculators available in the exam room of [this type](misc/calculator.qmd). **You cannot bring your own calculator**, according to new department rules.
+
 -   You will have access to a computer running R. No Python!
 
--   There will be calculators available in the exam room of [this type](misc/calculator.qmd). **You cannot bring your own calculator**, according to new department rules.
+-   The exam computers use a safe browser called SEB (**Safe Exam Browser**). You need to follow [these instructions](misc/InstructionsSEBDigitalExam.pdf) (also available in the exam rooms) in order for getting the digital exam material and also for eventually handing in the digital part of the exam.
+
+::: callout-important
+## Anonymous code needed!
+
+Have your anonymous code available. If you do not have your anonymous code with you, the code will be given to you by the exam hosts. You need the anonymous code to download digital material but you can start and use R without a code.
+:::
 
 -   Your computer will have:
 
