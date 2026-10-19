@@ -1,0 +1,65 @@
+---
+title: "Bayesian Learning Exam"
+format: pdf
+editor: visual
+---
+
+The following libraries gets installed automatically when you render this quarto document:
+
+-   `mvtnorm`, for the multivariate normal density and random number generator.
+
+```{r}
+#| include: false
+if (!requireNamespace("mvtnorm", quietly = TRUE)) {
+  install.packages("mvtnorm")
+}
+```
+
+::: {.callout-tip appearance="minimal"}
+You can use **chunk options** to control if a chunk is run or not (useful if the code errors so that the document does not compile. You can still get partial points if the code is showing):
+
+-   Not running the code: `#| eval: false`
+
+-   Not showing code: `#| echo: false`
+
+-   Not showing output: `#| output: false`
+
+Example code chunk that shows the code, but the code is not run since it has an error:
+
+```{r}
+#| eval: false
+#| echo: true
+my_studid_variable = 4 
+my_undefined_variable_that_errors
+```
+:::
+
+# Problem 1
+
+```{r}
+load("reaction.RData")  # loads the vector y with 84 reaction times 
+```
+
+# Problem 2
+
+This problem is solved and handed in on paper.
+
+# Problem 3
+
+```{r}
+load("reaction.RData")  # loads the vector y with 84 reaction times 
+# The skew normal density function
+dskewnormal <- function(y, alpha = 0, log = FALSE){
+  if (log == FALSE){
+    return(2*dnorm(y)*pnorm(alpha*y))}
+  else{
+    return(log(2) + dnorm(y, log = TRUE) + pnorm(alpha*y, log.p = TRUE))
+  }
+}
+```
+
+# Problem 4
+
+```{r}
+# Nothing to load for this problem.
+```

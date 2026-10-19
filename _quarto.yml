@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: docs
+  execute-dir: file   # default: directory of each .qmd
   render:
     - "*.qmd"
     - "!hidden/"

@@ -1,0 +1,17 @@
+{
+  "hash": "7a18ca85c5f791ec7c159105d5b14c91",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Bayesian Learning Exam\"\nformat: pdf\neditor: visual\n---\n\nThe following libraries gets installed automatically when you render this quarto document:\n\n-   `mvtnorm`, for the multivariate normal density and random number generator.\n\n\n\n::: {.callout-tip appearance=\"minimal\"}\nYou can use **chunk options** to control if a chunk is run or not (useful if the code errors so that the document does not compile. You can still get partial points if the code is showing):\n\n-   Not running the code: `#| eval: false`\n\n-   Not showing code: `#| echo: false`\n\n-   Not showing output: `#| output: false`\n\nExample code chunk that shows the code, but the code is not run since it has an error:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nmy_studid_variable = 4 \nmy_undefined_variable_that_errors\n```\n:::\n\n:::\n\n# Problem 1\n\n\n::: {.cell}\n\n```{.r .cell-code}\nload(\"reaction.RData\")  # loads the vector y with 84 reaction times \n```\n:::\n\n\n# Problem 2\n\nThis problem is solved and handed in on paper.\n\n# Problem 3\n\n\n::: {.cell}\n\n```{.r .cell-code}\nload(\"reaction.RData\")  # loads the vector y with 84 reaction times \n# The skew normal density function\ndskewnormal <- function(y, alpha = 0, log = FALSE){\n  if (log == FALSE){\n    return(2*dnorm(y)*pnorm(alpha*y))}\n  else{\n    return(log(2) + dnorm(y, log = TRUE) + pnorm(alpha*y, log.p = TRUE))\n  }\n}\n```\n:::\n\n\n# Problem 4\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Nothing to load for this problem.\n```\n:::\n\n",
+    "supporting": [
+      "exam_template_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

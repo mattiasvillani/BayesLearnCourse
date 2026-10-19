@@ -29,7 +29,21 @@ Have your anonymous code available. If you do not have your anonymous code with 
 
     -   the **exam** and [**formula sheet**](misc/BLformulaSheet.pdf) in pdf format
 
-    -   an **R script with commands** for loading packages, datasets and other functions for solving the problems. The script file will be named `BLExamYYYYMMDD.R` where `YYYYMMDD` is the date of the exam. Click on the "\>R script" below to see an example of this file.
+    -   a **quarto file** `exam_template.qmd` (here is the file compiled to [pdf](misc/exam_template.qmd)) which
+
+        -   installs the needed/allowed packages for the exam
+
+        -   loads the datasets for each problem
+
+        -   runs other code supplied with the problem.
+
+        You fill in the answers in the quarto file, compile to pdf (preset in the document) and at the end of the exam submit both the pdf and, optionally, the qmd file. The qmd file is not graded, but may be used in certain cases when the pdf did not compile.
+
+        ::: callout-tip
+        Compile the `exam_template.qmd` file at the beginning of the exam and ask for help if the file does not compile to pdf (it can take a few minutes, so read the exam or solve the math problem while you wait).
+        :::
+
+    -   an **R script** with the same commands as in the above mentioned quarto file `exam_template.qmd` file for loading packages, datasets etc. *This file is not needed*, but may be useful depending on your coding style. The script file will be named `BLExamYYYYMMDD.R` where `YYYYMMDD` is the date of the exam. Click on the "\>R script" below to see an example of this file.
 
     ```{r}
     #| eval: false
@@ -62,7 +76,7 @@ Have your anonymous code available. If you do not have your anonymous code with 
     load("reaction.RData") # loads the data vector y and matrix with covariates X
     ```
 
--   Your uploaded assignment report solutions. See next section.
+-   **Your uploaded assignment report solutions**. See next section.
 
 ::: callout-note
 ## Stan

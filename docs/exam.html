@@ -409,7 +409,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Your computer will have:</p>
 <ul>
 <li><p>the <strong>exam</strong> and <a href="misc/BLformulaSheet.pdf"><strong>formula sheet</strong></a> in pdf format</p></li>
-<li><p>an <strong>R script with commands</strong> for loading packages, datasets and other functions for solving the problems. The script file will be named <code>BLExamYYYYMMDD.R</code> where <code>YYYYMMDD</code> is the date of the exam. Click on the “&gt;R script” below to see an example of this file.</p></li>
+<li><p>a <strong>quarto file</strong> <code>exam_template.qmd</code> (here is the file compiled to <a href="./misc/exam_template.pdf">pdf</a>) which</p>
+<ul>
+<li><p>installs the needed/allowed packages for the exam</p></li>
+<li><p>loads the datasets for each problem</p></li>
+<li><p>runs other code supplied with the problem.</p></li>
+</ul>
+<p>You fill in the answers in the quarto file, compile to pdf (preset in the document) and at the end of the exam submit both the pdf and, optionally, the qmd file. The qmd file is not graded, but may be used in certain cases when the pdf did not compile.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compile the <code>exam_template.qmd</code> file at the beginning of the exam and ask for help if the file does not compile to pdf (it can take a few minutes, so read the exam or solve the math problem while you wait).</p>
+</div>
+</div></li>
+<li><p>an <strong>R script</strong> with the same commands as in the above mentioned quarto file <code>exam_template.qmd</code> file for loading packages, datasets etc. <em>This file is not needed</em>, but may be useful depending on your coding style. The script file will be named <code>BLExamYYYYMMDD.R</code> where <code>YYYYMMDD</code> is the date of the exam. Click on the “&gt;R script” below to see an example of this file.</p></li>
 </ul>
 <div class="cell">
 <details class="code-fold">
@@ -441,7 +461,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">load</span>(<span class="st">"reaction.RData"</span>) <span class="co"># loads the data vector y and matrix with covariates X</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div></li>
-<li><p>Your uploaded assignment report solutions. See next section.</p></li>
+<li><p><strong>Your uploaded assignment report solutions</strong>. See next section.</p></li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
