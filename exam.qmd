@@ -13,17 +13,11 @@ editor: visual
 
 ### In the exam room
 
--   There will be calculators available in the exam room of [this type](https://statisticssu.github.io/info/calculator.html). **You cannot bring your own calculator**, according to new department rules.
+-   There will be calculators available in the exam room; see [here](https://statisticssu.github.io/info/calculator.html) for information on the model and how to use them. **You cannot bring your own calculator**, according to new department rules.
 
 -   You will have access to a computer running R. No Python!
 
--   The exam computers use a safe browser called SEB (**Safe Exam Browser**). You need to follow [these instructions](misc/InstructionsSEBDigitalExam.pdf) (also available in the exam rooms) in order for getting the digital exam material and also for eventually handing in the digital part of the exam.
-
-::: callout-important
-## Anonymous code needed!
-
-Have your anonymous code available. If you do not have your anonymous code with you, the code will be given to you by the exam hosts. You need the anonymous code to download digital material but you can start and use R without a code.
-:::
+<!-- -->
 
 -   Your computer will have:
 
@@ -80,16 +74,24 @@ Have your anonymous code available. If you do not have your anonymous code with 
 
 -   **Your uploaded assignment report solutions**. See next section.
 
-::: callout-note
-## Stan
+::: callout-important
+## You need your anonymous code for accessing the files
 
-The exam will **not** use Stan since the IT department cannot yet guarantee a stable smooth use in the exam rooms.
+-   The exam computers use a safe browser called SEB (**Safe Exam Browser**). You need to follow [these instructions](misc/InstructionsSEBDigitalExam.pdf) (also available in the exam rooms) in order for getting the digital exam material and also for eventually handing in the digital part of the exam.
+
+-   Have your anonymous code available. If you do not have your anonymous code with you, the code will be given to you by the exam hosts. You need the anonymous code to download digital material but you can start and use R without a code.
 :::
 
 ::: callout-important
 ## R packages
 
-You are only allowed to use the R packages loaded from the Rscript `BLExamYYYYMMDD.R` available at the exam.
+You are only allowed to use the R packages loaded from `exam_template.qmd` (or the equivalent commands in the Rscript `BLExamYYYYMMDD.R`).
+:::
+
+::: callout-note
+## Stan
+
+The exam will **not** use Stan since the IT department cannot yet guarantee a stable and smooth use in the exam rooms.
 :::
 
 ### Uploaded Assignment solutions
