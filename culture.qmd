@@ -15,6 +15,10 @@ format: html
 
 ![Bayes cafe photo](/culture/bayescafe.jpg){width="20%"} [Bayes Cafe at University of Edinburgh](https://maps.app.goo.gl/HswG4RA7iJhrcea4A "Photo: Christian Robert")
 
+## Games
+
+[Bayes Blaster](/games/bayes-blaster/index.html) is a game where you can practice your Bayesian skills.
+
 ## Music
 
 The [Bayesian Songbook](https://mindstalk.net/bayesSongbook2006.pdf) contains the main gospels, often performed at the World Meetings in Bayesian Statistics. Some recorded songs from [Mark Glickman's Music webpage](https://www.glicko.net/music.html) are linked below, with Lyrics to help you sing along.
