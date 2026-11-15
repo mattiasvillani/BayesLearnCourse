@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bayes Blaster</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:#0b1020; color:#e8ecff; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; display:flex; justify-content:center; padding:12px; }
+  #wrap { position:relative; width:100%; max-width:900px; }
+  canvas { width:100%; height:auto; display:block; border-radius:12px; border:1px solid #2a3560; touch-action:none; background:#0d1430; }
+  #overlay { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; padding:10px; }
+  #overlay.hidden { display:none; }
+  .panel { background:rgba(12,18,42,.97); border:1px solid #3a4a8a; border-radius:14px; padding:20px 24px; max-height:100%; overflow:auto; width:100%; max-width:820px; box-shadow:0 8px 40px rgba(0,0,0,.6); }
+  h1 { margin:0 0 4px; font-size:30px; letter-spacing:.5px; }
+  h2 { margin:0 0 8px; font-size:22px; }
+  .sub { color:#9fb0e8; margin:0 0 12px; font-size:14px; line-height:1.45; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:8px; margin:12px 0; }
+  button, .btn { background:#233369; color:#fff; border:1px solid #4a63c4; border-radius:9px; padding:9px 12px; font-size:14px; cursor:pointer; text-align:left; font-family:inherit; }
+  button:hover { background:#2f449a; }
+  button.primary { background:#2d8a4e; border-color:#46c474; text-align:center; font-size:16px; padding:10px 18px; }
+  button.primary:hover { background:#37a35d; }
+  button.spd.on { background:#2d8a4e; border-color:#46c474; }
+  .lv small { display:block; color:#b9c6f5; font-weight:normal; margin-top:2px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
+  .mist { border-left:4px solid #e0556a; background:#1a1f3d; padding:8px 12px; margin:8px 0; border-radius:6px; font-size:14px; line-height:1.4; }
+  .mist b.t { color:#58d68d; } .mist b.f { color:#ff7a8a; }
+  .mist .e { color:#b9c6f5; margin-top:4px; display:block; }
+  .stats { display:flex; gap:18px; flex-wrap:wrap; margin:8px 0 4px; font-size:15px; }
+  .stats span b { color:#ffd166; }
+  kbd { background:#1e2850; border:1px solid #3a4a8a; border-radius:5px; padding:1px 6px; font-size:12px; }
+  .note { font-size:12px; color:#8393c8; margin-top:10px; }
+  input[type=file] { font-size:12px; color:#9fb0e8; }
+</style>
+</head>
+<body>
+<div id="wrap">
+  <canvas id="c" width="900" height="640"></canvas>
+  <div id="overlay"></div>
+</div>
+
+<script>
+"use strict";
+/* ============================================================
+   STATEMENT BANK — [lecture, isTrue(1/0), statement, explanation]
+   A statement in lecture L only uses material from lectures 0..L.
+   You can load your own bank from the start screen (JSON array of
+   {"l":0,"t":true,"s":"statement","e":"explanation"}).
+   ============================================================ */
+const LEVELS = [
+  "Likelihood, information & Monte Carlo",
+  "Subjective probability & Bayesian learning",
+  "Poisson models, posterior summaries & priors",
+  "Marginalization, unknown variance, multinomial & MVN",
+  "Prediction & decision making",
+  "Regression & regularization priors",
+  "Normal approximation & classification",
+  "Gibbs sampling",
+  "Metropolis–Hastings",
+  "Hamiltonian Monte Carlo & variational inference",
+  "Probabilistic programming & model comparison",
+  "Course summary: the final boss"
+];
+
+const RAW = [
+// ---------- Lecture 0: likelihood, information, Monte Carlo ----------
+[0,1,"The likelihood function is a function of the parameter, with the data held fixed.","Correct: L(θ) = p(data | θ), viewed as a function of θ for the observed data."],
+[0,0,"The likelihood function integrates to one over the parameter space.","The likelihood is not a density in θ, so it generally does not integrate to one."],
+[0,1,"For s successes in n Bernoulli trials, the maximum likelihood estimate of θ is s/n.","Maximising θ^s (1−θ)^(n−s) gives θ̂ = s/n."],
+[0,0,"The maximum likelihood estimate of a Poisson mean λ is the sample median.","It is the sample mean."],
+[0,1,"The observed information is minus the second derivative of the log-likelihood at the maximum.","Yes. It measures the curvature of the log-likelihood at the peak."],
+[0,0,"A sharply peaked log-likelihood means the data carry little information about the parameter.","A sharp peak (large curvature) means a lot of information."],
+[0,1,"The law of large numbers says that sample means converge to the expected value.","That is the law of large numbers, and the reason Monte Carlo averages work."],
+[0,0,"The Monte Carlo error of a sample mean of n independent draws shrinks like 1/n.","It shrinks like 1/√n."],
+[0,1,"An expectation can be approximated by averaging a function over simulated draws.","That is basic Monte Carlo simulation."],
+[0,0,"The central limit theorem says that data become normally distributed as n grows.","The CLT is about the distribution of sample means, not of the data themselves."],
+[0,1,"The maximum likelihood estimate is the parameter value that makes the observed data most probable.","That is the definition of the MLE."],
+[0,0,"Doubling the number of independent observations halves the Monte Carlo standard error.","Doubling n shrinks the standard error by a factor 1/√2, not 1/2."],
+
+// ---------- Lecture 1: Bayes' theorem, Bernoulli, normal known variance ----------
+[1,1,"Bayes’ theorem states P(A | B) = P(B | A) P(A) / P(B).","This is Bayes’ theorem for events."],
+[1,0,"P(A | B) always equals P(B | A).","The two are different in general (the prosecutor’s fallacy confuses them)."],
+[1,1,"A Beta(1,1) prior for a Bernoulli probability is uniform on (0,1).","Beta(1,1) has a constant density on (0,1)."],
+[1,0,"With a Beta(α,β) prior and s successes in n trials, the posterior is Beta(α+n, β+s).","It is Beta(α+s, β+n−s)."],
+[1,1,"The posterior is proportional to the likelihood times the prior.","p(θ | y) ∝ p(y | θ) p(θ)."],
+[1,0,"In Bayesian inference the parameter is a fixed constant that has no probability distribution.","In Bayesian inference, uncertainty about the parameter is expressed with a probability distribution."],
+[1,1,"For normal data with known variance and a normal prior for the mean, the posterior is normal.","The normal prior is conjugate in this model."],
+[1,0,"In the normal model with known variance, the posterior mean is always the sample mean.","It is a precision-weighted average of the prior mean and the sample mean."],
+[1,1,"In the normal model with known variance, posterior precision equals prior precision plus data precision.","Precisions add: 1/τ_n² = 1/τ₀² + n/σ²."],
+[1,0,"As the sample size grows, the prior matters more and more for the posterior.","Its influence fades as the data dominate."],
+[1,1,"Bayes’ theorem for events does not require A and B to be independent.","If they were independent, P(A | B) would simply equal P(A) and there would be nothing to learn."],
+[1,0,"A Beta(10,10) prior is more informative about θ than a Beta(1,1) prior but centred at a different value.","Both have mean 0.5. Beta(10,10) is just more concentrated around it."],
+
+// ---------- Lecture 2: Poisson, posterior summaries, priors ----------
+[2,1,"The Gamma distribution is a conjugate prior for the Poisson likelihood.","Gamma prior × Poisson likelihood gives a Gamma posterior."],
+[2,0,"With a Gamma(α,β) prior (rate β) and n Poisson counts summing to Σy, the posterior is Gamma(α+n, β+Σy).","It is Gamma(α+Σy, β+n)."],
+[2,1,"A 95% equal-tail credible interval leaves 2.5% posterior probability in each tail.","That is how the equal-tail interval is defined."],
+[2,0,"A 95% credible interval means that 95% of repeated samples would give an interval covering the true θ.","That is the frequentist confidence-interval interpretation. A credible interval says θ lies in the interval with 95% posterior probability."],
+[2,1,"For a unimodal posterior, the HPD interval is the shortest interval with the given posterior probability.","Yes, the highest posterior density interval is the shortest."],
+[2,0,"The posterior mean, median and mode are always identical.","Only for symmetric unimodal posteriors. A skewed posterior has different values."],
+[2,1,"A weakly informative prior can stabilise inference without dominating the data.","That is exactly the idea of weakly informative priors."],
+[2,0,"A flat prior on θ is also flat for log θ.","A flat prior is not invariant to reparameterisation."],
+[2,1,"Jeffreys’ prior is invariant under reparameterisation.","That is the main motivation for the Jeffreys prior."],
+[2,0,"An improper prior always leads to an improper posterior.","Often the posterior is proper even when the prior is improper."],
+[2,1,"In the Gamma-Poisson model, the prior can be read as β pseudo-observations with total count α.","The posterior is Gamma(α+Σy, β+n), so α acts like prior counts and β like prior observations."],
+[2,0,"The posterior of the Poisson mean λ is always symmetric.","It is a Gamma distribution, which is right-skewed for small shape."],
+
+// ---------- Lecture 3: marginalization, unknown variance, multinomial, MVN ----------
+[3,1,"The marginal posterior of θ is obtained by integrating the nuisance parameters out of the joint posterior.","That is marginalisation."],
+[3,0,"Marginalisation means plugging in the maximum likelihood estimate of the nuisance parameters.","Plugging in estimates is a profile/plug-in approach. Marginalisation integrates them out."],
+[3,1,"The scaled inverse chi-squared distribution is a conjugate prior for the variance of normal data.","Yes, for the normal model with a known mean (and in the joint model for the mean and variance)."],
+[3,0,"With unknown variance, the marginal posterior of the normal mean is a normal distribution.","It is a Student-t, which has heavier tails than a normal."],
+[3,1,"The Dirichlet distribution is conjugate to the multinomial likelihood.","Dirichlet prior × multinomial counts gives a Dirichlet posterior."],
+[3,0,"The components of a Dirichlet-distributed vector are independent.","They sum to one, so they are negatively dependent."],
+[3,1,"A Dirichlet(α₁,…,α_K) prior with counts n₁,…,n_K gives a Dirichlet(α₁+n₁,…,α_K+n_K) posterior.","Add the counts to the prior parameters."],
+[3,0,"Some marginal distributions of a multivariate normal are not normal.","Every marginal of a multivariate normal is normal."],
+[3,1,"Conditional distributions of a multivariate normal are also normal.","The multivariate normal is closed under conditioning."],
+[3,0,"For any two random variables, zero correlation implies independence.","That holds for jointly normal variables, but not in general."],
+[3,1,"Draws from a Dirichlet distribution are probability vectors whose elements sum to one.","They live on the simplex."],
+[3,0,"The Beta distribution is the multivariate generalisation of the Dirichlet distribution.","It is the other way around. Dirichlet generalises Beta."],
+
+// ---------- Lecture 4: prediction & decision ----------
+[4,1,"The posterior predictive distribution averages the data model over the posterior of θ.","p(ỹ | y) = ∫ p(ỹ | θ) p(θ | y) dθ."],
+[4,0,"Plugging the posterior mean into the data model accounts for all parameter uncertainty in the prediction.","Plug-in predictions ignore uncertainty in θ and are too narrow."],
+[4,1,"The posterior predictive distribution is typically wider than the data model evaluated at the posterior mean.","It adds parameter uncertainty on top of the data noise."],
+[4,0,"The prior predictive distribution depends on the observed data.","It uses only the prior, before seeing any data."],
+[4,1,"The prior predictive distribution can be used to check whether a prior is sensible.","If simulated data look absurd, the prior is probably poorly chosen."],
+[4,1,"Under quadratic loss, the optimal Bayesian point estimate is the posterior mean.","The posterior mean minimises posterior expected squared error."],
+[4,0,"Under absolute-error loss, the optimal Bayesian point estimate is the posterior mean.","It is the posterior median."],
+[4,1,"Under 0/1 loss, the Bayes estimate is the posterior mode.","Yes, that choice maximises the posterior probability of being exactly right."],
+[4,0,"A Bayesian decision maker chooses the action with the highest posterior expected loss.","She chooses the lowest expected loss."],
+[4,1,"For normal data with known variance, the predictive variance is σ² plus the posterior variance of the mean.","Data noise plus parameter uncertainty."],
+[4,0,"The prior predictive distribution of a Gamma-Poisson model is again a Poisson distribution.","It is negative binomial, which is more spread out than Poisson."],
+[4,1,"The Bayes decision minimises the posterior expected loss.","That is the definition of the Bayes rule."],
+
+// ---------- Lecture 5: regression & regularization priors ----------
+[5,1,"In linear regression with known noise variance, a normal prior on the coefficients gives a normal posterior.","The normal prior is conjugate."],
+[5,1,"A zero-mean normal prior on regression coefficients gives ridge-type shrinkage of the posterior mean.","Ridge regression is the posterior mode under a normal prior."],
+[5,0,"A Laplace (double-exponential) prior corresponds to ridge regression.","It corresponds to the lasso."],
+[5,1,"The posterior mode under a Laplace prior on the coefficients is the lasso estimate.","Yes, lasso = L1 penalty = Laplace prior."],
+[5,0,"A normal prior on the coefficients sets some of them exactly to zero in the posterior mode.","Ridge shrinks coefficients but does not set them exactly to zero. The Laplace prior can."],
+[5,1,"A larger prior variance on the coefficients means less shrinkage towards zero.","Vague priors let the data speak."],
+[5,0,"When the prior variance goes to zero, the posterior mean approaches the OLS estimate.","It approaches the prior mean. OLS appears when the prior variance goes to infinity."],
+[5,1,"The posterior mean in Bayesian regression is a compromise between the OLS estimate and the prior mean.","A precision-weighted average, just like in the simple normal model."],
+[5,0,"Regularisation priors help most when there are very few covariates and very many observations.","They help most with many covariates relative to the sample size."],
+[5,1,"Bayesian predictions for new data should use the posterior predictive, which adds noise variance to coefficient uncertainty.","Same idea as in the lecture on prediction."],
+[5,0,"Ridge regression has nothing to do with Bayesian analysis.","It is the posterior mode with a normal prior."],
+[5,1,"A shrinkage prior such as the horseshoe pulls small coefficients strongly towards zero while leaving large ones relatively untouched.","That is the selling point of the horseshoe."],
+
+// ---------- Lecture 6: normal approximation & classification ----------
+[6,1,"The normal approximation of the posterior is centred at the posterior mode.","Find the mode numerically, then expand around it."],
+[6,0,"The covariance matrix of the normal approximation is the negative Hessian of the log posterior at the mode.","It is the inverse of the negative Hessian."],
+[6,1,"The normal approximation is typically accurate when the sample size is large.","The posterior becomes approximately normal as n grows."],
+[6,0,"The normal approximation represents a strongly skewed posterior well.","A normal distribution is symmetric, so it cannot capture strong skewness."],
+[6,1,"Logistic regression models the log-odds of the outcome as linear in the covariates.","logit(p) = x′β."],
+[6,0,"With a normal prior, the logistic regression posterior is available in closed form.","There is no conjugacy, so we approximate or simulate."],
+[6,1,"At the posterior mode the first derivative of the log posterior is zero, so the second-order Taylor term drives the approximation.","That is why the quadratic expansion gives a normal density."],
+[6,1,"In logistic regression, exp(β_j) is the multiplicative change in the odds per unit increase in covariate j.","β_j is a log odds ratio."],
+[6,0,"In logistic regression, a coefficient equal to zero multiplies the odds by zero.","exp(0) = 1, so the odds are unchanged."],
+[6,0,"The normal approximation is exact for a Beta posterior.","A Beta posterior is only approximately normal for large samples."],
+[6,1,"A Beta model for a response that lies in (0,1) is a natural choice for proportions.","Beta has support (0,1)."],
+[6,0,"Logistic regression can predict probabilities outside the interval (0,1).","The logistic link maps the linear predictor into (0,1)."],
+
+// ---------- Lecture 7: Gibbs sampling ----------
+[7,1,"Gibbs sampling draws each parameter in turn from its full conditional posterior.","That is the algorithm."],
+[7,0,"Gibbs sampling needs a proposal distribution and an accept/reject step.","Each Gibbs draw is accepted with probability one."],
+[7,1,"Gibbs sampling produces dependent draws that form a Markov chain.","Each draw depends on the previous state."],
+[7,0,"Gibbs draws are independent draws from the posterior.","They are autocorrelated."],
+[7,1,"Strong posterior correlation between parameters makes Gibbs sampling mix slowly.","The sampler can only move along the coordinate axes."],
+[7,1,"The stationary distribution of the Gibbs sampler is the joint posterior.","That is why it works."],
+[7,0,"Gibbs sampling requires the normalising constant of the joint posterior.","Only the full conditionals are needed, and these are known up to a constant."],
+[7,1,"In mixture models, adding latent component allocations as extra parameters makes Gibbs sampling convenient.","Given the allocations, the full conditionals are standard distributions."],
+[7,0,"The first draws of a Gibbs sampler are always representative of the posterior.","They depend on the starting value and are usually discarded as burn-in."],
+[7,1,"Averaging Gibbs draws approximates posterior expectations (Monte Carlo with dependent draws).","Yes, but the effective sample size is smaller than the number of draws."],
+[7,1,"In mixture models, label switching can occur because component labels are not identifiable.","Permuting the labels gives the same likelihood."],
+[7,0,"A Gibbs sampler for a bivariate normal converges fastest when the correlation is close to 1.","High correlation makes it mix slowest."],
+
+// ---------- Lecture 8: Metropolis-Hastings ----------
+[8,1,"In random-walk Metropolis the proposal is centred at the current value.","θ* ~ N(θ^(t−1), Σ), for example."],
+[8,0,"The Metropolis acceptance probability requires the normalising constant of the posterior.","It cancels in the ratio of posterior densities."],
+[8,1,"The Metropolis acceptance probability uses the ratio of posterior densities, which can be computed from the unnormalised posterior.","The constant cancels."],
+[8,0,"A higher acceptance rate always means better mixing.","Tiny steps are accepted almost always, but the chain barely moves."],
+[8,1,"If the proposal variance is too large, almost all proposals are rejected and the chain gets stuck.","Large jumps usually land in low-density regions."],
+[8,0,"When a proposal is rejected, the iteration is discarded from the chain.","The chain repeats the current value."],
+[8,1,"When a proposal is rejected, the chain stays at the current value and records it again.","Yes, repeated values are essential for correct sampling."],
+[8,1,"Gibbs sampling is a special case of Metropolis–Hastings in which every proposal is accepted.","The proposal is the full conditional, so the acceptance probability is one."],
+[8,0,"Metropolis–Hastings produces independent draws from the posterior.","Draws are dependent. The chain is a Markov chain."],
+[8,1,"In random-walk Metropolis, a proposal with higher posterior density than the current value is always accepted.","The ratio exceeds one, so the acceptance probability is one."],
+[8,1,"A common rule of thumb for random-walk Metropolis in high dimensions is an acceptance rate around 25%.","Roughly 0.234 is the classical optimum."],
+[8,0,"A Markov chain with the posterior as its stationary distribution produces perfect draws from step one.","The chain only converges to the stationary distribution, hence burn-in."],
+
+// ---------- Lecture 9: HMC & variational inference ----------
+[9,1,"Hamiltonian Monte Carlo uses the gradient of the log posterior to propose distant moves.","The gradient steers the trajectory."],
+[9,0,"HMC can be applied directly to models with discrete parameters.","HMC needs gradients, so it works for continuous parameters."],
+[9,1,"HMC introduces auxiliary momentum variables.","Position (parameters) plus momentum define the Hamiltonian system."],
+[9,1,"The leapfrog integrator is used to approximately simulate Hamiltonian dynamics.","It is a numerical integrator that preserves volume and is reversible."],
+[9,0,"HMC needs no tuning parameters.","The step size and number of leapfrog steps matter (although NUTS tunes them automatically)."],
+[9,1,"A too large leapfrog step size makes the HMC acceptance rate collapse.","The numerical error in the Hamiltonian grows."],
+[9,0,"HMC easily jumps between well-separated posterior modes.","Multimodal posteriors are a known weakness."],
+[9,1,"Variational inference turns posterior approximation into an optimisation problem.","Optimise the parameters of an approximating distribution."],
+[9,0,"Variational inference becomes exact if it is run for enough iterations.","It converges to the best member of the chosen family, which is generally not the posterior."],
+[9,1,"Mean-field variational inference tends to underestimate posterior variance.","A well-known weakness of the method."],
+[9,1,"Variational inference is typically much faster than MCMC for large datasets.","That is the main attraction, at the cost of approximation error."],
+[9,0,"In HMC, the momentum is chosen once and kept fixed during the run.","It is resampled at the start of each iteration."],
+
+// ---------- Lecture 10: probabilistic programming & model comparison ----------
+[10,1,"Stan uses Hamiltonian Monte Carlo (NUTS) by default for continuous parameters.","NUTS is Stan’s default sampler."],
+[10,0,"In Stan you must code the sampling algorithm yourself.","You specify the model, and Stan does the inference."],
+[10,1,"A Stan program specifies the log posterior through its data, parameters and model blocks.","Yes, the model is a log density up to a constant."],
+[10,1,"The marginal likelihood is the likelihood averaged over the prior.","p(y) = ∫ p(y | θ) p(θ) dθ."],
+[10,0,"The marginal likelihood does not depend on the prior.","It averages the likelihood over the prior, so the prior matters."],
+[10,1,"A Bayes factor is a ratio of marginal likelihoods of two models.","BF₁₂ = p(y | M₁) / p(y | M₂)."],
+[10,0,"Posterior model probabilities depend only on the likelihood at the MLE.","They depend on the marginal likelihoods, which average over the prior."],
+[10,1,"Posterior odds of two models equal prior odds times the Bayes factor.","Bayes’ theorem applied to models."],
+[10,1,"Making a prior extremely vague for a parameter can lower the marginal likelihood of the model.","Vague priors spend probability mass on unreasonable parameter values."],
+[10,0,"Stan can sample discrete parameters directly.","Stan requires you to marginalise discrete parameters out."],
+[10,0,"The marginal likelihood is the likelihood evaluated at the MLE.","That is the maximised likelihood, a different quantity."],
+[10,1,"Model comparison via Bayes factors is sensitive to the prior, even with lots of data.","The prior is averaged over, so it never washes out of the marginal likelihood."],
+
+// ---------- Lecture 11: course summary (mixed, cross-cutting) ----------
+[11,1,"The posterior combines the prior and the data through Bayes’ theorem.","The whole course in one line."],
+[11,0,"Credible intervals can only be computed when the prior is conjugate.","With MCMC we can compute them for any model."],
+[11,1,"MCMC can approximate the posterior for models without closed-form posteriors.","That is why it is so widely used."],
+[11,0,"Different valid MCMC algorithms target different posteriors.","Gibbs, Metropolis–Hastings and HMC all target the same posterior."],
+[11,1,"Conjugacy gives closed-form posteriors but is not needed for MCMC.","Right. MCMC works for non-conjugate models too."],
+[11,0,"After a Bayesian analysis, we must reduce the posterior to a single point estimate.","The full posterior is the result. Point estimates come from a loss function if needed."],
+[11,1,"With more data, the posterior is typically less sensitive to the prior.","Likelihood dominates the prior as n grows."],
+[11,0,"A Bayes factor of 1 means that the data strongly favour the more complex model.","A Bayes factor of 1 means the data do not favour either model."]
+];
+
+let DEFAULT_BANK = RAW.map(r => ({ l: r[0], t: !!r[1], s: r[2], e: r[3] }));
+let BANK = DEFAULT_BANK.slice();
+
+/* ============================================================
+   Game
+   ============================================================ */
+const W = 900, H = 640, GROUND = H - 24, HUD_H = 44;
+const TARGET = 10;               // statements per level
+const START_LIVES = 5;
+const BOX_W = 250;
+const cv = document.getElementById("c");
+const ctx = cv.getContext("2d");
+const SCALE = Math.min(2, window.devicePixelRatio || 1);
+cv.width = W * SCALE; cv.height = H * SCALE;
+ctx.setTransform(SCALE, 0, 0, SCALE, 0, 0);
+const overlay = document.getElementById("overlay");
+
+let mode = "menu";
+let G = null;
+let keys = {};
+let firing = false;
+let mute = false;
+let actx = null;
+let bgDots = Array.from({length: 70}, () => ({x: Math.random()*W, y: Math.random()*H, r: 0.6+Math.random()*1.6, v: 4+Math.random()*10}));
+
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+function beep(f, d, type="square", v=0.05){
+  if (mute) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.type = type; o.frequency.value = f; g.gain.value = v;
+    o.connect(g); g.connect(actx.destination);
+    o.start(); g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + d); o.stop(actx.currentTime + d);
+  } catch (e) {}
+}
+
+function newGame(start){
+  G = { level:start, start, score:0, lives:START_LIVES, streak:0, bestStreak:0,
+        boxes:[], bullets:[], parts:[], floats:[], mistakes:[], lvlMistakes:[],
+        spawned:0, resolved:0, spawnT:1.2, cool:0, cx:W/2, seen:new Set(), toast:null,
+        ghosts:[], ghostT:5, busted:0, lvlBusted:0,
+        right:0, total:0, lvlRight:0, lvlTotal:0 };
+}
+const SPEEDS = [ { name: "Slow", m: 0.65 }, { name: "Medium", m: 1 }, { name: "Fast", m: 1.5 } ];
+let speedIdx = 0;   // Slow is the default; Medium equals the original speed
+function cycleSpeed(){ speedIdx = (speedIdx + 1) % SPEEDS.length; }
+function levelSpeed(L){ return (34 + 6.5*L) * SPEEDS[speedIdx].m; }
+function levelInterval(L){ return Math.max(1.9, 4.4 - 0.22*L) / SPEEDS[speedIdx].m; }
+function mult(){ return 1 + Math.min(4, Math.floor(G.streak/3)); }
+
+function startLevel(L){
+  G.level = L; G.boxes = []; G.bullets = []; G.spawned = 0; G.resolved = 0; G.spawnT = 1.0;
+  G.lvlMistakes = []; G.lvlRight = 0; G.lvlTotal = 0; G.toast = null;
+  G.ghosts = []; G.ghostT = 4 + Math.random() * 3; G.lvlBusted = 0;
+  mode = "play"; overlay.className = "hidden"; overlay.innerHTML = "";
+}
+
+/* ---------- picking statements: never from later lectures ---------- */
+function pickStatement(){
+  const L = G.level;
+  const wantTrue = Math.random() < 0.5;
+  const useCurrent = (L === G.start && L === 0) ? true : Math.random() < 0.55;
+  const ok = (b) => b.t === wantTrue;
+  let cands = [];
+  BANK.forEach((b, i) => { if (ok(b) && (useCurrent ? b.l === L : b.l < L)) cands.push(i); });
+  if (!cands.length) BANK.forEach((b, i) => { if (ok(b) && b.l <= L) cands.push(i); });
+  if (!cands.length) BANK.forEach((b, i) => { if (b.l <= L) cands.push(i); });
+  if (!cands.length) cands = BANK.map((_, i) => i);
+  let fresh = cands.filter(i => !G.seen.has(i));
+  if (!fresh.length) { cands.forEach(i => G.seen.delete(i)); fresh = cands; }
+  const idx = fresh[Math.floor(Math.random()*fresh.length)];
+  G.seen.add(idx);
+  return idx;
+}
+
+function wrapText(text, maxW){
+  ctx.font = "14px system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+  const words = text.split(" "), lines = [];
+  let cur = "";
+  for (const w of words){
+    const t = cur ? cur + " " + w : w;
+    if (ctx.measureText(t).width > maxW && cur){ lines.push(cur); cur = w; } else cur = t;
+  }
+  if (cur) lines.push(cur);
+  return lines;
+}
+
+function trySpawn(){
+  const idx = pickStatement();
+  const b = BANK[idx];
+  const lines = wrapText(b.s, BOX_W - 24);
+  const h = lines.length * 18 + 22;
+  let x = null;
+  for (let k = 0; k < 10; k++){
+    const cand = 10 + Math.random() * (W - BOX_W - 20);
+    const clash = G.boxes.some(o => o.y < HUD_H + 12 && Math.abs(o.x - cand) < BOX_W + 8);
+    if (!clash){ x = cand; break; }
+  }
+  if (x === null){ G.seen.delete(idx); return false; }
+  G.boxes.push({ x, y: HUD_H - h - 2, w: BOX_W, h, lines, idx });
+  G.spawned++;
+  return true;
+}
+
+function resolve(box, shot){
+  const b = BANK[box.idx];
+  G.resolved++; G.total++; G.lvlTotal++;
+  if (box.ghost) burst(box.x + box.w - 18, box.y - 6, "#c8a2ff");
+  const cx = box.x + box.w/2, cy = box.y + box.h/2;
+  let correct;
+  if (shot){
+    if (!b.t){ correct = true;
+      const pts = 100 * mult(); G.score += pts; G.streak++;
+      addFloat(cx, cy, "FALSE ✔ +" + pts, "#58d68d"); burst(cx, cy, "#58d68d"); beep(660, .12);
+    } else { correct = false;
+      G.score = Math.max(0, G.score - 50); G.lives--; G.streak = 0;
+      addFloat(cx, cy, "That was TRUE! −1 ♥", "#ff7a8a"); burst(cx, cy, "#ff7a8a"); beep(140, .3, "sawtooth");
+    }
+  } else {
+    if (b.t){ correct = true;
+      const pts = 10 * mult(); G.score += pts; G.streak++;
+      addFloat(cx, GROUND - 30, "TRUE ✔ +" + pts, "#7fb2ff"); beep(440, .08, "sine");
+    } else { correct = false;
+      G.lives--; G.streak = 0;
+      addFloat(cx, GROUND - 30, "FALSE got through! −1 ♥", "#ff7a8a"); beep(120, .35, "sawtooth");
+    }
+  }
+  G.bestStreak = Math.max(G.bestStreak, G.streak);
+  if (correct){ G.right++; G.lvlRight++; }
+  else {
+    const m = { idx: box.idx, how: shot ? "You shot a true statement." : "You let a false statement land.", level: G.level };
+    G.mistakes.push(m); G.lvlMistakes.push(m);
+    G.toast = { text: (b.t ? "TRUE: " : "FALSE: ") + b.e, t: 4.5 };
+  }
+}
+
+/* ---------- frequentist ghosts ---------- */
+const TERMS = ["p < 0.05!", "confidence interval!", "sampling distribution!", "bootstrap!", "null hypothesis!",
+  "standard error!", "unbiased estimator!", "repeated sampling!", "type I error!", "power analysis!",
+  "t-test!", "asymptotics!", "F-test!", "coverage probability!", "maximum likelihood!"];
+
+function ghostSound(){
+  if (mute) return;
+  try {
+    actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+    const t = actx.currentTime;
+    const o = actx.createOscillator(), g = actx.createGain(), lfo = actx.createOscillator(), lg = actx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(260, t);
+    o.frequency.linearRampToValueAtTime(520, t + 0.45);
+    o.frequency.linearRampToValueAtTime(230, t + 1.0);
+    lfo.frequency.value = 7; lg.gain.value = 18;
+    lfo.connect(lg); lg.connect(o.frequency);
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(0.09, t + 0.2);
+    g.gain.linearRampToValueAtTime(0.0001, t + 1.0);
+    o.connect(g); g.connect(actx.destination);
+    o.start(t); lfo.start(t); o.stop(t + 1.05); lfo.stop(t + 1.05);
+  } catch (e) {}
+}
+
+function freeTargets(minGap){ return G.boxes.filter(b => !b.dead && !b.ghost && !b.hunted && b.y + b.h < GROUND - minGap); }
+
+function spawnGhost(){
+  if (!freeTargets(200).length) return false;
+  const m = SPEEDS[speedIdx].m;
+  const fromLeft = Math.random() < 0.5;
+  // enters at a bottom corner, floats up to a hover spot near the cannon's reach, hovers a while, then goes for a statement
+  G.ghosts.push({ x: fromLeft ? -30 : W + 30, y: GROUND - 20 - Math.random() * 50, t: 0, dy: 0,
+                  hx: 160 + Math.random() * (W - 320), hy: 300 + Math.random() * 150,
+                  phase: "enter", hoverLeft: (4.5 + Math.random() * 3) / Math.sqrt(m),
+                  term: TERMS[Math.floor(Math.random() * TERMS.length)], target: null, leaving: false, dead: false });
+  ghostSound();
+  return true;
+}
+
+function bustGhost(gh){
+  G.score += 75; G.busted++; G.lvlBusted++;
+  if (gh.target) gh.target.hunted = false;
+  addFloat(gh.x, gh.y + gh.dy, "Ghost busted! +75", "#c8a2ff");
+  burst(gh.x, gh.y + gh.dy, "#c8a2ff");
+  beep(880, .15, "triangle");
+}
+
+function moveToward(gh, tx, ty, sp, dt){
+  const dx = tx - gh.x, dy = ty - gh.y, d = Math.hypot(dx, dy);
+  if (d > 0){ const s = Math.min(d, sp * dt); gh.x += dx / d * s; gh.y += dy / d * s; }
+  return d;
+}
+
+function updateGhosts(dt){
+  const m = SPEEDS[speedIdx].m;
+  for (const gh of G.ghosts){
+    if (gh.dead) continue;
+    gh.t += dt; gh.dy = Math.sin(gh.t * 5) * 6;
+    if (gh.phase === "enter"){
+      if (moveToward(gh, gh.hx, gh.hy, 120 + 30 * m, dt) < 6) gh.phase = "hover";
+    } else if (gh.phase === "hover"){
+      // drift lazily around the hover spot: an easy target for a while
+      const tx = gh.hx + Math.sin(gh.t * 0.9) * 90, ty = gh.hy + Math.sin(gh.t * 1.3) * 30;
+      moveToward(gh, tx, ty, 90, dt);
+      gh.hoverLeft -= dt;
+      if (gh.hoverLeft <= 0) gh.phase = "seek";
+    } else if (gh.phase === "seek"){
+      let tg = gh.target;
+      if (!tg || tg.dead || tg.ghost){
+        const free = freeTargets(150);
+        if (free.length){ tg = gh.target = free[Math.floor(Math.random() * free.length)]; tg.hunted = true; }
+        else { gh.target = null; gh.phase = "leave"; }
+      }
+      if (gh.phase === "seek"){
+        const d = moveToward(gh, tg.x + tg.w - 18, tg.y - 6, 75 + 35 * m, dt);
+        if (d < 10){
+          tg.ghost = { term: gh.term }; tg.hunted = false; gh.dead = true;
+          beep(300, .12, "sine", 0.06);
+        }
+      }
+    }
+    if (gh.phase === "leave"){
+      moveToward(gh, gh.x < W / 2 ? -100 : W + 100, gh.y - 20, 110, dt);
+      if (gh.x < -80 || gh.x > W + 80) gh.dead = true;
+    }
+  }
+  G.ghosts = G.ghosts.filter(g => !g.dead);
+}
+
+function addFloat(x, y, text, color){ G.floats.push({ x, y, text, color, t: 1.4 }); }
+function burst(x, y, color){
+  for (let i = 0; i < 18; i++){
+    const a = Math.random()*Math.PI*2, s = 60 + Math.random()*200;
+    G.parts.push({ x, y, vx: Math.cos(a)*s, vy: Math.sin(a)*s, t: 0.6 + Math.random()*0.4, color });
+  }
+}
+
+/* ---------- update ---------- */
+function update(dt){
+  for (const d of bgDots){ d.y += d.v*dt; if (d.y > H){ d.y = 0; d.x = Math.random()*W; } }
+  if (mode !== "play") return;
+
+  // cannon
+  const sp = 460;
+  if (keys.ArrowLeft || keys.a || keys.A) G.cx -= sp*dt;
+  if (keys.ArrowRight || keys.d || keys.D) G.cx += sp*dt;
+  G.cx = Math.max(24, Math.min(W-24, G.cx));
+  G.cool -= dt;
+  if ((firing || keys[" "]) && G.cool <= 0){
+    G.bullets.push({ x: G.cx, y: GROUND - 34 }); G.cool = 0.22;
+  }
+
+  // spawn
+  G.spawnT -= dt;
+  if (G.spawned < TARGET && G.spawnT <= 0){
+    if (trySpawn()) G.spawnT = levelInterval(G.level); else G.spawnT = 0.35;
+  }
+
+  // ghosts arrive at random times
+  G.ghostT -= dt;
+  if (G.ghostT <= 0){
+    if (spawnGhost()) G.ghostT = (5 + Math.random() * 6) / SPEEDS[speedIdx].m; else G.ghostT = 1;
+  }
+  updateGhosts(dt);
+
+  // bullets
+  for (const b of G.bullets) b.y -= 720*dt;
+  G.bullets = G.bullets.filter(b => b.y > HUD_H - 10);
+
+  // boxes (a statement with a ghost on it falls twice as fast)
+  const vy = levelSpeed(G.level);
+  for (const bx of G.boxes) bx.y += vy * (bx.ghost ? 2 : 1) * dt;
+
+  // bullets vs ghosts
+  for (const bl of G.bullets){
+    if (bl.dead) continue;
+    for (const gh of G.ghosts){
+      if (gh.dead) continue;
+      if (Math.hypot(bl.x - gh.x, bl.y - (gh.y + gh.dy)) < 32){ bl.dead = true; gh.dead = true; bustGhost(gh); break; }
+    }
+  }
+  G.bullets = G.bullets.filter(b => !b.dead);
+  G.ghosts = G.ghosts.filter(g => !g.dead);
+
+  // collisions
+  for (const bl of G.bullets){
+    if (bl.dead) continue;
+    for (const bx of G.boxes){
+      if (bx.dead) continue;
+      if (bl.x > bx.x && bl.x < bx.x + bx.w && bl.y > bx.y && bl.y < bx.y + bx.h && bx.y + bx.h > HUD_H){
+        bl.dead = true; bx.dead = true; resolve(bx, true); break;
+      }
+    }
+  }
+  G.bullets = G.bullets.filter(b => !b.dead);
+  G.boxes = G.boxes.filter(b => !b.dead);
+  for (const bx of G.boxes){
+    if (bx.y + bx.h >= GROUND){ bx.dead = true; resolve(bx, false); }
+  }
+  G.boxes = G.boxes.filter(b => !b.dead);
+
+  // fx
+  for (const p of G.parts){ p.x += p.vx*dt; p.y += p.vy*dt; p.vy += 300*dt; p.t -= dt; }
+  G.parts = G.parts.filter(p => p.t > 0);
+  for (const f of G.floats){ f.y -= 28*dt; f.t -= dt; }
+  G.floats = G.floats.filter(f => f.t > 0);
+  if (G.toast){ G.toast.t -= dt; if (G.toast.t <= 0) G.toast = null; }
+
+  // end conditions
+  if (G.lives <= 0){ G.ghosts = []; mode = "over"; showOver(); return; }
+  if (G.spawned >= TARGET && G.boxes.length === 0){
+    G.ghosts = [];
+    if (G.level >= LEVELS.length - 1){ mode = "win"; showWin(); }
+    else { mode = "levelEnd"; showLevelEnd(); }
+  }
+}
+
+/* ---------- draw ---------- */
+function rr(x, y, w, h, r){
+  ctx.beginPath();
+  ctx.moveTo(x+r, y); ctx.arcTo(x+w, y, x+w, y+h, r); ctx.arcTo(x+w, y+h, x, y+h, r);
+  ctx.arcTo(x, y+h, x, y, r); ctx.arcTo(x, y, x+w, y, r); ctx.closePath();
+}
+
+function drawGhost(x, y, term, seated){
+  // (x, y) is the ghost's centre when flying, and its seat when sitting on a statement
+  const boss = G.level === LEVELS.length - 1;
+  ctx.save();
+  ctx.textBaseline = "alphabetic";
+  if (!seated){ ctx.shadowColor = "rgba(200,170,255,.9)"; ctx.shadowBlur = 14; }
+  ctx.font = "28px system-ui, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif";
+  ctx.textAlign = "center";
+  ctx.fillText(boss ? "👹" : "👻", x, seated ? y : y + 10);
+  ctx.shadowBlur = 0;
+  ctx.font = "italic 12px system-ui, sans-serif"; ctx.fillStyle = "#ffb86b";
+  const lx = Math.max(70, Math.min(W - 70, x));
+  ctx.fillText(term, lx, (seated ? y : y + 10) - 32);
+  ctx.restore();
+}
+
+function draw(){
+  const g = ctx.createLinearGradient(0, 0, 0, H);
+  g.addColorStop(0, "#0d1430"); g.addColorStop(1, "#141d44");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  ctx.fillStyle = "rgba(150,180,255,.35)";
+  for (const d of bgDots){ ctx.beginPath(); ctx.arc(d.x, d.y, d.r, 0, 7); ctx.fill(); }
+
+  // ground
+  ctx.fillStyle = "#1b2a5e"; ctx.fillRect(0, GROUND, W, H - GROUND);
+  ctx.strokeStyle = "#4a63c4"; ctx.beginPath(); ctx.moveTo(0, GROUND); ctx.lineTo(W, GROUND); ctx.stroke();
+
+  if (G && (mode === "play" || mode === "paused")){
+    // boxes
+    ctx.textBaseline = "top";
+    for (const bx of G.boxes){
+      ctx.fillStyle = "#1d2b5c"; rr(bx.x, bx.y, bx.w, bx.h, 10); ctx.fill();
+      ctx.strokeStyle = "#6ea8ff"; ctx.lineWidth = 1.5; rr(bx.x, bx.y, bx.w, bx.h, 10); ctx.stroke();
+      ctx.fillStyle = "#f2f5ff"; ctx.font = "14px system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif";
+      bx.lines.forEach((ln, i) => ctx.fillText(ln, bx.x + 12, bx.y + 11 + i*18));
+      // a ghost sitting on this statement (it falls twice as fast)
+      if (bx.ghost){
+        const bob = Math.sin(performance.now()/300 + bx.x) * 2;
+        drawGhost(bx.x + bx.w - 18, bx.y - 6 + bob, bx.ghost.term, true);
+      }
+    }
+    // flying ghosts
+    for (const gh of G.ghosts) drawGhost(gh.x, gh.y + gh.dy, gh.term, false);
+    // bullets
+    ctx.fillStyle = "#ffd166";
+    for (const b of G.bullets){ rr(b.x - 2.5, b.y - 8, 5, 16, 2.5); ctx.fill(); }
+    // cannon
+    const cx = G.cx, cy = GROUND;
+    ctx.fillStyle = "#58d68d"; rr(cx - 26, cy - 14, 52, 14, 5); ctx.fill();
+    ctx.fillStyle = "#7ff0ad"; rr(cx - 6, cy - 32, 12, 22, 4); ctx.fill();
+    ctx.fillStyle = "#0b1020"; ctx.font = "bold 12px system-ui, sans-serif"; ctx.textAlign = "center"; ctx.fillText("θ", cx, cy - 12); ctx.textAlign = "left";
+    // particles
+    for (const p of G.parts){ ctx.globalAlpha = Math.max(0, p.t); ctx.fillStyle = p.color; ctx.fillRect(p.x, p.y, 4, 4); }
+    ctx.globalAlpha = 1;
+    // floats
+    ctx.font = "bold 16px system-ui, sans-serif"; ctx.textAlign = "center";
+    for (const f of G.floats){ ctx.globalAlpha = Math.min(1, f.t); ctx.fillStyle = f.color; ctx.fillText(f.text, Math.max(110, Math.min(W-110, f.x)), f.y); }
+    ctx.globalAlpha = 1; ctx.textAlign = "left";
+    // toast (explanation of last mistake)
+    if (G.toast){
+      const lines = wrapText(G.toast.text, W - 80);
+      const h = lines.length*18 + 16;
+      ctx.fillStyle = "rgba(60,20,40,.93)"; rr(30, GROUND - 48 - h, W - 60, h, 10); ctx.fill();
+      ctx.strokeStyle = "#e0556a"; rr(30, GROUND - 48 - h, W - 60, h, 10); ctx.stroke();
+      ctx.fillStyle = "#ffe3e8"; ctx.font = "14px system-ui, sans-serif";
+      lines.forEach((ln, i) => ctx.fillText(ln, 44, GROUND - 48 - h + 8 + i*18));
+    }
+  }
+
+  // HUD
+  if (G && mode !== "menu"){
+    ctx.fillStyle = "#0a0f26"; ctx.fillRect(0, 0, W, HUD_H);
+    ctx.strokeStyle = "#2a3560"; ctx.beginPath(); ctx.moveTo(0, HUD_H); ctx.lineTo(W, HUD_H); ctx.stroke();
+    ctx.textBaseline = "middle"; ctx.fillStyle = "#e8ecff"; ctx.font = "bold 14px system-ui, sans-serif";
+    let title = "Lecture " + G.level + ": " + LEVELS[G.level];
+    while (ctx.measureText(title).width > 470 && title.length > 8) title = title.slice(0, -2);
+    ctx.fillText(title, 12, 15);
+    ctx.font = "12px system-ui, sans-serif"; ctx.fillStyle = "#9fb0e8";
+    ctx.fillText("Resolved " + G.resolved + "/" + TARGET + "   •   Streak " + G.streak + " (×" + mult() + ")", 12, 32);
+    ctx.textAlign = "center"; ctx.font = "12px system-ui, sans-serif"; ctx.fillStyle = "#7fb2ff";
+    ctx.fillText("Speed: " + SPEEDS[speedIdx].name + "  (S / tap here)", 610, 24);
+    ctx.textAlign = "right"; ctx.font = "bold 18px system-ui, sans-serif"; ctx.fillStyle = "#ffd166";
+    ctx.fillText("Score " + G.score, W - 12, 15);
+    ctx.font = "16px system-ui, sans-serif"; ctx.fillStyle = "#ff6b81";
+    ctx.fillText("♥".repeat(Math.max(0, G.lives)) + "♡".repeat(Math.max(0, START_LIVES - G.lives)), W - 12, 33);
+    ctx.textAlign = "left"; ctx.textBaseline = "alphabetic";
+  }
+  if (mode === "paused"){
+    ctx.fillStyle = "rgba(5,8,20,.7)"; ctx.fillRect(0, HUD_H, W, H);
+    ctx.fillStyle = "#fff"; ctx.font = "bold 34px system-ui, sans-serif"; ctx.textAlign = "center";
+    ctx.fillText("Paused", W/2, H/2); ctx.font = "16px system-ui, sans-serif"; ctx.fillText("Press P or Esc to continue", W/2, H/2 + 30);
+    ctx.textAlign = "left";
+  }
+}
+
+/* ---------- leaderboard ----------
+   Shared across players when the page is served with the db capability and the viewer may write
+   (signed in, Contributor access). Otherwise scores are kept on this device only. */
+let DB = null, MYID = null, CAN_WRITE = false, boardBack = null;
+
+async function initDb(){
+  try {
+    if (typeof claude === "undefined" || !claude.use) return;
+    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    if (!db || !user) return;
+    const id = await user.id();
+    if (!id) return;
+    const cw = user.can ? await user.can("data.write") : null;
+    DB = db; MYID = id; CAN_WRITE = cw !== false;
+  } catch (e) { DB = null; }
+}
+
+function cleanName(s){ return Array.from(String(s).replace(/[^\p{L}\p{N} _-]/gu, "")).slice(0, 12).join(""); }
+function lsGet(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
+function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+function withTimeout(p, ms){ return Promise.race([p, new Promise((_, rj) => setTimeout(() => rj(new Error("timeout")), ms))]); }
+
+async function saveScore(e){
+  const entry = { name: e.name, score: e.score, level: e.level, speed: e.speed, ghosts: e.ghosts, ts: Date.now() };
+  const local = lsGet("bb_scores", []); local.push(entry);
+  local.sort((a, b) => b.score - a.score); lsSet("bb_scores", local.slice(0, 20));
+  if (!(DB && MYID && CAN_WRITE)) return "Saved on this device. The shared board needs a signed-in view with Contributor access.";
+  try {
+    const ref = DB.collection("scores").doc(MYID);
+    const cur = await withTimeout(ref.get(), 10000);
+    if (cur.exists && Number(cur.data().score) >= entry.score){
+      if (cur.data().name !== entry.name) await withTimeout(ref.update({ name: entry.name }), 10000);
+      return "Your earlier score on the shared board was higher, so it stays.";
+    }
+    await withTimeout(ref.set(entry), 10000);
+    return "Saved to the shared leaderboard.";
+  } catch (err) { return "Could not reach the shared board, so the score is saved on this device only."; }
+}
+
+async function getBoard(){
+  if (DB && MYID){
+    try {
+      const snap = await withTimeout(DB.collection("scores").orderBy("score", "desc").limit(20).get(), 10000);
+      const rows = snap.docs.map(d => { const x = d.data() || {};
+        return { id: d.id, name: cleanName(x.name || "Anon") || "Anon", score: Number(x.score) || 0,
+                 level: Number(x.level) || 0, speed: String(x.speed || "").slice(0, 8), ghosts: Number(x.ghosts) || 0 }; });
+      return { shared: true, rows };
+    } catch (err) { /* fall through to local */ }
+  }
+  return { shared: false, rows: lsGet("bb_scores", []) };
+}
+
+async function showBoard(back, note){
+  boardBack = back || showMenu;
+  overlay.className = "";
+  overlay.innerHTML = '<div class="panel"><h2>🏆 Leaderboard</h2><p class="sub">Loading…</p></div>';
+  const b = await getBoard();
+  const body = b.rows.length ? '<table style="width:100%;border-collapse:collapse;font-size:14px"><tr style="color:#9fb0e8;text-align:left"><th>#</th><th>Name</th><th>Score</th><th>Lecture</th><th>Speed</th><th>Ghosts</th></tr>' +
+    b.rows.map((r, i) => '<tr style="border-top:1px solid #26336b;' + (b.shared && r.id === MYID ? 'background:#1d2b5c;' : '') + '"><td>' + (i + 1) + '</td><td>' + esc(r.name) +
+      '</td><td><b>' + esc(r.score) + '</b></td><td>' + esc(r.level) + '</td><td>' + esc(r.speed || "") + '</td><td>' + esc(r.ghosts || 0) + '</td></tr>').join("") + '</table>'
+    : '<p class="sub">No scores yet. Be the first!</p>';
+  overlay.innerHTML = '<div class="panel"><h2>🏆 Leaderboard <small style="font-size:13px;color:#9fb0e8;font-weight:normal">' +
+    (b.shared ? "everyone" : "this device only") + '</small></h2>' +
+    (note ? '<p class="sub">' + esc(note) + '</p>' : '') + body +
+    '<div class="row"><button class="primary" id="bk">Back</button></div></div>';
+}
+
+function playerName(){ return cleanName(lsGet("bb_name", "")).trim(); }
+
+// shown at the end of a game: the score is saved automatically under the name entered on the start screen
+function scoreFormHTML(){
+  setTimeout(autoSave, 0);
+  return '<div class="row" style="margin:10px 0"><span id="svmsg" class="sub" style="margin:0">Saving score…</span>' +
+    '<button id="lb">🏆 Leaderboard</button></div>';
+}
+
+async function autoSave(){
+  if (!G) return;
+  const show = (t) => { const m = document.getElementById("svmsg"); if (m) m.textContent = t; };
+  if (G.saved){ if (G.savedNote) show(G.savedNote); return; }
+  G.saved = true;
+  const note = await saveScore({ name: playerName() || "Anon", score: G.score, level: G.level, speed: SPEEDS[speedIdx].name, ghosts: G.busted });
+  G.savedNote = playerName() + ": score " + G.score + ". " + note;
+  show(G.savedNote);
+}
+
+overlay.addEventListener("click", e => {
+  const id = e.target && e.target.id;
+  if (id === "lb") showBoard(mode === "menu" ? showMenu : (G && G.lives <= 0 ? showOver : showWin));
+  else if (id === "bk") (boardBack || showMenu)();
+});
+overlay.addEventListener("keydown", e => {
+  if (e.key === "Enter" && e.target.id === "nm"){ const s = overlay.querySelector("button.primary[data-l]"); if (s) s.click(); }
+});
+overlay.addEventListener("input", e => { if (e.target.id === "nm"){ e.target.value = cleanName(e.target.value); lsSet("bb_name", e.target.value.trim()); } });
+
+/* ---------- screens ---------- */
+function mistakeHTML(list){
+  const seen = new Set(), out = [];
+  for (const m of list){ if (seen.has(m.idx)) continue; seen.add(m.idx);
+    const b = BANK[m.idx];
+    out.push('<div class="mist"><b class="' + (b.t ? "t" : "f") + '">' + (b.t ? "TRUE" : "FALSE") + "</b> — " + esc(b.s) +
+      '<span class="e">' + esc(m.how) + " " + esc(b.e) + ' <i>(Lecture ' + b.l + ")</i></span></div>");
+  }
+  return out.join("") || '<p class="sub">No mistakes. Suspiciously well calibrated!</p>';
+}
+function acc(r, t){ return t ? Math.round(100*r/t) + "%" : "–"; }
+
+function showMenu(){
+  mode = "menu";
+  const btns = LEVELS.map((t, i) => '<button class="lv" data-l="' + i + '"><b>Lecture ' + i + '</b><small>' + esc(t) + '</small></button>').join("");
+  overlay.className = "";
+  overlay.innerHTML = '<div class="panel"><h1>🎯 Bayes Blaster</h1>' +
+    '<p class="sub">Statements fall from the sky. <b>Shoot the FALSE ones.</b> Let the <b>TRUE ones</b> land safely.<br>' +
+    'Shooting a true statement or letting a false one land costs a life.' +
+    '</p>' +
+    '<p class="sub"><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd> to move, <kbd>Space</kbd> to fire, <kbd>P</kbd> to pause, <kbd>M</kbd> to mute. ' +
+    'Mouse or touch: drag to move, hold to fire.</p>' +
+    '<div class="row"><span class="sub" style="margin:0">Your name:</span>' +
+    '<input id="nm" maxlength="12" autocomplete="off" placeholder="max 12 letters" value="' + esc(playerName()) + '" ' +
+    'style="background:#141d44;color:#fff;border:1px solid #4a63c4;border-radius:8px;padding:8px 10px;font-size:14px;width:190px">' +
+    '<span id="nmhint" class="sub" style="margin:0;color:#ff7a8a"></span>' +
+    '<button id="lb">🏆 Leaderboard</button></div>' +
+    '<div class="row"><span class="sub" style="margin:0">Speed:</span>' +
+    SPEEDS.map((s, i) => '<button class="spd' + (i === speedIdx ? ' on' : '') + '" data-s="' + i + '" style="text-align:center;min-width:90px">' + s.name + '</button>').join("") + '</div>' +
+    '<div class="row"><button class="primary" data-l="0">▶ Start at Lecture 0</button></div>' +
+    '<p class="sub" style="margin-top:14px">…or jump straight to a lecture:</p><div class="grid">' + btns + '</div>' +
+    '<div class="note">Statement bank: <span id="bankinfo">' + BANK.length + ' statements (built-in)</span>. ' +
+    'Load your own (JSON): <input type="file" id="bankfile" accept=".json,application/json"> ' +
+    '<button id="resetbank" style="padding:3px 8px;font-size:12px">Reset to built-in</button></div></div>';
+  overlay.querySelectorAll("button[data-l]").forEach(b => b.onclick = () => {
+    const inp = document.getElementById("nm");
+    const name = cleanName(inp.value).trim();
+    if (!name){ document.getElementById("nmhint").textContent = "Enter your name first"; inp.focus(); return; }
+    lsSet("bb_name", name);
+    newGame(+b.dataset.l); startLevel(+b.dataset.l);
+  });
+  overlay.querySelectorAll("button.spd").forEach(b => b.onclick = () => {
+    speedIdx = +b.dataset.s;
+    overlay.querySelectorAll("button.spd").forEach(x => x.classList.toggle("on", +x.dataset.s === speedIdx));
+  });
+  document.getElementById("bankfile").onchange = (ev) => {
+    const f = ev.target.files[0]; if (!f) return;
+    const rd = new FileReader();
+    rd.onload = () => {
+      try {
+        const arr = JSON.parse(rd.result);
+        if (!Array.isArray(arr) || !arr.length) throw new Error("empty");
+        const nb = arr.map(o => ({ l: +o.l, t: !!o.t, s: String(o.s), e: String(o.e || "") }));
+        if (nb.some(o => !isFinite(o.l) || !o.s)) throw new Error("bad item");
+        BANK = nb; document.getElementById("bankinfo").textContent = BANK.length + " statements (loaded from file)";
+      } catch (err) { document.getElementById("bankinfo").textContent = "Could not read that file: " + err.message; }
+    };
+    rd.readAsText(f);
+  };
+  document.getElementById("resetbank").onclick = () => { BANK = DEFAULT_BANK.slice(); document.getElementById("bankinfo").textContent = BANK.length + " statements (built-in)"; };
+}
+
+function showLevelEnd(){
+  overlay.className = "";
+  const next = G.level + 1;
+  overlay.innerHTML = '<div class="panel"><h2>✅ Lecture ' + G.level + ' cleared</h2>' +
+    '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy this level <b>' + acc(G.lvlRight, G.lvlTotal) + '</b></span>' +
+    '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.lvlBusted + '</b></span><span>Lives <b>' + G.lives + '</b></span></div>' +
+    '<h3 style="margin:12px 0 4px">Review of your mistakes</h3>' + mistakeHTML(G.lvlMistakes) +
+    '<p class="sub" style="margin-top:12px"><b>Next up:</b> Lecture ' + next + " — " + esc(LEVELS[next]) + '</p>' +
+    '<div class="row"><button class="primary" id="nx">Next lecture →</button><button id="mn">Menu</button></div></div>';
+  document.getElementById("nx").onclick = () => startLevel(next);
+  document.getElementById("mn").onclick = showMenu;
+}
+function showOver(){
+  overlay.className = "";
+  overlay.innerHTML = '<div class="panel"><h2>💥 Game over at Lecture ' + G.level + '</h2>' +
+    '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy <b>' + acc(G.right, G.total) + '</b></span>' +
+    '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.busted + '</b></span></div>' +
+    scoreFormHTML() +
+    '<h3 style="margin:12px 0 4px">Study list: what to revisit</h3>' + mistakeHTML(G.mistakes) +
+    '<div class="row"><button class="primary" id="rt">Try this lecture again</button><button id="rs">Restart from Lecture ' + G.start + '</button><button id="mn">Menu</button></div></div>';
+  const L = G.level, S0 = G.start;
+  document.getElementById("rt").onclick = () => { newGame(L); startLevel(L); };
+  document.getElementById("rs").onclick = () => { newGame(S0); startLevel(S0); };
+  document.getElementById("mn").onclick = showMenu;
+}
+function showWin(){
+  overlay.className = "";
+  overlay.innerHTML = '<div class="panel"><h2>🏆 Course complete!</h2>' +
+    '<p class="sub">You made it through the final boss with ' + G.lives + ' lives left.</p>' +
+    '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy <b>' + acc(G.right, G.total) + '</b></span>' +
+    '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.busted + '</b></span></div>' +
+    scoreFormHTML() +
+    '<h3 style="margin:12px 0 4px">Things to revisit</h3>' + mistakeHTML(G.mistakes) +
+    '<div class="row"><button class="primary" id="mn">Back to menu</button></div></div>';
+  document.getElementById("mn").onclick = showMenu;
+}
+
+/* ---------- input ---------- */
+function togglePause(){
+  if (mode === "play") mode = "paused"; else if (mode === "paused") mode = "play";
+}
+window.addEventListener("keydown", e => {
+  if (e.target && e.target.tagName === "INPUT") return;   // typing a name: don't trigger game keys
+  if ([" ", "ArrowLeft", "ArrowRight"].includes(e.key) && (mode === "play" || mode === "paused")) e.preventDefault();
+  keys[e.key] = true;
+  if (e.key === "p" || e.key === "P" || e.key === "Escape") togglePause();
+  if (e.key === "m" || e.key === "M") mute = !mute;
+  if ((e.key === "s" || e.key === "S") && (mode === "play" || mode === "paused")) cycleSpeed();
+});
+window.addEventListener("keyup", e => { keys[e.key] = false; });
+window.addEventListener("blur", () => { keys = {}; firing = false; if (mode === "play") mode = "paused"; });
+function pointerX(e){ const r = cv.getBoundingClientRect(); return (e.clientX - r.left) * W / r.width; }
+cv.addEventListener("pointermove", e => { if (G && mode === "play") G.cx = Math.max(24, Math.min(W-24, pointerX(e))); });
+cv.addEventListener("pointerdown", e => {
+  const r = cv.getBoundingClientRect();
+  if ((e.clientY - r.top) * H / r.height < HUD_H){ if (mode === "play" || mode === "paused") cycleSpeed(); return; }
+  if (mode === "paused"){ mode = "play"; return; } firing = true; if (G && mode === "play") G.cx = Math.max(24, Math.min(W-24, pointerX(e))); });
+window.addEventListener("pointerup", () => { firing = false; });
+
+/* ---------- main loop ---------- */
+let last = performance.now();
+function frame(now){
+  const dt = Math.min(0.05, (now - last) / 1000); last = now;
+  update(dt); draw();
+  requestAnimationFrame(frame);
+}
+showMenu();
+initDb();
+requestAnimationFrame(frame);
+
+// tiny hook for automated testing
+window.__bb = { get G(){ return G; }, get mode(){ return mode; }, BANK: () => BANK, LEVELS, pickStatement, newGame, startLevel };
+</script>
+</body>
+</html>
