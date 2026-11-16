@@ -45,6 +45,12 @@
   .seg button { border:0; border-radius:0; text-align:center; padding:6px 12px; background:#1a2350; }
   .seg button.on { background:#2d8a4e; }
   .stars { color:#ffd166; font-size:22px; letter-spacing:2px; }
+  .spin { display:inline-block; width:18px; height:18px; border:3px solid #3a4a8a; border-top-color:#7fb2ff; border-radius:50%;
+          animation:spin .8s linear infinite; vertical-align:middle; visibility:hidden; }
+  .spin.on { visibility:visible; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+  #boardbody { transition:opacity .15s; }
+  #boardbody.busy { opacity:.4; }
   .menu h1 { font-size:26px; }
   .keys { position:relative; display:inline-block; }
   .keys .pop { display:none; position:absolute; right:0; top:100%; text-align:left; margin-top:6px; z-index:5; width:max-content; max-width:min(440px, 85vw);
@@ -906,32 +912,34 @@ async function verifyClass(){
   } catch (e) { return "offline"; }
 }
 
+// course students go to their year's board; everyone else is saved as a guest
 async function saveScore(e){
   const entry = { name: e.name, score: e.score, level: e.level, speed: e.speed, ghosts: e.ghosts, ts: Date.now() };
   const local = lsGet("bb_scores", []); local.push(entry);
   local.sort((a, b) => b.score - a.score); lsSet("bb_scores", local.slice(0, 20));
-  if (!hasClass()) return "Saved on this device. Enter your course year and class password on the start screen to join your class leaderboard.";
+  if (!BOARD_URL) return "Saved on this device.";
+  const where = hasClass() ? "the " + classYear() + " class leaderboard" : "the leaderboard as a guest";
   try {
-    const res = await api("submit", entry);
-    if (res.ok && res.best === false) return "Your best on the " + classYear() + " class leaderboard (" + res.previous + ") stays.";
-    if (res.ok) return (res.previous !== undefined ? "New personal best! " : "") + "Saved to the " + classYear() + " class leaderboard.";
+    const res = await api("submit", Object.assign(hasClass() ? {} : { year: "", password: "" }, entry));
+    if (res.ok && res.best === false) return "Your best on " + where + " (" + res.previous + ") stays.";
+    if (res.ok) return (res.previous !== undefined ? "New personal best! " : "") + "Saved to " + where + ".";
     if (res.error === "auth"){ lsSet("bb_ok", ""); return "Wrong course year or class password, so the score is saved on this device only."; }
-    return "The class board did not accept the score, so it is saved on this device only.";
-  } catch (err) { return "Could not reach the class board, so the score is saved on this device only."; }
+    return "The leaderboard did not accept the score, so it is saved on this device only.";
+  } catch (err) { return "Could not reach the leaderboard, so the score is saved on this device only."; }
 }
 
-async function getBoard(){
-  if (hasClass()){
+// show = "all" or a year such as "2026"
+async function getBoard(show){
+  if (BOARD_URL){
     try {
-      const res = await api("board");
+      const res = await api("board", { show });
       if (res.ok){
-        const rows = (res.rows || []).map(x => ({ name: cleanName(x.name || "Anon") || "Anon", score: Number(x.score) || 0,
-          level: Number(x.level) || 0, speed: String(x.speed || "").slice(0, 8), ghosts: Number(x.ghosts) || 0 }));
+        const rows = (res.rows || []).map(x => ({ name: cleanName(x.name || "Anon") || "Anon", year: String(x.year || "").slice(0, 12),
+          score: Number(x.score) || 0, level: Number(x.level) || 0, speed: String(x.speed || "").slice(0, 8), ghosts: Number(x.ghosts) || 0 }));
         return { shared: true, rows };
       }
-      if (res.error === "auth") return { shared: false, rows: lsGet("bb_scores", []), note: "Wrong course year or class password. Showing scores from this device." };
     } catch (err) { /* fall through to local */ }
-    return { shared: false, rows: lsGet("bb_scores", []), note: "Could not reach the class board. Showing scores from this device." };
+    return { shared: false, rows: lsGet("bb_scores", []), note: "Could not reach the leaderboard. Showing scores from this device." };
   }
   return { shared: false, rows: lsGet("bb_scores", []) };
 }
@@ -939,16 +947,34 @@ async function getBoard(){
 async function showBoard(back, note){
   boardBack = back || showMenu;
   overlay.className = "";
-  overlay.innerHTML = '<div class="panel"><h2>🏆 Leaderboard</h2><p class="sub">Loading…</p></div>';
-  const b = await getBoard();
-  const body = b.rows.length ? '<table style="width:100%;border-collapse:collapse;font-size:14px"><tr style="color:#9fb0e8;text-align:left"><th>#</th><th>Name</th><th>Score</th><th>Lecture</th><th>Speed</th><th>Ghosts</th></tr>' +
-    b.rows.map((r, i) => '<tr style="border-top:1px solid #26336b;' + (b.shared && r.name.toLowerCase() === playerName().toLowerCase() ? 'background:#1d2b5c;' : '') + '"><td>' + (i + 1) + '</td><td>' + esc(r.name) +
-      '</td><td><b>' + esc(r.score) + '</b></td><td>' + esc(r.level) + '</td><td>' + esc(r.speed || "") + '</td><td>' + esc(r.ghosts || 0) + '</td></tr>').join("") + '</table>'
-    : '<p class="sub">No scores yet. Be the first!</p>';
-  overlay.innerHTML = '<div class="panel"><h2>🏆 Leaderboard <small style="font-size:13px;color:#9fb0e8;font-weight:normal">' +
-    (b.shared ? "class of " + esc(classYear()) : "this device only") + '</small></h2>' +
-    (note ? '<p class="sub">' + esc(note) + '</p>' : '') + (b.note ? '<p class="sub" style="color:#ff7a8a">' + esc(b.note) + '</p>' : '') + body +
+  overlay.innerHTML = '<div class="panel"><div class="row" style="margin:0;justify-content:space-between"><h2 style="margin:0">🏆 Leaderboard</h2>' +
+    (BOARD_URL ? '<label class="sub" style="margin:0"><span id="bspin" class="spin on"></span> Show year <input id="showyr" class="fld" maxlength="12" autocomplete="off" value="all" placeholder="all" style="width:80px"></label>' : '') +
+    '</div>' + (note ? '<p class="sub">' + esc(note) + '</p>' : '') +
+    '<div id="boardbody" style="margin-top:10px"><p class="sub"><span class="spin on"></span> Loading…</p></div>' +
     '<div class="row"><button class="primary" id="bk">Back</button></div></div>';
+  loadBoard("all");
+}
+
+let boardReq = 0, boardTimer = null;
+function boardBusy(on){
+  const sp = document.getElementById("bspin"), el = document.getElementById("boardbody");
+  if (sp) sp.classList.toggle("on", on);
+  if (el) el.classList.toggle("busy", on);
+}
+async function loadBoard(show){
+  const my = ++boardReq;   // ignore answers to older requests when the filter changes quickly
+  boardBusy(true);
+  const b = await getBoard(show);
+  const el = document.getElementById("boardbody");
+  if (my !== boardReq || !el) return;
+  boardBusy(false);
+  const me = playerName().toLowerCase(), myYear = hasClass() ? classYear() : "Guest";
+  const body = b.rows.length ? '<table style="width:100%;border-collapse:collapse;font-size:14px"><tr style="color:#9fb0e8;text-align:left"><th>#</th><th>Name</th>' +
+    (b.shared ? '<th>Year</th>' : '') + '<th>Score</th><th>Lecture</th><th>Speed</th><th>Ghosts</th></tr>' +
+    b.rows.map((r, i) => '<tr style="border-top:1px solid #26336b;' + (b.shared && r.name.toLowerCase() === me && r.year === myYear ? 'background:#1d2b5c;' : '') + '"><td>' + (i + 1) + '</td><td>' + esc(r.name) +
+      '</td>' + (b.shared ? '<td>' + esc(r.year) + '</td>' : '') + '<td><b>' + esc(r.score) + '</b></td><td>' + esc(r.level) + '</td><td>' + esc(r.speed || "") + '</td><td>' + esc(r.ghosts || 0) + '</td></tr>').join("") + '</table>'
+    : '<p class="sub">' + (show === "all" ? "No scores yet. Be the first!" : "No scores for " + esc(show) + " yet.") + '</p>';
+  el.innerHTML = (b.shared ? '' : '<p class="sub">This device only.</p>') + (b.note ? '<p class="sub" style="color:#ff7a8a">' + esc(b.note) + '</p>' : '') + body;
 }
 
 function playerName(){ return cleanName(lsGet("bb_name", "")).trim(); }
@@ -982,12 +1008,23 @@ overlay.addEventListener("click", e => {
 overlay.addEventListener("keydown", e => {
   if (e.key === "Enter" && ["nm", "yr", "pw"].includes(e.target.id)){ const s = overlay.querySelector("button[data-l=\"0\"]"); if (s) s.click(); }
 });
+overlay.addEventListener("focusin", e => { if (e.target.id === "showyr") e.target.select(); });
 overlay.addEventListener("input", e => {
   const id = e.target.id;
   if (id === "nm"){ e.target.value = cleanName(e.target.value); lsSet("bb_name", e.target.value.trim()); }
   if (id === "yr"){ e.target.value = cleanYear(e.target.value); lsSet("bb_year", e.target.value); }
   if (id === "pw") lsSet("bb_pass", e.target.value.trim());
   if (id === "yr" || id === "pw"){ const h = document.getElementById("clhint"); if (h){ h.textContent = ""; } }
+  if (id === "showyr"){
+    // typing on top of what is there: "all2027" means 2027, "2026all" means all
+    const raw = e.target.value.trim();
+    const v = /all$/i.test(raw) ? "all" : cleanYear(raw.replace(/^all/i, ""));
+    if (v === "all") e.target.value = "all";
+    if (v !== "all") e.target.value = v;
+    clearTimeout(boardTimer);
+    boardBusy(true);
+    boardTimer = setTimeout(() => loadBoard(v || "all"), 500);
+  }
 });
 
 /* ---------- progress: stars per lecture, kept in this browser ----------
@@ -1043,7 +1080,7 @@ function showMenu(){
     (BOARD_URL ? '<label class="sub">Course year <input id="yr" class="fld" maxlength="12" autocomplete="off" placeholder="e.g. 2026" value="' + esc(classYear()) + '" style="width:80px"></label>' +
     '<label class="sub">Class password <input id="pw" class="fld" type="password" maxlength="40" autocomplete="off" value="' + esc(classPass()) + '" style="width:120px"></label>' : '') +
     '<span id="nmhint" class="sub" style="color:#ff7a8a"></span><span id="clhint" class="sub"></span></div>' +
-    (BOARD_URL ? '<p class="note" style="margin-top:4px">Year and password put you on your class leaderboard. Leave them empty to play just for yourself.</p>' : '') +
+    (BOARD_URL ? '<p class="note" style="margin-top:4px">Taking the course? Year and password put you on your class leaderboard. Otherwise leave them empty and play as a guest.</p>' : '') +
     '<hr style="border:0;border-top:1px solid #2f3d78;margin:12px 0 0">' +
     '<div class="row"><span class="seg"><button id="mranked" class="' + (practice ? '' : 'on') + '">🏆 Ranked</button>' +
     '<button id="mpractice" class="' + (practice ? 'on' : '') + '">🎯 Practice</button></span>' +

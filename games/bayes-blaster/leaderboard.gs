@@ -1,4 +1,4 @@
-/* Bayes Blaster class leaderboards: Google Apps Script backend.
+/* Bayes Blaster leaderboards: Google Apps Script backend.
 
    SETUP (once)
    1. Create a Google Sheet. Rename the first tab to  Config  and put this in it:
@@ -15,15 +15,23 @@
    4. If you change this script later: Deploy > Manage deployments > edit (pencil)
       > Version: New version > Deploy. The URL stays the same.
 
-   Each player has one row in that year's tab, holding their best score; a new
-   game only overwrites it when it beats that score. Delete a row in the tab to
+   Course students (year + password) are saved in that year's tab; players
+   without a year and password are saved in the  Guests  tab (created
+   automatically). Each player has one row per tab, holding their best score;
+   a new game only overwrites it when it beats that score. Delete a row to
    remove a bogus score.
+
+   Reading the leaderboard needs no password: "all" combines every tab except
+   Config, or a single year (tab name) can be shown. New year tabs are picked
+   up automatically.
 */
 
 const MAX_SCORE = 100000;   // well above what a full run through all 12 lectures can give
 const N_LEVELS = 12;
 const SPEEDS = ["Slow", "Medium", "Fast"];
 const TOP_N = 25;
+const GUESTS = "Guests";
+const MAX_GUEST_ROWS = 3000;   // stops anyone from filling the Guests tab without limit
 
 function doGet() {
   return out({ ok: true, msg: "Bayes Blaster leaderboard is running." });
@@ -34,16 +42,20 @@ function doPost(e) {
   try { req = JSON.parse(e.postData.contents); } catch (err) { return out({ ok: false, error: "bad_request" }); }
   const ss = SpreadsheetApp.getActiveSpreadsheet();
   const year = String(req.year || "").trim();
-  if (!checkPassword(ss, year, req.password)) return out({ ok: false, error: "auth" });
 
+  // public: no password needed to look at the leaderboard
+  if (req.action === "board") return out({ ok: true, rows: board(ss, String(req.show || "all").trim()) });
+
+  // no year and no password: a guest
+  const guest = !year && !String(req.password || "").trim();
+  if (!guest && !checkPassword(ss, year, req.password)) return out({ ok: false, error: "auth" });
   if (req.action === "verify") return out({ ok: true });
-  if (req.action === "board") return out({ ok: true, rows: board(ss, year) });
-  if (req.action === "submit") return submit(ss, year, req);
+  if (req.action === "submit") return submit(ss, guest ? GUESTS : year, req);
   return out({ ok: false, error: "bad_request" });
 }
 
 function checkPassword(ss, year, password) {
-  if (!year || year.toLowerCase() === "config") return false;
+  if (!year || ["config", GUESTS.toLowerCase()].indexOf(year.toLowerCase()) >= 0) return false;
   const cfg = ss.getSheetByName("Config");
   if (!cfg) return false;
   const rows = cfg.getDataRange().getDisplayValues();
@@ -91,7 +103,10 @@ function submit(ss, year, req) {
     for (let i = 0; i < names.length; i++) {
       if (cleanName(names[i][0]).toLowerCase() === key && Number(names[i][1]) > best) { at = i; best = Number(names[i][1]); }
     }
-    if (at < 0) { sh.appendRow(row); return out({ ok: true, best: true }); }
+    if (at < 0) {
+      if (year === GUESTS && n >= MAX_GUEST_ROWS) return out({ ok: false, error: "full" });
+      sh.appendRow(row); return out({ ok: true, best: true });
+    }
     if (score <= best) return out({ ok: true, best: false, previous: best });
     sh.getRange(at + 2, 1, 1, 6).setValues([row]);
     return out({ ok: true, best: true, previous: best });
@@ -100,18 +115,24 @@ function submit(ss, year, req) {
   }
 }
 
-function board(ss, year) {
-  const sh = ss.getSheetByName(year);
-  if (!sh || sh.getLastRow() < 2) return [];
-  const rows = sh.getRange(2, 1, sh.getLastRow() - 1, 6).getValues();
+// show = "all" (every tab except Config) or one tab name, e.g. "2026" or "Guests"
+function board(ss, show) {
+  const tabs = ss.getSheets().map(sh => sh.getName()).filter(n => n !== "Config");
+  const want = show.toLowerCase() === "all" ? tabs : tabs.filter(n => n.toLowerCase() === show.toLowerCase());
   const best = {};
-  for (const r of rows) {
-    const name = cleanName(r[1]);
-    const score = Number(r[2]);
-    if (!name || !isFinite(score)) continue;
-    const key = name.toLowerCase();
-    if (!best[key] || score > best[key].score)
-      best[key] = { name: name, score: score, level: Number(r[3]) || 0, speed: String(r[4] || ""), ghosts: Number(r[5]) || 0 };
+  for (const tab of want) {
+    const sh = ss.getSheetByName(tab);
+    if (!sh || sh.getLastRow() < 2) continue;
+    const rows = sh.getRange(2, 1, sh.getLastRow() - 1, 6).getValues();
+    for (const r of rows) {
+      const name = cleanName(r[1]);
+      const score = Number(r[2]);
+      if (!name || !isFinite(score)) continue;
+      const key = tab + "|" + name.toLowerCase();
+      if (!best[key] || score > best[key].score)
+        best[key] = { name: name, year: tab === GUESTS ? "Guest" : tab, score: score,
+                      level: Number(r[3]) || 0, speed: String(r[4] || ""), ghosts: Number(r[5]) || 0 };
+    }
   }
   return Object.keys(best).map(k => best[k]).sort((a, b) => b.score - a.score).slice(0, TOP_N);
 }
