@@ -38,6 +38,13 @@
   .menu .grid { grid-template-columns:repeat(4, 1fr); gap:6px; margin:6px 0 0; }
   .menu .lv { padding:6px 9px; font-size:13px; }
   .menu .lv small { font-size:11px; line-height:1.25; }
+  .lv .st { float:right; color:#ffd166; letter-spacing:1px; font-weight:normal; }
+  .lv.locked { opacity:.5; cursor:not-allowed; background:#1a2350; }
+  .lv.locked:hover { background:#1a2350; }
+  .seg { display:inline-flex; border:1px solid #4a63c4; border-radius:9px; overflow:hidden; }
+  .seg button { border:0; border-radius:0; text-align:center; padding:6px 12px; background:#1a2350; }
+  .seg button.on { background:#2d8a4e; }
+  .stars { color:#ffd166; font-size:22px; letter-spacing:2px; }
   .menu h1 { font-size:26px; }
   .keys { position:relative; display:inline-block; }
   .keys .pop { display:none; position:absolute; right:0; top:100%; text-align:left; margin-top:6px; z-index:5; width:max-content; max-width:min(440px, 85vw);
@@ -287,31 +294,102 @@ function beep(f, d, type="square", v=0.05){
 }
 
 /* ---------- background music ----------
-   A synthwave loop generated with Web Audio (no audio files): Am–F–C–G with drums,
-   bass, arpeggio, and a lead melody every other phrase. Tempo rises with the lecture. */
+   Generated with Web Audio (no audio files). Every lecture has its own track: key, scale,
+   chord progression, drum groove, bassline, arpeggio and sounds, plus a lead melody
+   (hand-written for lecture 0, composed from the track's chords for the others; the same
+   every time). All tracks play at one tempo. The start screen plays a calm lecture-0 loop. */
 let musicOn = true;
 try { musicOn = localStorage.getItem("bb_music") !== "0"; } catch (e) {}
-const MUS = { gain: null, timer: null, step: 0, next: 0, noise: null, delay: null };
-const CHORDS = [ { root: 45, tones: [57, 60, 64] },    // Am
-                 { root: 41, tones: [53, 57, 60] },    // F
-                 { root: 48, tones: [52, 55, 60] },    // C
-                 { root: 43, tones: [55, 59, 62] } ];  // G
-const LEAD = [ [[0,76,3],[3,74,1],[4,72,2],[6,74,2],[8,76,6],[14,79,2]],
-               [[0,77,3],[3,76,1],[4,74,2],[6,72,2],[8,69,6]],
-               [[0,72,2],[2,74,2],[4,76,4],[8,79,4],[12,76,4]],
-               [[0,74,6],[6,71,2],[8,74,4],[12,76,4]] ];
-const ARP = [0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0, 2, 1, 3];
+const MUS = { gain: null, timer: null, step: 0, next: 0, noise: null, delay: null, track: null };
+const MUSIC_BPM = 104;
 const midiHz = m => 440 * Math.pow(2, (m - 69) / 12);
+const SCALES = { minor: [0,2,3,5,7,8,10], major: [0,2,4,5,7,9,11], dorian: [0,2,3,5,7,9,10],
+                 harmonic: [0,2,3,5,7,8,11], phrygian: [0,1,3,5,7,8,10] };
+// x = hit; 16 sixteenths per bar
+const DRUMS = {
+  menu:  { k: "x...x...x...x...", s: "................", h: ".x.x.x.x.x.x.x.x" },
+  four:  { k: "x...x...x...x...", s: "....x.......x...", h: ".x.x.x.x.x.x.x.x" },
+  drive: { k: "x...x...x...x.x.", s: "....x.......x...", h: "xxxxxxxxxxxxxxxx" },
+  brk:   { k: "x......x..x.....", s: "....x.......x..x", h: "x.x.x.x.x.x.x.x." },
+  half:  { k: "x.........x.....", s: "........x.......", h: "x.x.x.x.x.x.x.x." },
+  boss:  { k: "x.x.x.x.x.x.x.x.", s: "....x.......x...", h: "xxxxxxxxxxxxxxxx" } };
+// r = root, o = octave up, f = fifth; a note lasts until the next one
+const BASS = { eighths: "r.o.r.o.r.o.r.o.", offbeat: "..r...r...r...r.", pulse: "rrrrrrrrrrrrrrrr",
+               long: "r.......f.......", gallop: "r..r..r.r..r..r.", walk: "r...f...o...f..." };
+// indexes into [chord tone 1, 2, 3, octave]; -1 = rest
+const ARPS = [ [0,1,2,3,2,1,0,1,2,3,2,1,0,2,1,3], [0,1,2,3,0,1,2,3,0,1,2,3,0,1,2,3],
+               [3,2,1,0,3,2,1,0,3,2,1,0,3,2,1,0], [0,2,1,3,0,2,1,3,0,2,1,3,0,2,1,3],
+               [0,-1,1,-1,2,-1,1,-1,3,-1,2,-1,1,-1,2,-1], [0,0,2,2,1,1,3,3,0,0,2,2,1,1,3,3] ];
+const LEAD0 = [ [[0,76,3],[3,74,1],[4,72,2],[6,74,2],[8,76,6],[14,79,2]],
+                [[0,77,3],[3,76,1],[4,74,2],[6,72,2],[8,69,6]],
+                [[0,72,2],[2,74,2],[4,76,4],[8,79,4],[12,76,4]],
+                [[0,74,6],[6,71,2],[8,74,4],[12,76,4]] ];
+// key = tonic (MIDI) of the chord register; prog = scale degrees (0 = tonic), one chord per bar
+const TRACKS = [
+  { key: 57, scale: "minor",    prog: [0,5,2,6], drums: "four",  bass: "eighths", arp: 0, arpWave: "square",   leadWave: "triangle", lead: LEAD0 }, // A minor (the original)
+  { key: 60, scale: "major",    prog: [0,4,5,3], drums: "four",  bass: "offbeat", arp: 1, arpWave: "triangle", leadWave: "square" },   // C major, I–V–vi–IV
+  { key: 62, scale: "dorian",   prog: [0,3,0,6], drums: "brk",   bass: "pulse",   arp: 3, arpWave: "square",   leadWave: "sawtooth" }, // D dorian, funky
+  { key: 55, scale: "minor",    prog: [0,6,5,6], drums: "half",  bass: "long",    arp: 4, arpWave: "sawtooth", leadWave: "triangle" }, // G minor, laid back
+  { key: 58, scale: "major",    prog: [5,3,0,4], drums: "four",  bass: "eighths", arp: 2, arpWave: "square",   leadWave: "triangle" }, // B♭ major, vi–IV–I–V
+  { key: 59, scale: "harmonic", prog: [0,3,5,4], drums: "drive", bass: "pulse",   arp: 0, arpWave: "sawtooth", leadWave: "square" },   // B minor, i–iv–VI–V
+  { key: 61, scale: "minor",    prog: [0,5,3,4], drums: "brk",   bass: "walk",    arp: 5, arpWave: "triangle", leadWave: "sawtooth" }, // C♯ minor
+  { key: 54, scale: "dorian",   prog: [0,3,6,3], drums: "four",  bass: "gallop",  arp: 1, arpWave: "square",   leadWave: "triangle" }, // F♯ dorian
+  { key: 62, scale: "harmonic", prog: [0,5,3,4], drums: "drive", bass: "eighths", arp: 3, arpWave: "sawtooth", leadWave: "square" },   // D minor, i–VI–iv–V
+  { key: 63, scale: "major",    prog: [0,2,5,4], drums: "half",  bass: "long",    arp: 1, arpWave: "triangle", leadWave: "triangle" }, // E♭ major, dreamy
+  { key: 55, scale: "major",    prog: [0,5,3,4], drums: "four",  bass: "offbeat", arp: 0, arpWave: "square",   leadWave: "sawtooth" }, // G major, I–vi–IV–V
+  { key: 57, scale: "phrygian", prog: [0,1,0,6], drums: "boss",  bass: "pulse",   arp: 2, arpWave: "sawtooth", leadWave: "sawtooth" }  // A phrygian: the final boss
+];
+
+function rng32(a){ return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a);
+  t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+function buildChord(tr, d){
+  const S = SCALES[tr.scale];
+  const tones = [d, d + 2, d + 4].map(k => { let m = tr.key + S[k % 7] + 12 * Math.floor(k / 7); while (m > tr.key + 7) m -= 12; return m; })
+                                 .sort((a, b) => a - b);
+  let root = tr.key - 12 + S[d % 7]; if (root > tr.key - 5) root -= 12;
+  return { root, tones, pcs: tones.map(m => ((m % 12) + 12) % 12) };
+}
+// a 4-bar melody: bars 1 and 3 share a rhythm (call), bars 2 and 4 share another (response);
+// chord tones on the beats, scale steps in between, ending on the tonic
+function composeLead(tr, seed){
+  const R = rng32(seed), S = SCALES[tr.scale];
+  const RHY = [ [[0,3],[3,1],[4,2],[6,2],[8,6]], [[0,2],[2,2],[4,4],[8,4],[12,4]], [[0,6],[6,2],[8,4],[12,4]],
+                [[0,1],[2,1],[4,2],[8,1],[10,1],[12,4]], [[0,4],[4,4],[8,8]], [[2,2],[4,2],[6,2],[8,4],[12,2],[14,2]] ];
+  const rA = RHY[Math.floor(R() * RHY.length)], rB = RHY[Math.floor(R() * RHY.length)];
+  const pool = [];
+  for (let m = 67; m <= 84; m++) if (S.includes(((m - tr.key) % 12 + 12) % 12)) pool.push(m);   // G4–C6 for every track
+  const mid = 75;
+  // nearest allowed note, avoiding a repeat of the previous note most of the time
+  const pick = (prev, ok) => { let c = pool.filter(ok); const moved = c.filter(x => x !== prev);
+                               if (moved.length && R() < 0.85) c = moved;
+                               c.sort((a, b) => Math.abs(a - prev) - Math.abs(b - prev));
+                               return c[Math.min(c.length - 1, R() < 0.65 ? 0 : 1)]; };
+  let prev = pool[Math.floor(pool.length / 2)];
+  return tr.chords.map((ch, b) => (b % 2 ? rB : rA).map(([st, len], j, arr) => {
+    let m;
+    if (b === 3 && j === arr.length - 1) m = pick(prev, x => (x - tr.key) % 12 === 0);
+    else if (st % 4 === 0) m = pick(prev, x => ch.pcs.includes(x % 12));
+    else { // a scale step, leaning back toward the middle of the range
+      const up = prev < mid - 4 ? 0.75 : prev > mid + 4 ? 0.25 : 0.5;
+      const d = (R() < 0.7 ? 1 : 2) * (R() < up ? 1 : -1);
+      m = pool[Math.max(0, Math.min(pool.length - 1, pool.indexOf(prev) + d))]; }
+    prev = m; return [st, m, len];
+  }));
+}
+TRACKS.forEach((tr, i) => {
+  tr.chords = tr.prog.map(d => buildChord(tr, d));
+  if (!tr.lead) tr.lead = composeLead(tr, 7919 * (i + 1));
+  const bp = BASS[tr.bass];
+  tr.bassLen = Array.from(bp, (c, k) => { if (c === ".") return 0;
+    let n = 1; while (n < 16 && bp[(k + n) % 16] === ".") n++; return n; });
+});
 
 function audioCtx(){
   actx = actx || new (window.AudioContext || window.webkitAudioContext)();
   if (actx.state === "suspended") actx.resume();
   return actx;
 }
-function musicBpm(){
-  if (!G || mode === "menu") return 96;
-  return Math.min(150, 104 + 4 * G.level);
-}
+function musicTrack(){ return (!G || mode === "menu") ? -1 : Math.min(G.level, TRACKS.length - 1); }
 function musicTarget(){
   if (!musicOn || mute) return 0;
   return mode === "paused" ? 0.04 : 0.13;
@@ -353,29 +431,34 @@ function kick(t, vol){
   o.connect(g); g.connect(MUS.gain); o.start(t); o.stop(t + 0.3);
 }
 function musicStep(s, t, sixteenth){
-  const bar = Math.floor(s / 16) % 4, i = s % 16, phrase = Math.floor(s / 64);
-  const ch = CHORDS[bar], boss = G && mode !== "menu" && G.level === LEVELS.length - 1;
-  const calm = mode === "menu";
+  const calm = MUS.track < 0, tr = TRACKS[calm ? 0 : MUS.track];
+  const bar = Math.floor(s / 16) % 4, i = s % 16, phrase = Math.floor(s / 64), ch = tr.chords[bar];
   // drums
-  if (i % 4 === 0) kick(t, calm ? 0.5 : 0.9);
-  if (boss && i % 4 === 2) kick(t, 0.5);
-  if (!calm && (i === 4 || i === 12)) noiseHit(t, 0.18, 0.35, 1500);
-  if (i % 2 === 1) noiseHit(t, 0.04, calm ? 0.06 : 0.1, 7000);
-  // bass: driving eighths, octave jump on the off-beat
-  if (i % 2 === 0) tone(t, midiHz(ch.root + (i % 4 === 2 ? 12 : 0)), sixteenth * 1.8, "sawtooth", 0.22, 600, false);
+  const D = DRUMS[calm ? "menu" : tr.drums];
+  if (D.k[i] === "x") kick(t, calm ? 0.5 : 0.9);
+  if (D.s[i] === "x") noiseHit(t, 0.18, 0.35, 1500);
+  if (D.h[i] === "x") noiseHit(t, 0.04, calm ? 0.06 : (D.h.indexOf(".") < 0 ? 0.06 : 0.1), 7000);
+  // bass
+  const bc = BASS[tr.bass][i];
+  if (bc !== ".") tone(t, midiHz(ch.root + (bc === "o" ? 12 : bc === "f" ? 7 : 0)), sixteenth * Math.min(8, tr.bassLen[i]) * 0.9,
+                       "sawtooth", tr.bass === "pulse" ? 0.15 : 0.22, 600, false);
   // arpeggio
-  const tones = ch.tones.concat(ch.tones[0] + 12);
-  tone(t, midiHz(tones[ARP[i]]), sixteenth * 0.9, "square", calm ? 0.035 : 0.05, 2200, true);
-  // lead on every other phrase (not in the menu)
+  const ai = ARPS[tr.arp][i];
+  if (ai >= 0) tone(t, midiHz(ch.tones.concat(ch.tones[0] + 12)[ai]), sixteenth * 0.9, tr.arpWave,
+                    calm ? 0.035 : (tr.arpWave === "sawtooth" ? 0.035 : 0.05), tr.arpWave === "sawtooth" ? 1600 : 2200, true);
+  // lead on every other phrase (not on the start screen)
   if (!calm && phrase % 2 === 1){
-    for (const [st, m, len] of LEAD[bar]) if (st === i) tone(t, midiHz(m), sixteenth * len * 0.95, "triangle", 0.16, 4000, true);
+    const lv = { triangle: 0.16, square: 0.08, sawtooth: 0.07 }[tr.leadWave];
+    for (const [st, m, len] of tr.lead[bar]) if (st === i) tone(t, midiHz(m), sixteenth * len * 0.95, tr.leadWave, lv, tr.leadWave === "triangle" ? 4000 : 2400, true);
   }
 }
 function musicTick(){
   if (!actx) return;
-  const sixteenth = 60 / musicBpm() / 4;
+  const sixteenth = 60 / MUSIC_BPM / 4;
   MUS.gain.gain.setTargetAtTime(musicTarget(), actx.currentTime, 0.15);
   MUS.delay.delayTime.value = sixteenth * 3;
+  const tr = musicTrack();
+  if (tr !== MUS.track){ MUS.track = tr; MUS.step = 0; }   // a new lecture starts its track from the top
   if (MUS.next < actx.currentTime) MUS.next = actx.currentTime + 0.05;
   while (MUS.next < actx.currentTime + 0.15){
     if (musicTarget() > 0) musicStep(MUS.step, MUS.next, sixteenth);
@@ -400,7 +483,7 @@ function newGame(start){
         boxes:[], bullets:[], parts:[], floats:[], mistakes:[], lvlMistakes:[],
         spawned:0, resolved:0, spawnT:1.2, cool:0, cx:W/2, seen:new Set(), toast:null,
         ghosts:[], ghostT:5, busted:0, lvlBusted:0,
-        right:0, total:0, lvlRight:0, lvlTotal:0 };
+        right:0, total:0, lvlRight:0, lvlTotal:0, practice };
 }
 const SPEEDS = [ { name: "Slow", m: 0.65 }, { name: "Medium", m: 1 }, { name: "Fast", m: 1.5 } ];
 let speedIdx = 0;   // Slow is the default; Medium equals the original speed
@@ -668,7 +751,15 @@ function update(dt){
   if (G.lives <= 0){ G.ghosts = []; mode = "over"; showOver(); return; }
   if (G.spawned >= TARGET && G.boxes.length === 0){
     G.ghosts = [];
+    G.lvlStars = starsFor(G.lvlRight);
+    G.newUnlock = false;
+    if (!G.practice){
+      const wasOpen = isUnlocked(G.level + 1);
+      recordStars(G.level, G.lvlStars);
+      G.newUnlock = G.level + 1 < LEVELS.length && !wasOpen && isUnlocked(G.level + 1);
+    }
     if (G.level >= LEVELS.length - 1){ mode = "win"; showWin(); }
+    else if (!G.practice && G.lvlRight < PASS){ G.stopped = true; mode = "over"; showOver(); }
     else { mode = "levelEnd"; showLevelEnd(); }
   }
 }
@@ -760,7 +851,8 @@ function draw(){
     ctx.font = "12px system-ui, sans-serif"; ctx.fillStyle = "#9fb0e8";
     ctx.fillText("Resolved " + G.resolved + "/" + TARGET + "   •   Streak " + G.streak + " (×" + mult() + ")", 12, 32);
     ctx.textAlign = "center"; ctx.font = "12px system-ui, sans-serif"; ctx.fillStyle = "#7fb2ff";
-    ctx.fillText("Speed: " + SPEEDS[speedIdx].name + "  (S / tap here)", 610, 24);
+    ctx.fillText("Speed: " + SPEEDS[speedIdx].name + "  (S / tap here)", 610, G.practice ? 15 : 24);
+    if (G.practice){ ctx.font = "bold 12px system-ui, sans-serif"; ctx.fillStyle = "#ffb347"; ctx.fillText("PRACTICE · score not saved", 610, 33); }
     ctx.textAlign = "right"; ctx.font = "bold 18px system-ui, sans-serif"; ctx.fillStyle = "#ffd166";
     ctx.fillText("Score " + G.score, W - 12, 15);
     ctx.font = "16px system-ui, sans-serif"; ctx.fillStyle = "#ff6b81";
@@ -864,7 +956,7 @@ function playerName(){ return cleanName(lsGet("bb_name", "")).trim(); }
 // shown at the end of a game: the score is saved automatically under the name entered on the start screen
 function scoreFormHTML(){
   setTimeout(autoSave, 0);
-  return '<div class="row" style="margin:10px 0"><span id="svmsg" class="sub" style="margin:0">Saving score…</span>' +
+  return '<div class="row" style="margin:10px 0"><span id="svmsg" class="sub" style="margin:0">' + (G && G.practice ? "" : "Saving score…") + '</span>' +
     '<button id="lb">🏆 Leaderboard</button></div>';
 }
 
@@ -873,6 +965,7 @@ async function autoSave(){
   const show = (t) => { const m = document.getElementById("svmsg"); if (m) m.textContent = t; };
   if (G.saved){ if (G.savedNote) show(G.savedNote); return; }
   G.saved = true;
+  if (G.practice){ G.savedNote = "Practice game: score not saved."; show(G.savedNote); return; }
   const note = await saveScore({ name: playerName() || "Anon", score: G.score, level: G.level, speed: SPEEDS[speedIdx].name, ghosts: G.busted });
   G.savedNote = playerName() + ": score " + G.score + ". " + note;
   show(G.savedNote);
@@ -883,7 +976,7 @@ overlay.addEventListener("click", e => {
   if (id === "keyslink"){ e.preventDefault(); e.target.parentNode.classList.toggle("open"); return; }
   const k = overlay.querySelector(".keys.open"); if (k && !k.contains(e.target)) k.classList.remove("open");
   if (id === "mus") toggleMusic();
-  else if (id === "lb") showBoard(mode === "menu" ? showMenu : (G && G.lives <= 0 ? showOver : showWin));
+  else if (id === "lb") showBoard(mode === "menu" ? showMenu : (mode === "win" ? showWin : showOver));
   else if (id === "bk") (boardBack || showMenu)();
 });
 overlay.addEventListener("keydown", e => {
@@ -896,6 +989,17 @@ overlay.addEventListener("input", e => {
   if (id === "pw") lsSet("bb_pass", e.target.value.trim());
   if (id === "yr" || id === "pw"){ const h = document.getElementById("clhint"); if (h){ h.textContent = ""; } }
 });
+
+/* ---------- progress: stars per lecture, kept in this browser ----------
+   ★ cleared, ★★ at least PASS of TARGET correct (unlocks the next lecture), ★★★ all correct.
+   Only ranked games earn stars; practice mode opens every lecture but saves nothing. */
+const PASS = Math.ceil(0.8 * TARGET);
+let practice = false;
+function getStars(){ const a = lsGet("bb_stars", []); return Array.isArray(a) ? a : []; }
+function starsFor(right){ return right >= TARGET ? 3 : right >= PASS ? 2 : 1; }
+function recordStars(L, n){ const a = getStars(); if (!(a[L] >= n)){ a[L] = n; lsSet("bb_stars", a); } }
+function isUnlocked(L){ return L === 0 || (getStars()[L - 1] || 0) >= 2; }
+function starStr(n){ return "★".repeat(n) + "☆".repeat(3 - n); }
 
 /* ---------- screens ---------- */
 function mistakeHTML(list){
@@ -911,7 +1015,13 @@ function acc(r, t){ return t ? Math.round(100*r/t) + "%" : "–"; }
 
 function showMenu(){
   mode = "menu";
-  const btns = LEVELS.map((t, i) => '<button class="lv" data-l="' + i + '"><b>Lecture ' + i + '</b><small>' + esc(t) + '</small></button>').join("");
+  const stars = getStars();
+  const btns = LEVELS.map((t, i) => {
+    const open = practice || isUnlocked(i), st = stars[i] ? '<span class="st">' + starStr(stars[i]) + '</span>' : '';
+    return open
+      ? '<button class="lv" data-l="' + i + '"><b>Lecture ' + i + '</b>' + st + '<small>' + esc(t) + '</small></button>'
+      : '<button class="lv locked" data-locked="' + i + '" title="' + esc(t) + '"><b>🔒 Lecture ' + i + '</b><small>Get ' + PASS + '/' + TARGET + ' on Lecture ' + (i - 1) + ' to unlock</small></button>';
+  }).join("");
   overlay.className = "";
   overlay.innerHTML = '<div class="panel menu">' +
     '<div class="row" style="margin:0;justify-content:space-between"><h1>🎯 Bayes Blaster</h1><span>' +
@@ -935,7 +1045,14 @@ function showMenu(){
     '<span id="nmhint" class="sub" style="color:#ff7a8a"></span><span id="clhint" class="sub"></span></div>' +
     (BOARD_URL ? '<p class="note" style="margin-top:4px">Year and password put you on your class leaderboard. Leave them empty to play just for yourself.</p>' : '') +
     '<hr style="border:0;border-top:1px solid #2f3d78;margin:12px 0 0">' +
-    '<div class="grid" style="margin-top:12px">' + btns + '</div></div>';
+    '<div class="row"><span class="seg"><button id="mranked" class="' + (practice ? '' : 'on') + '">🏆 Ranked</button>' +
+    '<button id="mpractice" class="' + (practice ? 'on' : '') + '">🎯 Practice</button></span>' +
+    '<span class="note" style="margin:0">' + (practice
+      ? 'All lectures open. Scores are not saved and no stars are earned.'
+      : 'Get ' + PASS + '/' + TARGET + ' on a lecture to unlock the next one and keep your run going. ★★★ for a perfect lecture.') + '</span></div>' +
+    '<div class="grid" style="margin-top:10px">' + btns + '</div></div>';
+  document.getElementById("mranked").onclick = () => { if (practice){ practice = false; showMenu(); } };
+  document.getElementById("mpractice").onclick = () => { if (!practice){ practice = true; showMenu(); } };
   overlay.querySelectorAll("button[data-l]").forEach(b => b.onclick = async () => {
     const inp = document.getElementById("nm");
     const name = cleanName(inp.value).trim();
@@ -957,8 +1074,9 @@ function showMenu(){
 function showLevelEnd(){
   overlay.className = "";
   const next = G.level + 1;
-  overlay.innerHTML = '<div class="panel"><h2>✅ Lecture ' + G.level + ' cleared</h2>' +
-    '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy this level <b>' + acc(G.lvlRight, G.lvlTotal) + '</b></span>' +
+  const unlockMsg = G.practice ? '' : (G.newUnlock ? '<p class="sub" style="color:#58d68d"><b>🔓 Lecture ' + next + ' unlocked!</b></p>' : '');
+  overlay.innerHTML = '<div class="panel"><h2>✅ Lecture ' + G.level + ' cleared <span class="stars">' + starStr(G.lvlStars) + '</span></h2>' + unlockMsg +
+    '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Correct this level <b>' + G.lvlRight + '/' + G.lvlTotal + '</b></span>' +
     '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.lvlBusted + '</b></span><span>Lives <b>' + G.lives + '</b></span></div>' +
     '<h3 style="margin:12px 0 4px">Review of your mistakes</h3>' + mistakeHTML(G.lvlMistakes) +
     '<p class="sub" style="margin-top:12px"><b>Next up:</b> Lecture ' + next + " — " + esc(LEVELS[next]) + '</p>' +
@@ -968,7 +1086,12 @@ function showLevelEnd(){
 }
 function showOver(){
   overlay.className = "";
-  overlay.innerHTML = '<div class="panel"><h2>💥 Game over at Lecture ' + G.level + '</h2>' +
+  const head = G.stopped
+    ? '<h2>🔒 Run over at Lecture ' + G.level + ' <span class="stars">' + starStr(G.lvlStars) + '</span></h2>' +
+      '<p class="sub">You got <b>' + G.lvlRight + '/' + TARGET + '</b> on this lecture. You need <b>' + PASS + '/' + TARGET +
+      '</b> to continue to Lecture ' + (G.level + 1) + '. Have a look at the study list and try again!</p>'
+    : '<h2>💥 Game over at Lecture ' + G.level + '</h2>';
+  overlay.innerHTML = '<div class="panel">' + head +
     '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy <b>' + acc(G.right, G.total) + '</b></span>' +
     '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.busted + '</b></span></div>' +
     scoreFormHTML() +
@@ -981,7 +1104,7 @@ function showOver(){
 }
 function showWin(){
   overlay.className = "";
-  overlay.innerHTML = '<div class="panel"><h2>🏆 Course complete!</h2>' +
+  overlay.innerHTML = '<div class="panel"><h2>🏆 Course complete! <span class="stars">' + starStr(G.lvlStars) + '</span></h2>' +
     '<p class="sub">You made it through the final boss with ' + G.lives + ' lives left.</p>' +
     '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy <b>' + acc(G.right, G.total) + '</b></span>' +
     '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.busted + '</b></span></div>' +
