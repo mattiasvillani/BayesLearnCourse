@@ -21,7 +21,6 @@
   button:hover { background:#2f449a; }
   button.primary { background:#2d8a4e; border-color:#46c474; text-align:center; font-size:16px; padding:10px 18px; }
   button.primary:hover { background:#37a35d; }
-  button.spd.on { background:#2d8a4e; border-color:#46c474; }
   .lv small { display:block; color:#b9c6f5; font-weight:normal; margin-top:2px; }
   .row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; margin-top:12px; }
   .mist { border-left:4px solid #e0556a; background:#1a1f3d; padding:8px 12px; margin:8px 0; border-radius:6px; font-size:14px; line-height:1.4; }
@@ -31,7 +30,29 @@
   .stats span b { color:#ffd166; }
   kbd { background:#1e2850; border:1px solid #3a4a8a; border-radius:5px; padding:1px 6px; font-size:12px; }
   .note { font-size:12px; color:#8393c8; margin-top:10px; }
-  input[type=file] { font-size:12px; color:#9fb0e8; }
+  .fld { background:#141d44; color:#fff; border:1px solid #4a63c4; border-radius:8px; padding:7px 9px; font-size:14px; margin-left:4px; font-family:inherit; }
+  .menu { padding:14px 20px; }
+  .menu .sub { margin:0; }
+  .menu > .sub { margin:6px 0 0; }
+  .menu .row { margin-top:10px; }
+  .menu .grid { grid-template-columns:repeat(4, 1fr); gap:6px; margin:6px 0 0; }
+  .menu .lv { padding:6px 9px; font-size:13px; }
+  .menu .lv small { font-size:11px; line-height:1.25; }
+  .menu h1 { font-size:26px; }
+  .keys { position:relative; display:inline-block; }
+  .keys .pop { display:none; position:absolute; right:0; top:100%; text-align:left; margin-top:6px; z-index:5; width:max-content; max-width:min(440px, 85vw);
+               background:#141d44; border:1px solid #4a63c4; border-radius:10px; padding:8px 12px; box-shadow:0 8px 30px rgba(0,0,0,.6); color:#e8ecff; font-size:13px; }
+  .keys:hover .pop, .keys.open .pop { display:block; }
+  .keys td { padding:3px 8px 3px 0; vertical-align:top; } .keys td:first-child { white-space:nowrap; color:#b9c6f5; }
+  .menu .row { margin-top:8px; }
+  @media (max-width:900px){ .menu > .sub { font-size:13px; } .menu { padding:12px 16px; } }
+  @media (max-width:700px){
+    .menu .grid { grid-template-columns:repeat(2, 1fr); }
+    .keys .pop { left:0; right:auto; }
+    /* the canvas is too small on phones: let menus extend below it and scroll with the page */
+    #overlay { bottom:auto; min-height:100%; align-items:flex-start; padding:0; }
+    .panel { max-height:none; }
+  }
 </style>
 </head>
 <body>
@@ -45,8 +66,6 @@
 /* ============================================================
    STATEMENT BANK — [lecture, isTrue(1/0), statement, explanation]
    A statement in lecture L only uses material from lectures 0..L.
-   You can load your own bank from the start screen (JSON array of
-   {"l":0,"t":true,"s":"statement","e":"explanation"}).
    ============================================================ */
 const LEVELS = [
   "Likelihood, information & Monte Carlo",
@@ -266,6 +285,115 @@ function beep(f, d, type="square", v=0.05){
     o.start(); g.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + d); o.stop(actx.currentTime + d);
   } catch (e) {}
 }
+
+/* ---------- background music ----------
+   A synthwave loop generated with Web Audio (no audio files): Am–F–C–G with drums,
+   bass, arpeggio, and a lead melody every other phrase. Tempo rises with the lecture. */
+let musicOn = true;
+try { musicOn = localStorage.getItem("bb_music") !== "0"; } catch (e) {}
+const MUS = { gain: null, timer: null, step: 0, next: 0, noise: null, delay: null };
+const CHORDS = [ { root: 45, tones: [57, 60, 64] },    // Am
+                 { root: 41, tones: [53, 57, 60] },    // F
+                 { root: 48, tones: [52, 55, 60] },    // C
+                 { root: 43, tones: [55, 59, 62] } ];  // G
+const LEAD = [ [[0,76,3],[3,74,1],[4,72,2],[6,74,2],[8,76,6],[14,79,2]],
+               [[0,77,3],[3,76,1],[4,74,2],[6,72,2],[8,69,6]],
+               [[0,72,2],[2,74,2],[4,76,4],[8,79,4],[12,76,4]],
+               [[0,74,6],[6,71,2],[8,74,4],[12,76,4]] ];
+const ARP = [0, 1, 2, 3, 2, 1, 0, 1, 2, 3, 2, 1, 0, 2, 1, 3];
+const midiHz = m => 440 * Math.pow(2, (m - 69) / 12);
+
+function audioCtx(){
+  actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+  if (actx.state === "suspended") actx.resume();
+  return actx;
+}
+function musicBpm(){
+  if (!G || mode === "menu") return 96;
+  return Math.min(150, 104 + 4 * G.level);
+}
+function musicTarget(){
+  if (!musicOn || mute) return 0;
+  return mode === "paused" ? 0.04 : 0.13;
+}
+function musicSetup(){
+  const a = audioCtx();
+  if (MUS.gain) return a;
+  const comp = a.createDynamicsCompressor();
+  MUS.gain = a.createGain(); MUS.gain.gain.value = 0;
+  MUS.gain.connect(comp); comp.connect(a.destination);
+  // echo for the arp and lead
+  MUS.delay = a.createDelay(1); const fb = a.createGain(), wet = a.createGain();
+  fb.gain.value = 0.3; wet.gain.value = 0.35;
+  MUS.delay.connect(fb); fb.connect(MUS.delay); MUS.delay.connect(wet); wet.connect(MUS.gain);
+  const buf = a.createBuffer(1, a.sampleRate, a.sampleRate), d = buf.getChannelData(0);
+  for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+  MUS.noise = buf;
+  return a;
+}
+function tone(t, f, dur, type, vol, cutoff, echo){
+  const a = actx, o = a.createOscillator(), g = a.createGain(), lp = a.createBiquadFilter();
+  o.type = type; o.frequency.value = f;
+  lp.type = "lowpass"; lp.frequency.value = cutoff;
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.01);
+  g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(lp); lp.connect(g); g.connect(MUS.gain); if (echo) g.connect(MUS.delay);
+  o.start(t); o.stop(t + dur + 0.02);
+}
+function noiseHit(t, dur, vol, hp){
+  const a = actx, s = a.createBufferSource(), g = a.createGain(), f = a.createBiquadFilter();
+  s.buffer = MUS.noise; f.type = "highpass"; f.frequency.value = hp;
+  g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  s.connect(f); f.connect(g); g.connect(MUS.gain); s.start(t, Math.random() * 0.5); s.stop(t + dur + 0.02);
+}
+function kick(t, vol){
+  const a = actx, o = a.createOscillator(), g = a.createGain();
+  o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(40, t + 0.15);
+  g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.25);
+  o.connect(g); g.connect(MUS.gain); o.start(t); o.stop(t + 0.3);
+}
+function musicStep(s, t, sixteenth){
+  const bar = Math.floor(s / 16) % 4, i = s % 16, phrase = Math.floor(s / 64);
+  const ch = CHORDS[bar], boss = G && mode !== "menu" && G.level === LEVELS.length - 1;
+  const calm = mode === "menu";
+  // drums
+  if (i % 4 === 0) kick(t, calm ? 0.5 : 0.9);
+  if (boss && i % 4 === 2) kick(t, 0.5);
+  if (!calm && (i === 4 || i === 12)) noiseHit(t, 0.18, 0.35, 1500);
+  if (i % 2 === 1) noiseHit(t, 0.04, calm ? 0.06 : 0.1, 7000);
+  // bass: driving eighths, octave jump on the off-beat
+  if (i % 2 === 0) tone(t, midiHz(ch.root + (i % 4 === 2 ? 12 : 0)), sixteenth * 1.8, "sawtooth", 0.22, 600, false);
+  // arpeggio
+  const tones = ch.tones.concat(ch.tones[0] + 12);
+  tone(t, midiHz(tones[ARP[i]]), sixteenth * 0.9, "square", calm ? 0.035 : 0.05, 2200, true);
+  // lead on every other phrase (not in the menu)
+  if (!calm && phrase % 2 === 1){
+    for (const [st, m, len] of LEAD[bar]) if (st === i) tone(t, midiHz(m), sixteenth * len * 0.95, "triangle", 0.16, 4000, true);
+  }
+}
+function musicTick(){
+  if (!actx) return;
+  const sixteenth = 60 / musicBpm() / 4;
+  MUS.gain.gain.setTargetAtTime(musicTarget(), actx.currentTime, 0.15);
+  MUS.delay.delayTime.value = sixteenth * 3;
+  if (MUS.next < actx.currentTime) MUS.next = actx.currentTime + 0.05;
+  while (MUS.next < actx.currentTime + 0.15){
+    if (musicTarget() > 0) musicStep(MUS.step, MUS.next, sixteenth);
+    MUS.step++; MUS.next += sixteenth;
+  }
+}
+function startMusic(){
+  try { musicSetup(); if (!MUS.timer) MUS.timer = setInterval(musicTick, 30); } catch (e) {}
+}
+function toggleMusic(){
+  musicOn = !musicOn;
+  try { localStorage.setItem("bb_music", musicOn ? "1" : "0"); } catch (e) {}
+  if (musicOn) startMusic();
+  const b = document.getElementById("mus"); if (b) b.textContent = musicLabel();
+}
+function musicLabel(){ return musicOn ? "🎵 Music on" : "🔇 Music off"; }
+// browsers only allow audio after a click or key press
+["pointerdown", "keydown"].forEach(ev => window.addEventListener(ev, () => { if (musicOn) startMusic(); }, { capture: true }));
 
 function newGame(start){
   G = { level:start, start, score:0, lives:START_LIVES, streak:0, bestStreak:0,
@@ -643,6 +771,8 @@ function draw(){
     ctx.fillStyle = "rgba(5,8,20,.7)"; ctx.fillRect(0, HUD_H, W, H);
     ctx.fillStyle = "#fff"; ctx.font = "bold 34px system-ui, sans-serif"; ctx.textAlign = "center";
     ctx.fillText("Paused", W/2, H/2); ctx.font = "16px system-ui, sans-serif"; ctx.fillText("Press P or Esc to continue", W/2, H/2 + 30);
+    ctx.font = "13px system-ui, sans-serif"; ctx.fillStyle = "#9fb0e8";
+    ctx.fillText("N: music " + (musicOn ? "off" : "on") + "   •   M: " + (mute ? "unmute" : "mute") + " all", W/2, H/2 + 56);
     ctx.textAlign = "left";
   }
 }
@@ -750,11 +880,14 @@ async function autoSave(){
 
 overlay.addEventListener("click", e => {
   const id = e.target && e.target.id;
-  if (id === "lb") showBoard(mode === "menu" ? showMenu : (G && G.lives <= 0 ? showOver : showWin));
+  if (id === "keyslink"){ e.preventDefault(); e.target.parentNode.classList.toggle("open"); return; }
+  const k = overlay.querySelector(".keys.open"); if (k && !k.contains(e.target)) k.classList.remove("open");
+  if (id === "mus") toggleMusic();
+  else if (id === "lb") showBoard(mode === "menu" ? showMenu : (G && G.lives <= 0 ? showOver : showWin));
   else if (id === "bk") (boardBack || showMenu)();
 });
 overlay.addEventListener("keydown", e => {
-  if (e.key === "Enter" && ["nm", "yr", "pw"].includes(e.target.id)){ const s = overlay.querySelector("button.primary[data-l]"); if (s) s.click(); }
+  if (e.key === "Enter" && ["nm", "yr", "pw"].includes(e.target.id)){ const s = overlay.querySelector("button[data-l=\"0\"]"); if (s) s.click(); }
 });
 overlay.addEventListener("input", e => {
   const id = e.target.id;
@@ -780,32 +913,29 @@ function showMenu(){
   mode = "menu";
   const btns = LEVELS.map((t, i) => '<button class="lv" data-l="' + i + '"><b>Lecture ' + i + '</b><small>' + esc(t) + '</small></button>').join("");
   overlay.className = "";
-  overlay.innerHTML = '<div class="panel"><h1>🎯 Bayes Blaster</h1>' +
+  overlay.innerHTML = '<div class="panel menu">' +
+    '<div class="row" style="margin:0;justify-content:space-between"><h1>🎯 Bayes Blaster</h1><span>' +
+    '<span class="keys"><button id="keyslink" style="text-align:center">⌨️ Key controls</button><div class="pop"><table>' +
+    [["<kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd>", "Move"],
+     ["<kbd>Space</kbd>", "Fire"],
+     ["<kbd>P</kbd> or <kbd>Esc</kbd>", "Pause / continue"],
+     ["<kbd>S</kbd>", "Change speed (Slow, Medium, Fast)"],
+     ["<kbd>N</kbd>", "Music on / off"],
+     ["<kbd>M</kbd>", "Mute all sound"],
+     ["Mouse / touch", "Drag to move, hold to fire"],
+     ["Tap the top bar", "Change speed"]].map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>').join("") +
+    '</table></div></span> ' +
+    '<button id="mus" style="text-align:center">' + musicLabel() + '</button> <button id="lb">🏆 Leaderboard</button></span></div>' +
     '<p class="sub">Statements fall from the sky. <b>Shoot the FALSE ones.</b> Let the <b>TRUE ones</b> land safely.<br>' +
-    'Shooting a true statement or letting a false one land costs a life.' +
-    '</p>' +
-    '<p class="sub"><kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd> to move, <kbd>Space</kbd> to fire, <kbd>P</kbd> to pause, <kbd>M</kbd> to mute. ' +
-    'Mouse or touch: drag to move, hold to fire.</p>' +
-    '<div class="row"><span class="sub" style="margin:0">Your name:</span>' +
-    '<input id="nm" maxlength="12" autocomplete="off" placeholder="max 12 letters" value="' + esc(playerName()) + '" ' +
-    'style="background:#141d44;color:#fff;border:1px solid #4a63c4;border-radius:8px;padding:8px 10px;font-size:14px;width:190px">' +
-    '<span id="nmhint" class="sub" style="margin:0;color:#ff7a8a"></span>' +
-    '<button id="lb">🏆 Leaderboard</button></div>' +
-    (BOARD_URL ? '<div class="row"><span class="sub" style="margin:0">Course year:</span>' +
-    '<input id="yr" maxlength="12" autocomplete="off" placeholder="e.g. 2026" value="' + esc(classYear()) + '" ' +
-    'style="background:#141d44;color:#fff;border:1px solid #4a63c4;border-radius:8px;padding:8px 10px;font-size:14px;width:100px">' +
-    '<span class="sub" style="margin:0">Class password:</span>' +
-    '<input id="pw" type="password" maxlength="40" autocomplete="off" value="' + esc(classPass()) + '" ' +
-    'style="background:#141d44;color:#fff;border:1px solid #4a63c4;border-radius:8px;padding:8px 10px;font-size:14px;width:150px">' +
-    '<span id="clhint" class="sub" style="margin:0"></span></div>' +
-    '<p class="note" style="margin-top:4px">Fill in both to compete on your class leaderboard. Leave them empty to play just for yourself.</p>' : '') +
-    '<div class="row"><span class="sub" style="margin:0">Speed:</span>' +
-    SPEEDS.map((s, i) => '<button class="spd' + (i === speedIdx ? ' on' : '') + '" data-s="' + i + '" style="text-align:center;min-width:90px">' + s.name + '</button>').join("") + '</div>' +
-    '<div class="row"><button class="primary" data-l="0">▶ Start at Lecture 0</button></div>' +
-    '<p class="sub" style="margin-top:14px">…or jump straight to a lecture:</p><div class="grid">' + btns + '</div>' +
-    '<div class="note">Statement bank: <span id="bankinfo">' + BANK.length + ' statements (built-in)</span>. ' +
-    'Load your own (JSON): <input type="file" id="bankfile" accept=".json,application/json"> ' +
-    '<button id="resetbank" style="padding:3px 8px;font-size:12px">Reset to built-in</button></div></div>';
+    'Shooting a true statement or letting a false one land costs a life.</p>' +
+    '<hr style="border:0;border-top:1px solid #2f3d78;margin:10px 0 0">' +
+    '<div class="row"><label class="sub">Name <input id="nm" class="fld" maxlength="12" autocomplete="off" placeholder="max 12 letters" value="' + esc(playerName()) + '" style="width:140px"></label>' +
+    (BOARD_URL ? '<label class="sub">Course year <input id="yr" class="fld" maxlength="12" autocomplete="off" placeholder="e.g. 2026" value="' + esc(classYear()) + '" style="width:80px"></label>' +
+    '<label class="sub">Class password <input id="pw" class="fld" type="password" maxlength="40" autocomplete="off" value="' + esc(classPass()) + '" style="width:120px"></label>' : '') +
+    '<span id="nmhint" class="sub" style="color:#ff7a8a"></span><span id="clhint" class="sub"></span></div>' +
+    (BOARD_URL ? '<p class="note" style="margin-top:4px">Year and password put you on your class leaderboard. Leave them empty to play just for yourself.</p>' : '') +
+    '<hr style="border:0;border-top:1px solid #2f3d78;margin:12px 0 0">' +
+    '<div class="grid" style="margin-top:12px">' + btns + '</div></div>';
   overlay.querySelectorAll("button[data-l]").forEach(b => b.onclick = async () => {
     const inp = document.getElementById("nm");
     const name = cleanName(inp.value).trim();
@@ -822,25 +952,6 @@ function showMenu(){
     }
     newGame(+b.dataset.l); startLevel(+b.dataset.l);
   });
-  overlay.querySelectorAll("button.spd").forEach(b => b.onclick = () => {
-    speedIdx = +b.dataset.s;
-    overlay.querySelectorAll("button.spd").forEach(x => x.classList.toggle("on", +x.dataset.s === speedIdx));
-  });
-  document.getElementById("bankfile").onchange = (ev) => {
-    const f = ev.target.files[0]; if (!f) return;
-    const rd = new FileReader();
-    rd.onload = () => {
-      try {
-        const arr = JSON.parse(rd.result);
-        if (!Array.isArray(arr) || !arr.length) throw new Error("empty");
-        const nb = arr.map(o => ({ l: +o.l, t: !!o.t, s: String(o.s), e: String(o.e || "") }));
-        if (nb.some(o => !isFinite(o.l) || !o.s)) throw new Error("bad item");
-        BANK = nb; document.getElementById("bankinfo").textContent = BANK.length + " statements (loaded from file)";
-      } catch (err) { document.getElementById("bankinfo").textContent = "Could not read that file: " + err.message; }
-    };
-    rd.readAsText(f);
-  };
-  document.getElementById("resetbank").onclick = () => { BANK = DEFAULT_BANK.slice(); document.getElementById("bankinfo").textContent = BANK.length + " statements (built-in)"; };
 }
 
 function showLevelEnd(){
@@ -890,6 +1001,7 @@ window.addEventListener("keydown", e => {
   keys[e.key] = true;
   if (e.key === "p" || e.key === "P" || e.key === "Escape") togglePause();
   if (e.key === "m" || e.key === "M") mute = !mute;
+  if (e.key === "n" || e.key === "N") toggleMusic();
   if ((e.key === "s" || e.key === "S") && (mode === "play" || mode === "paused")) cycleSpeed();
 });
 window.addEventListener("keyup", e => { keys[e.key] = false; });
