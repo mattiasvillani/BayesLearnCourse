@@ -485,7 +485,7 @@ function newGame(start){
         ghosts:[], ghostT:5, busted:0, lvlBusted:0,
         right:0, total:0, lvlRight:0, lvlTotal:0, practice };
 }
-const SPEEDS = [ { name: "Slow", m: 0.65 }, { name: "Medium", m: 1 }, { name: "Fast", m: 1.5 } ];
+const SPEEDS = [ { name: "Slow", m: 0.45 }, { name: "Medium", m: 1 }, { name: "Fast", m: 1.5 } ];
 let speedIdx = 0;   // Slow is the default; Medium equals the original speed
 function cycleSpeed(){ speedIdx = (speedIdx + 1) % SPEEDS.length; }
 function levelSpeed(L){ return (34 + 6.5*L) * SPEEDS[speedIdx].m; }
@@ -557,12 +557,12 @@ function resolve(box, shot){
       const pts = 100 * mult(); G.score += pts; G.streak++;
       addFloat(cx, cy, "FALSE ✔ +" + pts, "#58d68d"); burst(cx, cy, "#58d68d"); beep(660, .12);
     } else { correct = false;
-      G.score = Math.max(0, G.score - 50); G.lives--; G.streak = 0;
+      G.lives--; G.streak = 0;
       addFloat(cx, cy, "That was TRUE! −1 ♥", "#ff7a8a"); burst(cx, cy, "#ff7a8a"); beep(140, .3, "sawtooth");
     }
   } else {
     if (b.t){ correct = true;
-      const pts = 10 * mult(); G.score += pts; G.streak++;
+      const pts = 100 * mult(); G.score += pts; G.streak++;
       addFloat(cx, GROUND - 30, "TRUE ✔ +" + pts, "#7fb2ff"); beep(440, .08, "sine");
     } else { correct = false;
       G.lives--; G.streak = 0;
@@ -619,9 +619,9 @@ function spawnGhost(){
 }
 
 function bustGhost(gh){
-  G.score += 75; G.busted++; G.lvlBusted++;
+  G.score += 50; G.busted++; G.lvlBusted++;
   if (gh.target) gh.target.hunted = false;
-  addFloat(gh.x, gh.y + gh.dy, "Ghost busted! +75", "#c8a2ff");
+  addFloat(gh.x, gh.y + gh.dy, "Frequentist ghost busted! +50", "#c8a2ff");
   burst(gh.x, gh.y + gh.dy, "#c8a2ff");
   beep(880, .15, "triangle");
 }
@@ -827,7 +827,7 @@ function draw(){
     ctx.globalAlpha = 1;
     // floats
     ctx.font = "bold 16px system-ui, sans-serif"; ctx.textAlign = "center";
-    for (const f of G.floats){ ctx.globalAlpha = Math.min(1, f.t); ctx.fillStyle = f.color; ctx.fillText(f.text, Math.max(110, Math.min(W-110, f.x)), f.y); }
+    for (const f of G.floats){ ctx.globalAlpha = Math.min(1, f.t); ctx.fillStyle = f.color; ctx.fillText(f.text, Math.max(130, Math.min(W-130, f.x)), f.y); }
     ctx.globalAlpha = 1; ctx.textAlign = "left";
     // toast (explanation of last mistake)
     if (G.toast){
