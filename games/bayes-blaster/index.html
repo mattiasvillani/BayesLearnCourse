@@ -648,53 +648,68 @@ function draw(){
 }
 
 /* ---------- leaderboard ----------
-   Shared across players when the page is served with the db capability and the viewer may write
-   (signed in, Contributor access). Otherwise scores are kept on this device only. */
-let DB = null, MYID = null, CAN_WRITE = false, boardBack = null;
-
-async function initDb(){
-  try {
-    if (typeof claude === "undefined" || !claude.use) return;
-    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
-    if (!db || !user) return;
-    const id = await user.id();
-    if (!id) return;
-    const cw = user.can ? await user.can("data.write") : null;
-    DB = db; MYID = id; CAN_WRITE = cw !== false;
-  } catch (e) { DB = null; }
-}
+   One board per course year, stored in a Google Sheet through a small Apps Script
+   web app (see leaderboard.gs in this folder). Students enter their course year and
+   the class password once; the browser remembers them. Without them, or if the
+   board cannot be reached, scores are kept on this device only. */
+const BOARD_URL = "https://script.google.com/macros/s/AKfycbxE8uAWJzx-Ww3hTqTOWT43lgdVw_Ry-dc83_aW48CrDKWFQ2eAGR_Mvb3Lx4C5M_IaLQ/exec";   // paste the Apps Script web app URL (ends in /exec) here
+let boardBack = null;
 
 function cleanName(s){ return Array.from(String(s).replace(/[^\p{L}\p{N} _-]/gu, "")).slice(0, 12).join(""); }
+function cleanYear(s){ return String(s).replace(/[^\p{L}\p{N}]/gu, "").slice(0, 12); }
 function lsGet(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
 function lsSet(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 function withTimeout(p, ms){ return Promise.race([p, new Promise((_, rj) => setTimeout(() => rj(new Error("timeout")), ms))]); }
+
+function classYear(){ return cleanYear(lsGet("bb_year", "")); }
+function classPass(){ return String(lsGet("bb_pass", "")).trim(); }
+function hasClass(){ return !!(BOARD_URL && classYear() && classPass()); }
+
+// text/plain avoids a CORS preflight, which Apps Script cannot answer
+async function api(action, extra){
+  const body = Object.assign({ action, year: classYear(), password: classPass() }, extra || {});
+  const r = await withTimeout(fetch(BOARD_URL, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" },
+                                                 body: JSON.stringify(body) }), 15000);
+  return r.json();
+}
+
+// "ok", "auth" (wrong year/password) or "offline"
+async function verifyClass(){
+  const key = classYear() + "|" + classPass();
+  if (lsGet("bb_ok", "") === key) return "ok";
+  try {
+    const res = await api("verify");
+    if (res.ok){ lsSet("bb_ok", key); return "ok"; }
+    return res.error === "auth" ? "auth" : "offline";
+  } catch (e) { return "offline"; }
+}
 
 async function saveScore(e){
   const entry = { name: e.name, score: e.score, level: e.level, speed: e.speed, ghosts: e.ghosts, ts: Date.now() };
   const local = lsGet("bb_scores", []); local.push(entry);
   local.sort((a, b) => b.score - a.score); lsSet("bb_scores", local.slice(0, 20));
-  if (!(DB && MYID && CAN_WRITE)) return "Saved on this device. The shared board needs a signed-in view with Contributor access.";
+  if (!hasClass()) return "Saved on this device. Enter your course year and class password on the start screen to join your class leaderboard.";
   try {
-    const ref = DB.collection("scores").doc(MYID);
-    const cur = await withTimeout(ref.get(), 10000);
-    if (cur.exists && Number(cur.data().score) >= entry.score){
-      if (cur.data().name !== entry.name) await withTimeout(ref.update({ name: entry.name }), 10000);
-      return "Your earlier score on the shared board was higher, so it stays.";
-    }
-    await withTimeout(ref.set(entry), 10000);
-    return "Saved to the shared leaderboard.";
-  } catch (err) { return "Could not reach the shared board, so the score is saved on this device only."; }
+    const res = await api("submit", entry);
+    if (res.ok && res.best === false) return "Your best on the " + classYear() + " class leaderboard (" + res.previous + ") stays.";
+    if (res.ok) return (res.previous !== undefined ? "New personal best! " : "") + "Saved to the " + classYear() + " class leaderboard.";
+    if (res.error === "auth"){ lsSet("bb_ok", ""); return "Wrong course year or class password, so the score is saved on this device only."; }
+    return "The class board did not accept the score, so it is saved on this device only.";
+  } catch (err) { return "Could not reach the class board, so the score is saved on this device only."; }
 }
 
 async function getBoard(){
-  if (DB && MYID){
+  if (hasClass()){
     try {
-      const snap = await withTimeout(DB.collection("scores").orderBy("score", "desc").limit(20).get(), 10000);
-      const rows = snap.docs.map(d => { const x = d.data() || {};
-        return { id: d.id, name: cleanName(x.name || "Anon") || "Anon", score: Number(x.score) || 0,
-                 level: Number(x.level) || 0, speed: String(x.speed || "").slice(0, 8), ghosts: Number(x.ghosts) || 0 }; });
-      return { shared: true, rows };
+      const res = await api("board");
+      if (res.ok){
+        const rows = (res.rows || []).map(x => ({ name: cleanName(x.name || "Anon") || "Anon", score: Number(x.score) || 0,
+          level: Number(x.level) || 0, speed: String(x.speed || "").slice(0, 8), ghosts: Number(x.ghosts) || 0 }));
+        return { shared: true, rows };
+      }
+      if (res.error === "auth") return { shared: false, rows: lsGet("bb_scores", []), note: "Wrong course year or class password. Showing scores from this device." };
     } catch (err) { /* fall through to local */ }
+    return { shared: false, rows: lsGet("bb_scores", []), note: "Could not reach the class board. Showing scores from this device." };
   }
   return { shared: false, rows: lsGet("bb_scores", []) };
 }
@@ -705,12 +720,12 @@ async function showBoard(back, note){
   overlay.innerHTML = '<div class="panel"><h2>🏆 Leaderboard</h2><p class="sub">Loading…</p></div>';
   const b = await getBoard();
   const body = b.rows.length ? '<table style="width:100%;border-collapse:collapse;font-size:14px"><tr style="color:#9fb0e8;text-align:left"><th>#</th><th>Name</th><th>Score</th><th>Lecture</th><th>Speed</th><th>Ghosts</th></tr>' +
-    b.rows.map((r, i) => '<tr style="border-top:1px solid #26336b;' + (b.shared && r.id === MYID ? 'background:#1d2b5c;' : '') + '"><td>' + (i + 1) + '</td><td>' + esc(r.name) +
+    b.rows.map((r, i) => '<tr style="border-top:1px solid #26336b;' + (b.shared && r.name.toLowerCase() === playerName().toLowerCase() ? 'background:#1d2b5c;' : '') + '"><td>' + (i + 1) + '</td><td>' + esc(r.name) +
       '</td><td><b>' + esc(r.score) + '</b></td><td>' + esc(r.level) + '</td><td>' + esc(r.speed || "") + '</td><td>' + esc(r.ghosts || 0) + '</td></tr>').join("") + '</table>'
     : '<p class="sub">No scores yet. Be the first!</p>';
   overlay.innerHTML = '<div class="panel"><h2>🏆 Leaderboard <small style="font-size:13px;color:#9fb0e8;font-weight:normal">' +
-    (b.shared ? "everyone" : "this device only") + '</small></h2>' +
-    (note ? '<p class="sub">' + esc(note) + '</p>' : '') + body +
+    (b.shared ? "class of " + esc(classYear()) : "this device only") + '</small></h2>' +
+    (note ? '<p class="sub">' + esc(note) + '</p>' : '') + (b.note ? '<p class="sub" style="color:#ff7a8a">' + esc(b.note) + '</p>' : '') + body +
     '<div class="row"><button class="primary" id="bk">Back</button></div></div>';
 }
 
@@ -739,9 +754,15 @@ overlay.addEventListener("click", e => {
   else if (id === "bk") (boardBack || showMenu)();
 });
 overlay.addEventListener("keydown", e => {
-  if (e.key === "Enter" && e.target.id === "nm"){ const s = overlay.querySelector("button.primary[data-l]"); if (s) s.click(); }
+  if (e.key === "Enter" && ["nm", "yr", "pw"].includes(e.target.id)){ const s = overlay.querySelector("button.primary[data-l]"); if (s) s.click(); }
 });
-overlay.addEventListener("input", e => { if (e.target.id === "nm"){ e.target.value = cleanName(e.target.value); lsSet("bb_name", e.target.value.trim()); } });
+overlay.addEventListener("input", e => {
+  const id = e.target.id;
+  if (id === "nm"){ e.target.value = cleanName(e.target.value); lsSet("bb_name", e.target.value.trim()); }
+  if (id === "yr"){ e.target.value = cleanYear(e.target.value); lsSet("bb_year", e.target.value); }
+  if (id === "pw") lsSet("bb_pass", e.target.value.trim());
+  if (id === "yr" || id === "pw"){ const h = document.getElementById("clhint"); if (h){ h.textContent = ""; } }
+});
 
 /* ---------- screens ---------- */
 function mistakeHTML(list){
@@ -770,6 +791,14 @@ function showMenu(){
     'style="background:#141d44;color:#fff;border:1px solid #4a63c4;border-radius:8px;padding:8px 10px;font-size:14px;width:190px">' +
     '<span id="nmhint" class="sub" style="margin:0;color:#ff7a8a"></span>' +
     '<button id="lb">🏆 Leaderboard</button></div>' +
+    (BOARD_URL ? '<div class="row"><span class="sub" style="margin:0">Course year:</span>' +
+    '<input id="yr" maxlength="12" autocomplete="off" placeholder="e.g. 2026" value="' + esc(classYear()) + '" ' +
+    'style="background:#141d44;color:#fff;border:1px solid #4a63c4;border-radius:8px;padding:8px 10px;font-size:14px;width:100px">' +
+    '<span class="sub" style="margin:0">Class password:</span>' +
+    '<input id="pw" type="password" maxlength="40" autocomplete="off" value="' + esc(classPass()) + '" ' +
+    'style="background:#141d44;color:#fff;border:1px solid #4a63c4;border-radius:8px;padding:8px 10px;font-size:14px;width:150px">' +
+    '<span id="clhint" class="sub" style="margin:0"></span></div>' +
+    '<p class="note" style="margin-top:4px">Fill in both to compete on your class leaderboard. Leave them empty to play just for yourself.</p>' : '') +
     '<div class="row"><span class="sub" style="margin:0">Speed:</span>' +
     SPEEDS.map((s, i) => '<button class="spd' + (i === speedIdx ? ' on' : '') + '" data-s="' + i + '" style="text-align:center;min-width:90px">' + s.name + '</button>').join("") + '</div>' +
     '<div class="row"><button class="primary" data-l="0">▶ Start at Lecture 0</button></div>' +
@@ -777,11 +806,20 @@ function showMenu(){
     '<div class="note">Statement bank: <span id="bankinfo">' + BANK.length + ' statements (built-in)</span>. ' +
     'Load your own (JSON): <input type="file" id="bankfile" accept=".json,application/json"> ' +
     '<button id="resetbank" style="padding:3px 8px;font-size:12px">Reset to built-in</button></div></div>';
-  overlay.querySelectorAll("button[data-l]").forEach(b => b.onclick = () => {
+  overlay.querySelectorAll("button[data-l]").forEach(b => b.onclick = async () => {
     const inp = document.getElementById("nm");
     const name = cleanName(inp.value).trim();
     if (!name){ document.getElementById("nmhint").textContent = "Enter your name first"; inp.focus(); return; }
     lsSet("bb_name", name);
+    const hint = document.getElementById("clhint");
+    if (BOARD_URL && (classYear() || classPass())){
+      if (!classYear() || !classPass()){ hint.style.color = "#ff7a8a"; hint.textContent = "Fill in both, or leave both empty"; return; }
+      hint.style.color = "#9fb0e8"; hint.textContent = "Checking…";
+      const v = await verifyClass();
+      if (mode !== "menu") return;
+      if (v === "auth"){ hint.style.color = "#ff7a8a"; hint.textContent = "Wrong year or password"; document.getElementById("pw").focus(); return; }
+      hint.textContent = "";
+    }
     newGame(+b.dataset.l); startLevel(+b.dataset.l);
   });
   overlay.querySelectorAll("button.spd").forEach(b => b.onclick = () => {
@@ -872,7 +910,6 @@ function frame(now){
   requestAnimationFrame(frame);
 }
 showMenu();
-initDb();
 requestAnimationFrame(frame);
 
 // tiny hook for automated testing
