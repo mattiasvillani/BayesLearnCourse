@@ -26,7 +26,7 @@
    up automatically.
 */
 
-const MAX_SCORE = 100000;   // well above what a full run through all 12 lectures can give
+const MAX_SCORE = 250000;   // well above what a full run through all 12 lectures can give at Fast (2x points)
 const N_LEVELS = 12;
 const SPEEDS = ["Slow", "Medium", "Fast"];
 const TOP_N = 25;

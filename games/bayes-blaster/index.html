@@ -491,9 +491,11 @@ function newGame(start){
         ghosts:[], ghostT:5, busted:0, lvlBusted:0,
         right:0, total:0, lvlRight:0, lvlTotal:0, practice };
 }
-const SPEEDS = [ { name: "Slow", m: 0.45 }, { name: "Medium", m: 1 }, { name: "Fast", m: 1.5 } ];
+const SPEEDS = [ { name: "Slow", m: 0.45, pts: 1 }, { name: "Medium", m: 1, pts: 1.5 }, { name: "Fast", m: 1.5, pts: 2 } ];
+function speedPts(base){ return Math.round(base * SPEEDS[speedIdx].pts); }   // faster speeds score more
+function speedTag(){ const p = SPEEDS[speedIdx].pts; return p > 1 ? " · " + p + "× points" : ""; }
 let speedIdx = 0;   // Slow is the default; Medium equals the original speed
-function cycleSpeed(){ speedIdx = (speedIdx + 1) % SPEEDS.length; }
+function cycleSpeed(){ speedIdx = (speedIdx + 1) % SPEEDS.length; if (G && G.tip) G.tip.t = Math.min(G.tip.t, 0.5); }
 function levelSpeed(L){ return (34 + 6.5*L) * SPEEDS[speedIdx].m; }
 function levelInterval(L){ return Math.max(1.9, 4.4 - 0.22*L) / SPEEDS[speedIdx].m; }
 function mult(){ return 1 + Math.min(4, Math.floor(G.streak/3)); }
@@ -502,6 +504,7 @@ function startLevel(L){
   G.level = L; G.boxes = []; G.bullets = []; G.spawned = 0; G.resolved = 0; G.spawnT = 1.0;
   G.lvlMistakes = []; G.lvlRight = 0; G.lvlTotal = 0; G.toast = null;
   G.ghosts = []; G.ghostT = 4 + Math.random() * 3; G.lvlBusted = 0;
+  G.tip = L === 0 ? { t: 8 } : null;   // speed tip on the first lecture
   mode = "play"; overlay.className = "hidden"; overlay.innerHTML = "";
 }
 
@@ -560,7 +563,7 @@ function resolve(box, shot){
   let correct;
   if (shot){
     if (!b.t){ correct = true;
-      const pts = 100 * mult(); G.score += pts; G.streak++;
+      const pts = speedPts(100 * mult()); G.score += pts; G.streak++;
       addFloat(cx, cy, "FALSE ✔ +" + pts, "#58d68d"); burst(cx, cy, "#58d68d"); beep(660, .12);
     } else { correct = false;
       G.lives--; G.streak = 0;
@@ -568,7 +571,7 @@ function resolve(box, shot){
     }
   } else {
     if (b.t){ correct = true;
-      const pts = 100 * mult(); G.score += pts; G.streak++;
+      const pts = speedPts(100 * mult()); G.score += pts; G.streak++;
       addFloat(cx, GROUND - 30, "TRUE ✔ +" + pts, "#7fb2ff"); beep(440, .08, "sine");
     } else { correct = false;
       G.lives--; G.streak = 0;
@@ -625,9 +628,10 @@ function spawnGhost(){
 }
 
 function bustGhost(gh){
-  G.score += 50; G.busted++; G.lvlBusted++;
+  const pts = speedPts(50);
+  G.score += pts; G.busted++; G.lvlBusted++;
   if (gh.target) gh.target.hunted = false;
-  addFloat(gh.x, gh.y + gh.dy, "Frequentist ghost busted! +50", "#c8a2ff");
+  addFloat(gh.x, gh.y + gh.dy, "Frequentist ghost busted! +" + pts, "#c8a2ff");
   burst(gh.x, gh.y + gh.dy, "#c8a2ff");
   beep(880, .15, "triangle");
 }
@@ -752,6 +756,7 @@ function update(dt){
   for (const f of G.floats){ f.y -= 28*dt; f.t -= dt; }
   G.floats = G.floats.filter(f => f.t > 0);
   if (G.toast){ G.toast.t -= dt; if (G.toast.t <= 0) G.toast = null; }
+  if (G.tip){ G.tip.t -= dt; if (G.tip.t <= 0) G.tip = null; }
 
   // end conditions
   if (G.lives <= 0){ G.ghosts = []; mode = "over"; showOver(); return; }
@@ -835,6 +840,18 @@ function draw(){
     ctx.font = "bold 16px system-ui, sans-serif"; ctx.textAlign = "center";
     for (const f of G.floats){ ctx.globalAlpha = Math.min(1, f.t); ctx.fillStyle = f.color; ctx.fillText(f.text, Math.max(130, Math.min(W-130, f.x)), f.y); }
     ctx.globalAlpha = 1; ctx.textAlign = "left";
+    // speed tip (Lecture 0), fading out at the end
+    if (G.tip){
+      ctx.globalAlpha = Math.min(1, G.tip.t);
+      const tw = 560, th = 60, tx = (W - tw) / 2, ty = H * 0.55;   // low enough that the first statement has not reached it
+      ctx.fillStyle = "rgba(20,40,90,.95)"; rr(tx, ty, tw, th, 10); ctx.fill();
+      ctx.strokeStyle = "#7fb2ff"; rr(tx, ty, tw, th, 10); ctx.stroke();
+      ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillStyle = "#e8ecff"; ctx.font = "bold 15px system-ui, sans-serif";
+      ctx.fillText("⚡ Tip: press S (or tap the top bar) to speed up", W / 2, ty + 21);
+      ctx.font = "13px system-ui, sans-serif"; ctx.fillStyle = "#b9c6f5";
+      ctx.fillText("Medium gives 1.5× points, Fast gives 2× points", W / 2, ty + 41);
+      ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; ctx.globalAlpha = 1;
+    }
     // toast (explanation of last mistake)
     if (G.toast){
       const lines = wrapText(G.toast.text, W - 80);
@@ -857,7 +874,7 @@ function draw(){
     ctx.font = "12px system-ui, sans-serif"; ctx.fillStyle = "#9fb0e8";
     ctx.fillText("Resolved " + G.resolved + "/" + TARGET + "   •   Streak " + G.streak + " (×" + mult() + ")", 12, 32);
     ctx.textAlign = "center"; ctx.font = "12px system-ui, sans-serif"; ctx.fillStyle = "#7fb2ff";
-    ctx.fillText("Speed: " + SPEEDS[speedIdx].name + "  (S / tap here)", 610, G.practice ? 15 : 24);
+    ctx.fillText("Speed: " + SPEEDS[speedIdx].name + speedTag() + "  (S / tap here)", 610, G.practice ? 15 : 24);
     if (G.practice){ ctx.font = "bold 12px system-ui, sans-serif"; ctx.fillStyle = "#ffb347"; ctx.fillText("PRACTICE · score not saved", 610, 33); }
     ctx.textAlign = "right"; ctx.font = "bold 18px system-ui, sans-serif"; ctx.fillStyle = "#ffd166";
     ctx.fillText("Score " + G.score, W - 12, 15);
@@ -1066,7 +1083,7 @@ function showMenu(){
     [["<kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd>", "Move"],
      ["<kbd>Space</kbd>", "Fire"],
      ["<kbd>P</kbd> or <kbd>Esc</kbd>", "Pause / continue"],
-     ["<kbd>S</kbd>", "Change speed (Slow, Medium, Fast)"],
+     ["<kbd>S</kbd>", "Change speed: Slow, Medium (1.5× points), Fast (2× points)"],
      ["<kbd>N</kbd>", "Music on / off"],
      ["<kbd>M</kbd>", "Mute all sound"],
      ["Mouse / touch", "Drag to move, hold to fire"],
