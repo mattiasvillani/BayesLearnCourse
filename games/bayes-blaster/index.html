@@ -26,6 +26,12 @@
   .mist { border-left:4px solid #e0556a; background:#1a1f3d; padding:8px 12px; margin:8px 0; border-radius:6px; font-size:14px; line-height:1.4; }
   .mist b.t { color:#58d68d; } .mist b.f { color:#ff7a8a; }
   .mist .e { color:#b9c6f5; margin-top:4px; display:block; }
+  .lhead { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:12px 0 4px; }
+  .lhead h3 { margin:0; }
+  .lhead button { padding:4px 12px; font-size:13px; }
+  #copied { position:fixed; left:50%; bottom:40px; transform:translateX(-50%); background:#1f7a4a; color:#fff; padding:8px 16px;
+            border-radius:8px; font:14px system-ui, sans-serif; box-shadow:0 6px 24px rgba(0,0,0,.5); z-index:50; opacity:0; transition:opacity .25s; pointer-events:none; }
+  #copied.on { opacity:1; }
   .stats { display:flex; gap:18px; flex-wrap:wrap; margin:8px 0 4px; font-size:15px; }
   .stats span b { color:#ffd166; }
   kbd { background:#1e2850; border:1px solid #3a4a8a; border-radius:5px; padding:1px 6px; font-size:12px; }
@@ -1018,6 +1024,7 @@ async function autoSave(){
 overlay.addEventListener("click", e => {
   const id = e.target && e.target.id;
   overlay.querySelectorAll(".keys.open").forEach(k => { if (!k.contains(e.target)) k.classList.remove("open"); });
+  if (id === "cpy"){ copyList(); return; }
   if (id === "keyslink" || id === "aboutlink"){ e.preventDefault(); e.target.parentNode.classList.toggle("open"); return; }
   if (id === "mus") toggleMusic();
   else if (id === "lb") showBoard(mode === "menu" ? showMenu : (mode === "win" ? showWin : showOver));
@@ -1065,6 +1072,33 @@ function mistakeHTML(list){
       '<span class="e">' + esc(m.how) + " " + esc(b.e) + ' <i>(Lecture ' + b.l + ")</i></span></div>");
   }
   return out.join("") || '<p class="sub">No mistakes. Suspiciously well calibrated!</p>';
+}
+// heading for a mistake list, with a Copy button that copies the list as plain text
+let copyText = "";
+function listHead(title, list){
+  const seen = new Set(), lines = [];
+  for (const m of list){ if (seen.has(m.idx)) continue; seen.add(m.idx);
+    const b = BANK[m.idx];
+    lines.push(lines.length + 1 + ". " + (b.t ? "TRUE" : "FALSE") + ": " + b.s + "\n   " + m.how + " " + b.e + " (Lecture " + b.l + ")");
+  }
+  copyText = "Bayes Blaster: " + title.toLowerCase() + "\n\n" + lines.join("\n\n") + "\n";
+  return '<div class="lhead"><h3>' + esc(title) + '</h3>' + (lines.length ? '<button id="cpy">📋 Copy</button>' : '') + '</div>';
+}
+async function copyList(){
+  let ok = false;
+  try { await navigator.clipboard.writeText(copyText); ok = true; }
+  catch (e) {   // older browsers or no clipboard permission
+    const ta = document.createElement("textarea"); ta.value = copyText; ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    try { ok = document.execCommand("copy"); } catch (e2) {}
+    ta.remove();
+  }
+  let t = document.getElementById("copied");
+  if (!t){ t = document.createElement("div"); t.id = "copied"; document.body.appendChild(t); }
+  t.textContent = ok ? "Copied to clipboard" : "Could not copy";
+  t.style.background = ok ? "#1f7a4a" : "#a33a4a";
+  t.classList.add("on"); clearTimeout(copyList.timer);
+  copyList.timer = setTimeout(() => t.classList.remove("on"), 1800);
 }
 function acc(r, t){ return t ? Math.round(100*r/t) + "%" : "–"; }
 
@@ -1136,7 +1170,7 @@ function showLevelEnd(){
   overlay.innerHTML = '<div class="panel"><h2>✅ Lecture ' + G.level + ' cleared <span class="stars">' + starStr(G.lvlStars) + '</span></h2>' + unlockMsg +
     '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Correct this level <b>' + G.lvlRight + '/' + G.lvlTotal + '</b></span>' +
     '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.lvlBusted + '</b></span><span>Lives <b>' + G.lives + '</b></span></div>' +
-    '<h3 style="margin:12px 0 4px">Review of your mistakes</h3>' + mistakeHTML(G.lvlMistakes) +
+    listHead("Review of your mistakes", G.lvlMistakes) + mistakeHTML(G.lvlMistakes) +
     '<p class="sub" style="margin-top:12px"><b>Next up:</b> Lecture ' + next + " — " + esc(LEVELS[next]) + '</p>' +
     '<div class="row"><button class="primary" id="nx">Next lecture →</button><button id="mn">Menu</button></div></div>';
   document.getElementById("nx").onclick = () => startLevel(next);
@@ -1153,7 +1187,7 @@ function showOver(){
     '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy <b>' + acc(G.right, G.total) + '</b></span>' +
     '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.busted + '</b></span></div>' +
     scoreFormHTML() +
-    '<h3 style="margin:12px 0 4px">Study list: what to revisit</h3>' + mistakeHTML(G.mistakes) +
+    listHead("Study list: what to revisit", G.mistakes) + mistakeHTML(G.mistakes) +
     '<div class="row"><button class="primary" id="rt">Try this lecture again</button><button id="rs">Restart from Lecture ' + G.start + '</button><button id="mn">Menu</button></div></div>';
   const L = G.level, S0 = G.start;
   document.getElementById("rt").onclick = () => { newGame(L); startLevel(L); };
@@ -1167,7 +1201,7 @@ function showWin(){
     '<div class="stats"><span>Score <b>' + G.score + '</b></span><span>Accuracy <b>' + acc(G.right, G.total) + '</b></span>' +
     '<span>Best streak <b>' + G.bestStreak + '</b></span><span>Ghosts busted <b>' + G.busted + '</b></span></div>' +
     scoreFormHTML() +
-    '<h3 style="margin:12px 0 4px">Things to revisit</h3>' + mistakeHTML(G.mistakes) +
+    listHead("Things to revisit", G.mistakes) + mistakeHTML(G.mistakes) +
     '<div class="row"><button class="primary" id="mn">Back to menu</button></div></div>';
   document.getElementById("mn").onclick = showMenu;
 }
