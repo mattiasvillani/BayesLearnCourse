@@ -17,7 +17,7 @@ format: html
 
 ## Games
 
-[Bayes Blaster](/games/bayes-blaster/index.html) is a game where you can practice your Bayesian skills.
+[![Bayes Blaster](/games/bayes-blaster/bayesblaster.png){width="20%"}](/games/bayes-blaster/index.html) [Bayes Blaster](/games/bayes-blaster/index.html) - a game to practice your Bayesian skills.
 
 ## Music
 
