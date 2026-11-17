@@ -10,3 +10,6 @@
 
 **/*.quarto_ipynb
 /_freeze/hidden
+
+# personal notes on the Bayes Blaster leaderboard, kept out of the repo
+/games/bayes-blaster/LeaderboardGuide.pdf
