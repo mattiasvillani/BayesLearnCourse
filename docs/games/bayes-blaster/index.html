@@ -56,6 +56,7 @@
   .keys .pop { display:none; position:absolute; right:0; top:100%; text-align:left; margin-top:6px; z-index:5; width:max-content; max-width:min(440px, 85vw);
                background:#141d44; border:1px solid #4a63c4; border-radius:10px; padding:8px 12px; box-shadow:0 8px 30px rgba(0,0,0,.6); color:#e8ecff; font-size:13px; }
   .keys:hover .pop, .keys.open .pop { display:block; }
+  .keys .pop a { color:#8fb0ff; } .keys .pop a:hover { color:#c6d6ff; }
   .keys td { padding:3px 8px 3px 0; vertical-align:top; } .keys td:first-child { white-space:nowrap; color:#b9c6f5; }
   .menu .row { margin-top:8px; }
   @media (max-width:900px){ .menu > .sub { font-size:13px; } .menu { padding:12px 16px; } }
@@ -1016,8 +1017,8 @@ async function autoSave(){
 
 overlay.addEventListener("click", e => {
   const id = e.target && e.target.id;
-  if (id === "keyslink"){ e.preventDefault(); e.target.parentNode.classList.toggle("open"); return; }
-  const k = overlay.querySelector(".keys.open"); if (k && !k.contains(e.target)) k.classList.remove("open");
+  overlay.querySelectorAll(".keys.open").forEach(k => { if (!k.contains(e.target)) k.classList.remove("open"); });
+  if (id === "keyslink" || id === "aboutlink"){ e.preventDefault(); e.target.parentNode.classList.toggle("open"); return; }
   if (id === "mus") toggleMusic();
   else if (id === "lb") showBoard(mode === "menu" ? showMenu : (mode === "win" ? showWin : showOver));
   else if (id === "bk") (boardBack || showMenu)();
@@ -1079,6 +1080,9 @@ function showMenu(){
   overlay.className = "";
   overlay.innerHTML = '<div class="panel menu">' +
     '<div class="row" style="margin:0;justify-content:space-between"><h1>🎯 Bayes Blaster</h1><span>' +
+    '<span class="keys"><button id="aboutlink" style="text-align:center">ℹ️ About</button><div class="pop" style="max-width:min(340px, 85vw)">' +
+    '<b>Bayes Blaster</b><br>A game for the course <a href="https://mattiasvillani.com/BayesLearnCourse/" target="_blank" rel="noopener">Bayesian Learning</a>.<br><br>' +
+    'Idea: <b><a href="https://mattiasvillani.com" target="_blank" rel="noopener">Mattias Villani</a></b>.<br>Development: <b>Mattias Villani</b> and <b>Claude AI</b>.<br><br>Music and sound are generated in the browser.</div></span> ' +
     '<span class="keys"><button id="keyslink" style="text-align:center">⌨️ Key controls</button><div class="pop"><table>' +
     [["<kbd>←</kbd> <kbd>→</kbd> or <kbd>A</kbd> <kbd>D</kbd>", "Move"],
      ["<kbd>Space</kbd>", "Fire"],
